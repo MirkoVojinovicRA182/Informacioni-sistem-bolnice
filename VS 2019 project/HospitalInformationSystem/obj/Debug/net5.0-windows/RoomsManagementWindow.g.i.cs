@@ -53,7 +53,7 @@ namespace HospitalInformationSystem {
                 return;
             }
             _contentLoaded = true;
-            System.Uri resourceLocater = new System.Uri("/HospitalInformationSystem;component/roomsmanagementwindow.xaml", System.UriKind.Relative);
+            System.Uri resourceLocater = new System.Uri("/HospitalInformationSystem;V1.0.0.0;component/roomsmanagementwindow.xaml", System.UriKind.Relative);
             
             #line 1 "..\..\..\RoomsManagementWindow.xaml"
             System.Windows.Application.LoadComponent(this, resourceLocater);

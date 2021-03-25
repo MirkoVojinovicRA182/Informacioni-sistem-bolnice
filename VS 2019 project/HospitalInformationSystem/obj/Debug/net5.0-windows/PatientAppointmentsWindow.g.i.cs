@@ -53,7 +53,7 @@ namespace HospitalInformationSystem {
                 return;
             }
             _contentLoaded = true;
-            System.Uri resourceLocater = new System.Uri("/HospitalInformationSystem;component/patientappointmentswindow.xaml", System.UriKind.Relative);
+            System.Uri resourceLocater = new System.Uri("/HospitalInformationSystem;V1.0.0.0;component/patientappointmentswindow.xaml", System.UriKind.Relative);
             
             #line 1 "..\..\..\PatientAppointmentsWindow.xaml"
             System.Windows.Application.LoadComponent(this, resourceLocater);

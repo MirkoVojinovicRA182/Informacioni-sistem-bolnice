@@ -11,10 +11,16 @@ namespace BusinessLogic
 {
    public class RoomManagement
    {
-      public bool CreateRoom(int floor, int id, string typeOfRoom)
+      public bool CreateRoom(int floor, int id, string name)
       {
-         // TODO: implement
-         return false;
+            // TODO: implement
+            Room newRoom = new Room(id, name, floor);
+
+            RoomDataBase roomDataBase = new RoomDataBase();
+
+            roomDataBase.AddRoom(newRoom);
+
+            return true;
       }
       
       public bool DeleteRoom(Room room)
@@ -47,7 +53,7 @@ namespace BusinessLogic
          return false;
       }
    
-      private RoomManagement()
+      public RoomManagement()
       {
          // TODO: implement
       }

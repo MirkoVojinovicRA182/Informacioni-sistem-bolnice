@@ -14,6 +14,13 @@ namespace Model
       {
          // TODO: implement
       }
+
+      public Room(int id, string name, int floor)
+        {
+            this.Id = id;
+            this.Name = name;
+            this.Floor = floor;
+        }
       
       ~Room()
       {

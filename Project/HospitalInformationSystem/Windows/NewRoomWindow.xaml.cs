@@ -12,6 +12,9 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 
+using Model;
+using BusinessLogic;
+
 namespace HospitalInformationSystem.Windows
 {
     /// <summary>
@@ -37,6 +40,18 @@ namespace HospitalInformationSystem.Windows
             typeOfRoomComboBox.ItemsSource = list;
 
             typeOfRoomComboBox.SelectedItem = 0;
+        }
+
+        private void confirmButton_Click(object sender, RoutedEventArgs e)
+        {
+            int id = int.Parse(idTextBox.Text);
+            string name = nameTextBox.Text;
+            int floor = int.Parse(floorTextBox.Text);
+         
+            RoomManagement roomManagement = new RoomManagement();
+
+            roomManagement.CreateRoom(floor, id, name);
+
         }
     }
 

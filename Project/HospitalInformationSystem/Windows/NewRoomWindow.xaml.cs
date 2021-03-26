@@ -15,21 +15,29 @@ using System.Windows.Shapes;
 namespace HospitalInformationSystem.Windows
 {
     /// <summary>
-    /// Interaction logic for RoomManagementWindow.xaml
+    /// Interaction logic for NewRoomWindow.xaml
     /// </summary>
-    public partial class RoomManagementWindow : Window
+    public partial class NewRoomWindow : Window
     {
-        public RoomManagementWindow()
+        public NewRoomWindow()
         {
             InitializeComponent();
+
+            loadComboBox();
         }
 
-        private void confirmButton_Click(object sender, RoutedEventArgs e)
+        private void loadComboBox()
         {
-            NewRoomWindow newRoomWindow = new NewRoomWindow();
+            var list = new List<String>();
 
-            if ((bool)newRadioButton.IsChecked)
-                newRoomWindow.Show();
+            list.Add("Operaciona sala");
+            list.Add("Sala za odmor");
+            list.Add("Soba sa krevetima");
+
+            typeOfRoomComboBox.ItemsSource = list;
+
+            typeOfRoomComboBox.SelectedItem = 0;
         }
     }
+
 }

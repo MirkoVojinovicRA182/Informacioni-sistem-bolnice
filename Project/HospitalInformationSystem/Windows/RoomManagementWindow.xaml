@@ -5,8 +5,16 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:HospitalInformationSystem.Windows"
         mc:Ignorable="d"
-        Title="Upravljanje prostorijama" Height="450" Width="800">
+        Title="Upravljanje prostorijama" Height="450" Width="450">
     <Grid>
-        
+        <TextBlock HorizontalAlignment="Left" Margin="135,25,0,0" TextWrapping="Wrap" Text="IZABERITE OPCIJU:" VerticalAlignment="Top" FontSize="20"/>
+        <RadioButton x:Name="newRadioButton" Content="Unos nove prostorije" HorizontalAlignment="Left" Margin="135,85,0,0" VerticalAlignment="Top"/>
+        <RadioButton Content="Brisanje jedne prostorije" HorizontalAlignment="Left" Margin="135,124,0,0" VerticalAlignment="Top"/>
+        <RadioButton Content="Brisanje svih prostorija" HorizontalAlignment="Left" Margin="135,168,0,0" VerticalAlignment="Top"/>
+        <RadioButton Content="Izmena prostorije" HorizontalAlignment="Left" Margin="135,213,0,0" VerticalAlignment="Top"/>
+        <RadioButton Content="Pregled svih prostorija" HorizontalAlignment="Left" Margin="135,253,0,0" VerticalAlignment="Top"/>
+        <RadioButton Content="Pregled jedne prostorije" HorizontalAlignment="Left" Margin="135,293,0,0" VerticalAlignment="Top"/>
+        <Button Content="POTVRDI" HorizontalAlignment="Left" Margin="194,348,0,0" VerticalAlignment="Top" Width="75" FontSize="16" Click="confirmButton_Click"/>
+
     </Grid>
 </Window>

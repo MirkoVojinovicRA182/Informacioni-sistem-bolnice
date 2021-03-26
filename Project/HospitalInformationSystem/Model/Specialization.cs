@@ -4,16 +4,14 @@
  * Purpose: Definition of the Enum Model.Specialization
  ***********************************************************************/
 
-using System;
-
 namespace Model
 {
-   public enum Specialization
-   {
-      Surgeon,
-      Pediatrician,
-      Gynecologist,
-      Neurologist,
-      Urologist
-   }
+    public enum Specialization
+    {
+        Surgeon,
+        Pediatrician,
+        Gynecologist,
+        Neurologist,
+        Urologist
+    }
 }

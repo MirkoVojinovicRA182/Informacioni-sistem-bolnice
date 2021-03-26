@@ -4,63 +4,61 @@
  * Purpose: Definition of the Class Model.Person
  ***********************************************************************/
 
-using System;
-
 namespace Model
 {
-   public class Person
-   {
-      public Person()
-      {
-         // TODO: implement
-      }
-      
-      ~Person()
-      {
-         // TODO: implement
-      }
-   
-      private string Country;
-      private string City;
-   
-      protected string Name
-      {
-         get
-         {
+    public class Person
+    {
+        public Person()
+        {
             // TODO: implement
-            return (string)"";
-         }
-         set
-         {
+        }
+
+        ~Person()
+        {
             // TODO: implement
-         }
-      }
-      
-      protected string Surname
-      {
-         get
-         {
-            // TODO: implement
-            return (string)"";
-         }
-         set
-         {
-            // TODO: implement
-         }
-      }
-      
-      protected string Id
-      {
-         get
-         {
-            // TODO: implement
-            return (string)"";
-         }
-         set
-         {
-            // TODO: implement
-         }
-      }
-   
-   }
+        }
+
+        private string Country;
+        private string City;
+
+        protected string Name
+        {
+            get
+            {
+                // TODO: implement
+                return (string)"";
+            }
+            set
+            {
+                // TODO: implement
+            }
+        }
+
+        protected string Surname
+        {
+            get
+            {
+                // TODO: implement
+                return (string)"";
+            }
+            set
+            {
+                // TODO: implement
+            }
+        }
+
+        protected string Id
+        {
+            get
+            {
+                // TODO: implement
+                return (string)"";
+            }
+            set
+            {
+                // TODO: implement
+            }
+        }
+
+    }
 }

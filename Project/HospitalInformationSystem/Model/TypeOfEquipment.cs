@@ -4,17 +4,15 @@
  * Purpose: Definition of the Enum Model.TypeOfEquipment
  ***********************************************************************/
 
-using System;
-
 namespace Model
 {
-   public enum TypeOfEquipment
-   {
-      HospitalFurniture,
-      OfficeFurniture,
-      Clothing,
-      LaboratoryEquipment,
-      PhishioterapyEquipment,
-      ElectroMedicalEquipment
-   }
+    public enum TypeOfEquipment
+    {
+        HospitalFurniture,
+        OfficeFurniture,
+        Clothing,
+        LaboratoryEquipment,
+        PhishioterapyEquipment,
+        ElectroMedicalEquipment
+    }
 }

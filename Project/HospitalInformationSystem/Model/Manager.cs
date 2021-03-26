@@ -4,21 +4,19 @@
  * Purpose: Definition of the Class Model.Manager
  ***********************************************************************/
 
-using System;
-
 namespace Model
 {
-   public class Manager : Person
-   {
-      public Manager()
-      {
-         // TODO: implement
-      }
-      
-      ~Manager()
-      {
-         // TODO: implement
-      }
-   
-   }
+    public class Manager : Person
+    {
+        public Manager()
+        {
+            // TODO: implement
+        }
+
+        ~Manager()
+        {
+            // TODO: implement
+        }
+
+    }
 }

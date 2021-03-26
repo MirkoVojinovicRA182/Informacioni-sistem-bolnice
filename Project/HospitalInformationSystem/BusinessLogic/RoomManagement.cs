@@ -4,59 +4,58 @@
  * Purpose: Definition of the Class BusinessLogic.RoomManagement
  ***********************************************************************/
 
-using System;
 using Model;
+using HospitalInformationSystem.Windows;
 
 namespace BusinessLogic
 {
-   public class RoomManagement
-   {
-      public bool CreateRoom(int floor, int id, string name)
-      {
+    public class RoomManagement
+    {
+        public int CreateRoom(int floor, int id, string name)
+        {
             // TODO: implement
             Room newRoom = new Room(id, name, floor);
 
-            RoomDataBase roomDataBase = new RoomDataBase();
+            RoomDataBase.getInstance().AddRoom(newRoom);
 
-            roomDataBase.AddRoom(newRoom);
+            return RoomDataBase.getInstance().GetRoom().Count;
 
-            return true;
-      }
-      
-      public bool DeleteRoom(Room room)
-      {
-         // TODO: implement
-         return false;
-      }
-      
-      public bool DeleteAllRooms()
-      {
-         // TODO: implement
-         return false;
-      }
-      
-      public bool ChangeRoom(Room room)
-      {
-         // TODO: implement
-         return false;
-      }
-      
-      public bool ReadRoom(Room room)
-      {
-         // TODO: implement
-         return false;
-      }
-      
-      public bool ReadAllRooms()
-      {
-         // TODO: implement
-         return false;
-      }
-   
-      public RoomManagement()
-      {
-         // TODO: implement
-      }
-   
-   }
+        }
+
+        public bool DeleteRoom(Room room)
+        {
+            // TODO: implement
+            return false;
+        }
+
+        public bool DeleteAllRooms()
+        {
+            // TODO: implement
+            return false;
+        }
+
+        public bool ChangeRoom(Room room)
+        {
+            // TODO: implement
+            return false;
+        }
+
+        public bool ReadRoom(Room room)
+        {
+            // TODO: implement
+            return false;
+        }
+
+        public bool ReadAllRooms()
+        {
+            // TODO: implement
+            return false;
+        }
+
+        public RoomManagement()
+        {
+            // TODO: implement
+        }
+
+    }
 }

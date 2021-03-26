@@ -1,19 +1,7 @@
-﻿using System;
+﻿using BusinessLogic;
+using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
-
-using Model;
-using BusinessLogic;
 
 namespace HospitalInformationSystem.Windows
 {
@@ -47,10 +35,14 @@ namespace HospitalInformationSystem.Windows
             int id = int.Parse(idTextBox.Text);
             string name = nameTextBox.Text;
             int floor = int.Parse(floorTextBox.Text);
-         
+
             RoomManagement roomManagement = new RoomManagement();
 
-            roomManagement.CreateRoom(floor, id, name);
+            int count = roomManagement.CreateRoom(floor, id, name);
+
+
+            //Provera da li se baza pravilno puni
+            idTextBox.Text = count.ToString();
 
         }
     }

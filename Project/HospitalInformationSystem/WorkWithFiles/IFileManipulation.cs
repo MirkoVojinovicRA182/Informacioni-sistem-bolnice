@@ -4,13 +4,11 @@
  * Purpose: Definition of the Interface WorkWithFiles.IFileManipulation
  ***********************************************************************/
 
-using System;
-
 namespace WorkWithFiles
 {
-   public interface IFileManipulation
-   {
-      bool SaveInFile();
-      bool LoadFromFile();
-   }
+    public interface IFileManipulation
+    {
+        bool SaveInFile();
+        bool LoadFromFile();
+    }
 }

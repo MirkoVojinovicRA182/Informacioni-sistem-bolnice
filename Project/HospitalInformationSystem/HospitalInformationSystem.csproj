@@ -55,6 +55,18 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Windows\DoctorAppointmentsManagementWindow.xaml.cs">
+      <DependentUpon>DoctorAppointmentsManagementWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Windows\PatientAppointmentsManagementWindow.xaml.cs">
+      <DependentUpon>PatientAppointmentsManagementWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Windows\PatientManagementWindow.xaml.cs">
+      <DependentUpon>PatientManagementWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Windows\RoomManagementWindow.xaml.cs">
+      <DependentUpon>RoomManagementWindow.xaml</DependentUpon>
+    </Compile>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -67,6 +79,22 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="Windows\DoctorAppointmentsManagementWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Windows\PatientAppointmentsManagementWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Windows\PatientManagementWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Windows\RoomManagementWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs">
@@ -94,5 +122,6 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

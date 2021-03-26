@@ -10,11 +10,11 @@ none
 false
 DEBUG;TRACE
 C:\Users\Mirko\Desktop\SIMS-HCI projekat\Project\HospitalInformationSystem\App.xaml
-11151548125
+51141454343
 
-5-2017746502
+9-1457567041
 13-1505183044
-MainWindow.xaml;
+MainWindow.xaml;Windows\DoctorAppointmentsManagementWindow.xaml;Windows\PatientAppointmentsManagementWindow.xaml;Windows\PatientManagementWindow.xaml;Windows\RoomManagementWindow.xaml;
 
 False
 

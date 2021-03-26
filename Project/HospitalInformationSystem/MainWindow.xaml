@@ -8,11 +8,11 @@
         Title="Glavni prozor" Height="300" Width="450">
     <Grid>
         <TextBlock HorizontalAlignment="Left" Margin="105,30,0,0" TextWrapping="Wrap" Text="IZABERITE OPCIJU:" VerticalAlignment="Top" FontSize="28"/>
-        <RadioButton Content="CRUD prostorija" HorizontalAlignment="Left" Margin="105,82,0,0" VerticalAlignment="Top"/>
-        <RadioButton Content="CRUD termina pacijenata" HorizontalAlignment="Left" Margin="105,116,0,0" VerticalAlignment="Top"/>
-        <RadioButton Content="CRUD termina lekara" HorizontalAlignment="Left" Margin="105,148,0,0" VerticalAlignment="Top"/>
-        <RadioButton Content="CRUD pacijenata" HorizontalAlignment="Left" Margin="105,180,0,0" VerticalAlignment="Top"/>
-        <Button Content="POTVRDI" HorizontalAlignment="Left" Margin="176,226,0,0" VerticalAlignment="Top" Width="75" FontSize="16"/>
+        <RadioButton x:Name="roomRadioButton" Content="CRUD prostorija" HorizontalAlignment="Left" Margin="105,82,0,0" VerticalAlignment="Top"/>
+        <RadioButton x:Name="patientAppointmentsRadioButton" Content="CRUD termina pacijenata" HorizontalAlignment="Left" Margin="105,116,0,0" VerticalAlignment="Top"/>
+        <RadioButton x:Name="doctorAppointmentsRadioButton" Content="CRUD termina lekara" HorizontalAlignment="Left" Margin="105,148,0,0" VerticalAlignment="Top"/>
+        <RadioButton x:Name="patientRadioButton" Content="CRUD pacijenata" HorizontalAlignment="Left" Margin="105,180,0,0" VerticalAlignment="Top"/>
+        <Button Content="POTVRDI" HorizontalAlignment="Left" Margin="176,226,0,0" VerticalAlignment="Top" Width="75" FontSize="16" Click="confirmButton_Click"/>
 
     </Grid>
 </Window>

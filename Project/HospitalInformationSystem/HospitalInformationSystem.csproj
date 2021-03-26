@@ -55,6 +55,26 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="BusinessLogic\DoctorAppointmentsManagment.cs" />
+    <Compile Include="BusinessLogic\PatientAppointmentsManagment.cs" />
+    <Compile Include="BusinessLogic\PatientManagement.cs" />
+    <Compile Include="BusinessLogic\RoomManagement.cs" />
+    <Compile Include="Model\Appointment.cs" />
+    <Compile Include="Model\AppointmentDataBase.cs" />
+    <Compile Include="Model\Doctor.cs" />
+    <Compile Include="Model\DoctorDataBase.cs" />
+    <Compile Include="Model\Equipment.cs" />
+    <Compile Include="Model\Manager.cs" />
+    <Compile Include="Model\Patient.cs" />
+    <Compile Include="Model\PatientDataBase.cs" />
+    <Compile Include="Model\Person.cs" />
+    <Compile Include="Model\Room.cs" />
+    <Compile Include="Model\RoomDataBase.cs" />
+    <Compile Include="Model\Secretary.cs" />
+    <Compile Include="Model\Specialization.cs" />
+    <Compile Include="Model\TypeOfAppointment.cs" />
+    <Compile Include="Model\TypeOfEquipment.cs" />
+    <Compile Include="Model\TypeOfRoom.cs" />
     <Compile Include="Windows\DoctorAppointmentsManagementWindow.xaml.cs">
       <DependentUpon>DoctorAppointmentsManagementWindow.xaml</DependentUpon>
     </Compile>
@@ -70,6 +90,12 @@
     <Compile Include="Windows\RoomManagementWindow.xaml.cs">
       <DependentUpon>RoomManagementWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="WorkWithFiles\DoctorAppointmentsFIleManipulation.cs" />
+    <Compile Include="WorkWithFiles\DoctorFileManipulation.cs" />
+    <Compile Include="WorkWithFiles\IFileManipulation.cs" />
+    <Compile Include="WorkWithFiles\PatientsAppointmentsFIleManipulation.cs" />
+    <Compile Include="WorkWithFiles\PatientsFileManipulation.cs" />
+    <Compile Include="WorkWithFiles\RoomsFileManipulation.cs" />
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>

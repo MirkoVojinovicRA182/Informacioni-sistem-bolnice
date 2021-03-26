@@ -4,6 +4,8 @@
  * Purpose: Definition of the Class Model.RoomDataBase
  ***********************************************************************/
 
+using System.Collections.Generic;
+
 namespace Model
 {
     public class RoomDataBase

@@ -71,45 +71,25 @@ namespace Model
                 equipment.Clear();
         }
 
-        private string Name;
-
-        private int Floor
+        public string Name
         {
-            get
-            {
-                // TODO: implement
-                return (int)0;
-            }
-            set
-            {
-                // TODO: implement
-            }
+            get; set; 
         }
 
-        private int Id
+
+        public int Floor
         {
-            get
-            {
-                // TODO: implement
-                return (int)0;
-            }
-            set
-            {
-                // TODO: implement
-            }
+            get; set;
         }
 
-        private TypeOfRoom Type
+        public int Id
         {
-            get
-            {
-                // TODO: implement
-                return TypeOfRoom.ExaminationRoom;
-            }
-            set
-            {
-                // TODO: implement
-            }
+            get; set;
+        }
+
+        public TypeOfRoom Type
+        {
+            get; set;
         }
 
     }

@@ -25,3 +25,5 @@ C:\Users\Mirko\Desktop\SIMS-HCI projekat\Project\HospitalInformationSystem\obj\D
 C:\Users\Mirko\Desktop\SIMS-HCI projekat\Project\HospitalInformationSystem\obj\Debug\HospitalInformationSystem.csproj.CoreCompileInputs.cache
 C:\Users\Mirko\Desktop\SIMS-HCI projekat\Project\HospitalInformationSystem\obj\Debug\HospitalInformationSystem.exe
 C:\Users\Mirko\Desktop\SIMS-HCI projekat\Project\HospitalInformationSystem\obj\Debug\HospitalInformationSystem.pdb
+C:\Users\Mirko\Desktop\SIMS-HCI projekat\Project\HospitalInformationSystem\obj\Debug\Windows\OneRoomWindow.baml
+C:\Users\Mirko\Desktop\SIMS-HCI projekat\Project\HospitalInformationSystem\obj\Debug\Windows\OneRoomWindow.g.cs

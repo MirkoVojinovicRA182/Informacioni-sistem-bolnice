@@ -13,7 +13,7 @@
         <RadioButton Content="Brisanje svih prostorija" HorizontalAlignment="Left" Margin="135,168,0,0" VerticalAlignment="Top"/>
         <RadioButton Content="Izmena prostorije" HorizontalAlignment="Left" Margin="135,213,0,0" VerticalAlignment="Top"/>
         <RadioButton x:Name="allRoomsRadioButton" Content="Pregled svih prostorija" HorizontalAlignment="Left" Margin="135,253,0,0" VerticalAlignment="Top"/>
-        <RadioButton Content="Pregled jedne prostorije" HorizontalAlignment="Left" Margin="135,293,0,0" VerticalAlignment="Top"/>
+        <RadioButton x:Name="oneRoomRadioButton" Content="Pregled jedne prostorije" HorizontalAlignment="Left" Margin="135,293,0,0" VerticalAlignment="Top"/>
         <Button Content="POTVRDI" HorizontalAlignment="Left" Margin="194,348,0,0" VerticalAlignment="Top" Width="75" FontSize="16" Click="confirmButton_Click"/>
 
     </Grid>

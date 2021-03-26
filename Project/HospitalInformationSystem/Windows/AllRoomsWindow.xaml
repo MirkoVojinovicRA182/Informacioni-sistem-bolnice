@@ -6,7 +6,5 @@
         xmlns:local="clr-namespace:HospitalInformationSystem.Windows"
         mc:Ignorable="d"
         Title="Pregled svih prostorija" Height="450" Width="800">
-    <Grid>
-        <TextBox x:Name="roomsTextBox" HorizontalAlignment="Left" Height="23" Margin="320,162,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120"/>
-    </Grid>
+    <Grid/>
 </Window>

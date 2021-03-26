@@ -38,11 +38,10 @@ namespace HospitalInformationSystem.Windows
 
             RoomManagement roomManagement = new RoomManagement();
 
-            int count = roomManagement.CreateRoom(floor, id, name);
+            roomManagement.CreateRoom(floor, id, name);
 
 
-            //Provera da li se baza pravilno puni
-            idTextBox.Text = count.ToString();
+            this.Close();
 
         }
     }

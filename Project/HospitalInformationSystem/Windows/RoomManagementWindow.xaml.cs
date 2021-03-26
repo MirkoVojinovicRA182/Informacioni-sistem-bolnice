@@ -16,11 +16,14 @@ namespace HospitalInformationSystem.Windows
         {
             NewRoomWindow newRoomWindow = new NewRoomWindow();
             AllRoomsWindow allRoomsWindow = new AllRoomsWindow();
+            OneRoomWindow oneRoomWindow = new OneRoomWindow();
 
             if ((bool)newRadioButton.IsChecked)
                 newRoomWindow.Show();
             else if ((bool)allRoomsRadioButton.IsChecked)
                 allRoomsWindow.Show();
+            else if ((bool)oneRoomRadioButton.IsChecked)
+                oneRoomWindow.Show();
 
         }
     }

@@ -13,11 +13,12 @@ namespace Model
             // TODO: implement
         }
 
-        public Room(int id, string name, int floor)
+        public Room(int id, string name, int floor, TypeOfRoom type)
         {
             this.Id = id;
             this.Name = name;
             this.Floor = floor;
+            this.Type = type;
         }
 
         ~Room()

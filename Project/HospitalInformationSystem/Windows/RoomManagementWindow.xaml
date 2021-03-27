@@ -9,8 +9,8 @@
     <Grid>
         <TextBlock HorizontalAlignment="Left" Margin="135,25,0,0" TextWrapping="Wrap" Text="IZABERITE OPCIJU:" VerticalAlignment="Top" FontSize="20"/>
         <RadioButton x:Name="newRadioButton" Content="Unos nove prostorije" HorizontalAlignment="Left" Margin="135,85,0,0" VerticalAlignment="Top"/>
-        <RadioButton Content="Brisanje jedne prostorije" HorizontalAlignment="Left" Margin="135,124,0,0" VerticalAlignment="Top"/>
-        <RadioButton Content="Brisanje svih prostorija" HorizontalAlignment="Left" Margin="135,168,0,0" VerticalAlignment="Top"/>
+        <RadioButton x:Name="deleteOneRoomRadioButton" Content="Brisanje jedne prostorije" HorizontalAlignment="Left" Margin="135,124,0,0" VerticalAlignment="Top"/>
+        <RadioButton x:Name="deleteAllRoomsRadioButton" Content="Brisanje svih prostorija" HorizontalAlignment="Left" Margin="135,168,0,0" VerticalAlignment="Top"/>
         <RadioButton Content="Izmena prostorije" HorizontalAlignment="Left" Margin="135,213,0,0" VerticalAlignment="Top"/>
         <RadioButton x:Name="allRoomsRadioButton" Content="Pregled svih prostorija" HorizontalAlignment="Left" Margin="135,253,0,0" VerticalAlignment="Top"/>
         <RadioButton x:Name="oneRoomRadioButton" Content="Pregled jedne prostorije" HorizontalAlignment="Left" Margin="135,293,0,0" VerticalAlignment="Top"/>

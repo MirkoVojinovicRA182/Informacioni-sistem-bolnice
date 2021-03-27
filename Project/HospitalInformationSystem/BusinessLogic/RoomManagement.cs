@@ -11,14 +11,17 @@ namespace BusinessLogic
 {
     public class RoomManagement
     {
-        public int CreateRoom(int floor, int id, string name)
+        public RoomManagement()
         {
             // TODO: implement
-            Room newRoom = new Room(id, name, floor);
+        }
+        public void CreateRoom(int floor, int id, string name, TypeOfRoom type)
+        {
+            // TODO: implement
+            Room newRoom = new Room(id, name, floor, type);
 
             RoomDataBase.getInstance().AddRoom(newRoom);
 
-            return RoomDataBase.getInstance().GetRoom().Count;
 
         }
 
@@ -28,10 +31,11 @@ namespace BusinessLogic
             return false;
         }
 
-        public bool DeleteAllRooms()
+        public void DeleteAllRooms()
         {
             // TODO: implement
-            return false;
+            RoomDataBase.getInstance().RemoveAllRoom();
+            
         }
 
         public bool ChangeRoom(Room room)
@@ -50,11 +54,6 @@ namespace BusinessLogic
         {
             // TODO: implement
             return false;
-        }
-
-        public RoomManagement()
-        {
-            // TODO: implement
         }
 
     }

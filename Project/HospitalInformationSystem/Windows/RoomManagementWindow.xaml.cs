@@ -1,4 +1,5 @@
 ﻿using System.Windows;
+using BusinessLogic;
 
 namespace HospitalInformationSystem.Windows
 {
@@ -24,7 +25,21 @@ namespace HospitalInformationSystem.Windows
                 allRoomsWindow.Show();
             else if ((bool)oneRoomRadioButton.IsChecked)
                 oneRoomWindow.Show();
+            else if ((bool)deleteAllRoomsRadioButton.IsChecked)
+            {
+                deleteAllRooms();
+                MessageBox.Show("Sve prostorije su sada obrisane iz sistema.", "Operacija brisanja", MessageBoxButton.OK, MessageBoxImage.Information);
+            }
+            
+              
 
+        }
+
+        private void deleteAllRooms()
+        {
+            RoomManagement management = new RoomManagement();
+
+            management.DeleteAllRooms();
         }
     }
 }

@@ -33,11 +33,6 @@ namespace HospitalInformationSystem.Windows
             this.Close();
         }
 
-        private void loadComboBox()
-        {
-            roomsComboBox.ItemsSource = RoomDataBase.getInstance().GetRoom();
-        }
-
         private void roomsComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             Room selectedRoom = (Room)roomsComboBox.SelectedItem;
@@ -45,6 +40,29 @@ namespace HospitalInformationSystem.Windows
             idTextBox.Text = selectedRoom.Id.ToString();
             nameTextBox.Text = selectedRoom.Name;
             floorTextBox.Text = selectedRoom.Floor.ToString();
+            fillTypeTextBox(selectedRoom.Type);
+        }
+
+        private void loadComboBox()
+        {
+            roomsComboBox.ItemsSource = RoomDataBase.getInstance().GetRoom();
+        }
+
+        private void fillTypeTextBox(TypeOfRoom type)
+        {
+            if (type == TypeOfRoom.ExaminationRoom)
+                typeTextBox.Text = "Prostorija za preglede";
+            else if (type == TypeOfRoom.HospitalizationRoom)
+                typeTextBox.Text = "Sala za hospitalizaciju";
+            else if (type == TypeOfRoom.Office)
+                typeTextBox.Text = "Kancelarija";
+            else if (type == TypeOfRoom.OperationRoom)
+                typeTextBox.Text = "Operaciona sala";
+            else if (type == TypeOfRoom.RestRoom)
+                typeTextBox.Text = "Prostorija za odmor";
+            else if (type == TypeOfRoom.RoomWithBeds)
+                typeTextBox.Text = "Soba sa krevetima";
+
         }
     }
 }

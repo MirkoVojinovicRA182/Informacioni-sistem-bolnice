@@ -39,10 +39,14 @@ namespace BusinessLogic
             
         }
 
-        public bool ChangeRoom(Room room)
+        public void ChangeRoom(Room room, int newId, string newName, TypeOfRoom newType, int newFloor)
         {
             // TODO: implement
-            return false;
+            room.Id = newId;
+            room.Name = newName;
+            room.Type = newType;
+            room.Floor = newFloor;
+
         }
 
         public bool ReadRoom(Room room)

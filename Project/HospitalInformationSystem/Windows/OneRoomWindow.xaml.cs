@@ -13,6 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 
 using Model;
+using BusinessLogic;
 
 namespace HospitalInformationSystem.Windows
 {
@@ -25,12 +26,15 @@ namespace HospitalInformationSystem.Windows
         {
             InitializeComponent();
 
-            loadComboBox();
+            loadRoomsComboBox();
+            loadTypeComboBox();
         }
 
         private void changeRoomButton_Click(object sender, RoutedEventArgs e)
         {
-            changeRoomInfo((Room)roomsComboBox.SelectedItem);
+            RoomManagement management = new RoomManagement();
+            management.ChangeRoom((Room)roomsComboBox.SelectedItem, int.Parse(idTextBox.Text), nameTextBox.Text, getType(typeComboBox.SelectedIndex), int.Parse(floorTextBox.Text));
+
             MessageBox.Show("Informacije o prostoriji su sada izmenjene.", "Izmena informacija", MessageBoxButton.OK, MessageBoxImage.Information);
         }
 
@@ -41,62 +45,70 @@ namespace HospitalInformationSystem.Windows
 
         private void roomsComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
+            typeComboBox.IsEnabled = true;
+
             Room selectedRoom = (Room)roomsComboBox.SelectedItem;
 
             idTextBox.Text = selectedRoom.Id.ToString();
             nameTextBox.Text = selectedRoom.Name;
             floorTextBox.Text = selectedRoom.Floor.ToString();
-            fillTypeTextBox(selectedRoom.Type);
+            fiilTypeComboBox(selectedRoom.Type);
         }
 
-        private void loadComboBox()
+        private void loadRoomsComboBox()
         {
             roomsComboBox.ItemsSource = RoomDataBase.getInstance().GetRoom();
         }
-
-        private void fillTypeTextBox(TypeOfRoom type)
-        {
-            if (type == TypeOfRoom.ExaminationRoom)
-                typeTextBox.Text = "Prostorija za preglede";
-            else if (type == TypeOfRoom.HospitalizationRoom)
-                typeTextBox.Text = "Sala za hospitalizaciju";
-            else if (type == TypeOfRoom.Office)
-                typeTextBox.Text = "Kancelarija";
-            else if (type == TypeOfRoom.OperationRoom)
-                typeTextBox.Text = "Operaciona sala";
-            else if (type == TypeOfRoom.RestRoom)
-                typeTextBox.Text = "Prostorija za odmor";
-            else if (type == TypeOfRoom.RoomWithBeds)
-                typeTextBox.Text = "Soba sa krevetima";
-
-        }
-
-        private void changeRoomInfo(Room room)
-        {
-            room.Id = int.Parse(idTextBox.Text);
-            room.Name = nameTextBox.Text;
-            room.Floor = int.Parse(floorTextBox.Text);
-            room.Type = loadType(typeTextBox.Text);
-        }
-
-        private TypeOfRoom loadType(string selectedValue)
+        private TypeOfRoom getType(int selectedValue)
         {
             TypeOfRoom type = 0;
-            if (String.Compare(selectedValue, "Operaciona sala") == 0)
+            if (selectedValue == 0)
                 type = TypeOfRoom.OperationRoom;
-            else if (String.Compare(selectedValue, "Prostorija za odmor") == 0)
+            else if (selectedValue == 1)
                 type = TypeOfRoom.RestRoom;
-            else if (String.Compare(selectedValue, "Soba sa krevetima") == 0)
+            else if (selectedValue == 2)
                 type = TypeOfRoom.RoomWithBeds;
-            else if (String.Compare(selectedValue, "Sala za hospitalizaciju") == 0)
+            else if (selectedValue == 3)
                 type = TypeOfRoom.HospitalizationRoom;
-            else if (String.Compare(selectedValue, "Kancelarija") == 0)
+            else if (selectedValue == 4)
                 type = TypeOfRoom.Office;
-            else if (String.Compare(selectedValue, "Prostorija za preglede") == 0)
+            else if (selectedValue == 5)
                 type = TypeOfRoom.ExaminationRoom;
 
             return type;
 
+        }
+
+        private void loadTypeComboBox()
+        {
+            var list = new List<String>();
+
+            list.Add("Operaciona sala");
+            list.Add("Prostorija za odmor");
+            list.Add("Soba sa krevetima");
+            list.Add("Sala za hospitalizaciju");
+            list.Add("Kancelarija");
+            list.Add("Prostorija za preglede");
+
+            typeComboBox.ItemsSource = list;
+
+            typeComboBox.IsEnabled = false;
+        }
+
+        private void fiilTypeComboBox(TypeOfRoom type)
+        {
+            if (type == TypeOfRoom.ExaminationRoom)
+                typeComboBox.SelectedIndex = 5;
+            else if (type == TypeOfRoom.HospitalizationRoom)
+                typeComboBox.SelectedIndex = 3;
+            else if (type == TypeOfRoom.Office)
+                typeComboBox.SelectedIndex = 4;
+            else if (type == TypeOfRoom.OperationRoom)
+                typeComboBox.SelectedIndex = 0;
+            else if (type == TypeOfRoom.RestRoom)
+                typeComboBox.SelectedIndex = 1;
+            else if (type == TypeOfRoom.RoomWithBeds)
+                typeComboBox.SelectedIndex = 2;
         }
 
     }

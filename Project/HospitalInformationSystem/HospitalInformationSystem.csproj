@@ -78,6 +78,9 @@
     <Compile Include="Windows\AllRoomsWindow.xaml.cs">
       <DependentUpon>AllRoomsWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Windows\DeleteOneRoomWindow.xaml.cs">
+      <DependentUpon>DeleteOneRoomWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Windows\DoctorAppointmentsManagementWindow.xaml.cs">
       <DependentUpon>DoctorAppointmentsManagementWindow.xaml</DependentUpon>
     </Compile>
@@ -115,6 +118,10 @@
       <SubType>Code</SubType>
     </Compile>
     <Page Include="Windows\AllRoomsWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Windows\DeleteOneRoomWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

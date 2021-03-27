@@ -18,6 +18,8 @@ namespace HospitalInformationSystem.Windows
             NewRoomWindow newRoomWindow = new NewRoomWindow();
             AllRoomsWindow allRoomsWindow = new AllRoomsWindow();
             OneRoomWindow oneRoomWindow = new OneRoomWindow();
+            DeleteOneRoomWindow deleteOneRoomWindow = new DeleteOneRoomWindow();
+
 
             if ((bool)newRadioButton.IsChecked)
                 newRoomWindow.Show();
@@ -30,7 +32,9 @@ namespace HospitalInformationSystem.Windows
                 deleteAllRooms();
                 MessageBox.Show("Sve prostorije su sada obrisane iz sistema.", "Operacija brisanja", MessageBoxButton.OK, MessageBoxImage.Information);
             }
-            
+            else if ((bool)deleteOneRoomRadioButton.IsChecked)
+                deleteOneRoomWindow.Show();
+
               
 
         }

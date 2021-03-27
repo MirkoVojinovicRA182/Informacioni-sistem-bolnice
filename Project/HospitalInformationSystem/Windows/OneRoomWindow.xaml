@@ -14,11 +14,12 @@
         <Label Content="Tip:" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="45,202,0,0" FontSize="16"/>
         <Label Content="Sprat:" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="47,256,0,0" FontSize="16"/>
         <Label Content="Inventar:" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="45,326,0,0" FontSize="16"/>
-        <ListBox HorizontalAlignment="Left" Height="73" Margin="201,315,0,0" VerticalAlignment="Top" Width="197"/>
-        <Button x:Name="closeButton" Content="IZAĐI" HorizontalAlignment="Left" Margin="358,441,0,0" VerticalAlignment="Top" Width="75" Click="closeButton_Click"/>
-        <TextBox x:Name="idTextBox" HorizontalAlignment="Left" Height="23" Margin="201,104,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="94" IsEnabled="False"/>
-        <TextBox x:Name="nameTextBox" HorizontalAlignment="Left" Height="23" Margin="201,151,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="197" IsEnabled="False"/>
-        <TextBox x:Name="typeTextBox" HorizontalAlignment="Left" Height="23" Margin="201,202,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="197" IsEnabled="False"/>
-        <TextBox x:Name="floorTextBox" HorizontalAlignment="Left" Height="23" Margin="201,265,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="53" IsEnabled="False"/>
+        <ListBox HorizontalAlignment="Left" Height="73" Margin="201,315,0,0" VerticalAlignment="Top" Width="197" IsEnabled="False"/>
+        <Button x:Name="closeButton" Content="IZAĐI" HorizontalAlignment="Left" Margin="259,422,0,0" VerticalAlignment="Top" Width="75" Click="closeButton_Click" FontSize="16"/>
+        <TextBox x:Name="idTextBox" HorizontalAlignment="Left" Height="23" Margin="201,104,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="94"/>
+        <TextBox x:Name="nameTextBox" HorizontalAlignment="Left" Height="23" Margin="201,151,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="197"/>
+        <TextBox x:Name="typeTextBox" HorizontalAlignment="Left" Height="23" Margin="201,202,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="197"/>
+        <TextBox x:Name="floorTextBox" HorizontalAlignment="Left" Height="23" Margin="201,265,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="53"/>
+        <Button x:Name="changeRoomButton" Content="IZMENI" HorizontalAlignment="Left" Margin="145,422,0,0" VerticalAlignment="Top" Width="72" FontSize="16" Click="changeRoomButton_Click"/>
     </Grid>
 </Window>

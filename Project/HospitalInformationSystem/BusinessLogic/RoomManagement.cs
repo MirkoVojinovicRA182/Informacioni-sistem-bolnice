@@ -28,6 +28,7 @@ namespace BusinessLogic
         public bool DeleteRoom(Room room)
         {
             // TODO: implement
+            RoomDataBase.getInstance().RemoveRoom(room);
             return false;
         }
 

@@ -10,11 +10,11 @@ none
 false
 DEBUG;TRACE
 C:\Users\Mirko\Desktop\SIMS-HCI projekat\Project\HospitalInformationSystem\App.xaml
-8-852833943
+91019736014
 
-38-1885251843
+392087442003
 13-1505183044
-MainWindow.xaml;Windows\AllRoomsWindow.xaml;Windows\DoctorAppointmentsManagementWindow.xaml;Windows\NewRoomWindow.xaml;Windows\OneRoomWindow.xaml;Windows\PatientAppointmentsManagementWindow.xaml;Windows\PatientManagementWindow.xaml;Windows\RoomManagementWindow.xaml;
+MainWindow.xaml;Windows\AllRoomsWindow.xaml;Windows\DeleteOneRoomWindow.xaml;Windows\DoctorAppointmentsManagementWindow.xaml;Windows\NewRoomWindow.xaml;Windows\OneRoomWindow.xaml;Windows\PatientAppointmentsManagementWindow.xaml;Windows\PatientManagementWindow.xaml;Windows\RoomManagementWindow.xaml;
 
 False
 

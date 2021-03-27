@@ -27,3 +27,5 @@ C:\Users\Mirko\Desktop\SIMS-HCI projekat\Project\HospitalInformationSystem\obj\D
 C:\Users\Mirko\Desktop\SIMS-HCI projekat\Project\HospitalInformationSystem\obj\Debug\HospitalInformationSystem.pdb
 C:\Users\Mirko\Desktop\SIMS-HCI projekat\Project\HospitalInformationSystem\obj\Debug\Windows\OneRoomWindow.baml
 C:\Users\Mirko\Desktop\SIMS-HCI projekat\Project\HospitalInformationSystem\obj\Debug\Windows\OneRoomWindow.g.cs
+C:\Users\Mirko\Desktop\SIMS-HCI projekat\Project\HospitalInformationSystem\obj\Debug\Windows\DeleteOneRoomWindow.g.cs
+C:\Users\Mirko\Desktop\SIMS-HCI projekat\Project\HospitalInformationSystem\obj\Debug\Windows\DeleteOneRoomWindow.baml

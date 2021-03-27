@@ -12,16 +12,38 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 
+using Model;
+using BusinessLogic;
+
 namespace HospitalInformationSystem.Windows
 {
     /// <summary>
-    /// Interaction logic for deleteOneRoomWindow.xaml
+    /// Interaction logic for DeleteOneRoomWindow.xaml
     /// </summary>
-    public partial class deleteOneRoomWindow : Window
+    public partial class DeleteOneRoomWindow : Window
     {
-        public deleteOneRoomWindow()
+        public DeleteOneRoomWindow()
         {
             InitializeComponent();
+            loadComboBox();
+        }
+
+        private void confirmButton_Click(object sender, RoutedEventArgs e)
+        {
+            deleteOneRoom();
+            this.Close();
+        }
+
+        private void loadComboBox()
+        {
+            roomsComboBox.ItemsSource = RoomDataBase.getInstance().GetRoom();
+        }
+
+        private void deleteOneRoom()
+        {
+            RoomManagement management = new RoomManagement();
+
+            management.DeleteRoom((Room)roomsComboBox.SelectedItem);
         }
     }
 }

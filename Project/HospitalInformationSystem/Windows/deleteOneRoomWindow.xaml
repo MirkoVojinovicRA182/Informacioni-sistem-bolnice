@@ -1,12 +1,15 @@
-﻿<Window x:Class="HospitalInformationSystem.Windows.deleteOneRoomWindow"
+﻿<Window x:Class="HospitalInformationSystem.Windows.DeleteOneRoomWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:HospitalInformationSystem.Windows"
         mc:Ignorable="d"
-        Title="deleteOneRoomWindow" Height="450" Width="800">
+        Title="DeleteOneRoomWindow" Height="200" Width="450">
     <Grid>
-        
+        <TextBlock HorizontalAlignment="Left" Margin="21,37,0,0" TextWrapping="Wrap" Text="Izaberite prostoriju:" VerticalAlignment="Top" FontSize="16"/>
+        <ComboBox x:Name="roomsComboBox" HorizontalAlignment="Left" Margin="186,36,0,0" VerticalAlignment="Top" Width="207"/>
+        <Button Content="OBRIŠI" HorizontalAlignment="Left" Margin="175,123,0,0" VerticalAlignment="Top" Width="75" FontSize="16" Click="confirmButton_Click"/>
+
     </Grid>
 </Window>

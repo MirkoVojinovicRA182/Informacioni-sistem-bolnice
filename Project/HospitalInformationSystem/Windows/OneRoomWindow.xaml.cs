@@ -28,6 +28,12 @@ namespace HospitalInformationSystem.Windows
             loadComboBox();
         }
 
+        private void changeRoomButton_Click(object sender, RoutedEventArgs e)
+        {
+            changeRoomInfo((Room)roomsComboBox.SelectedItem);
+            MessageBox.Show("Informacije o prostoriji su sada izmenjene.", "Izmena informacija", MessageBoxButton.OK, MessageBoxImage.Information);
+        }
+
         private void closeButton_Click(object sender, RoutedEventArgs e)
         {
             this.Close();
@@ -64,5 +70,34 @@ namespace HospitalInformationSystem.Windows
                 typeTextBox.Text = "Soba sa krevetima";
 
         }
+
+        private void changeRoomInfo(Room room)
+        {
+            room.Id = int.Parse(idTextBox.Text);
+            room.Name = nameTextBox.Text;
+            room.Floor = int.Parse(floorTextBox.Text);
+            room.Type = loadType(typeTextBox.Text);
+        }
+
+        private TypeOfRoom loadType(string selectedValue)
+        {
+            TypeOfRoom type = 0;
+            if (String.Compare(selectedValue, "Operaciona sala") == 0)
+                type = TypeOfRoom.OperationRoom;
+            else if (String.Compare(selectedValue, "Prostorija za odmor") == 0)
+                type = TypeOfRoom.RestRoom;
+            else if (String.Compare(selectedValue, "Soba sa krevetima") == 0)
+                type = TypeOfRoom.RoomWithBeds;
+            else if (String.Compare(selectedValue, "Sala za hospitalizaciju") == 0)
+                type = TypeOfRoom.HospitalizationRoom;
+            else if (String.Compare(selectedValue, "Kancelarija") == 0)
+                type = TypeOfRoom.Office;
+            else if (String.Compare(selectedValue, "Prostorija za preglede") == 0)
+                type = TypeOfRoom.ExaminationRoom;
+
+            return type;
+
+        }
+
     }
 }

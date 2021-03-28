@@ -5,11 +5,12 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:HospitalInformationSystem.Windows"
         mc:Ignorable="d"
-        Title="DeleteOneRoomWindow" Height="200" Width="450">
+        Title="Brisanje jedne prostorije" Height="200" Width="450">
     <Grid>
         <TextBlock HorizontalAlignment="Left" Margin="21,37,0,0" TextWrapping="Wrap" Text="Izaberite prostoriju:" VerticalAlignment="Top" FontSize="16"/>
-        <ComboBox x:Name="roomsComboBox" HorizontalAlignment="Left" Margin="186,36,0,0" VerticalAlignment="Top" Width="207"/>
-        <Button Content="OBRIŠI" HorizontalAlignment="Left" Margin="175,123,0,0" VerticalAlignment="Top" Width="75" FontSize="16" Click="confirmButton_Click"/>
+        <ComboBox x:Name="roomsComboBox" HorizontalAlignment="Left" Margin="186,36,0,0" VerticalAlignment="Top" Width="207" SelectionChanged="roomsComboBox_SelectionChanged"/>
+        <Button Content="OBRIŠI" HorizontalAlignment="Left" Margin="136,128,0,0" VerticalAlignment="Top" Width="75" FontSize="16" Click="confirmButton_Click"/>
+        <Button x:Name="closeButton" Content="IZAĐI" HorizontalAlignment="Left" Margin="228,128,0,0" VerticalAlignment="Top" Width="75" FontSize="16" Click="closeButton_Click"/>
 
     </Grid>
 </Window>

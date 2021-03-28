@@ -21,7 +21,14 @@ namespace HospitalInformationSystem.Windows
         private void confirmButton_Click(object sender, RoutedEventArgs e)
         {
             createRoom();
-            this.Close();
+
+            idTextBox.Clear();
+            nameTextBox.Clear();
+            floorTextBox.Clear();
+            typeOfRoomComboBox.SelectedIndex = 0;
+
+            MessageBox.Show("Uneta je nova prostorija u sistem", "Nova prostorija", MessageBoxButton.OK, MessageBoxImage.Information);
+
 
         }
 
@@ -49,6 +56,7 @@ namespace HospitalInformationSystem.Windows
             list.Add("Prostorija za preglede");
 
             typeOfRoomComboBox.ItemsSource = list;
+            typeOfRoomComboBox.SelectedIndex = 0;
         }
 
         private TypeOfRoom loadType(string selectedValue)
@@ -71,7 +79,11 @@ namespace HospitalInformationSystem.Windows
 
         }
 
-        
+
+        private void closeButton_Click(object sender, RoutedEventArgs e)
+        {
+            this.Close();
+        }
     }
 
 }

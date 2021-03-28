@@ -22,19 +22,26 @@ namespace HospitalInformationSystem.Windows
     /// </summary>
     public partial class DeleteOneRoomWindow : Window
     {
+        private bool isSelected = false;
         public DeleteOneRoomWindow()
         {
             InitializeComponent();
-            loadComboBox();
+            refreshComboBox();
         }
 
         private void confirmButton_Click(object sender, RoutedEventArgs e)
         {
-            deleteOneRoom();
-            this.Close();
+            if (isSelected)
+            {
+                deleteOneRoom();
+                MessageBox.Show("Izabrana prostorija je izbrisana iz sistema", "Brisanje", MessageBoxButton.OK, MessageBoxImage.Information);
+                refreshComboBox();
+            }
+            else
+                MessageBox.Show("Niste izabrali prostoriju!", "Greška", MessageBoxButton.OK, MessageBoxImage.Error);
         }
 
-        private void loadComboBox()
+        private void refreshComboBox()
         {
             roomsComboBox.ItemsSource = RoomDataBase.getInstance().GetRoom();
         }
@@ -44,6 +51,16 @@ namespace HospitalInformationSystem.Windows
             RoomManagement management = new RoomManagement();
 
             management.DeleteRoom((Room)roomsComboBox.SelectedItem);
+        }
+
+        private void closeButton_Click(object sender, RoutedEventArgs e)
+        {
+            this.Close();
+        }
+
+        private void roomsComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            isSelected = true;
         }
     }
 }

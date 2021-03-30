@@ -8,7 +8,7 @@ namespace Model
 {
     public class Equipment
     {
-        private string Id
+        public string Id
         {
             get
             {
@@ -21,7 +21,7 @@ namespace Model
             }
         }
 
-        private TypeOfEquipment Type
+        public TypeOfEquipment Type
         {
             get
             {
@@ -34,30 +34,15 @@ namespace Model
             }
         }
 
-        private int Quantity
+        public int Quantity
         {
-            get
-            {
-                // TODO: implement
-                return (int)0;
-            }
-            set
-            {
-                // TODO: implement
-            }
+            get; set;
         }
 
-        private string Name
+        public string Name
         {
-            get
-            {
-                // TODO: implement
-                return (string)"";
-            }
-            set
-            {
-                // TODO: implement
-            }
+            get; set;
+         
         }
 
     }

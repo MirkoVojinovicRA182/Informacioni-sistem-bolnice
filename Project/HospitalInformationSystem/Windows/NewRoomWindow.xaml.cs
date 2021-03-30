@@ -27,7 +27,7 @@ namespace HospitalInformationSystem.Windows
             floorTextBox.Clear();
             typeOfRoomComboBox.SelectedIndex = 0;
 
-            MessageBox.Show("Uneta je nova prostorija u sistem", "Nova prostorija", MessageBoxButton.OK, MessageBoxImage.Information);
+            MessageBox.Show("Uneta je nova prostorija u sistem.", "Nova prostorija", MessageBoxButton.OK, MessageBoxImage.Information);
 
 
         }

@@ -32,5 +32,7 @@ namespace HospitalInformationSystem
                 MessageBox.Show("Niste izabrali opciju!", "Greška", MessageBoxButton.OK);
 
         }
+
+      
     }
 }

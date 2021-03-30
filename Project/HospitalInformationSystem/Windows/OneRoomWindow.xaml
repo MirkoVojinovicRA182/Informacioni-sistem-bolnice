@@ -14,7 +14,20 @@
         <Label Content="Tip:" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="45,202,0,0" FontSize="16"/>
         <Label Content="Sprat:" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="45,247,0,0" FontSize="16"/>
         <Label Content="Inventar:" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="45,326,0,0" FontSize="16"/>
-        <ListBox HorizontalAlignment="Left" Height="73" Margin="201,315,0,0" VerticalAlignment="Top" Width="197" IsEnabled="False"/>
+        <ListBox x:Name="equipmentListBox" HorizontalAlignment="Left" Height="73" Margin="201,315,0,0" VerticalAlignment="Top" Width="197">
+            <ListBox.ItemTemplate>
+                <DataTemplate>
+                    <Grid Margin="0,2">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="100" />
+                        </Grid.ColumnDefinitions>
+                        <TextBlock Text="{Binding Name}" />
+                    </Grid>
+
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+        </ListBox>
         <Button x:Name="closeButton" Content="IZAĐI" HorizontalAlignment="Left" Margin="259,422,0,0" VerticalAlignment="Top" Width="75" Click="closeButton_Click" FontSize="16"/>
         <TextBox x:Name="idTextBox" HorizontalAlignment="Left" Height="23" Margin="201,104,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="94"/>
         <TextBox x:Name="nameTextBox" HorizontalAlignment="Left" Height="23" Margin="201,151,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="197"/>

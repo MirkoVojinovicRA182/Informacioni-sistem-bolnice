@@ -34,7 +34,7 @@ namespace HospitalInformationSystem.Windows
             if (isSelected)
             {
                 deleteOneRoom();
-                MessageBox.Show("Izabrana prostorija je izbrisana iz sistema", "Brisanje", MessageBoxButton.OK, MessageBoxImage.Information);
+                MessageBox.Show("Izabrana prostorija je izbrisana iz sistema.", "Brisanje", MessageBoxButton.OK, MessageBoxImage.Information);
                 refreshComboBox();
             }
             else

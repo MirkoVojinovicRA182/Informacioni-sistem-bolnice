@@ -4,6 +4,8 @@
  * Purpose: Definition of the Class Model.Room
  ***********************************************************************/
 
+using System.Collections.Generic;
+
 namespace Model
 {
     public class Room
@@ -28,12 +30,21 @@ namespace Model
 
         public System.Collections.ArrayList equipment;
 
+        public List<Equipment> listEq;
+
         /// <pdGenerated>default getter</pdGenerated>
         public System.Collections.ArrayList GetEquipment()
         {
             if (equipment == null)
                 equipment = new System.Collections.ArrayList();
             return equipment;
+        }
+
+        public List<Equipment> getListEq()
+        {
+            if (listEq == null)
+                listEq = new List<Equipment>();
+            return listEq;
         }
 
         /// <pdGenerated>default setter</pdGenerated>
@@ -87,6 +98,7 @@ namespace Model
         {
             get; set;
         }
+
 
         public TypeOfRoom Type
         {

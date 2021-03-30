@@ -28,7 +28,10 @@ namespace HospitalInformationSystem.Windows
 
             loadRoomsComboBox();
             loadTypeComboBox();
+
         }
+
+       
 
         private void changeRoomButton_Click(object sender, RoutedEventArgs e)
         {
@@ -53,6 +56,9 @@ namespace HospitalInformationSystem.Windows
             nameTextBox.Text = selectedRoom.Name;
             floorTextBox.Text = selectedRoom.Floor.ToString();
             fiilTypeComboBox(selectedRoom.Type);
+
+
+            equipmentListBox.ItemsSource = selectedRoom.getListEq();
         }
 
         private void loadRoomsComboBox()

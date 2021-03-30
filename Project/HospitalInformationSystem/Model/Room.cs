@@ -12,7 +12,7 @@ namespace Model
     [Serializable]
     public class Room
     {
-        private string typeOfRoom;
+        private string stringValueOfEnumType;
 
         public List<Equipment> equipmentList;
         public Room()
@@ -55,24 +55,24 @@ namespace Model
             get; set;
         }
 
-        public string StringValuesOfEnumType
+        public string StringValueOfEnumType
         {
             get
             {
                 if (this.Type == TypeOfRoom.ExaminationRoom)
-                    typeOfRoom = "Prostorija za preglede";
+                    stringValueOfEnumType = "Prostorija za preglede";
                 else if (this.Type == TypeOfRoom.HospitalizationRoom)
-                    typeOfRoom = "Sala za hospitalizaciju";
+                    stringValueOfEnumType = "Sala za hospitalizaciju";
                 else if (this.Type == TypeOfRoom.Office)
-                    typeOfRoom = "Kancelarija";
+                    stringValueOfEnumType = "Kancelarija";
                 else if (this.Type == TypeOfRoom.OperationRoom)
-                    typeOfRoom = "Operaciona sala";
+                    stringValueOfEnumType = "Operaciona sala";
                 else if (this.Type == TypeOfRoom.RestRoom)
-                    typeOfRoom = "Prostorija za odmor";
+                    stringValueOfEnumType = "Prostorija za odmor";
                 else if (this.Type == TypeOfRoom.RoomWithBeds)
-                    typeOfRoom = "Soba sa krevetima";
+                    stringValueOfEnumType = "Soba sa krevetima";
 
-                return typeOfRoom;
+                return stringValueOfEnumType;
             }
             set { }
         }

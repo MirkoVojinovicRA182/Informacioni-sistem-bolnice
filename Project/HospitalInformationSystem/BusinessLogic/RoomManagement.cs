@@ -15,7 +15,7 @@ namespace BusinessLogic
         {
             // TODO: implement
         }
-        public void CreateRoom(int floor, int id, string name, TypeOfRoom type)
+        public void createRoom(int floor, int id, string name, TypeOfRoom type)
         {
             // TODO: implement
             Room newRoom = new Room(id, name, floor, type);
@@ -24,21 +24,20 @@ namespace BusinessLogic
 
         }
 
-        public bool DeleteRoom(Room room)
+        public void deleteRoom(Room room)
         {
             // TODO: implement
             RoomDataBase.getInstance().removeRoom(room);
-            return false;
         }
 
-        public void DeleteAllRooms()
+        public void deleteAllRooms()
         {
             // TODO: implement
             RoomDataBase.getInstance().removeAllRoom();
             
         }
 
-        public void ChangeRoom(Room room, int newId, string newName, TypeOfRoom newType, int newFloor)
+        public void changeRoom(Room room, int newId, string newName, TypeOfRoom newType, int newFloor)
         {
             // TODO: implement
             room.Id = newId;

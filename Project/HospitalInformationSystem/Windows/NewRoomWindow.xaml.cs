@@ -51,7 +51,7 @@ namespace HospitalInformationSystem.Windows
 
             RoomManagement roomManagement = new RoomManagement();
 
-            roomManagement.CreateRoom(floor, id, name, type);
+            roomManagement.createRoom(floor, id, name, type);
         }
 
         private void loadComboBox()

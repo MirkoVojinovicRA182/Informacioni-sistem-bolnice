@@ -29,3 +29,7 @@ C:\Users\Mirko\Desktop\SIMS-HCI projekat\Project\HospitalInformationSystem\obj\D
 C:\Users\Mirko\Desktop\SIMS-HCI projekat\Project\HospitalInformationSystem\obj\Debug\Windows\OneRoomWindow.g.cs
 C:\Users\Mirko\Desktop\SIMS-HCI projekat\Project\HospitalInformationSystem\obj\Debug\Windows\DeleteOneRoomWindow.g.cs
 C:\Users\Mirko\Desktop\SIMS-HCI projekat\Project\HospitalInformationSystem\obj\Debug\Windows\DeleteOneRoomWindow.baml
+C:\Users\Mirko\Desktop\SIMS-HCI projekat\Project\HospitalInformationSystem\obj\Debug\Windows\RoomCRUDOperationsWindow.g.cs
+C:\Users\Mirko\Desktop\SIMS-HCI projekat\Project\HospitalInformationSystem\obj\Debug\Windows\RoomCRUDOperationsWindow.baml
+C:\Users\Mirko\Desktop\SIMS-HCI projekat\Project\HospitalInformationSystem\obj\Debug\Windows\EditRoomWindow.g.cs
+C:\Users\Mirko\Desktop\SIMS-HCI projekat\Project\HospitalInformationSystem\obj\Debug\Windows\EditRoomWindow.baml

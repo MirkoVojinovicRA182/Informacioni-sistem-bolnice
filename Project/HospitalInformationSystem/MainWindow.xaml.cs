@@ -24,8 +24,11 @@ namespace HospitalInformationSystem
             DoctorAppointmentsManagementWindow doctorAppManagementWindow = new DoctorAppointmentsManagementWindow();
             PatientManagementWindow patientManagementWindow = new PatientManagementWindow();
 
+            RoomCRUDOperationsWindow roomCRUDOperationsWindow = new RoomCRUDOperationsWindow();
+
             if ((bool)roomRadioButton.IsChecked)
-                roomManagementWindow.Show();
+                //roomManagementWindow.Show();
+                roomCRUDOperationsWindow.Show();
             else if ((bool)patientAppointmentsRadioButton.IsChecked)
                 patientAppManagementWindow.Show();
             else if ((bool)doctorAppointmentsRadioButton.IsChecked)

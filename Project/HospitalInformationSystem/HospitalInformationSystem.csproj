@@ -84,6 +84,9 @@
     <Compile Include="Windows\DoctorAppointmentsManagementWindow.xaml.cs">
       <DependentUpon>DoctorAppointmentsManagementWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Windows\EditRoomWindow.xaml.cs">
+      <DependentUpon>EditRoomWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Windows\NewRoomWindow.xaml.cs">
       <DependentUpon>NewRoomWindow.xaml</DependentUpon>
     </Compile>
@@ -95,6 +98,9 @@
     </Compile>
     <Compile Include="Windows\PatientManagementWindow.xaml.cs">
       <DependentUpon>PatientManagementWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Windows\RoomCRUDOperationsWindow.xaml.cs">
+      <DependentUpon>RoomCRUDOperationsWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="Windows\RoomManagementWindow.xaml.cs">
       <DependentUpon>RoomManagementWindow.xaml</DependentUpon>
@@ -129,6 +135,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Windows\EditRoomWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Windows\NewRoomWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -142,6 +152,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Windows\PatientManagementWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Windows\RoomCRUDOperationsWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

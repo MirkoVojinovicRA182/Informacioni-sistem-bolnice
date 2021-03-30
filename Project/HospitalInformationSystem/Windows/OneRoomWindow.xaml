@@ -8,7 +8,13 @@
         Title="Pregled jedne prostorije" Height="500" Width="450">
     <Grid>
         <TextBlock HorizontalAlignment="Left" Margin="45,43,0,0" TextWrapping="Wrap" Text="Izaberite prostoriju -&gt;" VerticalAlignment="Top"/>
-        <ComboBox x:Name="roomsComboBox" HorizontalAlignment="Left" VerticalAlignment="Top" Width="197" Margin="201,37,0,0" SelectionChanged="roomsComboBox_SelectionChanged"/>
+        <ComboBox x:Name="roomsComboBox" HorizontalAlignment="Left" VerticalAlignment="Top" Width="197" Margin="201,37,0,0" SelectionChanged="roomsComboBox_SelectionChanged">
+            <ComboBox.ItemTemplate>
+                <DataTemplate>
+                    <TextBlock Text="{Binding Name}"/>
+                </DataTemplate>
+            </ComboBox.ItemTemplate>
+        </ComboBox>
         <Label Content="Šifra:" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="45,104,0,0" FontSize="16"/>
         <Label Content="Naziv:" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="45,152,0,0" FontSize="16"/>
         <Label Content="Tip:" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="45,202,0,0" FontSize="16"/>

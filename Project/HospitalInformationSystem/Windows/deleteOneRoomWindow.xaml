@@ -8,7 +8,13 @@
         Title="Brisanje jedne prostorije" Height="200" Width="450">
     <Grid>
         <TextBlock HorizontalAlignment="Left" Margin="21,37,0,0" TextWrapping="Wrap" Text="Izaberite prostoriju:" VerticalAlignment="Top" FontSize="16"/>
-        <ComboBox x:Name="roomsComboBox" HorizontalAlignment="Left" Margin="186,36,0,0" VerticalAlignment="Top" Width="207" SelectionChanged="roomsComboBox_SelectionChanged"/>
+        <ComboBox x:Name="roomsComboBox" HorizontalAlignment="Left" Margin="186,36,0,0" VerticalAlignment="Top" Width="207" SelectionChanged="roomsComboBox_SelectionChanged">
+            <ComboBox.ItemTemplate>
+                <DataTemplate>
+                    <TextBlock Text="{Binding Name}"/>
+                </DataTemplate>
+            </ComboBox.ItemTemplate>
+        </ComboBox>
         <Button Content="OBRIŠI" HorizontalAlignment="Left" Margin="136,128,0,0" VerticalAlignment="Top" Width="75" FontSize="16" Click="confirmButton_Click"/>
         <Button x:Name="closeButton" Content="IZAĐI" HorizontalAlignment="Left" Margin="228,128,0,0" VerticalAlignment="Top" Width="75" FontSize="16" Click="closeButton_Click"/>
 

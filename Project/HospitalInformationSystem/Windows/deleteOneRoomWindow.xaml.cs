@@ -39,6 +39,12 @@ namespace HospitalInformationSystem.Windows
             }
             else
                 MessageBox.Show("Niste izabrali prostoriju!", "Greška", MessageBoxButton.OK, MessageBoxImage.Error);
+
+            if (RoomDataBase.getInstance().getRooms().Count == 0)
+            {
+                this.Close();
+                MessageBox.Show("U sistemu se sada ne nalazi nijedna prostorija", "Prazna baza", MessageBoxButton.OK, MessageBoxImage.Information);
+            }
         }
 
         private void refreshComboBox()

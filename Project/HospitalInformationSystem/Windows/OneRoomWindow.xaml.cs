@@ -58,12 +58,12 @@ namespace HospitalInformationSystem.Windows
             fiilTypeComboBox(selectedRoom.Type);
 
 
-            equipmentListBox.ItemsSource = selectedRoom.getListEq();
+            equipmentListBox.ItemsSource = selectedRoom.getEquipmentList();
         }
 
         private void loadRoomsComboBox()
         {
-            roomsComboBox.ItemsSource = RoomDataBase.getInstance().GetRoom();
+            roomsComboBox.ItemsSource = RoomDataBase.getInstance().getRooms();
         }
         private TypeOfRoom getType(int selectedValue)
         {

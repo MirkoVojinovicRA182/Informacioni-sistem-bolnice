@@ -20,11 +20,11 @@ namespace BusinessLogic
             // TODO: implement
             Room newRoom = new Room(id, name, floor, type);
 
-            newRoom.getListEq().Add(new Equipment() { Id = "1a", Type = TypeOfEquipment.Clothing, Name = "Prva odeca", Quantity = 10 });
-            newRoom.getListEq().Add(new Equipment() { Id = "1a", Type = TypeOfEquipment.Clothing, Name = "Druga odeca", Quantity = 10 });
-            newRoom.getListEq().Add(new Equipment() { Id = "1a", Type = TypeOfEquipment.Clothing, Name = "Peta odeca", Quantity = 10 });
+            newRoom.getEquipmentList().Add(new Equipment() { Id = "1a", Type = TypeOfEquipment.Clothing, Name = "Prva odeca", Quantity = 10 });
+            newRoom.getEquipmentList().Add(new Equipment() { Id = "1a", Type = TypeOfEquipment.Clothing, Name = "Druga odeca", Quantity = 10 });
+            newRoom.getEquipmentList().Add(new Equipment() { Id = "1a", Type = TypeOfEquipment.Clothing, Name = "Peta odeca", Quantity = 10 });
 
-            RoomDataBase.getInstance().AddRoom(newRoom);
+            RoomDataBase.getInstance().addRoom(newRoom);
 
 
         }
@@ -32,14 +32,14 @@ namespace BusinessLogic
         public bool DeleteRoom(Room room)
         {
             // TODO: implement
-            RoomDataBase.getInstance().RemoveRoom(room);
+            RoomDataBase.getInstance().removeRoom(room);
             return false;
         }
 
         public void DeleteAllRooms()
         {
             // TODO: implement
-            RoomDataBase.getInstance().RemoveAllRoom();
+            RoomDataBase.getInstance().removeAllRoom();
             
         }
 

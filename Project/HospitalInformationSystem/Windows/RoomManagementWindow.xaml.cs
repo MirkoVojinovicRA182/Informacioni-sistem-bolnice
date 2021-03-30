@@ -23,7 +23,7 @@ namespace HospitalInformationSystem.Windows
             OneRoomWindow oneRoomWindow = new OneRoomWindow();
             DeleteOneRoomWindow deleteOneRoomWindow = new DeleteOneRoomWindow();
 
-            if (RoomDataBase.getInstance().GetRoom().Count != 0)
+            if (RoomDataBase.getInstance().getRooms().Count != 0)
             {
                 if ((bool)allRoomsRadioButton.IsChecked)
                     allRoomsWindow.Show();
@@ -36,6 +36,8 @@ namespace HospitalInformationSystem.Windows
                 }
                 else if ((bool)deleteOneRoomRadioButton.IsChecked)
                     deleteOneRoomWindow.Show();
+                else if ((bool)newRadioButton.IsChecked)
+                    newRoomWindow.Show();
             }
             else if ((bool)newRadioButton.IsChecked)
                 newRoomWindow.Show();

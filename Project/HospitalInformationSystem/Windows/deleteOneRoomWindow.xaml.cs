@@ -43,7 +43,7 @@ namespace HospitalInformationSystem.Windows
 
         private void refreshComboBox()
         {
-            roomsComboBox.ItemsSource = RoomDataBase.getInstance().GetRoom();
+            roomsComboBox.ItemsSource = RoomDataBase.getInstance().getRooms();
         }
 
         private void deleteOneRoom()

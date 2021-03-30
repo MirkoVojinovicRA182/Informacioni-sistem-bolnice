@@ -5,6 +5,27 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:HospitalInformationSystem.Windows"
         mc:Ignorable="d"
-        Title="Pregled svih prostorija" Height="450" Width="800">
-    <Grid/>
+        Title="Pregled svih prostorija" Height="450" Width="740">
+    <Grid>
+        <DataGrid x:Name="table" 
+				  HorizontalAlignment="Left" 
+				  CanUserAddRows="False" 
+			      CanUserResizeColumns="False" 
+				  AutoGenerateColumns="False"
+				  IsReadOnly="True"
+				  SelectionMode="Single"
+				  Height="399" 
+				  Margin="10,10,0,0" 
+				  VerticalAlignment="Top" 
+				  Width="710" 
+				  Background="CadetBlue">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="ID" Width="*" Binding="{Binding Id}"></DataGridTextColumn>
+                <DataGridTextColumn Header="Naziv" Width="*" Binding="{Binding Name}"></DataGridTextColumn>
+                <DataGridTextColumn Header="Tip" Width="*" Binding="{Binding Type}"></DataGridTextColumn>
+                <DataGridTextColumn Header="Sprat" Width="*" Binding="{Binding Floor}"></DataGridTextColumn>
+            </DataGrid.Columns>
+        </DataGrid>
+    </Grid>
+
 </Window>

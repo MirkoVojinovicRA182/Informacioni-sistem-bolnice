@@ -4,6 +4,8 @@
  * Purpose: Definition of the Class WorkWithFiles.RoomsFileManipulation
  ***********************************************************************/
 
+using Model;
+
 namespace WorkWithFiles
 {
     public class RoomsFileManipulation : IFileManipulation
@@ -11,6 +13,9 @@ namespace WorkWithFiles
         public bool SaveInFile()
         {
             // TODO: implement
+
+            //Room
+
             return false;
         }
 

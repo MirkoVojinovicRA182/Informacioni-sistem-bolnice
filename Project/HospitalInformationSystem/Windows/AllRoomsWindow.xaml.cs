@@ -25,14 +25,8 @@ namespace HospitalInformationSystem.Windows
         {
             InitializeComponent();
 
-            showRooms();
+            table.ItemsSource = RoomDataBase.getInstance().getRooms();
         }
 
-        private void showRooms()
-        {
-            //RoomDataBase roomDataBase = new RoomDataBase();
-
-            //this.roomsTextBox.Text = roomDataBase.GetRoom().Count.ToString();
-        }
     }
 }

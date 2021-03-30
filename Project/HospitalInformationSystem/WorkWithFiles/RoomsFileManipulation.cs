@@ -5,6 +5,10 @@
  ***********************************************************************/
 
 using Model;
+using System.Collections.Generic;
+using System.IO;
+using System.Runtime.Serialization;
+using System.Runtime.Serialization.Formatters.Binary;
 
 namespace WorkWithFiles
 {
@@ -12,16 +16,43 @@ namespace WorkWithFiles
     {
         public bool SaveInFile()
         {
-            // TODO: implement
+            FileStream fs = new FileStream("Rooms.dat", FileMode.Create);
 
-            //Room
+            BinaryFormatter formatter = new BinaryFormatter();
+            try
+            {
+                formatter.Serialize(fs, RoomDataBase.getInstance().getRooms());
+            }
+            catch (SerializationException e)
+            {
+                
+                throw;
+            }
+            finally
+            {
+                fs.Close();
+            }
 
-            return false;
+            return true;
         }
 
         public bool LoadFromFile()
         {
-            // TODO: implement
+            FileStream fs = new FileStream("Rooms.dat", FileMode.Open);
+            try
+            {
+                BinaryFormatter formatter = new BinaryFormatter();
+                RoomDataBase.getInstance().setRoom((List<Room>)formatter.Deserialize(fs));
+            }
+            catch (SerializationException e)
+            {
+                throw;
+            }
+            finally
+            {
+                fs.Close();
+            }
+
             return false;
         }
 

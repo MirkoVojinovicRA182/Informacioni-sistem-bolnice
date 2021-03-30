@@ -4,8 +4,11 @@
  * Purpose: Definition of the Class Model.Equipment
  ***********************************************************************/
 
+using System;
+
 namespace Model
 {
+    [Serializable]
     public class Equipment
     {
         public string Id

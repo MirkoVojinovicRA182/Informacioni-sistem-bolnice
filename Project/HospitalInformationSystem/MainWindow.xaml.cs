@@ -1,5 +1,6 @@
 ﻿using HospitalInformationSystem.Windows;
 using System.Windows;
+using WorkWithFiles;
 
 namespace HospitalInformationSystem
 {
@@ -8,9 +9,12 @@ namespace HospitalInformationSystem
     /// </summary>
     public partial class MainWindow : Window
     {
+        RoomsFileManipulation save = new RoomsFileManipulation();
         public MainWindow()
         {
             InitializeComponent();
+            save.LoadFromFile();
+            
         }
 
         private void confirmButton_Click(object sender, RoutedEventArgs e)
@@ -33,6 +37,9 @@ namespace HospitalInformationSystem
 
         }
 
-      
+        private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            save.SaveInFile();
+        }
     }
 }

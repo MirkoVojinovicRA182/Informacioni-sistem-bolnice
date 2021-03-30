@@ -23,12 +23,20 @@ namespace HospitalInformationSystem.Windows
     public partial class EditRoomWindow : Window
     {
         Room selectedRoom;
-        public EditRoomWindow(Room selectedRoom)
+        private static EditRoomWindow instance = null;
+        private EditRoomWindow(Room selectedRoom)
         {
             InitializeComponent();
             this.selectedRoom = selectedRoom;
             loadTypeComboBox();
             loadRoom();
+        }
+
+        public static EditRoomWindow getInstance(Room selectedRoom)
+        {
+            if (instance == null)
+                instance = new EditRoomWindow(selectedRoom);
+            return instance;
         }
 
         private void closeButton_Click(object sender, RoutedEventArgs e)
@@ -40,8 +48,13 @@ namespace HospitalInformationSystem.Windows
         {
             RoomManagement management = new RoomManagement();
             management.ChangeRoom(selectedRoom, int.Parse(idTextBox.Text), nameTextBox.Text, getType(typeComboBox.SelectedIndex), int.Parse(floorTextBox.Text));
-
+            RoomCRUDOperationsWindow.getInstance().refreshTable();
             MessageBox.Show("Informacije o prostoriji su sada izmenjene.", "Izmena informacija", MessageBoxButton.OK, MessageBoxImage.Information);
+        }
+
+        private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            instance = null;
         }
 
         private TypeOfRoom getType(int selectedValue)

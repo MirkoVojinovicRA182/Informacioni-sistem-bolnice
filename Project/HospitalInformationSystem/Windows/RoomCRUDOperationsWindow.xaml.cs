@@ -22,39 +22,47 @@ namespace HospitalInformationSystem.Windows
     /// </summary>
     public partial class RoomCRUDOperationsWindow : Window
     {
-        Room selectedRoom;
+        Room selectedRoom = null;
         private ObservableCollection<Room> roomList;
-        public RoomCRUDOperationsWindow()
+
+        private static RoomCRUDOperationsWindow instance = null; 
+        private RoomCRUDOperationsWindow()
         {
             InitializeComponent();
 
             refreshTable();
         }
 
+        public static RoomCRUDOperationsWindow getInstance()
+        {
+            if (instance == null)
+                instance = new RoomCRUDOperationsWindow();
+            return instance;
+        }
+
         private void addButton_Click(object sender, RoutedEventArgs e)
         {
-            NewRoomWindow newRoomWindow = new NewRoomWindow();
-
-            newRoomWindow.ShowDialog();
-
-            refreshTable();
+            NewRoomWindow.getInstance().ShowDialog();
         }
 
         private void changeButton_Click(object sender, RoutedEventArgs e)
         {
             selectedRoom = (Room)allRoomsTable.SelectedItem;
-            EditRoomWindow editRoomWindow = new EditRoomWindow(selectedRoom);
+            if (selectedRoom != null)
+                EditRoomWindow.getInstance(selectedRoom).ShowDialog();
+            else
+                MessageBox.Show("Niste izabrali prostoriju!", "Upozorenje", MessageBoxButton.OK, MessageBoxImage.Warning);
 
-            editRoomWindow.ShowDialog();
-
-            refreshTable();
         }
 
         private void deleteButton_Click(object sender, RoutedEventArgs e)
         {
             selectedRoom = (Room)allRoomsTable.SelectedItem;
 
-            RoomDataBase.getInstance().removeRoom(selectedRoom);
+            if (selectedRoom != null)
+                RoomDataBase.getInstance().removeRoom(selectedRoom);
+            else
+                MessageBox.Show("Niste izabrali prostoriju!", "Upozorenje", MessageBoxButton.OK, MessageBoxImage.Warning);
 
             refreshTable();
         }
@@ -64,15 +72,28 @@ namespace HospitalInformationSystem.Windows
             this.Close();
         }
 
+        private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            instance = null;
+        }
 
-        private void refreshTable()
+        public void refreshTable()
         {
             roomList = new ObservableCollection<Room>(RoomDataBase.getInstance().getRooms());
             allRoomsTable.ItemsSource = null;
             allRoomsTable.ItemsSource = roomList;
-        }
 
-       
+            if(RoomDataBase.getInstance().getRooms().Count != 0)
+            {
+                changeButton.IsEnabled = true;
+                deleteButton.IsEnabled = true;
+            }
+            else
+            {
+                changeButton.IsEnabled = false;
+                deleteButton.IsEnabled = false;
+            }
+        }
 
     }
 }

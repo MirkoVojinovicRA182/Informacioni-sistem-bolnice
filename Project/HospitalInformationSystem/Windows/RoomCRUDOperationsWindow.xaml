@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:HospitalInformationSystem.Windows"
         mc:Ignorable="d"
-        Title="Upravljanje prostorijama" Height="450" Width="900">
+        Title="Upravljanje prostorijama" Height="450" Width="900" Closing="Window_Closing">
     <Grid>
         <DataGrid x:Name="allRoomsTable" 
 				  HorizontalAlignment="Left" 
@@ -22,13 +22,13 @@
             <DataGrid.Columns>
                 <DataGridTextColumn Header="ID" Width="*" Binding="{Binding Id}"></DataGridTextColumn>
                 <DataGridTextColumn Header="Naziv" Width="*" Binding="{Binding Name}"></DataGridTextColumn>
-                <DataGridTextColumn Header="Tip" Width="*" Binding="{Binding Type}"></DataGridTextColumn>
+                <DataGridTextColumn Header="Tip" Width="*" Binding="{Binding StringValuesOfEnumType}"></DataGridTextColumn>
                 <DataGridTextColumn Header="Sprat" Width="*" Binding="{Binding Floor}"></DataGridTextColumn>
             </DataGrid.Columns>
         </DataGrid>
         <Button x:Name="addButton" Content="DODAJ" HorizontalAlignment="Left" Margin="738,10,0,0" VerticalAlignment="Top" Width="141" FontSize="16" Click="addButton_Click"/>
-        <Button x:Name="changeButton" Content="IZMENI" HorizontalAlignment="Left" Margin="738,47,0,0" VerticalAlignment="Top" Width="141" FontSize="16" Click="changeButton_Click"/>
-        <Button x:Name="deleteButton" Content="OBRIŠI" HorizontalAlignment="Left" Margin="738,91,0,0" VerticalAlignment="Top" Width="141" FontSize="16" Click="deleteButton_Click"/>
+        <Button x:Name="changeButton" Content="IZMENI" HorizontalAlignment="Left" Margin="738,40,0,0" VerticalAlignment="Top" Width="141" FontSize="16" Click="changeButton_Click"/>
+        <Button x:Name="deleteButton" Content="OBRIŠI" HorizontalAlignment="Left" Margin="738,70,0,0" VerticalAlignment="Top" Width="141" FontSize="16" Click="deleteButton_Click"/>
         <Button x:Name="closeButton" Content="IZAĐI" HorizontalAlignment="Left" Margin="738,384,0,0" VerticalAlignment="Top" Width="141" FontSize="16" Click="closeButton_Click"/>
     </Grid>
 </Window>

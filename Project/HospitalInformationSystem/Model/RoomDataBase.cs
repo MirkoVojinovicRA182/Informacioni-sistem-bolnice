@@ -11,7 +11,7 @@ namespace Model
     public class RoomDataBase
     {
 
-        public static RoomDataBase instance;
+        private static RoomDataBase instance;
 
         public List<Room> rooms;
 
@@ -39,14 +39,6 @@ namespace Model
                 rooms = new List<Room>();
             return rooms;
         }
-
-        /// <pdGenerated>default getter</pdGenerated>
-        /*public System.Collections.ArrayList GetRoom()
-        {
-            if (room == null)
-                room = new System.Collections.ArrayList();
-            return room;
-        }*/
         public void setRoom(List<Room> newRoom)
         {
             removeAllRoom();
@@ -54,13 +46,6 @@ namespace Model
                 addRoom(oRoom);
         }
 
-        /// <pdGenerated>default setter</pdGenerated>
-        /*public void SetRoom(System.Collections.ArrayList newRoom)
-        {
-            RemoveAllRoom();
-            foreach (Room oRoom in newRoom)
-                AddRoom(oRoom);
-        }*/
 
         public void addRoom(Room newRoom)
         {
@@ -72,16 +57,7 @@ namespace Model
                 this.rooms.Add(newRoom);
         }
 
-        /// <pdGenerated>default Add</pdGenerated>
-       /* public void AddRoom(Room newRoom)
-        {
-            if (newRoom == null)
-                return;
-            if (this.room == null)
-                this.room = new System.Collections.ArrayList();
-            if (!this.room.Contains(newRoom))
-                this.room.Add(newRoom);
-        }*/
+       
 
         public void removeRoom(Room oldRoom)
         {
@@ -92,28 +68,11 @@ namespace Model
                     this.rooms.Remove(oldRoom);
         }
 
-        /// <pdGenerated>default Remove</pdGenerated>
-        /*public void RemoveRoom(Room oldRoom)
-        {
-            if (oldRoom == null)
-                return;
-            if (this.room != null)
-                if (this.room.Contains(oldRoom))
-                    this.room.Remove(oldRoom);
-        }*/
-
         public void removeAllRoom()
         {
             if (rooms != null)
                 rooms.Clear();
         }
-
-        /// <pdGenerated>default removeAll</pdGenerated>
-        /*public void RemoveAllRoom()
-        {
-            if (room != null)
-                room.Clear();
-        }*/
 
     }
 }

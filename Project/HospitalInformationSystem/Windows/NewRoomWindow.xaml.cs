@@ -11,10 +11,18 @@ namespace HospitalInformationSystem.Windows
     /// </summary>
     public partial class NewRoomWindow : Window
     {
-        public NewRoomWindow()
+        private static NewRoomWindow instance = null;
+        private NewRoomWindow()
         {
             InitializeComponent();
             loadComboBox();
+        }
+
+        public static NewRoomWindow getInstance()
+        {
+            if (instance == null)
+                instance = new NewRoomWindow();
+            return instance;
         }
 
 
@@ -26,6 +34,8 @@ namespace HospitalInformationSystem.Windows
             nameTextBox.Clear();
             floorTextBox.Clear();
             typeOfRoomComboBox.SelectedIndex = 0;
+
+            RoomCRUDOperationsWindow.getInstance().refreshTable();
 
             MessageBox.Show("Uneta je nova prostorija u sistem.", "Nova prostorija", MessageBoxButton.OK, MessageBoxImage.Information);
 
@@ -78,11 +88,14 @@ namespace HospitalInformationSystem.Windows
             return type;
 
         }
-
-
         private void closeButton_Click(object sender, RoutedEventArgs e)
         {
             this.Close();
+        }
+
+        private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            instance = null;
         }
     }
 

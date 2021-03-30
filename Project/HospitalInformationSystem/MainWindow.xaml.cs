@@ -19,16 +19,14 @@ namespace HospitalInformationSystem
 
         private void confirmButton_Click(object sender, RoutedEventArgs e)
         {
-            RoomManagementWindow roomManagementWindow = new RoomManagementWindow();
             PatientAppointmentsManagementWindow patientAppManagementWindow = new PatientAppointmentsManagementWindow();
             DoctorAppointmentsManagementWindow doctorAppManagementWindow = new DoctorAppointmentsManagementWindow();
             PatientManagementWindow patientManagementWindow = new PatientManagementWindow();
 
-            RoomCRUDOperationsWindow roomCRUDOperationsWindow = new RoomCRUDOperationsWindow();
+
 
             if ((bool)roomRadioButton.IsChecked)
-                //roomManagementWindow.Show();
-                roomCRUDOperationsWindow.Show();
+                RoomCRUDOperationsWindow.getInstance().Show();
             else if ((bool)patientAppointmentsRadioButton.IsChecked)
                 patientAppManagementWindow.Show();
             else if ((bool)doctorAppointmentsRadioButton.IsChecked)

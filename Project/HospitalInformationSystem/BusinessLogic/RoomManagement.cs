@@ -20,12 +20,7 @@ namespace BusinessLogic
             // TODO: implement
             Room newRoom = new Room(id, name, floor, type);
 
-            newRoom.getEquipmentList().Add(new Equipment() { Id = "1a", Type = TypeOfEquipment.Clothing, Name = "Prva odeca", Quantity = 10 });
-            newRoom.getEquipmentList().Add(new Equipment() { Id = "1a", Type = TypeOfEquipment.Clothing, Name = "Druga odeca", Quantity = 10 });
-            newRoom.getEquipmentList().Add(new Equipment() { Id = "1a", Type = TypeOfEquipment.Clothing, Name = "Peta odeca", Quantity = 10 });
-
             RoomDataBase.getInstance().addRoom(newRoom);
-
 
         }
 
@@ -52,18 +47,5 @@ namespace BusinessLogic
             room.Floor = newFloor;
 
         }
-
-        public bool ReadRoom(Room room)
-        {
-            // TODO: implement
-            return false;
-        }
-
-        public bool ReadAllRooms()
-        {
-            // TODO: implement
-            return false;
-        }
-
     }
 }

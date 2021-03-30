@@ -12,7 +12,7 @@ namespace Model
     [Serializable]
     public class Room
     {
-
+        private string typeOfRoom;
 
         public List<Equipment> equipmentList;
         public Room()
@@ -55,16 +55,27 @@ namespace Model
             get; set;
         }
 
-        ///public System.Collections.ArrayList equipment;
-
-        /// <pdGenerated>default getter</pdGenerated>
-        /*public System.Collections.ArrayList GetEquipment()
+        public string StringValuesOfEnumType
         {
-            if (equipment == null)
-                equipment = new System.Collections.ArrayList();
-            return equipment;
-        }*/
+            get
+            {
+                if (this.Type == TypeOfRoom.ExaminationRoom)
+                    typeOfRoom = "Prostorija za preglede";
+                else if (this.Type == TypeOfRoom.HospitalizationRoom)
+                    typeOfRoom = "Sala za hospitalizaciju";
+                else if (this.Type == TypeOfRoom.Office)
+                    typeOfRoom = "Kancelarija";
+                else if (this.Type == TypeOfRoom.OperationRoom)
+                    typeOfRoom = "Operaciona sala";
+                else if (this.Type == TypeOfRoom.RestRoom)
+                    typeOfRoom = "Prostorija za odmor";
+                else if (this.Type == TypeOfRoom.RoomWithBeds)
+                    typeOfRoom = "Soba sa krevetima";
 
+                return typeOfRoom;
+            }
+            set { }
+        }
         public List<Equipment> getEquipmentList()
         {
             if (equipmentList == null)
@@ -79,13 +90,7 @@ namespace Model
                 addEquipment(oEquipment);
         }
 
-        /// <pdGenerated>default setter</pdGenerated>
-       /* public void SetEquipment(System.Collections.ArrayList newEquipment)
-        {
-            RemoveAllEquipment();
-            foreach (Equipment oEquipment in newEquipment)
-                AddEquipment(oEquipment);
-        }*/
+       
 
         public void addEquipment(Equipment newEquipment)
         {
@@ -97,16 +102,7 @@ namespace Model
                 this.equipmentList.Add(newEquipment);
         }
 
-        /// <pdGenerated>default Add</pdGenerated>
-        /*public void AddEquipment(Equipment newEquipment)
-        {
-            if (newEquipment == null)
-                return;
-            if (this.equipment == null)
-                this.equipment = new System.Collections.ArrayList();
-            if (!this.equipment.Contains(newEquipment))
-                this.equipment.Add(newEquipment);
-        }*/
+       
 
         public void removeEquipment(Equipment oldEquipment)
         {
@@ -117,15 +113,7 @@ namespace Model
                     this.equipmentList.Remove(oldEquipment);
         }
 
-        /// <pdGenerated>default Remove</pdGenerated>
-        /*public void RemoveEquipment(Equipment oldEquipment)
-        {
-            if (oldEquipment == null)
-                return;
-            if (this.equipment != null)
-                if (this.equipment.Contains(oldEquipment))
-                    this.equipment.Remove(oldEquipment);
-        }*/
+      
 
         public void removeAllEquipment()
         {
@@ -133,13 +121,6 @@ namespace Model
                 equipmentList.Clear();
         }
 
-        /// <pdGenerated>default removeAll</pdGenerated>
-        /*public void RemoveAllEquipment()
-        {
-            if (equipment != null)
-                equipment.Clear();
-        }
-        */
 
     }
 }

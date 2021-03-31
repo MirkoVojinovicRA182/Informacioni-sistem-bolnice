@@ -5,8 +5,8 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:HospitalInformationSystem.Windows"
         mc:Ignorable="d"
-        Title="Upravljanje prostorijama" Height="450" Width="900" Closing="Window_Closing">
-    <Grid>
+        Title="Upravljanje prostorijama" Height="450" Width="746.4" Closing="Window_Closing">
+    <Grid Margin="0,0,4,0">
         <DataGrid x:Name="allRoomsTable" 
 				  HorizontalAlignment="Left" 
 				  CanUserAddRows="False" 
@@ -14,11 +14,11 @@
 				  AutoGenerateColumns="False"
 				  IsReadOnly="True"
 				  SelectionMode="Single"
-				  Height="399" 
-				  Margin="10,10,0,0" 
+				  Height="369" 
+				  Margin="10,40,0,0" 
 				  VerticalAlignment="Top" 
 				  Width="710" 
-				  Background="CadetBlue">
+				  Background="Azure">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="ID" Width="*" Binding="{Binding Id}"></DataGridTextColumn>
                 <DataGridTextColumn Header="Naziv" Width="*" Binding="{Binding Name}"></DataGridTextColumn>
@@ -26,9 +26,9 @@
                 <DataGridTextColumn Header="Sprat" Width="*" Binding="{Binding Floor}"></DataGridTextColumn>
             </DataGrid.Columns>
         </DataGrid>
-        <Button x:Name="addButton" Content="DODAJ" HorizontalAlignment="Left" Margin="738,10,0,0" VerticalAlignment="Top" Width="141" FontSize="16" Click="addButton_Click"/>
-        <Button x:Name="changeButton" Content="IZMENI" HorizontalAlignment="Left" Margin="738,40,0,0" VerticalAlignment="Top" Width="141" FontSize="16" Click="changeButton_Click"/>
-        <Button x:Name="deleteButton" Content="OBRIŠI" HorizontalAlignment="Left" Margin="738,70,0,0" VerticalAlignment="Top" Width="141" FontSize="16" Click="deleteButton_Click"/>
-        <Button x:Name="closeButton" Content="IZAĐI" HorizontalAlignment="Left" Margin="738,384,0,0" VerticalAlignment="Top" Width="141" FontSize="16" Click="closeButton_Click"/>
+        <Button x:Name="addButton" Content="Dodaj" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Width="82" FontSize="16" Click="addButton_Click"/>
+        <Button x:Name="changeButton" Content="Izmeni" HorizontalAlignment="Left" Margin="97,10,0,0" VerticalAlignment="Top" Width="82" FontSize="16" Click="changeButton_Click"/>
+        <Button x:Name="deleteButton" Content="Obriši" HorizontalAlignment="Left" Margin="184,10,0,0" VerticalAlignment="Top" Width="82" FontSize="16" Click="deleteButton_Click"/>
+        <Button x:Name="closeButton" Content="Izađi" HorizontalAlignment="Left" Margin="638,10,0,0" VerticalAlignment="Top" Width="82" FontSize="16" Click="closeButton_Click"/>
     </Grid>
 </Window>

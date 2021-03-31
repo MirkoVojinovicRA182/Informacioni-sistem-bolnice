@@ -37,9 +37,16 @@ namespace HospitalInformationSystem.Windows
 
             RoomCRUDOperationsWindow.getInstance().refreshTable();
 
-            MessageBox.Show("Uneta je nova prostorija u sistem.", "Nova prostorija", MessageBoxButton.OK, MessageBoxImage.Information);
+        }
 
+        private void closeButton_Click(object sender, RoutedEventArgs e)
+        {
+            this.Close();
+        }
 
+        private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            instance = null;
         }
 
         private void createRoom()
@@ -51,7 +58,13 @@ namespace HospitalInformationSystem.Windows
 
             RoomManagement roomManagement = new RoomManagement();
 
-            roomManagement.createRoom(floor, id, name, type);
+            if (checkID(id, RoomDataBase.getInstance().getRooms()))
+                MessageBox.Show("U bazi postoji prostorija sa ovim ID-jem!", "Greška", MessageBoxButton.OK, MessageBoxImage.Error);
+            else
+            {
+                roomManagement.createRoom(floor, id, name, type);
+                MessageBox.Show("Uneta je nova prostorija u sistem.", "Nova prostorija", MessageBoxButton.OK, MessageBoxImage.Information);
+            }
         }
 
         private void loadComboBox()
@@ -88,14 +101,15 @@ namespace HospitalInformationSystem.Windows
             return type;
 
         }
-        private void closeButton_Click(object sender, RoutedEventArgs e)
-        {
-            this.Close();
-        }
 
-        private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
+        private bool checkID(int value, List<Room> rooms)
         {
-            instance = null;
+            foreach (Room room in rooms)
+            {
+                if ((room.Id) == value)
+                    return true;
+            }
+            return false;
         }
     }
 

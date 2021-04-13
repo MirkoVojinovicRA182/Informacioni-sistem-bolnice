@@ -4,17 +4,17 @@
 winexe
 C#
 .cs
-C:\Users\Mirko\Desktop\SIMS-HCI projekat\Project\HospitalInformationSystem\obj\Debug\
+C:\Users\Mirko\Desktop\Radiša i ja\Project\HospitalInformationSystem\obj\Debug\
 HospitalInformationSystem
 none
 false
 DEBUG;TRACE
-C:\Users\Mirko\Desktop\SIMS-HCI projekat\Project\HospitalInformationSystem\App.xaml
-7-631534687
+C:\Users\Mirko\Desktop\Radiša i ja\Project\HospitalInformationSystem\App.xaml
+121431640417
 
-38-1144206214
+421808595808
 13-1505183044
-MainWindow.xaml;Windows\DoctorAppointmentsManagementWindow.xaml;Windows\EditRoomWindow.xaml;Windows\NewRoomWindow.xaml;Windows\PatientAppointmentsManagementWindow.xaml;Windows\PatientManagementWindow.xaml;Windows\RoomCRUDOperationsWindow.xaml;
+MainWindow.xaml;Windows\DoctorAddNewAppointmentWindow.xaml;Windows\DoctorAppointmentsManagementWindow.xaml;Windows\DoctorEditAppointmentWindow.xaml;Windows\EditPatientAppointmentWindow.xaml;Windows\EditRoomWindow.xaml;Windows\NewPatientAppointmentWindow.xaml;Windows\NewRoomWindow.xaml;Windows\PatientAppointmentCRUDOperationsWindow.xaml;Windows\PatientAppointmentsManagementWindow.xaml;Windows\PatientManagementWindow.xaml;Windows\RoomCRUDOperationsWindow.xaml;
 
 True
 

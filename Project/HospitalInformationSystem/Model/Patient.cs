@@ -1,11 +1,15 @@
+
 /***********************************************************************
  * Module:  Patient.cs
  * Author:  Mirko
  * Purpose: Definition of the Class Model.Patient
  ***********************************************************************/
 
+using System;
+
 namespace Model
 {
+    [Serializable]
     public class Patient : Person
     {
         public Patient()
@@ -16,6 +20,13 @@ namespace Model
         ~Patient()
         {
             // TODO: implement
+        }
+
+        public Patient(string name, string surname, string id)
+        {
+            this.Name = name;
+            this.Surname = surname;
+            this.Id = id;
         }
 
         public System.Collections.ArrayList appointment;

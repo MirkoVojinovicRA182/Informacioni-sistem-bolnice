@@ -12,6 +12,7 @@ namespace Model
         Pediatrician,
         Gynecologist,
         Neurologist,
-        Urologist
+        Urologist,
+        Family_Physician //lekar opste prakse
     }
 }

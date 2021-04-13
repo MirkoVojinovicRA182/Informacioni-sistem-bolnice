@@ -4,11 +4,24 @@
  * Purpose: Definition of the Class Model.AppointmentDataBase
  ***********************************************************************/
 
+using System.Collections.Generic;
+
 namespace Model
 {
     public class AppointmentDataBase
     {
-        public AppointmentDataBase()
+
+        public static AppointmentDataBase instance;
+
+        private List<Appointment> appointments;
+
+        public static AppointmentDataBase getInstance()
+        {
+            if (instance == null)
+                instance = new AppointmentDataBase();
+            return instance;
+        }
+        private AppointmentDataBase()
         {
             // TODO: implement
         }
@@ -18,18 +31,18 @@ namespace Model
             // TODO: implement
         }
 
-        public System.Collections.ArrayList appointment;
+        //public System.Collections.ArrayList appointment;
 
         /// <pdGenerated>default getter</pdGenerated>
-        public System.Collections.ArrayList GetAppointment()
+        public List<Appointment> GetAppointment()
         {
-            if (appointment == null)
-                appointment = new System.Collections.ArrayList();
-            return appointment;
+            if (appointments == null)
+                appointments = new List<Appointment>();
+            return appointments;
         }
 
         /// <pdGenerated>default setter</pdGenerated>
-        public void SetAppointment(System.Collections.ArrayList newAppointment)
+        public void SetAppointment(List<Appointment> newAppointment)
         {
             RemoveAllAppointment();
             foreach (Appointment oAppointment in newAppointment)
@@ -41,10 +54,10 @@ namespace Model
         {
             if (newAppointment == null)
                 return;
-            if (this.appointment == null)
-                this.appointment = new System.Collections.ArrayList();
-            if (!this.appointment.Contains(newAppointment))
-                this.appointment.Add(newAppointment);
+            if (this.appointments == null)
+                this.appointments = new List<Appointment>();
+            if (!this.appointments.Contains(newAppointment))
+                this.appointments.Add(newAppointment);
         }
 
         /// <pdGenerated>default Remove</pdGenerated>
@@ -52,16 +65,16 @@ namespace Model
         {
             if (oldAppointment == null)
                 return;
-            if (this.appointment != null)
-                if (this.appointment.Contains(oldAppointment))
-                    this.appointment.Remove(oldAppointment);
+            if (this.appointments != null)
+                if (this.appointments.Contains(oldAppointment))
+                    this.appointments.Remove(oldAppointment);
         }
 
         /// <pdGenerated>default removeAll</pdGenerated>
         public void RemoveAllAppointment()
         {
-            if (appointment != null)
-                appointment.Clear();
+            if (appointments != null)
+                appointments.Clear();
         }
 
     }

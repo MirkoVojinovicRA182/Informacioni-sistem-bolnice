@@ -4,8 +4,11 @@
  * Purpose: Definition of the Class Model.Person
  ***********************************************************************/
 
+using System;
+
 namespace Model
 {
+    [Serializable]
     public class Person
     {
         public Person()
@@ -21,33 +24,20 @@ namespace Model
         private string Country;
         private string City;
 
-        protected string Name
+        public string Name
         {
-            get
-            {
-                // TODO: implement
-                return (string)"";
-            }
-            set
-            {
-                // TODO: implement
-            }
+            get;
+
+            set;
+           
         }
 
-        protected string Surname
+        public string Surname
         {
-            get
-            {
-                // TODO: implement
-                return (string)"";
-            }
-            set
-            {
-                // TODO: implement
-            }
+            get; set;
         }
 
-        protected string Id
+        public string Id
         {
             get
             {

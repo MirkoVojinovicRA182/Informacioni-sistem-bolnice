@@ -6,6 +6,8 @@
 
 using Model;
 using HospitalInformationSystem.Windows;
+using HospitalInformationSystem.BusinessLogic;
+using System.Collections.Generic;
 
 namespace BusinessLogic
 {
@@ -28,6 +30,16 @@ namespace BusinessLogic
         {
             // TODO: implement
             RoomDataBase.getInstance().removeRoom(room);
+
+
+            //brisanje termina koji se odvijaju u datoj prostoriji
+            AppointmentManagement appointmentManagement = new AppointmentManagement();
+            List<Appointment> list = appointmentManagement.findAppointmentByRoom(room);
+
+            foreach(Appointment appointment in list)
+            {
+                appointmentManagement.deleteAppointment(appointment);
+            }
         }
 
         public void deleteAllRooms()

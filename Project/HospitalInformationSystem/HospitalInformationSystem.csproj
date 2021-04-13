@@ -55,8 +55,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="BusinessLogic\DoctorAppointmentsManagment.cs" />
-    <Compile Include="BusinessLogic\PatientAppointmentsManagment.cs" />
+    <Compile Include="BusinessLogic\AppointmentManagement.cs" />
     <Compile Include="BusinessLogic\PatientManagement.cs" />
     <Compile Include="BusinessLogic\RoomManagement.cs" />
     <Compile Include="Model\Appointment.cs" />
@@ -75,14 +74,25 @@
     <Compile Include="Model\TypeOfAppointment.cs" />
     <Compile Include="Model\TypeOfEquipment.cs" />
     <Compile Include="Model\TypeOfRoom.cs" />
+    <Compile Include="Windows\DoctorAddNewAppointmentWindow.xaml.cs">
+      <DependentUpon>DoctorAddNewAppointmentWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Windows\DoctorAppointmentsManagementWindow.xaml.cs">
       <DependentUpon>DoctorAppointmentsManagementWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Windows\DoctorEditAppointmentWindow.xaml.cs">
+      <DependentUpon>DoctorEditAppointmentWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Windows\EditPatientAppointmentWindow.xaml.cs" />
     <Compile Include="Windows\EditRoomWindow.xaml.cs">
       <DependentUpon>EditRoomWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Windows\NewPatientAppointmentWindow.xaml.cs" />
     <Compile Include="Windows\NewRoomWindow.xaml.cs">
       <DependentUpon>NewRoomWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Windows\PatientAppointmentCRUDOperationsWindow.xaml.cs">
+      <DependentUpon>PatientAppointmentCRUDOperationsWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="Windows\PatientAppointmentsManagementWindow.xaml.cs">
       <DependentUpon>PatientAppointmentsManagementWindow.xaml</DependentUpon>
@@ -111,17 +121,37 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="Windows\DoctorAddNewAppointmentWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="Windows\DoctorAppointmentsManagementWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Windows\DoctorEditAppointmentWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Windows\EditPatientAppointmentWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
     <Page Include="Windows\EditRoomWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Windows\NewPatientAppointmentWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="Windows\NewRoomWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Windows\PatientAppointmentCRUDOperationsWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
     <Page Include="Windows\PatientAppointmentsManagementWindow.xaml">
       <SubType>Designer</SubType>

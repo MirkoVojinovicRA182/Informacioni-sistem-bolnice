@@ -25,3 +25,113 @@ C:\Users\Mirko\Desktop\SIMS-HCI projekat\Project\HospitalInformationSystem\obj\D
 C:\Users\Mirko\Desktop\SIMS-HCI projekat\Project\HospitalInformationSystem\obj\Debug\Windows\RoomCRUDOperationsWindow.baml
 C:\Users\Mirko\Desktop\SIMS-HCI projekat\Project\HospitalInformationSystem\obj\Debug\Windows\EditRoomWindow.g.cs
 C:\Users\Mirko\Desktop\SIMS-HCI projekat\Project\HospitalInformationSystem\obj\Debug\Windows\EditRoomWindow.baml
+C:\Users\Lenovo\Desktop\Pr\Project\HospitalInformationSystem\bin\Debug\HospitalInformationSystem.exe.config
+C:\Users\Lenovo\Desktop\Pr\Project\HospitalInformationSystem\bin\Debug\HospitalInformationSystem.exe
+C:\Users\Lenovo\Desktop\Pr\Project\HospitalInformationSystem\bin\Debug\HospitalInformationSystem.pdb
+C:\Users\Lenovo\Desktop\Pr\Project\HospitalInformationSystem\obj\Debug\HospitalInformationSystem.csprojAssemblyReference.cache
+C:\Users\Lenovo\Desktop\Pr\Project\HospitalInformationSystem\obj\Debug\MainWindow.g.cs
+C:\Users\Lenovo\Desktop\Pr\Project\HospitalInformationSystem\obj\Debug\Windows\DoctorAddNewAppointmentWindow.g.cs
+C:\Users\Lenovo\Desktop\Pr\Project\HospitalInformationSystem\obj\Debug\Windows\DoctorAppointmentsManagementWindow.g.cs
+C:\Users\Lenovo\Desktop\Pr\Project\HospitalInformationSystem\obj\Debug\Windows\DoctorEditAppointmentWindow.g.cs
+C:\Users\Lenovo\Desktop\Pr\Project\HospitalInformationSystem\obj\Debug\Windows\EditRoomWindow.g.cs
+C:\Users\Lenovo\Desktop\Pr\Project\HospitalInformationSystem\obj\Debug\Windows\NewRoomWindow.g.cs
+C:\Users\Lenovo\Desktop\Pr\Project\HospitalInformationSystem\obj\Debug\Windows\PatientAppointmentsManagementWindow.g.cs
+C:\Users\Lenovo\Desktop\Pr\Project\HospitalInformationSystem\obj\Debug\Windows\PatientManagementWindow.g.cs
+C:\Users\Lenovo\Desktop\Pr\Project\HospitalInformationSystem\obj\Debug\Windows\RoomCRUDOperationsWindow.g.cs
+C:\Users\Lenovo\Desktop\Pr\Project\HospitalInformationSystem\obj\Debug\App.g.cs
+C:\Users\Lenovo\Desktop\Pr\Project\HospitalInformationSystem\obj\Debug\HospitalInformationSystem_MarkupCompile.cache
+C:\Users\Lenovo\Desktop\Pr\Project\HospitalInformationSystem\obj\Debug\HospitalInformationSystem_MarkupCompile.lref
+C:\Users\Lenovo\Desktop\Pr\Project\HospitalInformationSystem\obj\Debug\MainWindow.baml
+C:\Users\Lenovo\Desktop\Pr\Project\HospitalInformationSystem\obj\Debug\Windows\DoctorAppointmentsManagementWindow.baml
+C:\Users\Lenovo\Desktop\Pr\Project\HospitalInformationSystem\obj\Debug\Windows\EditRoomWindow.baml
+C:\Users\Lenovo\Desktop\Pr\Project\HospitalInformationSystem\obj\Debug\Windows\NewRoomWindow.baml
+C:\Users\Lenovo\Desktop\Pr\Project\HospitalInformationSystem\obj\Debug\Windows\PatientAppointmentsManagementWindow.baml
+C:\Users\Lenovo\Desktop\Pr\Project\HospitalInformationSystem\obj\Debug\Windows\PatientManagementWindow.baml
+C:\Users\Lenovo\Desktop\Pr\Project\HospitalInformationSystem\obj\Debug\Windows\RoomCRUDOperationsWindow.baml
+C:\Users\Lenovo\Desktop\Pr\Project\HospitalInformationSystem\obj\Debug\Windows\DoctorAddNewAppointmentWindow.baml
+C:\Users\Lenovo\Desktop\Pr\Project\HospitalInformationSystem\obj\Debug\Windows\DoctorEditAppointmentWindow.baml
+C:\Users\Lenovo\Desktop\Pr\Project\HospitalInformationSystem\obj\Debug\HospitalInformationSystem.g.resources
+C:\Users\Lenovo\Desktop\Pr\Project\HospitalInformationSystem\obj\Debug\HospitalInformationSystem.Properties.Resources.resources
+C:\Users\Lenovo\Desktop\Pr\Project\HospitalInformationSystem\obj\Debug\HospitalInformationSystem.csproj.GenerateResource.cache
+C:\Users\Lenovo\Desktop\Pr\Project\HospitalInformationSystem\obj\Debug\HospitalInformationSystem.csproj.CoreCompileInputs.cache
+C:\Users\Lenovo\Desktop\Pr\Project\HospitalInformationSystem\obj\Debug\HospitalInformationSystem.exe
+C:\Users\Lenovo\Desktop\Pr\Project\HospitalInformationSystem\obj\Debug\HospitalInformationSystem.pdb
+C:\Users\Mirko\Desktop\Radisa\Project\HospitalInformationSystem\bin\Debug\HospitalInformationSystem.exe.config
+C:\Users\Mirko\Desktop\Radisa\Project\HospitalInformationSystem\bin\Debug\HospitalInformationSystem.exe
+C:\Users\Mirko\Desktop\Radisa\Project\HospitalInformationSystem\bin\Debug\HospitalInformationSystem.pdb
+C:\Users\Mirko\Desktop\Radisa\Project\HospitalInformationSystem\obj\Debug\HospitalInformationSystem.csprojAssemblyReference.cache
+C:\Users\Mirko\Desktop\Radisa\Project\HospitalInformationSystem\obj\Debug\MainWindow.g.cs
+C:\Users\Mirko\Desktop\Radisa\Project\HospitalInformationSystem\obj\Debug\Windows\DoctorAddNewAppointmentWindow.g.cs
+C:\Users\Mirko\Desktop\Radisa\Project\HospitalInformationSystem\obj\Debug\Windows\DoctorAppointmentsManagementWindow.g.cs
+C:\Users\Mirko\Desktop\Radisa\Project\HospitalInformationSystem\obj\Debug\Windows\DoctorEditAppointmentWindow.g.cs
+C:\Users\Mirko\Desktop\Radisa\Project\HospitalInformationSystem\obj\Debug\Windows\EditRoomWindow.g.cs
+C:\Users\Mirko\Desktop\Radisa\Project\HospitalInformationSystem\obj\Debug\Windows\NewRoomWindow.g.cs
+C:\Users\Mirko\Desktop\Radisa\Project\HospitalInformationSystem\obj\Debug\Windows\PatientAppointmentsManagementWindow.g.cs
+C:\Users\Mirko\Desktop\Radisa\Project\HospitalInformationSystem\obj\Debug\Windows\PatientManagementWindow.g.cs
+C:\Users\Mirko\Desktop\Radisa\Project\HospitalInformationSystem\obj\Debug\Windows\RoomCRUDOperationsWindow.g.cs
+C:\Users\Mirko\Desktop\Radisa\Project\HospitalInformationSystem\obj\Debug\App.g.cs
+C:\Users\Mirko\Desktop\Radisa\Project\HospitalInformationSystem\obj\Debug\HospitalInformationSystem_MarkupCompile.cache
+C:\Users\Mirko\Desktop\Radisa\Project\HospitalInformationSystem\obj\Debug\HospitalInformationSystem_MarkupCompile.lref
+C:\Users\Mirko\Desktop\Radisa\Project\HospitalInformationSystem\obj\Debug\MainWindow.baml
+C:\Users\Mirko\Desktop\Radisa\Project\HospitalInformationSystem\obj\Debug\Windows\DoctorAddNewAppointmentWindow.baml
+C:\Users\Mirko\Desktop\Radisa\Project\HospitalInformationSystem\obj\Debug\Windows\DoctorAppointmentsManagementWindow.baml
+C:\Users\Mirko\Desktop\Radisa\Project\HospitalInformationSystem\obj\Debug\Windows\DoctorEditAppointmentWindow.baml
+C:\Users\Mirko\Desktop\Radisa\Project\HospitalInformationSystem\obj\Debug\Windows\EditRoomWindow.baml
+C:\Users\Mirko\Desktop\Radisa\Project\HospitalInformationSystem\obj\Debug\Windows\NewRoomWindow.baml
+C:\Users\Mirko\Desktop\Radisa\Project\HospitalInformationSystem\obj\Debug\Windows\PatientAppointmentsManagementWindow.baml
+C:\Users\Mirko\Desktop\Radisa\Project\HospitalInformationSystem\obj\Debug\Windows\PatientManagementWindow.baml
+C:\Users\Mirko\Desktop\Radisa\Project\HospitalInformationSystem\obj\Debug\Windows\RoomCRUDOperationsWindow.baml
+C:\Users\Mirko\Desktop\Radisa\Project\HospitalInformationSystem\obj\Debug\HospitalInformationSystem.g.resources
+C:\Users\Mirko\Desktop\Radisa\Project\HospitalInformationSystem\obj\Debug\HospitalInformationSystem.Properties.Resources.resources
+C:\Users\Mirko\Desktop\Radisa\Project\HospitalInformationSystem\obj\Debug\HospitalInformationSystem.csproj.GenerateResource.cache
+C:\Users\Mirko\Desktop\Radisa\Project\HospitalInformationSystem\obj\Debug\HospitalInformationSystem.csproj.CoreCompileInputs.cache
+C:\Users\Mirko\Desktop\Radisa\Project\HospitalInformationSystem\obj\Debug\HospitalInformationSystem.exe
+C:\Users\Mirko\Desktop\Radisa\Project\HospitalInformationSystem\obj\Debug\HospitalInformationSystem.pdb
+C:\Users\Mirko\Desktop\Radisa\Project\HospitalInformationSystem\obj\Debug\GeneratedInternalTypeHelper.g.cs
+C:\Users\Mirko\Desktop\Radiša i ja\Project\HospitalInformationSystem\bin\Debug\HospitalInformationSystem.exe.config
+C:\Users\Mirko\Desktop\Radiša i ja\Project\HospitalInformationSystem\bin\Debug\HospitalInformationSystem.exe
+C:\Users\Mirko\Desktop\Radiša i ja\Project\HospitalInformationSystem\bin\Debug\HospitalInformationSystem.pdb
+C:\Users\Mirko\Desktop\Radiša i ja\Project\HospitalInformationSystem\obj\Debug\HospitalInformationSystem.csprojAssemblyReference.cache
+C:\Users\Mirko\Desktop\Radiša i ja\Project\HospitalInformationSystem\obj\Debug\MainWindow.g.cs
+C:\Users\Mirko\Desktop\Radiša i ja\Project\HospitalInformationSystem\obj\Debug\Windows\DoctorAddNewAppointmentWindow.g.cs
+C:\Users\Mirko\Desktop\Radiša i ja\Project\HospitalInformationSystem\obj\Debug\Windows\DoctorAppointmentsManagementWindow.g.cs
+C:\Users\Mirko\Desktop\Radiša i ja\Project\HospitalInformationSystem\obj\Debug\Windows\DoctorEditAppointmentWindow.g.cs
+C:\Users\Mirko\Desktop\Radiša i ja\Project\HospitalInformationSystem\obj\Debug\Windows\EditRoomWindow.g.cs
+C:\Users\Mirko\Desktop\Radiša i ja\Project\HospitalInformationSystem\obj\Debug\Windows\NewRoomWindow.g.cs
+C:\Users\Mirko\Desktop\Radiša i ja\Project\HospitalInformationSystem\obj\Debug\Windows\PatientAppointmentsManagementWindow.g.cs
+C:\Users\Mirko\Desktop\Radiša i ja\Project\HospitalInformationSystem\obj\Debug\Windows\PatientManagementWindow.g.cs
+C:\Users\Mirko\Desktop\Radiša i ja\Project\HospitalInformationSystem\obj\Debug\Windows\RoomCRUDOperationsWindow.g.cs
+C:\Users\Mirko\Desktop\Radiša i ja\Project\HospitalInformationSystem\obj\Debug\App.g.cs
+C:\Users\Mirko\Desktop\Radiša i ja\Project\HospitalInformationSystem\obj\Debug\HospitalInformationSystem_MarkupCompile.cache
+C:\Users\Mirko\Desktop\Radiša i ja\Project\HospitalInformationSystem\obj\Debug\HospitalInformationSystem_MarkupCompile.lref
+C:\Users\Mirko\Desktop\Radiša i ja\Project\HospitalInformationSystem\obj\Debug\MainWindow.baml
+C:\Users\Mirko\Desktop\Radiša i ja\Project\HospitalInformationSystem\obj\Debug\Windows\DoctorAddNewAppointmentWindow.baml
+C:\Users\Mirko\Desktop\Radiša i ja\Project\HospitalInformationSystem\obj\Debug\Windows\DoctorAppointmentsManagementWindow.baml
+C:\Users\Mirko\Desktop\Radiša i ja\Project\HospitalInformationSystem\obj\Debug\Windows\DoctorEditAppointmentWindow.baml
+C:\Users\Mirko\Desktop\Radiša i ja\Project\HospitalInformationSystem\obj\Debug\Windows\EditRoomWindow.baml
+C:\Users\Mirko\Desktop\Radiša i ja\Project\HospitalInformationSystem\obj\Debug\Windows\NewRoomWindow.baml
+C:\Users\Mirko\Desktop\Radiša i ja\Project\HospitalInformationSystem\obj\Debug\Windows\PatientAppointmentsManagementWindow.baml
+C:\Users\Mirko\Desktop\Radiša i ja\Project\HospitalInformationSystem\obj\Debug\Windows\PatientManagementWindow.baml
+C:\Users\Mirko\Desktop\Radiša i ja\Project\HospitalInformationSystem\obj\Debug\Windows\RoomCRUDOperationsWindow.baml
+C:\Users\Mirko\Desktop\Radiša i ja\Project\HospitalInformationSystem\obj\Debug\HospitalInformationSystem.g.resources
+C:\Users\Mirko\Desktop\Radiša i ja\Project\HospitalInformationSystem\obj\Debug\HospitalInformationSystem.Properties.Resources.resources
+C:\Users\Mirko\Desktop\Radiša i ja\Project\HospitalInformationSystem\obj\Debug\HospitalInformationSystem.csproj.GenerateResource.cache
+C:\Users\Mirko\Desktop\Radiša i ja\Project\HospitalInformationSystem\obj\Debug\HospitalInformationSystem.csproj.CoreCompileInputs.cache
+C:\Users\Mirko\Desktop\Radiša i ja\Project\HospitalInformationSystem\obj\Debug\HospitalInformationSystem.exe
+C:\Users\Mirko\Desktop\Radiša i ja\Project\HospitalInformationSystem\obj\Debug\HospitalInformationSystem.pdb
+C:\Users\Mirko\Desktop\Radiša i ja\Project\HospitalInformationSystem\obj\Debug\Windows\PatientAppointmentCRUDOperationsWindow.g.cs
+C:\Users\Mirko\Desktop\Radiša i ja\Project\HospitalInformationSystem\obj\Debug\Windows\EditPatientAppointmentWindow.g.cs
+C:\Users\Mirko\Desktop\Radiša i ja\Project\HospitalInformationSystem\obj\Debug\Windows\NewPatientAppointmentWindow.g.cs
+C:\Users\Mirko\Desktop\Radiša i ja\Project\HospitalInformationSystem\obj\Debug\Windows\PatientAppointmentCRUDOperationsWindow.baml
+C:\Users\Mirko\Desktop\Radiša i ja\Project\HospitalInformationSystem\obj\Debug\Windows\EditPatientAppointmentWindow.baml
+C:\Users\Mirko\Desktop\Radiša i ja\Project\HospitalInformationSystem\obj\Debug\Windows\NewPatientAppointmentWindow.baml
+C:\Users\Mirko\Desktop\SIMS-HCI projekat\Project\HospitalInformationSystem\obj\Debug\Windows\DoctorAddNewAppointmentWindow.g.cs
+C:\Users\Mirko\Desktop\SIMS-HCI projekat\Project\HospitalInformationSystem\obj\Debug\Windows\DoctorEditAppointmentWindow.g.cs
+C:\Users\Mirko\Desktop\SIMS-HCI projekat\Project\HospitalInformationSystem\obj\Debug\Windows\EditPatientAppointmentWindow.g.cs
+C:\Users\Mirko\Desktop\SIMS-HCI projekat\Project\HospitalInformationSystem\obj\Debug\Windows\NewPatientAppointmentWindow.g.cs
+C:\Users\Mirko\Desktop\SIMS-HCI projekat\Project\HospitalInformationSystem\obj\Debug\Windows\PatientAppointmentCRUDOperationsWindow.g.cs
+C:\Users\Mirko\Desktop\SIMS-HCI projekat\Project\HospitalInformationSystem\obj\Debug\Windows\DoctorAddNewAppointmentWindow.baml
+C:\Users\Mirko\Desktop\SIMS-HCI projekat\Project\HospitalInformationSystem\obj\Debug\Windows\DoctorEditAppointmentWindow.baml
+C:\Users\Mirko\Desktop\SIMS-HCI projekat\Project\HospitalInformationSystem\obj\Debug\Windows\EditPatientAppointmentWindow.baml
+C:\Users\Mirko\Desktop\SIMS-HCI projekat\Project\HospitalInformationSystem\obj\Debug\Windows\NewPatientAppointmentWindow.baml
+C:\Users\Mirko\Desktop\SIMS-HCI projekat\Project\HospitalInformationSystem\obj\Debug\Windows\PatientAppointmentCRUDOperationsWindow.baml

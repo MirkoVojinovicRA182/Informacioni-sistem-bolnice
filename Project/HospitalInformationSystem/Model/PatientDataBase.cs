@@ -4,10 +4,22 @@
  * Purpose: Definition of the Class Model.PatientDataBase
  ***********************************************************************/
 
+using System.Collections.Generic;
+
 namespace Model
 {
     public class PatientDataBase
     {
+
+        public static PatientDataBase instance;
+
+        public static PatientDataBase getInstance()
+        {
+            if (instance == null)
+                instance = new PatientDataBase();
+            return instance;
+        }
+
         public PatientDataBase()
         {
             // TODO: implement
@@ -18,18 +30,18 @@ namespace Model
             // TODO: implement
         }
 
-        public System.Collections.ArrayList patient;
+        public List<Patient> patient;
 
         /// <pdGenerated>default getter</pdGenerated>
-        public System.Collections.ArrayList GetPatient()
+        public List<Patient> GetPatient()
         {
             if (patient == null)
-                patient = new System.Collections.ArrayList();
+                patient = new List<Patient>();
             return patient;
         }
 
         /// <pdGenerated>default setter</pdGenerated>
-        public void SetPatient(System.Collections.ArrayList newPatient)
+        public void SetPatient(List<Patient> newPatient)
         {
             RemoveAllPatient();
             foreach (Patient oPatient in newPatient)
@@ -42,9 +54,11 @@ namespace Model
             if (newPatient == null)
                 return;
             if (this.patient == null)
-                this.patient = new System.Collections.ArrayList();
+                this.patient = new List<Patient>();
             if (!this.patient.Contains(newPatient))
                 this.patient.Add(newPatient);
+
+
         }
 
         /// <pdGenerated>default Remove</pdGenerated>

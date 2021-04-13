@@ -5,18 +5,25 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:HospitalInformationSystem.Windows"
         mc:Ignorable="d"
-        Title="Unos nove prostorije" Height="350" Width="300" Closing="Window_Closing">
+        Title="Unos nove prostorije" Height="350" Width="300" Closing="Window_Closing" ResizeMode="NoResize">
     <Grid Margin="0,0,-0.4,0.4">
-        <Label Content="Šifra:" HorizontalAlignment="Left" Margin="35,31,0,0" VerticalAlignment="Top"/>
-        <Label Content="Naziv:" HorizontalAlignment="Left" Margin="35,82,0,0" VerticalAlignment="Top"/>
-        <Label Content="Tip:" HorizontalAlignment="Left" Margin="35,130,0,0" VerticalAlignment="Top"/>
-        <Label Content="Sprat:" HorizontalAlignment="Left" Margin="35,188,0,0" VerticalAlignment="Top"/>
-        <Button x:Name="confirmButton" Content="POTVRDI" HorizontalAlignment="Left" Margin="71,268,0,0" VerticalAlignment="Top" Width="75" FontSize="16" Click="confirmButton_Click"/>
-        <ComboBox x:Name="typeOfRoomComboBox" HorizontalAlignment="Left" Margin="91,133,0,0" VerticalAlignment="Top" Width="170"/>
-        <TextBox x:Name="idTextBox" HorizontalAlignment="Left" Height="23" Margin="90,30,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="88"/>
-        <TextBox x:Name="nameTextBox" HorizontalAlignment="Left" Height="23" Margin="90,82,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="170"/>
-        <TextBox x:Name="floorTextBox" HorizontalAlignment="Left" Height="23" Margin="90,191,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="45"/>
-        <Button x:Name="closeButton" Content="IZAĐI" HorizontalAlignment="Left" Margin="168,268,0,0" VerticalAlignment="Top" Width="75" FontSize="16" Click="closeButton_Click"/>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="4*"/>
+            <ColumnDefinition Width="46*"/>
+            <ColumnDefinition Width="119*"/>
+            <ColumnDefinition Width="20*"/>
+            <ColumnDefinition Width="105*"/>
+        </Grid.ColumnDefinitions>
+        <Label Content="Šifra:" HorizontalAlignment="Left" Margin="31,31,0,0" VerticalAlignment="Top" Grid.Column="1" Grid.ColumnSpan="2"/>
+        <Label Content="Naziv:" HorizontalAlignment="Left" Margin="31,82,0,0" VerticalAlignment="Top" Grid.Column="1" Grid.ColumnSpan="2"/>
+        <Label Content="Tip:" HorizontalAlignment="Left" Margin="31,130,0,0" VerticalAlignment="Top" Grid.Column="1" Grid.ColumnSpan="2"/>
+        <Label Content="Sprat:" HorizontalAlignment="Left" Margin="31,188,0,0" VerticalAlignment="Top" Grid.Column="1" Grid.ColumnSpan="2"/>
+        <Button x:Name="confirmButton" Content="DODAJ" HorizontalAlignment="Left" Margin="21.233,268,0,0" VerticalAlignment="Top" Width="75" FontSize="16" Click="confirmButton_Click" Grid.Column="2"/>
+        <ComboBox x:Name="typeOfRoomComboBox" HorizontalAlignment="Left" Margin="41.233,133,0,0" VerticalAlignment="Top" Width="170" Grid.ColumnSpan="3" Grid.Column="2"/>
+        <TextBox x:Name="idTextBox" HorizontalAlignment="Left" Height="23" Margin="40.233,30,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="88" Grid.ColumnSpan="2" Grid.Column="2"/>
+        <TextBox x:Name="nameTextBox" HorizontalAlignment="Left" Height="23" Margin="40.233,82,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="170" Grid.ColumnSpan="3" Grid.Column="2"/>
+        <TextBox x:Name="floorTextBox" HorizontalAlignment="Left" Height="23" Margin="40.233,191,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="45" Grid.Column="2"/>
+        <Button x:Name="closeButton" Content="IZAĐI" HorizontalAlignment="Left" Margin="118.233,268,0,0" VerticalAlignment="Top" Width="75" FontSize="16" Click="closeButton_Click" Grid.ColumnSpan="3" Grid.Column="2"/>
 
     </Grid>
 </Window>

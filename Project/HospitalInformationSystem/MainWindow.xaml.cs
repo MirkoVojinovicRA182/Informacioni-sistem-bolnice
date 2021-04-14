@@ -16,8 +16,8 @@ namespace HospitalInformationSystem
         public MainWindow()
         {
             InitializeComponent();
-            save.LoadFromFile();
-            doctorAppFile.LoadFromFile();
+            //save.LoadFromFile();
+            //doctorAppFile.LoadFromFile();
 
             //inicijalizacija tri rucno uneta doktora
 

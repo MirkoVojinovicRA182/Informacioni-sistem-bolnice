@@ -69,13 +69,13 @@ namespace HospitalInformationSystem.Windows
 
             if(RoomDataBase.getInstance().getRooms().Count != 0)
             {
-                changeButton.IsEnabled = true;
-                deleteButton.IsEnabled = true;
+                //changeButton.IsEnabled = true;
+                //deleteButton.IsEnabled = true;
             }
             else
             {
-                changeButton.IsEnabled = false;
-                deleteButton.IsEnabled = false;
+                //changeButton.IsEnabled = false;
+                //deleteButton.IsEnabled = false;
             }
         }
 

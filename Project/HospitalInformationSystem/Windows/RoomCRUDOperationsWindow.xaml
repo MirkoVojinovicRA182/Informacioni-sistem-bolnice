@@ -12,10 +12,10 @@
 				  AutoGenerateColumns="False"
 				  IsReadOnly="True"
 				  SelectionMode="Single"
-				  Height="399" 
+				  Height="500" 
 				  Margin="10,10,0,0" 
 				  VerticalAlignment="Top" 
-				  Width="710" 
+				  Width="950" 
 				  Background="CadetBlue">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="ID" Width="*" Binding="{Binding Id}"></DataGridTextColumn>
@@ -25,9 +25,5 @@
                 
             </DataGrid.Columns>
         </DataGrid>
-        <Button x:Name="addButton" Content="DODAJ" HorizontalAlignment="Left" Margin="738,10,0,0" VerticalAlignment="Top" Width="141" FontSize="16" Click="addButton_Click"/>
-        <Button x:Name="changeButton" Content="IZMENI" HorizontalAlignment="Left" Margin="738,40,0,0" VerticalAlignment="Top" Width="141" FontSize="16" Click="changeButton_Click"/>
-        <Button x:Name="deleteButton" Content="OBRIŠI" HorizontalAlignment="Left" Margin="738,70,0,0" VerticalAlignment="Top" Width="141" FontSize="16" Click="deleteButton_Click"/>
-        <Button x:Name="closeButton" Content="IZAĐI" HorizontalAlignment="Left" Margin="738,384,0,0" VerticalAlignment="Top" Width="141" FontSize="16"/>
     </Grid>
 </UserControl>

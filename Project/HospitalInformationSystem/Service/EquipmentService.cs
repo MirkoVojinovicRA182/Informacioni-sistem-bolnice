@@ -25,5 +25,31 @@ namespace HospitalInformationSystem.Service
             if (!equipmentList.Contains(equipment))
                 equipmentList.Add(equipment);
         }
+
+        public List<Equipment> getStaticEquipment()
+        {
+            List<Equipment> staticEquipment = new List<Equipment>();
+
+            foreach(Equipment equipment in this.equipmentList)
+            {
+                if (equipment.Type == TypeOfEquipment.Static)
+                    staticEquipment.Add(equipment);
+            }
+
+            return staticEquipment;
+        }
+
+        public List<Equipment> getDynamicEquipment()
+        {
+            List<Equipment> dynamicEquipment = new List<Equipment>();
+
+            foreach (Equipment equipment in this.equipmentList)
+            {
+                if (equipment.Type == TypeOfEquipment.Dynamic)
+                    dynamicEquipment.Add(equipment);
+            }
+
+            return dynamicEquipment;
+        }
     }
 }

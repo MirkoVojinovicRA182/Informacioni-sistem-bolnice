@@ -24,7 +24,6 @@ namespace HospitalInformationSystem.Windows.Manager
 
         private static NewEquipment instance = null;
         private int selectedEquipment;
-        private EquipmentController equipmentController;
 
         public static NewEquipment getInstance(int selectedEquipment)
         {
@@ -36,7 +35,6 @@ namespace HospitalInformationSystem.Windows.Manager
         {
             InitializeComponent();
 
-            equipmentController = new EquipmentController();
             this.selectedEquipment = selectedEquipment;
         }
 
@@ -60,7 +58,7 @@ namespace HospitalInformationSystem.Windows.Manager
 
             Equipment equipment = new Equipment(id, name, typeOfEquipment, quanity, description);
 
-            equipmentController.addNewEquipment(equipment);
+            EquipmentController.getInstance().addNewEquipment(equipment);
 
             //obavestavanje korisnika o uspesno unetoj opremi
             MessageBox.Show("Uneta je nova oprema u sistem.", "Nova prostorija", MessageBoxButton.OK, MessageBoxImage.Information);

@@ -34,11 +34,6 @@ namespace HospitalInformationSystem.Windows
             refreshTable();
         }
 
-        private void addButton_Click(object sender, RoutedEventArgs e)
-        {
-            NewRoomWindow.getInstance().ShowDialog();
-        }
-
         private void changeButton_Click(object sender, RoutedEventArgs e)
         {
             selectedRoom = (Room)allRoomsTable.SelectedItem;

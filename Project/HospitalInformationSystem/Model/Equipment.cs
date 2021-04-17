@@ -1,4 +1,4 @@
-/***********************************************************************
+﻿/***********************************************************************
  * Module:  Equipment.cs
  * Author:  Mirko
  * Purpose: Definition of the Class Model.Equipment
@@ -44,6 +44,18 @@ namespace Model
         public string Description
         {
             get; set;
+        }
+
+        public string GetStringType
+        {
+            get
+            {
+                if (this.Type == TypeOfEquipment.Static)
+                    return "Statička";
+                else
+                    return "Dinamička";
+            }
+            set { }
         }
 
     }

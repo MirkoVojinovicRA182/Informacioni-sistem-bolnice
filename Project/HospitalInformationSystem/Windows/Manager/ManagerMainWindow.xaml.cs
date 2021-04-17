@@ -31,6 +31,9 @@ namespace HospitalInformationSystem.Windows.Manager
         private ManagerMainWindow()
         {
             InitializeComponent();
+
+            roomsTable.refreshTable();
+            equipmentTable.refreshTable();
         }
 
         private void exitMenuItem_Click(object sender, RoutedEventArgs e)
@@ -69,6 +72,20 @@ namespace HospitalInformationSystem.Windows.Manager
 
                 NewEquipment.getInstance(selectedEquipment).Show();
             }
+        }
+
+        private void mainTabs_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            roomsTable.refreshTable();
+            equipmentTable.refreshTable();
+            dynamicEquipmentTable.refreshTable();
+        }
+
+        private void staticDynamicTab_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            roomsTable.refreshTable();
+            equipmentTable.refreshTable();
+            dynamicEquipmentTable.refreshTable();
         }
     }
 }

@@ -3,7 +3,9 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:uc="clr-namespace:HospitalInformationSystem.Windows"
+        xmlns:ucRooms="clr-namespace:HospitalInformationSystem.Windows"
+        xmlns:ucStaticEquipment="clr-namespace:HospitalInformationSystem.Windows.Manager"
+        xmlns:ucDynamicEquipment="clr-namespace:HospitalInformationSystem.Windows.Manager"
         xmlns:local="clr-namespace:HospitalInformationSystem.Windows.Manager"
         mc:Ignorable="d"
         Title="Glavni prozor" Height="600" Width="1000" Closing="Window_Closing">
@@ -24,17 +26,17 @@
             </Menu>
             <TextBox AcceptsReturn="True" />
 
-            <TabControl>
+            <TabControl x:Name="mainTabs" SelectionChanged="mainTabs_SelectionChanged">
                 <TabItem x:Name="roomTab" Header="Prostorije">
-                    <uc:RoomCRUDOperationsWindow/>
+                    <ucRooms:RoomCRUDOperationsWindow x:Name="roomsTable"/>
                 </TabItem>
                 <TabItem x:Name="equipmentTab" Header="Oprema">
-                    <TabControl>
-                        <TabItem x:Name="staticEquipmentTab" Header="Statička"> 
-                            
+                    <TabControl x:Name="staticDynamicTab" SelectionChanged="staticDynamicTab_SelectionChanged">
+                        <TabItem x:Name="staticEquipmentTab" Header="Statička">
+                            <ucStaticEquipment:EquipmentTable x:Name="equipmentTable"/>
                         </TabItem>
                         <TabItem x:Name="dynamicEquipmentTab" Header="Dinamička">
-                            
+                            <ucDynamicEquipment:DynamicEquipmentTable x:Name="dynamicEquipmentTable"/>
                         </TabItem>
                     </TabControl>
                 </TabItem>

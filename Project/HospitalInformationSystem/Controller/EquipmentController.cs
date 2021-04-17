@@ -11,7 +11,16 @@ namespace HospitalInformationSystem.Controller
     class EquipmentController
     {
         EquipmentService equipmentService;
-        public EquipmentController()
+
+        private static EquipmentController instance = null;
+
+        public static EquipmentController getInstance()
+        {
+            if (instance == null)
+                instance = new EquipmentController();
+            return instance;
+        }
+        private EquipmentController()
         {
             equipmentService = new EquipmentService();
         }
@@ -19,6 +28,16 @@ namespace HospitalInformationSystem.Controller
         public void addNewEquipment(Equipment equipment)
         {
             equipmentService.addNewEquipment(equipment);
+        }
+
+        public List<Equipment> getStaticEquipment()
+        {
+            return equipmentService.getStaticEquipment();
+        }
+
+        public List<Equipment> getDynamicEquipment()
+        {
+            return equipmentService.getDynamicEquipment();
         }
     }
 }

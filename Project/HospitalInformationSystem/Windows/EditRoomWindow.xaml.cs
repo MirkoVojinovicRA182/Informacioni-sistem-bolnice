@@ -48,7 +48,7 @@ namespace HospitalInformationSystem.Windows
         {
             RoomManagement management = new RoomManagement();
             management.changeRoom(selectedRoom, int.Parse(idTextBox.Text), nameTextBox.Text, getType(typeComboBox.SelectedIndex), int.Parse(floorTextBox.Text));
-            RoomCRUDOperationsWindow.getInstance().refreshTable();
+            //RoomCRUDOperationsWindow.getInstance().refreshTable();
             MessageBox.Show("Informacije o prostoriji su sada izmenjene.", "Izmena informacija", MessageBoxButton.OK, MessageBoxImage.Information);
         }
 

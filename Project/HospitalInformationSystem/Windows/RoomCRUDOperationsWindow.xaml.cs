@@ -21,25 +21,17 @@ namespace HospitalInformationSystem.Windows
     /// <summary>
     /// Interaction logic for RoomCRUDOperationsWindow.xaml
     /// </summary>
-    public partial class RoomCRUDOperationsWindow : Window
+    public partial class RoomCRUDOperationsWindow : System.Windows.Controls.UserControl
     {
         private Room selectedRoom = null;
         private ObservableCollection<Room> roomList;
         private RoomManagement roomManagement = new RoomManagement();
 
-        private static RoomCRUDOperationsWindow instance = null; 
-        private RoomCRUDOperationsWindow()
+        public RoomCRUDOperationsWindow()
         {
             InitializeComponent();
 
             refreshTable();
-        }
-
-        public static RoomCRUDOperationsWindow getInstance()
-        {
-            if (instance == null)
-                instance = new RoomCRUDOperationsWindow();
-            return instance;
         }
 
         private void addButton_Click(object sender, RoutedEventArgs e)
@@ -67,16 +59,6 @@ namespace HospitalInformationSystem.Windows
                 MessageBox.Show("Niste izabrali prostoriju!", "Upozorenje", MessageBoxButton.OK, MessageBoxImage.Warning);
 
             refreshTable();
-        }
-
-        private void closeButton_Click(object sender, RoutedEventArgs e)
-        {
-            this.Close();
-        }
-
-        private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
-        {
-            instance = null;
         }
 
         public void refreshTable()

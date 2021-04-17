@@ -35,7 +35,9 @@ namespace HospitalInformationSystem.Windows
             floorTextBox.Clear();
             typeOfRoomComboBox.SelectedIndex = 0;
 
-            RoomCRUDOperationsWindow.getInstance().refreshTable();
+            RoomCRUDOperationsWindow roomCRUDOperationsWindow = new RoomCRUDOperationsWindow();
+
+            roomCRUDOperationsWindow.refreshTable();
 
             MessageBox.Show("Uneta je nova prostorija u sistem.", "Nova prostorija", MessageBoxButton.OK, MessageBoxImage.Information);
 

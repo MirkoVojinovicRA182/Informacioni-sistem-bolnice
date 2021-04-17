@@ -1,4 +1,5 @@
 ﻿using HospitalInformationSystem.Windows;
+using HospitalInformationSystem.Windows.Manager;
 using Model;
 using System;
 using System.Windows;
@@ -36,7 +37,7 @@ namespace HospitalInformationSystem
 
 
             if ((bool)roomRadioButton.IsChecked)
-                RoomCRUDOperationsWindow.getInstance().Show();
+                ManagerMainWindow.getInstance().Show();
             else if ((bool)patientAppointmentsRadioButton.IsChecked)
                 patientAppointmentCRUDOperationsWindow.Show();
             else if ((bool)doctorAppointmentsRadioButton.IsChecked)

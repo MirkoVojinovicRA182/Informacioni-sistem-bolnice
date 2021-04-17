@@ -1,0 +1,46 @@
+﻿<Window x:Class="HospitalInformationSystem.Windows.Manager.ManagerMainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:uc="clr-namespace:HospitalInformationSystem.Windows"
+        xmlns:local="clr-namespace:HospitalInformationSystem.Windows.Manager"
+        mc:Ignorable="d"
+        Title="Glavni prozor" Height="600" Width="1000" Closing="Window_Closing">
+    <Grid>
+        <DockPanel>
+            <Menu DockPanel.Dock="Top">
+                <MenuItem Header="_Fajl">
+                    <MenuItem Header="_Novi" InputGestureText="CTRL+N"/>
+                    <Separator />
+                    <MenuItem Header="_Odjavi se" InputGestureText="CTRL+O"/>
+                    <MenuItem x:Name="exitMenuItem" Header="_Izađi" Click="exitMenuItem_Click" InputGestureText="CTRL+C"/>
+                </MenuItem>
+                <MenuItem Header="_Izmena">
+                    <MenuItem Header="_Izmeni" InputGestureText="CTRL+E"/>
+                    <Separator />
+                    <MenuItem Header="_Obriši" InputGestureText="CTRL+D"/>
+                </MenuItem>
+            </Menu>
+            <TextBox AcceptsReturn="True" />
+
+            <TabControl>
+                <TabItem Header="Prostorije">
+                    <uc:RoomCRUDOperationsWindow/>
+                </TabItem>
+                <TabItem Header="Oprema">
+                    <TabControl>
+                        <TabItem Header="Statička"> 
+                            
+                        </TabItem>
+                        <TabItem Header="Dinamička">
+                            
+                        </TabItem>
+                    </TabControl>
+                </TabItem>
+            </TabControl>
+           
+        </DockPanel>
+
+    </Grid>
+</Window>

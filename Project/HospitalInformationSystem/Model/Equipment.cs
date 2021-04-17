@@ -11,33 +11,16 @@ namespace Model
     [Serializable]
     public class Equipment
     {
+
+        public Equipment(string id, string name, TypeOfEquipment typeOfEquipment, int quantity, string description)
+        {
+            this.Id = id;
+            this.Name = name;
+            this.Type = typeOfEquipment;
+            this.Quantity = quantity;
+            this.Description = description;
+        }
         public string Id
-        {
-            get
-            {
-                // TODO: implement
-                return (string)"";
-            }
-            set
-            {
-                // TODO: implement
-            }
-        }
-
-        public TypeOfEquipment Type
-        {
-            get
-            {
-                // TODO: implement
-                return TypeOfEquipment.Clothing;
-            }
-            set
-            {
-                // TODO: implement
-            }
-        }
-
-        public int Quantity
         {
             get; set;
         }
@@ -45,7 +28,22 @@ namespace Model
         public string Name
         {
             get; set;
-         
+
+        }
+
+        public TypeOfEquipment Type
+        {
+            get; set;
+        }
+
+        public int Quantity
+        {
+            get; set;
+        }
+
+        public string Description
+        {
+            get; set;
         }
 
     }

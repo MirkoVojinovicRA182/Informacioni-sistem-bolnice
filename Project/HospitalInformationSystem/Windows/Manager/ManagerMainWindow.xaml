@@ -11,7 +11,7 @@
         <DockPanel>
             <Menu DockPanel.Dock="Top">
                 <MenuItem Header="_Fajl">
-                    <MenuItem Header="_Novi" InputGestureText="CTRL+N"/>
+                    <MenuItem x:Name="newMenuItem" Header="_Novi" InputGestureText="CTRL+N" Click="newMenuItem_Click"/>
                     <Separator />
                     <MenuItem Header="_Odjavi se" InputGestureText="CTRL+O"/>
                     <MenuItem x:Name="exitMenuItem" Header="_Izađi" Click="exitMenuItem_Click" InputGestureText="CTRL+C"/>
@@ -25,15 +25,15 @@
             <TextBox AcceptsReturn="True" />
 
             <TabControl>
-                <TabItem Header="Prostorije">
+                <TabItem x:Name="roomTab" Header="Prostorije">
                     <uc:RoomCRUDOperationsWindow/>
                 </TabItem>
-                <TabItem Header="Oprema">
+                <TabItem x:Name="equipmentTab" Header="Oprema">
                     <TabControl>
-                        <TabItem Header="Statička"> 
+                        <TabItem x:Name="staticEquipmentTab" Header="Statička"> 
                             
                         </TabItem>
-                        <TabItem Header="Dinamička">
+                        <TabItem x:Name="dynamicEquipmentTab" Header="Dinamička">
                             
                         </TabItem>
                     </TabControl>

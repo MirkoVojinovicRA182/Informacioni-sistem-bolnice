@@ -43,5 +43,32 @@ namespace HospitalInformationSystem.Windows.Manager
         {
             instance = null;
         }
+
+        private void newMenuItem_Click(object sender, RoutedEventArgs e)
+        {
+
+            //polje koje prepoznaje koji od glavnih tabova je izabran
+            int selectedTab;
+
+            if (roomTab.IsSelected) //tab prostorije
+            {
+                selectedTab = 1;
+
+                NewRoomWindow.getInstance().Show();
+            }
+            else if (equipmentTab.IsSelected)//tab oprema
+            {
+                selectedTab = 2;
+
+                int selectedEquipment;
+
+                if (staticEquipmentTab.IsSelected)
+                    selectedEquipment = 1;
+                else
+                    selectedEquipment = 2;
+
+                NewEquipment.getInstance(selectedEquipment).Show();
+            }
+        }
     }
 }

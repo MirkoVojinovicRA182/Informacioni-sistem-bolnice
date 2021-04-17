@@ -58,6 +58,7 @@
     <Compile Include="BusinessLogic\AppointmentManagement.cs" />
     <Compile Include="BusinessLogic\PatientManagement.cs" />
     <Compile Include="BusinessLogic\RoomManagement.cs" />
+    <Compile Include="Controller\EquipmentController.cs" />
     <Compile Include="Model\Appointment.cs" />
     <Compile Include="Model\AppointmentDataBase.cs" />
     <Compile Include="Model\Doctor.cs" />
@@ -74,6 +75,8 @@
     <Compile Include="Model\TypeOfAppointment.cs" />
     <Compile Include="Model\TypeOfEquipment.cs" />
     <Compile Include="Model\TypeOfRoom.cs" />
+    <Compile Include="Repository\EquipmentRepository.cs" />
+    <Compile Include="Service\EquipmentService.cs" />
     <Compile Include="Windows\DoctorAddNewAppointmentWindow.xaml.cs">
       <DependentUpon>DoctorAddNewAppointmentWindow.xaml</DependentUpon>
     </Compile>
@@ -89,6 +92,9 @@
     </Compile>
     <Compile Include="Windows\Manager\ManagerMainWindow.xaml.cs">
       <DependentUpon>ManagerMainWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Windows\Manager\NewEquipment.xaml.cs">
+      <DependentUpon>NewEquipment.xaml</DependentUpon>
     </Compile>
     <Compile Include="Windows\NewPatientAppointmentWindow.xaml.cs" />
     <Compile Include="Windows\NewRoomWindow.xaml.cs">
@@ -145,6 +151,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Windows\Manager\ManagerMainWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Windows\Manager\NewEquipment.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

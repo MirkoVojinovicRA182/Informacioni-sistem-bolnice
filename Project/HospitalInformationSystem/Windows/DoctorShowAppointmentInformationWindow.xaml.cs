@@ -45,7 +45,11 @@ namespace HospitalInformationSystem.Windows
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
-        {
+        { 
+
+            ShowPatientInformationWindow showPatientInformationWindow = new ShowPatientInformationWindow(appointment.patient);
+
+            showPatientInformationWindow.ShowDialog();
 
         }
     }

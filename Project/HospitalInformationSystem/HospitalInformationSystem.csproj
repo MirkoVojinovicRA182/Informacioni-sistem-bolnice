@@ -106,6 +106,9 @@
     <Compile Include="Windows\RoomCRUDOperationsWindow.xaml.cs">
       <DependentUpon>RoomCRUDOperationsWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Windows\ShowPatientInformationWindow.xaml.cs">
+      <DependentUpon>ShowPatientInformationWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="WorkWithFiles\DoctorAppointmentsFIleManipulation.cs" />
     <Compile Include="WorkWithFiles\DoctorFileManipulation.cs" />
     <Compile Include="WorkWithFiles\IFileManipulation.cs" />
@@ -169,6 +172,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Windows\RoomCRUDOperationsWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Windows\ShowPatientInformationWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

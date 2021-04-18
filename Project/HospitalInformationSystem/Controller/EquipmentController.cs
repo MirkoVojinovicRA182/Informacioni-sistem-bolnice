@@ -49,5 +49,10 @@ namespace HospitalInformationSystem.Controller
         {
             equipmentService.deleteEquipment(equipment);
         }
+
+        public void changeEquipment(Equipment equipment, string id, string name, TypeOfEquipment typeOfEquipment, int quantity, string description)
+        {
+            equipmentService.changeEquipment(equipment, id, name, typeOfEquipment, quantity, description);
+        }
     }
 }

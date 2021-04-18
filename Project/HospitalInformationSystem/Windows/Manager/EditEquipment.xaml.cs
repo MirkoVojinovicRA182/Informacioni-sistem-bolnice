@@ -1,4 +1,5 @@
-﻿using Model;
+﻿using HospitalInformationSystem.Controller;
+using Model;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -22,6 +23,7 @@ namespace HospitalInformationSystem.Windows.Manager
     {
 
         private static EditEquipment instance = null;
+        private Equipment selectedEquipment;
 
         public static EditEquipment getInstance(Equipment equipment)
         {
@@ -32,6 +34,40 @@ namespace HospitalInformationSystem.Windows.Manager
         private EditEquipment(Equipment equipment)
         {
             InitializeComponent();
+            this.selectedEquipment = equipment;
+            fillControls();
+        }
+
+        private void changeButton_Click(object sender, RoutedEventArgs e)
+        {
+            string id = idTextBox.Text;
+            string name = nameTextBox.Text;
+            TypeOfEquipment typeOfEquipment;
+            if (typeComboBox.SelectedIndex == 0)
+                typeOfEquipment = TypeOfEquipment.Static;
+            else
+                typeOfEquipment = TypeOfEquipment.Dynamic;
+            int quantity = int.Parse(quanitityTextBox.Text);
+            string description = descriptionTextBox.ToString();
+
+            EquipmentController.getInstance().changeEquipment(selectedEquipment, id, name, typeOfEquipment, quantity, description);
+
+            MessageBox.Show("Informacije o opremi su sada izmenjene.", "Izmena prostorije", MessageBoxButton.OK, MessageBoxImage.Information);
+        }
+
+        private void fillControls()
+        {
+            idTextBox.Text = selectedEquipment.Id;
+            nameTextBox.Text = selectedEquipment.Name;
+            quanitityTextBox.Text = selectedEquipment.Quantity.ToString();
+            descriptionTextBox.Text = selectedEquipment.Description;
+        }
+
+        private void closeButton_Click(object sender, RoutedEventArgs e)
+        {
+            instance = null;
+
+            this.Close();
         }
     }
 }

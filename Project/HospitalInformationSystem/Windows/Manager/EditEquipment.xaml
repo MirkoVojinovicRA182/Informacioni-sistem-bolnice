@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:HospitalInformationSystem.Windows.Manager"
         mc:Ignorable="d"
-        Title="Izmena prostorije" Height="450" Width="350">
+        Title="Izmena prostorije" Height="450" Width="350" Closing="Window_Closing">
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="6*"/>

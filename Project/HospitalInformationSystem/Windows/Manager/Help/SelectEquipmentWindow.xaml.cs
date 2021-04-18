@@ -50,6 +50,8 @@ namespace HospitalInformationSystem.Windows.Manager.Help
             if (selection == 2)
             {
                 EquipmentController.getInstance().deleteEquipment((Equipment)equipmentComboBox.SelectedItem);
+                ManagerMainWindow.getInstance().equipmentTable.refreshTable();
+                ManagerMainWindow.getInstance().dynamicEquipmentTable.refreshTable();
                 MessageBox.Show("Izabrana oprema je sada obrisana iz sistema.", "Brisanje opreme", MessageBoxButton.OK, MessageBoxImage.Information);
             }
             else

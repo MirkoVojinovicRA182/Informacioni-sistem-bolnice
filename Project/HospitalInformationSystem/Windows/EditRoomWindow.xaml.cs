@@ -14,6 +14,7 @@ using System.Windows.Shapes;
 
 using Model;
 using BusinessLogic;
+using HospitalInformationSystem.Windows.Manager;
 
 namespace HospitalInformationSystem.Windows
 {
@@ -48,7 +49,7 @@ namespace HospitalInformationSystem.Windows
         {
             RoomManagement management = new RoomManagement();
             management.changeRoom(selectedRoom, int.Parse(idTextBox.Text), nameTextBox.Text, getType(typeComboBox.SelectedIndex), int.Parse(floorTextBox.Text));
-            //RoomCRUDOperationsWindow.getInstance().refreshTable();
+            ManagerMainWindow.getInstance().roomsTable.refreshTable();
             MessageBox.Show("Informacije o prostoriji su sada izmenjene.", "Izmena informacija", MessageBoxButton.OK, MessageBoxImage.Information);
         }
 

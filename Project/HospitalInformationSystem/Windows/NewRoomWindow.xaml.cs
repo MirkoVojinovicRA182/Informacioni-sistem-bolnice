@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Windows;
 using Model;
+using HospitalInformationSystem.Windows.Manager;
 
 namespace HospitalInformationSystem.Windows
 {
@@ -35,13 +36,9 @@ namespace HospitalInformationSystem.Windows
             floorTextBox.Clear();
             typeOfRoomComboBox.SelectedIndex = 0;
 
-            RoomCRUDOperationsWindow roomCRUDOperationsWindow = new RoomCRUDOperationsWindow();
-
-            roomCRUDOperationsWindow.refreshTable();
+            ManagerMainWindow.getInstance().roomsTable.refreshTable();
 
             MessageBox.Show("Uneta je nova prostorija u sistem.", "Nova prostorija", MessageBoxButton.OK, MessageBoxImage.Information);
-
-
         }
 
         private void createRoom()

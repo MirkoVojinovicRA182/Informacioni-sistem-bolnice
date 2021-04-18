@@ -52,7 +52,7 @@ namespace HospitalInformationSystem.Windows.Manager.Help
             {
 
                 roomManagement.deleteRoom((Room)roomsComboBox.SelectedItem);
-
+                ManagerMainWindow.getInstance().roomsTable.refreshTable();
                 MessageBox.Show("Izabrana prostorija je sada obrisana iz sistema.", "Brisanje prostorije", MessageBoxButton.OK, MessageBoxImage.Information);
             }
             else

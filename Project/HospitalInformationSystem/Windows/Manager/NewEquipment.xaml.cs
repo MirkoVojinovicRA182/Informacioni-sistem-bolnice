@@ -48,7 +48,7 @@ namespace HospitalInformationSystem.Windows.Manager
             string id = idTextBox.Text;
             string name = nameTextBox.Text;
             int quanity = int.Parse(quanitityTextBox.Text);
-            string description = decriptionTextBox.ToString();
+            string description = decriptionTextBox.Text;
             TypeOfEquipment typeOfEquipment;
 
             if (selectedEquipment == 1)
@@ -59,6 +59,9 @@ namespace HospitalInformationSystem.Windows.Manager
             Equipment equipment = new Equipment(id, name, typeOfEquipment, quanity, description);
 
             EquipmentController.getInstance().addNewEquipment(equipment);
+
+            ManagerMainWindow.getInstance().equipmentTable.refreshTable();
+            ManagerMainWindow.getInstance().dynamicEquipmentTable.refreshTable();
 
             //obavestavanje korisnika o uspesno unetoj opremi
             MessageBox.Show("Uneta je nova oprema u sistem.", "Nova prostorija", MessageBoxButton.OK, MessageBoxImage.Information);

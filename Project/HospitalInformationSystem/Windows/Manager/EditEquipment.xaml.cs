@@ -48,9 +48,12 @@ namespace HospitalInformationSystem.Windows.Manager
             else
                 typeOfEquipment = TypeOfEquipment.Dynamic;
             int quantity = int.Parse(quanitityTextBox.Text);
-            string description = descriptionTextBox.ToString();
+            string description = descriptionTextBox.Text;
 
             EquipmentController.getInstance().changeEquipment(selectedEquipment, id, name, typeOfEquipment, quantity, description);
+
+            ManagerMainWindow.getInstance().equipmentTable.refreshTable();
+            ManagerMainWindow.getInstance().dynamicEquipmentTable.refreshTable();
 
             MessageBox.Show("Informacije o opremi su sada izmenjene.", "Izmena prostorije", MessageBoxButton.OK, MessageBoxImage.Information);
         }
@@ -68,6 +71,11 @@ namespace HospitalInformationSystem.Windows.Manager
             instance = null;
 
             this.Close();
+        }
+
+        private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            instance = null;
         }
     }
 }

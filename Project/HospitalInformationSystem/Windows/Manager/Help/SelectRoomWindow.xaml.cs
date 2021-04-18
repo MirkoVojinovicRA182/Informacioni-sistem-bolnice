@@ -25,15 +25,19 @@ namespace HospitalInformationSystem.Windows.Manager.Help
         private ObservableCollection<Room> roomList;
         private static SelectRoomWindow instance = null;
 
-        public static SelectRoomWindow getInstance()
+        int selection;
+
+        public static SelectRoomWindow getInstance(int selection)
         {
             if (instance == null)
-                instance = new SelectRoomWindow();
+                instance = new SelectRoomWindow(selection);
             return instance;
         }
-        private SelectRoomWindow()
+        private SelectRoomWindow(int selection)
         {
             InitializeComponent();
+
+            this.selection = selection;
 
             roomList = new ObservableCollection<Room>(RoomDataBase.getInstance().getRooms());
 
@@ -44,9 +48,17 @@ namespace HospitalInformationSystem.Windows.Manager.Help
         {
             RoomManagement roomManagement = new RoomManagement();
 
-            roomManagement.deleteRoom((Room)roomsComboBox.SelectedItem);
+            if (selection == 2)
+            {
 
-            MessageBox.Show("Izabrana prostorija je sada obrisana iz sistema.", "Brisanje prostorije", MessageBoxButton.OK, MessageBoxImage.Information);
+                roomManagement.deleteRoom((Room)roomsComboBox.SelectedItem);
+
+                MessageBox.Show("Izabrana prostorija je sada obrisana iz sistema.", "Brisanje prostorije", MessageBoxButton.OK, MessageBoxImage.Information);
+            }
+            else
+            {
+                EditRoomWindow.getInstance((Room)roomsComboBox.SelectedItem).Show();
+            }
 
             this.Close();
         }

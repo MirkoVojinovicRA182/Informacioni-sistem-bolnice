@@ -93,6 +93,9 @@
     <Compile Include="Windows\Manager\DynamicEquipmentTable.xaml.cs">
       <DependentUpon>DynamicEquipmentTable.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Windows\Manager\EditEquipment.xaml.cs">
+      <DependentUpon>EditEquipment.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Windows\Manager\EquipmentTable.xaml.cs">
       <DependentUpon>EquipmentTable.xaml</DependentUpon>
     </Compile>
@@ -163,6 +166,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Windows\Manager\DynamicEquipmentTable.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Windows\Manager\EditEquipment.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

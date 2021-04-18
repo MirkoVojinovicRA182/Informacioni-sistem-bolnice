@@ -92,17 +92,25 @@ namespace HospitalInformationSystem.Windows.Manager
 
             if (roomTab.IsSelected) //tab prostorije
             {
-                SelectRoomWindow.getInstance().Show();
+                SelectRoomWindow.getInstance(2).Show();
             }
             else if (equipmentTab.IsSelected)//tab oprema
             {
-                SelectEquipmentWindow.getInstance().Show();
+                SelectEquipmentWindow.getInstance(2).Show();
             }
         }
 
         private void editMenuItem_Click(object sender, RoutedEventArgs e)
         {
 
+            if (roomTab.IsSelected) //tab prostorije
+            {
+                SelectRoomWindow.getInstance(1).Show();
+            }
+            else if (equipmentTab.IsSelected)//tab oprema
+            {
+                SelectEquipmentWindow.getInstance(1).Show();
+            }
         }
     }
 }

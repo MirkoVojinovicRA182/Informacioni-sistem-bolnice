@@ -25,28 +25,37 @@ namespace HospitalInformationSystem.Windows.Manager.Help
 
         private static SelectEquipmentWindow instance = null;
         private ObservableCollection<Equipment> equipmentList;
-        public static SelectEquipmentWindow getInstance()
+
+        int selection;
+        public static SelectEquipmentWindow getInstance(int selection)
         {
             if (instance == null)
-                instance = new SelectEquipmentWindow();
+                instance = new SelectEquipmentWindow(selection);
             return instance;
         }
-        private SelectEquipmentWindow()
+        private SelectEquipmentWindow(int selection)
         {
             InitializeComponent();
 
             equipmentList = new ObservableCollection<Equipment>(EquipmentController.getInstance().getEquipment());
 
             equipmentComboBox.ItemsSource = equipmentList;
+
+            this.selection = selection;
         }
 
         private void confirmButton_Click(object sender, RoutedEventArgs e)
         {
-            EquipmentController.getInstance().deleteEquipment((Equipment)equipmentComboBox.SelectedItem);
 
-
-            MessageBox.Show("Izabrana oprema je sada obrisana iz sistema.", "Brisanje opreme", MessageBoxButton.OK, MessageBoxImage.Information);
-
+            if (selection == 2)
+            {
+                EquipmentController.getInstance().deleteEquipment((Equipment)equipmentComboBox.SelectedItem);
+                MessageBox.Show("Izabrana oprema je sada obrisana iz sistema.", "Brisanje opreme", MessageBoxButton.OK, MessageBoxImage.Information);
+            }
+            else
+            {
+                EditEquipment.getInstance((Equipment)equipmentComboBox.SelectedItem).Show();
+            }
             this.Close();
         }
 

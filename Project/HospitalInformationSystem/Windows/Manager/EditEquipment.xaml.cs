@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Model;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -19,7 +20,16 @@ namespace HospitalInformationSystem.Windows.Manager
     /// </summary>
     public partial class EditEquipment : Window
     {
-        public EditEquipment()
+
+        private static EditEquipment instance = null;
+
+        public static EditEquipment getInstance(Equipment equipment)
+        {
+            if (instance == null)
+                instance = new EditEquipment(equipment);
+            return instance;
+        }
+        private EditEquipment(Equipment equipment)
         {
             InitializeComponent();
         }

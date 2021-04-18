@@ -58,5 +58,16 @@ namespace HospitalInformationSystem.Windows
             appointmentsTable.ItemsSource = null;
             appointmentsTable.ItemsSource = appointmentList;
         }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            appointment = (Appointment)appointmentsTable.SelectedItem;
+
+            DoctorShowAppointmentInformationWindow doctorShowAppointmentInformationWindow = new DoctorShowAppointmentInformationWindow(appointment);
+
+            doctorShowAppointmentInformationWindow.ShowDialog();
+
+            refreshTable();
+        }
     }
 }

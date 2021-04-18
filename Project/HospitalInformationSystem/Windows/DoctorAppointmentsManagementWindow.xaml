@@ -31,5 +31,6 @@
     <Button x:Name="changeButton" Content="IZMENI" HorizontalAlignment="Left" Margin="738,47,0,0" VerticalAlignment="Top" Width="141" FontSize="16" Click="changeButton_Click"/>
     <Button x:Name="deleteButton" Content="OBRIŠI" HorizontalAlignment="Left" Margin="738,91,0,0" VerticalAlignment="Top" Width="141" FontSize="16" Click="deleteButton_Click"/>
     <Button x:Name="closeButton" Content="IZAĐI" HorizontalAlignment="Left" Margin="738,384,0,0" VerticalAlignment="Top" Width="141" FontSize="16" Click="closeButton_Click"/>
-</Grid>
+        <Button Content="PREGLED" HorizontalAlignment="Left" Margin="738,138,0,0" VerticalAlignment="Top" Width="141" FontSize="16" Click="Button_Click"/>
+    </Grid>
 </Window>

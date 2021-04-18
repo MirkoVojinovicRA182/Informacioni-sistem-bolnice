@@ -23,7 +23,7 @@ namespace HospitalInformationSystem.Windows.Manager
     /// </summary>
     public partial class DynamicEquipmentTable : UserControl
     {
-        private Equipment selectedRoom = null;
+        private Equipment selectedEquipment = null;
         private ObservableCollection<Equipment> equipmentList;
         public DynamicEquipmentTable()
         {
@@ -36,6 +36,16 @@ namespace HospitalInformationSystem.Windows.Manager
             equipmentList = new ObservableCollection<Equipment>(EquipmentController.getInstance().getDynamicEquipment());
             dynamicEquipmentTable.ItemsSource = null;
             dynamicEquipmentTable.ItemsSource = equipmentList;
+        }
+
+        public Equipment getSelectedEquipment()
+        {
+            return this.selectedEquipment;
+        }
+
+        private void dynamicEquipmentTable_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            this.selectedEquipment = (Equipment)dynamicEquipmentTable.SelectedItem;
         }
     }
 }

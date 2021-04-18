@@ -51,5 +51,19 @@ namespace HospitalInformationSystem.Service
 
             return dynamicEquipment;
         }
+
+        public List<Equipment> getEquipment()
+        {
+            return this.equipmentList;
+        }
+
+        public void deleteEquipment(Equipment equipment)
+        {
+            if (equipment == null)
+                return;
+            if (this.equipmentList != null)
+                if (this.equipmentList.Contains(equipment))
+                    this.equipmentList.Remove(equipment);
+        }
     }
 }

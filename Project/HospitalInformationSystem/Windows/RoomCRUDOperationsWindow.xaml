@@ -3,26 +3,28 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        mc:Ignorable="d">
-    <Grid>
+        mc:Ignorable="d" Width="968.4">
+    <Grid Margin="0,0,0,-0.4" HorizontalAlignment="Left" Width="950">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="650*"/>
+        </Grid.ColumnDefinitions>
         <DataGrid x:Name="allRoomsTable" 
-				  HorizontalAlignment="Left" 
 				  CanUserAddRows="False" 
 			      CanUserResizeColumns="False" 
 				  AutoGenerateColumns="False"
 				  IsReadOnly="True"
 				  SelectionMode="Single"
 				  Height="500" 
-				  Margin="10,10,0,0" 
+				  Margin="10,10,4.9,0" 
 				  VerticalAlignment="Top" 
-				  Width="950" 
-				  Background="CadetBlue">
+				  Background="CadetBlue"
+                  SelectionUnit="FullRow" RenderTransformOrigin="0.5,0.5">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="ID" Width="*" Binding="{Binding Id}"></DataGridTextColumn>
                 <DataGridTextColumn Header="Naziv" Width="*" Binding="{Binding Name}"></DataGridTextColumn>
                 <DataGridTextColumn Header="Tip" Width="*" Binding="{Binding StringValueOfEnumType}"></DataGridTextColumn>
                 <DataGridTextColumn Header="Sprat" Width="*" Binding="{Binding Floor}"></DataGridTextColumn>
-                
+
             </DataGrid.Columns>
         </DataGrid>
     </Grid>

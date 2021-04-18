@@ -21,7 +21,7 @@ namespace HospitalInformationSystem.Windows
     /// <summary>
     /// Interaction logic for RoomCRUDOperationsWindow.xaml
     /// </summary>
-    public partial class RoomCRUDOperationsWindow : System.Windows.Controls.UserControl
+    public partial class RoomCRUDOperationsWindow : UserControl
     {
         private Room selectedRoom = null;
         private ObservableCollection<Room> roomList;
@@ -62,7 +62,9 @@ namespace HospitalInformationSystem.Windows
             allRoomsTable.ItemsSource = null;
             allRoomsTable.ItemsSource = roomList;
 
-            if(RoomDataBase.getInstance().getRooms().Count != 0)
+            allRoomsTable.AreRowDetailsFrozen = false;
+
+            if (RoomDataBase.getInstance().getRooms().Count != 0)
             {
                 //changeButton.IsEnabled = true;
                 //deleteButton.IsEnabled = true;
@@ -73,6 +75,5 @@ namespace HospitalInformationSystem.Windows
                 //deleteButton.IsEnabled = false;
             }
         }
-
     }
 }

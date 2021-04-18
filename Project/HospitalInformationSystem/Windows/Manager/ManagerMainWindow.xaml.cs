@@ -1,4 +1,8 @@
-﻿using System;
+﻿using BusinessLogic;
+using HospitalInformationSystem.Controller;
+using HospitalInformationSystem.Windows.Manager.Help;
+using Model;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -34,6 +38,8 @@ namespace HospitalInformationSystem.Windows.Manager
 
             roomsTable.refreshTable();
             equipmentTable.refreshTable();
+
+            
         }
 
         private void exitMenuItem_Click(object sender, RoutedEventArgs e)
@@ -50,19 +56,12 @@ namespace HospitalInformationSystem.Windows.Manager
         private void newMenuItem_Click(object sender, RoutedEventArgs e)
         {
 
-            //polje koje prepoznaje koji od glavnih tabova je izabran
-            int selectedTab;
-
-            if (roomTab.IsSelected) //tab prostorije
+            if (roomTab.IsSelected)
             {
-                selectedTab = 1;
-
                 NewRoomWindow.getInstance().Show();
             }
             else if (equipmentTab.IsSelected)//tab oprema
             {
-                selectedTab = 2;
-
                 int selectedEquipment;
 
                 if (staticEquipmentTab.IsSelected)
@@ -86,6 +85,24 @@ namespace HospitalInformationSystem.Windows.Manager
             roomsTable.refreshTable();
             equipmentTable.refreshTable();
             dynamicEquipmentTable.refreshTable();
+        }
+
+        private void deleteMenuItem_Click(object sender, RoutedEventArgs e)
+        {
+
+            if (roomTab.IsSelected) //tab prostorije
+            {
+                SelectRoomWindow.getInstance().Show();
+            }
+            else if (equipmentTab.IsSelected)//tab oprema
+            {
+                SelectEquipmentWindow.getInstance().Show();
+            }
+        }
+
+        private void editMenuItem_Click(object sender, RoutedEventArgs e)
+        {
+
         }
     }
 }

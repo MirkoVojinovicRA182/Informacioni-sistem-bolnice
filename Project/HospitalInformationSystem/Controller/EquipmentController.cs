@@ -39,5 +39,15 @@ namespace HospitalInformationSystem.Controller
         {
             return equipmentService.getDynamicEquipment();
         }
+
+        public List<Equipment> getEquipment()
+        {
+            return this.equipmentService.getEquipment();
+        }
+
+        public void deleteEquipment(Equipment equipment)
+        {
+            equipmentService.deleteEquipment(equipment);
+        }
     }
 }

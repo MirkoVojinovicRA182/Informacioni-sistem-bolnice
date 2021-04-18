@@ -9,40 +9,37 @@
         xmlns:local="clr-namespace:HospitalInformationSystem.Windows.Manager"
         mc:Ignorable="d"
         Title="Glavni prozor" Height="600" Width="1000" Closing="Window_Closing">
-    <Grid>
-        <DockPanel>
-            <Menu DockPanel.Dock="Top">
-                <MenuItem Header="_Fajl">
-                    <MenuItem x:Name="newMenuItem" Header="_Novi" InputGestureText="CTRL+N" Click="newMenuItem_Click"/>
-                    <Separator />
-                    <MenuItem Header="_Odjavi se" InputGestureText="CTRL+O"/>
-                    <MenuItem x:Name="exitMenuItem" Header="_Izađi" Click="exitMenuItem_Click" InputGestureText="CTRL+C"/>
-                </MenuItem>
-                <MenuItem Header="_Izmena">
-                    <MenuItem Header="_Izmeni" InputGestureText="CTRL+E"/>
-                    <Separator />
-                    <MenuItem Header="_Obriši" InputGestureText="CTRL+D"/>
-                </MenuItem>
-            </Menu>
-            <TextBox AcceptsReturn="True" />
+    <DockPanel>
+        <Menu DockPanel.Dock="Top">
+            <MenuItem Header="_Fajl">
+                <MenuItem x:Name="newMenuItem" Header="_Novi" InputGestureText="CTRL+N" Click="newMenuItem_Click"/>
+                <Separator />
+                <MenuItem Header="_Odjavi se" InputGestureText="CTRL+O"/>
+                <MenuItem x:Name="exitMenuItem" Header="_Izađi" Click="exitMenuItem_Click" InputGestureText="CTRL+C"/>
+            </MenuItem>
+            <MenuItem Header="_Izmena">
+                <MenuItem x:Name="editMenuItem" Header="_Izmeni" InputGestureText="CTRL+E" Click="editMenuItem_Click"/>
+                <Separator />
+                <MenuItem x:Name="deleteMenuItem" Header="_Obriši" InputGestureText="CTRL+D" Click="deleteMenuItem_Click"/>
+            </MenuItem>
+        </Menu>
+        <TextBox AcceptsReturn="True" />
 
-            <TabControl x:Name="mainTabs" SelectionChanged="mainTabs_SelectionChanged">
-                <TabItem x:Name="roomTab" Header="Prostorije">
-                    <ucRooms:RoomCRUDOperationsWindow x:Name="roomsTable"/>
-                </TabItem>
-                <TabItem x:Name="equipmentTab" Header="Oprema">
-                    <TabControl x:Name="staticDynamicTab" SelectionChanged="staticDynamicTab_SelectionChanged">
-                        <TabItem x:Name="staticEquipmentTab" Header="Statička">
-                            <ucStaticEquipment:EquipmentTable x:Name="equipmentTable"/>
-                        </TabItem>
-                        <TabItem x:Name="dynamicEquipmentTab" Header="Dinamička">
-                            <ucDynamicEquipment:DynamicEquipmentTable x:Name="dynamicEquipmentTable"/>
-                        </TabItem>
-                    </TabControl>
-                </TabItem>
-            </TabControl>
-           
-        </DockPanel>
+        <TabControl x:Name="mainTabs" SelectionChanged="mainTabs_SelectionChanged">
+            <TabItem x:Name="roomTab" Header="Prostorije">
+                <ucRooms:RoomCRUDOperationsWindow x:Name="roomsTable"/>
+            </TabItem>
+            <TabItem x:Name="equipmentTab" Header="Oprema">
+                <TabControl x:Name="staticDynamicTab" SelectionChanged="staticDynamicTab_SelectionChanged">
+                    <TabItem x:Name="staticEquipmentTab" Header="Statička">
+                        <local:EquipmentTable x:Name="equipmentTable"/>
+                    </TabItem>
+                    <TabItem x:Name="dynamicEquipmentTab" Header="Dinamička">
+                        <local:DynamicEquipmentTable x:Name="dynamicEquipmentTable"/>
+                    </TabItem>
+                </TabControl>
+            </TabItem>
+        </TabControl>
 
-    </Grid>
+    </DockPanel>
 </Window>

@@ -62,24 +62,37 @@ namespace HospitalInformationSystem.Windows
         {
             if (dynamicEquipmentListBox.SelectedItem != null)
             {
-                DictionaryEntry de = (DictionaryEntry)dynamicEquipmentListBox.SelectedItem;
+                //DictionaryEntry de = (DictionaryEntry)dynamicEquipmentListBox.SelectedItem;
+
+                string nameOfSelectedEquipment = (string)dynamicEquipmentListBox.SelectedItem;
+
+                string[] separator = { " x",};
+
+                string[] atributesOfSelectedEquipment = nameOfSelectedEquipment.Split(separator, StringSplitOptions.None);
+
+                string key = EquipmentController.getInstance().getEquipmentId(atributesOfSelectedEquipment[0]);
+                int value = int.Parse(atributesOfSelectedEquipment[1]);
 
 
                 InsertQuantityOfEquipmentForRemovingWindow.getInstance().ShowDialog();
 
                 if (InsertQuantityOfEquipmentForRemovingWindow.itSubmitted)
                 {
-                    int currentQuantity = (int)de.Value;
+                    //int currentQuantity = (int)de.Value;
+                    int currentQuantity = value;
                     int removedQuantity = InsertQuantityOfEquipmentForRemovingWindow.getQuantity();
                     distinction = currentQuantity - removedQuantity;
                     if (distinction == 0)
                     {
-                        this.equipment.Remove(de.Key);
+                        //this.equipment.Remove(de.Key);
+                        this.equipment.Remove(key);
                     }
                     else
-                        equipment[de.Key] = distinction; //razlika izmedju stare kolicine i kolicine koja zeli da se ukloni iz sistema
+                        //equipment[de.Key] = distinction; //razlika izmedju stare kolicine i kolicine koja zeli da se ukloni iz sistema
+                        equipment[key] = distinction;
 
-                    allDistinctions.Add(de.Key, removedQuantity);
+                    //allDistinctions.Add(de.Key, removedQuantity);
+                    allDistinctions.Add(key, removedQuantity);
 
                     refreshDynamicEquipmentListBox();
                 }
@@ -176,7 +189,7 @@ namespace HospitalInformationSystem.Windows
         private void refreshDynamicEquipmentListBox()
         {
             dynamicEquipmentListBox.ItemsSource = null;
-            dynamicEquipmentListBox.ItemsSource = equipment;
+            dynamicEquipmentListBox.ItemsSource = loadEquimpentInListBox();
         }
 
         public void addDynamicEquipment(string id, int quantity)
@@ -208,6 +221,18 @@ namespace HospitalInformationSystem.Windows
             {
                 EquipmentController.getInstance().removeQuantity(de.Key.ToString(), (int)de.Value);
             }
+        }
+
+        private List<String> loadEquimpentInListBox()
+        {
+            List<String> list = new List<String>();
+            foreach (DictionaryEntry de in equipment)
+            {
+                string id = EquipmentController.getInstance().getEquipmentName(de.Key.ToString());
+                list.Add(id + " x" + de.Value.ToString());
+            }
+
+            return list;
         }
     }
 }

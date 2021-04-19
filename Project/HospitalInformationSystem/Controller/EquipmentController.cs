@@ -79,5 +79,15 @@ namespace HospitalInformationSystem.Controller
         {
             equipmentService.removeQuantity(id, quantity);
         }
+
+        public string getEquipmentName(string id)
+        {
+            return equipmentService.getEquipmentName(id);
+        }
+
+        public string getEquipmentId(string name)
+        {
+            return equipmentService.getEquipmentId(name);
+        }
     }
 }

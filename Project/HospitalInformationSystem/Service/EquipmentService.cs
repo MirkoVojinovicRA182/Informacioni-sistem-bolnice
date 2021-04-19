@@ -128,5 +128,27 @@ namespace HospitalInformationSystem.Service
                     equipment.Quantity -= quantity;
             }
         }
+
+        public string getEquipmentName(string id)
+        {
+            String foundedName = "";
+            foreach(Equipment eq in equipmentList)
+            {
+                if (string.Equals(eq.Id, id))
+                    foundedName = eq.Name;
+            }
+            return foundedName;
+        }
+
+        public string getEquipmentId(string name)
+        {
+            String foundedId = "";
+            foreach (Equipment eq in equipmentList)
+            {
+                if (string.Equals(eq.Name, name))
+                    foundedId = eq.Id;
+            }
+            return foundedId;
+        }
     }
 }

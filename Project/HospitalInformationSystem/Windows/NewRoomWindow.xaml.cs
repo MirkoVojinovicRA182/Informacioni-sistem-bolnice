@@ -17,11 +17,13 @@ namespace HospitalInformationSystem.Windows
     {
         private static NewRoomWindow instance = null;
         private Hashtable equipment;
+        private List<Equipment> dynamicEquipment;
         private NewRoomWindow()
         {
             InitializeComponent();
             loadComboBox();
             equipment = new Hashtable();
+            dynamicEquipment = new List<Equipment>();
         }
 
         public static NewRoomWindow getInstance()
@@ -111,7 +113,7 @@ namespace HospitalInformationSystem.Windows
         {
             try
             {
-                equipment.Add(id, quantity);
+                this.equipment.Add(id, quantity);
             }
             catch(Exception e)
             {
@@ -130,9 +132,15 @@ namespace HospitalInformationSystem.Windows
         {
             if (dynamicEquipmentListBox.SelectedItem != null)
             {
-                DictionaryEntry de = (DictionaryEntry)dynamicEquipmentListBox.SelectedItem;
+            
+                string nameOfSelectedEquipment = (string)dynamicEquipmentListBox.SelectedItem;
 
-                equipment.Remove(de.Key);
+                string[] separator = { " " };
+
+                string[] atributesOfSelectedEquipment = nameOfSelectedEquipment.Split(separator, StringSplitOptions.None);
+
+                equipment.Remove(EquipmentController.getInstance().getEquipmentId(atributesOfSelectedEquipment[0]));
+
 
                 refreshDynamicEquipmentListBox();
             }
@@ -143,7 +151,7 @@ namespace HospitalInformationSystem.Windows
         private void refreshDynamicEquipmentListBox()
         {
             dynamicEquipmentListBox.ItemsSource = null;
-            dynamicEquipmentListBox.ItemsSource = equipment;
+            dynamicEquipmentListBox.ItemsSource = loadEquimpentInListBox();
         }
 
         private void changeQuantityInMagacineOfDynamicEquipment()
@@ -153,6 +161,18 @@ namespace HospitalInformationSystem.Windows
                 EquipmentController.getInstance().changeQuantityInMagacine(de.Key.ToString(), (int)de.Value);
             }
         }
+
+        private List<String> loadEquimpentInListBox()
+        {
+            List<String> list = new List<String>();
+            foreach(DictionaryEntry de in equipment)
+            {
+                string id = EquipmentController.getInstance().getEquipmentName(de.Key.ToString());
+                list.Add(id + " x" + de.Value.ToString());
+            }
+
+            return list;
+        }       
     }
 
 }

@@ -58,7 +58,8 @@ namespace Model
 
         public Hashtable Equipment
         {
-            get; set;
+            get;
+            set;
         }
 
         public string StringValueOfEnumType

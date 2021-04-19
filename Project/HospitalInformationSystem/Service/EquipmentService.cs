@@ -1,4 +1,5 @@
-﻿using Model;
+﻿using HospitalInformationSystem.Repository;
+using Model;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -73,6 +74,12 @@ namespace HospitalInformationSystem.Service
             equipment.Type = typeOfEquipment;
             equipment.Quantity = quantity;
             equipment.Description = description;
+        }
+
+        public void saveInFile()
+        {
+            EquipmentRepository er = new EquipmentRepository();
+            er.SaveInFile(this.equipmentList);
         }
     }
 }

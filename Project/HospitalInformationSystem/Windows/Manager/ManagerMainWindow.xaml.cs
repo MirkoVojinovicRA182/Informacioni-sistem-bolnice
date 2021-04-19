@@ -38,8 +38,6 @@ namespace HospitalInformationSystem.Windows.Manager
 
             roomsTable.refreshTable();
             equipmentTable.refreshTable();
-
-            
         }
 
         private void exitMenuItem_Click(object sender, RoutedEventArgs e)
@@ -51,6 +49,8 @@ namespace HospitalInformationSystem.Windows.Manager
         private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
         {
             instance = null;
+
+            EquipmentController.getInstance().saveInFile();
         }
 
         private void newMenuItem_Click(object sender, RoutedEventArgs e)

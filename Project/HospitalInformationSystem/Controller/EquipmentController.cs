@@ -54,5 +54,10 @@ namespace HospitalInformationSystem.Controller
         {
             equipmentService.changeEquipment(equipment, id, name, typeOfEquipment, quantity, description);
         }
+
+        public void saveInFile()
+        {
+            equipmentService.saveInFile();
+        }
     }
 }

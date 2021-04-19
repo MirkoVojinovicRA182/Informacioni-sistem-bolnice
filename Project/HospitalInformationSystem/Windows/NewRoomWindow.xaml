@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:HospitalInformationSystem.Windows"
         mc:Ignorable="d"
-        Title="Unos nove prostorije" Height="350" Width="300" Closing="Window_Closing" ResizeMode="NoResize">
+        Title="Unos nove prostorije" Height="350" Width="700" Closing="Window_Closing" ResizeMode="NoResize">
     <Grid Margin="0,0,-0.4,0.4">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="4*"/>
@@ -24,6 +24,12 @@
         <TextBox x:Name="nameTextBox" HorizontalAlignment="Left" Height="23" Margin="40.233,82,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="170" Grid.ColumnSpan="3" Grid.Column="2"/>
         <TextBox x:Name="floorTextBox" HorizontalAlignment="Left" Height="23" Margin="40.233,191,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="45" Grid.Column="2"/>
         <Button x:Name="closeButton" Content="IZAĐI" HorizontalAlignment="Left" Margin="118.233,268,0,0" VerticalAlignment="Top" Width="75" FontSize="16" Click="closeButton_Click" Grid.ColumnSpan="3" Grid.Column="2"/>
+        <ListBox Grid.ColumnSpan="3" HorizontalAlignment="Left" Height="90" VerticalAlignment="Top" Width="150" Grid.Column="2" Margin="240.8,31,0,0"/>
+        <Button Content="+" HorizontalAlignment="Left" VerticalAlignment="Top" Width="30" Height="30" Grid.Column="4" Margin="50.6,32,0,0" FontSize="15"/>
+        <Button Content="X" HorizontalAlignment="Left" VerticalAlignment="Top" Width="30" Height="30" Grid.Column="4" Margin="50.6,91,0,0" FontSize="10"/>
+        <TextBlock Grid.Column="4" HorizontalAlignment="Left" Margin="85.6,37,0,0" TextWrapping="Wrap" Text="dodavanje nove" VerticalAlignment="Top" RenderTransformOrigin="1.987,0.65" FontStyle="Italic"/>
+        <TextBlock Grid.Column="4" HorizontalAlignment="Left" Margin="85.6,98,0,0" TextWrapping="Wrap" Text="uklanjanje odabrane" VerticalAlignment="Top" RenderTransformOrigin="1.987,0.65" FontStyle="Italic" Width="110"/>
+        <TextBlock Grid.Column="2" HorizontalAlignment="Left" Margin="240.8,10,0,0" TextWrapping="Wrap" Text="Statička oprema" VerticalAlignment="Top" RenderTransformOrigin="1.987,0.65" Grid.ColumnSpan="2"/>
 
     </Grid>
 </Window>

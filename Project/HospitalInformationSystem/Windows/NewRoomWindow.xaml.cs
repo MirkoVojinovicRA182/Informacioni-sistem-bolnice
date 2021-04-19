@@ -119,7 +119,7 @@ namespace HospitalInformationSystem.Windows
 
         private void addDynamicButton_Click(object sender, RoutedEventArgs e)
         {
-            AddEquipmentToRoomWindow.getInstance(1).Show();
+            AddEquipmentToRoomWindow.getInstance("staticka", "newRoom").Show();
         }
 
         private void removeDynamicButton_Click(object sender, RoutedEventArgs e)

@@ -139,5 +139,24 @@ namespace HospitalInformationSystem.Windows
             dynamicEquipmentListBox.ItemsSource = null;
             dynamicEquipmentListBox.ItemsSource = equipment;
         }
+
+        private void addDynamicButton_Click(object sender, RoutedEventArgs e)
+        {
+            AddEquipmentToRoomWindow.getInstance("staticka", "editRoom").Show();
+        }
+
+        public void addDynamicEquipment(string id, int quantity)
+        {
+            try
+            {
+                equipment.Add(id, quantity);
+            }
+            catch (Exception e)
+            {
+                MessageBox.Show("Već ste uneli ovu opremu!Ako ste pogrešili sa prvobitnim unosom, prvo uklonite, pa zatim ponovo unesite opremu.", "Greška", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+
+            refreshDynamicEquipmentListBox();
+        }
     }
 }

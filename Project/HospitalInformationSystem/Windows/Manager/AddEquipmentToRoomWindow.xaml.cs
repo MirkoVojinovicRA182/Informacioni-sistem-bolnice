@@ -1,4 +1,5 @@
 ﻿using HospitalInformationSystem.Controller;
+using HospitalInformationSystem.Windows.Manager.Help;
 using Model;
 using System;
 using System.Collections;
@@ -27,22 +28,24 @@ namespace HospitalInformationSystem.Windows.Manager
         private ObservableCollection<Equipment> equipmentList;
         private Equipment selectedEquipment;
         private int quantity;
+        private string window;
 
-        public static AddEquipmentToRoomWindow getInstance(int option)
+        public static AddEquipmentToRoomWindow getInstance(string equipment, string window)
         {
             if (instance == null)
-                instance = new AddEquipmentToRoomWindow(option);
+                instance = new AddEquipmentToRoomWindow(equipment, window);
             return instance;
         }
-        private AddEquipmentToRoomWindow(int option)
+        private AddEquipmentToRoomWindow(string equipment, string window)
         {
             InitializeComponent();
-            loadEquipment(option);
+            loadEquipment(equipment);
+            this.window = window;
         }
 
-        private void loadEquipment(int option)
+        private void loadEquipment(string equipment)
         {
-            if(option == 1)
+            if(string.Equals(equipment, "staticka"))
                 equipmentList = new ObservableCollection<Equipment>(EquipmentController.getInstance().getDynamicEquipment());
             else
                 equipmentList = new ObservableCollection<Equipment>(EquipmentController.getInstance().getStaticEquipment());
@@ -62,7 +65,10 @@ namespace HospitalInformationSystem.Windows.Manager
             selectedEquipment = (Equipment)dynamicEquipmentListBox.SelectedItem;
             quantity = int.Parse(quantityTextBox.Text);
 
-            NewRoomWindow.getInstance().addDynamicEquipment(selectedEquipment.Id, quantity);
+            if (string.Equals(window, "newRoom"))
+                NewRoomWindow.getInstance().addDynamicEquipment(selectedEquipment.Id, quantity);
+            else
+                EditRoomWindow.getInstance((Room)SelectRoomWindow.getInstance(1).roomsComboBox.SelectedItem).addDynamicEquipment(selectedEquipment.Id, quantity);
 
             instance = null;
         }

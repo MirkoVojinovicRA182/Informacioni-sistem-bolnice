@@ -16,6 +16,7 @@ using Model;
 using BusinessLogic;
 using HospitalInformationSystem.Windows.Manager;
 using System.Collections;
+using HospitalInformationSystem.Controller;
 
 namespace HospitalInformationSystem.Windows
 {
@@ -27,12 +28,16 @@ namespace HospitalInformationSystem.Windows
         Room selectedRoom;
         private static EditRoomWindow instance = null;
         private Hashtable equipment;
+        int distinction;
+        //pamti svu opremu koja cija je kolicina u nekom momentu bila umanjena
+        private Hashtable allDistinctions;
         private EditRoomWindow(Room selectedRoom)
         {
             InitializeComponent();
             this.selectedRoom = selectedRoom;
             loadTypeComboBox();
             loadRoom();
+            allDistinctions = new Hashtable();
         }
 
         public static EditRoomWindow getInstance(Room selectedRoom)
@@ -51,6 +56,7 @@ namespace HospitalInformationSystem.Windows
         {
             RoomManagement management = new RoomManagement();
             management.changeRoom(selectedRoom, int.Parse(idTextBox.Text), nameTextBox.Text, getType(typeComboBox.SelectedIndex), int.Parse(floorTextBox.Text), equipment);
+            changeStateInMagacineOfDynamicEquipment();
             ManagerMainWindow.getInstance().roomsTable.refreshTable();
             MessageBox.Show("Informacije o prostoriji su sada izmenjene.", "Izmena informacija", MessageBoxButton.OK, MessageBoxImage.Information);
         }
@@ -125,10 +131,22 @@ namespace HospitalInformationSystem.Windows
             if (dynamicEquipmentListBox.SelectedItem != null)
             {
                 DictionaryEntry de = (DictionaryEntry)dynamicEquipmentListBox.SelectedItem;
+ 
 
-                equipment.Remove(de.Key);
+                InsertQuantityOfEquipmentForRemovingWindow.getInstance().ShowDialog();
 
-                refreshDynamicEquipmentListBox();
+                if (InsertQuantityOfEquipmentForRemovingWindow.itSubmitted)
+                {
+                    int currentQuantity = (int)de.Value;
+                    int removedQuantity = InsertQuantityOfEquipmentForRemovingWindow.getQuantity();
+                    distinction = currentQuantity - removedQuantity;
+                    equipment[de.Key] = distinction; //razlika izmedju stare kolicine i kolicine koja zeli da se ukloni iz sistema
+
+                    allDistinctions.Add(de.Key, removedQuantity);
+
+                    refreshDynamicEquipmentListBox();
+                }
+
             }
             else
                 MessageBox.Show("Niste odabrali opremu!", "Greška", MessageBoxButton.OK, MessageBoxImage.Error);
@@ -157,6 +175,14 @@ namespace HospitalInformationSystem.Windows
             }
 
             refreshDynamicEquipmentListBox();
+        }
+
+        private void changeStateInMagacineOfDynamicEquipment()
+        {
+            foreach (DictionaryEntry de in allDistinctions)
+            {
+                EquipmentController.getInstance().removeQuantity(de.Key.ToString(), (int)de.Value);
+            }
         }
     }
 }

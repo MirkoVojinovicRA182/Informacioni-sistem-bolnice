@@ -115,5 +115,14 @@ namespace HospitalInformationSystem.Service
                     equipment.QuantityInMagacine += quantity;
             }
         }
+
+        public void removeQuantity(string id, int quantity)
+        {
+            foreach (Equipment equipment in equipmentList)
+            {
+                if (string.Equals(equipment.Id, id))
+                    equipment.Quantity -= quantity;
+            }
+        }
     }
 }

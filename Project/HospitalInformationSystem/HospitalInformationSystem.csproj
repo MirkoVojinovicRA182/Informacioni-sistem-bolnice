@@ -108,6 +108,9 @@
     <Compile Include="Windows\Manager\Help\SelectRoomWindow.xaml.cs">
       <DependentUpon>SelectRoomWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Windows\Manager\InsertQuantityOfEquipmentForRemovingWindow.xaml.cs">
+      <DependentUpon>InsertQuantityOfEquipmentForRemovingWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Windows\Manager\ManagerMainWindow.xaml.cs">
       <DependentUpon>ManagerMainWindow.xaml</DependentUpon>
     </Compile>
@@ -189,6 +192,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Windows\Manager\Help\SelectRoomWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Windows\Manager\InsertQuantityOfEquipmentForRemovingWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

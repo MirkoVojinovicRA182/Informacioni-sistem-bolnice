@@ -74,5 +74,10 @@ namespace HospitalInformationSystem.Controller
         {
             equipmentService.moveEquipmentInMagacine(id, quantity);
         }
+
+        public void removeQuantity(string id, int quantity)
+        {
+            equipmentService.removeQuantity(id, quantity);
+        }
     }
 }

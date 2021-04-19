@@ -15,6 +15,7 @@ using System.Windows.Shapes;
 using Model;
 using BusinessLogic;
 using HospitalInformationSystem.Windows.Manager;
+using System.Collections;
 
 namespace HospitalInformationSystem.Windows
 {
@@ -25,6 +26,7 @@ namespace HospitalInformationSystem.Windows
     {
         Room selectedRoom;
         private static EditRoomWindow instance = null;
+        private Hashtable equipment;
         private EditRoomWindow(Room selectedRoom)
         {
             InitializeComponent();
@@ -48,7 +50,7 @@ namespace HospitalInformationSystem.Windows
         private void changeRoomButton_Click(object sender, RoutedEventArgs e)
         {
             RoomManagement management = new RoomManagement();
-            management.changeRoom(selectedRoom, int.Parse(idTextBox.Text), nameTextBox.Text, getType(typeComboBox.SelectedIndex), int.Parse(floorTextBox.Text));
+            management.changeRoom(selectedRoom, int.Parse(idTextBox.Text), nameTextBox.Text, getType(typeComboBox.SelectedIndex), int.Parse(floorTextBox.Text), equipment);
             ManagerMainWindow.getInstance().roomsTable.refreshTable();
             MessageBox.Show("Informacije o prostoriji su sada izmenjene.", "Izmena informacija", MessageBoxButton.OK, MessageBoxImage.Information);
         }
@@ -114,6 +116,28 @@ namespace HospitalInformationSystem.Windows
             nameTextBox.Text = selectedRoom.Name;
             floorTextBox.Text = selectedRoom.Floor.ToString();
             fiilTypeComboBox(selectedRoom.Type);
+            equipment = selectedRoom.Equipment;
+            refreshDynamicEquipmentListBox();
+        }
+
+        private void removeDynamicButton_Click(object sender, RoutedEventArgs e)
+        {
+            if (dynamicEquipmentListBox.SelectedItem != null)
+            {
+                DictionaryEntry de = (DictionaryEntry)dynamicEquipmentListBox.SelectedItem;
+
+                equipment.Remove(de.Key);
+
+                refreshDynamicEquipmentListBox();
+            }
+            else
+                MessageBox.Show("Niste odabrali opremu!", "Greška", MessageBoxButton.OK, MessageBoxImage.Error);
+        }
+
+        private void refreshDynamicEquipmentListBox()
+        {
+            dynamicEquipmentListBox.ItemsSource = null;
+            dynamicEquipmentListBox.ItemsSource = equipment;
         }
     }
 }

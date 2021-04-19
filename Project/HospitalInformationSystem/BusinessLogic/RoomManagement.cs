@@ -51,13 +51,14 @@ namespace BusinessLogic
             
         }
 
-        public void changeRoom(Room room, int newId, string newName, TypeOfRoom newType, int newFloor)
+        public void changeRoom(Room room, int newId, string newName, TypeOfRoom newType, int newFloor, Hashtable equipment)
         {
             // TODO: implement
             room.Id = newId;
             room.Name = newName;
             room.Type = newType;
             room.Floor = newFloor;
+            room.Equipment = equipment;
 
         }
     }

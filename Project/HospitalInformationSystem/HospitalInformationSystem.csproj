@@ -90,6 +90,9 @@
     <Compile Include="Windows\EditRoomWindow.xaml.cs">
       <DependentUpon>EditRoomWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Windows\Manager\AddEquipmentToRoomWindow.xaml.cs">
+      <DependentUpon>AddEquipmentToRoomWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Windows\Manager\DynamicEquipmentTable.xaml.cs">
       <DependentUpon>DynamicEquipmentTable.xaml</DependentUpon>
     </Compile>
@@ -162,6 +165,10 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="Windows\EditRoomWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Windows\Manager\AddEquipmentToRoomWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

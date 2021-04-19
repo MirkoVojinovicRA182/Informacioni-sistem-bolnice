@@ -94,6 +94,7 @@ namespace HospitalInformationSystem.Windows
         private void closeButton_Click(object sender, RoutedEventArgs e)
         {
             this.Close();
+            instance = null;
         }
 
         private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
@@ -103,10 +104,11 @@ namespace HospitalInformationSystem.Windows
 
         private void loadDynamicEquipment()
         {
-            equipmentList = new ObservableCollection<Equipment>(EquipmentController.getInstance().getDynamicEquipment());
+        }
 
-            dynamicEquipmentListBox.ItemsSource = null;
-            dynamicEquipmentListBox.ItemsSource = equipmentList;
+        private void addDynamicButton_Click(object sender, RoutedEventArgs e)
+        {
+            AddEquipmentToRoomWindow.getInstance(1).Show();
         }
 
         /* klik_na_inventar_dugme()

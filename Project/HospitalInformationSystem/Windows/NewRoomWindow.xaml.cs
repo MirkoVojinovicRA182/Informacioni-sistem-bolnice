@@ -4,6 +4,8 @@ using System.Collections.Generic;
 using System.Windows;
 using Model;
 using HospitalInformationSystem.Windows.Manager;
+using System.Collections.ObjectModel;
+using HospitalInformationSystem.Controller;
 
 namespace HospitalInformationSystem.Windows
 {
@@ -13,10 +15,12 @@ namespace HospitalInformationSystem.Windows
     public partial class NewRoomWindow : Window
     {
         private static NewRoomWindow instance = null;
+        private ObservableCollection<Equipment> equipmentList;
         private NewRoomWindow()
         {
             InitializeComponent();
             loadComboBox();
+            loadDynamicEquipment();
         }
 
         public static NewRoomWindow getInstance()
@@ -95,6 +99,14 @@ namespace HospitalInformationSystem.Windows
         private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
         {
             instance = null;
+        }
+
+        private void loadDynamicEquipment()
+        {
+            equipmentList = new ObservableCollection<Equipment>(EquipmentController.getInstance().getDynamicEquipment());
+
+            dynamicEquipmentListBox.ItemsSource = null;
+            dynamicEquipmentListBox.ItemsSource = equipmentList;
         }
 
         /* klik_na_inventar_dugme()

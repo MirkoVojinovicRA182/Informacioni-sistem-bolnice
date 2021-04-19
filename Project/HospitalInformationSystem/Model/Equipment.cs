@@ -55,7 +55,15 @@ namespace Model
                 else
                     return "Dinamička";
             }
-            set { }
+        }
+
+        public string getNameQuantityForNewRoom
+        {
+            get
+            {
+                return Name + " x" + Quantity;
+            }
+            
         }
 
     }

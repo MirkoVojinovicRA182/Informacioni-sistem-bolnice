@@ -64,5 +64,15 @@ namespace HospitalInformationSystem.Controller
         {
             equipmentService.loadFromFile();
         }
+
+        public void changeQuantityInMagacine(string id, int quantity)
+        {
+            equipmentService.changeQuantityInMagacine(id, quantity);
+        }
+
+        public void moveEquipmentInMagacine(string id, int quantity)
+        {
+            equipmentService.moveEquipmentInMagacine(id, quantity);
+        }
     }
 }

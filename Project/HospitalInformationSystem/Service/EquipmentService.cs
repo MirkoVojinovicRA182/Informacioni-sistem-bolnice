@@ -97,5 +97,23 @@ namespace HospitalInformationSystem.Service
             if (this.equipmentList != null)
                 this.equipmentList.Clear();
         }
+
+        public void changeQuantityInMagacine(string id, int quantity)
+        {
+            foreach(Equipment equipment in equipmentList)
+            {
+                if (string.Equals(equipment.Id, id))
+                    equipment.QuantityInMagacine -= quantity;
+            }
+        }
+
+        public void moveEquipmentInMagacine(string id, int quantity)
+        {
+            foreach (Equipment equipment in equipmentList)
+            {
+                if (string.Equals(equipment.Id, id))
+                    equipment.QuantityInMagacine += quantity;
+            }
+        }
     }
 }

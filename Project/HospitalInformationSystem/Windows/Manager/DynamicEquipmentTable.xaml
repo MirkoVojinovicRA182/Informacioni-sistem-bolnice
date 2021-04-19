@@ -23,7 +23,8 @@
                 <DataGridTextColumn Header="ID" Width="*" Binding="{Binding Id}"></DataGridTextColumn>
                 <DataGridTextColumn Header="Naziv" Width="*" Binding="{Binding Name}"></DataGridTextColumn>
                 <DataGridTextColumn Header="Tip" Width="*" Binding="{Binding GetStringType}"></DataGridTextColumn>
-                <DataGridTextColumn Header="Količina" Width="*" Binding="{Binding Quantity}"></DataGridTextColumn>
+                <DataGridTextColumn Header="Ukupna količina" Width="*" Binding="{Binding Quantity}"></DataGridTextColumn>
+                <DataGridTextColumn Header="Količina u magacinu" Width="*" Binding="{Binding QuantityInMagacine}"></DataGridTextColumn>
 
             </DataGrid.Columns>
         </DataGrid>

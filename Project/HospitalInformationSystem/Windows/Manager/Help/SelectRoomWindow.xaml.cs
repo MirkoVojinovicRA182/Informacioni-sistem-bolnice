@@ -1,6 +1,8 @@
 ﻿using BusinessLogic;
+using HospitalInformationSystem.Controller;
 using Model;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
@@ -52,6 +54,7 @@ namespace HospitalInformationSystem.Windows.Manager.Help
             {
 
                 roomManagement.deleteRoom((Room)roomsComboBox.SelectedItem);
+                moveEquipmentInMagacine();
                 ManagerMainWindow.getInstance().roomsTable.refreshTable();
                 MessageBox.Show("Izabrana prostorija je sada obrisana iz sistema.", "Brisanje prostorije", MessageBoxButton.OK, MessageBoxImage.Information);
             }
@@ -61,6 +64,13 @@ namespace HospitalInformationSystem.Windows.Manager.Help
             }
 
             this.Close();
+        }
+
+        private void moveEquipmentInMagacine()
+        {
+            Room selectedRoom = (Room)roomsComboBox.SelectedItem;
+            foreach (DictionaryEntry de in selectedRoom.Equipment)
+                EquipmentController.getInstance().moveEquipmentInMagacine(de.Key.ToString(), (int)de.Value);
         }
 
         private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)

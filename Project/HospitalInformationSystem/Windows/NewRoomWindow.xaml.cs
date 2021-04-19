@@ -41,6 +41,9 @@ namespace HospitalInformationSystem.Windows
             floorTextBox.Clear();
             typeOfRoomComboBox.SelectedIndex = 0;
 
+
+            changeStateInMagacineOfDynamicEquipment();
+
             ManagerMainWindow.getInstance().roomsTable.refreshTable();
 
             MessageBox.Show("Uneta je nova prostorija u sistem.", "Nova prostorija", MessageBoxButton.OK, MessageBoxImage.Information);
@@ -56,6 +59,7 @@ namespace HospitalInformationSystem.Windows
             RoomManagement roomManagement = new RoomManagement();
 
             roomManagement.createRoom(floor, id, name, type, equipment);
+
         }
 
         private void loadComboBox()
@@ -143,10 +147,13 @@ namespace HospitalInformationSystem.Windows
             dynamicEquipmentListBox.ItemsSource = equipment;
         }
 
-        /* klik_na_inventar_dugme()
-         * {
-         *      lista_inventara = prozorSaInventarom.getInstance().getList();
-         * }*/
+        private void changeStateInMagacineOfDynamicEquipment()
+        {
+            foreach(DictionaryEntry de in equipment)
+            {
+                EquipmentController.getInstance().changeQuantityInMagacine(de.Key.ToString(), (int)de.Value);
+            }
+        }
     }
 
 }

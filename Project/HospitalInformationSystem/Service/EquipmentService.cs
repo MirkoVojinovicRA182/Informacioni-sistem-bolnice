@@ -69,12 +69,12 @@ namespace HospitalInformationSystem.Service
                     this.equipmentList.Remove(equipment);
         }
 
-        public void changeEquipment(Equipment equipment, string id, string name, TypeOfEquipment typeOfEquipment, int quantity, string description)
+        public void changeEquipment(Equipment equipment, string id, string name, TypeOfEquipment typeOfEquipment, int quantityInMagacine, string description)
         {
             equipment.Id = id;
             equipment.Name = name;
             equipment.Type = typeOfEquipment;
-            equipment.Quantity = quantity;
+            equipment.QuantityInMagacine = quantityInMagacine;
             equipment.Description = description;
         }
 

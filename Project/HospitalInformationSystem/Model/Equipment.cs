@@ -19,6 +19,7 @@ namespace Model
             this.Type = typeOfEquipment;
             this.Quantity = quantity;
             this.Description = description;
+            this.QuantityInMagacine = quantity;
         }
         public string Id
         {
@@ -46,6 +47,11 @@ namespace Model
             get; set;
         }
 
+        public int QuantityInMagacine
+        {
+            get; set;
+        }
+
         public string GetStringType
         {
             get
@@ -61,7 +67,7 @@ namespace Model
         {
             get
             {
-                return Name + " x" + Quantity;
+                return Name + " x" + QuantityInMagacine;
             }
             
         }

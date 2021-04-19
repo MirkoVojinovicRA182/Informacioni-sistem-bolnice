@@ -47,10 +47,10 @@ namespace HospitalInformationSystem.Windows.Manager
                 typeOfEquipment = TypeOfEquipment.Static;
             else
                 typeOfEquipment = TypeOfEquipment.Dynamic;
-            int quantity = int.Parse(quanitityTextBox.Text);
+            int quantityInMagacine = int.Parse(quanitityTextBox.Text);
             string description = descriptionTextBox.Text;
 
-            EquipmentController.getInstance().changeEquipment(selectedEquipment, id, name, typeOfEquipment, quantity, description);
+            EquipmentController.getInstance().changeEquipment(selectedEquipment, id, name, typeOfEquipment, quantityInMagacine, description);
 
             ManagerMainWindow.getInstance().equipmentTable.refreshTable();
             ManagerMainWindow.getInstance().dynamicEquipmentTable.refreshTable();
@@ -62,7 +62,7 @@ namespace HospitalInformationSystem.Windows.Manager
         {
             idTextBox.Text = selectedEquipment.Id;
             nameTextBox.Text = selectedEquipment.Name;
-            quanitityTextBox.Text = selectedEquipment.Quantity.ToString();
+            quanitityTextBox.Text = selectedEquipment.QuantityInMagacine.ToString();
             descriptionTextBox.Text = selectedEquipment.Description;
         }
 

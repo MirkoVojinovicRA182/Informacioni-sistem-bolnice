@@ -27,12 +27,12 @@
         <ListBox x:Name="dynamicEquipmentListBox" Grid.ColumnSpan="3" HorizontalAlignment="Left" Height="90" VerticalAlignment="Top" Width="150" Grid.Column="2" Margin="240.6,31,0,0">
             <ListBox.ItemTemplate>
                 <DataTemplate>
-                    <TextBlock Text="{Binding getNameQuantityForNewRoom}" />
+                    <TextBlock Text="{Binding}" />
                 </DataTemplate>
             </ListBox.ItemTemplate>
         </ListBox>
         <Button x:Name="addDynamicButton" Content="+" HorizontalAlignment="Left" VerticalAlignment="Top" Width="30" Height="30" Grid.Column="4" Margin="78,32,0,0" FontSize="15" Click="addDynamicButton_Click"/>
-        <Button x:Name="removeDynamicButton" Content="X" HorizontalAlignment="Left" VerticalAlignment="Top" Width="30" Height="30" Grid.Column="4" Margin="78,91,0,0" FontSize="10" RenderTransformOrigin="1.007,0.48"/>
+        <Button x:Name="removeDynamicButton" Content="X" HorizontalAlignment="Left" VerticalAlignment="Top" Width="30" Height="30" Grid.Column="4" Margin="78,91,0,0" FontSize="10" RenderTransformOrigin="1.007,0.48" Click="removeDynamicButton_Click"/>
         <TextBlock Grid.Column="4" HorizontalAlignment="Left" Margin="122,38,0,0" TextWrapping="Wrap" Text="dodavanje nove" VerticalAlignment="Top" RenderTransformOrigin="1.987,0.65" FontStyle="Italic" Height="16" Width="82"/>
         <TextBlock Grid.Column="4" HorizontalAlignment="Left" Margin="122,99,0,0" TextWrapping="Wrap" Text="uklanjanje odabrane" VerticalAlignment="Top" RenderTransformOrigin="1.987,0.65" FontStyle="Italic" Width="110" Height="16"/>
         <TextBlock Grid.Column="2" HorizontalAlignment="Left" Margin="240.6,10,0,0" TextWrapping="Wrap" Text="Dinamička oprema:" VerticalAlignment="Top" RenderTransformOrigin="1.987,0.65" Grid.ColumnSpan="3" Width="132" FontSize="15" Height="20"/>

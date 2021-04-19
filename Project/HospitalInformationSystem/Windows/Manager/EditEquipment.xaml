@@ -31,5 +31,6 @@
             <ComboBoxItem Content="Statička"/>
             <ComboBoxItem Content="Dinamička"/>
         </ComboBox>
+        <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" Text="(u magacinu)" VerticalAlignment="Top" Grid.Column="2" Margin="1.4,208,0,0" Width="100" FontStyle="Italic"/>
     </Grid>
 </Window>

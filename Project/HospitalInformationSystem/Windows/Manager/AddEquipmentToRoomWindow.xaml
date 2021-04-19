@@ -14,10 +14,10 @@
                 </DataTemplate>
             </ListBox.ItemTemplate>
         </ListBox>
-        <TextBlock HorizontalAlignment="Left" Margin="10,28,0,0" TextWrapping="Wrap" Text="Stanje u magacinu:" VerticalAlignment="Top" RenderTransformOrigin="1.987,0.65" Width="129" FontSize="15"/>
+        <TextBlock HorizontalAlignment="Left" Margin="10,28,0,0" TextWrapping="Wrap" Text="Stanje u magacinu:" VerticalAlignment="Top" RenderTransformOrigin="1.987,0.65" Width="129" FontStyle="Italic"/>
         <Label Content="Količina:" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10,144,0,0" FontSize="15"/>
-        <TextBox Height="23" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Margin="107,147,0,0" FontSize="15" HorizontalAlignment="Left" Width="50" RenderTransformOrigin="0.352,0.678"/>
-        <Button Content="POTVRDI" HorizontalAlignment="Left" VerticalAlignment="Top" Width="100" Height="30" Margin="81,191,0,0" FontSize="15"/>
+        <TextBox x:Name="quantityTextBox" Height="23" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Margin="107,147,0,0" FontSize="15" HorizontalAlignment="Left" Width="50" RenderTransformOrigin="0.352,0.678"/>
+        <Button x:Name="confirmButton" Content="POTVRDI" HorizontalAlignment="Left" VerticalAlignment="Top" Width="100" Height="30" Margin="81,191,0,0" FontSize="15" Click="confirmButton_Click"/>
 
     </Grid>
 </Window>

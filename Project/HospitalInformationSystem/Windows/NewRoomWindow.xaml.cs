@@ -6,6 +6,7 @@ using Model;
 using HospitalInformationSystem.Windows.Manager;
 using System.Collections.ObjectModel;
 using HospitalInformationSystem.Controller;
+using System.Collections;
 
 namespace HospitalInformationSystem.Windows
 {
@@ -15,12 +16,12 @@ namespace HospitalInformationSystem.Windows
     public partial class NewRoomWindow : Window
     {
         private static NewRoomWindow instance = null;
-        private ObservableCollection<Equipment> equipmentList;
+        private Hashtable equipment;
         private NewRoomWindow()
         {
             InitializeComponent();
             loadComboBox();
-            loadDynamicEquipment();
+            equipment = new Hashtable();
         }
 
         public static NewRoomWindow getInstance()
@@ -54,7 +55,7 @@ namespace HospitalInformationSystem.Windows
 
             RoomManagement roomManagement = new RoomManagement();
 
-            roomManagement.createRoom(floor, id, name, type /*, lista_inventara*/);
+            roomManagement.createRoom(floor, id, name, type, equipment);
         }
 
         private void loadComboBox()
@@ -102,13 +103,44 @@ namespace HospitalInformationSystem.Windows
             instance = null;
         }
 
-        private void loadDynamicEquipment()
+        public void addDynamicEquipment(string id, int quantity)
         {
+            try
+            {
+                equipment.Add(id, quantity);
+            }
+            catch(Exception e)
+            {
+                MessageBox.Show("Već ste uneli ovu opremu!Ako ste pogrešili sa prvobitnim unosom, prvo uklonite, pa zatim ponovo unesite opremu.", "Greška", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+
+            refreshDynamicEquipmentListBox();
         }
 
         private void addDynamicButton_Click(object sender, RoutedEventArgs e)
         {
             AddEquipmentToRoomWindow.getInstance(1).Show();
+        }
+
+        private void removeDynamicButton_Click(object sender, RoutedEventArgs e)
+        {
+            if (dynamicEquipmentListBox.SelectedItem != null)
+            {
+                DictionaryEntry de = (DictionaryEntry)dynamicEquipmentListBox.SelectedItem;
+
+                equipment.Remove(de.Key);
+
+                refreshDynamicEquipmentListBox();
+            }
+            else
+                MessageBox.Show("Niste odabrali opremu!", "Greška", MessageBoxButton.OK, MessageBoxImage.Error);
+        }
+
+        private void refreshDynamicEquipmentListBox()
+        {
+
+            dynamicEquipmentListBox.ItemsSource = null;
+            dynamicEquipmentListBox.ItemsSource = equipment;
         }
 
         /* klik_na_inventar_dugme()

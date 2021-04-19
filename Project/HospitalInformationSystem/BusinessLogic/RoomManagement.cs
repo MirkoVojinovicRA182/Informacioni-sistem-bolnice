@@ -8,6 +8,7 @@ using Model;
 using HospitalInformationSystem.Windows;
 using HospitalInformationSystem.BusinessLogic;
 using System.Collections.Generic;
+using System.Collections;
 
 namespace BusinessLogic
 {
@@ -17,10 +18,11 @@ namespace BusinessLogic
         {
             // TODO: implement
         }
-        public void createRoom(int floor, int id, string name, TypeOfRoom type)
+        public void createRoom(int floor, int id, string name, TypeOfRoom type, Hashtable equipment)
         {
             // TODO: implement
             Room newRoom = new Room(id, name, floor, type);
+            newRoom.Equipment = equipment;
 
             RoomDataBase.getInstance().addRoom(newRoom);
 

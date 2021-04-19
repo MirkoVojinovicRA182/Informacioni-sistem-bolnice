@@ -1,6 +1,7 @@
 ﻿using HospitalInformationSystem.Controller;
 using Model;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
@@ -24,6 +25,8 @@ namespace HospitalInformationSystem.Windows.Manager
     {
         private static AddEquipmentToRoomWindow instance = null;
         private ObservableCollection<Equipment> equipmentList;
+        private Equipment selectedEquipment;
+        private int quantity;
 
         public static AddEquipmentToRoomWindow getInstance(int option)
         {
@@ -51,6 +54,27 @@ namespace HospitalInformationSystem.Windows.Manager
         private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
         {
             instance = null;
+        }
+
+        private void confirmButton_Click(object sender, RoutedEventArgs e)
+        {
+            this.Close();
+            selectedEquipment = (Equipment)dynamicEquipmentListBox.SelectedItem;
+            quantity = int.Parse(quantityTextBox.Text);
+
+            NewRoomWindow.getInstance().addDynamicEquipment(selectedEquipment.Id, quantity);
+
+            instance = null;
+        }
+
+        public Equipment getEquipment()
+        {
+            return this.selectedEquipment;
+        }
+
+        public int getQuantity()
+        {
+            return this.quantity;
         }
     }
 }

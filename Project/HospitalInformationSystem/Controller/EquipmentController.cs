@@ -59,5 +59,10 @@ namespace HospitalInformationSystem.Controller
         {
             equipmentService.saveInFile();
         }
+
+        public void loadFromFile()
+        {
+            equipmentService.loadFromFile();
+        }
     }
 }

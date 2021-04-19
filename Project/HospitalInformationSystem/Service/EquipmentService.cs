@@ -12,9 +12,11 @@ namespace HospitalInformationSystem.Service
     {
 
         List<Equipment> equipmentList;
+        EquipmentRepository er;
         public EquipmentService()
         {
             equipmentList = new List<Equipment>();
+            er = new EquipmentRepository();
         }
 
         public void addNewEquipment(Equipment equipment)
@@ -78,8 +80,22 @@ namespace HospitalInformationSystem.Service
 
         public void saveInFile()
         {
-            EquipmentRepository er = new EquipmentRepository();
-            er.SaveInFile(this.equipmentList);
+            this.er.saveInFile(this.equipmentList);
+        }
+
+        public void loadFromFile()
+        {
+            List<Equipment> list = this.er.loadFromFile();
+            removeAllEquipment();
+            foreach (Equipment eq in list)
+                addNewEquipment(eq);
+        }
+
+
+        public void removeAllEquipment()
+        {
+            if (this.equipmentList != null)
+                this.equipmentList.Clear();
         }
     }
 }

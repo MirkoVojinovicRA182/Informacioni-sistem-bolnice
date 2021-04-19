@@ -13,7 +13,7 @@ namespace HospitalInformationSystem.Repository
 {
     class EquipmentRepository
     {
-        public bool SaveInFile(List<Equipment> equipment)
+        public bool saveInFile(List<Equipment> equipment)
         {
             FileStream fs = new FileStream("Equipment.dat", FileMode.Create);
 
@@ -35,13 +35,14 @@ namespace HospitalInformationSystem.Repository
             return true;
         }
 
-        public bool LoadFromFile()
+        public List<Equipment> loadFromFile()
         {
-            FileStream fs = new FileStream("Rooms.dat", FileMode.Open);
+            FileStream fs = new FileStream("Equipment.dat", FileMode.Open);
+            List<Equipment> list = new List<Equipment>();
             try
             {
                 BinaryFormatter formatter = new BinaryFormatter();
-                RoomDataBase.getInstance().setRoom((List<Room>)formatter.Deserialize(fs));
+                list = ((List<Equipment>)formatter.Deserialize(fs));
             }
             catch (SerializationException e)
             {
@@ -52,7 +53,7 @@ namespace HospitalInformationSystem.Repository
                 fs.Close();
             }
 
-            return false;
+            return list;
         }
     }
 }

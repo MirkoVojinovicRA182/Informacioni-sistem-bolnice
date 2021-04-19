@@ -36,8 +36,12 @@ namespace HospitalInformationSystem.Windows.Manager
         {
             InitializeComponent();
 
+
+            EquipmentController.getInstance().loadFromFile();
+
             roomsTable.refreshTable();
             equipmentTable.refreshTable();
+
         }
 
         private void exitMenuItem_Click(object sender, RoutedEventArgs e)

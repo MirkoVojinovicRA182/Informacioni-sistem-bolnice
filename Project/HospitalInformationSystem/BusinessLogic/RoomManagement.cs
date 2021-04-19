@@ -61,5 +61,17 @@ namespace BusinessLogic
             room.Equipment = equipment;
 
         }
+
+        public void deleteEquipment(string id)
+        {
+            foreach(Room room in RoomDataBase.getInstance().getRooms())
+            {
+                foreach(DictionaryEntry de in room.Equipment)
+                {
+                    if (string.Equals(de.Key.ToString(), id))
+                        room.Equipment.Remove(id);
+                }
+            }
+        }
     }
 }

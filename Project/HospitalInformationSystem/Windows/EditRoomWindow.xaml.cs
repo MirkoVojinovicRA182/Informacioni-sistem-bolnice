@@ -27,10 +27,15 @@ namespace HospitalInformationSystem.Windows
     {
         Room selectedRoom;
         private static EditRoomWindow instance = null;
-        private Hashtable equipment;
         int distinction;
         //pamti svu opremu koja cija je kolicina u nekom momentu bila umanjena
         private Hashtable allDistinctions;
+
+        private Hashtable equipment;
+        //pamti svu opremu koja je u trenutnoj sesiji dodata prostoriji
+        private Hashtable newEquipment;
+
+
         private EditRoomWindow(Room selectedRoom)
         {
             InitializeComponent();
@@ -38,6 +43,7 @@ namespace HospitalInformationSystem.Windows
             loadTypeComboBox();
             loadRoom();
             allDistinctions = new Hashtable();
+            newEquipment = new Hashtable();
         }
 
         public static EditRoomWindow getInstance(Room selectedRoom)
@@ -47,19 +53,60 @@ namespace HospitalInformationSystem.Windows
             return instance;
         }
 
-        private void closeButton_Click(object sender, RoutedEventArgs e)
+        private void addDynamicButton_Click(object sender, RoutedEventArgs e)
         {
-            this.Close();
+            AddEquipmentToRoomWindow.getInstance("staticka", "editRoom").Show();
+        }
+
+        private void removeDynamicButton_Click(object sender, RoutedEventArgs e)
+        {
+            if (dynamicEquipmentListBox.SelectedItem != null)
+            {
+                DictionaryEntry de = (DictionaryEntry)dynamicEquipmentListBox.SelectedItem;
+
+
+                InsertQuantityOfEquipmentForRemovingWindow.getInstance().ShowDialog();
+
+                if (InsertQuantityOfEquipmentForRemovingWindow.itSubmitted)
+                {
+                    int currentQuantity = (int)de.Value;
+                    int removedQuantity = InsertQuantityOfEquipmentForRemovingWindow.getQuantity();
+                    distinction = currentQuantity - removedQuantity;
+                    if (distinction == 0)
+                    {
+                        this.equipment.Remove(de.Key);
+                    }
+                    else
+                        equipment[de.Key] = distinction; //razlika izmedju stare kolicine i kolicine koja zeli da se ukloni iz sistema
+
+                    allDistinctions.Add(de.Key, removedQuantity);
+
+                    refreshDynamicEquipmentListBox();
+                }
+
+            }
+            else
+                MessageBox.Show("Niste odabrali opremu!", "Greška", MessageBoxButton.OK, MessageBoxImage.Error);
         }
 
         private void changeRoomButton_Click(object sender, RoutedEventArgs e)
         {
             RoomManagement management = new RoomManagement();
             management.changeRoom(selectedRoom, int.Parse(idTextBox.Text), nameTextBox.Text, getType(typeComboBox.SelectedIndex), int.Parse(floorTextBox.Text), equipment);
-            changeStateInMagacineOfDynamicEquipment();
+            //promena usled dodavanja neke nove opreme
+            changeQuantityInMagacineOfDynamicEquipment();
+            //promena usled eventualnog brisanja opreme
+            changeQuantityOfDynamicEquipment();
             ManagerMainWindow.getInstance().roomsTable.refreshTable();
+            this.Close();
             MessageBox.Show("Informacije o prostoriji su sada izmenjene.", "Izmena informacija", MessageBoxButton.OK, MessageBoxImage.Information);
         }
+        private void closeButton_Click(object sender, RoutedEventArgs e)
+        {
+            this.Close();
+            instance = null;
+        }
+
 
         private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
         {
@@ -126,47 +173,17 @@ namespace HospitalInformationSystem.Windows
             refreshDynamicEquipmentListBox();
         }
 
-        private void removeDynamicButton_Click(object sender, RoutedEventArgs e)
-        {
-            if (dynamicEquipmentListBox.SelectedItem != null)
-            {
-                DictionaryEntry de = (DictionaryEntry)dynamicEquipmentListBox.SelectedItem;
- 
-
-                InsertQuantityOfEquipmentForRemovingWindow.getInstance().ShowDialog();
-
-                if (InsertQuantityOfEquipmentForRemovingWindow.itSubmitted)
-                {
-                    int currentQuantity = (int)de.Value;
-                    int removedQuantity = InsertQuantityOfEquipmentForRemovingWindow.getQuantity();
-                    distinction = currentQuantity - removedQuantity;
-                    equipment[de.Key] = distinction; //razlika izmedju stare kolicine i kolicine koja zeli da se ukloni iz sistema
-
-                    allDistinctions.Add(de.Key, removedQuantity);
-
-                    refreshDynamicEquipmentListBox();
-                }
-
-            }
-            else
-                MessageBox.Show("Niste odabrali opremu!", "Greška", MessageBoxButton.OK, MessageBoxImage.Error);
-        }
-
         private void refreshDynamicEquipmentListBox()
         {
             dynamicEquipmentListBox.ItemsSource = null;
             dynamicEquipmentListBox.ItemsSource = equipment;
         }
 
-        private void addDynamicButton_Click(object sender, RoutedEventArgs e)
-        {
-            AddEquipmentToRoomWindow.getInstance("staticka", "editRoom").Show();
-        }
-
         public void addDynamicEquipment(string id, int quantity)
         {
             try
             {
+                newEquipment.Add(id, quantity);
                 equipment.Add(id, quantity);
             }
             catch (Exception e)
@@ -177,7 +194,15 @@ namespace HospitalInformationSystem.Windows
             refreshDynamicEquipmentListBox();
         }
 
-        private void changeStateInMagacineOfDynamicEquipment()
+        private void changeQuantityInMagacineOfDynamicEquipment()
+        {
+            foreach (DictionaryEntry de in newEquipment)
+            {
+                EquipmentController.getInstance().changeQuantityInMagacine(de.Key.ToString(), (int)de.Value);
+            }
+        }
+
+        private void changeQuantityOfDynamicEquipment()
         {
             foreach (DictionaryEntry de in allDistinctions)
             {

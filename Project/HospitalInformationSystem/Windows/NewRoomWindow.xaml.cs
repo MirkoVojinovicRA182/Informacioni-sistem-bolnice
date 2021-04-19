@@ -42,7 +42,7 @@ namespace HospitalInformationSystem.Windows
             typeOfRoomComboBox.SelectedIndex = 0;
 
 
-            changeStateInMagacineOfDynamicEquipment();
+            changeQuantityInMagacineOfDynamicEquipment();
 
             ManagerMainWindow.getInstance().roomsTable.refreshTable();
 
@@ -142,12 +142,11 @@ namespace HospitalInformationSystem.Windows
 
         private void refreshDynamicEquipmentListBox()
         {
-
             dynamicEquipmentListBox.ItemsSource = null;
             dynamicEquipmentListBox.ItemsSource = equipment;
         }
 
-        private void changeStateInMagacineOfDynamicEquipment()
+        private void changeQuantityInMagacineOfDynamicEquipment()
         {
             foreach(DictionaryEntry de in equipment)
             {

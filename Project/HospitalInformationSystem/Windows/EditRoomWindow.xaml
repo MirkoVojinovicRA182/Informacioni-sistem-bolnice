@@ -18,7 +18,7 @@
         <Label Content="Naziv:" HorizontalAlignment="Left" Margin="31.4,82,0,0" VerticalAlignment="Top" Grid.Column="1" FontSize="15" Height="30" Width="49"/>
         <Label Content="Tip:" HorizontalAlignment="Left" Margin="31.4,130,0,0" VerticalAlignment="Top" Grid.Column="1" FontSize="15" Height="30" Width="33"/>
         <Label Content="Sprat:" HorizontalAlignment="Left" Margin="31.4,188,0,0" VerticalAlignment="Top" Grid.Column="1" FontSize="15" Height="30" Width="48"/>
-        <Button x:Name="changeRoomButton" Content="IZMENI" HorizontalAlignment="Left" Margin="110.6,270,0,0" VerticalAlignment="Top" Width="100" Height="30" FontSize="15" Click="changeRoomButton_Click" Grid.Column="2"/>
+        <Button x:Name="changeRoomButton" Content="IZMENI" Margin="110.6,270,71,0" VerticalAlignment="Top" Height="30" FontSize="15" Click="changeRoomButton_Click" Grid.Column="2"/>
         <ComboBox x:Name="typeComboBox" HorizontalAlignment="Left" Margin="41.6,133,0,0" VerticalAlignment="Top" Width="170" Grid.Column="2" Height="22" FontSize="15"/>
         <TextBox x:Name="idTextBox" HorizontalAlignment="Left" Height="23" Margin="40.6,30,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="88" Grid.Column="2" FontSize="15"/>
         <TextBox x:Name="nameTextBox" HorizontalAlignment="Left" Height="23" Margin="40.6,82,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="170" Grid.Column="2" FontSize="15"/>

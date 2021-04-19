@@ -64,6 +64,7 @@
     <Compile Include="Model\DoctorDataBase.cs" />
     <Compile Include="Model\Equipment.cs" />
     <Compile Include="Model\Manager.cs" />
+    <Compile Include="Model\MedicalRecord.cs" />
     <Compile Include="Model\Patient.cs" />
     <Compile Include="Model\PatientDataBase.cs" />
     <Compile Include="Model\Person.cs" />
@@ -89,6 +90,9 @@
     <Compile Include="Windows\EditPatientAppointmentWindow.xaml.cs" />
     <Compile Include="Windows\EditRoomWindow.xaml.cs">
       <DependentUpon>EditRoomWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Windows\MedicalRecordWindow.xaml.cs">
+      <DependentUpon>MedicalRecordWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="Windows\NewPatientAppointmentWindow.xaml.cs" />
     <Compile Include="Windows\NewRoomWindow.xaml.cs">
@@ -148,6 +152,10 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="Windows\EditRoomWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Windows\MedicalRecordWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

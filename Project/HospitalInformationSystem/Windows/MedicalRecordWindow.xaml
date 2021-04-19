@@ -1,0 +1,22 @@
+﻿<Window x:Class="HospitalInformationSystem.Windows.MedicalRecordWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:HospitalInformationSystem.Windows"
+        mc:Ignorable="d"
+        Title="MedicalRecordWindow" Height="450" Width="800">
+    <Grid>
+        <Label Content="Broj kartona:" HorizontalAlignment="Left" Margin="264,10,0,0" VerticalAlignment="Top" FontSize="16"/>
+        <Label x:Name="medicalRecordId" Content="Label" HorizontalAlignment="Left" Margin="368,10,0,0" VerticalAlignment="Top" FontSize="16"/>
+        <Label Content="Lični podaci:" HorizontalAlignment="Left" Margin="10,42,0,0" VerticalAlignment="Top" FontSize="20"/>
+        <Label Content="Ime i prezime:" HorizontalAlignment="Left" Margin="29,84,0,0" VerticalAlignment="Top" FontSize="16"/>
+        <Label x:Name="nameLabel" Content="ime prezime" HorizontalAlignment="Left" Margin="143,84,0,0" VerticalAlignment="Top" FontSize="16"/>
+        <Label Content="Krvna grupa:" HorizontalAlignment="Left" Margin="29,116,0,0" VerticalAlignment="Top" FontSize="16"/>
+        <Label x:Name="bloodTypeLabel" Content="A+" HorizontalAlignment="Left" Margin="143,116,0,0" VerticalAlignment="Top" FontSize="16"/>
+        <Button Content="Prikaz istorije bolesti" HorizontalAlignment="Left" Margin="448,84,0,0" VerticalAlignment="Top" Width="306" FontSize="20" Height="64"/>
+        <Button Content="Pisanje anamneze" HorizontalAlignment="Left" Margin="448,174,0,0" VerticalAlignment="Top" Width="306" FontSize="20" Height="64"/>
+        <Button Content="Izdavanje recepta" HorizontalAlignment="Left" Margin="448,263,0,0" VerticalAlignment="Top" Width="306" FontSize="20" Height="64"/>
+
+    </Grid>
+</Window>

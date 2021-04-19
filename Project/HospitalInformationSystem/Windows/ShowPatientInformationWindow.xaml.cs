@@ -29,5 +29,22 @@ namespace HospitalInformationSystem.Windows
             this.patient = patient;
             nameLabel.Content = patient.Name + " " + patient.Surname;
         }
+
+        private void medicalRecordButton_Click(object sender, RoutedEventArgs e)
+        {
+
+            MedicalRecordWindow medicalRecordWindow = new MedicalRecordWindow(patient);
+
+            medicalRecordWindow.ShowDialog();
+        }
+
+        private void newAppointmentButton_Click(object sender, RoutedEventArgs e)
+        {
+            Window2 doctorAddNewAppointmentWindow = new Window2();
+
+            doctorAddNewAppointmentWindow.ShowDialog();
+            doctorAddNewAppointmentWindow.patientComboBox.SelectedIndex = 10;
+            doctorAddNewAppointmentWindow.patientComboBox.SelectedItem = patient;
+        }
     }
 }

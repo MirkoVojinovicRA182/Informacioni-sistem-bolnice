@@ -24,6 +24,7 @@ namespace HospitalInformationSystem.Windows.Manager
 
         private static EditEquipment instance = null;
         private Equipment selectedEquipment;
+        private int oldQuantity;
 
         public static EditEquipment getInstance(Equipment equipment)
         {
@@ -50,11 +51,12 @@ namespace HospitalInformationSystem.Windows.Manager
             int quantityInMagacine = int.Parse(quanitityTextBox.Text);
             string description = descriptionTextBox.Text;
 
-            EquipmentController.getInstance().changeEquipment(selectedEquipment, id, name, typeOfEquipment, quantityInMagacine, description);
+            EquipmentController.getInstance().changeEquipment(selectedEquipment, id, name, typeOfEquipment, quantityInMagacine, oldQuantity, description);
 
             ManagerMainWindow.getInstance().equipmentTable.refreshTable();
             ManagerMainWindow.getInstance().dynamicEquipmentTable.refreshTable();
 
+            this.Close();
             MessageBox.Show("Informacije o opremi su sada izmenjene.", "Izmena prostorije", MessageBoxButton.OK, MessageBoxImage.Information);
         }
 
@@ -64,6 +66,8 @@ namespace HospitalInformationSystem.Windows.Manager
             nameTextBox.Text = selectedEquipment.Name;
             quanitityTextBox.Text = selectedEquipment.QuantityInMagacine.ToString();
             descriptionTextBox.Text = selectedEquipment.Description;
+
+            oldQuantity = selectedEquipment.QuantityInMagacine;
         }
 
         private void closeButton_Click(object sender, RoutedEventArgs e)

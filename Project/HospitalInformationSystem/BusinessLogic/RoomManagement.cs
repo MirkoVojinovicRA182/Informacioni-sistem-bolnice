@@ -64,13 +64,11 @@ namespace BusinessLogic
 
         public void deleteEquipment(string id)
         {
-            foreach(Room room in RoomDataBase.getInstance().getRooms())
+            List<Room> rooms = RoomDataBase.getInstance().getRooms();
+            foreach(Room room in rooms)
             {
-                foreach(DictionaryEntry de in room.Equipment)
-                {
-                    if (string.Equals(de.Key.ToString(), id))
-                        room.Equipment.Remove(id);
-                }
+                if (room.Equipment.Contains(id))
+                    room.Equipment.Remove(id);
             }
         }
     }

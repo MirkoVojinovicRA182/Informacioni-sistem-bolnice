@@ -52,8 +52,8 @@ namespace HospitalInformationSystem.Windows.Manager.Help
             {
                 RoomManagement roomManagement = new RoomManagement();
                 Equipment selectedEquipment = (Equipment)equipmentComboBox.SelectedItem;
-                EquipmentController.getInstance().deleteEquipment(selectedEquipment);
                 roomManagement.deleteEquipment(selectedEquipment.Id);
+                EquipmentController.getInstance().deleteEquipment(selectedEquipment);
                 ManagerMainWindow.getInstance().equipmentTable.refreshTable();
                 ManagerMainWindow.getInstance().dynamicEquipmentTable.refreshTable();
                 MessageBox.Show("Izabrana oprema je sada obrisana iz sistema.", "Brisanje opreme", MessageBoxButton.OK, MessageBoxImage.Information);

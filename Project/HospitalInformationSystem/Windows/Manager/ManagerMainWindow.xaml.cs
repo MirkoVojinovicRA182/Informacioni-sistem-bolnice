@@ -15,6 +15,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using WorkWithFiles;
 
 namespace HospitalInformationSystem.Windows.Manager
 {
@@ -25,6 +26,7 @@ namespace HospitalInformationSystem.Windows.Manager
     {
 
         private static ManagerMainWindow instance;
+        private RoomsFileManipulation roomsFileManipulation;
 
         public static ManagerMainWindow getInstance()
         {
@@ -35,9 +37,10 @@ namespace HospitalInformationSystem.Windows.Manager
         private ManagerMainWindow()
         {
             InitializeComponent();
-
+            roomsFileManipulation = new RoomsFileManipulation();
 
             EquipmentController.getInstance().loadFromFile();
+            roomsFileManipulation.LoadFromFile();
 
             roomsTable.refreshTable();
             equipmentTable.refreshTable();
@@ -55,6 +58,7 @@ namespace HospitalInformationSystem.Windows.Manager
             instance = null;
 
             EquipmentController.getInstance().saveInFile();
+            roomsFileManipulation.SaveInFile();
         }
 
         private void newMenuItem_Click(object sender, RoutedEventArgs e)

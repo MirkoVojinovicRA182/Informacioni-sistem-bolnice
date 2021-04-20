@@ -62,6 +62,8 @@ namespace HospitalInformationSystem.Windows.Manager
             //osvezavanje staticke opreme izabrane prostorije
             EditRoomWindow.getInstance(currentRoom).loadRoom();
 
+            SuccessMovingWindow.getInstance(quantityOfSelectedEquipment, quantityOfSelectedEquipment - quantity).Show();
+
             this.Close();
         }
 

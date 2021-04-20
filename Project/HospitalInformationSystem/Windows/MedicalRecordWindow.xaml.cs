@@ -1,4 +1,5 @@
-﻿using Model;
+﻿using HospitalInformationSystem.Model;
+using Model;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -32,6 +33,20 @@ namespace HospitalInformationSystem.Windows
         private void initInfo()
         {
             nameLabel.Content = patient.Name + " " + patient.Surname;
+        }
+
+        private void addAnamnesisButton_Click(object sender, RoutedEventArgs e)
+        {
+            AnamnesisWindow anamnesisWindow = new AnamnesisWindow(patient.GetMedicalRecord());
+
+            anamnesisWindow.ShowDialog();
+        }
+
+        private void anamnesisPreviewButton_Click(object sender, RoutedEventArgs e)
+        {
+            AmnesisPreviewWindow amnesisPreviewWindow = new AmnesisPreviewWindow(patient);
+
+            amnesisPreviewWindow.ShowDialog();
         }
     }
 }

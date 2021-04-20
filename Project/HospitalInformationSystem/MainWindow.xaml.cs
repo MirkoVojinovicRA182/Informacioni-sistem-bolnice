@@ -1,4 +1,5 @@
-﻿using HospitalInformationSystem.Windows;
+﻿using HospitalInformationSystem.Model;
+using HospitalInformationSystem.Windows;
 using Model;
 using System;
 using System.Windows;
@@ -29,9 +30,18 @@ namespace HospitalInformationSystem
             Patient second = new Patient("Jova", "Jovic", "2");
             Patient third = new Patient("Mika", "Mikic", "3");
 
+            MedicalRecord firstMedicalRecord = new MedicalRecord(1);
+            MedicalRecord secondMedicalRecord = new MedicalRecord(2);
+            MedicalRecord thirdMedicalRecord = new MedicalRecord(3);
+
+            first.setMedicalRecord(firstMedicalRecord);
+            second.setMedicalRecord(secondMedicalRecord);
+            third.setMedicalRecord(thirdMedicalRecord);
+
             PatientDataBase.getInstance().AddPatient(first);
             PatientDataBase.getInstance().AddPatient(second);
             PatientDataBase.getInstance().AddPatient(third);
+
         }
 
         private void confirmButton_Click(object sender, RoutedEventArgs e)

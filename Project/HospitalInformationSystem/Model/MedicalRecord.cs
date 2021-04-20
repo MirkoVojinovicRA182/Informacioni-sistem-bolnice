@@ -13,15 +13,32 @@ namespace HospitalInformationSystem.Model
     {
 
         private int id;
+        List<Anamnesis> anamnesisList;
 
         public MedicalRecord()
         {
-            List<Anamnesis> anamnesisList;
+            
         }
 
         public MedicalRecord(int id)
         {
             this.id = id;
+            anamnesisList = new List<Anamnesis>();
+        }
+
+        public int getId()
+        {
+            return id;
+        }
+
+        public void addAnamnesis(Anamnesis anamnesis)
+        {
+            anamnesisList.Add(anamnesis);
+        }
+
+        public List<Anamnesis> getAnamneses()
+        {
+            return anamnesisList;
         }
     }
 }

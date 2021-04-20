@@ -8,11 +8,8 @@ namespace HospitalInformationSystem.Model
 {
 
     [Serializable]
-    class Anamnesis
+    public class Anamnesis
     {
-        private DateTime date;
-        private String basicDescription;
-        private String anamnesis;
 
         public Anamnesis(DateTime date, String basicDescription, String anamnesis)
         {
@@ -21,20 +18,30 @@ namespace HospitalInformationSystem.Model
             this.anamnesis = anamnesis;
         }
 
-        public DateTime getDate()
+        public DateTime date
         {
-            return date;
+            get;
+
+            set;
+
         }
 
-        public String getBasicDescription()
+        public string basicDescription
         {
-            return basicDescription;
+            get;
+
+            set;
+
         }
 
-        public String getAnamnesis()
+        public string anamnesis
         {
-            return anamnesis;
+            get;
+
+            set;
+
         }
+
 
     }
 }

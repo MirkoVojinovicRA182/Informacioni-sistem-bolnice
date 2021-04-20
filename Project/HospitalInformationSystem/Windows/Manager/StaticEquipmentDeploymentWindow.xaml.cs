@@ -1,6 +1,7 @@
 ﻿using BusinessLogic;
 using Model;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
@@ -24,18 +25,44 @@ namespace HospitalInformationSystem.Windows.Manager
     {
         private static StaticEquipmentDeploymentWindow instance = null;
         private Room currentRoom;
+        private Room nextRoom;
+        private int quantity;
         private ObservableCollection<Room> roomList;
-        public static StaticEquipmentDeploymentWindow getInstance(Room room)
+        private int quantityOfSelectedEquipment;
+        private string idOfSelectedEquipment;
+        public static StaticEquipmentDeploymentWindow getInstance(Room room, int value, string key)
         {
             if (instance == null)
-                instance = new StaticEquipmentDeploymentWindow(room);
+                instance = new StaticEquipmentDeploymentWindow(room, value, key);
             return instance;
         }
-        private StaticEquipmentDeploymentWindow(Room room)
+        private StaticEquipmentDeploymentWindow(Room room, int value, string key)
         {
             InitializeComponent();
             currentRoom = room;
+            quantityOfSelectedEquipment = value;
+            idOfSelectedEquipment = key;
             fillControls();
+        }
+
+        private void confirmButton_Click(object sender, RoutedEventArgs e)
+        {
+            nextRoom = (Room)nextRoomComboBox.SelectedItem;
+            quantity = int.Parse(quantityTextBox.Text);
+
+            RoomManagement roomManagement = new RoomManagement();
+
+            //brisanje opreme iz trenutne prostorije
+            roomManagement.changeStaticEquipmentState(currentRoom, quantityOfSelectedEquipment, quantity, idOfSelectedEquipment);
+
+
+            //dodavanje opreme u zeljenu prostoriju
+            roomManagement.moveStaticEqToNextRoom(nextRoom, quantity, idOfSelectedEquipment);
+
+            //osvezavanje staticke opreme izabrane prostorije
+            EditRoomWindow.getInstance(currentRoom).loadRoom();
+
+            this.Close();
         }
 
         private void closeButton_Click(object sender, RoutedEventArgs e)

@@ -9,6 +9,7 @@ using HospitalInformationSystem.Windows;
 using HospitalInformationSystem.BusinessLogic;
 using System.Collections.Generic;
 using System.Collections;
+using HospitalInformationSystem.Controller;
 
 namespace BusinessLogic
 {
@@ -75,6 +76,28 @@ namespace BusinessLogic
         public List<Room> getRooms()
         {
             return RoomDataBase.getInstance().getRooms();
+        }
+
+        public void changeStaticEquipmentState(Room room, int currentQuantity, int moveQuantity, string key)
+        {
+            room.Equipment[key] = currentQuantity - moveQuantity;
+
+            if ((currentQuantity - moveQuantity) == 0)
+                room.Equipment.Remove(key);
+            
+        }
+
+        public void moveStaticEqToNextRoom(Room room, int moveQuantity, string key)
+        {
+            if (room.Equipment.Contains(key))
+            {
+                int currentQuantity = (int)room.Equipment[key];
+                room.Equipment[key] = currentQuantity + moveQuantity;
+            }
+            else
+            {
+                room.Equipment.Add(key, moveQuantity);
+            }
         }
     }
 }

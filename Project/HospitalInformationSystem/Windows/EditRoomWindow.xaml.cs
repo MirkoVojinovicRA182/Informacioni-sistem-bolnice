@@ -63,6 +63,7 @@ namespace HospitalInformationSystem.Windows
             AddEquipmentToRoomWindow.getInstance("dinamicka", "editRoom").Show();
         }
 
+
         public void addEquipment(string id, int quantity)
         {
             try
@@ -77,6 +78,28 @@ namespace HospitalInformationSystem.Windows
 
             refreshDynamicEquipmentListBox();
             refreshStaticEquipmentListBox();
+        }
+
+
+        private void moveStaticEquipmentButton_Click(object sender, RoutedEventArgs e)
+        {
+            if (staticEquipmentListBox.SelectedItem != null)
+            {
+                string nameOfSelectedEquipment = (string)staticEquipmentListBox.SelectedItem;
+
+                string[] separator = { " x", };
+
+                string[] atributesOfSelectedEquipment = nameOfSelectedEquipment.Split(separator, StringSplitOptions.None);
+
+                string key = EquipmentController.getInstance().getEquipmentId(atributesOfSelectedEquipment[0]);
+
+                int value = int.Parse(atributesOfSelectedEquipment[1]);
+
+                StaticEquipmentDeploymentWindow.getInstance(selectedRoom, value, key).Show();
+            }
+            else
+                MessageBox.Show("Niste odabrali opremu!", "Greška", MessageBoxButton.OK, MessageBoxImage.Error);
+
         }
         private void removeDynamicButton_Click(object sender, RoutedEventArgs e)
         {
@@ -195,12 +218,13 @@ namespace HospitalInformationSystem.Windows
                 typeComboBox.SelectedIndex = 2;
         }
 
-        private void loadRoom()
+        public void loadRoom()
         {
             idTextBox.Text = selectedRoom.Id.ToString();
             nameTextBox.Text = selectedRoom.Name;
             floorTextBox.Text = selectedRoom.Floor.ToString();
             fiilTypeComboBox(selectedRoom.Type);
+            equipment = null;
             equipment = selectedRoom.Equipment;
             refreshDynamicEquipmentListBox();
             refreshStaticEquipmentListBox();
@@ -258,17 +282,6 @@ namespace HospitalInformationSystem.Windows
             }
 
             return list;
-        }
-
-        private void moveStaticEquipmentButton_Click(object sender, RoutedEventArgs e)
-        {
-            if (staticEquipmentListBox.SelectedItem != null)
-            {
-                StaticEquipmentDeploymentWindow.getInstance(selectedRoom).Show();
-            }
-            else
-                MessageBox.Show("Niste odabrali opremu!", "Greška", MessageBoxButton.OK, MessageBoxImage.Error);
-
         }
     }
 }

@@ -55,5 +55,12 @@ namespace HospitalInformationSystem.Windows
 
             addPrescriptionWindow.ShowDialog();
         }
+
+        private void showPrescriptionButton_Click(object sender, RoutedEventArgs e)
+        {
+            DoctorShowPrescription doctorShowPrescription = new DoctorShowPrescription(patient.GetMedicalRecord());
+
+            doctorShowPrescription.ShowDialog();
+        }
     }
 }

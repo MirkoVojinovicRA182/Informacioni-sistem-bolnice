@@ -98,6 +98,9 @@
     <Compile Include="Windows\DoctorShowAppointmentInformationWindow.xaml.cs">
       <DependentUpon>DoctorShowAppointmentInformationWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Windows\DoctorShowPrescription.xaml.cs">
+      <DependentUpon>DoctorShowPrescription.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Windows\EditPatientAppointmentWindow.xaml.cs" />
     <Compile Include="Windows\EditRoomWindow.xaml.cs">
       <DependentUpon>EditRoomWindow.xaml</DependentUpon>
@@ -167,6 +170,10 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="Windows\DoctorShowAppointmentInformationWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Windows\DoctorShowPrescription.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

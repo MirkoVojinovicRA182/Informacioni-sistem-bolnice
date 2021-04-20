@@ -18,6 +18,7 @@
         <Button x:Name="addAnamnesisButton" Content="Pisanje anamneze" HorizontalAlignment="Left" Margin="448,121,0,0" VerticalAlignment="Top" Width="306" FontSize="20" Height="64" Click="addAnamnesisButton_Click"/>
         <Button x:Name="anamnesisPreviewButton" Content="Pregled anamneza" HorizontalAlignment="Left" Margin="448,190,0,0" VerticalAlignment="Top" Width="306" FontSize="20" Height="64" Click="anamnesisPreviewButton_Click"/>
         <Button x:Name="addPrescriptionButton" Content="Izdavanje recepta" HorizontalAlignment="Left" Margin="448,259,0,0" VerticalAlignment="Top" Width="306" FontSize="20" Height="64" Click="addPrescriptionButton_Click"/>
+        <Button x:Name="showPrescriptionButton" Content="Pregled recepata" HorizontalAlignment="Left" Margin="448,328,0,0" VerticalAlignment="Top" Width="306" FontSize="20" Height="64" Click="showPrescriptionButton_Click"/>
 
     </Grid>
 </Window>

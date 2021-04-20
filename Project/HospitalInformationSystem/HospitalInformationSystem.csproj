@@ -58,6 +58,7 @@
     <Compile Include="BusinessLogic\AppointmentManagement.cs" />
     <Compile Include="BusinessLogic\PatientManagement.cs" />
     <Compile Include="BusinessLogic\RoomManagement.cs" />
+    <Compile Include="Controller\EquipmentController.cs" />
     <Compile Include="Model\Appointment.cs" />
     <Compile Include="Model\AppointmentDataBase.cs" />
     <Compile Include="Model\Doctor.cs" />
@@ -74,6 +75,8 @@
     <Compile Include="Model\TypeOfAppointment.cs" />
     <Compile Include="Model\TypeOfEquipment.cs" />
     <Compile Include="Model\TypeOfRoom.cs" />
+    <Compile Include="Repository\EquipmentRepository.cs" />
+    <Compile Include="Service\EquipmentService.cs" />
     <Compile Include="Windows\DoctorAddNewAppointmentWindow.xaml.cs">
       <DependentUpon>DoctorAddNewAppointmentWindow.xaml</DependentUpon>
     </Compile>
@@ -86,6 +89,39 @@
     <Compile Include="Windows\EditPatientAppointmentWindow.xaml.cs" />
     <Compile Include="Windows\EditRoomWindow.xaml.cs">
       <DependentUpon>EditRoomWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Windows\Manager\AddEquipmentToRoomWindow.xaml.cs">
+      <DependentUpon>AddEquipmentToRoomWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Windows\Manager\DynamicEquipmentTable.xaml.cs">
+      <DependentUpon>DynamicEquipmentTable.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Windows\Manager\EditEquipment.xaml.cs">
+      <DependentUpon>EditEquipment.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Windows\Manager\EquipmentTable.xaml.cs">
+      <DependentUpon>EquipmentTable.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Windows\Manager\Help\SelectEquipmentWindow.xaml.cs">
+      <DependentUpon>SelectEquipmentWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Windows\Manager\Help\SelectRoomWindow.xaml.cs">
+      <DependentUpon>SelectRoomWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Windows\Manager\InsertQuantityOfEquipmentForRemovingWindow.xaml.cs">
+      <DependentUpon>InsertQuantityOfEquipmentForRemovingWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Windows\Manager\ManagerMainWindow.xaml.cs">
+      <DependentUpon>ManagerMainWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Windows\Manager\NewEquipment.xaml.cs">
+      <DependentUpon>NewEquipment.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Windows\Manager\StaticEquipmentDeploymentWindow.xaml.cs">
+      <DependentUpon>StaticEquipmentDeploymentWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Windows\Manager\SuccessMovingWindow.xaml.cs">
+      <DependentUpon>SuccessMovingWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="Windows\NewPatientAppointmentWindow.xaml.cs" />
     <Compile Include="Windows\NewRoomWindow.xaml.cs">
@@ -138,6 +174,50 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="Windows\EditRoomWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Windows\Manager\AddEquipmentToRoomWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Windows\Manager\DynamicEquipmentTable.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Windows\Manager\EditEquipment.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Windows\Manager\EquipmentTable.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Windows\Manager\Help\SelectEquipmentWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Windows\Manager\Help\SelectRoomWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Windows\Manager\InsertQuantityOfEquipmentForRemovingWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Windows\Manager\ManagerMainWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Windows\Manager\NewEquipment.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Windows\Manager\StaticEquipmentDeploymentWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Windows\Manager\SuccessMovingWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

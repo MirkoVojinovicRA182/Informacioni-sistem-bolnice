@@ -1,4 +1,5 @@
 ﻿using HospitalInformationSystem.Windows;
+using HospitalInformationSystem.Windows.Manager;
 using Model;
 using System;
 using System.Windows;
@@ -11,13 +12,10 @@ namespace HospitalInformationSystem
     /// </summary>
     public partial class MainWindow : Window
     {
-        RoomsFileManipulation save = new RoomsFileManipulation();
-        DoctorAppointmentsFIleManipulation doctorAppFile = new DoctorAppointmentsFIleManipulation();
+
         public MainWindow()
         {
             InitializeComponent();
-            //save.LoadFromFile();
-            //doctorAppFile.LoadFromFile();
 
             //inicijalizacija tri rucno uneta doktora
 
@@ -36,7 +34,7 @@ namespace HospitalInformationSystem
 
 
             if ((bool)roomRadioButton.IsChecked)
-                RoomCRUDOperationsWindow.getInstance().Show();
+                ManagerMainWindow.getInstance().Show();
             else if ((bool)patientAppointmentsRadioButton.IsChecked)
                 patientAppointmentCRUDOperationsWindow.Show();
             else if ((bool)doctorAppointmentsRadioButton.IsChecked)
@@ -50,8 +48,7 @@ namespace HospitalInformationSystem
 
         private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
         {
-            save.SaveInFile();
-            doctorAppFile.SaveInFile();
+
         }
 
         protected override void OnClosed(EventArgs e)

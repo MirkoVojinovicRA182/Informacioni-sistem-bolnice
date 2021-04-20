@@ -6,6 +6,7 @@
  ***********************************************************************/
 
 using System;
+using System.Collections.Generic;
 
 namespace Model
 {
@@ -44,6 +45,14 @@ namespace Model
             this.Username = username;
         }
 
+        public Patient(string name, string surname, string username, List<Therapy> therapy)
+        {
+            this.Name = name;
+            this.Surname = surname;
+            this.Username = username;
+            this.therapy = therapy;
+        }
+
         public Patient(string username, string name, string surname,
     DateTime dateOfBirth, string phoneNumber, string email, string parentsName,
     string gender, string jmbg, bool isGuest, BloodType blood, string lbo)
@@ -63,6 +72,7 @@ namespace Model
         }
 
         public System.Collections.ArrayList appointment;
+        private List<Therapy> therapy;
 
         /// <pdGenerated>default getter</pdGenerated>
         public System.Collections.ArrayList GetAppointment()
@@ -130,6 +140,45 @@ namespace Model
         public MedicalRecord GetMedicalRecord()
         {
             return medicalRecord;
+        }
+
+        public List<Therapy> GetTherapy()
+        {
+            if (therapy == null)
+                therapy = new List<Therapy>();
+            return therapy;
+        }
+
+        /// <pdGenerated>default setter</pdGenerated>
+        public void SetTherapy(List<Therapy> newTherapy)
+        {
+            RemoveAllTherapy();
+            foreach (Therapy oTherapy in newTherapy)
+                AddTherapy(oTherapy);
+        }
+
+        public void AddTherapy(Therapy newTherapy)
+        {
+            if (newTherapy == null)
+                return;
+            if (this.therapy == null)
+                this.therapy = new List<Therapy>();
+            if (!this.therapy.Contains(newTherapy))
+            {
+                this.therapy.Add(newTherapy);
+            }
+        }
+
+        public void RemoveAllTherapy()
+        {
+            if (therapy != null)
+            {
+                List<Therapy> tmpTherapy = new List<Therapy>();
+                foreach (Therapy oldTherapy in therapy)
+                    tmpTherapy.Add(oldTherapy);
+                therapy.Clear();
+                tmpTherapy.Clear();
+            }
         }
 
         public override string ToString()

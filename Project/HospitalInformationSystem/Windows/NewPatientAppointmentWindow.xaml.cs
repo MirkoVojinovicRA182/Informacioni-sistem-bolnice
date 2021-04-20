@@ -71,18 +71,7 @@ namespace HospitalInformationSystem.Windows
 
         private void initPatients()
         {
-            initialPatients = new List<Model.Patient>();
-
-            Model.Patient first = new Model.Patient("Pera", "Pacijent 1", "1");
-            Model.Patient second = new Model.Patient("Jova", "Pacijent 2", "2");
-            Model.Patient third = new Model.Patient("Mika", "Pacijent 3", "3");
-
-            initialPatients.Add(first);
-            initialPatients.Add(second);
-            initialPatients.Add(third);
-
-
-            patientComboBox.ItemsSource = initialPatients;
+            DoctorComboBox.ItemsSource = DoctorDataBase.getInstance().GetDoctors();
         }
 
     }

@@ -19,6 +19,7 @@
         <Button x:Name="NewAppointmentButton" Content="Novi termin" Click="NewAppointmentButton_Click" HorizontalAlignment="Left" Margin="723,49,0,0" VerticalAlignment="Top" Width="145"/>
         <Button x:Name="DeleteAppointmentButton" Content="Brisanje izabranog termina" Click="DeleteAppointmentButton_Click" HorizontalAlignment="Left" Margin="723,78,0,0" VerticalAlignment="Top" Width="145"/>
         <Button x:Name="DeleteAllAppointmentsButton" Content="Brisanje svih termina" Click="DeleteAllAppointmentsButton_Click" HorizontalAlignment="Left" Margin="723,107,0,0" VerticalAlignment="Top" Width="145"/>
-        <Button x:Name="EditButton" Content="Izmena termina" Click="EditButton_Click" HorizontalAlignment="Left" Margin="723,137,0,0" VerticalAlignment="Top" Width="145"/>
+        <Button x:Name="EditButton" Content="Pomeranje termina" Click="EditButton_Click" HorizontalAlignment="Left" Margin="723,137,0,0" VerticalAlignment="Top" Width="145"/>
+        <Button Content="Notifikacije" Click="NotificationButton_Click" HorizontalAlignment="Left" Margin="723,370,0,0" VerticalAlignment="Top" Width="145"/>
     </Grid>
 </Window>

@@ -58,6 +58,7 @@
     <Compile Include="BusinessLogic\AppointmentManagement.cs" />
     <Compile Include="BusinessLogic\PatientManagement.cs" />
     <Compile Include="BusinessLogic\RoomManagement.cs" />
+    <Compile Include="Model\Anamnesis.cs" />
     <Compile Include="Model\Appointment.cs" />
     <Compile Include="Model\AppointmentDataBase.cs" />
     <Compile Include="Model\Doctor.cs" />

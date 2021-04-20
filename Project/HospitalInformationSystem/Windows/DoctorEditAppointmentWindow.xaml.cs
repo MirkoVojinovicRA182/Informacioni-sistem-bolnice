@@ -66,10 +66,18 @@ namespace HospitalInformationSystem.Windows
             if (checkData())
             {
                 DateTime date = DateTime.ParseExact(dateTextBox.Text + " " + timeTextBox.Text, "dd.MM.yyyy. HH:mm", System.Globalization.CultureInfo.InvariantCulture);
-                Room newRoom = (Room)roomComboBox.SelectedItem;
+                Room newRoom;
+                if (appointment.Type.Equals(TypeOfAppointment.Operacija))
+                {
+                    newRoom = (Room)roomComboBox.SelectedItem;
+                }
+                else
+                {
+                    newRoom = appointment.room;
+                }
 
                 AppointmentManagement appointmentManagement = new AppointmentManagement();
-                appointmentManagement.changeAppointment(appointment, date, TypeOfAppointment.Pregled, newRoom, appointment.patient, appointment.doctor);
+                appointmentManagement.changeAppointment(appointment, date, appointment.Type, newRoom, (Patient)patientComboBox.SelectedItem, appointment.doctor);
 
                 MessageBox.Show("Informacije o prostoriji su sada izmenjene.", "Izmena informacija", MessageBoxButton.OK, MessageBoxImage.Information);
             }

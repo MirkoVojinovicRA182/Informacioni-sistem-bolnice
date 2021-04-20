@@ -23,7 +23,7 @@ namespace HospitalInformationSystem.Windows
     /// </summary>
     public partial class NewPatientAppointmentWindow : Window
     {
-        private List<Patient> initialPatients;
+        private List<Model.Patient> initialPatients;
         public NewPatientAppointmentWindow()
         {
             InitializeComponent();
@@ -60,7 +60,7 @@ namespace HospitalInformationSystem.Windows
 
             AppointmentManagement patientAppointmentManagement = new AppointmentManagement();
 
-            patientAppointmentManagement.createAppointment(startTime, TypeOfAppointment.Pregled, doctor.room, (Patient)patientComboBox.SelectedItem, doctor);
+            patientAppointmentManagement.createAppointment(startTime, TypeOfAppointment.Pregled, doctor.room, (Model.Patient)patientComboBox.SelectedItem, doctor);
 
         }
 
@@ -71,11 +71,11 @@ namespace HospitalInformationSystem.Windows
 
         private void initPatients()
         {
-            initialPatients = new List<Patient>();
+            initialPatients = new List<Model.Patient>();
 
-            Patient first = new Patient("Pera", "Pacijent 1", "1");
-            Patient second = new Patient("Jova", "Pacijent 2", "2");
-            Patient third = new Patient("Mika", "Pacijent 3", "3");
+            Model.Patient first = new Model.Patient("Pera", "Pacijent 1", "1");
+            Model.Patient second = new Model.Patient("Jova", "Pacijent 2", "2");
+            Model.Patient third = new Model.Patient("Mika", "Pacijent 3", "3");
 
             initialPatients.Add(first);
             initialPatients.Add(second);

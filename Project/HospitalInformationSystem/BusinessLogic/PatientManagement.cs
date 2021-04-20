@@ -5,15 +5,23 @@
  ***********************************************************************/
 
 using Model;
+using System;
+using static Model.Patient;
 
 namespace BusinessLogic
 {
     public class PatientManagement
     {
-        public bool CreatePatient(string name, string surname, string id)
+        public static bool CreatePatient(string username, string name, string surname,
+            DateTime dateOfBirth, string phoneNumber, string email, string parentsName,
+            string gender, string jmbg, bool isGuest, BloodType blood, string lbo)
         {
-            // TODO: implement
-            return false;
+            Patient patient = new Patient(username, name, surname,
+            dateOfBirth, phoneNumber, email, parentsName,
+            gender, jmbg, isGuest, blood, lbo);
+            System.Console.WriteLine("NAPRAVLJEN PACIJENT :" + patient);
+            PatientDataBase.getInstance().AddPatient(patient);
+            return true;
         }
 
         public bool DeletePatient(Patient patient)

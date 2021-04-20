@@ -37,7 +37,7 @@ namespace HospitalInformationSystem.Windows
             initTypeOfAppointment();
             initDoctors();
 
-            patientComboBox.ItemsSource = PatientDataBase.getInstance().GetPatient();
+            patientComboBox.ItemsSource = PatientDataBase.getInstance().getPatient();
             roomsListBox.DataContext = RoomDataBase.getInstance().getRooms();
 
         }
@@ -66,7 +66,7 @@ namespace HospitalInformationSystem.Windows
            
             AppointmentManagement appointmentsManagment = new AppointmentManagement();
             
-            appointmentsManagment.createAppointment(date, typeOfAppointment, room, (Patient)patientComboBox.SelectedItem, (Doctor)doctorComboBox.SelectedItem);
+            appointmentsManagment.createAppointment(date, typeOfAppointment, room, (Model.Patient)patientComboBox.SelectedItem, (Doctor)doctorComboBox.SelectedItem);
         }
 
 

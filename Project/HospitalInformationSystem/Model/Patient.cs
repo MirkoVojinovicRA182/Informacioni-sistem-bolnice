@@ -5,7 +5,6 @@
  * Purpose: Definition of the Class Model.Patient
  ***********************************************************************/
 
-using HospitalInformationSystem.Model;
 using System;
 
 namespace Model
@@ -13,6 +12,18 @@ namespace Model
     [Serializable]
     public class Patient : Person
     {
+        public enum BloodType
+        {
+            A,
+            B
+        }
+
+        public bool IsGuest
+        { get; set; }
+        public BloodType Blood
+        { get; set; }
+        public string LBO
+        { get; set; }
 
         private MedicalRecord medicalRecord;
 
@@ -26,11 +37,29 @@ namespace Model
             // TODO: implement
         }
 
-        public Patient(string name, string surname, string id)
+        public Patient(string name, string surname, string username)
         {
             this.Name = name;
             this.Surname = surname;
-            this.Id = id;
+            this.Username = username;
+        }
+
+        public Patient(string username, string name, string surname,
+    DateTime dateOfBirth, string phoneNumber, string email, string parentsName,
+    string gender, string jmbg, bool isGuest, BloodType blood, string lbo)
+        {
+            Username = username;
+            Name = name;
+            Surname = surname;
+            DateOfBirth = dateOfBirth;
+            PhoneNumber = phoneNumber;
+            Email = email;
+            ParentsName = parentsName;
+            Gender = gender;
+            Jmbg = jmbg;
+            IsGuest = isGuest;
+            Blood = blood;
+            LBO = lbo;
         }
 
         public System.Collections.ArrayList appointment;
@@ -103,5 +132,9 @@ namespace Model
             return medicalRecord;
         }
 
+        public override string ToString()
+        {
+            return Name + " " + Surname;
+        }
     }
 }

@@ -1,6 +1,6 @@
-﻿using HospitalInformationSystem.Model;
-using HospitalInformationSystem.Windows;
+﻿using HospitalInformationSystem.Windows;
 using HospitalInformationSystem.Windows.Manager;
+using HospitalInformationSystem.Windows.Patient;
 using Model;
 using System;
 using System.Windows;
@@ -48,7 +48,7 @@ namespace HospitalInformationSystem
         private void confirmButton_Click(object sender, RoutedEventArgs e)
         {
             DoctorAppointmentsManagementWindow doctorAppManagementWindow = new DoctorAppointmentsManagementWindow();
-            PatientManagementWindow patientManagementWindow = new PatientManagementWindow();
+            MainPatientManagement mainPatientManagement = new MainPatientManagement();
             PatientAppointmentCRUDOperationsWindow patientAppointmentCRUDOperationsWindow = new PatientAppointmentCRUDOperationsWindow();
 
 
@@ -60,7 +60,7 @@ namespace HospitalInformationSystem
             else if ((bool)doctorAppointmentsRadioButton.IsChecked)
                 doctorAppManagementWindow.Show();
             else if ((bool)patientRadioButton.IsChecked)
-                patientManagementWindow.Show();
+                mainPatientManagement.Show();
             else
                 MessageBox.Show("Niste izabrali opciju!", "Greška", MessageBoxButton.OK);
 

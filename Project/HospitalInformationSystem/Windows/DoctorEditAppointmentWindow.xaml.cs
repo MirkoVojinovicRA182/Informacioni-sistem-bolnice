@@ -56,7 +56,7 @@ namespace HospitalInformationSystem.Windows
 
         private void loadPatientComboBox()
         {
-            patientComboBox.ItemsSource = PatientDataBase.getInstance().GetPatient();
+            patientComboBox.ItemsSource = PatientDataBase.getInstance().getPatient();
             patientComboBox.SelectedIndex = 10;
             patientComboBox.SelectedItem = appointment.GetPatient();
         }
@@ -77,7 +77,7 @@ namespace HospitalInformationSystem.Windows
                 }
 
                 AppointmentManagement appointmentManagement = new AppointmentManagement();
-                appointmentManagement.changeAppointment(appointment, date, appointment.Type, newRoom, (Patient)patientComboBox.SelectedItem, appointment.doctor);
+                appointmentManagement.changeAppointment(appointment, date, appointment.Type, newRoom, (Model.Patient)patientComboBox.SelectedItem, appointment.doctor);
 
                 MessageBox.Show("Informacije o prostoriji su sada izmenjene.", "Izmena informacija", MessageBoxButton.OK, MessageBoxImage.Information);
             }

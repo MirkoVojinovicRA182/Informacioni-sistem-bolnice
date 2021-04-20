@@ -17,11 +17,11 @@ namespace Model
             // TODO: implement
         }
 
-        public Doctor(string name, string surname, string id, Room room, Specialization specialization)
+        public Doctor(string name, string surname, string username, Room room, Specialization specialization)
         {
             this.Name = name;
             this.Surname = surname;
-            this.Id = id;
+            this.Username = username;
             this.room = room;
             this.Specialization = specialization;
         }

@@ -59,6 +59,8 @@
     <Compile Include="BusinessLogic\PatientManagement.cs" />
     <Compile Include="BusinessLogic\RoomManagement.cs" />
     <Compile Include="Controller\EquipmentController.cs" />
+    <Compile Include="DataBases\PatientDataBase.cs" />
+    <Compile Include="Model\Allergen.cs" />
     <Compile Include="Model\Anamnesis.cs" />
     <Compile Include="Model\Appointment.cs" />
     <Compile Include="Model\AppointmentDataBase.cs" />
@@ -68,7 +70,6 @@
     <Compile Include="Model\Manager.cs" />
     <Compile Include="Model\MedicalRecord.cs" />
     <Compile Include="Model\Patient.cs" />
-    <Compile Include="Model\PatientDataBase.cs" />
     <Compile Include="Model\Person.cs" />
     <Compile Include="Model\Prescription.cs" />
     <Compile Include="Model\Room.cs" />
@@ -147,6 +148,21 @@
     <Compile Include="Windows\NewPatientAppointmentWindow.xaml.cs" />
     <Compile Include="Windows\NewRoomWindow.xaml.cs">
       <DependentUpon>NewRoomWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Windows\PatientAccountsWindows\AddAccount.xaml.cs">
+      <DependentUpon>AddAccount.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Windows\PatientAccountsWindows\AddAllergen.xaml.cs">
+      <DependentUpon>AddAllergen.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Windows\PatientAccountsWindows\EditAccount.xaml.cs">
+      <DependentUpon>EditAccount.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Windows\PatientAccountsWindows\MainPatientManagement.xaml.cs">
+      <DependentUpon>MainPatientManagement.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Windows\PatientAccountsWindows\ViewAndUpdateAccount.xaml.cs">
+      <DependentUpon>ViewAndUpdateAccount.xaml</DependentUpon>
     </Compile>
     <Compile Include="Windows\PatientAppointmentCRUDOperationsWindow.xaml.cs">
       <DependentUpon>PatientAppointmentCRUDOperationsWindow.xaml</DependentUpon>
@@ -276,6 +292,26 @@
     <Page Include="Windows\NewRoomWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Windows\PatientAccountsWindows\AddAccount.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Windows\PatientAccountsWindows\AddAllergen.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Windows\PatientAccountsWindows\EditAccount.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Windows\PatientAccountsWindows\MainPatientManagement.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Windows\PatientAccountsWindows\ViewAndUpdateAccount.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
     <Page Include="Windows\PatientAppointmentCRUDOperationsWindow.xaml">
       <Generator>MSBuild:Compile</Generator>

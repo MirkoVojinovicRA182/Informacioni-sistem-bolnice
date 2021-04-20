@@ -31,9 +31,27 @@ namespace Model
         }
 
         public List<Patient> patient;
+        public List<Allergen> allergens;
+
+        public List<Allergen> getAllergens()
+        {
+            if (allergens == null)
+                allergens = new List<Allergen>();
+            return allergens;
+        }
+
+        public void addAllergen(Allergen newAllergen)
+        {
+            if (newAllergen == null)
+                return;
+            if (this.allergens == null)
+                this.allergens = new List<Allergen>();
+            if (!this.allergens.Contains(newAllergen))
+                this.allergens.Add(newAllergen);
+        }
 
         /// <pdGenerated>default getter</pdGenerated>
-        public List<Patient> GetPatient()
+        public List<Patient> getPatient()
         {
             if (patient == null)
                 patient = new List<Patient>();
@@ -41,7 +59,7 @@ namespace Model
         }
 
         /// <pdGenerated>default setter</pdGenerated>
-        public void SetPatient(List<Patient> newPatient)
+        public void setPatient(List<Patient> newPatient)
         {
             RemoveAllPatient();
             foreach (Patient oPatient in newPatient)

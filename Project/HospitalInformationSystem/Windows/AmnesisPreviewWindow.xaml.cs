@@ -1,5 +1,4 @@
-﻿using HospitalInformationSystem.Model;
-using Model;
+﻿using Model;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -21,9 +20,8 @@ namespace HospitalInformationSystem.Windows
     /// </summary>
     public partial class AmnesisPreviewWindow : Window
     {
-
-        private Patient patient;
-        public AmnesisPreviewWindow(Patient patient)
+        private Model.Patient patient;
+        public AmnesisPreviewWindow(Model.Patient patient)
         {
             InitializeComponent();
             this.patient = patient;

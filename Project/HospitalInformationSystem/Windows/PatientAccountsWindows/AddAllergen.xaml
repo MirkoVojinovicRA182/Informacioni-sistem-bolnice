@@ -1,0 +1,13 @@
+﻿<Window x:Class="HospitalInformationSystem.Windows.PatientAccountsWindows.AddAllergen"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:HospitalInformationSystem.Windows.PatientAccountsWindows"
+        mc:Ignorable="d"
+        Title="AddAllergen" Height="450" Width="800">
+    <Grid>
+        <TextBox x:Name="allergenNameTxt" HorizontalAlignment="Left" Height="23" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" Margin="345,134,0,0"/>
+        <Button x:Name="addAllergenBtn" Content="Dodaj" HorizontalAlignment="Left" VerticalAlignment="Top" Width="75" Margin="370,231,0,0" Click="addAllergenBtn_Click" RenderTransformOrigin="1.517,1.766"/>
+    </Grid>
+</Window>

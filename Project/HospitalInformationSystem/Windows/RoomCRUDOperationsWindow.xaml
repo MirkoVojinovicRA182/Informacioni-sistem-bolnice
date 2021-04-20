@@ -3,7 +3,7 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        mc:Ignorable="d" Width="968.4">
+        mc:Ignorable="d" Width="986.8">
     <Grid Margin="0,0,0,-0.4" HorizontalAlignment="Left" Width="950">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="650*"/>

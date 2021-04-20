@@ -75,5 +75,10 @@ namespace HospitalInformationSystem.Windows
                 //deleteButton.IsEnabled = false;
             }
         }
+
+        private void moveButton_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }

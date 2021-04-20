@@ -124,12 +124,12 @@ namespace HospitalInformationSystem.Windows
 
         private void addDynamicButton_Click(object sender, RoutedEventArgs e)
         {
-            //AddEquipmentToRoomWindow.getInstance("staticka", "newRoom").Show();
+            AddEquipmentToRoomWindow.getInstance(equipment, "dinamicka", "newRoom").Show();
         }
 
         private void addStaticButton_Click(object sender, RoutedEventArgs e)
         {
-            //AddEquipmentToRoomWindow.getInstance("dinamicka", "newRoom").Show();
+            AddEquipmentToRoomWindow.getInstance(equipment, "staticka", "newRoom").Show();
         }
 
         private void removeDynamicButton_Click(object sender, RoutedEventArgs e)

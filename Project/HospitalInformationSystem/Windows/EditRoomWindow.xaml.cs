@@ -129,15 +129,22 @@ namespace HospitalInformationSystem.Windows
                     {
                         //this.equipment.Remove(de.Key);
                         this.equipment.Remove(key);
+                        this.newEquipment.Remove(key);
                     }
                     else
                         //equipment[de.Key] = distinction; //razlika izmedju stare kolicine i kolicine koja zeli da se ukloni iz sistema
                         equipment[key] = distinction;
 
                     //allDistinctions.Add(de.Key, removedQuantity);
+                    if (allDistinctions.Contains(key))
+                    {
+                        allDistinctions.Remove(key);
+                    }
+
                     allDistinctions.Add(key, removedQuantity);
 
                     refreshDynamicEquipmentListBox();
+                    
                 }
 
             }

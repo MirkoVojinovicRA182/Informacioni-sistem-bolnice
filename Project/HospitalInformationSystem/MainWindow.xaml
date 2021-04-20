@@ -1,0 +1,18 @@
+﻿<Window x:Class="HospitalInformationSystem.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:HospitalInformationSystem"
+        mc:Ignorable="d"
+        Title="Glavni prozor" Height="300" Width="450" Closing="Window_Closing">
+    <Grid>
+        <TextBlock HorizontalAlignment="Left" Margin="105,30,0,0" TextWrapping="Wrap" Text="IZABERITE OPCIJU:" VerticalAlignment="Top" FontSize="28"/>
+        <RadioButton x:Name="roomRadioButton" Content="CRUD prostorija" HorizontalAlignment="Left" Margin="105,82,0,0" VerticalAlignment="Top"/>
+        <RadioButton x:Name="patientAppointmentsRadioButton" Content="CRUD termina pacijenata" HorizontalAlignment="Left" Margin="105,116,0,0" VerticalAlignment="Top"/>
+        <RadioButton x:Name="doctorAppointmentsRadioButton" Content="CRUD termina lekara" HorizontalAlignment="Left" Margin="105,148,0,0" VerticalAlignment="Top"/>
+        <RadioButton x:Name="patientRadioButton" Content="CRUD pacijenata" HorizontalAlignment="Left" Margin="105,180,0,0" VerticalAlignment="Top"/>
+        <Button Content="POTVRDI" HorizontalAlignment="Left" Margin="176,226,0,0" VerticalAlignment="Top" Width="75" FontSize="16" Click="confirmButton_Click"/>
+
+    </Grid>
+</Window>

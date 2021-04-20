@@ -1,0 +1,105 @@
+﻿<Window x:Class="HospitalInformationSystem.Windows.Manager.StaticEquipmentDeploymentWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:HospitalInformationSystem.Windows.Manager"
+        mc:Ignorable="d"
+        Title="Premeštanje statičke opreme" Height="500" Width="500" Closing="Window_Closing">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="49*"/>
+            <ColumnDefinition Width="104*"/>
+            <ColumnDefinition Width="124*"/>
+            <ColumnDefinition Width="185*"/>
+            <ColumnDefinition Width="83*"/>
+        </Grid.ColumnDefinitions>
+        <Label Content="Trenutna prostorija:" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="37,43,0,0" FontSize="15" Grid.ColumnSpan="3"/>
+        <Label Content="Željena prostorija:" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="37,110,0,0" FontSize="15" Grid.ColumnSpan="3"/>
+        <Label Content="Količina koja se premešta:" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="37,180,0,0" FontSize="15" Grid.ColumnSpan="3"/>
+        <Label Content="Datum premeštanja:" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="37,256,0,0" FontSize="15" Grid.ColumnSpan="3"/>
+        <Label Content="Vreme premeštanja:" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="37,321,0,0" FontSize="15" Grid.ColumnSpan="3"/>
+        <TextBlock x:Name="currentRoomTextBlock" HorizontalAlignment="Left" TextWrapping="Wrap" Text="Naziv trenutne prostorije" VerticalAlignment="Top" Margin="93.8,48,0,0" FontSize="15" FontStyle="Italic" Width="227" Grid.Column="2" Grid.ColumnSpan="3"/>
+        <ComboBox x:Name="nextRoomComboBox" HorizontalAlignment="Left" VerticalAlignment="Top" Width="227" Margin="93.8,110,0,0" FontSize="15" Grid.Column="2" Grid.ColumnSpan="3">
+            <ComboBox.ItemTemplate>
+                <DataTemplate>
+                    <TextBlock>
+                 <Run Text="{Binding Name}" />
+                    </TextBlock>
+                </DataTemplate>
+            </ComboBox.ItemTemplate>
+        </ComboBox>
+        <TextBox x:Name="quantityTextBox" HorizontalAlignment="Left" Height="26" TextWrapping="Wrap" VerticalAlignment="Top" Width="61" Margin="93.8,184,0,0" FontSize="15" Grid.Column="2" RenderTransformOrigin="0.641,0.181" Grid.ColumnSpan="2"/>
+        <DatePicker x:Name="datePicker" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0,257,67.4,0" FontSize="15" Grid.Column="2" Grid.ColumnSpan="2"/>
+        <ComboBox x:Name="timeComboBox" HorizontalAlignment="Left" VerticalAlignment="Top" Width="227" Margin="93.8,325,0,0" FontSize="15" Grid.Column="2" Grid.ColumnSpan="3">
+            <ComboBoxItem Content="06:00"/>
+            <ComboBoxItem Content="06:15"/>
+            <ComboBoxItem Content="06:30"/>
+            <ComboBoxItem Content="06:45"/>
+            <ComboBoxItem Content="07:00"/>
+            <ComboBoxItem Content="07:15"/>
+            <ComboBoxItem Content="07:30"/>
+            <ComboBoxItem Content="07:45"/>
+            <ComboBoxItem Content="08:00"/>
+            <ComboBoxItem Content="08:15"/>
+            <ComboBoxItem Content="08:30"/>
+            <ComboBoxItem Content="08:45"/>
+            <ComboBoxItem Content="09:00"/>
+            <ComboBoxItem Content="09:15"/>
+            <ComboBoxItem Content="09:30"/>
+            <ComboBoxItem Content="09:45"/>
+            <ComboBoxItem Content="10:00"/>
+            <ComboBoxItem Content="10:15"/>
+            <ComboBoxItem Content="10:30"/>
+            <ComboBoxItem Content="10:45"/>
+            <ComboBoxItem Content="11:00"/>
+            <ComboBoxItem Content="11:15"/>
+            <ComboBoxItem Content="11:30"/>
+            <ComboBoxItem Content="11:45"/>
+            <ComboBoxItem Content="12:00"/>
+            <ComboBoxItem Content="12:15"/>
+            <ComboBoxItem Content="12:30"/>
+            <ComboBoxItem Content="12:45"/>
+            <ComboBoxItem Content="13:00"/>
+            <ComboBoxItem Content="13:15"/>
+            <ComboBoxItem Content="13:30"/>
+            <ComboBoxItem Content="13:45"/>
+            <ComboBoxItem Content="14:00"/>
+            <ComboBoxItem Content="14:15"/>
+            <ComboBoxItem Content="14:30"/>
+            <ComboBoxItem Content="14:45"/>
+            <ComboBoxItem Content="15:00"/>
+            <ComboBoxItem Content="15:15"/>
+            <ComboBoxItem Content="15:30"/>
+            <ComboBoxItem Content="15:45"/>
+            <ComboBoxItem Content="16:00"/>
+            <ComboBoxItem Content="16:15"/>
+            <ComboBoxItem Content="16:30"/>
+            <ComboBoxItem Content="16:45"/>
+            <ComboBoxItem Content="17:00"/>
+            <ComboBoxItem Content="17:15"/>
+            <ComboBoxItem Content="17:30"/>
+            <ComboBoxItem Content="17:45"/>
+            <ComboBoxItem Content="18:00"/>
+            <ComboBoxItem Content="18:15"/>
+            <ComboBoxItem Content="18:30"/>
+            <ComboBoxItem Content="18:45"/>
+            <ComboBoxItem Content="19:00"/>
+            <ComboBoxItem Content="19:15"/>
+            <ComboBoxItem Content="19:30"/>
+            <ComboBoxItem Content="19:45"/>
+            <ComboBoxItem Content="20:00"/>
+            <ComboBoxItem Content="20:15"/>
+            <ComboBoxItem Content="20:30"/>
+            <ComboBoxItem Content="20:45"/>
+            <ComboBoxItem Content="21:00"/>
+            <ComboBoxItem Content="21:15"/>
+            <ComboBoxItem Content="21:30"/>
+            <ComboBoxItem Content="21:45"/>
+            <ComboBoxItem Content="22:00"/>
+        </ComboBox>
+        <Button x:Name="confirmButton" Content="POTVRDI" HorizontalAlignment="Left" VerticalAlignment="Top" Width="120" Height="30" Margin="77.2,405,0,0" FontSize="15" Grid.ColumnSpan="2" Grid.Column="1" Click="confirmButton_Click"/>
+        <Button x:Name="closeButton" Content="IZAĐI" HorizontalAlignment="Left" VerticalAlignment="Top" Width="120" Height="30" Margin="9.8,405,0,0" FontSize="15" Click="closeButton_Click" Grid.Column="3"/>
+
+    </Grid>
+</Window>

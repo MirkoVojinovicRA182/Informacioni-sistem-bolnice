@@ -1,0 +1,21 @@
+﻿<Window x:Class="HospitalInformationSystem.Windows.NotificationsWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:HospitalInformationSystem.Windows"
+        mc:Ignorable="d"
+        Title="NotificationsWindow" Height="450" Width="800">
+    <Grid>
+        <DataGrid x:Name="TherapiesDataGrid" Background="Silver" CanUserAddRows="False" AutoGenerateColumns="False" CanUserResizeColumns="False" IsReadOnly="True" HorizontalAlignment="Left" Height="312" VerticalAlignment="Top" Width="792">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Lek" Width="*" Binding="{Binding Medication}"></DataGridTextColumn>
+                <DataGridTextColumn Header="Doza" Width="*" Binding="{Binding Dosage}"></DataGridTextColumn>
+                <DataGridTextColumn Header="Dani u nedelji" Width="*" Binding="{Binding DaysString}"></DataGridTextColumn>
+                <DataGridTextColumn Header="Vreme" Width="*" Binding="{Binding TimeString}"></DataGridTextColumn>
+                <DataGridTextColumn Header="Notifikacije" Width="*" Binding="{Binding NotificationEnabledString}"></DataGridTextColumn>
+            </DataGrid.Columns>
+        </DataGrid>
+        <Button Content="Notifikacije za selektovanu terapiju" HorizontalAlignment="Left" Margin="280,344,0,0" VerticalAlignment="Top" Width="235" Click="Button_Click" Height="45"/>
+    </Grid>
+</Window>

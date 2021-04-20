@@ -3,6 +3,10 @@ using System;
 using System.Collections.Generic;
 using System.Windows;
 using Model;
+using HospitalInformationSystem.Windows.Manager;
+using System.Collections.ObjectModel;
+using HospitalInformationSystem.Controller;
+using System.Collections;
 
 namespace HospitalInformationSystem.Windows
 {
@@ -12,10 +16,12 @@ namespace HospitalInformationSystem.Windows
     public partial class NewRoomWindow : Window
     {
         private static NewRoomWindow instance = null;
+        private Hashtable equipment;
         private NewRoomWindow()
         {
             InitializeComponent();
             loadComboBox();
+            equipment = new Hashtable();
         }
 
         public static NewRoomWindow getInstance()
@@ -35,11 +41,12 @@ namespace HospitalInformationSystem.Windows
             floorTextBox.Clear();
             typeOfRoomComboBox.SelectedIndex = 0;
 
-            RoomCRUDOperationsWindow.getInstance().refreshTable();
+
+            changeQuantityInMagacineOfDynamicEquipment();
+
+            ManagerMainWindow.getInstance().roomsTable.refreshTable();
 
             MessageBox.Show("Uneta je nova prostorija u sistem.", "Nova prostorija", MessageBoxButton.OK, MessageBoxImage.Information);
-
-
         }
 
         private void createRoom()
@@ -51,7 +58,8 @@ namespace HospitalInformationSystem.Windows
 
             RoomManagement roomManagement = new RoomManagement();
 
-            roomManagement.createRoom(floor, id, name, type /*, lista_inventara*/);
+            roomManagement.createRoom(floor, id, name, type, equipment);
+
         }
 
         private void loadComboBox()
@@ -91,6 +99,7 @@ namespace HospitalInformationSystem.Windows
         private void closeButton_Click(object sender, RoutedEventArgs e)
         {
             this.Close();
+            instance = null;
         }
 
         private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
@@ -98,10 +107,117 @@ namespace HospitalInformationSystem.Windows
             instance = null;
         }
 
-        /* klik_na_inventar_dugme()
-         * {
-         *      lista_inventara = prozorSaInventarom.getInstance().getList();
-         * }*/
+        public void addEquipment(string id, int quantity)
+        {
+            try
+            {
+                this.equipment.Add(id, quantity);
+            }
+            catch(Exception e)
+            {
+                MessageBox.Show("Već ste uneli ovu opremu!Ako ste pogrešili sa prvobitnim unosom, prvo uklonite, pa zatim ponovo unesite opremu.", "Greška", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+
+            refreshDynamicEquipmentListBox();
+            refreshStaticEquipmentListBox();
+        }
+
+        private void addDynamicButton_Click(object sender, RoutedEventArgs e)
+        {
+            AddEquipmentToRoomWindow.getInstance(equipment, "dinamicka", "newRoom").Show();
+        }
+
+        private void addStaticButton_Click(object sender, RoutedEventArgs e)
+        {
+            AddEquipmentToRoomWindow.getInstance(equipment, "staticka", "newRoom").Show();
+        }
+
+        private void removeDynamicButton_Click(object sender, RoutedEventArgs e)
+        {
+            if (dynamicEquipmentListBox.SelectedItem != null)
+            {
+            
+                string nameOfSelectedEquipment = (string)dynamicEquipmentListBox.SelectedItem;
+
+                string[] separator = { " " };
+
+                string[] atributesOfSelectedEquipment = nameOfSelectedEquipment.Split(separator, StringSplitOptions.None);
+
+                equipment.Remove(EquipmentController.getInstance().getEquipmentId(atributesOfSelectedEquipment[0]));
+
+
+                refreshDynamicEquipmentListBox();
+            }
+            else
+                MessageBox.Show("Niste odabrali opremu!", "Greška", MessageBoxButton.OK, MessageBoxImage.Error);
+        }
+
+
+        private void removeStaticButton_Click(object sender, RoutedEventArgs e)
+        {
+            if (staticEquipmentListBox.SelectedItem != null)
+            {
+
+                string nameOfSelectedEquipment = (string)staticEquipmentListBox.SelectedItem;
+
+                string[] separator = { " " };
+
+                string[] atributesOfSelectedEquipment = nameOfSelectedEquipment.Split(separator, StringSplitOptions.None);
+
+                equipment.Remove(EquipmentController.getInstance().getEquipmentId(atributesOfSelectedEquipment[0]));
+
+                refreshStaticEquipmentListBox();
+            }
+            else
+                MessageBox.Show("Niste odabrali opremu!", "Greška", MessageBoxButton.OK, MessageBoxImage.Error);
+        }
+
+
+        private void refreshDynamicEquipmentListBox()
+        {
+            dynamicEquipmentListBox.ItemsSource = null;
+            dynamicEquipmentListBox.ItemsSource = loadDynamicEquimpentInListBox();
+        }
+
+        private void refreshStaticEquipmentListBox()
+        {
+            staticEquipmentListBox.ItemsSource = null;
+            staticEquipmentListBox.ItemsSource = loadStaticEquimpentInListBox();
+        }
+
+        private void changeQuantityInMagacineOfDynamicEquipment()
+        {
+            foreach(DictionaryEntry de in equipment)
+            {
+                EquipmentController.getInstance().changeQuantityInMagacine(de.Key.ToString(), (int)de.Value);
+            }
+        }
+
+        private List<String> loadDynamicEquimpentInListBox()
+        {
+            List<String> list = new List<String>();
+            foreach(DictionaryEntry de in equipment)
+            {
+                string id = EquipmentController.getInstance().getEquipmentName(de.Key.ToString());
+                if(EquipmentController.getInstance().getEquipmentType(de.Key.ToString()) == TypeOfEquipment.Dynamic)
+                    list.Add(id + " x" + de.Value.ToString());
+            }
+
+            return list;
+        }
+
+        private List<String> loadStaticEquimpentInListBox()
+        {
+            List<String> list = new List<String>();
+            foreach (DictionaryEntry de in equipment)
+            {
+                string id = EquipmentController.getInstance().getEquipmentName(de.Key.ToString());
+                if (EquipmentController.getInstance().getEquipmentType(de.Key.ToString()) == TypeOfEquipment.Static)
+                    list.Add(id + " x" + de.Value.ToString());
+            }
+
+            return list;
+        }
     }
 
 }

@@ -21,30 +21,17 @@ namespace HospitalInformationSystem.Windows
     /// <summary>
     /// Interaction logic for RoomCRUDOperationsWindow.xaml
     /// </summary>
-    public partial class RoomCRUDOperationsWindow : Window
+    public partial class RoomCRUDOperationsWindow : UserControl
     {
         private Room selectedRoom = null;
         private ObservableCollection<Room> roomList;
         private RoomManagement roomManagement = new RoomManagement();
 
-        private static RoomCRUDOperationsWindow instance = null; 
-        private RoomCRUDOperationsWindow()
+        public RoomCRUDOperationsWindow()
         {
             InitializeComponent();
 
             refreshTable();
-        }
-
-        public static RoomCRUDOperationsWindow getInstance()
-        {
-            if (instance == null)
-                instance = new RoomCRUDOperationsWindow();
-            return instance;
-        }
-
-        private void addButton_Click(object sender, RoutedEventArgs e)
-        {
-            NewRoomWindow.getInstance().ShowDialog();
         }
 
         private void changeButton_Click(object sender, RoutedEventArgs e)
@@ -69,33 +56,29 @@ namespace HospitalInformationSystem.Windows
             refreshTable();
         }
 
-        private void closeButton_Click(object sender, RoutedEventArgs e)
-        {
-            this.Close();
-        }
-
-        private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
-        {
-            instance = null;
-        }
-
         public void refreshTable()
         {
             roomList = new ObservableCollection<Room>(RoomDataBase.getInstance().getRooms());
             allRoomsTable.ItemsSource = null;
             allRoomsTable.ItemsSource = roomList;
 
-            if(RoomDataBase.getInstance().getRooms().Count != 0)
+            allRoomsTable.AreRowDetailsFrozen = false;
+
+            if (RoomDataBase.getInstance().getRooms().Count != 0)
             {
-                changeButton.IsEnabled = true;
-                deleteButton.IsEnabled = true;
+                //changeButton.IsEnabled = true;
+                //deleteButton.IsEnabled = true;
             }
             else
             {
-                changeButton.IsEnabled = false;
-                deleteButton.IsEnabled = false;
+                //changeButton.IsEnabled = false;
+                //deleteButton.IsEnabled = false;
             }
         }
 
+        private void moveButton_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }

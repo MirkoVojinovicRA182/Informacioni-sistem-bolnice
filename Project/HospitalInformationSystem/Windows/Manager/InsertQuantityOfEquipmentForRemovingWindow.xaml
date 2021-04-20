@@ -1,0 +1,15 @@
+﻿<Window x:Class="HospitalInformationSystem.Windows.Manager.InsertQuantityOfEquipmentForRemovingWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:HospitalInformationSystem.Windows.Manager"
+        mc:Ignorable="d"
+        Title="Oprema" Height="200" Width="320" Closing="Window_Closing">
+    <Grid>
+        <TextBlock HorizontalAlignment="Left" Margin="26,10,0,0" TextWrapping="Wrap" Text="Unesite količinu koju želite da obrišete:" VerticalAlignment="Top" FontSize="15"/>
+        <Button x:Name="submitButton" Content="POTVRDI" HorizontalAlignment="Left" VerticalAlignment="Top" Width="100" Height="30" Margin="92,130,0,0" Click="submitButton_Click"/>
+        <TextBox x:Name="quantityTextBox" HorizontalAlignment="Left" Height="23" Margin="114,57,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="50" RenderTransformOrigin="1.184,0.539"/>
+
+    </Grid>
+</Window>

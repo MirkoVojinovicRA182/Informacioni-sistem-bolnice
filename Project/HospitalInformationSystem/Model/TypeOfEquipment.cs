@@ -8,11 +8,7 @@ namespace Model
 {
     public enum TypeOfEquipment
     {
-        HospitalFurniture,
-        OfficeFurniture,
-        Clothing,
-        LaboratoryEquipment,
-        PhishioterapyEquipment,
-        ElectroMedicalEquipment
+        Static,
+        Dynamic
     }
 }

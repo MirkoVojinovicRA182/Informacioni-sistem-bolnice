@@ -8,6 +8,8 @@ using Model;
 using HospitalInformationSystem.Windows;
 using HospitalInformationSystem.BusinessLogic;
 using System.Collections.Generic;
+using System.Collections;
+using HospitalInformationSystem.Controller;
 
 namespace BusinessLogic
 {
@@ -17,10 +19,11 @@ namespace BusinessLogic
         {
             // TODO: implement
         }
-        public void createRoom(int floor, int id, string name, TypeOfRoom type)
+        public void createRoom(int floor, int id, string name, TypeOfRoom type, Hashtable equipment)
         {
             // TODO: implement
             Room newRoom = new Room(id, name, floor, type);
+            newRoom.Equipment = equipment;
 
             RoomDataBase.getInstance().addRoom(newRoom);
 
@@ -49,14 +52,52 @@ namespace BusinessLogic
             
         }
 
-        public void changeRoom(Room room, int newId, string newName, TypeOfRoom newType, int newFloor)
+        public void changeRoom(Room room, int newId, string newName, TypeOfRoom newType, int newFloor, Hashtable equipment)
         {
             // TODO: implement
             room.Id = newId;
             room.Name = newName;
             room.Type = newType;
             room.Floor = newFloor;
+            room.Equipment = equipment;
 
+        }
+
+        public void deleteEquipment(string id)
+        {
+            List<Room> rooms = RoomDataBase.getInstance().getRooms();
+            foreach(Room room in rooms)
+            {
+                if (room.Equipment.Contains(id))
+                    room.Equipment.Remove(id);
+            }
+        }
+
+        public List<Room> getRooms()
+        {
+            return RoomDataBase.getInstance().getRooms();
+        }
+
+        public void changeStaticEquipmentState(Room room, int currentQuantity, int moveQuantity, string key)
+        {
+            room.Equipment[key] = currentQuantity - moveQuantity;
+
+            if ((currentQuantity - moveQuantity) == 0)
+                room.Equipment.Remove(key);
+            
+        }
+
+        public void moveStaticEqToNextRoom(Room room, int moveQuantity, string key)
+        {
+            if (room.Equipment.Contains(key))
+            {
+                int currentQuantity = (int)room.Equipment[key];
+                room.Equipment[key] = currentQuantity + moveQuantity;
+            }
+            else
+            {
+                room.Equipment.Add(key, moveQuantity);
+            }
         }
     }
 }

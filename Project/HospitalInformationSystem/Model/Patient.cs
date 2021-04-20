@@ -5,6 +5,7 @@
  * Purpose: Definition of the Class Model.Patient
  ***********************************************************************/
 
+using HospitalInformationSystem.Model;
 using System;
 
 namespace Model
@@ -12,6 +13,9 @@ namespace Model
     [Serializable]
     public class Patient : Person
     {
+
+        private MedicalRecord medicalRecord;
+
         public Patient()
         {
             // TODO: implement
@@ -87,6 +91,16 @@ namespace Model
                     oldAppointment.SetPatient((Patient)null);
                 tmpAppointment.Clear();
             }
+        }
+
+        public void setMedicalRecord(MedicalRecord medicalRecord)
+        {
+            this.medicalRecord = medicalRecord;
+        }
+
+        public MedicalRecord GetMedicalRecord()
+        {
+            return medicalRecord;
         }
 
     }

@@ -71,5 +71,10 @@ namespace BusinessLogic
                     room.Equipment.Remove(id);
             }
         }
+
+        public List<Room> getRooms()
+        {
+            return RoomDataBase.getInstance().getRooms();
+        }
     }
 }

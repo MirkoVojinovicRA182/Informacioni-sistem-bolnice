@@ -259,5 +259,16 @@ namespace HospitalInformationSystem.Windows
 
             return list;
         }
+
+        private void moveStaticEquipmentButton_Click(object sender, RoutedEventArgs e)
+        {
+            if (staticEquipmentListBox.SelectedItem != null)
+            {
+                StaticEquipmentDeploymentWindow.getInstance(selectedRoom).Show();
+            }
+            else
+                MessageBox.Show("Niste odabrali opremu!", "Greška", MessageBoxButton.OK, MessageBoxImage.Error);
+
+        }
     }
 }

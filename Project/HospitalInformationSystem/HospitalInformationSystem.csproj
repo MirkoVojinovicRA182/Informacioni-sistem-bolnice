@@ -117,6 +117,9 @@
     <Compile Include="Windows\Manager\NewEquipment.xaml.cs">
       <DependentUpon>NewEquipment.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Windows\Manager\StaticEquipmentDeploymentWindow.xaml.cs">
+      <DependentUpon>StaticEquipmentDeploymentWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Windows\NewPatientAppointmentWindow.xaml.cs" />
     <Compile Include="Windows\NewRoomWindow.xaml.cs">
       <DependentUpon>NewRoomWindow.xaml</DependentUpon>
@@ -204,6 +207,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Windows\Manager\NewEquipment.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Windows\Manager\StaticEquipmentDeploymentWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

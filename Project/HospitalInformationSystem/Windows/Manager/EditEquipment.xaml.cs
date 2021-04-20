@@ -42,6 +42,7 @@ namespace HospitalInformationSystem.Windows.Manager
         private void changeButton_Click(object sender, RoutedEventArgs e)
         {
             string id = idTextBox.Text;
+
             string name = nameTextBox.Text;
             TypeOfEquipment typeOfEquipment;
             if (typeComboBox.SelectedIndex == 0)

@@ -150,5 +150,16 @@ namespace HospitalInformationSystem.Service
             }
             return foundedId;
         }
+
+        public TypeOfEquipment getEquipmentType(string id)
+        {
+            TypeOfEquipment type = TypeOfEquipment.Static;
+            foreach (Equipment eq in equipmentList)
+            {
+                if (string.Equals(eq.Id, id))
+                    type = eq.Type;
+            }
+            return type;
+        }
     }
 }

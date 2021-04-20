@@ -45,7 +45,7 @@
             </ListBox.ItemTemplate>
         </ListBox>
         <TextBlock Grid.Column="2" HorizontalAlignment="Left" Margin="240.6,5,0,0" TextWrapping="Wrap" Text="Statička oprema:" VerticalAlignment="Top" RenderTransformOrigin="1.987,0.65" Grid.ColumnSpan="3" Width="132" FontSize="15" Height="20"/>
-        <Button x:Name="addStaticButton" Content="+" HorizontalAlignment="Left" VerticalAlignment="Top" Width="30" Height="30" Grid.Column="4" Margin="78,31,0,0" FontSize="15"/>
+        <Button x:Name="addStaticButton" Content="+" HorizontalAlignment="Left" VerticalAlignment="Top" Width="30" Height="30" Grid.Column="4" Margin="78,31,0,0" FontSize="15" Click="addStaticButton_Click"/>
         <Button x:Name="removeStaticButton" Content="X" HorizontalAlignment="Left" VerticalAlignment="Top" Width="30" Height="30" Grid.Column="4" Margin="78,70,0,0"/>
         <TextBlock Grid.Column="4" HorizontalAlignment="Left" Margin="122,40,0,0" TextWrapping="Wrap" Text="dodavanje nove" VerticalAlignment="Top" RenderTransformOrigin="1.987,0.65" FontStyle="Italic" Height="16" Width="82"/>
         <TextBlock Grid.Column="4" HorizontalAlignment="Left" Margin="122,77,0,0" TextWrapping="Wrap" Text="uklanjanje odabrane" VerticalAlignment="Top" RenderTransformOrigin="1.987,0.65" FontStyle="Italic" Width="110" Height="16"/>

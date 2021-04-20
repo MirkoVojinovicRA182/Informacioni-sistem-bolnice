@@ -17,13 +17,11 @@ namespace HospitalInformationSystem.Windows
     {
         private static NewRoomWindow instance = null;
         private Hashtable equipment;
-        private List<Equipment> dynamicEquipment;
         private NewRoomWindow()
         {
             InitializeComponent();
             loadComboBox();
             equipment = new Hashtable();
-            dynamicEquipment = new List<Equipment>();
         }
 
         public static NewRoomWindow getInstance()
@@ -121,11 +119,17 @@ namespace HospitalInformationSystem.Windows
             }
 
             refreshDynamicEquipmentListBox();
+            refreshStaticEquipmentListBox();
         }
 
         private void addDynamicButton_Click(object sender, RoutedEventArgs e)
         {
             AddEquipmentToRoomWindow.getInstance("staticka", "newRoom").Show();
+        }
+
+        private void addStaticButton_Click(object sender, RoutedEventArgs e)
+        {
+            AddEquipmentToRoomWindow.getInstance("dinamicka", "newRoom").Show();
         }
 
         private void removeDynamicButton_Click(object sender, RoutedEventArgs e)
@@ -143,6 +147,7 @@ namespace HospitalInformationSystem.Windows
 
 
                 refreshDynamicEquipmentListBox();
+                refreshStaticEquipmentListBox();
             }
             else
                 MessageBox.Show("Niste odabrali opremu!", "Greška", MessageBoxButton.OK, MessageBoxImage.Error);
@@ -151,7 +156,13 @@ namespace HospitalInformationSystem.Windows
         private void refreshDynamicEquipmentListBox()
         {
             dynamicEquipmentListBox.ItemsSource = null;
-            dynamicEquipmentListBox.ItemsSource = loadEquimpentInListBox();
+            dynamicEquipmentListBox.ItemsSource = loadDynamicEquimpentInListBox();
+        }
+
+        private void refreshStaticEquipmentListBox()
+        {
+            staticEquipmentListBox.ItemsSource = null;
+            staticEquipmentListBox.ItemsSource = loadStaticEquimpentInListBox();
         }
 
         private void changeQuantityInMagacineOfDynamicEquipment()
@@ -162,17 +173,32 @@ namespace HospitalInformationSystem.Windows
             }
         }
 
-        private List<String> loadEquimpentInListBox()
+        private List<String> loadDynamicEquimpentInListBox()
         {
             List<String> list = new List<String>();
             foreach(DictionaryEntry de in equipment)
             {
                 string id = EquipmentController.getInstance().getEquipmentName(de.Key.ToString());
-                list.Add(id + " x" + de.Value.ToString());
+                if(EquipmentController.getInstance().getEquipmentType(de.Key.ToString()) == TypeOfEquipment.Dynamic)
+                    list.Add(id + " x" + de.Value.ToString());
             }
 
             return list;
-        }       
+        }
+
+        private List<String> loadStaticEquimpentInListBox()
+        {
+            List<String> list = new List<String>();
+            foreach (DictionaryEntry de in equipment)
+            {
+                string id = EquipmentController.getInstance().getEquipmentName(de.Key.ToString());
+                if (EquipmentController.getInstance().getEquipmentType(de.Key.ToString()) == TypeOfEquipment.Static)
+                    list.Add(id + " x" + de.Value.ToString());
+            }
+
+            return list;
+        }
+
     }
 
 }

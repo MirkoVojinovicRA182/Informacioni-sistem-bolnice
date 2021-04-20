@@ -121,52 +121,6 @@ namespace HospitalInformationSystem.Windows
             else
                 MessageBox.Show("Niste odabrali opremu!", "Greška", MessageBoxButton.OK, MessageBoxImage.Error);
         }
-
-
-        private void removeStaticButton_Click(object sender, RoutedEventArgs e)
-        {
-            if (staticEquipmentListBox.SelectedItem != null)
-            {
-                //DictionaryEntry de = (DictionaryEntry)dynamicEquipmentListBox.SelectedItem;
-
-                string nameOfSelectedEquipment = (string)staticEquipmentListBox.SelectedItem;
-
-                string[] separator = { " x", };
-
-                string[] atributesOfSelectedEquipment = nameOfSelectedEquipment.Split(separator, StringSplitOptions.None);
-
-                string key = EquipmentController.getInstance().getEquipmentId(atributesOfSelectedEquipment[0]);
-                int value = int.Parse(atributesOfSelectedEquipment[1]);
-
-
-                InsertQuantityOfEquipmentForRemovingWindow.getInstance().ShowDialog();
-
-                if (InsertQuantityOfEquipmentForRemovingWindow.itSubmitted)
-                {
-                    //int currentQuantity = (int)de.Value;
-                    int currentQuantity = value;
-                    int removedQuantity = InsertQuantityOfEquipmentForRemovingWindow.getQuantity();
-                    distinction = currentQuantity - removedQuantity;
-                    if (distinction == 0)
-                    {
-                        //this.equipment.Remove(de.Key);
-                        this.equipment.Remove(key);
-                    }
-                    else
-                        //equipment[de.Key] = distinction; //razlika izmedju stare kolicine i kolicine koja zeli da se ukloni iz sistema
-                        equipment[key] = distinction;
-
-                    //allDistinctions.Add(de.Key, removedQuantity);
-                    allDistinctions.Add(key, removedQuantity);
-
-                    refreshStaticEquipmentListBox();
-                }
-
-            }
-            else
-                MessageBox.Show("Niste odabrali opremu!", "Greška", MessageBoxButton.OK, MessageBoxImage.Error);
-        }
-
         private void changeRoomButton_Click(object sender, RoutedEventArgs e)
         {
             RoomManagement management = new RoomManagement();

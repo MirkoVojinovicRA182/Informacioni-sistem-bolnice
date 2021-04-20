@@ -69,6 +69,7 @@
     <Compile Include="Model\Patient.cs" />
     <Compile Include="Model\PatientDataBase.cs" />
     <Compile Include="Model\Person.cs" />
+    <Compile Include="Model\Prescription.cs" />
     <Compile Include="Model\Room.cs" />
     <Compile Include="Model\RoomDataBase.cs" />
     <Compile Include="Model\Secretary.cs" />
@@ -76,6 +77,9 @@
     <Compile Include="Model\TypeOfAppointment.cs" />
     <Compile Include="Model\TypeOfEquipment.cs" />
     <Compile Include="Model\TypeOfRoom.cs" />
+    <Compile Include="Windows\AddPrescriptionWindow.xaml.cs">
+      <DependentUpon>AddPrescriptionWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Windows\AmnesisPreviewWindow.xaml.cs">
       <DependentUpon>AmnesisPreviewWindow.xaml</DependentUpon>
     </Compile>
@@ -138,6 +142,10 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="Windows\AddPrescriptionWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Windows\AmnesisPreviewWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>

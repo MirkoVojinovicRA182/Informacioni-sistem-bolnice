@@ -48,5 +48,12 @@ namespace HospitalInformationSystem.Windows
 
             amnesisPreviewWindow.ShowDialog();
         }
+
+        private void addPrescriptionButton_Click(object sender, RoutedEventArgs e)
+        {
+            AddPrescriptionWindow addPrescriptionWindow = new AddPrescriptionWindow(patient.GetMedicalRecord());
+
+            addPrescriptionWindow.ShowDialog();
+        }
     }
 }

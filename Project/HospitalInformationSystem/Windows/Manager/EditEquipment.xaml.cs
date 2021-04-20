@@ -46,8 +46,10 @@ namespace HospitalInformationSystem.Windows.Manager
             TypeOfEquipment typeOfEquipment;
             if (typeComboBox.SelectedIndex == 0)
                 typeOfEquipment = TypeOfEquipment.Static;
-            else
+            else if (typeComboBox.SelectedIndex == 1)
                 typeOfEquipment = TypeOfEquipment.Dynamic;
+            else
+                typeOfEquipment = selectedEquipment.Type;
             int quantityInMagacine = int.Parse(quanitityTextBox.Text);
             string description = descriptionTextBox.Text;
 

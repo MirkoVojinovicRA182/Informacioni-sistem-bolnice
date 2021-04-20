@@ -107,7 +107,7 @@ namespace HospitalInformationSystem.Windows
             instance = null;
         }
 
-        public void addDynamicEquipment(string id, int quantity)
+        public void addEquipment(string id, int quantity)
         {
             try
             {
@@ -147,11 +147,31 @@ namespace HospitalInformationSystem.Windows
 
 
                 refreshDynamicEquipmentListBox();
+            }
+            else
+                MessageBox.Show("Niste odabrali opremu!", "Greška", MessageBoxButton.OK, MessageBoxImage.Error);
+        }
+
+
+        private void removeStaticButton_Click(object sender, RoutedEventArgs e)
+        {
+            if (staticEquipmentListBox.SelectedItem != null)
+            {
+
+                string nameOfSelectedEquipment = (string)staticEquipmentListBox.SelectedItem;
+
+                string[] separator = { " " };
+
+                string[] atributesOfSelectedEquipment = nameOfSelectedEquipment.Split(separator, StringSplitOptions.None);
+
+                equipment.Remove(EquipmentController.getInstance().getEquipmentId(atributesOfSelectedEquipment[0]));
+
                 refreshStaticEquipmentListBox();
             }
             else
                 MessageBox.Show("Niste odabrali opremu!", "Greška", MessageBoxButton.OK, MessageBoxImage.Error);
         }
+
 
         private void refreshDynamicEquipmentListBox()
         {
@@ -198,7 +218,6 @@ namespace HospitalInformationSystem.Windows
 
             return list;
         }
-
     }
 
 }

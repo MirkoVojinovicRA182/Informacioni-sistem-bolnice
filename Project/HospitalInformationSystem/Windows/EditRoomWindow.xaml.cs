@@ -58,6 +58,26 @@ namespace HospitalInformationSystem.Windows
             AddEquipmentToRoomWindow.getInstance("staticka", "editRoom").Show();
         }
 
+        private void addStaticButton_Click(object sender, RoutedEventArgs e)
+        {
+            AddEquipmentToRoomWindow.getInstance("dinamicka", "editRoom").Show();
+        }
+
+        public void addEquipment(string id, int quantity)
+        {
+            try
+            {
+                newEquipment.Add(id, quantity);
+                equipment.Add(id, quantity);
+            }
+            catch (Exception e)
+            {
+                MessageBox.Show("Već ste uneli ovu opremu!Ako ste pogrešili sa prvobitnim unosom, prvo uklonite, pa zatim ponovo unesite opremu.", "Greška", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+
+            refreshDynamicEquipmentListBox();
+            refreshStaticEquipmentListBox();
+        }
         private void removeDynamicButton_Click(object sender, RoutedEventArgs e)
         {
             if (dynamicEquipmentListBox.SelectedItem != null)
@@ -95,6 +115,51 @@ namespace HospitalInformationSystem.Windows
                     allDistinctions.Add(key, removedQuantity);
 
                     refreshDynamicEquipmentListBox();
+                }
+
+            }
+            else
+                MessageBox.Show("Niste odabrali opremu!", "Greška", MessageBoxButton.OK, MessageBoxImage.Error);
+        }
+
+
+        private void removeStaticButton_Click(object sender, RoutedEventArgs e)
+        {
+            if (staticEquipmentListBox.SelectedItem != null)
+            {
+                //DictionaryEntry de = (DictionaryEntry)dynamicEquipmentListBox.SelectedItem;
+
+                string nameOfSelectedEquipment = (string)staticEquipmentListBox.SelectedItem;
+
+                string[] separator = { " x", };
+
+                string[] atributesOfSelectedEquipment = nameOfSelectedEquipment.Split(separator, StringSplitOptions.None);
+
+                string key = EquipmentController.getInstance().getEquipmentId(atributesOfSelectedEquipment[0]);
+                int value = int.Parse(atributesOfSelectedEquipment[1]);
+
+
+                InsertQuantityOfEquipmentForRemovingWindow.getInstance().ShowDialog();
+
+                if (InsertQuantityOfEquipmentForRemovingWindow.itSubmitted)
+                {
+                    //int currentQuantity = (int)de.Value;
+                    int currentQuantity = value;
+                    int removedQuantity = InsertQuantityOfEquipmentForRemovingWindow.getQuantity();
+                    distinction = currentQuantity - removedQuantity;
+                    if (distinction == 0)
+                    {
+                        //this.equipment.Remove(de.Key);
+                        this.equipment.Remove(key);
+                    }
+                    else
+                        //equipment[de.Key] = distinction; //razlika izmedju stare kolicine i kolicine koja zeli da se ukloni iz sistema
+                        equipment[key] = distinction;
+
+                    //allDistinctions.Add(de.Key, removedQuantity);
+                    allDistinctions.Add(key, removedQuantity);
+
+                    refreshStaticEquipmentListBox();
                 }
 
             }
@@ -184,27 +249,19 @@ namespace HospitalInformationSystem.Windows
             fiilTypeComboBox(selectedRoom.Type);
             equipment = selectedRoom.Equipment;
             refreshDynamicEquipmentListBox();
+            refreshStaticEquipmentListBox();
         }
 
         private void refreshDynamicEquipmentListBox()
         {
             dynamicEquipmentListBox.ItemsSource = null;
-            dynamicEquipmentListBox.ItemsSource = loadEquimpentInListBox();
+            dynamicEquipmentListBox.ItemsSource = loadDynamicEquimpentInListBox();
         }
 
-        public void addDynamicEquipment(string id, int quantity)
+        private void refreshStaticEquipmentListBox()
         {
-            try
-            {
-                newEquipment.Add(id, quantity);
-                equipment.Add(id, quantity);
-            }
-            catch (Exception e)
-            {
-                MessageBox.Show("Već ste uneli ovu opremu!Ako ste pogrešili sa prvobitnim unosom, prvo uklonite, pa zatim ponovo unesite opremu.", "Greška", MessageBoxButton.OK, MessageBoxImage.Error);
-            }
-
-            refreshDynamicEquipmentListBox();
+            staticEquipmentListBox.ItemsSource = null;
+            staticEquipmentListBox.ItemsSource = loadStaticEquimpentInListBox();
         }
 
         private void changeQuantityInMagacineOfDynamicEquipment()
@@ -223,13 +280,27 @@ namespace HospitalInformationSystem.Windows
             }
         }
 
-        private List<String> loadEquimpentInListBox()
+        private List<String> loadDynamicEquimpentInListBox()
         {
             List<String> list = new List<String>();
             foreach (DictionaryEntry de in equipment)
             {
                 string id = EquipmentController.getInstance().getEquipmentName(de.Key.ToString());
-                list.Add(id + " x" + de.Value.ToString());
+                if (EquipmentController.getInstance().getEquipmentType(de.Key.ToString()) == TypeOfEquipment.Dynamic)
+                    list.Add(id + " x" + de.Value.ToString());
+            }
+
+            return list;
+        }
+
+        private List<String> loadStaticEquimpentInListBox()
+        {
+            List<String> list = new List<String>();
+            foreach (DictionaryEntry de in equipment)
+            {
+                string id = EquipmentController.getInstance().getEquipmentName(de.Key.ToString());
+                if (EquipmentController.getInstance().getEquipmentType(de.Key.ToString()) == TypeOfEquipment.Static)
+                    list.Add(id + " x" + de.Value.ToString());
             }
 
             return list;

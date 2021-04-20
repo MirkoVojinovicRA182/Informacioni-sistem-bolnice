@@ -66,9 +66,9 @@ namespace HospitalInformationSystem.Windows.Manager
             quantity = int.Parse(quantityTextBox.Text);
 
             if (string.Equals(window, "newRoom"))
-                NewRoomWindow.getInstance().addDynamicEquipment(selectedEquipment.Id, quantity);
+                NewRoomWindow.getInstance().addEquipment(selectedEquipment.Id, quantity);
             else
-                EditRoomWindow.getInstance((Room)SelectRoomWindow.getInstance(1).roomsComboBox.SelectedItem).addDynamicEquipment(selectedEquipment.Id, quantity);
+                EditRoomWindow.getInstance((Room)SelectRoomWindow.getInstance(1).roomsComboBox.SelectedItem).addEquipment(selectedEquipment.Id, quantity);
 
             instance = null;
         }

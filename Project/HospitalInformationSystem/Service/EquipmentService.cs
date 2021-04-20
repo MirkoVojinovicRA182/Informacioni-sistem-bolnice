@@ -161,5 +161,15 @@ namespace HospitalInformationSystem.Service
             }
             return type;
         }
+
+        public Equipment findEquipment(string id)
+        {
+            foreach(Equipment eq in equipmentList)
+            {
+                if (string.Equals(eq.Id, id))
+                    return eq;
+            }
+            return null;
+        }
     }
 }

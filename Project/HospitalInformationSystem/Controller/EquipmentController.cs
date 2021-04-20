@@ -94,5 +94,10 @@ namespace HospitalInformationSystem.Controller
         {
             return equipmentService.getEquipmentType(id);
         }
+
+        public Equipment findEquipment(string id)
+        {
+            return equipmentService.findEquipment(id);
+        }
     }
 }

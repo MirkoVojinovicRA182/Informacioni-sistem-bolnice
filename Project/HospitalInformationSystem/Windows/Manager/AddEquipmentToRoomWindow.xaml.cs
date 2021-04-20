@@ -1,4 +1,5 @@
-﻿using HospitalInformationSystem.Controller;
+﻿using BusinessLogic;
+using HospitalInformationSystem.Controller;
 using HospitalInformationSystem.Windows.Manager.Help;
 using Model;
 using System;
@@ -30,28 +31,42 @@ namespace HospitalInformationSystem.Windows.Manager
         private int quantity;
         private string window;
 
-        public static AddEquipmentToRoomWindow getInstance(string equipment, string window)
+        public static AddEquipmentToRoomWindow getInstance(Hashtable roomEq, string equipment, string window)
         {
             if (instance == null)
-                instance = new AddEquipmentToRoomWindow(equipment, window);
+                instance = new AddEquipmentToRoomWindow(roomEq, equipment, window);
             return instance;
         }
-        private AddEquipmentToRoomWindow(string equipment, string window)
+        private AddEquipmentToRoomWindow(Hashtable roomEq, string equipment, string window)
         {
             InitializeComponent();
-            loadEquipment(equipment);
+            loadEquipment(equipment, roomEq);
             this.window = window;
         }
 
-        private void loadEquipment(string equipment)
+        private void loadEquipment(string equipment, Hashtable roomEq)
         {
-            if(string.Equals(equipment, "staticka"))
-                equipmentList = new ObservableCollection<Equipment>(EquipmentController.getInstance().getDynamicEquipment());
-            else
-                equipmentList = new ObservableCollection<Equipment>(EquipmentController.getInstance().getStaticEquipment());
 
-            dynamicEquipmentListBox.ItemsSource = null;
-            dynamicEquipmentListBox.ItemsSource = equipmentList;
+
+            if (string.Equals(equipment, "dinamicka"))
+            {
+                equipmentList = new ObservableCollection<Equipment>(EquipmentController.getInstance().getDynamicEquipment());
+                foreach (DictionaryEntry de in roomEq)
+                {
+                    equipmentList.Remove(EquipmentController.getInstance().findEquipment(de.Key.ToString()));
+                }
+            }
+            else
+            {
+                equipmentList = new ObservableCollection<Equipment>(EquipmentController.getInstance().getStaticEquipment());
+                foreach (DictionaryEntry de in roomEq)
+                {
+                    equipmentList.Remove(EquipmentController.getInstance().findEquipment(de.Key.ToString()));
+                }
+            }
+
+            equipmentListBox.ItemsSource = null;
+            equipmentListBox.ItemsSource = equipmentList;
         }
 
         private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
@@ -62,7 +77,7 @@ namespace HospitalInformationSystem.Windows.Manager
         private void confirmButton_Click(object sender, RoutedEventArgs e)
         {
             this.Close();
-            selectedEquipment = (Equipment)dynamicEquipmentListBox.SelectedItem;
+            selectedEquipment = (Equipment)equipmentListBox.SelectedItem;
             quantity = int.Parse(quantityTextBox.Text);
 
             if (string.Equals(window, "newRoom"))

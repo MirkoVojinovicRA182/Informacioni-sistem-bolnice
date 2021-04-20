@@ -55,12 +55,12 @@ namespace HospitalInformationSystem.Windows
 
         private void addDynamicButton_Click(object sender, RoutedEventArgs e)
         {
-            AddEquipmentToRoomWindow.getInstance("staticka", "editRoom").Show();
+            AddEquipmentToRoomWindow.getInstance(selectedRoom.Equipment, "dinamicka", "editRoom").Show();
         }
 
         private void addStaticButton_Click(object sender, RoutedEventArgs e)
         {
-            AddEquipmentToRoomWindow.getInstance("dinamicka", "editRoom").Show();
+            AddEquipmentToRoomWindow.getInstance(selectedRoom.Equipment, "staticka", "editRoom").Show();
         }
 
 
@@ -159,7 +159,6 @@ namespace HospitalInformationSystem.Windows
         private void closeButton_Click(object sender, RoutedEventArgs e)
         {
             this.Close();
-            instance = null;
         }
 
 
@@ -224,10 +223,10 @@ namespace HospitalInformationSystem.Windows
             nameTextBox.Text = selectedRoom.Name;
             floorTextBox.Text = selectedRoom.Floor.ToString();
             fiilTypeComboBox(selectedRoom.Type);
-            equipment = null;
             equipment = selectedRoom.Equipment;
             refreshDynamicEquipmentListBox();
             refreshStaticEquipmentListBox();
+            equipment = new Hashtable();
         }
 
         private void refreshDynamicEquipmentListBox()

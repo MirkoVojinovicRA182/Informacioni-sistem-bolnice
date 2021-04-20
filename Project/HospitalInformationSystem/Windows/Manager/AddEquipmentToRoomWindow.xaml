@@ -7,7 +7,7 @@
         mc:Ignorable="d"
         Title="Oprema" Height="270" Width="250" Closing="Window_Closing">
     <Grid>
-        <ListBox x:Name="dynamicEquipmentListBox" HorizontalAlignment="Left" Height="80" VerticalAlignment="Top" Width="220" Margin="10,49,0,0">
+        <ListBox x:Name="equipmentListBox" HorizontalAlignment="Left" Height="80" VerticalAlignment="Top" Width="220" Margin="10,49,0,0">
             <ListBox.ItemTemplate>
                 <DataTemplate>
                     <TextBlock Text="{Binding getNameQuantityForNewRoom}" />

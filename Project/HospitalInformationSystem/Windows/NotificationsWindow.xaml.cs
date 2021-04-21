@@ -1,4 +1,4 @@
-﻿using HospitalInformationSystem.Model;
+﻿
 using Model;
 using System;
 using System.Collections.Generic;
@@ -22,8 +22,8 @@ namespace HospitalInformationSystem.Windows
     /// </summary>
     public partial class NotificationsWindow : Window
     {
-        private Patient patient;
-        public NotificationsWindow(Patient patient)
+        private Model.Patient patient;
+        public NotificationsWindow(Model.Patient patient)
         {
             InitializeComponent();
             this.patient = patient;

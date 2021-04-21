@@ -1,20 +1,9 @@
-﻿using BusinessLogic;
-using HospitalInformationSystem.BusinessLogic;
+﻿using HospitalInformationSystem.BusinessLogic;
 using Model;
 using System;
 using System.Collections.Generic;
 using System.Globalization;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
 
 namespace HospitalInformationSystem.Windows
 {
@@ -32,7 +21,7 @@ namespace HospitalInformationSystem.Windows
 
             var list = database.GetDoctors();
 
-            DoctorComboBox.ItemsSource = list;
+            doctorComboBox.ItemsSource = list;
 
             initPatients();
         }
@@ -56,7 +45,7 @@ namespace HospitalInformationSystem.Windows
             string dateTime = date + " " + time;
             CultureInfo provider = CultureInfo.InvariantCulture;
             DateTime startTime = DateTime.ParseExact(dateTime, "dd.MM.yyyy. HH:mm", provider);
-            Doctor doctor = (Doctor)DoctorComboBox.SelectedItem;
+            Doctor doctor = (Doctor)doctorComboBox.SelectedItem;
 
             AppointmentManagement patientAppointmentManagement = new AppointmentManagement();
 
@@ -71,7 +60,7 @@ namespace HospitalInformationSystem.Windows
 
         private void initPatients()
         {
-            DoctorComboBox.ItemsSource = DoctorDataBase.getInstance().GetDoctors();
+            patientComboBox.ItemsSource = PatientDataBase.getInstance().getPatient();
         }
 
     }

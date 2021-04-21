@@ -1,5 +1,4 @@
-﻿using HospitalInformationSystem.Windows.Patient;
-using System.Windows;
+﻿using System.Windows;
 
 namespace HospitalInformationSystem.Windows.PatientAccountsWindows
 {

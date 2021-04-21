@@ -1,5 +1,4 @@
 ﻿using BusinessLogic;
-using HospitalInformationSystem.Windows.Patient;
 using System;
 using System.Linq;
 using System.Windows;

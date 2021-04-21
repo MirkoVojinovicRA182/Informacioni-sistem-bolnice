@@ -1,0 +1,56 @@
+--Ispravke za drugu KT
+	1) Pacijent (Đorđe Savić)
+		-U tabeli termina dodat je prikaz sobe u kojoj se termin odvija.
+	2) Lekar (Radiša Milovčević)
+		-Prepravljen je prozor za dodavanje termina.
+		(Kada se selektuje da je vrsta termina operacija mora se odabrati operaciona sala,
+		takođe je lekarima dodeljena prostorija za pregled tako da se prilikom kreiranja
+		termina za pregled ne vrši odabir prostorije.)
+		-Ispravljen je prikaz u combo-box-u (Umesto Model.Patient i Model.Doctor sada stoje
+		imena i prezimena).
+	3) Sekretar (Darko Panić)
+		-Dodata su polja za osobu i pacijenta koja su nedostajala.
+	4) Upravnik (Mirko Vojinović)
+		-Nije bilo ispravki za drugu KT.
+
+	-Na prethodnoj KT projekti su bili na različitim granama i nisu bili spojeni što je sada ispravljeno.
+
+--Funkcionalnosti odrađene za treću kontrolnu tačku
+	1) Pacijent (Đorđe Savić)
+		-Pacijent može uredjivati notifikacije za lekove.
+		-Pacijent može pomeriti termin najkasnije dan pre samog termina i može ga pomjeriti najviše dva dana unapred ili unazad.
+		-Dodata je mogućnost zakazivanja termina po preporuci.
+	2) Lekar (Radiša Milovčević)
+		-Dodat je zdravstveni karton i njegov prikaz.
+		-Lekar može da ima pregled sopstvenih obaveza i informacije o svakom terminu.
+		-Lekar iz prikaza termina može pregledati informacije o pacijentu.
+		-Lekar može videti zdravstveni karton pacijenta.
+		-Lekar može dodavati anamneze i izdavati recepte pacijentu.
+		-Lekar ima pregled anamneza i recepata pacijenta iz zdravstvenog kartona.
+		-Vreme nije simulrano.
+	3) Sekretar (Darko Panić)
+		-
+	4) Upravnik (Mirko Vojinović)
+		-Sve zahtevane funkcionalnosti su odrađene osim simuliranja vremena(Pomeranje opreme se vrši
+		odmah nakon zakazivanja pomeranja).
+
+--Revidiranje odradjenih dijagrama
+	-Izdavanje recepta (Dijagram aktivnosti) Odradio: Radiša Milovčević, Revidira: Mirko Vojinović
+		-Zamerka za dijagram aktivnosti za izdavanje recepta:
+			-Staviti objekat zdravstveni karton kako bi se naglasila izmena koja se desila(Dodat je recept).
+			-Nakon dodavanja recepta uz karton uz ažuriranje kartona bilo bi dobro paralelno obavestiti
+			pacijenta o izdatom receptu.
+
+	-Premeštanje statičke opreme (Dijagram sekvence) Odradio: Mirko Vojinović, Revidira: Radiša Milovčević
+		-Zamerka za dijagram sekvence za premeštanje statičke opreme:
+			-RoomManagment bi trebalo zameniti sa dve klase RoomService i RoomControler koje bi zamenile
+			funkcionalnosti koje ima RoomManagment.
+	-Pomeranje termina (Dijagram aktivnosti) Odradio: Đorđe Savić, Revidira: Darko Panić
+		-Zamerke za dijagram aktivnosti za pomeranje termina:
+			-Trebalo je dodati proveru da li se termin može pomerit(Da li se izmena vrši najmanje 24 sata 
+			od zakazanog termina, i da li je izmena najmanje 2 dana od zakazanog termina)
+			-Zatvaranje forme za izmenu, ažuriranje termina i ažuriranje tabele se mogu vršiti paralelno
+			kako bi se proces ubrzao.
+	-Zakazivanje vanrednog termina(Dijagram sekvence) Odradio: Darko Panić, Revidira: Đorđe Savić
+		-Zamerke za dijagram sekvence za zakazivanje vanrednog termina:
+			-Koristio je na dijagramu kontroler iz servis klase dok je implementacija drugačije odrađena.

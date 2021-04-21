@@ -38,20 +38,23 @@ namespace WorkWithFiles
 
         public bool LoadFromFile()
         {
-            FileStream fs = new FileStream("Rooms.dat", FileMode.Open);
-            try
-            {
-                BinaryFormatter formatter = new BinaryFormatter();
-                RoomDataBase.getInstance().setRoom((List<Room>)formatter.Deserialize(fs));
-            }
-            catch (SerializationException e)
-            {
-                throw;
-            }
-            finally
-            {
-                fs.Close();
-            }
+            //if (File.Exists("Rooms.dat"))
+            //{
+                FileStream fs = new FileStream("Rooms.dat", FileMode.Open);
+                try
+                {
+                    BinaryFormatter formatter = new BinaryFormatter();
+                    RoomDataBase.getInstance().setRoom((List<Room>)formatter.Deserialize(fs));
+                }
+                catch (SerializationException e)
+                {
+                    throw;
+                }
+                finally
+                {
+                    fs.Close();
+                }
+            //}
 
             return false;
         }

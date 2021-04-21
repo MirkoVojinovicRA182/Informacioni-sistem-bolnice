@@ -30,13 +30,13 @@ namespace HospitalInformationSystem.Windows
         {
             InitializeComponent();
             savePatients.LoadFromFile();
-            save.LoadFromFile();
+            //save.LoadFromFile();
             doctorAppFile.LoadFromFile();
 
             var doctor = new Doctor("Marko", "Markovic", Specialization.Family_Physician, new Room(1, "Markova kancelarija", 1, TypeOfRoom.ExaminationRoom));
-            DoctorDataBase.getInstance().GetDoctors().Add(new Doctor("Marko", "Markovic", Specialization.Family_Physician, new Room(1, "Markova kancelarija", 1, TypeOfRoom.ExaminationRoom)));
-            DoctorDataBase.getInstance().GetDoctors().Add(new Doctor("Jovan", "Jovanovic", Specialization.Family_Physician, new Room(2, "Jovanova kancelarija", 2, TypeOfRoom.ExaminationRoom)));
-            DoctorDataBase.getInstance().GetDoctors().Add(new Doctor("Stevan", "Stojanovic", Specialization.Family_Physician, new Room(3, "Stevanova kancelarija", 3, TypeOfRoom.ExaminationRoom)));
+            DoctorDataBase.getInstance().GetDoctors().Add(new Doctor("Marko", "Markovic", Specialization.Family_Physician, new Room(1, "Markova prostorija", 1, TypeOfRoom.ExaminationRoom)));
+            DoctorDataBase.getInstance().GetDoctors().Add(new Doctor("Jovan", "Jovanovic", Specialization.Family_Physician, new Room(2, "Jovanova prostorija", 2, TypeOfRoom.ExaminationRoom)));
+            DoctorDataBase.getInstance().GetDoctors().Add(new Doctor("Stevan", "Stojanovic", Specialization.Family_Physician, new Room(3, "Stevanova prostorija", 3, TypeOfRoom.ExaminationRoom)));
 
             Patient first = new Patient("Pera", "Pacijent", "1");
             Patient second = new Patient("Jova", "Pacijent", "2");
@@ -126,7 +126,7 @@ namespace HospitalInformationSystem.Windows
 
         private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
         {
-            save.SaveInFile();
+            //save.SaveInFile();
             doctorAppFile.SaveInFile();
             savePatients.SaveInFile();
         }

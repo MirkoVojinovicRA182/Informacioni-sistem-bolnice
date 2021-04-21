@@ -40,7 +40,7 @@ namespace HospitalInformationSystem.Windows.Manager
             roomsFileManipulation = new RoomsFileManipulation();
 
             //EquipmentController.getInstance().loadFromFile();
-            //roomsFileManipulation.LoadFromFile();
+            roomsFileManipulation.LoadFromFile();
 
             roomsTable.refreshTable();
             equipmentTable.refreshTable();
@@ -123,7 +123,7 @@ namespace HospitalInformationSystem.Windows.Manager
 
         private void Window_Closing_1(object sender, System.ComponentModel.CancelEventArgs e)
         {
-            
+            roomsFileManipulation.SaveInFile();
         }
     }
 }

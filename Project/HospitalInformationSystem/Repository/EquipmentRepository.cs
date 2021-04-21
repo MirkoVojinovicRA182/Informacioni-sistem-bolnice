@@ -37,20 +37,23 @@ namespace HospitalInformationSystem.Repository
 
         public List<Equipment> loadFromFile()
         {
-            FileStream fs = new FileStream("Equipment.dat", FileMode.Open);
             List<Equipment> list = new List<Equipment>();
-            try
+            if (File.Exists("Equipment.dat"))
             {
-                BinaryFormatter formatter = new BinaryFormatter();
-                list = ((List<Equipment>)formatter.Deserialize(fs));
-            }
-            catch (SerializationException e)
-            {
-                throw;
-            }
-            finally
-            {
-                fs.Close();
+                FileStream fs = new FileStream("Equipment.dat", FileMode.Open);
+                try
+                {
+                    BinaryFormatter formatter = new BinaryFormatter();
+                    list = ((List<Equipment>)formatter.Deserialize(fs));
+                }
+                catch (SerializationException e)
+                {
+                    throw;
+                }
+                finally
+                {
+                    fs.Close();
+                }
             }
 
             return list;

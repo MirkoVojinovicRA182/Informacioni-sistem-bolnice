@@ -29,7 +29,7 @@
 		-Lekar ima pregled anamneza i recepata pacijenta iz zdravstvenog kartona.
 		-Vreme nije simulrano.
 	3) Sekretar (Darko Panić)
-		-
+		-Odrađene su sve zahtevane funkcionalnosti.
 	4) Upravnik (Mirko Vojinović)
 		-Sve zahtevane funkcionalnosti su odrađene osim simuliranja vremena(Pomeranje opreme se vrši
 		odmah nakon zakazivanja pomeranja).

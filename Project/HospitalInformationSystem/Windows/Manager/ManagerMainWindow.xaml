@@ -8,7 +8,7 @@
         xmlns:ucDynamicEquipment="clr-namespace:HospitalInformationSystem.Windows.Manager"
         xmlns:local="clr-namespace:HospitalInformationSystem.Windows.Manager"
         mc:Ignorable="d"
-        Title="Glavni prozor" Height="600" Width="1000" Closing="Window_Closing">
+        Title="Glavni prozor" Height="600" Width="1000" Closing="Window_Closing_1">
     <DockPanel>
         <Menu DockPanel.Dock="Top">
             <MenuItem Header="_Fajl">

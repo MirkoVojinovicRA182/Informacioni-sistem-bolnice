@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:HospitalInformationSystem.Windows"
         mc:Ignorable="d"
-        Title="Upravljanje nalozima pacijenata" Height="517.641" Width="792.385">
+        Title="Upravljanje nalozima pacijenata" Height="517.641" Width="792.385" Closing="Window_Closing">
     <Grid Margin="0,0,3.6,-1.4">
         <Button x:Name="dodajBtn" Content="Dodaj" HorizontalAlignment="Left" Margin="579,439,0,0" VerticalAlignment="Top" Width="75" FontSize="16" Click="dodajButton_Click" RenderTransformOrigin="0.45,3.562"/>
         <Button x:Name="izmeniBtn" Content="Izmeni" HorizontalAlignment="Left" Margin="271,439,0,0" VerticalAlignment="Top" Width="75" FontSize="16" Click="izmeniButton_Click" RenderTransformOrigin="0.45,3.562"/>

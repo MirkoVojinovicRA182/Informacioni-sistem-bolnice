@@ -1,14 +1,25 @@
-﻿using Model;
+﻿using BusinessLogic;
+using Model;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 using System.Windows;
+using System.Windows.Controls;
+using System.Windows.Data;
+using System.Windows.Documents;
+using System.Windows.Input;
+using System.Windows.Media;
+using System.Windows.Media.Imaging;
+using System.Windows.Shapes;
 using WorkWithFiles;
 
 
 using HospitalInformationSystem.BusinessLogic;
 using System.Globalization;
+using System.Timers;
 
 namespace HospitalInformationSystem.Windows
 {
@@ -19,9 +30,9 @@ namespace HospitalInformationSystem.Windows
     {
         private ObservableCollection<Appointment> appointmentList;
         PatientsAppointmentsFIleManipulation save = new PatientsAppointmentsFIleManipulation();
-        private Model.Patient Patient;
+        private Patient patient;
         private static PatientAppointmentCRUDOperationsWindow instance = null;
-        public PatientAppointmentCRUDOperationsWindow()
+        public PatientAppointmentCRUDOperationsWindow(Patient patient)
         {
             InitializeComponent();
             AppointmentDataGrid.ItemsSource = AppointmentDataBase.getInstance().GetAppointment();
@@ -32,22 +43,22 @@ namespace HospitalInformationSystem.Windows
             bool b = true;
             therapy.Add(new Therapy(Medication.Albuterol, 3, days, default(DateTime).Add(DateTime.ParseExact("21:46", "HH:mm", CultureInfo.InvariantCulture).TimeOfDay), b));
             therapy.Add(new Therapy(Medication.Losartan, 2, days, default(DateTime).Add(DateTime.ParseExact("14:00", "HH:mm", CultureInfo.InvariantCulture).TimeOfDay), b));
-            this.Patient = new Model.Patient("Pera", "Petrovic", "1");
-            this.Patient.SetTherapy(therapy);
+            this.patient = patient;
+            this.patient.SetTherapy(therapy);
             Notify();
             RefreshTable();
         }
 
-        public static PatientAppointmentCRUDOperationsWindow getInstance()
+        public static PatientAppointmentCRUDOperationsWindow getInstance(Patient patient)
         {
             if (instance == null)
-                instance = new PatientAppointmentCRUDOperationsWindow();
+                instance = new PatientAppointmentCRUDOperationsWindow(patient);
             return instance;
         }
 
         private void NewAppointmentButton_Click(object sender, RoutedEventArgs e)
         {
-            NewPatientAppointmentWindow window = new NewPatientAppointmentWindow();
+            NewPatientAppointmentWindow window = new NewPatientAppointmentWindow(patient);
             window.ShowDialog();
 
             RefreshTable();
@@ -83,7 +94,7 @@ namespace HospitalInformationSystem.Windows
 
         private void NotificationButton_Click(object sender, RoutedEventArgs e)
         {
-            NotificationsWindow window = new NotificationsWindow(this.Patient);
+            NotificationsWindow window = new NotificationsWindow(patient);
 
             window.ShowDialog();
 
@@ -98,12 +109,12 @@ namespace HospitalInformationSystem.Windows
         private void Notify()
         {
 
-            var therapies = this.Patient.GetTherapy();
+            var therapies = patient.GetTherapy();
             TimeSpan dayTime = new TimeSpan(24, 00, 00);
             TimeSpan currentTime = TimeSpan.Parse(DateTime.Now.ToString("HH:mm"));
             List<TimeSpan> notificationTime = new List<TimeSpan>();
 
-            for (int i = 0; i < therapies.Count(); i++)
+            for (int i = 0; i < therapies.Count; i++)
             {
                 if (therapies[i].Days.Contains(DateTime.Now.DayOfWeek) & therapies[i].NotificationEnabled == true)
                 {
@@ -126,7 +137,7 @@ namespace HospitalInformationSystem.Windows
  
         private static void DispatcherTimer_Tick(object sender, EventArgs e)
         {
-            var therapies = PatientAppointmentCRUDOperationsWindow.getInstance().Patient.GetTherapy();
+            var therapies = PatientAppointmentCRUDOperationsWindow.getInstance((Patient)MainWindow.GetUser()).patient.GetTherapy();
             NotificationWindow window = new NotificationWindow();
             for (int i = 0; i < therapies.Count; i++)
             {
@@ -141,5 +152,9 @@ namespace HospitalInformationSystem.Windows
             window.ShowDialog();
         }
 
+        private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            
+        }
     }
 }

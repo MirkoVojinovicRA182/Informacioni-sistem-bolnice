@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Model;
+using System;
 using System.Linq;
 using System.Windows;
 
@@ -10,8 +11,8 @@ namespace HospitalInformationSystem.Windows.PatientAccountsWindows
     public partial class EditAccount : Window
     {
         public MainPatientManagement ParentWindow { get; set; }
-        private Model.Patient tempPatient = null;
-        public EditAccount(Model.Patient p)
+        private Patient tempPatient = null;
+        public EditAccount(Patient p)
         {
             InitializeComponent();
             tempPatient = p;
@@ -46,7 +47,7 @@ namespace HospitalInformationSystem.Windows.PatientAccountsWindows
             tempPatient.Email = emailTxt.Text;
             tempPatient.Gender = genderTxt.Text;
             tempPatient.Jmbg = jmbgTxt.Text;
-            tempPatient.Blood = (Model.Patient.BloodType)bloodCmb.SelectedItem;
+            tempPatient.Blood = (Patient.BloodType)bloodCmb.SelectedItem;
             tempPatient.LBO = lboTxt.Text;
             tempPatient.IsGuest = (bool)isGuestCheckbox.IsChecked;
 
@@ -56,7 +57,7 @@ namespace HospitalInformationSystem.Windows.PatientAccountsWindows
 
         private void bloodCmb_Loaded(object sender, RoutedEventArgs e)
         {
-            bloodCmb.ItemsSource = Enum.GetValues(typeof(Model.Patient.BloodType)).Cast<Model.Patient.BloodType>();
+            bloodCmb.ItemsSource = Enum.GetValues(typeof(Patient.BloodType)).Cast<Patient.BloodType>();
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
@@ -67,7 +68,7 @@ namespace HospitalInformationSystem.Windows.PatientAccountsWindows
 
         private void editAppointmentButton_Click(object sender, RoutedEventArgs e)
         {
-            PatientAppointmentCRUDOperationsWindow window = new PatientAppointmentCRUDOperationsWindow();
+            PatientAppointmentCRUDOperationsWindow window = new PatientAppointmentCRUDOperationsWindow(tempPatient);
             window.Show();
         }
     }

@@ -4,6 +4,12 @@
  * Purpose: Definition of the Class WorkWithFiles.DoctorFileManipulation
  ***********************************************************************/
 
+using Model;
+using System.Collections.Generic;
+using System.IO;
+using System.Runtime.Serialization;
+using System.Runtime.Serialization.Formatters.Binary;
+
 namespace WorkWithFiles
 {
     public class DoctorFileManipulation : IFileManipulation
@@ -11,12 +17,46 @@ namespace WorkWithFiles
         public bool SaveInFile()
         {
             // TODO: implement
-            return false;
+            FileStream fs = new FileStream("Doctors.dat", FileMode.Create);
+            BinaryFormatter formatter = new BinaryFormatter();
+            try
+            {
+                formatter.Serialize(fs, DoctorDataBase.getInstance().GetDoctors());
+            }
+            catch (SerializationException e)
+            {
+
+                throw;
+            }
+            finally
+            {
+                fs.Close();
+            }
+
+            return true;
         }
 
         public bool LoadFromFile()
         {
             // TODO: implement
+            if (File.Exists("Doctors.dat"))
+            {
+                FileStream fs = new FileStream("Doctors.dat", FileMode.Open);
+                try
+                {
+                    BinaryFormatter formatter = new BinaryFormatter();
+                    DoctorDataBase.getInstance().SetDoctors((List<Doctor>)formatter.Deserialize(fs));
+                }
+                catch (SerializationException e)
+                {
+                    throw;
+                }
+                finally
+                {
+                    fs.Close();
+                }
+
+            }
             return false;
         }
 

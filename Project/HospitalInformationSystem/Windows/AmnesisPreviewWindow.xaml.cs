@@ -20,8 +20,8 @@ namespace HospitalInformationSystem.Windows
     /// </summary>
     public partial class AmnesisPreviewWindow : Window
     {
-        private Model.Patient patient;
-        public AmnesisPreviewWindow(Model.Patient patient)
+        private Patient patient;
+        public AmnesisPreviewWindow(Patient patient)
         {
             InitializeComponent();
             this.patient = patient;

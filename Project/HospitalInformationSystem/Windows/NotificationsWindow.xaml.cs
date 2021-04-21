@@ -22,8 +22,8 @@ namespace HospitalInformationSystem.Windows
     /// </summary>
     public partial class NotificationsWindow : Window
     {
-        private Model.Patient patient;
-        public NotificationsWindow(Model.Patient patient)
+        private Patient patient;
+        public NotificationsWindow(Patient patient)
         {
             InitializeComponent();
             this.patient = patient;

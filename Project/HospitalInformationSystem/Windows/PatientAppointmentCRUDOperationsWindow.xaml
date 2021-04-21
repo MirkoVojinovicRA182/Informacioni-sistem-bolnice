@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:HospitalInformationSystem.Windows"
         mc:Ignorable="d"
-        Title="Upravljanje terminima" Height="450" Width="889.754">
+        Title="Upravljanje terminima" Height="450" Width="889.754" Closing="Window_Closing">
     <Grid>
         <DataGrid x:Name="AppointmentDataGrid" Background="Silver" CanUserAddRows="False" AutoGenerateColumns="False" CanUserResizeColumns="False" IsReadOnly="True" HorizontalAlignment="Left" Height="419" VerticalAlignment="Top" Width="716">
             <DataGrid.Columns>

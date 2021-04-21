@@ -39,8 +39,8 @@ namespace HospitalInformationSystem.Windows.Manager
             InitializeComponent();
             roomsFileManipulation = new RoomsFileManipulation();
 
-            EquipmentController.getInstance().loadFromFile();
-            roomsFileManipulation.LoadFromFile();
+            //EquipmentController.getInstance().loadFromFile();
+            //roomsFileManipulation.LoadFromFile();
 
             roomsTable.refreshTable();
             equipmentTable.refreshTable();
@@ -119,6 +119,11 @@ namespace HospitalInformationSystem.Windows.Manager
             {
                 SelectEquipmentWindow.getInstance(1).Show();
             }
+        }
+
+        private void Window_Closing_1(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            
         }
     }
 }

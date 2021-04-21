@@ -1,4 +1,5 @@
 ﻿using HospitalInformationSystem.Windows.PatientAccountsWindows;
+using Model;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -23,7 +24,7 @@ namespace HospitalInformationSystem.Windows
         public MainPatientManagement()
         {
             InitializeComponent();
-            accountsList.ItemsSource = Model.PatientDataBase.getInstance().getPatient();
+            accountsList.ItemsSource = PatientDataBase.getInstance().getPatient();
             izmeniBtn.IsEnabled = false;
             obrisiBtn.IsEnabled = false;   
         }
@@ -47,14 +48,14 @@ namespace HospitalInformationSystem.Windows
 
         private void obrisiButton_Click(object sender, RoutedEventArgs e)
         {
-            Model.PatientDataBase.getInstance().RemovePatient((Model.Patient)accountsList.SelectedItem);
+            PatientDataBase.getInstance().RemovePatient((Patient)accountsList.SelectedItem);
             RefreshList();
         }
 
         private void izmeniButton_Click(object sender, RoutedEventArgs e)
         {
             if(accountsList.SelectedValue != null) { 
-                EditAccount editAccount = new EditAccount((Model.Patient)accountsList.SelectedItem);
+                EditAccount editAccount = new EditAccount((Patient)accountsList.SelectedItem);
                 editAccount.ParentWindow = this;
                 editAccount.ShowDialog();
             }
@@ -70,6 +71,11 @@ namespace HospitalInformationSystem.Windows
         {
             AddAllergen addAllergen = new AddAllergen();
             addAllergen.ShowDialog();
+        }
+
+        private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            
         }
     }
 }

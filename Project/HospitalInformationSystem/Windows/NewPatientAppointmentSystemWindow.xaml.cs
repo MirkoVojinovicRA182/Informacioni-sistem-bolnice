@@ -130,7 +130,7 @@ namespace HospitalInformationSystem.Windows
 
             for (int i = 0; i < dateTimes.Count; i++)
             {
-                recommendedAppointments.Add(new Appointment(dateTimes[i], TypeOfAppointment.Pregled, doctor.room, (Model.Patient)patientComboBox.SelectedItem, doctor));
+                recommendedAppointments.Add(new Appointment(dateTimes[i], TypeOfAppointment.Pregled, doctor.room, (Patient)patientComboBox.SelectedItem, doctor));
             }
 
             for (int i = 0; i < recommendedAppointments.Count; i++)
@@ -172,7 +172,7 @@ namespace HospitalInformationSystem.Windows
 
                     for (int i = 0; i < dateTimes.Count; i++)
                     {
-                        recommendedAppointments.Add(new Appointment(dateTimes[i], TypeOfAppointment.Pregled, doctor.room, (Model.Patient)patientComboBox.SelectedItem, doctor));
+                        recommendedAppointments.Add(new Appointment(dateTimes[i], TypeOfAppointment.Pregled, doctor.room, (Patient)patientComboBox.SelectedItem, doctor));
                     }
 
                     for (int i = 0; i < recommendedAppointments.Count; i++)
@@ -196,7 +196,7 @@ namespace HospitalInformationSystem.Windows
                             for (int j = 0; j < dateTimes.Count; j++)
                             {
  
-                                recommendedAppointments.Add(new Appointment(dateTimes[j], TypeOfAppointment.Pregled, doctors[i].room, (Model.Patient)patientComboBox.SelectedItem, doctors[i]));
+                                recommendedAppointments.Add(new Appointment(dateTimes[j], TypeOfAppointment.Pregled, doctors[i].room, (Patient)patientComboBox.SelectedItem, doctors[i]));
                             }
                         }
                     }
@@ -226,8 +226,18 @@ namespace HospitalInformationSystem.Windows
 
         private void initPatients()
         {
+            initialPatients = new List<Patient>();
 
-            patientComboBox.ItemsSource = PatientDataBase.getInstance().getPatient();
+            Patient first = new Patient("Pera", "Pacijent 1", "1");
+            Patient second = new Patient("Jova", "Pacijent 2", "2");
+            Patient third = new Patient("Mika", "Pacijent 3", "3");
+
+            initialPatients.Add(first);
+            initialPatients.Add(second);
+            initialPatients.Add(third);
+
+
+            patientComboBox.ItemsSource = initialPatients;
         }
 
     }

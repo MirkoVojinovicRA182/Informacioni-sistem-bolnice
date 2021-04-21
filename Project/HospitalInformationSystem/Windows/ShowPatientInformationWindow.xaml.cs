@@ -21,9 +21,9 @@ namespace HospitalInformationSystem.Windows
     public partial class ShowPatientInformationWindow : Window
     {
 
-        Model.Patient patient;
+        Patient patient;
 
-        public ShowPatientInformationWindow(Model.Patient patient)
+        public ShowPatientInformationWindow(Patient patient)
         {
             InitializeComponent();
             this.patient = patient;

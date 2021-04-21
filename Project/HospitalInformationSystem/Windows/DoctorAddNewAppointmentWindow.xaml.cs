@@ -65,7 +65,7 @@ namespace HospitalInformationSystem.Windows
            
             AppointmentManagement appointmentsManagment = new AppointmentManagement();
             
-            appointmentsManagment.createAppointment(date, typeOfAppointment, room, (Model.Patient)patientComboBox.SelectedItem, (Doctor)doctorComboBox.SelectedItem);
+            appointmentsManagment.createAppointment(date, typeOfAppointment, room, (Patient)patientComboBox.SelectedItem, (Doctor)doctorComboBox.SelectedItem);
         }
 
 

@@ -9,7 +9,7 @@ namespace HospitalInformationSystem.Windows
     public partial class MedicalRecordWindow : Window
     {
 
-        Model.Patient patient;
+        Patient patient;
         public MedicalRecordWindow(Patient patient)
         {
             InitializeComponent();

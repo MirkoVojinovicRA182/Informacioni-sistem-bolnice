@@ -1,9 +1,20 @@
-﻿using HospitalInformationSystem.BusinessLogic;
+﻿using BusinessLogic;
+using HospitalInformationSystem.BusinessLogic;
 using Model;
 using System;
 using System.Collections.Generic;
 using System.Globalization;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 using System.Windows;
+using System.Windows.Controls;
+using System.Windows.Data;
+using System.Windows.Documents;
+using System.Windows.Input;
+using System.Windows.Media;
+using System.Windows.Media.Imaging;
+using System.Windows.Shapes;
 
 namespace HospitalInformationSystem.Windows
 {
@@ -12,18 +23,18 @@ namespace HospitalInformationSystem.Windows
     /// </summary>
     public partial class NewPatientAppointmentWindow : Window
     {
-        private List<Model.Patient> initialPatients;
-        public NewPatientAppointmentWindow()
+        private Patient patient;
+        public NewPatientAppointmentWindow(Patient patient)
         {
             InitializeComponent();
 
             var database = DoctorDataBase.getInstance();
-
+            this.patient = patient;
             var list = database.GetDoctors();
 
-            doctorComboBox.ItemsSource = list;
+            DoctorComboBox.ItemsSource = list;
 
-            initPatients();
+           // initPatients();
         }
         private void Button_Click(object sender, RoutedEventArgs e)
         {
@@ -32,10 +43,16 @@ namespace HospitalInformationSystem.Windows
             dateTextBox.Clear();
             timeTextBox.Clear();
 
-            PatientAppointmentCRUDOperationsWindow.getInstance().RefreshTable();
+            PatientAppointmentCRUDOperationsWindow.getInstance(patient).RefreshTable();
 
             MessageBox.Show("Kreiran je novi termin.", "Novi termin", MessageBoxButton.OK, MessageBoxImage.Information);
 
+        }
+
+        private void New_Button_Click(object sender, RoutedEventArgs e)
+        {
+            NewPatientAppointmentSystemWindow window = new NewPatientAppointmentSystemWindow();
+            window.ShowDialog();
         }
 
         private void CreateNewAppointment()
@@ -45,11 +62,11 @@ namespace HospitalInformationSystem.Windows
             string dateTime = date + " " + time;
             CultureInfo provider = CultureInfo.InvariantCulture;
             DateTime startTime = DateTime.ParseExact(dateTime, "dd.MM.yyyy. HH:mm", provider);
-            Doctor doctor = (Doctor)doctorComboBox.SelectedItem;
+            Doctor doctor = (Doctor)DoctorComboBox.SelectedItem;
 
             AppointmentManagement patientAppointmentManagement = new AppointmentManagement();
 
-            patientAppointmentManagement.createAppointment(startTime, TypeOfAppointment.Pregled, doctor.room, (Model.Patient)patientComboBox.SelectedItem, doctor);
+            patientAppointmentManagement.createAppointment(startTime, TypeOfAppointment.Pregled, doctor.room, patient, doctor);
 
         }
 
@@ -58,10 +75,21 @@ namespace HospitalInformationSystem.Windows
             this.Close();
         }
 
-        private void initPatients()
+        /*private void initPatients()
         {
-            patientComboBox.ItemsSource = PatientDataBase.getInstance().getPatient();
-        }
+            initialPatients = new List<Patient>();
+
+            Patient first = new Patient("Pera", "Pacijent 1", "1");
+            Patient second = new Patient("Jova", "Pacijent 2", "2");
+            Patient third = new Patient("Mika", "Pacijent 3", "3");
+
+            initialPatients.Add(first);
+            initialPatients.Add(second);
+            initialPatients.Add(third);
+
+
+            patientComboBox.ItemsSource = initialPatients;
+        }*/
 
     }
 }

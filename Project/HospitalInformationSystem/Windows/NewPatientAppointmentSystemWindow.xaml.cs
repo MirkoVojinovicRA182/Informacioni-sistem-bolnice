@@ -25,7 +25,7 @@ namespace HospitalInformationSystem.Windows
     {
 
         private ObservableCollection<Appointment> appointmentList;
-        private List<Model.Patient> initialPatients;
+        private List<Patient> initialPatients;
         public NewPatientAppointmentSystemWindow()
         {
             InitializeComponent();
@@ -172,7 +172,7 @@ namespace HospitalInformationSystem.Windows
 
                     for (int i = 0; i < dateTimes.Count; i++)
                     {
-                        recommendedAppointments.Add(new Appointment(dateTimes[i], TypeOfAppointment.Pregled, doctor.room, (Patient)patientComboBox.SelectedItem, doctor));
+                        recommendedAppointments.Add(new Appointment(dateTimes[i], TypeOfAppointment.Pregled, doctor.room, (Model.Patient)patientComboBox.SelectedItem, doctor));
                     }
 
                     for (int i = 0; i < recommendedAppointments.Count; i++)
@@ -196,7 +196,7 @@ namespace HospitalInformationSystem.Windows
                             for (int j = 0; j < dateTimes.Count; j++)
                             {
  
-                                recommendedAppointments.Add(new Appointment(dateTimes[j], TypeOfAppointment.Pregled, doctors[i].room, (Patient)patientComboBox.SelectedItem, doctors[i]));
+                                recommendedAppointments.Add(new Appointment(dateTimes[j], TypeOfAppointment.Pregled, doctors[i].room, (Model.Patient)patientComboBox.SelectedItem, doctors[i]));
                             }
                         }
                     }

@@ -1,6 +1,5 @@
 ﻿using HospitalInformationSystem.Windows;
 using HospitalInformationSystem.Windows.Manager;
-using HospitalInformationSystem.Windows.Patient;
 using Model;
 using System;
 using System.Windows;

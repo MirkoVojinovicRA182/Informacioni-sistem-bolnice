@@ -3,7 +3,9 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:HospitalInformationSystem.Windows"
+        xmlns:local="clr-
+        
+        :HospitalInformationSystem.Windows"
         mc:Ignorable="d"
         Title="Novi termin" Height="350" Width="339">
     <Grid>
@@ -24,7 +26,7 @@
                 </DataTemplate>
             </ComboBox.ItemTemplate>
         </ComboBox>
-        <Button x:Name="newSystemButton" Content="Na osnovu preporuke" Click="New_Button_Click" HorizontalAlignment="Left" Margin="102,230,0,0" VerticalAlignment="Top" Width="124"/>
+        <Button x:Name="newSystemButton" Content="Na osnovu preporuke" HorizontalAlignment="Left" Margin="102,230,0,0" VerticalAlignment="Top" Width="124"/>
         <Label Content="Pacijent:" HorizontalAlignment="Left" Margin="33,173,0,0" VerticalAlignment="Top"/>
         <ComboBox x:Name="patientComboBox" HorizontalAlignment="Left" VerticalAlignment="Top" Width="201" Margin="120,177,0,0">
             <ComboBox.ItemTemplate>

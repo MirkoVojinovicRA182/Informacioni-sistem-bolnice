@@ -1,4 +1,5 @@
 ﻿using System.Windows;
+using Model;
 
 namespace HospitalInformationSystem.Windows
 {
@@ -9,7 +10,7 @@ namespace HospitalInformationSystem.Windows
     {
 
         Model.Patient patient;
-        public MedicalRecordWindow(Model.Patient patient)
+        public MedicalRecordWindow(Patient patient)
         {
             InitializeComponent();
             this.patient = patient;

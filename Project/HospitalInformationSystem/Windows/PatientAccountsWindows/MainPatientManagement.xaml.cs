@@ -13,7 +13,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 
-namespace HospitalInformationSystem.Windows.Patient
+namespace HospitalInformationSystem.Windows
 {
     /// <summary>
     /// Interaction logic for MainPatientManagement.xaml

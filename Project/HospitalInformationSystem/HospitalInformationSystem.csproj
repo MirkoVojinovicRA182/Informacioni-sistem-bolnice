@@ -176,9 +176,6 @@
     <Compile Include="Windows\PatientAccountsWindows\MainPatientManagement.xaml.cs">
       <DependentUpon>MainPatientManagement.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Windows\PatientAccountsWindows\ViewAndUpdateAccount.xaml.cs">
-      <DependentUpon>ViewAndUpdateAccount.xaml</DependentUpon>
-    </Compile>
     <Compile Include="Windows\PatientAppointmentCRUDOperationsWindow.xaml.cs">
       <DependentUpon>PatientAppointmentCRUDOperationsWindow.xaml</DependentUpon>
     </Compile>
@@ -333,10 +330,6 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="Windows\PatientAccountsWindows\MainPatientManagement.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="Windows\PatientAccountsWindows\ViewAndUpdateAccount.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>

@@ -13,10 +13,12 @@ namespace HospitalInformationSystem
     public partial class MainWindow : Window
     {
         RoomsFileManipulation save = new RoomsFileManipulation();
+        PatientsFileManipulation savePatients = new PatientsFileManipulation();
         DoctorAppointmentsFIleManipulation doctorAppFile = new DoctorAppointmentsFIleManipulation();
         public MainWindow()
         {
             InitializeComponent();
+            savePatients.LoadFromFile();
             //save.LoadFromFile();
             //doctorAppFile.LoadFromFile();
 
@@ -26,21 +28,21 @@ namespace HospitalInformationSystem
             DoctorDataBase.getInstance().GetDoctors().Add(new Doctor("Jovan", "Jovanovic", Specialization.Family_Physician, new Room(2, "Jovanova kancelarija", 2, TypeOfRoom.ExaminationRoom)));
             DoctorDataBase.getInstance().GetDoctors().Add(new Doctor("Stevan", "Stojanovic", Specialization.Family_Physician, new Room(3, "Stevanova kancelarija", 3, TypeOfRoom.ExaminationRoom)));
 
-            Patient first = new Patient("Pera", "Peric", "1");
-            Patient second = new Patient("Jova", "Jovic", "2");
-            Patient third = new Patient("Mika", "Mikic", "3");
+            //Patient first = new Patient("Pera", "Peric", "1");
+            //Patient second = new Patient("Jova", "Jovic", "2");
+            //Patient third = new Patient("Mika", "Mikic", "3");
 
             MedicalRecord firstMedicalRecord = new MedicalRecord(1);
             MedicalRecord secondMedicalRecord = new MedicalRecord(2);
             MedicalRecord thirdMedicalRecord = new MedicalRecord(3);
 
-            first.setMedicalRecord(firstMedicalRecord);
-            second.setMedicalRecord(secondMedicalRecord);
-            third.setMedicalRecord(thirdMedicalRecord);
+            //first.setMedicalRecord(firstMedicalRecord);
+            //second.setMedicalRecord(secondMedicalRecord);
+            //third.setMedicalRecord(thirdMedicalRecord);
 
-            PatientDataBase.getInstance().AddPatient(first);
-            PatientDataBase.getInstance().AddPatient(second);
-            PatientDataBase.getInstance().AddPatient(third);
+            //PatientDataBase.getInstance().AddPatient(first);
+            //PatientDataBase.getInstance().AddPatient(second);
+            //PatientDataBase.getInstance().AddPatient(third);
 
         }
 
@@ -69,6 +71,7 @@ namespace HospitalInformationSystem
         {
             save.SaveInFile();
             doctorAppFile.SaveInFile();
+            savePatients.SaveInFile();
         }
 
         protected override void OnClosed(EventArgs e)

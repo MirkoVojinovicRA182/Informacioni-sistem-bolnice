@@ -173,6 +173,9 @@
     <Compile Include="Windows\PatientAccountsWindows\EditAccount.xaml.cs">
       <DependentUpon>EditAccount.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Windows\PatientAccountsWindows\EditAllergens.xaml.cs">
+      <DependentUpon>EditAllergens.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Windows\PatientAccountsWindows\MainPatientManagement.xaml.cs">
       <DependentUpon>MainPatientManagement.xaml</DependentUpon>
     </Compile>
@@ -328,6 +331,10 @@
     <Page Include="Windows\PatientAccountsWindows\EditAccount.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Windows\PatientAccountsWindows\EditAllergens.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Windows\PatientAccountsWindows\MainPatientManagement.xaml">
       <Generator>MSBuild:Compile</Generator>

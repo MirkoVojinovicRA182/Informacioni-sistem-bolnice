@@ -40,14 +40,24 @@ namespace Model
             return allergens;
         }
 
+        public void setAllergens(List<Allergen> allergenList)
+        {
+            allergens = allergenList;
+        }
+
         public void addAllergen(Allergen newAllergen)
         {
             if (newAllergen == null)
                 return;
             if (this.allergens == null)
                 this.allergens = new List<Allergen>();
-            if (!this.allergens.Contains(newAllergen))
-                this.allergens.Add(newAllergen);
+
+            foreach (Allergen a in this.allergens)
+            {
+                if (a.Name == newAllergen.Name)
+                    return;
+            }
+            this.allergens.Add(newAllergen);
         }
 
         /// <pdGenerated>default getter</pdGenerated>

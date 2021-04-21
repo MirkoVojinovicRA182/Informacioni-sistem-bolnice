@@ -15,10 +15,11 @@ namespace Model
         private int id;
         private List<Anamnesis> anamnesisList;
         private List<Prescription> prescriptionList;
+        public List<Allergen> AllergensList { get; set; }
 
         public MedicalRecord()
         {
-            
+            AllergensList = PatientDataBase.getInstance().getAllergens();    
         }
 
         public MedicalRecord(int id)
@@ -26,6 +27,7 @@ namespace Model
             this.id = id;
             anamnesisList = new List<Anamnesis>();
             prescriptionList = new List<Prescription>();
+            AllergensList = PatientDataBase.getInstance().getAllergens();
         }
 
         public int getId()

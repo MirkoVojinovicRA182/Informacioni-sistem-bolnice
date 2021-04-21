@@ -35,14 +35,12 @@
         <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" Text="Email:" VerticalAlignment="Top" Margin="595,326,0,0" Width="82" FontSize="16" FontWeight="Bold"/>
         <TextBox x:Name="genderTxt" HorizontalAlignment="Left" Height="23" TextWrapping="Wrap" VerticalAlignment="Top" Width="148" Margin="711,376,0,0"/>
         <TextBox x:Name="jmbgTxt" HorizontalAlignment="Left" Height="23" TextWrapping="Wrap" VerticalAlignment="Top" Width="148" Margin="711,421,0,0"/>
-        <TextBox x:Name="emailTxt1" HorizontalAlignment="Left" Height="23" TextWrapping="Wrap" VerticalAlignment="Top" Width="148" Margin="711,466,0,0"/>
         <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" Text="Pol:" VerticalAlignment="Top" Margin="595,376,0,0" Width="82" FontSize="16" FontWeight="Bold"/>
         <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" Text="Jmbg:" VerticalAlignment="Top" Margin="595,421,0,0" Width="82" FontSize="16" FontWeight="Bold"/>
-        <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" Text="Email:" VerticalAlignment="Top" Margin="595,466,0,0" Width="82" FontSize="16" FontWeight="Bold"/>
-        <TextBox x:Name="lboTxt" HorizontalAlignment="Left" Height="23" TextWrapping="Wrap" VerticalAlignment="Top" Width="148" Margin="711,550,0,0"/>
-        <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" Text="Krvna grupa:" VerticalAlignment="Top" Margin="595,505,0,0" Width="111" FontSize="16" FontWeight="Bold"/>
-        <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" Text="LBO:" VerticalAlignment="Top" Margin="595,550,0,0" Width="82" FontSize="16" FontWeight="Bold"/>
-        <ComboBox x:Name="bloodCmb" HorizontalAlignment="Left" VerticalAlignment="Top" Width="148" RenderTransformOrigin="2.006,6" Margin="711,504,0,0" Loaded="bloodCmb_Loaded"/>
+        <TextBox x:Name="lboTxt" HorizontalAlignment="Left" Height="24" TextWrapping="Wrap" VerticalAlignment="Top" Width="148" Margin="711,518,0,0"/>
+        <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" Text="Krvna grupa:" VerticalAlignment="Top" Margin="595,474,0,0" Width="111" FontSize="16" FontWeight="Bold"/>
+        <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" Text="LBO:" VerticalAlignment="Top" Margin="595,518,0,0" Width="82" FontSize="16" FontWeight="Bold"/>
+        <ComboBox x:Name="bloodCmb" HorizontalAlignment="Left" VerticalAlignment="Top" Width="148" RenderTransformOrigin="2.006,6" Margin="711,472,0,0" Loaded="bloodCmb_Loaded"/>
         <CheckBox x:Name="isGuestCheckbox" Content="gost" HorizontalAlignment="Left" Margin="901,625,0,0" VerticalAlignment="Top"/>
     </Grid>
 </Window>

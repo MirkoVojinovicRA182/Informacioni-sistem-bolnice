@@ -21,8 +21,10 @@ namespace HospitalInformationSystem.Windows
         private void potvrdiBtn_Click(object sender, RoutedEventArgs e)
         {
             Console.WriteLine(nameTxt.Text + surnameTxt.Text);
-            PatientManagement.CreatePatient(usernameTxt.Text, nameTxt.Text, surnameTxt.Text,(DateTime) date.SelectedDate, numberTxt.Text,
-                emailTxt.Text, parentsNameTxt.Text, genderTxt.Text, jmbgTxt.Text,(bool)isGuestCheckbox.IsChecked,(BloodType)bloodCmb.SelectedItem, lboTxt.Text);
+
+            PatientManagement.CreatePatient(usernameTxt.Text, nameTxt.Text, surnameTxt.Text, (DateTime)date.SelectedDate, numberTxt.Text,
+                emailTxt.Text, parentsNameTxt.Text, genderTxt.Text, jmbgTxt.Text, (bool)isGuestCheckbox.IsChecked, (BloodType)bloodCmb.SelectedItem, lboTxt.Text);
+
             //Console.WriteLine(nameTxt.Text + surnameTxt.Text + idTxt.Text);
             //Console.WriteLine(Model.PatientDataBase.getInstance().GetPatient());
             ParentWindow.RefreshList();

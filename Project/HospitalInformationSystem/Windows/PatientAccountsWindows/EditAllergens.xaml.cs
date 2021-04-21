@@ -16,20 +16,23 @@ using System.Windows.Shapes;
 namespace HospitalInformationSystem.Windows.PatientAccountsWindows
 {
     /// <summary>
-    /// Interaction logic for AddAllergen.xaml
+    /// Interaction logic for EditAllergens.xaml
     /// </summary>
-    public partial class AddAllergen : Window
+    public partial class EditAllergens : Window
     {
-        public AddAllergen()
+        Patient patient = null;
+        public EditAllergens(Patient p)
         {
             InitializeComponent();
+            patient = p;
+            allergensDataGrid.ItemsSource = p.GetMedicalRecord().AllergensList;
+            
         }
 
-        private void addAllergenBtn_Click(object sender, RoutedEventArgs e)
+        private void allergensDataGrid_Unloaded(object sender, RoutedEventArgs e)
         {
-            Allergen newAllergen = new Allergen(allergenNameTxt.Text);
-            newAllergen.isAllergic = false;
-            PatientDataBase.getInstance().addAllergen(newAllergen);
+            var grid = (DataGrid)sender;
+            grid.CommitEdit(DataGridEditingUnit.Row, true);
         }
     }
 }

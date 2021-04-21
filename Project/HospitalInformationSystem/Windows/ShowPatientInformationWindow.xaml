@@ -7,10 +7,12 @@
         mc:Ignorable="d"
         Title="ShowPatientInformationWindow" Height="420" Width="350">
     <Grid>
-        <Label Content="Pacijent:" HorizontalAlignment="Left" Margin="34,34,0,0" VerticalAlignment="Top" FontSize="18"/>
+        <Label Content="Pacijent:" HorizontalAlignment="Left" Margin="8,10,0,0" VerticalAlignment="Top" FontSize="18"/>
         <Button x:Name="medicalRecordButton" Content="Pregled zdravstvenog&#xD;&#xA;kartona pacijenta" HorizontalAlignment="Left" Margin="10,101,0,0" VerticalAlignment="Top" Width="324" FontSize="18" Height="77" Click="medicalRecordButton_Click"/>
-        <Label x:Name="nameLabel" Content="Ime i prezime" HorizontalAlignment="Left" Margin="114,34,0,0" VerticalAlignment="Top" FontSize="18"/>
+        <Label x:Name="nameLabel" Content="Ime i prezime" HorizontalAlignment="Left" Margin="88,10,0,0" VerticalAlignment="Top" FontSize="18"/>
         <Button x:Name="newAppointmentButton" Content="Zakazivanje termina&#xD;&#xA;pacijentu&#xD;&#xA;" HorizontalAlignment="Left" Margin="10,199,0,0" VerticalAlignment="Top" Width="324" FontSize="18" Height="77" Click="newAppointmentButton_Click"/>
+        <Label Content="JMBG:" HorizontalAlignment="Left" Margin="8,44,0,0" VerticalAlignment="Top" FontSize="18"/>
+        <Label x:Name="jmbgLabel" Content="JMBG" HorizontalAlignment="Left" Margin="88,44,0,0" VerticalAlignment="Top" FontSize="18"/>
 
     </Grid>
 </Window>

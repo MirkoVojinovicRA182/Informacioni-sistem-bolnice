@@ -28,6 +28,7 @@ namespace HospitalInformationSystem.Windows
             InitializeComponent();
             this.patient = patient;
             nameLabel.Content = patient.Name + " " + patient.Surname;
+            jmbgLabel.Content = patient.Jmbg;
         }
 
         private void medicalRecordButton_Click(object sender, RoutedEventArgs e)

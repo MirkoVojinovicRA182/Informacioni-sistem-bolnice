@@ -20,6 +20,12 @@ namespace HospitalInformationSystem.Windows
         private void initInfo()
         {
             nameLabel.Content = patient.Name + " " + patient.Surname;
+            bloodTypeLabel.Content = patient.Blood.ToString();
+            dateOfBirthLabel.Content = patient.DateOfBirth.ToString("dd.MM.yyyy.");
+            jmbgLeabel.Content = patient.Jmbg;
+            genderLabel.Content = patient.Gender;
+            phoneNumberLabel.Content = patient.PhoneNumber;
+            emailLabel.Content = patient.Email;
         }
 
         private void addAnamnesisButton_Click(object sender, RoutedEventArgs e)

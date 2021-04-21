@@ -15,7 +15,6 @@ using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 
 
-using Model;
 using HospitalInformationSystem.BusinessLogic;
 
 namespace HospitalInformationSystem.Windows

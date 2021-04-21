@@ -130,7 +130,7 @@ namespace HospitalInformationSystem.Windows
 
             for (int i = 0; i < dateTimes.Count; i++)
             {
-                recommendedAppointments.Add(new Appointment(dateTimes[i], TypeOfAppointment.Pregled, doctor.room, (Patient)patientComboBox.SelectedItem, doctor));
+                recommendedAppointments.Add(new Appointment(dateTimes[i], TypeOfAppointment.Pregled, doctor.room, (Model.Patient)patientComboBox.SelectedItem, doctor));
             }
 
             for (int i = 0; i < recommendedAppointments.Count; i++)

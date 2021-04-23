@@ -47,7 +47,18 @@ namespace HospitalInformationSystem.Windows.Manager
 
             if (string.Equals(equipmentType, "dinamicka"))
             {
-                equipmentList = new ObservableCollection<Equipment>(EquipmentController.getInstance().getDynamicEquipment());
+                List<Equipment> list = EquipmentController.getInstance().getDynamicEquipment();
+                //ako u sistemu nema dinamicke opreme nema smisla bilo sta prikazivati, ovde se funkcija zaustavlja
+                if (list.Count == 0)
+                    return;
+                foreach(Equipment eq in list)
+                {
+                    if (eq.QuantityInMagacine == 0)
+                        list.Remove(eq);
+                    if (list.Count == 0)
+                        break;
+                }
+                equipmentList = new ObservableCollection<Equipment>(list);
                 foreach (DictionaryEntry de in roomEq)
                 {
                     equipmentList.Remove(EquipmentController.getInstance().findEquipment(de.Key.ToString()));
@@ -55,7 +66,18 @@ namespace HospitalInformationSystem.Windows.Manager
             }
             else
             {
-                equipmentList = new ObservableCollection<Equipment>(EquipmentController.getInstance().getStaticEquipment());
+                List<Equipment> list = EquipmentController.getInstance().getStaticEquipment();
+                //ako u sistemu nema staticke opreme nema smisla bilo sta prikazivati, ovde se funkcija zaustavlja
+                if (list.Count == 0)
+                    return;
+                foreach (Equipment eq in list)
+                {
+                    if (eq.QuantityInMagacine == 0)
+                        list.Remove(eq);
+                    if (list.Count == 0)
+                        break;
+                }
+                equipmentList = new ObservableCollection<Equipment>(list);
                 foreach (DictionaryEntry de in roomEq)
                 {
                     equipmentList.Remove(EquipmentController.getInstance().findEquipment(de.Key.ToString()));

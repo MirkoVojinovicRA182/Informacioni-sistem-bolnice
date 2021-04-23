@@ -232,7 +232,7 @@ namespace HospitalInformationSystem.Windows.Manager
             equipment = selectedRoom.Equipment;
             refreshDynamicEquipmentListBox();
             refreshStaticEquipmentListBox();
-            equipment = new Hashtable();
+            //equipment = new Hashtable();
         }
 
         private void refreshDynamicEquipmentListBox()

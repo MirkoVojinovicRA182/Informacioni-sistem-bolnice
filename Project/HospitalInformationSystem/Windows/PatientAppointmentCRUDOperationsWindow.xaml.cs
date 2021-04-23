@@ -1,4 +1,4 @@
-﻿using BusinessLogic;
+﻿using Service;
 using Model;
 using System;
 using System.Collections.Generic;
@@ -17,7 +17,7 @@ using System.Windows.Shapes;
 using Repository;
 
 
-using HospitalInformationSystem.BusinessLogic;
+using HospitalInformationSystem.Service;
 using System.Globalization;
 using System.Timers;
 

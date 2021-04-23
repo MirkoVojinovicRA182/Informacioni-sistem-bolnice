@@ -1,4 +1,4 @@
-﻿using BusinessLogic;
+﻿using Service;
 using HospitalInformationSystem.Controller;
 using Model;
 using System;
@@ -50,9 +50,9 @@ namespace HospitalInformationSystem.Windows.Manager.Help
 
             if (selection == 2)
             {
-                RoomManagement roomManagement = new RoomManagement();
+                RoomService RoomService = new RoomService();
                 Equipment selectedEquipment = (Equipment)equipmentComboBox.SelectedItem;
-                roomManagement.deleteEquipment(selectedEquipment.Id);
+                RoomService.deleteEquipment(selectedEquipment.Id);
                 EquipmentController.getInstance().deleteEquipment(selectedEquipment);
                 ManagerMainWindow.getInstance().equipmentTable.refreshTable();
                 ManagerMainWindow.getInstance().dynamicEquipmentTable.refreshTable();

@@ -14,7 +14,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 
 using Model;
-using BusinessLogic;
+using Service;
 
 namespace HospitalInformationSystem.Windows
 {
@@ -25,7 +25,7 @@ namespace HospitalInformationSystem.Windows
     {
         private Room selectedRoom = null;
         private ObservableCollection<Room> roomList;
-        private RoomManagement roomManagement = new RoomManagement();
+        private RoomService RoomService = new RoomService();
 
         public RoomCRUDOperationsWindow()
         {
@@ -49,7 +49,7 @@ namespace HospitalInformationSystem.Windows
             selectedRoom = (Room)allRoomsTable.SelectedItem;
 
             if (selectedRoom != null)
-                roomManagement.deleteRoom(selectedRoom);
+                RoomService.deleteRoom(selectedRoom);
             else
                 MessageBox.Show("Niste izabrali prostoriju!", "Upozorenje", MessageBoxButton.OK, MessageBoxImage.Warning);
 

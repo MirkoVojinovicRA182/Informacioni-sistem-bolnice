@@ -1,4 +1,4 @@
-﻿using HospitalInformationSystem.BusinessLogic;
+﻿using HospitalInformationSystem.Service;
 using Model;
 using System;
 using System.Collections.Generic;

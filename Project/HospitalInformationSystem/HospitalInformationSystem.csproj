@@ -55,9 +55,9 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="BusinessLogic\AppointmentManagement.cs" />
-    <Compile Include="BusinessLogic\PatientManagement.cs" />
-    <Compile Include="BusinessLogic\RoomManagement.cs" />
+    <Compile Include="Service\AppointmentManagement.cs" />
+    <Compile Include="Service\PatientManagement.cs" />
+    <Compile Include="Service\RoomService.cs" />
     <Compile Include="Controller\EquipmentController.cs" />
     <Compile Include="DataBases\PatientDataBase.cs" />
     <Compile Include="Model\Account.cs" />
@@ -196,12 +196,12 @@
     <Compile Include="Windows\ShowPatientInformationWindow.xaml.cs">
       <DependentUpon>ShowPatientInformationWindow.xaml</DependentUpon>
     </Compile>
-    <Compile Include="WorkWithFiles\DoctorAppointmentsFIleManipulation.cs" />
-    <Compile Include="WorkWithFiles\DoctorFileManipulation.cs" />
-    <Compile Include="WorkWithFiles\IFileManipulation.cs" />
-    <Compile Include="WorkWithFiles\PatientsAppointmentsFIleManipulation.cs" />
-    <Compile Include="WorkWithFiles\PatientsFileManipulation.cs" />
-    <Compile Include="WorkWithFiles\RoomRepository.cs" />
+    <Compile Include="Repository\DoctorAppointmentsFIleManipulation.cs" />
+    <Compile Include="Repository\DoctorFileManipulation.cs" />
+    <Compile Include="Repository\IFileManipulation.cs" />
+    <Compile Include="Repository\PatientsAppointmentsFIleManipulation.cs" />
+    <Compile Include="Repository\PatientsFileManipulation.cs" />
+    <Compile Include="Repository\RoomRepository.cs" />
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>

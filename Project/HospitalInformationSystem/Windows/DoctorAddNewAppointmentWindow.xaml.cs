@@ -1,4 +1,4 @@
-﻿using BusinessLogic;
+﻿using Service;
 using Model;
 using System;
 using System.Collections.Generic;
@@ -15,7 +15,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 
 
-using HospitalInformationSystem.BusinessLogic;
+using HospitalInformationSystem.Service;
 
 namespace HospitalInformationSystem.Windows
 {

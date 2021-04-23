@@ -1,4 +1,4 @@
-﻿using BusinessLogic;
+﻿using Service;
 using System;
 using System.Collections.Generic;
 using System.Windows;
@@ -56,9 +56,9 @@ namespace HospitalInformationSystem.Windows
             int floor = int.Parse(floorTextBox.Text);
             TypeOfRoom type = loadType((string)typeOfRoomComboBox.SelectedItem);
 
-            RoomManagement roomManagement = new RoomManagement();
+            RoomService RoomService = new RoomService();
 
-            roomManagement.createRoom(floor, id, name, type, equipment);
+            RoomService.createRoom(floor, id, name, type, equipment);
 
         }
 

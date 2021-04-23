@@ -1,4 +1,4 @@
-﻿using BusinessLogic;
+﻿using Service;
 using HospitalInformationSystem.Controller;
 using Model;
 using System;
@@ -48,12 +48,12 @@ namespace HospitalInformationSystem.Windows.Manager.Help
 
         private void confirmButton_Click(object sender, RoutedEventArgs e)
         {
-            RoomManagement roomManagement = new RoomManagement();
+            RoomService RoomService = new RoomService();
 
             if (selection == 2)
             {
 
-                roomManagement.deleteRoom((Room)roomsComboBox.SelectedItem);
+                RoomService.deleteRoom((Room)roomsComboBox.SelectedItem);
                 moveEquipmentInMagacine();
                 ManagerMainWindow.getInstance().roomsTable.refreshTable();
                 MessageBox.Show("Izabrana prostorija je sada obrisana iz sistema.", "Brisanje prostorije", MessageBoxButton.OK, MessageBoxImage.Information);

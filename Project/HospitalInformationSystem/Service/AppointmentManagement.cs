@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 using Model;
 
-namespace HospitalInformationSystem.BusinessLogic
+namespace HospitalInformationSystem.Service
 {
     class AppointmentManagement
     {

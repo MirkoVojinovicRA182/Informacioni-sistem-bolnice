@@ -1,14 +1,14 @@
 /***********************************************************************
  * Module:  PatientManagement.cs
  * Author:  Mirko
- * Purpose: Definition of the Class BusinessLogic.PatientManagement
+ * Purpose: Definition of the Class Service.PatientManagement
  ***********************************************************************/
 
 using Model;
 using System;
 using static Model.Patient;
 
-namespace BusinessLogic
+namespace Service
 {
     public class PatientManagement
     {

@@ -1,21 +1,21 @@
 /***********************************************************************
- * Module:  RoomManagement.cs
+ * Module:  RoomService.cs
  * Author:  Mirko
- * Purpose: Definition of the Class BusinessLogic.RoomManagement
+ * Purpose: Definition of the Class Service.RoomService
  ***********************************************************************/
 
 using Model;
 using HospitalInformationSystem.Windows;
-using HospitalInformationSystem.BusinessLogic;
+using HospitalInformationSystem.Service;
 using System.Collections.Generic;
 using System.Collections;
 using HospitalInformationSystem.Controller;
 
-namespace BusinessLogic
+namespace Service
 {
-    public class RoomManagement
+    public class RoomService
     {
-        public RoomManagement()
+        public RoomService()
         {
             // TODO: implement
         }

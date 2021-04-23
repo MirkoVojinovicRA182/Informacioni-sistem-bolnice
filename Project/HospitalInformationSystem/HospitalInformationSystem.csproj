@@ -77,7 +77,6 @@
     <Compile Include="Model\Person.cs" />
     <Compile Include="Model\Prescription.cs" />
     <Compile Include="Model\Room.cs" />
-    <Compile Include="Model\RoomDataBase.cs" />
     <Compile Include="Model\Secretary.cs" />
     <Compile Include="Model\Specialization.cs" />
     <Compile Include="Model\Therapy.cs" />

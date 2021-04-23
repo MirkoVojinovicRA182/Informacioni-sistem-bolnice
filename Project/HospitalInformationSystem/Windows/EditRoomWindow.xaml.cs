@@ -153,8 +153,7 @@ namespace HospitalInformationSystem.Windows
         }
         private void changeRoomButton_Click(object sender, RoutedEventArgs e)
         {
-            RoomService management = new RoomService();
-            management.changeRoom(selectedRoom, int.Parse(idTextBox.Text), nameTextBox.Text, getType(typeComboBox.SelectedIndex), int.Parse(floorTextBox.Text), equipment);
+            RoomController.getInstance().changeRoom(selectedRoom, int.Parse(idTextBox.Text), nameTextBox.Text, getType(typeComboBox.SelectedIndex), int.Parse(floorTextBox.Text), equipment);
             //promena usled dodavanja neke nove opreme
             changeQuantityInMagacineOfDynamicEquipment();
             //promena usled eventualnog brisanja opreme

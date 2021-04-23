@@ -64,7 +64,7 @@ namespace HospitalInformationSystem.Windows
 
             allRoomsTable.AreRowDetailsFrozen = false;
 
-            if (RoomDataBase.getInstance().getRooms().Count != 0)
+            if (RoomController.getInstance().getRooms().Count != 0)
             {
                 //changeButton.IsEnabled = true;
                 //deleteButton.IsEnabled = true;
@@ -74,11 +74,6 @@ namespace HospitalInformationSystem.Windows
                 //changeButton.IsEnabled = false;
                 //deleteButton.IsEnabled = false;
             }
-        }
-
-        private void moveButton_Click(object sender, RoutedEventArgs e)
-        {
-
         }
     }
 }

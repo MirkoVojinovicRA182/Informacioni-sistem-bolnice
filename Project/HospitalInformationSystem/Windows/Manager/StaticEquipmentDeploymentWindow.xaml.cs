@@ -1,4 +1,5 @@
-﻿using HospitalInformationSystem.Service;
+﻿using HospitalInformationSystem.Controller;
+using HospitalInformationSystem.Service;
 using Model;
 using System;
 using System.Collections;
@@ -50,14 +51,13 @@ namespace HospitalInformationSystem.Windows.Manager
             nextRoom = (Room)nextRoomComboBox.SelectedItem;
             quantity = int.Parse(quantityTextBox.Text);
 
-            RoomService RoomService = new RoomService();
 
             //brisanje opreme iz trenutne prostorije
-            RoomService.changeStaticEquipmentState(currentRoom, quantityOfSelectedEquipment, quantity, idOfSelectedEquipment);
+            RoomController.getInstance().changeStaticEquipmentState(currentRoom, quantityOfSelectedEquipment, quantity, idOfSelectedEquipment);
 
 
             //dodavanje opreme u zeljenu prostoriju
-            RoomService.moveStaticEqToNextRoom(nextRoom, quantity, idOfSelectedEquipment);
+            RoomController.getInstance().moveStaticEqToNextRoom(nextRoom, quantity, idOfSelectedEquipment);
 
             //osvezavanje staticke opreme izabrane prostorije
             EditRoomWindow.getInstance(currentRoom).loadRoom();
@@ -85,8 +85,7 @@ namespace HospitalInformationSystem.Windows.Manager
 
         private void loadComboBox()
         {
-            RoomService RoomService = new RoomService();
-            roomList = new ObservableCollection<Room>(RoomService.getRooms());
+            roomList = new ObservableCollection<Room>(RoomController.getInstance().getRooms());
 
             //brisanje trenutne prostorije iz liste svih potencijalnih prostorija
             roomList.Remove(currentRoom);

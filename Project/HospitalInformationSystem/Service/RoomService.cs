@@ -42,14 +42,11 @@ namespace HospitalInformationSystem.Service
 
             roomList.Add(newRoom);
 
-            RoomDataBase.getInstance().addRoom(newRoom);
-
         }
 
         public void deleteRoom(Room room)
         {
             // TODO: implement
-            RoomDataBase.getInstance().removeRoom(room);
 
             roomList.Remove(room);
 

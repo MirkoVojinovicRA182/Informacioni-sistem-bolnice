@@ -1,6 +1,7 @@
 ﻿using HospitalInformationSystem.Service;
 using Model;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -35,6 +36,26 @@ namespace HospitalInformationSystem.Controller
             roomService.loadFromFile();
         }
 
+        public void createRoom(int floor, int id, string name, TypeOfRoom type, Hashtable equipment)
+        {
+            roomService.createRoom(floor, id, name, type, equipment);
+        }
+
+        public void changeRoom(Room room, int newId, string newName, TypeOfRoom newType, int newFloor, Hashtable equipment)
+        {
+            roomService.changeRoom(room, newId, newName, newType, newFloor, equipment);
+        }
+
+        public void deleteEquipment(string id)
+        {
+            roomService.deleteEquipment(id);
+        }
+
+        public void deleteRoom(Room room)
+        {
+            roomService.deleteRoom(room);
+        }
+
         public List<Room> getRooms()
         {
             return roomService.getRooms();
@@ -43,6 +64,16 @@ namespace HospitalInformationSystem.Controller
         public void setRooms(List<Room> rooms)
         {
             roomService.setRooms(rooms);
+        }
+
+        public void changeStaticEquipmentState(Room room, int currentQuantity, int moveQuantity, string key)
+        {
+            roomService.changeStaticEquipmentState(room, currentQuantity, moveQuantity, key);
+        }
+
+        public void moveStaticEqToNextRoom(Room room, int moveQuantity, string key)
+        {
+            roomService.moveStaticEqToNextRoom(room, moveQuantity, key);
         }
     }
 }

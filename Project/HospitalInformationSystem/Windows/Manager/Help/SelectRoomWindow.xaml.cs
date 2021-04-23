@@ -41,19 +41,18 @@ namespace HospitalInformationSystem.Windows.Manager.Help
 
             this.selection = selection;
 
-            roomList = new ObservableCollection<Room>(RoomDataBase.getInstance().getRooms());
+            roomList = new ObservableCollection<Room>(RoomController.getInstance().getRooms());
 
             roomsComboBox.ItemsSource = roomList;
         }
 
         private void confirmButton_Click(object sender, RoutedEventArgs e)
         {
-            RoomService RoomService = new RoomService();
 
             if (selection == 2)
             {
 
-                RoomService.deleteRoom((Room)roomsComboBox.SelectedItem);
+                RoomController.getInstance().deleteRoom((Room)roomsComboBox.SelectedItem);
                 moveEquipmentInMagacine();
                 ManagerMainWindow.getInstance().roomsTable.refreshTable();
                 MessageBox.Show("Izabrana prostorija je sada obrisana iz sistema.", "Brisanje prostorije", MessageBoxButton.OK, MessageBoxImage.Information);

@@ -15,6 +15,7 @@ using System.Windows.Shapes;
 
 
 using HospitalInformationSystem.Service;
+using HospitalInformationSystem.Controller;
 
 namespace HospitalInformationSystem.Windows
 {
@@ -36,7 +37,7 @@ namespace HospitalInformationSystem.Windows
             initDoctors();
 
             patientComboBox.ItemsSource = PatientDataBase.getInstance().getPatient();
-            roomsListBox.DataContext = RoomDataBase.getInstance().getRooms();
+            roomsListBox.DataContext = RoomController.getInstance().getRooms();
 
         }
 

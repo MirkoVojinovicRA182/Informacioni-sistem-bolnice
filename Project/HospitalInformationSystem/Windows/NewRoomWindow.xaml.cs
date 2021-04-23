@@ -56,9 +56,7 @@ namespace HospitalInformationSystem.Windows
             int floor = int.Parse(floorTextBox.Text);
             TypeOfRoom type = loadType((string)typeOfRoomComboBox.SelectedItem);
 
-            RoomService RoomService = new RoomService();
-
-            RoomService.createRoom(floor, id, name, type, equipment);
+            RoomController.getInstance().createRoom(floor, id, name, type, equipment);
 
         }
 

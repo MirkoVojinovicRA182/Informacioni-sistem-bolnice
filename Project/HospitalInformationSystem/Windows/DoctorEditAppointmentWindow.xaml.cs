@@ -1,4 +1,5 @@
-﻿using HospitalInformationSystem.Service;
+﻿using HospitalInformationSystem.Controller;
+using HospitalInformationSystem.Service;
 using Model;
 using System;
 using System.Collections.Generic;
@@ -49,7 +50,7 @@ namespace HospitalInformationSystem.Windows
 
         private void loadRoomComboBox()
         {
-            roomComboBox.ItemsSource = RoomDataBase.getInstance().getRooms();
+            roomComboBox.ItemsSource = RoomController.getInstance().getRooms();
             roomComboBox.SelectedIndex = 10;
         }
 

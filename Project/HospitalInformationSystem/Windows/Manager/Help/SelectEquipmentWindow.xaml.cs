@@ -50,9 +50,8 @@ namespace HospitalInformationSystem.Windows.Manager.Help
 
             if (selection == 2)
             {
-                RoomService RoomService = new RoomService();
                 Equipment selectedEquipment = (Equipment)equipmentComboBox.SelectedItem;
-                RoomService.deleteEquipment(selectedEquipment.Id);
+                RoomController.getInstance().deleteEquipment(selectedEquipment.Id);
                 EquipmentController.getInstance().deleteEquipment(selectedEquipment);
                 ManagerMainWindow.getInstance().equipmentTable.refreshTable();
                 ManagerMainWindow.getInstance().dynamicEquipmentTable.refreshTable();

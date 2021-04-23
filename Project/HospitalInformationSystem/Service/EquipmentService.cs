@@ -60,6 +60,14 @@ namespace HospitalInformationSystem.Service
             return this.equipmentList;
         }
 
+        public void setEquipment(List<Equipment> equipment)
+        {
+            equipmentList.Clear();
+
+            foreach (Equipment eq in equipment)
+                equipmentList.Add(eq);
+        }
+
         public void deleteEquipment(Equipment equipment)
         {
             if (equipment == null)
@@ -84,12 +92,12 @@ namespace HospitalInformationSystem.Service
 
         public void saveInFile()
         {
-            this.er.saveInFile(this.equipmentList);
+            this.er.saveInFile();
         }
 
         public void loadFromFile()
         {
-            equipmentList = this.er.loadFromFile();
+            er.loadFromFile();
         }
 
 

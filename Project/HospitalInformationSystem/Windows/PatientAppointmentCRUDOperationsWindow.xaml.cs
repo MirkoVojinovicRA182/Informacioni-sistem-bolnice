@@ -29,7 +29,6 @@ namespace HospitalInformationSystem.Windows
     public partial class PatientAppointmentCRUDOperationsWindow : Window
     {
         private ObservableCollection<Appointment> appointmentList;
-        PatientsAppointmentsFIleManipulation save = new PatientsAppointmentsFIleManipulation();
         private Patient patient;
         private static PatientAppointmentCRUDOperationsWindow instance = null;
         public PatientAppointmentCRUDOperationsWindow(Patient patient)

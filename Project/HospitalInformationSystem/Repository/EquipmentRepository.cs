@@ -1,4 +1,5 @@
-﻿using HospitalInformationSystem.Service;
+﻿using HospitalInformationSystem.Controller;
+using HospitalInformationSystem.Service;
 using Model;
 using System;
 using System.Collections.Generic;
@@ -13,14 +14,14 @@ namespace HospitalInformationSystem.Repository
 {
     class EquipmentRepository
     {
-        public bool saveInFile(List<Equipment> equipment)
+        public void saveInFile()
         {
             FileStream fs = new FileStream("Equipment.dat", FileMode.Create);
 
             BinaryFormatter formatter = new BinaryFormatter();
             try
             {
-                formatter.Serialize(fs, equipment);
+                formatter.Serialize(fs, EquipmentController.getInstance().getEquipment());
             }
             catch (SerializationException e)
             {
@@ -32,19 +33,17 @@ namespace HospitalInformationSystem.Repository
                 fs.Close();
             }
 
-            return true;
         }
 
-        public List<Equipment> loadFromFile()
+        public void loadFromFile()
         {
-            List<Equipment> list = new List<Equipment>();
             if (File.Exists("Equipment.dat"))
             {
                 FileStream fs = new FileStream("Equipment.dat", FileMode.Open);
                 try
                 {
                     BinaryFormatter formatter = new BinaryFormatter();
-                    list = ((List<Equipment>)formatter.Deserialize(fs));
+                    EquipmentController.getInstance().setEquipment((List<Equipment>)formatter.Deserialize(fs));
                 }
                 catch (SerializationException e)
                 {
@@ -56,7 +55,6 @@ namespace HospitalInformationSystem.Repository
                 }
             }
 
-            return list;
         }
     }
 }

@@ -3,7 +3,7 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:ucRooms="clr-namespace:HospitalInformationSystem.Windows"
+        xmlns:ucRooms="clr-namespace:HospitalInformationSystem.Windows.Manager"
         xmlns:ucStaticEquipment="clr-namespace:HospitalInformationSystem.Windows.Manager"
         xmlns:ucDynamicEquipment="clr-namespace:HospitalInformationSystem.Windows.Manager"
         xmlns:local="clr-namespace:HospitalInformationSystem.Windows.Manager"

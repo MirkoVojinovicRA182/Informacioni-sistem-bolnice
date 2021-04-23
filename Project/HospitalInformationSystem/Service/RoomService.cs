@@ -27,12 +27,12 @@ namespace HospitalInformationSystem.Service
 
         public void saveInFile()
         {
-            roomR.SaveInFile();
+            roomR.saveInFile();
         }
 
         public void loadFromFile()
         {
-            roomR.LoadFromFile();
+            roomR.loadFromFile();
         }
         public void createRoom(int floor, int id, string name, TypeOfRoom type, Hashtable equipment)
         {

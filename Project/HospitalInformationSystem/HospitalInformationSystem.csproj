@@ -199,7 +199,6 @@
     <Compile Include="Repository\DoctorAppointmentsFIleManipulation.cs" />
     <Compile Include="Repository\DoctorFileManipulation.cs" />
     <Compile Include="Repository\IFileManipulation.cs" />
-    <Compile Include="Repository\PatientsAppointmentsFIleManipulation.cs" />
     <Compile Include="Repository\PatientsFileManipulation.cs" />
     <Compile Include="Repository\RoomRepository.cs" />
     <Page Include="MainWindow.xaml">

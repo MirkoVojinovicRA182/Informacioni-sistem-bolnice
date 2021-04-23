@@ -14,7 +14,7 @@ namespace HospitalInformationSystem.Repository
 {
     public class DoctorFileManipulation : IFileManipulation
     {
-        public bool SaveInFile()
+        public void saveInFile()
         {
             // TODO: implement
             FileStream fs = new FileStream("Doctors.dat", FileMode.Create);
@@ -33,10 +33,9 @@ namespace HospitalInformationSystem.Repository
                 fs.Close();
             }
 
-            return true;
         }
 
-        public bool LoadFromFile()
+        public void loadFromFile()
         {
             // TODO: implement
             if (File.Exists("Doctors.dat"))
@@ -57,7 +56,6 @@ namespace HospitalInformationSystem.Repository
                 }
 
             }
-            return false;
         }
 
     }

@@ -14,7 +14,7 @@ namespace HospitalInformationSystem.Repository
 {
     public class PatientsFileManipulation : IFileManipulation
     {
-        public bool SaveInFile()
+        public void saveInFile()
         {
             FileStream fs = new FileStream("Accounts.dat", FileMode.Create);
             FileStream fs2 = new FileStream("Allergens.dat", FileMode.Create);
@@ -36,10 +36,9 @@ namespace HospitalInformationSystem.Repository
                 fs2.Close();
             }
 
-            return true;
         }
 
-        public bool LoadFromFile()
+        public void loadFromFile()
         {
 
             if (File.Exists("Allergens.dat"))
@@ -80,10 +79,6 @@ namespace HospitalInformationSystem.Repository
                 }
 
             }
-
-
-
-            return false;
         }
 
     }

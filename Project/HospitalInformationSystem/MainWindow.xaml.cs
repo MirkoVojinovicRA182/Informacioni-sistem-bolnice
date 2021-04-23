@@ -28,9 +28,9 @@ namespace HospitalInformationSystem.Windows
         public MainWindow()
         {
             InitializeComponent();
-            savePatients.LoadFromFile();
-            //save.LoadFromFile();
-            doctorAppFile.LoadFromFile();
+            savePatients.loadFromFile();
+            //save.loadFromFile();
+            doctorAppFile.loadFromFile();
 
             var doctor = new Doctor("Marko", "Markovic", Specialization.Family_Physician, new Room(1, "Markova kancelarija", 1, TypeOfRoom.ExaminationRoom));
             DoctorDataBase.getInstance().GetDoctors().Add(new Doctor("Marko", "Markovic", Specialization.Family_Physician, new Room(1, "Markova prostorija", 1, TypeOfRoom.ExaminationRoom)));
@@ -127,8 +127,8 @@ namespace HospitalInformationSystem.Windows
 
         private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
         {
-            doctorAppFile.SaveInFile();
-            savePatients.SaveInFile();
+            doctorAppFile.saveInFile();
+            savePatients.saveInFile();
         }
     }
 }

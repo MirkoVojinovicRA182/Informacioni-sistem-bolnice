@@ -45,6 +45,10 @@ namespace HospitalInformationSystem.Controller
             return this.equipmentService.getEquipment();
         }
 
+        public void setEquipment(List<Equipment> equipment)
+        {
+            equipmentService.setEquipment(equipment);
+        }
         public void deleteEquipment(Equipment equipment)
         {
             equipmentService.deleteEquipment(equipment);

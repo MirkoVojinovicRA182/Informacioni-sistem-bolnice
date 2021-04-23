@@ -8,7 +8,7 @@ namespace HospitalInformationSystem.Repository
 {
     public interface IFileManipulation
     {
-        bool SaveInFile();
-        bool LoadFromFile();
+        void saveInFile();
+        void loadFromFile();
     }
 }

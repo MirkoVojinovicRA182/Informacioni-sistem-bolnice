@@ -15,7 +15,7 @@ namespace HospitalInformationSystem.Repository
 {
     public class RoomRepository : IFileManipulation
     {
-        public bool SaveInFile()
+        public void saveInFile()
         {
             FileStream fs = new FileStream("Rooms.dat", FileMode.Create);
 
@@ -34,10 +34,9 @@ namespace HospitalInformationSystem.Repository
                 fs.Close();
             }
 
-            return true;
         }
 
-        public bool LoadFromFile()
+        public void loadFromFile()
         {
                       
             FileStream fs = new FileStream("Rooms.dat", FileMode.Open);
@@ -55,8 +54,6 @@ namespace HospitalInformationSystem.Repository
             {
                 fs.Close();
             }
-
-            return false;
         }
 
     }

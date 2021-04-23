@@ -98,21 +98,38 @@ namespace HospitalInformationSystem.Windows.Manager
         {
             if (roomTab.IsSelected) //tab prostorije
             {
-                RoomController.getInstance().deleteRoom((Room)this.roomsTable.allRoomsTable.SelectedItem);
-                moveEquipmentInMagacine();
-                ManagerMainWindow.getInstance().roomsTable.refreshTable();
-                MessageBox.Show("Izabrana prostorija je sada obrisana iz sistema.", "Brisanje prostorije", MessageBoxButton.OK, MessageBoxImage.Information);
+                if (roomsTable.allRoomsTable.SelectedItem != null)
+                {
+                    RoomController.getInstance().deleteRoom((Room)this.roomsTable.allRoomsTable.SelectedItem);
+                    moveEquipmentInMagacine();
+                    ManagerMainWindow.getInstance().roomsTable.refreshTable();
+                    MessageBox.Show("Izabrana prostorija je sada obrisana iz sistema.", "Brisanje prostorije", MessageBoxButton.OK, MessageBoxImage.Information);
+                }
+                else
+                    MessageBox.Show("Niste odabrali prostoriju!", "Upozorenje", MessageBoxButton.OK, MessageBoxImage.Warning);
             }
             else if (equipmentTab.IsSelected)//tab oprema
             {
                 Equipment selectedEquipment = null;
                 if (staticEquipmentTab.IsSelected)
                 {
-                    selectedEquipment = (Equipment)this.equipmentTable.equipmentTable.SelectedItem;
+                    if (equipmentTable.equipmentTable.SelectedItem != null)
+                        selectedEquipment = (Equipment)this.equipmentTable.equipmentTable.SelectedItem;
+                    else
+                    {
+                        MessageBox.Show("Niste odabrali opremu!", "Upozorenje", MessageBoxButton.OK, MessageBoxImage.Warning);
+                        return;
+                    }
                 }
                 else if (dynamicEquipmentTab.IsSelected)
                 {
-                    selectedEquipment = (Equipment)this.dynamicEquipmentTable.dynamicEquipmentTable.SelectedItem;
+                    if(dynamicEquipmentTable.dynamicEquipmentTable.SelectedItem != null)
+                        selectedEquipment = (Equipment)this.dynamicEquipmentTable.dynamicEquipmentTable.SelectedItem;
+                    else
+                    {
+                        MessageBox.Show("Niste odabrali opremu!", "Upozorenje", MessageBoxButton.OK, MessageBoxImage.Warning);
+                        return;
+                    }
                 }
                 RoomController.getInstance().deleteEquipment(selectedEquipment.Id);
                 EquipmentController.getInstance().deleteEquipment(selectedEquipment);
@@ -134,14 +151,27 @@ namespace HospitalInformationSystem.Windows.Manager
 
             if (roomTab.IsSelected) //tab prostorije
             {
-                EditRoomWindow.getInstance((Room)this.roomsTable.allRoomsTable.SelectedItem).Show();
+                if (roomsTable.allRoomsTable.SelectedItem != null)
+                    EditRoomWindow.getInstance((Room)this.roomsTable.allRoomsTable.SelectedItem).Show();
+                else
+                    MessageBox.Show("Niste odabrali prostoriju!", "Upozorenje", MessageBoxButton.OK, MessageBoxImage.Warning);
             }
             else if (equipmentTab.IsSelected)//tab oprema
             {
-                if(staticEquipmentTab.IsSelected)
-                    EditEquipment.getInstance((Equipment)this.equipmentTable.equipmentTable.SelectedItem).Show();
-                else if(dynamicEquipmentTab.IsSelected)
-                    EditEquipment.getInstance((Equipment)this.dynamicEquipmentTable.dynamicEquipmentTable.SelectedItem).Show();
+                if (staticEquipmentTab.IsSelected)
+                {
+                    if (equipmentTable.equipmentTable.SelectedItem != null)
+                        EditEquipment.getInstance((Equipment)this.equipmentTable.equipmentTable.SelectedItem).Show();
+                    else
+                        MessageBox.Show("Niste odabrali opremu!", "Upozorenje", MessageBoxButton.OK, MessageBoxImage.Warning);
+                }
+                else if (dynamicEquipmentTab.IsSelected)
+                {
+                    if(dynamicEquipmentTable.dynamicEquipmentTable.SelectedItem != null)
+                        EditEquipment.getInstance((Equipment)this.dynamicEquipmentTable.dynamicEquipmentTable.SelectedItem).Show();
+                    else
+                        MessageBox.Show("Niste odabrali opremu!", "Upozorenje", MessageBoxButton.OK, MessageBoxImage.Warning);
+                }
             }
         }
     }

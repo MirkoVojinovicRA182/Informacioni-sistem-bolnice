@@ -29,24 +29,23 @@ namespace HospitalInformationSystem.Windows.Manager
         private int quantity;
         private string window;
 
-        public static AddEquipmentToRoomWindow getInstance(Hashtable roomEq, string equipment, string window)
+        public static AddEquipmentToRoomWindow getInstance(Hashtable roomEq, string equipmentType, string window)
         {
             if (instance == null)
-                instance = new AddEquipmentToRoomWindow(roomEq, equipment, window);
+                instance = new AddEquipmentToRoomWindow(roomEq, equipmentType, window);
             return instance;
         }
-        private AddEquipmentToRoomWindow(Hashtable roomEq, string equipment, string window)
+        private AddEquipmentToRoomWindow(Hashtable roomEq, string equipmentType, string window)
         {
             InitializeComponent();
-            loadEquipment(equipment, roomEq);
+            loadEquipment(equipmentType, roomEq);
             this.window = window;
         }
 
-        private void loadEquipment(string equipment, Hashtable roomEq)
+        private void loadEquipment(string equipmentType, Hashtable roomEq)
         {
 
-
-            if (string.Equals(equipment, "dinamicka"))
+            if (string.Equals(equipmentType, "dinamicka"))
             {
                 equipmentList = new ObservableCollection<Equipment>(EquipmentController.getInstance().getDynamicEquipment());
                 foreach (DictionaryEntry de in roomEq)

@@ -55,12 +55,12 @@ namespace HospitalInformationSystem.Windows.Manager
 
         private void addDynamicButton_Click(object sender, RoutedEventArgs e)
         {
-            AddEquipmentToRoomWindow.getInstance(selectedRoom.Equipment, "dinamicka", "editRoom").Show();
+            AddEquipmentToRoomWindow.getInstance(equipment, "dinamicka", "editRoom").Show();
         }
 
         private void addStaticButton_Click(object sender, RoutedEventArgs e)
         {
-            AddEquipmentToRoomWindow.getInstance(selectedRoom.Equipment, "staticka", "editRoom").Show();
+            AddEquipmentToRoomWindow.getInstance(equipment, "staticka", "editRoom").Show();
         }
 
 

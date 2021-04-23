@@ -231,6 +231,8 @@ namespace HospitalInformationSystem.Windows.Manager
             floorTextBox.Text = selectedRoom.Floor.ToString();
             fiilTypeComboBox(selectedRoom.Type);
 
+            equipment.Clear();
+
             foreach (DictionaryEntry de in selectedRoom.Equipment)
                 equipment.Add(de.Key, de.Value);
 

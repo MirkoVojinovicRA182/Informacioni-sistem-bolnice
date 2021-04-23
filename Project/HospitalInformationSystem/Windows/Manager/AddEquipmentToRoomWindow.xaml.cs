@@ -1,5 +1,4 @@
 ﻿using HospitalInformationSystem.Controller;
-using HospitalInformationSystem.Windows.Manager.Help;
 using Model;
 using System;
 using System.Collections;
@@ -82,7 +81,7 @@ namespace HospitalInformationSystem.Windows.Manager
             if (string.Equals(window, "newRoom"))
                 NewRoomWindow.getInstance().addEquipment(selectedEquipment.Id, quantity);
             else
-                EditRoomWindow.getInstance((Room)SelectRoomWindow.getInstance(1).roomsComboBox.SelectedItem).addEquipment(selectedEquipment.Id, quantity);
+                EditRoomWindow.getInstance((Room)ManagerMainWindow.getInstance().roomsTable.allRoomsTable.SelectedItem).addEquipment(selectedEquipment.Id, quantity);
 
             instance = null;
         }

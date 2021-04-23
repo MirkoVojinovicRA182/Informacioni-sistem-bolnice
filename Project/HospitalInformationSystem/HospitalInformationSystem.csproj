@@ -127,12 +127,6 @@
     <Compile Include="Windows\Manager\EquipmentTable.xaml.cs">
       <DependentUpon>EquipmentTable.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Windows\Manager\Help\SelectEquipmentWindow.xaml.cs">
-      <DependentUpon>SelectEquipmentWindow.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Windows\Manager\Help\SelectRoomWindow.xaml.cs">
-      <DependentUpon>SelectRoomWindow.xaml</DependentUpon>
-    </Compile>
     <Compile Include="Windows\Manager\InsertQuantityOfEquipmentForRemovingWindow.xaml.cs">
       <DependentUpon>InsertQuantityOfEquipmentForRemovingWindow.xaml</DependentUpon>
     </Compile>
@@ -190,8 +184,8 @@
     <Compile Include="Windows\PatientManagementWindow.xaml.cs">
       <DependentUpon>PatientManagementWindow.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Windows\Manager\RoomCRUDOperationsWindow.xaml.cs">
-      <DependentUpon>RoomCRUDOperationsWindow.xaml</DependentUpon>
+    <Compile Include="Windows\Manager\RoomTable.xaml.cs">
+      <DependentUpon>RoomTable.xaml</DependentUpon>
     </Compile>
     <Compile Include="Windows\ShowPatientInformationWindow.xaml.cs">
       <DependentUpon>ShowPatientInformationWindow.xaml</DependentUpon>
@@ -266,14 +260,6 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="Windows\Manager\EquipmentTable.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="Windows\Manager\Help\SelectEquipmentWindow.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="Windows\Manager\Help\SelectRoomWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
@@ -353,7 +339,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Windows\Manager\RoomCRUDOperationsWindow.xaml">
+    <Page Include="Windows\Manager\RoomTable.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

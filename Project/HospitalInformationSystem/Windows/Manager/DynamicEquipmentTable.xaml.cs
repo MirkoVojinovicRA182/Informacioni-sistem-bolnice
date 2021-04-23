@@ -46,6 +46,7 @@ namespace HospitalInformationSystem.Windows.Manager
         private void dynamicEquipmentTable_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             this.selectedEquipment = (Equipment)dynamicEquipmentTable.SelectedItem;
+            e.Handled = true;
         }
     }
 }

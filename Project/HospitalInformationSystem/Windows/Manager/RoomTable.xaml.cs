@@ -75,5 +75,10 @@ namespace HospitalInformationSystem.Windows.Manager
                 //deleteButton.IsEnabled = false;
             }
         }
+
+        private void allRoomsTable_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            e.Handled = true;
+        }
     }
 }

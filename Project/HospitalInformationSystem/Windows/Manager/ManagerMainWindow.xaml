@@ -24,7 +24,6 @@
             </MenuItem>
         </Menu>
         <TextBox AcceptsReturn="True" />
-
         <TabControl x:Name="mainTabs" SelectionChanged="mainTabs_SelectionChanged">
             <TabItem x:Name="roomTab" Header="Prostorije">
                 <ucRooms:RoomTable x:Name="roomsTable"/>
@@ -40,6 +39,5 @@
                 </TabControl>
             </TabItem>
         </TabControl>
-
     </DockPanel>
 </Window>

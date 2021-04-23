@@ -1,10 +1,10 @@
 /***********************************************************************
  * Module:  PatientsAppointmentsFIleManipulation.cs
  * Author:  Mirko
- * Purpose: Definition of the Class WorkWithFiles.PatientsAppointmentsFIleManipulation
+ * Purpose: Definition of the Class Repository.PatientsAppointmentsFIleManipulation
  ***********************************************************************/
 
-namespace WorkWithFiles
+namespace Repository
 {
     public class PatientsAppointmentsFIleManipulation : IFileManipulation
     {

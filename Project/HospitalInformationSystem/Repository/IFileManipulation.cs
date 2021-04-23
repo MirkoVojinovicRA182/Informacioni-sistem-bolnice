@@ -1,10 +1,10 @@
 /***********************************************************************
  * Module:  IFileManipulation.cs
  * Author:  Mirko
- * Purpose: Definition of the Interface WorkWithFiles.IFileManipulation
+ * Purpose: Definition of the Interface Repository.IFileManipulation
  ***********************************************************************/
 
-namespace WorkWithFiles
+namespace Repository
 {
     public interface IFileManipulation
     {

@@ -12,9 +12,9 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
-
+using HospitalInformationSystem.Controller;
+using HospitalInformationSystem.Service;
 using Model;
-using Service;
 
 namespace HospitalInformationSystem.Windows
 {
@@ -58,7 +58,7 @@ namespace HospitalInformationSystem.Windows
 
         public void refreshTable()
         {
-            roomList = new ObservableCollection<Room>(RoomDataBase.getInstance().getRooms());
+            roomList = new ObservableCollection<Room>(RoomController.getInstance().getRooms());
             allRoomsTable.ItemsSource = null;
             allRoomsTable.ItemsSource = roomList;
 

@@ -4,13 +4,14 @@
  * Purpose: Definition of the Class Repository.RoomRepository
  ***********************************************************************/
 
+using HospitalInformationSystem.Controller;
 using Model;
 using System.Collections.Generic;
 using System.IO;
 using System.Runtime.Serialization;
 using System.Runtime.Serialization.Formatters.Binary;
 
-namespace Repository
+namespace HospitalInformationSystem.Repository
 {
     public class RoomRepository : IFileManipulation
     {
@@ -21,7 +22,7 @@ namespace Repository
             BinaryFormatter formatter = new BinaryFormatter();
             try
             {
-                formatter.Serialize(fs, RoomDataBase.getInstance().getRooms());
+                formatter.Serialize(fs, RoomController.getInstance().getRooms());
             }
             catch (SerializationException e)
             {
@@ -38,23 +39,22 @@ namespace Repository
 
         public bool LoadFromFile()
         {
-            //if (File.Exists("Rooms.dat"))
-            //{
-                FileStream fs = new FileStream("Rooms.dat", FileMode.Open);
-                try
-                {
-                    BinaryFormatter formatter = new BinaryFormatter();
-                    RoomDataBase.getInstance().setRoom((List<Room>)formatter.Deserialize(fs));
-                }
-                catch (SerializationException e)
-                {
-                    throw;
-                }
-                finally
-                {
-                    fs.Close();
-                }
-            //}
+                      
+            FileStream fs = new FileStream("Rooms.dat", FileMode.Open);
+            try
+            {
+                BinaryFormatter formatter = new BinaryFormatter();
+                    
+                RoomController.getInstance().setRooms((List<Room>)formatter.Deserialize(fs));
+            }
+            catch (SerializationException e)
+            {
+                throw;
+            }
+            finally
+            {
+                fs.Close();
+            }
 
             return false;
         }

@@ -10,7 +10,7 @@ using System.IO;
 using System.Runtime.Serialization;
 using System.Runtime.Serialization.Formatters.Binary;
 
-namespace Repository
+namespace HospitalInformationSystem.Repository
 {
     public class PatientsFileManipulation : IFileManipulation
     {

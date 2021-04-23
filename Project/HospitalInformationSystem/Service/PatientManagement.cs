@@ -8,7 +8,7 @@ using Model;
 using System;
 using static Model.Patient;
 
-namespace Service
+namespace HospitalInformationSystem.Service
 {
     public class PatientManagement
     {

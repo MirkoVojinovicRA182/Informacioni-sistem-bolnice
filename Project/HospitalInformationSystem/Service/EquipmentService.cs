@@ -89,10 +89,7 @@ namespace HospitalInformationSystem.Service
 
         public void loadFromFile()
         {
-            List<Equipment> list = this.er.loadFromFile();
-            removeAllEquipment();
-            foreach (Equipment eq in list)
-                addNewEquipment(eq);
+            equipmentList = this.er.loadFromFile();
         }
 
 

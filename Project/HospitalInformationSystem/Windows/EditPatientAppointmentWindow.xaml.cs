@@ -1,5 +1,4 @@
-﻿using Service;
-using HospitalInformationSystem.Service;
+﻿using HospitalInformationSystem.Service;
 using Model;
 using System;
 using System.Collections.Generic;

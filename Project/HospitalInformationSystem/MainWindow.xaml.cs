@@ -13,7 +13,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
-using Repository;
+using HospitalInformationSystem.Repository;
 
 namespace HospitalInformationSystem.Windows
 {
@@ -23,7 +23,6 @@ namespace HospitalInformationSystem.Windows
     public partial class MainWindow : Window
     {
         private static Person person;
-        RoomRepository save = new RoomRepository();
         PatientsFileManipulation savePatients = new PatientsFileManipulation();
         DoctorAppointmentsFIleManipulation doctorAppFile = new DoctorAppointmentsFIleManipulation();
         public MainWindow()
@@ -67,7 +66,9 @@ namespace HospitalInformationSystem.Windows
             AccountDataBase.getInstance().AddAccount(new Account("perapacijent1@yahoo.com", "pass", first));
             AccountDataBase.getInstance().AddAccount(new Account("markomarkovic@yahoo.com", "pass", doctor));
             AccountDataBase.getInstance().AddAccount(new Account("petarpetrovic@yahoo.com", "pass", secretary));
-            AccountDataBase.getInstance().AddAccount(new Account("stefanjovanovic@yahoo.com", "pass", manager));
+            AccountDataBase.getInstance().AddAccount(new Account("m", "pass", manager));
+
+            ManagerMainWindow.getInstance().Show();
 
         }
 
@@ -126,7 +127,6 @@ namespace HospitalInformationSystem.Windows
 
         private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
         {
-            //save.SaveInFile();
             doctorAppFile.SaveInFile();
             savePatients.SaveInFile();
         }

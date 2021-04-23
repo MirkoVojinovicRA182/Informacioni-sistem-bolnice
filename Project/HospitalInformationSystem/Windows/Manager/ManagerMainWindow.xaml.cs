@@ -1,5 +1,4 @@
-﻿using Service;
-using HospitalInformationSystem.Controller;
+﻿using HospitalInformationSystem.Controller;
 using HospitalInformationSystem.Windows.Manager.Help;
 using Model;
 using System;
@@ -15,7 +14,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
-using Repository;
+using HospitalInformationSystem.Repository;
 
 namespace HospitalInformationSystem.Windows.Manager
 {
@@ -26,7 +25,7 @@ namespace HospitalInformationSystem.Windows.Manager
     {
 
         private static ManagerMainWindow instance;
-        private RoomRepository RoomRepository;
+        private RoomRepository roomRepository;
 
         public static ManagerMainWindow getInstance()
         {
@@ -37,10 +36,10 @@ namespace HospitalInformationSystem.Windows.Manager
         private ManagerMainWindow()
         {
             InitializeComponent();
-            RoomRepository = new RoomRepository();
+            roomRepository = new RoomRepository();
 
-            //EquipmentController.getInstance().loadFromFile();
-            RoomRepository.LoadFromFile();
+            EquipmentController.getInstance().loadFromFile();
+            RoomController.getInstance().loadFromFile();
 
             roomsTable.refreshTable();
             equipmentTable.refreshTable();
@@ -58,7 +57,7 @@ namespace HospitalInformationSystem.Windows.Manager
             instance = null;
 
             EquipmentController.getInstance().saveInFile();
-            RoomRepository.SaveInFile();
+            RoomController.getInstance().saveInFile();
         }
 
         private void newMenuItem_Click(object sender, RoutedEventArgs e)
@@ -119,11 +118,6 @@ namespace HospitalInformationSystem.Windows.Manager
             {
                 SelectEquipmentWindow.getInstance(1).Show();
             }
-        }
-
-        private void Window_Closing_1(object sender, System.ComponentModel.CancelEventArgs e)
-        {
-            RoomRepository.SaveInFile();
         }
     }
 }

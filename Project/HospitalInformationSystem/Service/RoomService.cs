@@ -10,20 +10,37 @@ using HospitalInformationSystem.Service;
 using System.Collections.Generic;
 using System.Collections;
 using HospitalInformationSystem.Controller;
+using HospitalInformationSystem.Repository;
 
-namespace Service
+namespace HospitalInformationSystem.Service
 {
     public class RoomService
     {
+
+        List<Room> roomList;
+        RoomRepository roomR;
         public RoomService()
         {
-            // TODO: implement
+            roomList = new List<Room>();
+            roomR = new RoomRepository();
+        }
+
+        public void saveInFile()
+        {
+            roomR.SaveInFile();
+        }
+
+        public void loadFromFile()
+        {
+            roomR.LoadFromFile();
         }
         public void createRoom(int floor, int id, string name, TypeOfRoom type, Hashtable equipment)
         {
             // TODO: implement
             Room newRoom = new Room(id, name, floor, type);
             newRoom.Equipment = equipment;
+
+            roomList.Add(newRoom);
 
             RoomDataBase.getInstance().addRoom(newRoom);
 
@@ -34,6 +51,7 @@ namespace Service
             // TODO: implement
             RoomDataBase.getInstance().removeRoom(room);
 
+            roomList.Remove(room);
 
             //brisanje termina koji se odvijaju u datoj prostoriji
             AppointmentManagement appointmentManagement = new AppointmentManagement();
@@ -43,13 +61,6 @@ namespace Service
             {
                 appointmentManagement.deleteAppointment(appointment);
             }
-        }
-
-        public void deleteAllRooms()
-        {
-            // TODO: implement
-            RoomDataBase.getInstance().removeAllRoom();
-            
         }
 
         public void changeRoom(Room room, int newId, string newName, TypeOfRoom newType, int newFloor, Hashtable equipment)
@@ -65,8 +76,8 @@ namespace Service
 
         public void deleteEquipment(string id)
         {
-            List<Room> rooms = RoomDataBase.getInstance().getRooms();
-            foreach(Room room in rooms)
+            //List<Room> rooms = RoomDataBase.getInstance().getRooms();
+            foreach(Room room in roomList)
             {
                 if (room.Equipment.Contains(id))
                     room.Equipment.Remove(id);
@@ -75,7 +86,17 @@ namespace Service
 
         public List<Room> getRooms()
         {
-            return RoomDataBase.getInstance().getRooms();
+            //return RoomDataBase.getInstance().getRooms();
+
+            return roomList;
+        }
+
+        public void setRooms(List<Room> rooms)
+        {
+            roomList.Clear();
+
+            foreach (Room room in rooms)
+                roomList.Add(room);
         }
 
         public void changeStaticEquipmentState(Room room, int currentQuantity, int moveQuantity, string key)

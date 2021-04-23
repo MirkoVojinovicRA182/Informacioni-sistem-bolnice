@@ -4,7 +4,7 @@
  * Purpose: Definition of the Class Repository.PatientsAppointmentsFIleManipulation
  ***********************************************************************/
 
-namespace Repository
+namespace HospitalInformationSystem.Repository
 {
     public class PatientsAppointmentsFIleManipulation : IFileManipulation
     {

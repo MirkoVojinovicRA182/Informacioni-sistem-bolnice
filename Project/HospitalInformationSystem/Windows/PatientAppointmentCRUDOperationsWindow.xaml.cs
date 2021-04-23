@@ -1,4 +1,4 @@
-﻿using Service;
+﻿
 using Model;
 using System;
 using System.Collections.Generic;
@@ -14,12 +14,12 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
-using Repository;
 
 
 using HospitalInformationSystem.Service;
 using System.Globalization;
 using System.Timers;
+using HospitalInformationSystem.Repository;
 
 namespace HospitalInformationSystem.Windows
 {

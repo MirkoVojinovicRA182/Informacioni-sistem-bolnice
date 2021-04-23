@@ -1,4 +1,4 @@
-﻿using Service;
+﻿using HospitalInformationSystem.Service;
 using HospitalInformationSystem.Controller;
 using Model;
 using System;

@@ -1,5 +1,4 @@
-﻿using Service;
-using HospitalInformationSystem.Controller;
+﻿using HospitalInformationSystem.Controller;
 using HospitalInformationSystem.Windows.Manager.Help;
 using Model;
 using System;

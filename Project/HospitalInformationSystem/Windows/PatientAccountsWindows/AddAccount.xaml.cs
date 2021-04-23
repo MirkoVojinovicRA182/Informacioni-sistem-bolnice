@@ -1,4 +1,5 @@
-﻿using Service;
+﻿
+using HospitalInformationSystem.Service;
 using System;
 using System.Linq;
 using System.Windows;

@@ -1,4 +1,4 @@
-﻿using Service;
+﻿using HospitalInformationSystem.Service;
 using System;
 using System.Collections.Generic;
 using System.Windows;

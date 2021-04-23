@@ -4,7 +4,7 @@
  * Purpose: Definition of the Interface Repository.IFileManipulation
  ***********************************************************************/
 
-namespace Repository
+namespace HospitalInformationSystem.Repository
 {
     public interface IFileManipulation
     {

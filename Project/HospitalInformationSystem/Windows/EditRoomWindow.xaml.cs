@@ -13,10 +13,10 @@ using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 
 using Model;
-using Service;
 using HospitalInformationSystem.Windows.Manager;
 using System.Collections;
 using HospitalInformationSystem.Controller;
+using HospitalInformationSystem.Service;
 
 namespace HospitalInformationSystem.Windows
 {

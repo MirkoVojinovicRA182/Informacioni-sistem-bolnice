@@ -112,7 +112,7 @@
     <Compile Include="Windows\EditPatientAppointmentWindow.xaml.cs">
       <DependentUpon>EditPatientAppointmentWindow.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Windows\EditRoomWindow.xaml.cs">
+    <Compile Include="Windows\Manager\EditRoomWindow.xaml.cs">
       <DependentUpon>EditRoomWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="Windows\Manager\AddEquipmentToRoomWindow.xaml.cs">
@@ -157,7 +157,7 @@
     <Compile Include="Windows\NewPatientAppointmentWindow.xaml.cs">
       <DependentUpon>NewPatientAppointmentWindow.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Windows\NewRoomWindow.xaml.cs">
+    <Compile Include="Windows\Manager\NewRoomWindow.xaml.cs">
       <DependentUpon>NewRoomWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="Windows\NotificationsWindow.xaml.cs">
@@ -190,7 +190,7 @@
     <Compile Include="Windows\PatientManagementWindow.xaml.cs">
       <DependentUpon>PatientManagementWindow.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Windows\RoomCRUDOperationsWindow.xaml.cs">
+    <Compile Include="Windows\Manager\RoomCRUDOperationsWindow.xaml.cs">
       <DependentUpon>RoomCRUDOperationsWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="Windows\ShowPatientInformationWindow.xaml.cs">
@@ -250,7 +250,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Windows\EditRoomWindow.xaml">
+    <Page Include="Windows\Manager\EditRoomWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -310,7 +310,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Windows\NewRoomWindow.xaml">
+    <Page Include="Windows\Manager\NewRoomWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -354,7 +354,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Windows\RoomCRUDOperationsWindow.xaml">
+    <Page Include="Windows\Manager\RoomCRUDOperationsWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

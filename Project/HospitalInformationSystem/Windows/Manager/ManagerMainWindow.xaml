@@ -27,7 +27,7 @@
 
         <TabControl x:Name="mainTabs" SelectionChanged="mainTabs_SelectionChanged">
             <TabItem x:Name="roomTab" Header="Prostorije">
-                <ucRooms:RoomCRUDOperationsWindow x:Name="roomsTable"/>
+                <ucRooms:RoomTable x:Name="roomsTable"/>
             </TabItem>
             <TabItem x:Name="equipmentTab" Header="Oprema">
                 <TabControl x:Name="staticDynamicTab" SelectionChanged="staticDynamicTab_SelectionChanged">

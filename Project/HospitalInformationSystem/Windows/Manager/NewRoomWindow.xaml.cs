@@ -8,7 +8,7 @@ using System.Collections.ObjectModel;
 using HospitalInformationSystem.Controller;
 using System.Collections;
 
-namespace HospitalInformationSystem.Windows
+namespace HospitalInformationSystem.Windows.Manager
 {
     /// <summary>
     /// Interaction logic for NewRoomWindow.xaml

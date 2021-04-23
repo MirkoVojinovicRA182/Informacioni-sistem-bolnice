@@ -16,18 +16,18 @@ using HospitalInformationSystem.Controller;
 using HospitalInformationSystem.Service;
 using Model;
 
-namespace HospitalInformationSystem.Windows
+namespace HospitalInformationSystem.Windows.Manager
 {
     /// <summary>
-    /// Interaction logic for RoomCRUDOperationsWindow.xaml
+    /// Interaction logic for RoomTable.xaml
     /// </summary>
-    public partial class RoomCRUDOperationsWindow : UserControl
+    public partial class RoomTable : UserControl
     {
         private Room selectedRoom = null;
         private ObservableCollection<Room> roomList;
         private RoomService RoomService = new RoomService();
 
-        public RoomCRUDOperationsWindow()
+        public RoomTable()
         {
             InitializeComponent();
 

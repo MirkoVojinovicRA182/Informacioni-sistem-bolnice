@@ -18,7 +18,7 @@ using System.Collections;
 using HospitalInformationSystem.Controller;
 using HospitalInformationSystem.Service;
 
-namespace HospitalInformationSystem.Windows
+namespace HospitalInformationSystem.Windows.Manager
 {
     /// <summary>
     /// Interaction logic for EditRoomWindow.xaml

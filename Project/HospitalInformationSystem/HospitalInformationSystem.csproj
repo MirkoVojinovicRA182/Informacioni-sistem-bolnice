@@ -201,7 +201,7 @@
     <Compile Include="WorkWithFiles\IFileManipulation.cs" />
     <Compile Include="WorkWithFiles\PatientsAppointmentsFIleManipulation.cs" />
     <Compile Include="WorkWithFiles\PatientsFileManipulation.cs" />
-    <Compile Include="WorkWithFiles\RoomsFileManipulation.cs" />
+    <Compile Include="WorkWithFiles\RoomRepository.cs" />
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>

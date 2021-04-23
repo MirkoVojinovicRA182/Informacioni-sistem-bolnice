@@ -1,7 +1,7 @@
 /***********************************************************************
- * Module:  RoomsFileManipulation.cs
+ * Module:  RoomRepository.cs
  * Author:  Mirko
- * Purpose: Definition of the Class WorkWithFiles.RoomsFileManipulation
+ * Purpose: Definition of the Class WorkWithFiles.RoomRepository
  ***********************************************************************/
 
 using Model;
@@ -12,7 +12,7 @@ using System.Runtime.Serialization.Formatters.Binary;
 
 namespace WorkWithFiles
 {
-    public class RoomsFileManipulation : IFileManipulation
+    public class RoomRepository : IFileManipulation
     {
         public bool SaveInFile()
         {

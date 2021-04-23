@@ -1,7 +1,7 @@
 /***********************************************************************
  * Module:  PatientsFileManipulation.cs
  * Author:  Mirko
- * Purpose: Definition of the Class WorkWithFiles.PatientsFileManipulation
+ * Purpose: Definition of the Class Repository.PatientsFileManipulation
  ***********************************************************************/
 
 using Model;
@@ -10,7 +10,7 @@ using System.IO;
 using System.Runtime.Serialization;
 using System.Runtime.Serialization.Formatters.Binary;
 
-namespace WorkWithFiles
+namespace Repository
 {
     public class PatientsFileManipulation : IFileManipulation
     {

@@ -23,7 +23,7 @@ namespace HospitalInformationSystem.Windows
     public partial class MainWindow : Window
     {
         private static Person person;
-        RoomsFileManipulation save = new RoomsFileManipulation();
+        RoomRepository save = new RoomRepository();
         PatientsFileManipulation savePatients = new PatientsFileManipulation();
         DoctorAppointmentsFIleManipulation doctorAppFile = new DoctorAppointmentsFIleManipulation();
         public MainWindow()

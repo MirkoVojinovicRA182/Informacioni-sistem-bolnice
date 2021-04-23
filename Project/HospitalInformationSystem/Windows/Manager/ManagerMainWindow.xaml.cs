@@ -26,7 +26,7 @@ namespace HospitalInformationSystem.Windows.Manager
     {
 
         private static ManagerMainWindow instance;
-        private RoomsFileManipulation roomsFileManipulation;
+        private RoomRepository RoomRepository;
 
         public static ManagerMainWindow getInstance()
         {
@@ -37,10 +37,10 @@ namespace HospitalInformationSystem.Windows.Manager
         private ManagerMainWindow()
         {
             InitializeComponent();
-            roomsFileManipulation = new RoomsFileManipulation();
+            RoomRepository = new RoomRepository();
 
             //EquipmentController.getInstance().loadFromFile();
-            roomsFileManipulation.LoadFromFile();
+            RoomRepository.LoadFromFile();
 
             roomsTable.refreshTable();
             equipmentTable.refreshTable();
@@ -58,7 +58,7 @@ namespace HospitalInformationSystem.Windows.Manager
             instance = null;
 
             EquipmentController.getInstance().saveInFile();
-            roomsFileManipulation.SaveInFile();
+            RoomRepository.SaveInFile();
         }
 
         private void newMenuItem_Click(object sender, RoutedEventArgs e)
@@ -123,7 +123,7 @@ namespace HospitalInformationSystem.Windows.Manager
 
         private void Window_Closing_1(object sender, System.ComponentModel.CancelEventArgs e)
         {
-            roomsFileManipulation.SaveInFile();
+            RoomRepository.SaveInFile();
         }
     }
 }

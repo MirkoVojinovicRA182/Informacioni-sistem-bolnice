@@ -154,21 +154,22 @@ namespace HospitalInformationSystem.Windows.Manager
         }
         private void changeRoomButton_Click(object sender, RoutedEventArgs e)
         {
-            RoomController.getInstance().changeRoom(selectedRoom, int.Parse(idTextBox.Text), nameTextBox.Text, getType(typeComboBox.SelectedIndex), int.Parse(floorTextBox.Text), equipment);
-            //promena usled dodavanja neke nove opreme
-            changeQuantityInMagacineOfDynamicEquipment();
-            //promena usled eventualnog brisanja opreme
-            changeQuantityOfDynamicEquipment();
+            RoomController.getInstance().changeRoom(selectedRoom, int.Parse(idTextBox.Text), nameTextBox.Text, getType(typeComboBox.SelectedIndex), int.Parse(floorTextBox.Text));
             ManagerMainWindow.getInstance().roomsTable.refreshTable();
             this.Close();
             MessageBox.Show("Informacije o prostoriji su sada izmenjene.", "Izmena informacija", MessageBoxButton.OK, MessageBoxImage.Information);
         }
-        private void closeButton_Click(object sender, RoutedEventArgs e)
+
+        private void equipmentApplyButton_Click(object sender, RoutedEventArgs e)
         {
-            this.Close();
+            RoomController.getInstance().setRoomEquipment(selectedRoom, equipment);
+            //promena usled dodavanja neke nove opreme
+            changeQuantityInMagacineOfEquipment();
+            //promena usled eventualnog brisanja opreme
+            changeQuantityOfEquipment();
+            ManagerMainWindow.getInstance().roomsTable.refreshTable();
+            MessageBox.Show("Informacije o opremi prostorije su sada izmenjene.", "Izmena informacija", MessageBoxButton.OK, MessageBoxImage.Information);
         }
-
-
         private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
         {
             instance = null;
@@ -253,7 +254,7 @@ namespace HospitalInformationSystem.Windows.Manager
             staticEquipmentListBox.ItemsSource = loadStaticEquimpentInListBox();
         }
 
-        private void changeQuantityInMagacineOfDynamicEquipment()
+        private void changeQuantityInMagacineOfEquipment()
         {
             foreach (DictionaryEntry de in newEquipment)
             {
@@ -261,7 +262,7 @@ namespace HospitalInformationSystem.Windows.Manager
             }
         }
 
-        private void changeQuantityOfDynamicEquipment()
+        private void changeQuantityOfEquipment()
         {
             foreach (DictionaryEntry de in allDistinctions)
             {

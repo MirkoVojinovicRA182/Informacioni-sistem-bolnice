@@ -41,9 +41,14 @@ namespace HospitalInformationSystem.Controller
             roomService.createRoom(floor, id, name, type, equipment);
         }
 
-        public void changeRoom(Room room, int newId, string newName, TypeOfRoom newType, int newFloor, Hashtable equipment)
+        public void changeRoom(Room room, int newId, string newName, TypeOfRoom newType, int newFloor)
         {
-            roomService.changeRoom(room, newId, newName, newType, newFloor, equipment);
+            roomService.changeRoom(room, newId, newName, newType, newFloor);
+        }
+
+        public void setRoomEquipment(Room room, Hashtable eq)
+        {
+            roomService.setRoomEquipment(room, eq);
         }
 
         public void deleteEquipment(string id)

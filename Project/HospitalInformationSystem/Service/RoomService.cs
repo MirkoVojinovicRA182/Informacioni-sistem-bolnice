@@ -60,15 +60,21 @@ namespace HospitalInformationSystem.Service
             }
         }
 
-        public void changeRoom(Room room, int newId, string newName, TypeOfRoom newType, int newFloor, Hashtable equipment)
+        public void changeRoom(Room room, int newId, string newName, TypeOfRoom newType, int newFloor)
         {
             // TODO: implement
             room.Id = newId;
             room.Name = newName;
             room.Type = newType;
             room.Floor = newFloor;
-            room.Equipment = equipment;
 
+        }
+
+        public void setRoomEquipment(Room room, Hashtable eq)
+        {
+            room.Equipment.Clear();
+            foreach (DictionaryEntry de in eq)
+                room.Equipment.Add(de.Key, de.Value);
         }
 
         public void deleteEquipment(string id)

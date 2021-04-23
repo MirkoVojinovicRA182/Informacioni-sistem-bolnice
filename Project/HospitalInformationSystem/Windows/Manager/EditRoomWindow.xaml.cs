@@ -154,10 +154,20 @@ namespace HospitalInformationSystem.Windows.Manager
         }
         private void changeRoomButton_Click(object sender, RoutedEventArgs e)
         {
-            RoomController.getInstance().changeRoom(selectedRoom, int.Parse(idTextBox.Text), nameTextBox.Text, getType(typeComboBox.SelectedIndex), int.Parse(floorTextBox.Text));
-            ManagerMainWindow.getInstance().roomsTable.refreshTable();
-            this.Close();
-            MessageBox.Show("Informacije o prostoriji su sada izmenjene.", "Izmena informacija", MessageBoxButton.OK, MessageBoxImage.Information);
+            int id = int.TryParse(idTextBox.Text, out id) ? id : 0;
+            int floor = int.TryParse(floorTextBox.Text, out floor) ? floor : 0;
+
+            if (id == 0)
+                MessageBox.Show("Pogrešan unos šifre!", "Greška", MessageBoxButton.OK, MessageBoxImage.Error);
+            else if(floor == 0)
+                MessageBox.Show("Pogrešan unos sprata!", "Greška", MessageBoxButton.OK, MessageBoxImage.Error);
+            else
+            {
+                RoomController.getInstance().changeRoom(selectedRoom, int.Parse(idTextBox.Text), nameTextBox.Text, getType(typeComboBox.SelectedIndex), int.Parse(floorTextBox.Text));
+                ManagerMainWindow.getInstance().roomsTable.refreshTable();
+                this.Close();
+                MessageBox.Show("Informacije o prostoriji su sada izmenjene.", "Izmena informacija", MessageBoxButton.OK, MessageBoxImage.Information);
+            }
         }
 
         private void equipmentApplyButton_Click(object sender, RoutedEventArgs e)
@@ -294,6 +304,37 @@ namespace HospitalInformationSystem.Windows.Manager
             }
 
             return list;
+        }
+
+        public void checkControls()
+        {
+            int id = int.TryParse(idTextBox.Text, out id) ? id : 0;
+            int floor = int.TryParse(floorTextBox.Text, out floor) ? floor : 0;
+
+            if (selectedRoom.Id != id || selectedRoom.Name != nameTextBox.Text || selectedRoom.StringValueOfEnumType != (string)typeComboBox.SelectedItem || selectedRoom.Floor != floor)
+                changeRoomButton.IsEnabled = true;
+            else
+                changeRoomButton.IsEnabled = false;
+        }
+
+        private void typeComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            checkControls();
+        }
+
+        private void idTextBox_SelectionChanged(object sender, RoutedEventArgs e)
+        {
+            checkControls();
+        }
+
+        private void nameTextBox_SelectionChanged(object sender, RoutedEventArgs e)
+        {
+            checkControls();
+        }
+
+        private void floorTextBox_SelectionChanged(object sender, RoutedEventArgs e)
+        {
+            checkControls();
         }
     }
 }

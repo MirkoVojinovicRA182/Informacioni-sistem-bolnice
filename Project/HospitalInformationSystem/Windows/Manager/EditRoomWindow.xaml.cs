@@ -40,10 +40,11 @@ namespace HospitalInformationSystem.Windows.Manager
         {
             InitializeComponent();
             this.selectedRoom = selectedRoom;
-            loadTypeComboBox();
-            loadRoom();
+            equipment = new Hashtable();
             allDistinctions = new Hashtable();
             newEquipment = new Hashtable();
+            loadTypeComboBox();
+            loadRoom();
         }
 
         public static EditRoomWindow getInstance(Room selectedRoom)
@@ -229,10 +230,13 @@ namespace HospitalInformationSystem.Windows.Manager
             nameTextBox.Text = selectedRoom.Name;
             floorTextBox.Text = selectedRoom.Floor.ToString();
             fiilTypeComboBox(selectedRoom.Type);
-            equipment = selectedRoom.Equipment;
+
+            foreach (DictionaryEntry de in selectedRoom.Equipment)
+                equipment.Add(de.Key, de.Value);
+
+            //equipment = selectedRoom.Equipment;
             refreshDynamicEquipmentListBox();
             refreshStaticEquipmentListBox();
-            //equipment = new Hashtable();
         }
 
         private void refreshDynamicEquipmentListBox()

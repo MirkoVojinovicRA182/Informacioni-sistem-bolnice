@@ -85,5 +85,10 @@ namespace HospitalInformationSystem.Controller
         {
             return roomService.checkId(id);
         }
+
+        public Room findRoom(int id)
+        {
+            return roomService.findRoom(id);
+        }
     }
 }

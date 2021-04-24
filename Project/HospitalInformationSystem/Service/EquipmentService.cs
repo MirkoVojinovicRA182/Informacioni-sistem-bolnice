@@ -194,9 +194,10 @@ namespace HospitalInformationSystem.Service
 
         public bool checkId(string id)
         {
+            Equipment founded = findEquipment(id);
             foreach(Equipment eq in equipmentList)
             {
-                if (string.Compare(id, eq.Id) == 0)
+                if (string.Compare(id, eq.Id) == 0 && eq.Id != founded.Id)
                     return true;
             }
             return false;

@@ -126,12 +126,23 @@ namespace HospitalInformationSystem.Service
 
         public bool checkId(int id)
         {
+            Room founded = findRoom(id);
             foreach(Room room in roomList)
             {
-                if (room.Id == id)
+                if (room.Id == id && room.Id != founded.Id)
                     return true;
             }
             return false;
+        }
+
+        public Room findRoom(int id)
+        {
+            foreach (Room room in roomList)
+            {
+                if (room.Id == id)
+                    return room;
+            }
+            return null;
         }
     }
 }

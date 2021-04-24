@@ -49,22 +49,27 @@ namespace HospitalInformationSystem.Windows.Manager
         private void confirmButton_Click(object sender, RoutedEventArgs e)
         {
             nextRoom = (Room)nextRoomComboBox.SelectedItem;
-            quantity = int.Parse(quantityTextBox.Text);
+            quantity = int.TryParse(quantityTextBox.Text, out quantity) ? quantity : 0;
+
+            if (quantity != 0 && quantity > 0 && quantity <= quantityOfSelectedEquipment)
+            {
+
+                //brisanje opreme iz trenutne prostorije
+                RoomController.getInstance().changeStaticEquipmentState(currentRoom, quantityOfSelectedEquipment, quantity, idOfSelectedEquipment);
 
 
-            //brisanje opreme iz trenutne prostorije
-            RoomController.getInstance().changeStaticEquipmentState(currentRoom, quantityOfSelectedEquipment, quantity, idOfSelectedEquipment);
+                //dodavanje opreme u zeljenu prostoriju
+                RoomController.getInstance().moveStaticEqToNextRoom(nextRoom, quantity, idOfSelectedEquipment);
 
+                //osvezavanje staticke opreme izabrane prostorije
+                EditRoomWindow.getInstance(currentRoom).loadRoom();
 
-            //dodavanje opreme u zeljenu prostoriju
-            RoomController.getInstance().moveStaticEqToNextRoom(nextRoom, quantity, idOfSelectedEquipment);
+                SuccessMovingWindow.getInstance(quantityOfSelectedEquipment, quantityOfSelectedEquipment - quantity).Show();
 
-            //osvezavanje staticke opreme izabrane prostorije
-            EditRoomWindow.getInstance(currentRoom).loadRoom();
-
-            SuccessMovingWindow.getInstance(quantityOfSelectedEquipment, quantityOfSelectedEquipment - quantity).Show();
-
-            this.Close();
+                this.Close();
+            }
+            else
+                MessageBox.Show("Pogrešan unos količine!", "Greška", MessageBoxButton.OK, MessageBoxImage.Error);
         }
 
         private void closeButton_Click(object sender, RoutedEventArgs e)

@@ -1,6 +1,7 @@
 ﻿using HospitalInformationSystem.Service;
 using Model;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -102,6 +103,11 @@ namespace HospitalInformationSystem.Controller
         public Equipment findEquipment(string id)
         {
             return equipmentService.findEquipment(id);
+        }
+
+        public bool findStaticEqOfRoom(Hashtable roomEq)
+        {
+            return equipmentService.findStaticEqOfRoom(roomEq);
         }
     }
 }

@@ -1,6 +1,7 @@
 ﻿using HospitalInformationSystem.Repository;
 using Model;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -175,6 +176,20 @@ namespace HospitalInformationSystem.Service
                     return eq;
             }
             return null;
+        }
+
+        public bool findStaticEqOfRoom(Hashtable roomEq)
+        {
+            foreach(Equipment eq in equipmentList)
+            {
+                foreach(DictionaryEntry de in roomEq)
+                {
+                    if (string.Compare(eq.Id, de.Key.ToString()) == 0 && eq.Type == TypeOfEquipment.Static)
+                        return true;
+                }
+            }
+
+            return false;
         }
     }
 }

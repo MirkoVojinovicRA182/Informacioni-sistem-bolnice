@@ -23,7 +23,7 @@
         <TextBox x:Name="idTextBox" HorizontalAlignment="Left" Height="23" Margin="40.6,30,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="88" Grid.Column="2" FontSize="15" SelectionChanged="idTextBox_SelectionChanged"/>
         <TextBox x:Name="nameTextBox" HorizontalAlignment="Left" Height="23" Margin="40.6,82,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="170" Grid.Column="2" FontSize="15" SelectionChanged="nameTextBox_SelectionChanged"/>
         <TextBox x:Name="floorTextBox" HorizontalAlignment="Left" Height="23" Margin="40.6,191,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="45" Grid.Column="2" FontSize="15" SelectionChanged="floorTextBox_SelectionChanged"/>
-        <ListBox x:Name="dynamicEquipmentListBox" Grid.ColumnSpan="3" HorizontalAlignment="Left" Height="70" VerticalAlignment="Top" Width="150" Grid.Column="2" Margin="275.8,160,0,0" SelectionChanged="dynamicEquipmentListBox_SelectionChanged">
+        <ListBox x:Name="dynamicEquipmentListBox" Grid.ColumnSpan="3" HorizontalAlignment="Left" Height="70" VerticalAlignment="Top" Width="150" Grid.Column="2" Margin="275.8,160,0,0" LayoutUpdated="dynamicEquipmentListBox_LayoutUpdated">
             <ListBox.ItemTemplate>
                 <DataTemplate>
                     <TextBlock Text="{Binding}" />
@@ -35,7 +35,7 @@
         <TextBlock Grid.Column="4" HorizontalAlignment="Left" Margin="137,167,0,0" TextWrapping="Wrap" Text="dodavanje nove" VerticalAlignment="Top" RenderTransformOrigin="1.987,0.65" FontStyle="Italic" Height="16" Width="82"/>
         <TextBlock Grid.Column="4" HorizontalAlignment="Left" Margin="137,207,0,0" TextWrapping="Wrap" Text="uklanjanje odabrane" VerticalAlignment="Top" RenderTransformOrigin="1.987,0.65" FontStyle="Italic" Width="110" Height="16"/>
         <TextBlock Grid.Column="2" HorizontalAlignment="Left" Margin="275.8,138,0,0" TextWrapping="Wrap" Text="Dinamička oprema:" VerticalAlignment="Top" RenderTransformOrigin="1.987,0.65" Grid.ColumnSpan="3" Width="132" FontSize="15" Height="20"/>
-        <ListBox x:Name="staticEquipmentListBox" Grid.ColumnSpan="3" HorizontalAlignment="Left" Height="70                  " VerticalAlignment="Top" Width="150" Grid.Column="2" Margin="275.8,53,0,0" SelectionChanged="staticEquipmentListBox_SelectionChanged">
+        <ListBox x:Name="staticEquipmentListBox" Grid.ColumnSpan="3" HorizontalAlignment="Left" Height="70" VerticalAlignment="Top" Width="150" Grid.Column="2" Margin="275.8,53,0,0" LayoutUpdated="staticEquipmentListBox_LayoutUpdated" >
             <ListBox.ItemTemplate>
                 <DataTemplate>
                     <TextBlock Text="{Binding}" />

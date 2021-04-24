@@ -46,6 +46,7 @@ namespace HospitalInformationSystem.Windows.Manager
             //checkEquipment();
             loadTypeComboBox();
             loadRoom();
+            equipmentApplyButton.IsEnabled = false;
         }
 
         public static EditRoomWindow getInstance(Room selectedRoom)
@@ -179,6 +180,7 @@ namespace HospitalInformationSystem.Windows.Manager
             changeQuantityOfEquipment();
             ManagerMainWindow.getInstance().roomsTable.refreshTable();
             MessageBox.Show("Informacije o opremi prostorije su sada izmenjene.", "Izmena informacija", MessageBoxButton.OK, MessageBoxImage.Information);
+            this.Close();
         }
         private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
         {
@@ -336,23 +338,22 @@ namespace HospitalInformationSystem.Windows.Manager
         {
             checkControls();
         }
-
-        private void staticEquipmentListBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            checkEquipment();
-        }
-
-        private void dynamicEquipmentListBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            checkEquipment();
-        }
-
         private void checkEquipment()
         {
             if (newEquipment.Count == 0 && allDistinctions.Count == 0)
                 equipmentApplyButton.IsEnabled = false;
             else
                 equipmentApplyButton.IsEnabled = true;
+        }
+
+        private void dynamicEquipmentListBox_LayoutUpdated(object sender, EventArgs e)
+        {
+            checkEquipment();
+        }
+
+        private void staticEquipmentListBox_LayoutUpdated(object sender, EventArgs e)
+        {
+            checkEquipment();
         }
     }
 }

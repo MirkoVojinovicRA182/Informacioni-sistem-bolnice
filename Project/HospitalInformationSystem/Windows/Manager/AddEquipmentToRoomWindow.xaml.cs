@@ -97,15 +97,20 @@ namespace HospitalInformationSystem.Windows.Manager
         {
             if (equipmentListBox.SelectedItem != null)
             {
-                this.Close();
                 selectedEquipment = (Equipment)equipmentListBox.SelectedItem;
-                quantity = int.Parse(quantityTextBox.Text);
-                if (string.Equals(window, "newRoom"))
-                    NewRoomWindow.getInstance().addEquipment(selectedEquipment.Id, quantity);
-                else
-                    EditRoomWindow.getInstance((Room)ManagerMainWindow.getInstance().roomsTable.allRoomsTable.SelectedItem).addEquipment(selectedEquipment.Id, quantity);
+                quantity = int.TryParse(quantityTextBox.Text, out quantity) ? quantity : 0;
+                if (quantity != 0 && quantity > 0 && quantity <= selectedEquipment.QuantityInMagacine)
+                {
+                    if (string.Equals(window, "newRoom"))
+                        NewRoomWindow.getInstance().addEquipment(selectedEquipment.Id, quantity);
+                    else
+                        EditRoomWindow.getInstance((Room)ManagerMainWindow.getInstance().roomsTable.allRoomsTable.SelectedItem).addEquipment(selectedEquipment.Id, quantity);
 
-                instance = null;
+                    this.Close();
+
+                }
+                else
+                    MessageBox.Show("Pogrešan unos količine!", "Greška", MessageBoxButton.OK, MessageBoxImage.Error);
             }
             else
                 MessageBox.Show("Niste odabrali opremu!", "Upozorenje", MessageBoxButton.OK, MessageBoxImage.Warning);

@@ -43,6 +43,7 @@ namespace HospitalInformationSystem.Windows.Manager
             equipment = new Hashtable();
             allDistinctions = new Hashtable();
             newEquipment = new Hashtable();
+            //checkEquipment();
             loadTypeComboBox();
             loadRoom();
         }
@@ -122,27 +123,24 @@ namespace HospitalInformationSystem.Windows.Manager
 
                 if (InsertQuantityOfEquipmentForRemovingWindow.itSubmitted)
                 {
-                    //int currentQuantity = (int)de.Value;
                     int currentQuantity = value;
                     int removedQuantity = InsertQuantityOfEquipmentForRemovingWindow.getQuantity();
                     distinction = currentQuantity - removedQuantity;
                     if (distinction == 0)
                     {
-                        //this.equipment.Remove(de.Key);
                         this.equipment.Remove(key);
                         this.newEquipment.Remove(key);
                     }
                     else
-                        //equipment[de.Key] = distinction; //razlika izmedju stare kolicine i kolicine koja zeli da se ukloni iz sistema
                         equipment[key] = distinction;
 
-                    //allDistinctions.Add(de.Key, removedQuantity);
                     if (allDistinctions.Contains(key))
                     {
                         allDistinctions.Remove(key);
                     }
 
-                    allDistinctions.Add(key, removedQuantity);
+                    if(selectedRoom.Equipment.Contains(key))
+                        allDistinctions.Add(key, removedQuantity);
 
                     refreshDynamicEquipmentListBox();
                     
@@ -159,7 +157,9 @@ namespace HospitalInformationSystem.Windows.Manager
 
             if (id == 0)
                 MessageBox.Show("Pogrešan unos šifre!", "Greška", MessageBoxButton.OK, MessageBoxImage.Error);
-            else if(floor == 0)
+            else if (string.Compare(nameTextBox.Text, "") == 0)
+                MessageBox.Show("Polje za unos naziva ne može biti prazno!", "Greška", MessageBoxButton.OK, MessageBoxImage.Error);
+            else if (floor == 0)
                 MessageBox.Show("Pogrešan unos sprata!", "Greška", MessageBoxButton.OK, MessageBoxImage.Error);
             else
             {
@@ -335,6 +335,24 @@ namespace HospitalInformationSystem.Windows.Manager
         private void floorTextBox_SelectionChanged(object sender, RoutedEventArgs e)
         {
             checkControls();
+        }
+
+        private void staticEquipmentListBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            checkEquipment();
+        }
+
+        private void dynamicEquipmentListBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            checkEquipment();
+        }
+
+        private void checkEquipment()
+        {
+            if (newEquipment.Count == 0 && allDistinctions.Count == 0)
+                equipmentApplyButton.IsEnabled = false;
+            else
+                equipmentApplyButton.IsEnabled = true;
         }
     }
 }

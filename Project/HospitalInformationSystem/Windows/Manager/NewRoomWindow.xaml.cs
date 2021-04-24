@@ -34,29 +34,49 @@ namespace HospitalInformationSystem.Windows.Manager
 
         private void confirmButton_Click(object sender, RoutedEventArgs e)
         {
-            createRoom();
+            if (createRoom())
+            {
+                idTextBox.Clear();
+                nameTextBox.Clear();
+                floorTextBox.Clear();
+                typeOfRoomComboBox.SelectedIndex = 0;
 
-            idTextBox.Clear();
-            nameTextBox.Clear();
-            floorTextBox.Clear();
-            typeOfRoomComboBox.SelectedIndex = 0;
 
+                changeQuantityInMagacineOfDynamicEquipment();
 
-            changeQuantityInMagacineOfDynamicEquipment();
+                ManagerMainWindow.getInstance().roomsTable.refreshTable();
 
-            ManagerMainWindow.getInstance().roomsTable.refreshTable();
-
-            MessageBox.Show("Uneta je nova prostorija u sistem.", "Nova prostorija", MessageBoxButton.OK, MessageBoxImage.Information);
+                MessageBox.Show("Uneta je nova prostorija u sistem.", "Nova prostorija", MessageBoxButton.OK, MessageBoxImage.Information);
+            }
         }
 
-        private void createRoom()
+        private bool createRoom()
         {
-            int id = int.Parse(idTextBox.Text);
+            int id = int.TryParse(idTextBox.Text, out id) ? id : 0;
             string name = nameTextBox.Text;
-            int floor = int.Parse(floorTextBox.Text);
+            int floor = int.TryParse(floorTextBox.Text, out floor) ? floor : 0;
             TypeOfRoom type = loadType((string)typeOfRoomComboBox.SelectedItem);
 
-            RoomController.getInstance().createRoom(floor, id, name, type, equipment);
+            if (id == 0)
+            {
+                MessageBox.Show("Pogrešan unos šifre!", "Greška", MessageBoxButton.OK, MessageBoxImage.Error);
+                return false;
+            }
+            else if (string.Compare(name, "") == 0)
+            {
+                MessageBox.Show("Polje za unos naziva ne može biti prazno!", "Greška", MessageBoxButton.OK, MessageBoxImage.Error);
+                return false;
+            }
+            else if (floor == 0)
+            {
+                MessageBox.Show("Pogrešan unos sprata!", "Greška", MessageBoxButton.OK, MessageBoxImage.Error);
+                return false;
+            }
+            else
+            {
+                RoomController.getInstance().createRoom(floor, id, name, type, equipment);
+                return true;
+            }
 
         }
 

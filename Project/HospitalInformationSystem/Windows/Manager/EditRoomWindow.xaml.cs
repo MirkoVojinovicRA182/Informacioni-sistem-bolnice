@@ -125,7 +125,7 @@ namespace HospitalInformationSystem.Windows.Manager
                 int value = int.Parse(atributesOfSelectedEquipment[1]);
 
 
-                InsertQuantityOfEquipmentForRemovingWindow.getInstance().ShowDialog();
+                InsertQuantityOfEquipmentForRemovingWindow.getInstance(value).ShowDialog();
 
                 if (InsertQuantityOfEquipmentForRemovingWindow.itSubmitted)
                 {

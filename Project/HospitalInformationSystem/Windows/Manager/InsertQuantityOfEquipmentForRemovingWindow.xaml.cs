@@ -22,24 +22,31 @@ namespace HospitalInformationSystem.Windows.Manager
         private static InsertQuantityOfEquipmentForRemovingWindow instance = null;
         public static bool itSubmitted;
         private static int quantity;
-        public static InsertQuantityOfEquipmentForRemovingWindow getInstance()
+        private int currentQuantity;
+        public static InsertQuantityOfEquipmentForRemovingWindow getInstance(int currentQuantity)
         {
             if (instance == null)
-                instance = new InsertQuantityOfEquipmentForRemovingWindow();
+                instance = new InsertQuantityOfEquipmentForRemovingWindow(currentQuantity);
             return instance;
         }
-        private InsertQuantityOfEquipmentForRemovingWindow()
+        private InsertQuantityOfEquipmentForRemovingWindow(int currentQuantity)
         {
             InitializeComponent();
             itSubmitted = false;
+            this.currentQuantity = currentQuantity;
         }
 
         private void submitButton_Click(object sender, RoutedEventArgs e)
         {
-            itSubmitted = true;
-            quantity = int.Parse(quantityTextBox.Text);
-            this.Close();
-            instance = null;
+            quantity = int.TryParse(quantityTextBox.Text, out quantity) ? quantity : 0;
+            if (quantity != 0 && quantity > 0 && quantity <= currentQuantity)
+            {
+                itSubmitted = true;
+                this.Close();
+                instance = null;
+            }
+            else
+                MessageBox.Show("Pogrešan unos količine!", "Greška", MessageBoxButton.OK, MessageBoxImage.Error);
         }
 
         public static int getQuantity()

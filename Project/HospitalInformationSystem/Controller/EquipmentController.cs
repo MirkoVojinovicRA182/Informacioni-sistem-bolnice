@@ -109,5 +109,10 @@ namespace HospitalInformationSystem.Controller
         {
             return equipmentService.findStaticEqOfRoom(roomEq);
         }
+
+        public bool checkId(string id)
+        {
+            return equipmentService.checkId(id);
+        }
     }
 }

@@ -191,5 +191,15 @@ namespace HospitalInformationSystem.Service
 
             return false;
         }
+
+        public bool checkId(string id)
+        {
+            foreach(Equipment eq in equipmentList)
+            {
+                if (string.Compare(id, eq.Id) == 0)
+                    return true;
+            }
+            return false;
+        }
     }
 }

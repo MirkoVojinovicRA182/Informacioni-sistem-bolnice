@@ -320,7 +320,7 @@ namespace HospitalInformationSystem.Windows.Manager
             int id = int.TryParse(idTextBox.Text, out id) ? id : 0;
             int floor = int.TryParse(floorTextBox.Text, out floor) ? floor : 0;
 
-            if (selectedRoom.Id != id || selectedRoom.Name != nameTextBox.Text || selectedRoom.StringValueOfEnumType != (string)typeComboBox.SelectedItem || selectedRoom.Floor != floor)
+            if (selectedRoom.Id != id || selectedRoom.Name != nameTextBox.Text || selectedRoom.StringValueOfEnumType != typeComboBox.SelectedItem || selectedRoom.Floor != floor)
                 changeRoomButton.IsEnabled = true;
             else
                 changeRoomButton.IsEnabled = false;

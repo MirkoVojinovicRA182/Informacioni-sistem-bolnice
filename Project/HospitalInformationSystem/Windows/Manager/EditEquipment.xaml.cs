@@ -81,8 +81,23 @@ namespace HospitalInformationSystem.Windows.Manager
             nameTextBox.Text = selectedEquipment.Name;
             quanitityTextBox.Text = selectedEquipment.QuantityInMagacine.ToString();
             descriptionTextBox.Text = selectedEquipment.Description;
-
+            loadTypeComboBox();
             oldQuantity = selectedEquipment.QuantityInMagacine;
+        }
+
+        private void loadTypeComboBox()
+        {
+            var list = new List<String>();
+
+            list.Add("Statička");
+            list.Add("Dinamička");
+
+            typeComboBox.ItemsSource = list;
+
+            if (selectedEquipment.Type == TypeOfEquipment.Static)
+                typeComboBox.SelectedIndex = 0;
+            else
+                typeComboBox.SelectedIndex = 1;
         }
 
         private void closeButton_Click(object sender, RoutedEventArgs e)
@@ -95,6 +110,41 @@ namespace HospitalInformationSystem.Windows.Manager
         private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
         {
             instance = null;
+        }
+
+        public void checkControls()
+        {
+            int quantityInMagacine = int.TryParse(quanitityTextBox.Text, out quantityInMagacine) ? quantityInMagacine : 0;
+
+            if (idTextBox.Text != selectedEquipment.Id || nameTextBox.Text != selectedEquipment.Name || (string)typeComboBox.SelectedItem != selectedEquipment.GetStringType || quantityInMagacine != selectedEquipment.QuantityInMagacine || descriptionTextBox.Text != selectedEquipment.Description)
+                changeButton.IsEnabled = true;
+            else
+                changeButton.IsEnabled = false;
+        }
+
+        private void idTextBox_SelectionChanged(object sender, RoutedEventArgs e)
+        {
+            checkControls();
+        }
+
+        private void nameTextBox_SelectionChanged(object sender, RoutedEventArgs e)
+        {
+            checkControls();
+        }
+
+        private void typeComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            checkControls();
+        }
+
+        private void quanitityTextBox_SelectionChanged(object sender, RoutedEventArgs e)
+        {
+            checkControls();
+        }
+
+        private void descriptionTextBox_SelectionChanged(object sender, RoutedEventArgs e)
+        {
+            checkControls();
         }
     }
 }

@@ -95,16 +95,20 @@ namespace HospitalInformationSystem.Windows.Manager
 
         private void confirmButton_Click(object sender, RoutedEventArgs e)
         {
-            this.Close();
-            selectedEquipment = (Equipment)equipmentListBox.SelectedItem;
-            quantity = int.Parse(quantityTextBox.Text);
+            if (equipmentListBox.SelectedItem != null)
+            {
+                this.Close();
+                selectedEquipment = (Equipment)equipmentListBox.SelectedItem;
+                quantity = int.Parse(quantityTextBox.Text);
+                if (string.Equals(window, "newRoom"))
+                    NewRoomWindow.getInstance().addEquipment(selectedEquipment.Id, quantity);
+                else
+                    EditRoomWindow.getInstance((Room)ManagerMainWindow.getInstance().roomsTable.allRoomsTable.SelectedItem).addEquipment(selectedEquipment.Id, quantity);
 
-            if (string.Equals(window, "newRoom"))
-                NewRoomWindow.getInstance().addEquipment(selectedEquipment.Id, quantity);
+                instance = null;
+            }
             else
-                EditRoomWindow.getInstance((Room)ManagerMainWindow.getInstance().roomsTable.allRoomsTable.SelectedItem).addEquipment(selectedEquipment.Id, quantity);
-
-            instance = null;
+                MessageBox.Show("Niste odabrali opremu!", "Upozorenje", MessageBoxButton.OK, MessageBoxImage.Warning);
         }
 
         public Equipment getEquipment()

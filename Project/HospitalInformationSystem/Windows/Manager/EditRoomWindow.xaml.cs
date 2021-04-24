@@ -103,10 +103,10 @@ namespace HospitalInformationSystem.Windows.Manager
                     StaticEquipmentDeploymentWindow.getInstance(selectedRoom, value, key).Show();
                 }
                 else
-                    MessageBox.Show("Prvo dodajte opremu, zatim zakažite njeno premeštanje!", "Greška", MessageBoxButton.OK, MessageBoxImage.Warning);
+                    MessageBox.Show("Prvo dodajte opremu, zatim zakažite njeno premeštanje!", "Upozorenje", MessageBoxButton.OK, MessageBoxImage.Warning);
             }
             else
-                MessageBox.Show("Niste odabrali opremu!", "Greška", MessageBoxButton.OK, MessageBoxImage.Error);
+                MessageBox.Show("Niste odabrali opremu!", "Upozorenje", MessageBoxButton.OK, MessageBoxImage.Warning);
 
         }
         private void removeDynamicButton_Click(object sender, RoutedEventArgs e)

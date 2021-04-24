@@ -59,7 +59,7 @@ namespace HospitalInformationSystem.Windows.Manager
                 MessageBox.Show("Polje za unos šifre ne može biti prazno!", "Greška", MessageBoxButton.OK, MessageBoxImage.Error);
             else if (string.Compare(nameTextBox.Text, "") == 0)
                 MessageBox.Show("Polje za unos naziva ne može biti prazno!", "Greška", MessageBoxButton.OK, MessageBoxImage.Error);
-            else if (quantityInMagacine == 0)
+            else if (quantityInMagacine == 0 || quantityInMagacine < 0)
                 MessageBox.Show("Pogrešan unos količine!", "Greška", MessageBoxButton.OK, MessageBoxImage.Error);
             else
             {

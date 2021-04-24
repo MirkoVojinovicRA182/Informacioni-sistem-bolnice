@@ -80,5 +80,10 @@ namespace HospitalInformationSystem.Controller
         {
             roomService.moveStaticEqToNextRoom(room, moveQuantity, key);
         }
+
+        public bool checkId(int id)
+        {
+            return roomService.checkId(id);
+        }
     }
 }

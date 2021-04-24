@@ -123,5 +123,15 @@ namespace HospitalInformationSystem.Service
                 room.Equipment.Add(key, moveQuantity);
             }
         }
+
+        public bool checkId(int id)
+        {
+            foreach(Room room in roomList)
+            {
+                if (room.Id == id)
+                    return true;
+            }
+            return false;
+        }
     }
 }

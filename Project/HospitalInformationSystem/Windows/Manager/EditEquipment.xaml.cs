@@ -44,22 +44,33 @@ namespace HospitalInformationSystem.Windows.Manager
             string id = idTextBox.Text;
             string name = nameTextBox.Text;
             TypeOfEquipment typeOfEquipment;
+
             if (typeComboBox.SelectedIndex == 0)
                 typeOfEquipment = TypeOfEquipment.Static;
             else if (typeComboBox.SelectedIndex == 1)
                 typeOfEquipment = TypeOfEquipment.Dynamic;
             else
                 typeOfEquipment = selectedEquipment.Type;
-            int quantityInMagacine = int.Parse(quanitityTextBox.Text);
+
+            int quantityInMagacine = int.TryParse(quanitityTextBox.Text, out quantityInMagacine) ? quantityInMagacine : 0;
             string description = descriptionTextBox.Text;
 
-            EquipmentController.getInstance().changeEquipment(selectedEquipment, id, name, typeOfEquipment, quantityInMagacine, oldQuantity, description);
+            if (string.Compare(id, "") == 0)
+                MessageBox.Show("Polje za unos šifre ne može biti prazno!", "Greška", MessageBoxButton.OK, MessageBoxImage.Error);
+            else if (string.Compare(nameTextBox.Text, "") == 0)
+                MessageBox.Show("Polje za unos naziva ne može biti prazno!", "Greška", MessageBoxButton.OK, MessageBoxImage.Error);
+            else if (quantityInMagacine == 0)
+                MessageBox.Show("Pogrešan unos količine!", "Greška", MessageBoxButton.OK, MessageBoxImage.Error);
+            else
+            {
+                EquipmentController.getInstance().changeEquipment(selectedEquipment, id, name, typeOfEquipment, quantityInMagacine, oldQuantity, description);
 
-            ManagerMainWindow.getInstance().equipmentTable.refreshTable();
-            ManagerMainWindow.getInstance().dynamicEquipmentTable.refreshTable();
+                ManagerMainWindow.getInstance().equipmentTable.refreshTable();
+                ManagerMainWindow.getInstance().dynamicEquipmentTable.refreshTable();
 
-            this.Close();
-            MessageBox.Show("Informacije o opremi su sada izmenjene.", "Izmena prostorije", MessageBoxButton.OK, MessageBoxImage.Information);
+                this.Close();
+                MessageBox.Show("Informacije o opremi su sada izmenjene.", "Izmena prostorije", MessageBoxButton.OK, MessageBoxImage.Information);
+            }
         }
 
         private void fillControls()

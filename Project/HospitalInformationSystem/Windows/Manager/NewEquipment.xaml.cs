@@ -47,7 +47,7 @@ namespace HospitalInformationSystem.Windows.Manager
         {
             string id = idTextBox.Text;
             string name = nameTextBox.Text;
-            int quanity = int.Parse(quanitityTextBox.Text);
+            int quantity = int.TryParse(quanitityTextBox.Text, out quantity) ? quantity : 0;
             string description = decriptionTextBox.Text;
             TypeOfEquipment typeOfEquipment;
 
@@ -56,21 +56,31 @@ namespace HospitalInformationSystem.Windows.Manager
             else
                 typeOfEquipment = TypeOfEquipment.Dynamic;
 
-            Equipment equipment = new Equipment(id, name, typeOfEquipment, quanity, description);
+            if(string.Compare(id, "") == 0)
+                MessageBox.Show("Polje za unos šifre ne može biti prazno!", "Greška", MessageBoxButton.OK, MessageBoxImage.Error);
+            else if (string.Compare(nameTextBox.Text, "") == 0)
+                MessageBox.Show("Polje za unos naziva ne može biti prazno!", "Greška", MessageBoxButton.OK, MessageBoxImage.Error);
+            else if (quantity == 0)
+                MessageBox.Show("Pogrešan unos količine!", "Greška", MessageBoxButton.OK, MessageBoxImage.Error);
+            else
+            {
 
-            EquipmentController.getInstance().addNewEquipment(equipment);
+                Equipment equipment = new Equipment(id, name, typeOfEquipment, quantity, description);
 
-            ManagerMainWindow.getInstance().equipmentTable.refreshTable();
-            ManagerMainWindow.getInstance().dynamicEquipmentTable.refreshTable();
+                EquipmentController.getInstance().addNewEquipment(equipment);
 
-            //obavestavanje korisnika o uspesno unetoj opremi
-            MessageBox.Show("Uneta je nova oprema u sistem.", "Nova prostorija", MessageBoxButton.OK, MessageBoxImage.Information);
+                ManagerMainWindow.getInstance().equipmentTable.refreshTable();
+                ManagerMainWindow.getInstance().dynamicEquipmentTable.refreshTable();
 
-            //brisanje polja nakon uspesnog unosa
+                //obavestavanje korisnika o uspesno unetoj opremi
+                MessageBox.Show("Uneta je nova oprema u sistem.", "Nova prostorija", MessageBoxButton.OK, MessageBoxImage.Information);
 
-            idTextBox.Clear();
-            nameTextBox.Clear();
-            quanitityTextBox.Clear();
+                //brisanje polja nakon uspesnog unosa
+
+                idTextBox.Clear();
+                nameTextBox.Clear();
+                quanitityTextBox.Clear();
+            }
             
         }
 

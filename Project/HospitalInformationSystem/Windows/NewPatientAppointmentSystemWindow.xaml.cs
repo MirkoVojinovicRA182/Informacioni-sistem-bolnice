@@ -1,4 +1,5 @@
-﻿using HospitalInformationSystem.Service;
+﻿using HospitalInformationSystem.Controller;
+using HospitalInformationSystem.Service;
 using Model;
 using System;
 using System.Collections.Generic;
@@ -30,9 +31,7 @@ namespace HospitalInformationSystem.Windows
         {
             InitializeComponent();
 
-            var database = DoctorDataBase.getInstance();
-
-            var list = database.GetDoctors();
+            var list = DoctorController.getInstance().getDoctors();
 
             DoctorComboBox.ItemsSource = list;
 
@@ -66,9 +65,9 @@ namespace HospitalInformationSystem.Windows
         {
             Appointment appointment = (Appointment)AppointmentDataGrid.SelectedItem;
 
-            AppointmentManagement patientAppointmentManagement = new AppointmentManagement();
+            Appointment app = new Appointment(appointment.StartTime, appointment.Type, appointment.room, appointment.patient, appointment.doctor);
 
-            patientAppointmentManagement.createAppointment(appointment.StartTime, appointment.Type, appointment.room, appointment.patient, appointment.doctor);
+            AppointmentController.getInstance().addAppointment(app);
 
         }
 
@@ -107,7 +106,7 @@ namespace HospitalInformationSystem.Windows
                 }
             }*/
 
-            existingAppointments = AppointmentDataBase.getInstance().GetAppointment();
+            existingAppointments = AppointmentController.getInstance().getAppointment();
 
             for (var date = startDateTime; date <= endDateTime; date = date.AddDays(1))
             {
@@ -188,7 +187,7 @@ namespace HospitalInformationSystem.Windows
                 }
                 else
                 {
-                    var doctors = DoctorDataBase.getInstance().GetDoctors();
+                    var doctors = DoctorController.getInstance().getDoctors();
                     for (int i = 0; i < doctors.Count; i++)
                     {
                         if(doctors[i].GetType() == doctor.GetType()) 

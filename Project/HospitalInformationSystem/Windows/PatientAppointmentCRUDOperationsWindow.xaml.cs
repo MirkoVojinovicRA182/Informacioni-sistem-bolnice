@@ -20,6 +20,7 @@ using HospitalInformationSystem.Service;
 using System.Globalization;
 using System.Timers;
 using HospitalInformationSystem.Repository;
+using HospitalInformationSystem.Controller;
 
 namespace HospitalInformationSystem.Windows
 {
@@ -34,7 +35,7 @@ namespace HospitalInformationSystem.Windows
         public PatientAppointmentCRUDOperationsWindow(Patient patient)
         {
             InitializeComponent();
-            AppointmentDataGrid.ItemsSource = AppointmentDataBase.getInstance().GetAppointment();
+            AppointmentDataGrid.ItemsSource = AppointmentController.getInstance().getAppointment();
             var therapy = new List<Therapy>();
             var days = new List<DayOfWeek>();
             days.Add(DayOfWeek.Monday);
@@ -66,16 +67,17 @@ namespace HospitalInformationSystem.Windows
         private void DeleteAppointmentButton_Click(object sender, RoutedEventArgs e)
         {
             Appointment selectedRow = (Appointment)AppointmentDataGrid.SelectedItem;
-            AppointmentManagement management = new AppointmentManagement();
-            management.deleteAppointment(selectedRow);
+
+            AppointmentController.getInstance().removeAppointment(selectedRow);
 
             RefreshTable();
         }
 
         private void DeleteAllAppointmentsButton_Click(object sender, RoutedEventArgs e)
         {
-            AppointmentManagement management = new AppointmentManagement();
-            management.deleteAllAppointments();
+
+            AppointmentController.getInstance().removeAllAppointment();
+
             MessageBox.Show("Sve termini su izbrisani", "Brisanje termina", MessageBoxButton.OK, MessageBoxImage.Information);
 
             RefreshTable();
@@ -101,7 +103,7 @@ namespace HospitalInformationSystem.Windows
         }
         public void RefreshTable()
         {
-            appointmentList = new ObservableCollection<Appointment>(AppointmentDataBase.getInstance().GetAppointment());
+            appointmentList = new ObservableCollection<Appointment>(AppointmentController.getInstance().getAppointment());
             AppointmentDataGrid.ItemsSource = null;
             AppointmentDataGrid.ItemsSource = appointmentList;
         }

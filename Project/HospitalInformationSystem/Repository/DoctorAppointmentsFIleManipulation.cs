@@ -4,6 +4,7 @@
  * Purpose: Definition of the Class Repository.DoctorAppointmentsFIleManipulation
  ***********************************************************************/
 
+using HospitalInformationSystem.Controller;
 using Model;
 using System.Collections.Generic;
 using System.IO;
@@ -22,7 +23,7 @@ namespace HospitalInformationSystem.Repository
             BinaryFormatter formatter = new BinaryFormatter();
             try
             {
-                formatter.Serialize(fs, AppointmentDataBase.getInstance().GetAppointment());
+                formatter.Serialize(fs, AppointmentController.getInstance().getAppointment());
             }
             catch (SerializationException e)
             {
@@ -44,7 +45,7 @@ namespace HospitalInformationSystem.Repository
                 try
                 {
                     BinaryFormatter formatter = new BinaryFormatter();
-                    AppointmentDataBase.getInstance().SetAppointment((List<Appointment>)formatter.Deserialize(fs));
+                    AppointmentController.getInstance().setAppointment((List<Appointment>)formatter.Deserialize(fs));
                 }
                 catch (SerializationException e)
                 {

@@ -58,9 +58,11 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="Controller\MyScheduler.cs" />
+    <Compile Include="Controller\AppointmentController.cs" />
+    <Compile Include="Controller\DoctorController.cs" />
     <Compile Include="Controller\RoomController.cs" />
-    <Compile Include="Service\AppointmentManagement.cs" />
+    <Compile Include="Service\AppointmentService.cs" />
+    <Compile Include="Service\DoctorService.cs" />
     <Compile Include="Service\PatientManagement.cs" />
     <Compile Include="Service\RoomService.cs" />
     <Compile Include="Controller\EquipmentController.cs" />
@@ -70,9 +72,7 @@
     <Compile Include="Model\Allergen.cs" />
     <Compile Include="Model\Anamnesis.cs" />
     <Compile Include="Model\Appointment.cs" />
-    <Compile Include="Model\AppointmentDataBase.cs" />
     <Compile Include="Model\Doctor.cs" />
-    <Compile Include="Model\DoctorDataBase.cs" />
     <Compile Include="Model\Equipment.cs" />
     <Compile Include="Model\Manager.cs" />
     <Compile Include="Model\MedicalRecord.cs" />
@@ -89,7 +89,6 @@
     <Compile Include="Model\TypeOfRoom.cs" />
     <Compile Include="Repository\EquipmentRepository.cs" />
     <Compile Include="Service\EquipmentService.cs" />
-    <Compile Include="Service\SchedulerService.cs" />
     <Compile Include="Windows\AddPrescriptionWindow.xaml.cs">
       <DependentUpon>AddPrescriptionWindow.xaml</DependentUpon>
     </Compile>

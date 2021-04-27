@@ -14,6 +14,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using HospitalInformationSystem.Repository;
+using HospitalInformationSystem.Controller;
 
 namespace HospitalInformationSystem.Windows
 {
@@ -33,9 +34,9 @@ namespace HospitalInformationSystem.Windows
             doctorAppFile.loadFromFile();
 
             var doctor = new Doctor("Marko", "Markovic", Specialization.Family_Physician, new Room(1, "Markova kancelarija", 1, TypeOfRoom.ExaminationRoom));
-            DoctorDataBase.getInstance().GetDoctors().Add(new Doctor("Marko", "Markovic", Specialization.Family_Physician, new Room(1, "Markova prostorija", 1, TypeOfRoom.ExaminationRoom)));
-            DoctorDataBase.getInstance().GetDoctors().Add(new Doctor("Jovan", "Jovanovic", Specialization.Family_Physician, new Room(2, "Jovanova prostorija", 2, TypeOfRoom.ExaminationRoom)));
-            DoctorDataBase.getInstance().GetDoctors().Add(new Doctor("Stevan", "Stojanovic", Specialization.Family_Physician, new Room(3, "Stevanova prostorija", 3, TypeOfRoom.ExaminationRoom)));
+            DoctorController.getInstance().addDoctor(new Doctor("Marko", "Markovic", Specialization.Family_Physician, new Room(1, "Markova prostorija", 1, TypeOfRoom.ExaminationRoom)));
+            DoctorController.getInstance().addDoctor(new Doctor("Jovan", "Jovanovic", Specialization.Family_Physician, new Room(2, "Jovanova prostorija", 2, TypeOfRoom.ExaminationRoom)));
+            DoctorController.getInstance().addDoctor(new Doctor("Stevan", "Stojanovic", Specialization.Family_Physician, new Room(3, "Stevanova prostorija", 3, TypeOfRoom.ExaminationRoom)));
 
             Patient first = new Patient("Pera", "Pacijent", "1");
             Patient second = new Patient("Jova", "Pacijent", "2");
@@ -96,7 +97,7 @@ namespace HospitalInformationSystem.Windows
                         window.Show();
                         //this.Hide();
                     }
-                    else if (accounts[i].Person.GetType() == DoctorDataBase.getInstance().GetDoctors().First().GetType())
+                    else if (accounts[i].Person.GetType() == DoctorController.getInstance().getDoctors().First().GetType())
                     {
                         loggedIn = true;
                         DoctorAppointmentsManagementWindow window = new DoctorAppointmentsManagementWindow();

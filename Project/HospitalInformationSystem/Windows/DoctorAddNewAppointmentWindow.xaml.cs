@@ -63,9 +63,10 @@ namespace HospitalInformationSystem.Windows
         {
             DateTime date = DateTime.ParseExact(dateTextBox.Text + " " + timeTextBox.Text, "dd.MM.yyyy. HH:mm", System.Globalization.CultureInfo.InvariantCulture);
            
-            AppointmentManagement appointmentsManagment = new AppointmentManagement();
-            
-            appointmentsManagment.createAppointment(date, typeOfAppointment, room, (Patient)patientComboBox.SelectedItem, (Doctor)doctorComboBox.SelectedItem);
+
+            Appointment app = new Appointment(date, typeOfAppointment, room, (Patient)patientComboBox.SelectedItem, (Doctor)doctorComboBox.SelectedItem);
+            AppointmentController.getInstance().addAppointment(app);
+      
         }
 
 
@@ -100,7 +101,7 @@ namespace HospitalInformationSystem.Windows
 
         private void initDoctors()
         {
-            doctorComboBox.ItemsSource = DoctorDataBase.getInstance().GetDoctors();
+            doctorComboBox.ItemsSource = DoctorController.getInstance().getDoctors();
         }
 
         private Boolean checkData()

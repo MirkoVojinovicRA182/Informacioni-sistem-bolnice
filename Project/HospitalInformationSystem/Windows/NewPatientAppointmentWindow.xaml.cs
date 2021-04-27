@@ -1,4 +1,5 @@
 ﻿
+using HospitalInformationSystem.Controller;
 using HospitalInformationSystem.Service;
 using Model;
 using System;
@@ -28,9 +29,8 @@ namespace HospitalInformationSystem.Windows
         {
             InitializeComponent();
 
-            var database = DoctorDataBase.getInstance();
             this.patient = patient;
-            var list = database.GetDoctors();
+            var list = DoctorController.getInstance().getDoctors();
 
             DoctorComboBox.ItemsSource = list;
 
@@ -64,9 +64,9 @@ namespace HospitalInformationSystem.Windows
             DateTime startTime = DateTime.ParseExact(dateTime, "dd.MM.yyyy. HH:mm", provider);
             Doctor doctor = (Doctor)DoctorComboBox.SelectedItem;
 
-            AppointmentManagement patientAppointmentManagement = new AppointmentManagement();
+            Appointment app = new Appointment(startTime, TypeOfAppointment.Pregled, doctor.room, patient, doctor);
 
-            patientAppointmentManagement.createAppointment(startTime, TypeOfAppointment.Pregled, doctor.room, patient, doctor);
+            AppointmentController.getInstance().addAppointment(app);
 
         }
 

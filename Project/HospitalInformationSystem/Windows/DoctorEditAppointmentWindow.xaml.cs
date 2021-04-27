@@ -75,9 +75,7 @@ namespace HospitalInformationSystem.Windows
                 {
                     newRoom = appointment.room;
                 }
-
-                AppointmentManagement appointmentManagement = new AppointmentManagement();
-                appointmentManagement.changeAppointment(appointment, date, appointment.Type, newRoom, (Patient)patientComboBox.SelectedItem, appointment.doctor);
+                AppointmentController.getInstance().changeAppointment(appointment, date, appointment.Type, newRoom, (Patient)patientComboBox.SelectedItem, appointment.doctor);
 
                 MessageBox.Show("Informacije o prostoriji su sada izmenjene.", "Izmena informacija", MessageBoxButton.OK, MessageBoxImage.Information);
             }

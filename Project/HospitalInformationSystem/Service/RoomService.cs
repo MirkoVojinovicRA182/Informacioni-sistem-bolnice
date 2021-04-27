@@ -51,12 +51,11 @@ namespace HospitalInformationSystem.Service
             roomList.Remove(room);
 
             //brisanje termina koji se odvijaju u datoj prostoriji
-            AppointmentManagement appointmentManagement = new AppointmentManagement();
-            List<Appointment> list = appointmentManagement.findAppointmentByRoom(room);
+            List<Appointment> list = AppointmentController.getInstance().findAppointmentByRoom(room);
 
             foreach(Appointment appointment in list)
             {
-                appointmentManagement.deleteAppointment(appointment);
+                AppointmentController.getInstance().removeAppointment(appointment);
             }
         }
 

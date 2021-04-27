@@ -4,6 +4,7 @@
  * Purpose: Definition of the Class Repository.DoctorFileManipulation
  ***********************************************************************/
 
+using HospitalInformationSystem.Controller;
 using Model;
 using System.Collections.Generic;
 using System.IO;
@@ -21,7 +22,7 @@ namespace HospitalInformationSystem.Repository
             BinaryFormatter formatter = new BinaryFormatter();
             try
             {
-                formatter.Serialize(fs, DoctorDataBase.getInstance().GetDoctors());
+                formatter.Serialize(fs, DoctorController.getInstance().getDoctors());
             }
             catch (SerializationException e)
             {
@@ -44,7 +45,7 @@ namespace HospitalInformationSystem.Repository
                 try
                 {
                     BinaryFormatter formatter = new BinaryFormatter();
-                    DoctorDataBase.getInstance().SetDoctors((List<Doctor>)formatter.Deserialize(fs));
+                    DoctorController.getInstance().setDoctors((List<Doctor>)formatter.Deserialize(fs));
                 }
                 catch (SerializationException e)
                 {

@@ -1,4 +1,5 @@
-﻿using Model;
+﻿using HospitalInformationSystem.Controller;
+using Model;
 using System.Collections.ObjectModel;
 using System.Windows;
 
@@ -43,7 +44,7 @@ namespace HospitalInformationSystem.Windows
         {
             appointment = (Appointment)appointmentsTable.SelectedItem;
 
-            AppointmentDataBase.getInstance().RemoveAppointment(appointment);
+            AppointmentController.getInstance().removeAppointment(appointment);
 
             refreshTable();
         }
@@ -54,7 +55,7 @@ namespace HospitalInformationSystem.Windows
         }
         private void refreshTable()
         {
-            appointmentList = new ObservableCollection<Appointment>(AppointmentDataBase.getInstance().GetAppointment());
+            appointmentList = new ObservableCollection<Appointment>(AppointmentController.getInstance().getAppointment());
             appointmentsTable.ItemsSource = null;
             appointmentsTable.ItemsSource = appointmentList;
         }

@@ -58,7 +58,6 @@ namespace HospitalInformationSystem.Windows
             DateTime oldTime = appointment.StartTime;
             DateTime endTime = oldTime.AddDays(-1);
 
-            AppointmentManagement patientAppointmentManagement = new AppointmentManagement();
             if (DateTime.Now.CompareTo(endTime) < 0 & DateTime.Now.CompareTo(startTime) < 0)
             {
                 //patientAppointmentManagement.changeAppointment(appointment, startTime, TypeOfAppointment.Pregled, appointment.room, appointment.patient, (Doctor)doctorComboBox.SelectedItem);

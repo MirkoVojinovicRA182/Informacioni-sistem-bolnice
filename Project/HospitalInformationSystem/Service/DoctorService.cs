@@ -14,7 +14,7 @@ namespace HospitalInformationSystem.Service
     {
 
         private List<Doctor> doctors;
-        DoctorFileManipulation doctorFile;
+        DoctorRepository doctorFile;
 
         public DoctorService()
         {

@@ -1,4 +1,5 @@
-﻿using HospitalInformationSystem.Windows.Manager;
+﻿using HospitalInformationSystem.Windows.ManagerGUI;
+using HospitalInformationSystem.Windows.DoctorGUI;
 using Model;
 using System;
 using System.Collections.Generic;
@@ -15,6 +16,8 @@ using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using HospitalInformationSystem.Repository;
 using HospitalInformationSystem.Controller;
+using HospitalInformationSystem.Windows.PatientGUI;
+using HospitalInformationSystem.Windows.SecretaryGUI;
 
 namespace HospitalInformationSystem.Windows
 {
@@ -24,8 +27,8 @@ namespace HospitalInformationSystem.Windows
     public partial class MainWindow : Window
     {
         private static Person person;
-        PatientsFileManipulation savePatients = new PatientsFileManipulation();
-        DoctorAppointmentsFIleManipulation doctorAppFile = new DoctorAppointmentsFIleManipulation();
+        PatientsRepository savePatients = new PatientsRepository();
+        AppointmentsRepository doctorAppFile = new AppointmentsRepository();
         public MainWindow()
         {
             InitializeComponent();
@@ -50,9 +53,9 @@ namespace HospitalInformationSystem.Windows
             second.setMedicalRecord(secondMedicalRecord);
             third.setMedicalRecord(thirdMedicalRecord);
 
-            PatientDataBase.getInstance().getPatient().Add(first);
-            PatientDataBase.getInstance().getPatient().Add(second);
-            PatientDataBase.getInstance().getPatient().Add(third);
+            PatientController.getInstance().getPatient().Add(first);
+            PatientController.getInstance().getPatient().Add(second);
+            PatientController.getInstance().getPatient().Add(third);
 
             Secretary secretary = new Secretary();
             secretary.Name = "Petar";

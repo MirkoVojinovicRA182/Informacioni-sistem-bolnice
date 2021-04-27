@@ -13,7 +13,7 @@ using System.Runtime.Serialization.Formatters.Binary;
 
 namespace HospitalInformationSystem.Repository
 {
-    public class RoomRepository : IFileManipulation
+    public class RoomRepository : IRepository
     {
         public void saveInFile()
         {

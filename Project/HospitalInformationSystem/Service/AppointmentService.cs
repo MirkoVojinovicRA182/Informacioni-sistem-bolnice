@@ -16,13 +16,13 @@ namespace HospitalInformationSystem.Service
     {
 
         private List<Appointment> appointments;
-        DoctorAppointmentsFIleManipulation appointmentsFile;
+        AppointmentsRepository appointmentsFile;
 
         public AppointmentService()
         {
             // TODO: implement
             appointments = new List<Appointment>();
-            appointmentsFile = new DoctorAppointmentsFIleManipulation();
+            appointmentsFile = new AppointmentsRepository();
         }
 
         ~AppointmentService()

@@ -1,0 +1,46 @@
+﻿<Window x:Class="HospitalInformationSystem.Windows.SecretaryGUI.AddAccount"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-
+        :HospitalInformationSystem.Windows"
+        mc:Ignorable="d"
+        Title="AddAccount" Height="768" Width="1024">
+    <Grid>
+        <TextBox x:Name="usernameTxt" HorizontalAlignment="Left" Height="23" TextWrapping="Wrap" VerticalAlignment="Top" Width="148" Margin="711,56,0,0"/>
+        <TextBox x:Name="nameTxt" HorizontalAlignment="Left" Height="23" TextWrapping="Wrap" VerticalAlignment="Top" Width="148" Margin="711,101,0,0"/>
+        <TextBox x:Name="surnameTxt" HorizontalAlignment="Left" Height="23" TextWrapping="Wrap" VerticalAlignment="Top" Width="148" Margin="711,146,0,0"/>
+        <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" Text="Username:&#x9;" VerticalAlignment="Top" Margin="595,56,0,0" Width="82" FontSize="16" FontWeight="Bold"/>
+        <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" Text="Ime:" VerticalAlignment="Top" Margin="595,101,0,0" Width="38" FontSize="16" FontWeight="Bold"/>
+        <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" Text="Prezime:" VerticalAlignment="Top" Margin="595,146,0,0" Width="82" FontSize="16" FontWeight="Bold"/>
+        <Button x:Name="potvrdiBtn" Content="Potvrdi" HorizontalAlignment="Left" Margin="595,625,0,0" VerticalAlignment="Top" Width="75" Click="potvrdiBtn_Click" RenderTransformOrigin="1.252,0.977"/>
+        <Button x:Name="otkaziBtn" Content="Otkazi" HorizontalAlignment="Left" Margin="762,625,0,0" VerticalAlignment="Top" Width="75" Click="otkaziBtn_Click" RenderTransformOrigin="0.444,5.662"/>
+        <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" Text="Datum rodj.:" VerticalAlignment="Top" Margin="595,190,0,0" Width="139" FontSize="16" FontWeight="Bold"/>
+        <DatePicker x:Name="date" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="711,190,0,0" RenderTransformOrigin="0.5,0.5" Width="151">
+            <DatePicker.RenderTransform>
+                <TransformGroup>
+                    <ScaleTransform/>
+                    <SkewTransform/>
+                    <RotateTransform Angle="-0.405"/>
+                    <TranslateTransform/>
+                </TransformGroup>
+            </DatePicker.RenderTransform>
+        </DatePicker>
+        <TextBox x:Name="numberTxt" HorizontalAlignment="Left" Height="23" TextWrapping="Wrap" VerticalAlignment="Top" Width="148" Margin="711,237,0,0"/>
+        <TextBox x:Name="parentsNameTxt" HorizontalAlignment="Left" Height="23" TextWrapping="Wrap" VerticalAlignment="Top" Width="148" Margin="711,282,0,0"/>
+        <TextBox x:Name="emailTxt" HorizontalAlignment="Left" Height="23" TextWrapping="Wrap" VerticalAlignment="Top" Width="148" Margin="711,326,0,0"/>
+        <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" Text="Telefon:" VerticalAlignment="Top" Margin="595,237,0,0" Width="82" FontSize="16" FontWeight="Bold"/>
+        <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" Text="Ime roditelja:" VerticalAlignment="Top" Margin="595,265,0,0" Width="82" FontSize="16" FontWeight="Bold"/>
+        <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" Text="Email:" VerticalAlignment="Top" Margin="595,326,0,0" Width="82" FontSize="16" FontWeight="Bold"/>
+        <TextBox x:Name="genderTxt" HorizontalAlignment="Left" Height="23" TextWrapping="Wrap" VerticalAlignment="Top" Width="148" Margin="711,376,0,0"/>
+        <TextBox x:Name="jmbgTxt" HorizontalAlignment="Left" Height="23" TextWrapping="Wrap" VerticalAlignment="Top" Width="148" Margin="711,421,0,0"/>
+        <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" Text="Pol:" VerticalAlignment="Top" Margin="595,376,0,0" Width="82" FontSize="16" FontWeight="Bold"/>
+        <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" Text="Jmbg:" VerticalAlignment="Top" Margin="595,421,0,0" Width="82" FontSize="16" FontWeight="Bold"/>
+        <TextBox x:Name="lboTxt" HorizontalAlignment="Left" Height="24" TextWrapping="Wrap" VerticalAlignment="Top" Width="148" Margin="711,518,0,0"/>
+        <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" Text="Krvna grupa:" VerticalAlignment="Top" Margin="595,474,0,0" Width="111" FontSize="16" FontWeight="Bold"/>
+        <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" Text="LBO:" VerticalAlignment="Top" Margin="595,518,0,0" Width="82" FontSize="16" FontWeight="Bold"/>
+        <ComboBox x:Name="bloodCmb" HorizontalAlignment="Left" VerticalAlignment="Top" Width="148" RenderTransformOrigin="2.006,6" Margin="711,472,0,0" Loaded="bloodCmb_Loaded"/>
+        <CheckBox x:Name="isGuestCheckbox" Content="gost" HorizontalAlignment="Left" Margin="901,625,0,0" VerticalAlignment="Top"/>
+    </Grid>
+</Window>

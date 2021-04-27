@@ -60,13 +60,13 @@
     </ApplicationDefinition>
     <Compile Include="Controller\AppointmentController.cs" />
     <Compile Include="Controller\DoctorController.cs" />
+    <Compile Include="Controller\PatientController.cs" />
     <Compile Include="Controller\RoomController.cs" />
     <Compile Include="Service\AppointmentService.cs" />
     <Compile Include="Service\DoctorService.cs" />
-    <Compile Include="Service\PatientManagement.cs" />
+    <Compile Include="Service\PatientService.cs" />
     <Compile Include="Service\RoomService.cs" />
     <Compile Include="Controller\EquipmentController.cs" />
-    <Compile Include="DataBases\PatientDataBase.cs" />
     <Compile Include="Model\Account.cs" />
     <Compile Include="Model\AccountDataBase.cs" />
     <Compile Include="Model\Allergen.cs" />
@@ -89,115 +89,109 @@
     <Compile Include="Model\TypeOfRoom.cs" />
     <Compile Include="Repository\EquipmentRepository.cs" />
     <Compile Include="Service\EquipmentService.cs" />
-    <Compile Include="Windows\AddPrescriptionWindow.xaml.cs">
+    <Compile Include="Windows\DoctorGUI\AddPrescriptionWindow.xaml.cs">
       <DependentUpon>AddPrescriptionWindow.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Windows\AmnesisPreviewWindow.xaml.cs">
+    <Compile Include="Windows\DoctorGUI\AmnesisPreviewWindow.xaml.cs">
       <DependentUpon>AmnesisPreviewWindow.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Windows\AnamnesisWindow.xaml.cs">
+    <Compile Include="Windows\DoctorGUI\AnamnesisWindow.xaml.cs">
       <DependentUpon>AnamnesisWindow.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Windows\DoctorAddNewAppointmentWindow.xaml.cs">
+    <Compile Include="Windows\DoctorGUI\DoctorAddNewAppointmentWindow.xaml.cs">
       <DependentUpon>DoctorAddNewAppointmentWindow.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Windows\DoctorAppointmentsManagementWindow.xaml.cs">
+    <Compile Include="Windows\DoctorGUI\DoctorAppointmentsManagementWindow.xaml.cs">
       <DependentUpon>DoctorAppointmentsManagementWindow.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Windows\DoctorEditAppointmentWindow.xaml.cs">
+    <Compile Include="Windows\DoctorGUI\DoctorEditAppointmentWindow.xaml.cs">
       <DependentUpon>DoctorEditAppointmentWindow.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Windows\DoctorShowAppointmentInformationWindow.xaml.cs">
+    <Compile Include="Windows\DoctorGUI\DoctorShowAppointmentInformationWindow.xaml.cs">
       <DependentUpon>DoctorShowAppointmentInformationWindow.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Windows\DoctorShowPrescription.xaml.cs">
+    <Compile Include="Windows\DoctorGUI\DoctorShowPrescription.xaml.cs">
       <DependentUpon>DoctorShowPrescription.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Windows\EditPatientAppointmentWindow.xaml.cs">
+    <Compile Include="Windows\PatientGUI\EditPatientAppointmentWindow.xaml.cs">
       <DependentUpon>EditPatientAppointmentWindow.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Windows\Manager\EditRoomWindow.xaml.cs">
+    <Compile Include="Windows\ManagerGUI\EditRoomWindow.xaml.cs">
       <DependentUpon>EditRoomWindow.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Windows\Manager\AddEquipmentToRoomWindow.xaml.cs">
+    <Compile Include="Windows\ManagerGUI\AddEquipmentToRoomWindow.xaml.cs">
       <DependentUpon>AddEquipmentToRoomWindow.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Windows\Manager\DynamicEquipmentTable.xaml.cs">
+    <Compile Include="Windows\ManagerGUI\DynamicEquipmentTable.xaml.cs">
       <DependentUpon>DynamicEquipmentTable.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Windows\Manager\EditEquipment.xaml.cs">
+    <Compile Include="Windows\ManagerGUI\EditEquipment.xaml.cs">
       <DependentUpon>EditEquipment.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Windows\Manager\EquipmentTable.xaml.cs">
+    <Compile Include="Windows\ManagerGUI\EquipmentTable.xaml.cs">
       <DependentUpon>EquipmentTable.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Windows\Manager\InsertQuantityOfEquipmentForRemovingWindow.xaml.cs">
+    <Compile Include="Windows\ManagerGUI\InsertQuantityOfEquipmentForRemovingWindow.xaml.cs">
       <DependentUpon>InsertQuantityOfEquipmentForRemovingWindow.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Windows\Manager\ManagerMainWindow.xaml.cs">
+    <Compile Include="Windows\ManagerGUI\ManagerMainWindow.xaml.cs">
       <DependentUpon>ManagerMainWindow.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Windows\Manager\NewEquipment.xaml.cs">
+    <Compile Include="Windows\ManagerGUI\NewEquipment.xaml.cs">
       <DependentUpon>NewEquipment.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Windows\Manager\StaticEquipmentDeploymentWindow.xaml.cs">
+    <Compile Include="Windows\ManagerGUI\StaticEquipmentDeploymentWindow.xaml.cs">
       <DependentUpon>StaticEquipmentDeploymentWindow.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Windows\Manager\SuccessMovingWindow.xaml.cs">
+    <Compile Include="Windows\ManagerGUI\SuccessMovingWindow.xaml.cs">
       <DependentUpon>SuccessMovingWindow.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Windows\MedicalRecordWindow.xaml.cs">
+    <Compile Include="Windows\DoctorGUI\MedicalRecordWindow.xaml.cs">
       <DependentUpon>MedicalRecordWindow.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Windows\NewPatientAppointmentSystemWindow.xaml.cs">
+    <Compile Include="Windows\PatientGUI\NewPatientAppointmentSystemWindow.xaml.cs">
       <DependentUpon>NewPatientAppointmentSystemWindow.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Windows\NewPatientAppointmentWindow.xaml.cs">
+    <Compile Include="Windows\PatientGUI\NewPatientAppointmentWindow.xaml.cs">
       <DependentUpon>NewPatientAppointmentWindow.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Windows\Manager\NewRoomWindow.xaml.cs">
+    <Compile Include="Windows\ManagerGUI\NewRoomWindow.xaml.cs">
       <DependentUpon>NewRoomWindow.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Windows\NotificationsWindow.xaml.cs">
+    <Compile Include="Windows\PatientGUI\NotificationsWindow.xaml.cs">
       <DependentUpon>NotificationsWindow.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Windows\NotificationWindow.xaml.cs">
+    <Compile Include="Windows\PatientGUI\NotificationWindow.xaml.cs">
       <DependentUpon>NotificationWindow.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Windows\PatientAccountsWindows\AddAccount.xaml.cs">
+    <Compile Include="Windows\SecretaryGUI\AddAccount.xaml.cs">
       <DependentUpon>AddAccount.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Windows\PatientAccountsWindows\AddAllergen.xaml.cs">
+    <Compile Include="Windows\SecretaryGUI\AddAllergen.xaml.cs">
       <DependentUpon>AddAllergen.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Windows\PatientAccountsWindows\EditAccount.xaml.cs">
+    <Compile Include="Windows\SecretaryGUI\EditAccount.xaml.cs">
       <DependentUpon>EditAccount.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Windows\PatientAccountsWindows\EditAllergens.xaml.cs">
+    <Compile Include="Windows\SecretaryGUI\EditAllergens.xaml.cs">
       <DependentUpon>EditAllergens.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Windows\PatientAccountsWindows\MainPatientManagement.xaml.cs">
+    <Compile Include="Windows\SecretaryGUI\MainPatientManagement.xaml.cs">
       <DependentUpon>MainPatientManagement.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Windows\PatientAppointmentCRUDOperationsWindow.xaml.cs">
+    <Compile Include="Windows\PatientGUI\PatientAppointmentCRUDOperationsWindow.xaml.cs">
       <DependentUpon>PatientAppointmentCRUDOperationsWindow.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Windows\PatientAppointmentsManagementWindow.xaml.cs">
-      <DependentUpon>PatientAppointmentsManagementWindow.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Windows\PatientManagementWindow.xaml.cs">
-      <DependentUpon>PatientManagementWindow.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Windows\Manager\RoomTable.xaml.cs">
+    <Compile Include="Windows\ManagerGUI\RoomTable.xaml.cs">
       <DependentUpon>RoomTable.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Windows\ShowPatientInformationWindow.xaml.cs">
+    <Compile Include="Windows\DoctorGUI\ShowPatientInformationWindow.xaml.cs">
       <DependentUpon>ShowPatientInformationWindow.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Repository\DoctorAppointmentsFIleManipulation.cs" />
-    <Compile Include="Repository\DoctorFileManipulation.cs" />
-    <Compile Include="Repository\IFileManipulation.cs" />
-    <Compile Include="Repository\PatientsFileManipulation.cs" />
+    <Compile Include="Repository\AppointmentsRepository.cs" />
+    <Compile Include="Repository\DoctorRepository.cs" />
+    <Compile Include="Repository\IRepository.cs" />
+    <Compile Include="Repository\PatientsRepository.cs" />
     <Compile Include="Repository\RoomRepository.cs" />
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
@@ -211,143 +205,135 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Page Include="Windows\AddPrescriptionWindow.xaml">
+    <Page Include="Windows\DoctorGUI\AddPrescriptionWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Windows\AmnesisPreviewWindow.xaml">
+    <Page Include="Windows\DoctorGUI\AmnesisPreviewWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Windows\AnamnesisWindow.xaml">
+    <Page Include="Windows\DoctorGUI\AnamnesisWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Windows\DoctorAddNewAppointmentWindow.xaml">
+    <Page Include="Windows\DoctorGUI\DoctorAddNewAppointmentWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Windows\DoctorAppointmentsManagementWindow.xaml">
+    <Page Include="Windows\DoctorGUI\DoctorAppointmentsManagementWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Windows\DoctorEditAppointmentWindow.xaml">
+    <Page Include="Windows\DoctorGUI\DoctorEditAppointmentWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Windows\DoctorShowAppointmentInformationWindow.xaml">
+    <Page Include="Windows\DoctorGUI\DoctorShowAppointmentInformationWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Windows\DoctorShowPrescription.xaml">
+    <Page Include="Windows\DoctorGUI\DoctorShowPrescription.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Windows\EditPatientAppointmentWindow.xaml">
+    <Page Include="Windows\PatientGUI\EditPatientAppointmentWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Windows\Manager\EditRoomWindow.xaml">
+    <Page Include="Windows\ManagerGUI\EditRoomWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Windows\Manager\AddEquipmentToRoomWindow.xaml">
+    <Page Include="Windows\ManagerGUI\AddEquipmentToRoomWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Windows\Manager\DynamicEquipmentTable.xaml">
+    <Page Include="Windows\ManagerGUI\DynamicEquipmentTable.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Windows\Manager\EditEquipment.xaml">
+    <Page Include="Windows\ManagerGUI\EditEquipment.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Windows\Manager\EquipmentTable.xaml">
+    <Page Include="Windows\ManagerGUI\EquipmentTable.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Windows\Manager\InsertQuantityOfEquipmentForRemovingWindow.xaml">
+    <Page Include="Windows\ManagerGUI\InsertQuantityOfEquipmentForRemovingWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Windows\Manager\ManagerMainWindow.xaml">
+    <Page Include="Windows\ManagerGUI\ManagerMainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Windows\Manager\NewEquipment.xaml">
+    <Page Include="Windows\ManagerGUI\NewEquipment.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Windows\Manager\StaticEquipmentDeploymentWindow.xaml">
+    <Page Include="Windows\ManagerGUI\StaticEquipmentDeploymentWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Windows\Manager\SuccessMovingWindow.xaml">
+    <Page Include="Windows\ManagerGUI\SuccessMovingWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Windows\MedicalRecordWindow.xaml">
+    <Page Include="Windows\DoctorGUI\MedicalRecordWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Windows\NewPatientAppointmentSystemWindow.xaml">
+    <Page Include="Windows\PatientGUI\NewPatientAppointmentSystemWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Windows\NewPatientAppointmentWindow.xaml">
+    <Page Include="Windows\PatientGUI\NewPatientAppointmentWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Windows\Manager\NewRoomWindow.xaml">
+    <Page Include="Windows\ManagerGUI\NewRoomWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Windows\NotificationsWindow.xaml">
+    <Page Include="Windows\PatientGUI\NotificationsWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Windows\NotificationWindow.xaml">
+    <Page Include="Windows\PatientGUI\NotificationWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Windows\PatientAccountsWindows\AddAccount.xaml">
+    <Page Include="Windows\SecretaryGUI\AddAccount.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Windows\PatientAccountsWindows\AddAllergen.xaml">
+    <Page Include="Windows\SecretaryGUI\AddAllergen.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Windows\PatientAccountsWindows\EditAccount.xaml">
+    <Page Include="Windows\SecretaryGUI\EditAccount.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Windows\PatientAccountsWindows\EditAllergens.xaml">
+    <Page Include="Windows\SecretaryGUI\EditAllergens.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Windows\PatientAccountsWindows\MainPatientManagement.xaml">
+    <Page Include="Windows\SecretaryGUI\MainPatientManagement.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Windows\PatientAppointmentCRUDOperationsWindow.xaml">
+    <Page Include="Windows\PatientGUI\PatientAppointmentCRUDOperationsWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Windows\PatientAppointmentsManagementWindow.xaml">
+    <Page Include="Windows\ManagerGUI\RoomTable.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Windows\PatientManagementWindow.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Windows\Manager\RoomTable.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Windows\ShowPatientInformationWindow.xaml">
+    <Page Include="Windows\DoctorGUI\ShowPatientInformationWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

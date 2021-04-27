@@ -1,4 +1,5 @@
-﻿using Model;
+﻿using HospitalInformationSystem.Controller;
+using Model;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -19,7 +20,7 @@ namespace Model
 
         public MedicalRecord()
         {
-            AllergensList = PatientDataBase.getInstance().getAllergens();    
+            AllergensList = PatientController.getInstance().getAllergens();    
         }
 
         public MedicalRecord(int id)
@@ -27,7 +28,7 @@ namespace Model
             this.id = id;
             anamnesisList = new List<Anamnesis>();
             prescriptionList = new List<Prescription>();
-            AllergensList = PatientDataBase.getInstance().getAllergens();
+            AllergensList = PatientController.getInstance().getAllergens();
         }
 
         public int getId()

@@ -32,7 +32,7 @@
         <TextBox x:Name="quantityTextBox" HorizontalAlignment="Left" Height="26" TextWrapping="Wrap" VerticalAlignment="Top" Width="61" Margin="93.8,184,0,0" FontSize="15" Grid.Column="2" RenderTransformOrigin="0.641,0.181" Grid.ColumnSpan="2"/>
         <DatePicker x:Name="datePicker" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0,257,67.4,0" FontSize="15" Grid.Column="2" Grid.ColumnSpan="2"/>
         <ComboBox x:Name="timeComboBox" HorizontalAlignment="Left" VerticalAlignment="Top" Width="227" Margin="93.8,325,0,0" FontSize="15" Grid.Column="2" Grid.ColumnSpan="3">
-            <ComboBoxItem Content="06:00"/>
+            <!--<ComboBoxItem Content="06:00"/>
             <ComboBoxItem Content="06:15"/>
             <ComboBoxItem Content="06:30"/>
             <ComboBoxItem Content="06:45"/>
@@ -96,7 +96,7 @@
             <ComboBoxItem Content="21:15"/>
             <ComboBoxItem Content="21:30"/>
             <ComboBoxItem Content="21:45"/>
-            <ComboBoxItem Content="22:00"/>
+            <ComboBoxItem Content="23:59"/>-->
         </ComboBox>
         <Button x:Name="confirmButton" Content="POTVRDI" HorizontalAlignment="Left" VerticalAlignment="Top" Width="120" Height="30" Margin="77.2,405,0,0" FontSize="15" Grid.ColumnSpan="2" Grid.Column="1" Click="confirmButton_Click"/>
         <Button x:Name="closeButton" Content="IZAĐI" HorizontalAlignment="Left" VerticalAlignment="Top" Width="120" Height="30" Margin="9.8,405,0,0" FontSize="15" Click="closeButton_Click" Grid.Column="3"/>

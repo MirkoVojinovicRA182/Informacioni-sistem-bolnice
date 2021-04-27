@@ -88,20 +88,19 @@ namespace HospitalInformationSystem.Windows.Manager
         {
             if (staticEquipmentListBox.SelectedItem != null)
             {
-                if (EquipmentController.getInstance().findStaticEqOfRoom(selectedRoom.Equipment))
-                {
-                    string nameOfSelectedEquipment = (string)staticEquipmentListBox.SelectedItem;
+             
+                string nameOfSelectedEquipment = (string)staticEquipmentListBox.SelectedItem;
 
-                    string[] separator = { " x", };
+                string[] separator = { " x", };
 
-                    string[] atributesOfSelectedEquipment = nameOfSelectedEquipment.Split(separator, StringSplitOptions.None);
+                string[] atributesOfSelectedEquipment = nameOfSelectedEquipment.Split(separator, StringSplitOptions.None);
 
-                    string key = EquipmentController.getInstance().getEquipmentId(atributesOfSelectedEquipment[0]);
+                string key = EquipmentController.getInstance().getEquipmentId(atributesOfSelectedEquipment[0]);
 
-                    int value = int.Parse(atributesOfSelectedEquipment[1]);
+                int value = int.Parse(atributesOfSelectedEquipment[1]);
 
+                if (EquipmentController.getInstance().equipmentExist(key, selectedRoom.Equipment))
                     StaticEquipmentDeploymentWindow.getInstance(selectedRoom, value, key).Show();
-                }
                 else
                     MessageBox.Show("Prvo dodajte opremu, zatim zakažite njeno premeštanje!", "Upozorenje", MessageBoxButton.OK, MessageBoxImage.Warning);
             }

@@ -105,14 +105,14 @@ namespace HospitalInformationSystem.Controller
             return equipmentService.findEquipment(id);
         }
 
-        public bool findStaticEqOfRoom(Hashtable roomEq)
-        {
-            return equipmentService.findStaticEqOfRoom(roomEq);
-        }
-
         public bool checkId(string id)
         {
             return equipmentService.checkId(id);
+        }
+
+        public bool equipmentExist(string id, Hashtable roomEq)
+        {
+            return equipmentService.equipmentExist(id, roomEq);
         }
     }
 }

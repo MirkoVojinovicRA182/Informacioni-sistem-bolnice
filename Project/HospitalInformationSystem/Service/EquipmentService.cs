@@ -178,20 +178,6 @@ namespace HospitalInformationSystem.Service
             return null;
         }
 
-        public bool findStaticEqOfRoom(Hashtable roomEq)
-        {
-            foreach(Equipment eq in equipmentList)
-            {
-                foreach(DictionaryEntry de in roomEq)
-                {
-                    if (string.Compare(eq.Id, de.Key.ToString()) == 0 && eq.Type == TypeOfEquipment.Static)
-                        return true;
-                }
-            }
-
-            return false;
-        }
-
         public bool checkId(string id)
         {
             Equipment founded = findEquipment(id);
@@ -200,6 +186,17 @@ namespace HospitalInformationSystem.Service
                 if (string.Compare(id, eq.Id) == 0 && eq.Id != founded.Id)
                     return true;
             }
+            return false;
+        }
+
+        public bool equipmentExist(string id, Hashtable roomEq)
+        {
+            foreach (DictionaryEntry de in roomEq)
+            {
+                if (string.Compare(id, de.Key.ToString()) == 0)
+                    return true;
+            }
+
             return false;
         }
     }

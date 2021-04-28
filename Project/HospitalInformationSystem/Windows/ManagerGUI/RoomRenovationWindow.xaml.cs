@@ -42,31 +42,33 @@ namespace HospitalInformationSystem.Windows.ManagerGUI
 
         private void confirmButton_Click(object sender, RoutedEventArgs e)
         {
-            ScheduleRoomRenovatio();
+            CreateThreadForRenovationSimulation(MakeStartDate(), MakeEndDate());
             GiveFeedbackToManager();
         }
-        private void ScheduleRoomRenovatio()
+
+        private DateTime MakeStartDate()
         {
-            /*Kreiranje startnog datuma */
             string selectedStartTime = (string)startTimeComboBox.SelectedItem;
             string[] separator1 = { ":", };
             string[] atributesOfSelectedStartTime = selectedStartTime.Split(separator1, StringSplitOptions.None);
             DateTime selectedStartDate = (DateTime)startDatePicker.SelectedDate;
-            DateTime startDate = new DateTime(selectedStartDate.Year, selectedStartDate.Month, selectedStartDate.Day,
+            return new DateTime(selectedStartDate.Year, selectedStartDate.Month, selectedStartDate.Day,
                 int.Parse(atributesOfSelectedStartTime[0]), int.Parse(atributesOfSelectedStartTime[1]), 00);
-            /*-------------------------*/
-            /*Kreiranje krajnjeg datuma */
+        }
+
+        private DateTime MakeEndDate()
+        {
             string selectedEndTime = (string)endTimeComboBox.SelectedItem;
             string[] separator2 = { ":", };
             string[] atributesOfSelectedEndTime = selectedEndTime.Split(separator2, StringSplitOptions.None);
             DateTime selectedEndDate = (DateTime)endDatePicker.SelectedDate;
-            DateTime endDate = new DateTime(selectedEndDate.Year, selectedEndDate.Month, selectedEndDate.Day,
+            return new DateTime(selectedEndDate.Year, selectedEndDate.Month, selectedEndDate.Day,
                 int.Parse(atributesOfSelectedEndTime[0]), int.Parse(atributesOfSelectedEndTime[1]), 00);
-            /*-------------------------*/
-            /*      Kreiranje niti    */
-            Thread tr = new Thread(() =>
+        }
+        private void CreateThreadForRenovationSimulation(DateTime startDate, DateTime endDate)
+        {
+            Thread thread = new Thread(() =>
             {
-                //bool isMoved = false;
                 while (true)
                 {
                     if (DateTime.Now >= startDate && DateTime.Now <= endDate)
@@ -75,14 +77,7 @@ namespace HospitalInformationSystem.Windows.ManagerGUI
                         selectedRoom.IsInRenovationState = 0;
                 }
             });
-            tr.Start();
-            /*-------------------------*/
-
-
-        }
-        private void GiveFeedbackToManager()
-        {
-            this.Close();
+            thread.Start();
         }
         private void LoadTimeComboBoxes()
         {
@@ -101,6 +96,10 @@ namespace HospitalInformationSystem.Windows.ManagerGUI
                 }
             }
             return timesList;
+        }
+        private void GiveFeedbackToManager()
+        {
+            this.Close();
         }
 
     }

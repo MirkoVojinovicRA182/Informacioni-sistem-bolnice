@@ -177,18 +177,6 @@ namespace HospitalInformationSystem.Service
             }
             return null;
         }
-
-        public bool checkId(string id)
-        {
-            Equipment founded = findEquipment(id);
-            foreach(Equipment eq in equipmentList)
-            {
-                if (string.Compare(id, eq.Id) == 0 && eq.Id != founded.Id)
-                    return true;
-            }
-            return false;
-        }
-
         public bool equipmentExist(string id, Hashtable roomEq)
         {
             foreach (DictionaryEntry de in roomEq)

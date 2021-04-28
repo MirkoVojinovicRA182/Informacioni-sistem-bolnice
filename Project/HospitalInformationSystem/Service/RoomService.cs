@@ -58,7 +58,6 @@ namespace HospitalInformationSystem.Service
                 AppointmentController.getInstance().removeAppointment(appointment);
             }
         }
-
         public void changeRoom(Room room, int newId, string newName, TypeOfRoom newType, int newFloor)
         {
             // TODO: implement
@@ -68,14 +67,12 @@ namespace HospitalInformationSystem.Service
             room.Floor = newFloor;
 
         }
-
         public void setRoomEquipment(Room room, Hashtable eq)
         {
             room.Equipment.Clear();
             foreach (DictionaryEntry de in eq)
                 room.Equipment.Add(de.Key, de.Value);
         }
-
         public void deleteEquipment(string id)
         {
             //List<Room> rooms = RoomDataBase.getInstance().getRooms();
@@ -85,14 +82,12 @@ namespace HospitalInformationSystem.Service
                     room.Equipment.Remove(id);
             }
         }
-
         public List<Room> getRooms()
         {
             //return RoomDataBase.getInstance().getRooms();
 
             return roomList;
         }
-
         public void setRooms(List<Room> rooms)
         {
             roomList.Clear();
@@ -100,7 +95,6 @@ namespace HospitalInformationSystem.Service
             foreach (Room room in rooms)
                 roomList.Add(room);
         }
-
         public void changeStaticEquipmentState(Room room, int currentQuantity, int moveQuantity, string key)
         {
             room.Equipment[key] = currentQuantity - moveQuantity;
@@ -109,7 +103,6 @@ namespace HospitalInformationSystem.Service
                 room.Equipment.Remove(key);
             
         }
-
         public void moveStaticEqToNextRoom(Room room, int moveQuantity, string key)
         {
             if (room.Equipment.Contains(key))
@@ -122,26 +115,16 @@ namespace HospitalInformationSystem.Service
                 room.Equipment.Add(key, moveQuantity);
             }
         }
-
-        public bool checkId(int id)
+        public bool findRoom(int id)
         {
-            Room founded = findRoom(id);
-            foreach(Room room in roomList)
+            foreach (Room room in roomList)
             {
-                if (room.Id == id && room.Id != founded.Id)
+                if (room.Id == id)
                     return true;
             }
             return false;
         }
 
-        public Room findRoom(int id)
-        {
-            foreach (Room room in roomList)
-            {
-                if (room.Id == id)
-                    return room;
-            }
-            return null;
-        }
+        //public bool checkID(int id){
     }
 }

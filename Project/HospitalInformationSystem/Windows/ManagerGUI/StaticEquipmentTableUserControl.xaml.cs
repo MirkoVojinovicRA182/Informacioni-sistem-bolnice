@@ -21,11 +21,11 @@ namespace HospitalInformationSystem.Windows.ManagerGUI
     /// <summary>
     /// Interaction logic for EquipmentTable.xaml
     /// </summary>
-    public partial class EquipmentTable : UserControl
+    public partial class StaticEquipmentTableUserControl : UserControl
     {
         private Equipment selectedEquipment = null;
         private ObservableCollection<Equipment> equipmentList;
-        public EquipmentTable()
+        public StaticEquipmentTableUserControl()
         {
             InitializeComponent();
             refreshTable();

@@ -36,12 +36,20 @@
             </TabItem>
             <TabItem x:Name="equipmentTab" Header="Oprema">
                 <TabControl x:Name="staticDynamicTab" SelectionChanged="staticDynamicTab_SelectionChanged">
-                    <TabItem x:Name="staticEquipmentTab" Header="Statička">
-                        <local:EquipmentTable x:Name="equipmentTable"/>
+                    <TabItem Header="Detaljan prikaz">
+                        <local:DetailEquipmentViewUserControl/>
                     </TabItem>
-                    <TabItem x:Name="dynamicEquipmentTab" Header="Dinamička">
-                        <local:DynamicEquipmentTable x:Name="dynamicEquipmentTable"/>
+                    <TabItem Header="Opšti prikaz">
+                        <TabControl>
+                            <TabItem x:Name="staticEquipmentTab" Header="Statička">
+                                <local:StaticEquipmentTableUserControl x:Name="equipmentTable"/>
+                            </TabItem>
+                            <TabItem x:Name="dynamicEquipmentTab" Header="Dinamička">
+                                <local:DynamicEquipmentTable x:Name="dynamicEquipmentTable"/>
+                            </TabItem>
+                        </TabControl>
                     </TabItem>
+                    
                 </TabControl>
             </TabItem>
         </TabControl>

@@ -113,6 +113,9 @@
     <Compile Include="Windows\DoctorGUI\DoctorShowPrescription.xaml.cs">
       <DependentUpon>DoctorShowPrescription.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Windows\ManagerGUI\DetailEquipmentViewUserControl.xaml.cs">
+      <DependentUpon>DetailEquipmentViewUserControl.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Windows\ManagerGUI\RoomRenovationWindow.xaml.cs">
       <DependentUpon>RoomRenovationWindow.xaml</DependentUpon>
     </Compile>
@@ -131,8 +134,8 @@
     <Compile Include="Windows\ManagerGUI\EditEquipment.xaml.cs">
       <DependentUpon>EditEquipment.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Windows\ManagerGUI\EquipmentTable.xaml.cs">
-      <DependentUpon>EquipmentTable.xaml</DependentUpon>
+    <Compile Include="Windows\ManagerGUI\StaticEquipmentTableUserControl.xaml.cs">
+      <DependentUpon>StaticEquipmentTableUserControl.xaml</DependentUpon>
     </Compile>
     <Compile Include="Windows\ManagerGUI\InsertQuantityOfEquipmentForRemovingWindow.xaml.cs">
       <DependentUpon>InsertQuantityOfEquipmentForRemovingWindow.xaml</DependentUpon>
@@ -240,6 +243,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Windows\ManagerGUI\DetailEquipmentViewUserControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Windows\ManagerGUI\RoomRenovationWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -264,7 +271,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Windows\ManagerGUI\EquipmentTable.xaml">
+    <Page Include="Windows\ManagerGUI\StaticEquipmentTableUserControl.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>

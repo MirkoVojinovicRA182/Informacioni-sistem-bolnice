@@ -19,7 +19,6 @@ namespace HospitalInformationSystem.Windows.PatientGUI
             this.appointmentForEditing = forEditing;
             LoadDateComboBox();
             LoadTimeTextBox();
-
         }
 
         private void LoadDateComboBox()

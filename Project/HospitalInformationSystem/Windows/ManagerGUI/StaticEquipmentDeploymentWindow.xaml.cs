@@ -41,11 +41,9 @@ namespace HospitalInformationSystem.Windows.ManagerGUI
         private StaticEquipmentDeploymentWindow(Room currentRoom, int quantityOfSelectedEquipment, string idOfSelectedEquipment)
         {
             InitializeComponent();
-
             this.currentRoom = currentRoom;
             this.quantityOfSelectedEquipment = quantityOfSelectedEquipment;
             this.idOfSelectedEquipment = idOfSelectedEquipment;
-
             currentRoomTextBlock.Text = currentRoom.Name;
             LoadRoomComboBox();
             LoadTimeComboBox();
@@ -56,18 +54,12 @@ namespace HospitalInformationSystem.Windows.ManagerGUI
         {
             nextRoom = (Room)nextRoomComboBox.SelectedItem;
             quantityForMoving = int.TryParse(quantityTextBox.Text, out quantityForMoving) ? quantityForMoving : 0;
-
             if (CheckQuantityForMoving())
             {
-
                 DateTime dateForMovingEquipment = CreateDateTimeObject();
-
                 CreateThreadForMovingEquipment(dateForMovingEquipment);
-
                 SuccessMovingWindow.getInstance(quantityOfSelectedEquipment, quantityOfSelectedEquipment - quantityForMoving).Show();
-
                 this.Close();
-
             }
             else
                 MessageBox.Show("Pogrešan unos količine!", "Greška", MessageBoxButton.OK, MessageBoxImage.Error);
@@ -85,51 +77,33 @@ namespace HospitalInformationSystem.Windows.ManagerGUI
 
         private bool CheckQuantityForMoving()
         {
-            if (quantityForMoving > 0 && quantityForMoving <= quantityOfSelectedEquipment)
-                return true;
-            return false;
+            return (quantityForMoving > 0 && quantityForMoving <= quantityOfSelectedEquipment);
         }
 
         private DateTime CreateDateTimeObject()
         {
             string selectedTime = (string)timeComboBox.SelectedItem;
-
             string[] separator = { ":", };
-
             string[] atributesOfSelectedTime = selectedTime.Split(separator, StringSplitOptions.None);
-
-            int hour = int.Parse(atributesOfSelectedTime[0]);
-
-            int minut = int.Parse(atributesOfSelectedTime[1]);
-
             DateTime selectedDate = (DateTime)datePicker.SelectedDate;
-
-            DateTime myDate = new DateTime(selectedDate.Year, selectedDate.Month, selectedDate.Day, hour, minut, 00);
-
-            return myDate;
-
+            return new DateTime(selectedDate.Year, selectedDate.Month, selectedDate.Day, 
+                int.Parse(atributesOfSelectedTime[0]), int.Parse(atributesOfSelectedTime[1]), 00);
         }
 
         private void CreateThreadForMovingEquipment(DateTime dateForMovingEquipment)
         {
             Thread tr = new Thread(() =>
             {
-
                 //bool isMoved = false;
                 while (true)
                 {
                     DateTime now = DateTime.Now;
-
-
                     if (DateTime.Equals(dateForMovingEquipment.Year, now.Year) && DateTime.Equals(dateForMovingEquipment.Month, now.Month) && DateTime.Equals(dateForMovingEquipment.Day, now.Day) && DateTime.Equals(dateForMovingEquipment.Hour, now.Hour) && DateTime.Equals(dateForMovingEquipment.Minute, now.Minute))
                     {
-
                         //brisanje opreme iz trenutne prostorije
                         RoomController.getInstance().changeStaticEquipmentState(currentRoom, quantityOfSelectedEquipment, quantityForMoving, idOfSelectedEquipment);
-
                         //dodavanje opreme u zeljenu prostoriju
                         RoomController.getInstance().moveStaticEqToNextRoom(nextRoom, quantityForMoving, idOfSelectedEquipment);
-
                         break;
                     }
                 }
@@ -141,16 +115,13 @@ namespace HospitalInformationSystem.Windows.ManagerGUI
         private void LoadRoomComboBox()
         {
             roomList = new ObservableCollection<Room>(RoomController.getInstance().getRooms());
-
             roomList.Remove(currentRoom);
-
             nextRoomComboBox.ItemsSource = null;
             nextRoomComboBox.ItemsSource = roomList;
         }
 
         private void LoadTimeComboBox()
         {
-            
             timeComboBox.ItemsSource = null;
             timeComboBox.ItemsSource = GetAllTimes();
         }
@@ -158,7 +129,6 @@ namespace HospitalInformationSystem.Windows.ManagerGUI
         private List<String> GetAllTimes()
         {
             List<String> timesList = new List<String>();
-
             for (int i = 6; i <= 21; i++)
             {
                 for (int j = 0; j <= 59; j++)
@@ -166,7 +136,6 @@ namespace HospitalInformationSystem.Windows.ManagerGUI
                     timesList.Add(i.ToString() + ":" + j.ToString());
                 }
             }
-
             return timesList;
         }
     }

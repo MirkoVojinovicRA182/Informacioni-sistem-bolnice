@@ -22,6 +22,12 @@
                 <Separator />
                 <MenuItem x:Name="deleteMenuItem" Header="_Obriši" InputGestureText="CTRL+D" Click="deleteMenuItem_Click"/>
             </MenuItem>
+            <MenuItem Header="_Prostorije">
+                <MenuItem Header="_Unos nove"/>
+                <MenuItem Header="_Izmena postojeće"/>
+                <Separator />
+                <MenuItem x:Name="renovationMenuItem" Header="_Zakazivanje renoviranja" Click="renovationMenuItem_Click"/>
+            </MenuItem>
         </Menu>
         <TextBox AcceptsReturn="True" />
         <TabControl x:Name="mainTabs" SelectionChanged="mainTabs_SelectionChanged">

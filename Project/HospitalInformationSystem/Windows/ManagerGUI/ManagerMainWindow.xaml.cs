@@ -174,5 +174,10 @@ namespace HospitalInformationSystem.Windows.ManagerGUI
                 }
             }
         }
+
+        private void renovationMenuItem_Click(object sender, RoutedEventArgs e)
+        {
+            RoomRenovationWindow.GetInstance().ShowDialog();
+        }
     }
 }

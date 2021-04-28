@@ -41,7 +41,7 @@ namespace HospitalInformationSystem.Windows.ManagerGUI
             EquipmentController.getInstance().loadFromFile();
             RoomController.getInstance().loadFromFile();
 
-            roomsTable.refreshTable();
+            roomsUserControl.refreshTable();
             equipmentTable.refreshTable();
 
         }
@@ -82,14 +82,14 @@ namespace HospitalInformationSystem.Windows.ManagerGUI
 
         private void mainTabs_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            roomsTable.refreshTable();
+            roomsUserControl.refreshTable();
             equipmentTable.refreshTable();
             dynamicEquipmentTable.refreshTable();
         }
 
         private void staticDynamicTab_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            roomsTable.refreshTable();
+            roomsUserControl.refreshTable();
             equipmentTable.refreshTable();
             dynamicEquipmentTable.refreshTable();
         }
@@ -98,11 +98,11 @@ namespace HospitalInformationSystem.Windows.ManagerGUI
         {
             if (roomTab.IsSelected) //tab prostorije
             {
-                if (roomsTable.allRoomsTable.SelectedItem != null)
+                if (roomsUserControl.allRoomsTable.SelectedItem != null)
                 {
-                    RoomController.getInstance().deleteRoom((Room)this.roomsTable.allRoomsTable.SelectedItem);
+                    RoomController.getInstance().deleteRoom((Room)this.roomsUserControl.allRoomsTable.SelectedItem);
                     moveEquipmentInMagacine();
-                    ManagerMainWindow.getInstance().roomsTable.refreshTable();
+                    ManagerMainWindow.getInstance().roomsUserControl.refreshTable();
                     MessageBox.Show("Izabrana prostorija je sada obrisana iz sistema.", "Brisanje prostorije", MessageBoxButton.OK, MessageBoxImage.Information);
                 }
                 else
@@ -140,7 +140,7 @@ namespace HospitalInformationSystem.Windows.ManagerGUI
         }
         private void moveEquipmentInMagacine()
         {
-            Room selectedRoom = (Room)this.roomsTable.allRoomsTable.SelectedItem;
+            Room selectedRoom = (Room)this.roomsUserControl.allRoomsTable.SelectedItem;
             foreach (DictionaryEntry de in selectedRoom.Equipment)
                 EquipmentController.getInstance().moveEquipmentInMagacine(de.Key.ToString(), (int)de.Value);
         }
@@ -151,8 +151,8 @@ namespace HospitalInformationSystem.Windows.ManagerGUI
 
             if (roomTab.IsSelected) //tab prostorije
             {
-                if (roomsTable.allRoomsTable.SelectedItem != null)
-                    EditRoomWindow.getInstance((Room)this.roomsTable.allRoomsTable.SelectedItem).Show();
+                if (roomsUserControl.allRoomsTable.SelectedItem != null)
+                    EditRoomWindow.getInstance((Room)this.roomsUserControl.allRoomsTable.SelectedItem).Show();
                 else
                     MessageBox.Show("Niste odabrali prostoriju!", "Upozorenje", MessageBoxButton.OK, MessageBoxImage.Warning);
             }
@@ -177,7 +177,10 @@ namespace HospitalInformationSystem.Windows.ManagerGUI
 
         private void renovationMenuItem_Click(object sender, RoutedEventArgs e)
         {
-            RoomRenovationWindow.GetInstance().ShowDialog();
+            if(roomsUserControl.allRoomsTable.SelectedItem != null)
+                RoomRenovationWindow.GetInstance((Room)roomsUserControl.allRoomsTable.SelectedItem).ShowDialog();
+            else
+                MessageBox.Show("Izaberite prostoriju iz tabele!", "Upozorenje", MessageBoxButton.OK, MessageBoxImage.Warning);
         }
     }
 }

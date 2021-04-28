@@ -83,5 +83,10 @@ namespace Model
             }
             set { }
         }
+
+        public int IsInRenovationState
+        {
+            get; set;
+        }
     }
 }

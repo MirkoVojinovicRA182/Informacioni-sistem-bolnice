@@ -44,7 +44,7 @@ namespace HospitalInformationSystem.Windows.ManagerGUI
 
                 changeQuantityInMagacineOfDynamicEquipment();
 
-                ManagerMainWindow.getInstance().roomsTable.refreshTable();
+                ManagerMainWindow.getInstance().roomsUserControl.refreshTable();
 
                 MessageBox.Show("Uneta je nova prostorija u sistem.", "Nova prostorija", MessageBoxButton.OK, MessageBoxImage.Information);
             }

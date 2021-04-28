@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:HospitalInformationSystem.Windows"
         mc:Ignorable="d"
-        Title="Izmena prostorije" Height="350" Width="770" Closing="Window_Closing">
+        Title="Izmena prostorije" Height="350" Width="950" Closing="Window_Closing">
     <Grid Margin="0,0,-0.4,0.4">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="10*"/>
@@ -30,10 +30,10 @@
                 </DataTemplate>
             </ListBox.ItemTemplate>
         </ListBox>
-        <Button x:Name="addDynamicButton" Content="+" HorizontalAlignment="Left" VerticalAlignment="Top" Width="30" Height="30" Grid.Column="4" Margin="93,161,0,0" FontSize="15" Click="addDynamicButton_Click"/>
-        <Button x:Name="removeDynamicButton" Content="X" HorizontalAlignment="Left" VerticalAlignment="Top" Width="30" Height="30" Grid.Column="4" Margin="93,200,0,0" FontSize="10" RenderTransformOrigin="1.007,0.48" Click="removeDynamicButton_Click"/>
-        <TextBlock Grid.Column="4" HorizontalAlignment="Left" Margin="137,167,0,0" TextWrapping="Wrap" Text="dodavanje nove" VerticalAlignment="Top" RenderTransformOrigin="1.987,0.65" FontStyle="Italic" Height="16" Width="82"/>
-        <TextBlock Grid.Column="4" HorizontalAlignment="Left" Margin="137,207,0,0" TextWrapping="Wrap" Text="uklanjanje odabrane" VerticalAlignment="Top" RenderTransformOrigin="1.987,0.65" FontStyle="Italic" Width="110" Height="16"/>
+        <Button x:Name="addDynamicButton" Content="+" HorizontalAlignment="Left" VerticalAlignment="Top" Width="30" Height="30" Grid.Column="4" Margin="9.4,161,0,0" FontSize="15" Click="addDynamicButton_Click"/>
+        <Button x:Name="removeDynamicButton" Content="X" HorizontalAlignment="Left" VerticalAlignment="Top" Width="30" Height="30" Grid.Column="4" Margin="9.4,200,0,0" FontSize="10" RenderTransformOrigin="1.007,0.48" Click="removeDynamicButton_Click"/>
+        <TextBlock Grid.Column="4" HorizontalAlignment="Left" Margin="53.4,167,0,0" TextWrapping="Wrap" Text="dodavanje nove" VerticalAlignment="Top" RenderTransformOrigin="1.987,0.65" FontStyle="Italic" Height="16" Width="82"/>
+        <TextBlock Grid.Column="4" HorizontalAlignment="Left" Margin="53.4,207,0,0" TextWrapping="Wrap" Text="uklanjanje odabrane" VerticalAlignment="Top" RenderTransformOrigin="1.987,0.65" FontStyle="Italic" Width="110" Height="16"/>
         <TextBlock Grid.Column="2" HorizontalAlignment="Left" Margin="275.8,138,0,0" TextWrapping="Wrap" Text="Dinamička oprema:" VerticalAlignment="Top" RenderTransformOrigin="1.987,0.65" Grid.ColumnSpan="3" Width="132" FontSize="15" Height="20"/>
         <ListBox x:Name="staticEquipmentListBox" Grid.ColumnSpan="3" HorizontalAlignment="Left" Height="70" VerticalAlignment="Top" Width="150" Grid.Column="2" Margin="275.8,53,0,0" LayoutUpdated="staticEquipmentListBox_LayoutUpdated" >
             <ListBox.ItemTemplate>
@@ -43,13 +43,14 @@
             </ListBox.ItemTemplate>
         </ListBox>
         <TextBlock Grid.Column="2" HorizontalAlignment="Left" Margin="275.8,30,0,0" TextWrapping="Wrap" Text="Statička oprema:" VerticalAlignment="Top" RenderTransformOrigin="1.987,0.65" Grid.ColumnSpan="3" Width="132" FontSize="15" Height="20"/>
-        <Button x:Name="addStaticButton" Content="+" HorizontalAlignment="Left" VerticalAlignment="Top" Width="30" Height="30" Grid.Column="4" Margin="93,53,0,0" FontSize="15" Click="addStaticButton_Click"/>
-        <Button x:Name="moveStaticEquipmentButton" Content="->" HorizontalAlignment="Left" VerticalAlignment="Top" Width="30" Height="30" Grid.Column="4" Margin="93,92,0,0" Click="moveStaticEquipmentButton_Click"/>
-        <TextBlock Grid.Column="4" HorizontalAlignment="Left" Margin="137,62,0,0" TextWrapping="Wrap" Text="dodavanje nove" VerticalAlignment="Top" RenderTransformOrigin="1.987,0.65" FontStyle="Italic" Height="16" Width="82"/>
-        <TextBlock Grid.Column="4" HorizontalAlignment="Left" Margin="136,99,0,0" TextWrapping="Wrap" Text="zakazivanje premeštanja" VerticalAlignment="Top" RenderTransformOrigin="1.193,0.6" FontStyle="Italic" Width="130" Height="16"/>
-        <GroupBox Grid.ColumnSpan="3" Header="Osnovne informacije:" HorizontalAlignment="Left" Height="310" VerticalAlignment="Top" Width="356" Margin="10,0,0,0"/>
-        <GroupBox Grid.ColumnSpan="3" Header="Oprema:" HorizontalAlignment="Left" Height="310" Margin="239.8,0,0,0" VerticalAlignment="Top" Width="382" Grid.Column="2"/>
-        <Button x:Name="equipmentApplyButton" Content="PRIMENI" HorizontalAlignment="Left" VerticalAlignment="Top" Width="100" Height="30" Grid.Column="4" Margin="37,259,0,0" FontSize="15" Click="equipmentApplyButton_Click"/>
+        <Button x:Name="addStaticButton" Content="+" HorizontalAlignment="Left" VerticalAlignment="Top" Width="30" Height="30" Grid.Column="4" Margin="9.4,53,0,0" FontSize="15" Click="addStaticButton_Click"/>
+        <Button x:Name="moveStaticEquipmentButton" Content="->" HorizontalAlignment="Left" VerticalAlignment="Top" Width="30" Height="30" Grid.Column="4" Margin="9.4,92,0,0" Click="moveStaticEquipmentButton_Click"/>
+        <TextBlock Grid.Column="4" HorizontalAlignment="Left" Margin="53.4,62,0,0" TextWrapping="Wrap" Text="dodavanje nove" VerticalAlignment="Top" RenderTransformOrigin="1.987,0.65" FontStyle="Italic" Height="16" Width="82"/>
+        <TextBlock Grid.Column="4" HorizontalAlignment="Left" Margin="52.4,99,0,0" TextWrapping="Wrap" Text="zakazivanje premeštanja" VerticalAlignment="Top" RenderTransformOrigin="1.193,0.6" FontStyle="Italic" Width="130" Height="16"/>
+        <GroupBox Grid.ColumnSpan="2" Header="Osnovne informacije:" HorizontalAlignment="Left" Height="310" VerticalAlignment="Top" Width="356" Margin="9.4,0,0,0" Grid.Column="1"/>
+        <GroupBox Grid.ColumnSpan="3" Header="Oprema:" HorizontalAlignment="Left" Height="310" Margin="232.4,0,0,0" VerticalAlignment="Top" Width="382" Grid.Column="2"/>
+        <Button x:Name="equipmentApplyButton" Content="PRIMENI" HorizontalAlignment="Left" VerticalAlignment="Top" Width="100" Height="30" Grid.Column="2" Margin="321.4,259,0,0" FontSize="15" Click="equipmentApplyButton_Click" Grid.ColumnSpan="2"/>
+        <TextBlock x:Name="renovationStatus" HorizontalAlignment="Left" TextWrapping="Wrap" VerticalAlignment="Top" Grid.Column="4" Margin="247.4,113,0,0" FontSize="50"/>
 
 
     </Grid>

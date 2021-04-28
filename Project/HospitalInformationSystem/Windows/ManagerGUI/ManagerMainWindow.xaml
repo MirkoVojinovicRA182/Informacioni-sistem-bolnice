@@ -32,7 +32,7 @@
         <TextBox AcceptsReturn="True" />
         <TabControl x:Name="mainTabs" SelectionChanged="mainTabs_SelectionChanged">
             <TabItem x:Name="roomTab" Header="Prostorije">
-                <ucRooms:RoomTable x:Name="roomsTable"/>
+                <ucRooms:RoomsTableUserControl x:Name="roomsUserControl"/>
             </TabItem>
             <TabItem x:Name="equipmentTab" Header="Oprema">
                 <TabControl x:Name="staticDynamicTab" SelectionChanged="staticDynamicTab_SelectionChanged">

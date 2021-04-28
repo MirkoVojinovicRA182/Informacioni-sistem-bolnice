@@ -104,7 +104,7 @@ namespace HospitalInformationSystem.Windows.ManagerGUI
                     if (string.Equals(window, "newRoom"))
                         NewRoomWindow.getInstance().addEquipment(selectedEquipment.Id, quantity);
                     else
-                        EditRoomWindow.getInstance((Room)ManagerMainWindow.getInstance().roomsTable.allRoomsTable.SelectedItem).addEquipment(selectedEquipment.Id, quantity);
+                        EditRoomWindow.getInstance((Room)ManagerMainWindow.getInstance().roomsUserControl.allRoomsTable.SelectedItem).addEquipment(selectedEquipment.Id, quantity);
 
                     this.Close();
 

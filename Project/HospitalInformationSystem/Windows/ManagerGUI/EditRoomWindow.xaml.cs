@@ -47,6 +47,7 @@ namespace HospitalInformationSystem.Windows.ManagerGUI
             loadTypeComboBox();
             loadRoom();
             equipmentApplyButton.IsEnabled = false;
+            renovationStatus.Text = selectedRoom.IsInRenovationState.ToString();
         }
 
         public static EditRoomWindow getInstance(Room selectedRoom)
@@ -171,7 +172,7 @@ namespace HospitalInformationSystem.Windows.ManagerGUI
             else
             {
                 RoomController.getInstance().changeRoom(selectedRoom, int.Parse(idTextBox.Text), nameTextBox.Text, getType(typeComboBox.SelectedIndex), int.Parse(floorTextBox.Text));
-                ManagerMainWindow.getInstance().roomsTable.refreshTable();
+                ManagerMainWindow.getInstance().roomsUserControl.refreshTable();
                 this.Close();
                 MessageBox.Show("Informacije o prostoriji su sada izmenjene.", "Izmena informacija", MessageBoxButton.OK, MessageBoxImage.Information);
             }
@@ -184,7 +185,7 @@ namespace HospitalInformationSystem.Windows.ManagerGUI
             changeQuantityInMagacineOfEquipment();
             //promena usled eventualnog brisanja opreme
             changeQuantityOfEquipment();
-            ManagerMainWindow.getInstance().roomsTable.refreshTable();
+            ManagerMainWindow.getInstance().roomsUserControl.refreshTable();
             MessageBox.Show("Informacije o opremi prostorije su sada izmenjene.", "Izmena informacija", MessageBoxButton.OK, MessageBoxImage.Information);
             this.Close();
         }

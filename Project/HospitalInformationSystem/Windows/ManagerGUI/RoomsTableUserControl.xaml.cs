@@ -19,15 +19,15 @@ using Model;
 namespace HospitalInformationSystem.Windows.ManagerGUI
 {
     /// <summary>
-    /// Interaction logic for RoomTable.xaml
+    /// Interaction logic for RoomsTableUserControl.xaml
     /// </summary>
-    public partial class RoomTable : UserControl
+    public partial class RoomsTableUserControl : UserControl
     {
         private Room selectedRoom = null;
         private ObservableCollection<Room> roomList;
         private RoomService RoomService = new RoomService();
 
-        public RoomTable()
+        public RoomsTableUserControl()
         {
             InitializeComponent();
 

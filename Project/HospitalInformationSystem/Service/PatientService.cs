@@ -107,5 +107,9 @@ namespace HospitalInformationSystem.Service
                 patients.Clear();
         }
 
+        public void AddPrescription(Patient patient, Prescription prescription)
+        {
+            patient.GetMedicalRecord().addPrescription(prescription);
+        }
     }
 }

@@ -1,6 +1,7 @@
 ﻿using Model;
 using HospitalInformationSystem.Service;
 using System.Collections.Generic;
+using System;
 
 namespace HospitalInformationSystem.Controller
 {
@@ -55,6 +56,11 @@ namespace HospitalInformationSystem.Controller
         public List<Appointment> findAppointmentByRoom(Room room)
         {
             return appointmentService.findAppointmentByRoom(room);
+        }
+
+        public void ChangeStartTime(Appointment appointmentForChange, DateTime newStartTime)
+        {
+            appointmentService.ChangeStartTime(appointmentForChange, newStartTime);
         }
 
         public void saveInFile()

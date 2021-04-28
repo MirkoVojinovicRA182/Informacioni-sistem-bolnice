@@ -97,6 +97,11 @@ namespace HospitalInformationSystem.Service
             return list;
         }
 
+        public void ChangeStartTime(Appointment appointmentForChange, DateTime newStartTime)
+        {
+            appointmentForChange.StartTime = newStartTime;
+        }
+
         public void saveInFile()
         {
             appointmentsFile.saveInFile();

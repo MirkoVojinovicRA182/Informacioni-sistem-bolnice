@@ -44,7 +44,7 @@ namespace HospitalInformationSystem.Windows.DoctorGUI
 
         private void addPrescriptionButton_Click(object sender, RoutedEventArgs e)
         {
-            AddPrescriptionWindow addPrescriptionWindow = new AddPrescriptionWindow(patient.GetMedicalRecord());
+            AddPrescriptionWindow addPrescriptionWindow = new AddPrescriptionWindow(patient);
 
             addPrescriptionWindow.ShowDialog();
         }

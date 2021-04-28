@@ -72,5 +72,9 @@ namespace HospitalInformationSystem.Controller
             patientService.RemoveAllPatient();
         }
 
+        public void AddPrescription(Patient patient, Prescription prescription)
+        {
+            patientService.AddPrescription(patient, prescription);
+        }
     }
 }

@@ -1,4 +1,5 @@
-﻿using Model;
+﻿using HospitalInformationSystem.Controller;
+using Model;
 using System;
 using System.Windows;
 
@@ -10,33 +11,50 @@ namespace HospitalInformationSystem.Windows.DoctorGUI
     public partial class AddPrescriptionWindow : Window
     {
 
-        private MedicalRecord medicalRecord;
-        public AddPrescriptionWindow(MedicalRecord medicalRecord)
+        private Patient patient;
+        public AddPrescriptionWindow(Patient patient)
         {
             InitializeComponent();
-            this.medicalRecord = medicalRecord;
+            this.patient = patient;
         }
 
         private void addPrescriptionButton_Click(object sender, RoutedEventArgs e)
         {
-            if(checkData())
+            if(AllInputsCheck())
             {
-                medicalRecord.addPrescription(new Prescription(medicineTextBox.Text, DateTime.ParseExact(startDateTextBox.Text, "dd.MM.yyyy.", System.Globalization.CultureInfo.InvariantCulture), DateTime.ParseExact(endDateTextBox.Text, "dd.MM.yyyy.", System.Globalization.CultureInfo.InvariantCulture), infoTextBox.Text));
+                Prescription newPrescription = new Prescription(medicineTextBox.Text, DateTime.ParseExact(startDateTextBox.Text, "dd.MM.yyyy.", System.Globalization.CultureInfo.InvariantCulture), DateTime.ParseExact(endDateTextBox.Text, "dd.MM.yyyy.", System.Globalization.CultureInfo.InvariantCulture), infoTextBox.Text);
+                PatientController.getInstance().AddPrescription(patient, newPrescription);
                 MessageBox.Show("Recept je uspešno izdat.", "Prescription", MessageBoxButton.OK, MessageBoxImage.Information);
             }
         }
 
-        public Boolean checkData()
+        public bool CheckInputOfMedicineTextBox()
         {
-            if(medicineTextBox.Text.Length < 1)
+            if (medicineTextBox.Text.Length < 1)
             {
                 MessageBox.Show("Morate uneti lek!", "Medicine", MessageBoxButton.OK, MessageBoxImage.Error);
                 return false;
             }
 
+            return true;
+        }
+
+        public bool CheckInputOfInfoTextBox()
+        {
+            if (infoTextBox.Text.Length < 1)
+            {
+                MessageBox.Show("Morate uneti potrebne informacije o dozi leka!", "Medicine", MessageBoxButton.OK, MessageBoxImage.Error);
+                return false;
+            }
+
+            return true;
+        }
+
+        public bool CheckInputOfStartDateTextBox()
+        {
             try
             {
-                DateTime date = DateTime.ParseExact(startDateTextBox.Text, "dd.MM.yyyy.", System.Globalization.CultureInfo.InvariantCulture);
+                DateTime startDate = DateTime.ParseExact(startDateTextBox.Text, "dd.MM.yyyy.", System.Globalization.CultureInfo.InvariantCulture);
             }
             catch (Exception e)
             {
@@ -44,9 +62,14 @@ namespace HospitalInformationSystem.Windows.DoctorGUI
                 return false;
             }
 
+            return true;
+        }
+
+        public bool CheckInputOfEndDateTextBox()
+        {
             try
             {
-                DateTime date = DateTime.ParseExact(endDateTextBox.Text, "dd.MM.yyyy.", System.Globalization.CultureInfo.InvariantCulture);
+                DateTime endDate = DateTime.ParseExact(endDateTextBox.Text, "dd.MM.yyyy.", System.Globalization.CultureInfo.InvariantCulture);
             }
             catch (Exception e)
             {
@@ -54,13 +77,14 @@ namespace HospitalInformationSystem.Windows.DoctorGUI
                 return false;
             }
 
-            if(infoTextBox.Text.Length < 1)
-            {
-                MessageBox.Show("Morate uneti potrebne informacije o dozi leka!", "Medicine", MessageBoxButton.OK, MessageBoxImage.Error);
-                return false;
-            }
-
             return true;
+        }
+
+        public bool AllInputsCheck()
+        {
+            if (CheckInputOfMedicineTextBox() && CheckInputOfInfoTextBox() && CheckInputOfStartDateTextBox() && CheckInputOfEndDateTextBox())
+                return true;
+            return false;
         }
     }
 }

@@ -28,72 +28,43 @@ namespace HospitalInformationSystem.Windows.ManagerGUI
         private static StaticEquipmentDeploymentWindow instance = null;
         private Room currentRoom;
         private Room nextRoom;
-        private int quantity;
+        private int quantityForMoving;
         private ObservableCollection<Room> roomList;
         private int quantityOfSelectedEquipment;
         private string idOfSelectedEquipment;
-        public static StaticEquipmentDeploymentWindow getInstance(Room room, int value, string key)
+        public static StaticEquipmentDeploymentWindow getInstance(Room currentRoom, int quantityOfSelectedEquipment, string idOfSelectedEquipment)
         {
             if (instance == null)
-                instance = new StaticEquipmentDeploymentWindow(room, value, key);
+                instance = new StaticEquipmentDeploymentWindow(currentRoom, quantityOfSelectedEquipment, idOfSelectedEquipment);
             return instance;
         }
-        private StaticEquipmentDeploymentWindow(Room room, int value, string key)
+        private StaticEquipmentDeploymentWindow(Room currentRoom, int quantityOfSelectedEquipment, string idOfSelectedEquipment)
         {
             InitializeComponent();
-            currentRoom = room;
-            quantityOfSelectedEquipment = value;
-            idOfSelectedEquipment = key;
-            fillControls();
+
+            this.currentRoom = currentRoom;
+            this.quantityOfSelectedEquipment = quantityOfSelectedEquipment;
+            this.idOfSelectedEquipment = idOfSelectedEquipment;
+
+            currentRoomTextBlock.Text = currentRoom.Name;
+            LoadRoomComboBox();
+            LoadTimeComboBox();
         }
+
 
         private void confirmButton_Click(object sender, RoutedEventArgs e)
         {
             nextRoom = (Room)nextRoomComboBox.SelectedItem;
-            quantity = int.TryParse(quantityTextBox.Text, out quantity) ? quantity : 0;
+            quantityForMoving = int.TryParse(quantityTextBox.Text, out quantityForMoving) ? quantityForMoving : 0;
 
-            if (quantity != 0 && quantity > 0 && quantity <= quantityOfSelectedEquipment)
+            if (CheckQuantityForMoving())
             {
-                string selectedTime = (string)timeComboBox.SelectedItem;
 
-                string[] separator = { ":", };
+                DateTime dateForMovingEquipment = CreateDateTimeObject();
 
-                string[] atributesOfSelectedTime = selectedTime.Split(separator, StringSplitOptions.None);
+                CreateThreadForMovingEquipment(dateForMovingEquipment);
 
-                int hour = int.Parse(atributesOfSelectedTime[0]);
-
-                int minut = int.Parse(atributesOfSelectedTime[1]);
-
-                DateTime selectedDate = (DateTime)datePicker.SelectedDate;
-
-                DateTime myDate = new DateTime(selectedDate.Year, selectedDate.Month, selectedDate.Day, hour, minut, 00);
-
-                Thread tr = new Thread(() =>
-                {
-
-                    //bool isMoved = false;
-                    while (true)
-                    {
-                        DateTime now = DateTime.Now;
-
-                        if (DateTime.Equals(myDate.Year, now.Year) && DateTime.Equals(myDate.Month, now.Month) && DateTime.Equals(myDate.Day, now.Day) && DateTime.Equals(myDate.Hour, now.Hour) && DateTime.Equals(myDate.Minute, now.Minute))
-                        {
-                            MessageBox.Show("Sad bi trebao da pomeri opremu");
-
-                            //brisanje opreme iz trenutne prostorije
-                            RoomController.getInstance().changeStaticEquipmentState(currentRoom, quantityOfSelectedEquipment, quantity, idOfSelectedEquipment);
-
-                            //dodavanje opreme u zeljenu prostoriju
-                            RoomController.getInstance().moveStaticEqToNextRoom(nextRoom, quantity, idOfSelectedEquipment);
-
-                            break;
-                        }
-                    }
-                });
-
-                tr.Start();
-
-                SuccessMovingWindow.getInstance(quantityOfSelectedEquipment, quantityOfSelectedEquipment - quantity).Show();
+                SuccessMovingWindow.getInstance(quantityOfSelectedEquipment, quantityOfSelectedEquipment - quantityForMoving).Show();
 
                 this.Close();
 
@@ -112,37 +83,91 @@ namespace HospitalInformationSystem.Windows.ManagerGUI
             instance = null;
         }
 
-        private void fillControls()
+        private bool CheckQuantityForMoving()
         {
-            currentRoomTextBlock.Text = currentRoom.Name;
-            loadRoomComboBox();
-            loadTimeComboBox();
+            if (quantityForMoving > 0 && quantityForMoving <= quantityOfSelectedEquipment)
+                return true;
+            return false;
         }
 
-        private void loadRoomComboBox()
+        private DateTime CreateDateTimeObject()
+        {
+            string selectedTime = (string)timeComboBox.SelectedItem;
+
+            string[] separator = { ":", };
+
+            string[] atributesOfSelectedTime = selectedTime.Split(separator, StringSplitOptions.None);
+
+            int hour = int.Parse(atributesOfSelectedTime[0]);
+
+            int minut = int.Parse(atributesOfSelectedTime[1]);
+
+            DateTime selectedDate = (DateTime)datePicker.SelectedDate;
+
+            DateTime myDate = new DateTime(selectedDate.Year, selectedDate.Month, selectedDate.Day, hour, minut, 00);
+
+            return myDate;
+
+        }
+
+        private void CreateThreadForMovingEquipment(DateTime dateForMovingEquipment)
+        {
+            Thread tr = new Thread(() =>
+            {
+
+                //bool isMoved = false;
+                while (true)
+                {
+                    DateTime now = DateTime.Now;
+
+
+                    if (DateTime.Equals(dateForMovingEquipment.Year, now.Year) && DateTime.Equals(dateForMovingEquipment.Month, now.Month) && DateTime.Equals(dateForMovingEquipment.Day, now.Day) && DateTime.Equals(dateForMovingEquipment.Hour, now.Hour) && DateTime.Equals(dateForMovingEquipment.Minute, now.Minute))
+                    {
+
+                        //brisanje opreme iz trenutne prostorije
+                        RoomController.getInstance().changeStaticEquipmentState(currentRoom, quantityOfSelectedEquipment, quantityForMoving, idOfSelectedEquipment);
+
+                        //dodavanje opreme u zeljenu prostoriju
+                        RoomController.getInstance().moveStaticEqToNextRoom(nextRoom, quantityForMoving, idOfSelectedEquipment);
+
+                        break;
+                    }
+                }
+            });
+
+            tr.Start();
+        }
+
+        private void LoadRoomComboBox()
         {
             roomList = new ObservableCollection<Room>(RoomController.getInstance().getRooms());
 
-            //brisanje trenutne prostorije iz liste svih potencijalnih prostorija
             roomList.Remove(currentRoom);
 
             nextRoomComboBox.ItemsSource = null;
             nextRoomComboBox.ItemsSource = roomList;
         }
 
-        private void loadTimeComboBox()
+        private void LoadTimeComboBox()
         {
-            List<String> times = new List<String>();
-            for(int i = 6; i <= 21; i++)
+            
+            timeComboBox.ItemsSource = null;
+            timeComboBox.ItemsSource = GetAllTimes();
+        }
+
+        private List<String> GetAllTimes()
+        {
+            List<String> timesList = new List<String>();
+
+            for (int i = 6; i <= 21; i++)
             {
-                for(int j = 0; j <= 59; j++)
+                for (int j = 0; j <= 59; j++)
                 {
-                    times.Add(i.ToString() + ":" + j.ToString());
+                    timesList.Add(i.ToString() + ":" + j.ToString());
                 }
             }
 
-            timeComboBox.ItemsSource = null;
-            timeComboBox.ItemsSource = times;
+            return timesList;
         }
     }
 }

@@ -60,5 +60,44 @@ namespace HospitalInformationSystem.Windows.ManagerGUI
             detailEquipmentTable.ItemsSource = null;
             detailEquipmentTable.ItemsSource = LoadList();
         }
+
+        private void findButton_Click(object sender, RoutedEventArgs e)
+        {
+            //FindEquipmentByName();
+            //FindEquipmentByType();
+            FindEquipmentByState();
+            detailEquipmentTable.ItemsSource = null;
+            detailEquipmentTable.ItemsSource = equipmentList;
+        }
+
+        private void FindEquipmentByName()
+        {
+            ObservableCollection<DetailEquipmentDTO> help = new ObservableCollection<DetailEquipmentDTO>(equipmentList);
+            foreach(DetailEquipmentDTO dto in help)
+            {
+                if (!string.Equals(dto.Name, nameTextBox.Text))
+                    equipmentList.Remove(dto);
+            }
+        }
+
+        private void FindEquipmentByType()
+        {
+            ObservableCollection<DetailEquipmentDTO> help = new ObservableCollection<DetailEquipmentDTO>(equipmentList);
+            foreach (DetailEquipmentDTO dto in help)
+            {
+                if (!string.Equals(dto.Type, "Statička"))
+                    equipmentList.Remove(dto);
+            }
+        }
+
+        private void FindEquipmentByState()
+        {
+            ObservableCollection<DetailEquipmentDTO> help = new ObservableCollection<DetailEquipmentDTO>(equipmentList);
+            foreach (DetailEquipmentDTO dto in help)
+            {
+                if (dto.State < int.Parse(stateTextBox.Text))
+                    equipmentList.Remove(dto);
+            }
+        }
     }
 }

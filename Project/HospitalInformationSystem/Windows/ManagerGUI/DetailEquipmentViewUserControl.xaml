@@ -28,12 +28,12 @@
         </DataGrid>
         <GroupBox Header="Pretraživač" HorizontalAlignment="Left" Height="480" Margin="10,0,0,0" VerticalAlignment="Top" Width="305">
             <Grid>
-                <Button x:Name="findButton" Height="30" Width="100" Content="Pretraži" Margin="91,408,101.8,10" FontSize="17"/>
+                <Button x:Name="findButton" Height="30" Width="100" Content="Pretraži" Margin="91,408,101.8,10" FontSize="17" Click="findButton_Click"/>
                 <Label Content="Naziv: " HorizontalAlignment="Left" VerticalAlignment="Top" Margin="114,20,0,0" FontSize="17"/>
                 <TextBox x:Name="nameTextBox" HorizontalAlignment="Left" Height="23" TextWrapping="Wrap" VerticalAlignment="Top" Width="155" Margin="69,52,0,0" FontSize="17"/>
                 <Label Content="Tip: " HorizontalAlignment="Left" VerticalAlignment="Top" Margin="119,114,0,0" FontSize="17"/>
-                <Label Content="Stanje: " HorizontalAlignment="Left" VerticalAlignment="Top" Margin="114,207,0,0" FontSize="17"/>
-                <TextBox x:Name="stateTextBox" HorizontalAlignment="Left" Height="23" TextWrapping="Wrap" VerticalAlignment="Top" Width="59" Margin="114,239,0,0" FontSize="17"/>
+                <Label Content="Minimalno stanje: " HorizontalAlignment="Left" VerticalAlignment="Top" Margin="69,207,0,0" FontSize="17"/>
+                <TextBox x:Name="stateTextBox" HorizontalAlignment="Left" Height="23" TextWrapping="Wrap" VerticalAlignment="Top" Width="59" Margin="114,244,0,0" FontSize="17"/>
                 <Label Content="Lokacija: " HorizontalAlignment="Left" VerticalAlignment="Top" Margin="113,300,0,0" FontSize="17"/>
                 <ComboBox x:Name="typeComboBox" HorizontalAlignment="Left" VerticalAlignment="Top" Width="155" Margin="69,151,0,0" FontSize="17"/>
                 <ComboBox x:Name="locationComboBox" HorizontalAlignment="Left" VerticalAlignment="Top" Width="155" Margin="69,337,0,0" FontSize="17"/>

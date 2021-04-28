@@ -37,7 +37,7 @@
             <TabItem x:Name="equipmentTab" Header="Oprema">
                 <TabControl x:Name="staticDynamicTab" SelectionChanged="staticDynamicTab_SelectionChanged">
                     <TabItem Header="Detaljan prikaz">
-                        <local:DetailEquipmentViewUserControl/>
+                        <local:DetailEquipmentViewUserControl x:Name="detailEquipmentTable"/>
                     </TabItem>
                     <TabItem Header="Opšti prikaz">
                         <TabControl>

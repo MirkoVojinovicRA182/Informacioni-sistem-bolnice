@@ -35,12 +35,10 @@ namespace HospitalInformationSystem.Windows.ManagerGUI
         }
         private ManagerMainWindow()
         {
-            InitializeComponent();
-            roomRepository = new RoomRepository();
-
             EquipmentController.getInstance().loadFromFile();
             RoomController.getInstance().loadFromFile();
-
+            InitializeComponent();
+            roomRepository = new RoomRepository();
             roomsUserControl.refreshTable();
             equipmentTable.refreshTable();
 
@@ -85,6 +83,7 @@ namespace HospitalInformationSystem.Windows.ManagerGUI
             roomsUserControl.refreshTable();
             equipmentTable.refreshTable();
             dynamicEquipmentTable.refreshTable();
+            detailEquipmentTable.RefreshTable();
         }
 
         private void staticDynamicTab_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -92,6 +91,7 @@ namespace HospitalInformationSystem.Windows.ManagerGUI
             roomsUserControl.refreshTable();
             equipmentTable.refreshTable();
             dynamicEquipmentTable.refreshTable();
+            detailEquipmentTable.RefreshTable();
         }
 
         private void deleteMenuItem_Click(object sender, RoutedEventArgs e)

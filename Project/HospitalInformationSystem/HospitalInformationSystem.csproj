@@ -113,6 +113,7 @@
     <Compile Include="Windows\DoctorGUI\DoctorShowPrescription.xaml.cs">
       <DependentUpon>DoctorShowPrescription.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Windows\ManagerGUI\DetailEquipmentDTO.cs" />
     <Compile Include="Windows\ManagerGUI\DetailEquipmentViewUserControl.xaml.cs">
       <DependentUpon>DetailEquipmentViewUserControl.xaml</DependentUpon>
     </Compile>

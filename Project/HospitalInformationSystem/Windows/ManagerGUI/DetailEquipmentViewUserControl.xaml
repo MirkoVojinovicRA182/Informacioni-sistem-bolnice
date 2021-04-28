@@ -7,7 +7,7 @@
              mc:Ignorable="d" 
              d:DesignHeight="550" d:DesignWidth="980">
     <Grid>
-        <DataGrid x:Name="dynamicEquipmentTable" 
+        <DataGrid x:Name="detailEquipmentTable" 
 				HorizontalAlignment="Left" 
 				CanUserAddRows="False" 
 			    CanUserResizeColumns="False" 
@@ -21,9 +21,9 @@
 				Background="CadetBlue">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Naziv" Width="*" Binding="{Binding Name}"></DataGridTextColumn>
-                <DataGridTextColumn Header="Tip" Width="*" Binding="{Binding GetStringType}"></DataGridTextColumn>
-                <DataGridTextColumn Header="Stanje" Width="*" Binding="{Binding Quantity}"></DataGridTextColumn>
-                <DataGridTextColumn Header="Lokacija" Width="*" Binding="{Binding Quantity}"></DataGridTextColumn>
+                <DataGridTextColumn Header="Tip" Width="*" Binding="{Binding Type}"></DataGridTextColumn>
+                <DataGridTextColumn Header="Stanje" Width="*" Binding="{Binding State}"></DataGridTextColumn>
+                <DataGridTextColumn Header="Lokacija" Width="*" Binding="{Binding Location}"></DataGridTextColumn>
             </DataGrid.Columns>
         </DataGrid>
         <GroupBox Header="Pretraživač" HorizontalAlignment="Left" Height="540" Margin="10,0,0,0" VerticalAlignment="Top" Width="305">

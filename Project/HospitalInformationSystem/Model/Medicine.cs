@@ -33,12 +33,14 @@ namespace HospitalInformationSystem.Model
         {
             get
             {
-                if (Type == TypeOfMedicine.Rastvor)
+                if (Type == TypeOfMedicine.Dilution)
                     return "Rastvor";
-                else if (Type == TypeOfMedicine.Sirup)
+                else if (Type == TypeOfMedicine.Syrup)
                     return "Sirup";
-                else
+                else if (Type == TypeOfMedicine.Tablet)
                     return "Tableta";
+                else
+                    return "Pilula";
             }
         }
         public string Purpose

@@ -23,5 +23,13 @@ namespace HospitalInformationSystem.Service
         {
             return medicineList;
         }
+        public void DeleteMedicine(Medicine medicineForDeleting)
+        {
+            if (medicineForDeleting == null)
+                return;
+            if (medicineList != null)
+                if (this.medicineList.Contains(medicineForDeleting))
+                    this.medicineList.Remove(medicineForDeleting);
+        }
     }
 }

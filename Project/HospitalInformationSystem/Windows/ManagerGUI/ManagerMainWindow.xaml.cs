@@ -15,6 +15,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using HospitalInformationSystem.Repository;
 using System.Collections;
+using HospitalInformationSystem.Model;
 
 namespace HospitalInformationSystem.Windows.ManagerGUI
 {
@@ -186,6 +187,18 @@ namespace HospitalInformationSystem.Windows.ManagerGUI
         private void newMedicineMenuItem_Click(object sender, RoutedEventArgs e)
         {
             NewMedicineWindow.GetInstance().Show();
+        }
+
+        private void removeMedicineMenuItem_Click(object sender, RoutedEventArgs e)
+        {
+            if (medicineTableUserControl.medicineTable.SelectedItem != null)
+            {
+                MedicineController.GetInstance().DeleteMedicine((Medicine)medicineTableUserControl.medicineTable.SelectedItem);
+                medicineTableUserControl.RefreshTable();
+                MessageBox.Show("Izabrani lek je sada obrisan iz sistema.", "Brisanje leka", MessageBoxButton.OK, MessageBoxImage.Information);
+            }
+            else
+                MessageBox.Show("Izaberite lek iz tabele!", "Upozorenje", MessageBoxButton.OK, MessageBoxImage.Warning);
         }
     }
 }

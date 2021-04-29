@@ -31,5 +31,9 @@ namespace HospitalInformationSystem.Controller
         {
             return medicineService.GetAllMedicines();
         }
+        public void DeleteMedicine(Medicine medicineForDeleting)
+        {
+            medicineService.DeleteMedicine(medicineForDeleting);
+        }
     }
 }

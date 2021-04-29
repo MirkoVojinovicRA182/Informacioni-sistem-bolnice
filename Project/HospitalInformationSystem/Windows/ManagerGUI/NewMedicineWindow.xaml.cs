@@ -40,6 +40,7 @@ namespace HospitalInformationSystem.Windows.ManagerGUI
             typeOfMedicineList.Add("Rastvor");
             typeOfMedicineList.Add("Sirup");
             typeOfMedicineList.Add("Tableta");
+            typeOfMedicineList.Add("Pilula");
             typeComboBox.ItemsSource = typeOfMedicineList;
 
             ObservableCollection<Medicine> replacementMedicinesList = new ObservableCollection<Medicine>(MedicineController.GetInstance().GetAllMedicines());
@@ -60,16 +61,18 @@ namespace HospitalInformationSystem.Windows.ManagerGUI
 
         private void confirmButton_Click(object sender, RoutedEventArgs e)
         {
-            TypeOfMedicine typeOfMedicine = TypeOfMedicine.Rastvor;
+            TypeOfMedicine typeOfMedicine = TypeOfMedicine.Dilution;
             if (string.Equals((string)typeComboBox.SelectedItem, "Rastvor"))
-                typeOfMedicine = TypeOfMedicine.Rastvor;
-            else if (string.Equals((string)typeComboBox.SelectedItem, "Sirupu"))
-                typeOfMedicine = TypeOfMedicine.Sirup;
-            else if (string.Equals((string)typeComboBox.SelectedItem, "Sirupu"))
-                typeOfMedicine = TypeOfMedicine.Tableta;
-
+                typeOfMedicine = TypeOfMedicine.Dilution;
+            else if (string.Equals((string)typeComboBox.SelectedItem, "Sirup"))
+                typeOfMedicine = TypeOfMedicine.Syrup;
+            else if (string.Equals((string)typeComboBox.SelectedItem, "Tableta"))
+                typeOfMedicine = TypeOfMedicine.Tablet;
+            else if (string.Equals((string)typeComboBox.SelectedItem, "Pilula"))
+                typeOfMedicine = TypeOfMedicine.Pill;
             MedicineController.GetInstance().AddMedicine(new Medicine(int.Parse(idTextBox.Text), nameTextBox.Text, typeOfMedicine, purposeTextBoxt.Text, useTextBox.Text, null));
             ManagerMainWindow.getInstance().medicineTableUserControl.RefreshTable();
+            this.Close();
         }
     }
 }

@@ -8,8 +8,9 @@ namespace HospitalInformationSystem.Model
 {
     public enum TypeOfMedicine
     {
-        Rastvor,
-        Sirup,
-        Tableta
+        Dilution,
+        Syrup,
+        Pill,
+        Tablet
     }
 }

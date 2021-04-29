@@ -1,0 +1,30 @@
+﻿<Window x:Class="HospitalInformationSystem.Windows.ManagerGUI.NewMedicineWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:HospitalInformationSystem.Windows.ManagerGUI"
+        mc:Ignorable="d"
+        Title="Unos leka" Height="550" Width="380" Closing="Window_Closing">
+    <Grid>
+        <Label Content="Šifra:" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="29,34,0,0" FontSize="15"/>
+        <Label Content="Naziv:" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="29,82,0,0" FontSize="15"/>
+        <Label Content="Tip:" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="29,132,0,0" FontSize="15"/>
+        <Label Content="Namena:" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="29,187,0,0" FontSize="15"/>
+        <Label Content="Način upotrebe:" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="29,238,0,0" FontSize="15"/>
+        <Label Content="Zamenski lek:" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="29,300,0,0" FontSize="15"/>
+        <TextBox x:Name="idTextBox" HorizontalAlignment="Left" Height="23" TextWrapping="Wrap" VerticalAlignment="Top" Width="62" Margin="152,34,0,0" FontSize="15"/>
+        <TextBox x:Name="nameTextBox" HorizontalAlignment="Left" Height="23" TextWrapping="Wrap" VerticalAlignment="Top" Width="178" Margin="152,82,0,0" FontSize="15"/>
+        <ComboBox x:Name="typeComboBox" HorizontalAlignment="Left" VerticalAlignment="Top" Width="178" Margin="152,132,0,0" FontSize="15"/>
+        <TextBox x:Name="purposeTextBoxt" HorizontalAlignment="Left" Height="23" TextWrapping="Wrap" VerticalAlignment="Top" Width="178" Margin="152,187,0,0" FontSize="15"/>
+        <TextBox x:Name="useTextBox" HorizontalAlignment="Left" Height="23" TextWrapping="Wrap" VerticalAlignment="Top" Width="178" Margin="152,244,0,0" FontSize="15"/>
+        <ComboBox x:Name="replacementMedicineComboBox" HorizontalAlignment="Left" VerticalAlignment="Top" Width="178" Margin="152,300,0,0" FontSize="15"/>
+        <Label Content="Sastojci:" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="29,374,0,0" FontSize="15"/>
+        <ListBox x:Name="ingredientsListBox" HorizontalAlignment="Left" Height="76" VerticalAlignment="Top" Width="143" Margin="152,352,0,0"/>
+        <Button x:Name="confirmButton" Content="Potvrdi" HorizontalAlignment="Left" VerticalAlignment="Top" Width="100" Height="30" Margin="88,467,0,0" FontSize="15"/>
+        <Button x:Name="cancelButton" Content="Odustani" HorizontalAlignment="Left" VerticalAlignment="Top" Width="100" Height="30" Margin="220,467,0,0" FontSize="15" Click="cancelButton_Click"/>
+        <Button x:Name="addNewIngredientButton" Content="+" HorizontalAlignment="Left" VerticalAlignment="Top" Width="30" Height="30" Margin="300,352,0,0" FontSize="15"/>
+        <Button x:Name="deleteIngredientButton" Content="-" HorizontalAlignment="Left" VerticalAlignment="Top" Width="30" Height="30" Margin="300,398,0,0" FontSize="15"/>
+
+    </Grid>
+</Window>

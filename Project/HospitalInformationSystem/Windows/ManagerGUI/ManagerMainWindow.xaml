@@ -28,6 +28,9 @@
                 <Separator />
                 <MenuItem x:Name="renovationMenuItem" Header="_Zakazivanje renoviranja" Click="renovationMenuItem_Click"/>
             </MenuItem>
+            <MenuItem Header="Lekovi">
+                <MenuItem x:Name="newMedicineMenuItem" Header="Unos novog" Click="newMedicineMenuItem_Click"/>
+            </MenuItem>
         </Menu>
         <TextBox AcceptsReturn="True" />
         <TabControl x:Name="mainTabs" SelectionChanged="mainTabs_SelectionChanged">

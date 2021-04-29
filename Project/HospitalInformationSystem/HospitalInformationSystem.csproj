@@ -124,6 +124,9 @@
     <Compile Include="Windows\ManagerGUI\MedicineTableUserControl.xaml.cs">
       <DependentUpon>MedicineTableUserControl.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Windows\ManagerGUI\NewMedicineWindow.xaml.cs">
+      <DependentUpon>NewMedicineWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Windows\ManagerGUI\RoomRenovationWindow.xaml.cs">
       <DependentUpon>RoomRenovationWindow.xaml</DependentUpon>
     </Compile>
@@ -256,6 +259,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Windows\ManagerGUI\MedicineTableUserControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Windows\ManagerGUI\NewMedicineWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

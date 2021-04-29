@@ -182,5 +182,10 @@ namespace HospitalInformationSystem.Windows.ManagerGUI
             else
                 MessageBox.Show("Izaberite prostoriju iz tabele!", "Upozorenje", MessageBoxButton.OK, MessageBoxImage.Warning);
         }
+
+        private void newMedicineMenuItem_Click(object sender, RoutedEventArgs e)
+        {
+            NewMedicineWindow.GetInstance().Show();
+        }
     }
 }

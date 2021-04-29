@@ -123,6 +123,9 @@
     <Compile Include="Windows\ManagerGUI\DetailEquipmentViewUserControl.xaml.cs">
       <DependentUpon>DetailEquipmentViewUserControl.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Windows\ManagerGUI\EditMedicineWindow.xaml.cs">
+      <DependentUpon>EditMedicineWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Windows\ManagerGUI\MedicineTableUserControl.xaml.cs">
       <DependentUpon>MedicineTableUserControl.xaml</DependentUpon>
     </Compile>
@@ -260,6 +263,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Windows\ManagerGUI\DetailEquipmentViewUserControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Windows\ManagerGUI\EditMedicineWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

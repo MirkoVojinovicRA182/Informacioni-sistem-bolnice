@@ -200,5 +200,13 @@ namespace HospitalInformationSystem.Windows.ManagerGUI
             else
                 MessageBox.Show("Izaberite lek iz tabele!", "Upozorenje", MessageBoxButton.OK, MessageBoxImage.Warning);
         }
+
+        private void editMedicineMenuItem_Click(object sender, RoutedEventArgs e)
+        {
+            if (medicineTableUserControl.medicineTable.SelectedItem != null)
+                EditMedicineWindow.GetInstance((Medicine)medicineTableUserControl.medicineTable.SelectedItem).ShowDialog();
+            else
+                MessageBox.Show("Izaberite lek iz tabele!", "Upozorenje", MessageBoxButton.OK, MessageBoxImage.Warning);
+        }
     }
 }

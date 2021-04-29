@@ -30,6 +30,7 @@
             </MenuItem>
             <MenuItem Header="Lekovi">
                 <MenuItem x:Name="newMedicineMenuItem" Header="Unos novog" Click="newMedicineMenuItem_Click"/>
+                <MenuItem x:Name="editMedicineMenuItem" Header="Izmena postojećeg" Click="editMedicineMenuItem_Click"/>
                 <MenuItem x:Name="removeMedicineMenuItem" Header="Brisanje postojećeg" Click="removeMedicineMenuItem_Click"/>
             </MenuItem>
         </Menu>

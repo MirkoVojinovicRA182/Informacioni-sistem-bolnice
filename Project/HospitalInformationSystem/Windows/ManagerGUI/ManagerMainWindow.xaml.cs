@@ -83,7 +83,7 @@ namespace HospitalInformationSystem.Windows.ManagerGUI
             roomsUserControl.refreshTable();
             equipmentTable.refreshTable();
             dynamicEquipmentTable.refreshTable();
-            detailEquipmentTable.RefreshTable();
+            detailEquipmentTable.LoadAllUserControlComponents();
         }
 
         private void staticDynamicTab_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -91,7 +91,7 @@ namespace HospitalInformationSystem.Windows.ManagerGUI
             roomsUserControl.refreshTable();
             equipmentTable.refreshTable();
             dynamicEquipmentTable.refreshTable();
-            detailEquipmentTable.RefreshTable();
+            detailEquipmentTable.LoadAllUserControlComponents();
         }
 
         private void deleteMenuItem_Click(object sender, RoutedEventArgs e)

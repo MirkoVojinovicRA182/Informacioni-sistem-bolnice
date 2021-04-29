@@ -25,12 +25,21 @@ namespace HospitalInformationSystem.Windows.ManagerGUI
     public partial class DetailEquipmentViewUserControl : UserControl
     {
         private ObservableCollection<DetailEquipmentDTO> equipmentList;
+        private ObservableCollection<Room> roomsList;
+
         public DetailEquipmentViewUserControl()
         {
             InitializeComponent();
+            LoadAllUserControlComponents();
+        }
+
+        public void LoadAllUserControlComponents()
+        {
+            LoadComboBoxes();
+            LoadList();
             RefreshTable();
         }
-        private ObservableCollection<DetailEquipmentDTO> LoadList()
+        private void LoadList()
         {
             equipmentList = new ObservableCollection<DetailEquipmentDTO>();
 
@@ -48,56 +57,99 @@ namespace HospitalInformationSystem.Windows.ManagerGUI
             foreach (Equipment eq in EquipmentController.getInstance().getEquipment())
             {
                 if (eq.QuantityInMagacine > 0)
-                {
                     equipmentList.Add(new DetailEquipmentDTO(eq.Name, eq.GetStringType, eq.QuantityInMagacine, "Magacin"));
-                }
             }
-
-            return equipmentList;
         }
-        public void RefreshTable()
+        private void LoadComboBoxes()
+        {
+            roomsList = new ObservableCollection<Room>(RoomController.getInstance().getRooms());
+            roomsList.Add(new Room(500, "Magacin", 0, TypeOfRoom.Office));
+            locationComboBox.ItemsSource = null;
+            locationComboBox.ItemsSource = roomsList;
+
+            List<String> typeOfEquipmentList = new List<String>();
+            typeOfEquipmentList.Add("Statička");
+            typeOfEquipmentList.Add("Dinamička");
+            typeComboBox.ItemsSource = null;
+            typeComboBox.ItemsSource = typeOfEquipmentList;
+        }
+        private void RefreshTable()
         {
             detailEquipmentTable.ItemsSource = null;
-            detailEquipmentTable.ItemsSource = LoadList();
+            detailEquipmentTable.ItemsSource = equipmentList;
         }
 
         private void findButton_Click(object sender, RoutedEventArgs e)
         {
-            //FindEquipmentByName();
-            //FindEquipmentByType();
-            FindEquipmentByState();
+            LoadList();
+            RefreshTable();
+            if(nameTextBox.Text != "")
+                FindEquipmentByName();
+            if(typeComboBox.SelectedItem != null)
+                FindEquipmentByType();
+            if(stateTextBox.Text != "")
+                FindEquipmentByState();
+            if(locationComboBox.SelectedItem != null)
+                FindEquipmentByLocation();
             detailEquipmentTable.ItemsSource = null;
             detailEquipmentTable.ItemsSource = equipmentList;
         }
 
         private void FindEquipmentByName()
         {
-            ObservableCollection<DetailEquipmentDTO> help = new ObservableCollection<DetailEquipmentDTO>(equipmentList);
-            foreach(DetailEquipmentDTO dto in help)
+            for(int i = equipmentList.Count - 1; i > -1; i--)
             {
-                if (!string.Equals(dto.Name, nameTextBox.Text))
-                    equipmentList.Remove(dto);
+                if (!string.Equals(equipmentList[i].Name, nameTextBox.Text))
+                    equipmentList.Remove(equipmentList[i]);
             }
         }
 
         private void FindEquipmentByType()
         {
-            ObservableCollection<DetailEquipmentDTO> help = new ObservableCollection<DetailEquipmentDTO>(equipmentList);
-            foreach (DetailEquipmentDTO dto in help)
+            for (int i = equipmentList.Count - 1; i > -1; i--)
             {
-                if (!string.Equals(dto.Type, "Statička"))
-                    equipmentList.Remove(dto);
+                if (!string.Equals(equipmentList[i].Type, (string)typeComboBox.SelectedItem))
+                    equipmentList.Remove(equipmentList[i]);
             }
         }
 
         private void FindEquipmentByState()
         {
-            ObservableCollection<DetailEquipmentDTO> help = new ObservableCollection<DetailEquipmentDTO>(equipmentList);
-            foreach (DetailEquipmentDTO dto in help)
+            for (int i = equipmentList.Count - 1; i > -1; i--)
             {
-                if (dto.State < int.Parse(stateTextBox.Text))
-                    equipmentList.Remove(dto);
+                if (equipmentList[i].State < int.Parse(stateTextBox.Text))
+                    equipmentList.Remove(equipmentList[i]);
             }
+        }
+
+        private void FindEquipmentByLocation()
+        {
+            Room selectedRoom = (Room)locationComboBox.SelectedItem;
+            for (int i = equipmentList.Count - 1; i > -1; i--)
+            {
+                if (!string.Equals(equipmentList[i].Location, selectedRoom.Name))
+                    equipmentList.Remove(equipmentList[i]);
+            }
+        }
+
+        private void cancelButton_Click(object sender, RoutedEventArgs e)
+        {
+            LoadList();
+            RefreshTable();
+            nameTextBox.Clear();
+            typeComboBox.SelectedItem = null;
+            stateTextBox.Clear();
+            locationComboBox.SelectedItem = null;
+        }
+
+        private void typeComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            e.Handled = true;
+        }
+
+        private void locationComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            e.Handled = true;
         }
     }
 }

@@ -12,13 +12,12 @@
 				CanUserAddRows="False" 
 			    CanUserResizeColumns="False" 
 				AutoGenerateColumns="False"
-				IsReadOnly="True"
 				SelectionMode="Single"
 				Height="470" 
 				Margin="320,10,0,0" 
 				VerticalAlignment="Top" 
 				Width="640" 
-				Background="CadetBlue">
+				Background="CadetBlue" IsReadOnly="True" IsEnabled="False">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Naziv" Width="*" Binding="{Binding Name}"></DataGridTextColumn>
                 <DataGridTextColumn Header="Tip" Width="*" Binding="{Binding Type}"></DataGridTextColumn>
@@ -28,15 +27,24 @@
         </DataGrid>
         <GroupBox Header="Pretraživač" HorizontalAlignment="Left" Height="480" Margin="10,0,0,0" VerticalAlignment="Top" Width="305">
             <Grid>
-                <Button x:Name="findButton" Height="30" Width="100" Content="Pretraži" Margin="91,408,101.8,10" FontSize="17" Click="findButton_Click"/>
+                <Button x:Name="findButton" Height="30" Width="100" Content="Pretraži" Margin="10,418,182.8,9.6" FontSize="17" Click="findButton_Click"/>
                 <Label Content="Naziv: " HorizontalAlignment="Left" VerticalAlignment="Top" Margin="114,20,0,0" FontSize="17"/>
                 <TextBox x:Name="nameTextBox" HorizontalAlignment="Left" Height="23" TextWrapping="Wrap" VerticalAlignment="Top" Width="155" Margin="69,52,0,0" FontSize="17"/>
-                <Label Content="Tip: " HorizontalAlignment="Left" VerticalAlignment="Top" Margin="119,114,0,0" FontSize="17"/>
+                <Label Content="Tip: " HorizontalAlignment="Left" VerticalAlignment="Top" Margin="119,105,0,0" FontSize="17"/>
                 <Label Content="Minimalno stanje: " HorizontalAlignment="Left" VerticalAlignment="Top" Margin="69,207,0,0" FontSize="17"/>
                 <TextBox x:Name="stateTextBox" HorizontalAlignment="Left" Height="23" TextWrapping="Wrap" VerticalAlignment="Top" Width="59" Margin="114,244,0,0" FontSize="17"/>
                 <Label Content="Lokacija: " HorizontalAlignment="Left" VerticalAlignment="Top" Margin="113,300,0,0" FontSize="17"/>
-                <ComboBox x:Name="typeComboBox" HorizontalAlignment="Left" VerticalAlignment="Top" Width="155" Margin="69,151,0,0" FontSize="17"/>
-                <ComboBox x:Name="locationComboBox" HorizontalAlignment="Left" VerticalAlignment="Top" Width="155" Margin="69,337,0,0" FontSize="17"/>
+                <ComboBox x:Name="typeComboBox" HorizontalAlignment="Left" VerticalAlignment="Top" Width="155" Margin="69,142,0,0" FontSize="17" SelectionChanged="typeComboBox_SelectionChanged"/>
+                <ComboBox x:Name="locationComboBox" HorizontalAlignment="Left" VerticalAlignment="Top" Width="155" Margin="69,337,0,0" FontSize="17" SelectionChanged="locationComboBox_SelectionChanged">
+                    <ComboBox.ItemTemplate>
+                        <DataTemplate>
+                            <TextBlock>
+                 <Run Text="{Binding Name}" />
+                            </TextBlock>
+                        </DataTemplate>
+                    </ComboBox.ItemTemplate>
+                </ComboBox>
+                <Button x:Name="cancelButton" Content="Poništi" HorizontalAlignment="Left" VerticalAlignment="Top" Width="100" Height="30" Margin="183,418,0,0" FontSize="17" Click="cancelButton_Click"/>
             </Grid>
         </GroupBox>
     </Grid>

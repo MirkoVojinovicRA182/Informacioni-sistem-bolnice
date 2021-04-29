@@ -62,7 +62,7 @@ namespace HospitalInformationSystem.Windows
             secretary.Surname = "Petrovic";
             //secretary.Id = "12";
 
-            Model.Manager manager = new Model.Manager();
+            Manager manager = new Manager();
             manager.Name = "Stefan";
             manager.Surname = "Jovanovic";
             //manager.Id = "52";
@@ -78,7 +78,7 @@ namespace HospitalInformationSystem.Windows
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            Model.Manager manager = new Model.Manager();
+            Manager manager = new Manager();
             Secretary secretary = new Secretary();
             bool loggedIn = false;
             var accounts = AccountDataBase.getInstance().GetAccount();

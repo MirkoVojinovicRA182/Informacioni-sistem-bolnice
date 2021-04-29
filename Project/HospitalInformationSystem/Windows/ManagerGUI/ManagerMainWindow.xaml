@@ -52,6 +52,9 @@
                     
                 </TabControl>
             </TabItem>
+            <TabItem Header="Lekovi">
+                <local:MedicineTableUserControl x:Name="medicineTableUserControl"/>
+            </TabItem>
         </TabControl>
     </DockPanel>
 </Window>

@@ -1,0 +1,30 @@
+﻿<UserControl x:Class="HospitalInformationSystem.Windows.ManagerGUI.MedicineTableUserControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:HospitalInformationSystem.Windows.ManagerGUI"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="960">
+    <Grid>
+        <DataGrid x:Name="medicineTable" 
+				HorizontalAlignment="Left" 
+				CanUserAddRows="False" 
+			    CanUserResizeColumns="False" 
+				AutoGenerateColumns="False"
+				IsReadOnly="True"
+				SelectionMode="Single"
+				Height="500" 
+				Margin="10,10,0,0" 
+				VerticalAlignment="Top" 
+				Width="950" 
+				Background="CadetBlue">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="ID" Width="*" Binding="{Binding}"></DataGridTextColumn>
+                <DataGridTextColumn Header="Naziv" Width="*" Binding="{Binding}"></DataGridTextColumn>
+                <DataGridTextColumn Header="Tip" Width="*" Binding="{Binding}"></DataGridTextColumn>
+                <DataGridTextColumn Header="Naziv zamenskog leka" Width="*" Binding="{Binding}"></DataGridTextColumn>
+            </DataGrid.Columns>
+        </DataGrid>
+    </Grid>
+</UserControl>

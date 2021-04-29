@@ -1,4 +1,5 @@
-﻿using HospitalInformationSystem.Service;
+﻿using HospitalInformationSystem.Model;
+using HospitalInformationSystem.Service;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -20,6 +21,15 @@ namespace HospitalInformationSystem.Controller
         private MedicineController()
         {
             medicineService = new MedicineService();
+        }
+
+        public void AddMedicine(Medicine newMedicine)
+        {
+            medicineService.AddMedicine(newMedicine);
+        }
+        public List<Medicine> GetAllMedicines()
+        {
+            return medicineService.GetAllMedicines();
         }
     }
 }

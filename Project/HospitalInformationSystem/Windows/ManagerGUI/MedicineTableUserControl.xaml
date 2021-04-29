@@ -20,10 +20,10 @@
 				Width="950" 
 				Background="CadetBlue">
             <DataGrid.Columns>
-                <DataGridTextColumn Header="ID" Width="*" Binding="{Binding}"></DataGridTextColumn>
-                <DataGridTextColumn Header="Naziv" Width="*" Binding="{Binding}"></DataGridTextColumn>
-                <DataGridTextColumn Header="Tip" Width="*" Binding="{Binding}"></DataGridTextColumn>
-                <DataGridTextColumn Header="Naziv zamenskog leka" Width="*" Binding="{Binding}"></DataGridTextColumn>
+                <DataGridTextColumn Header="ID" Width="*" Binding="{Binding Id}"></DataGridTextColumn>
+                <DataGridTextColumn Header="Naziv" Width="*" Binding="{Binding Name}"></DataGridTextColumn>
+                <DataGridTextColumn Header="Tip" Width="*" Binding="{Binding StringValueOfType}"></DataGridTextColumn>
+                <DataGridTextColumn Header="Naziv zamenskog leka" Width="*" Binding="{Binding ReplacementMedicine.Name}"></DataGridTextColumn>
             </DataGrid.Columns>
         </DataGrid>
     </Grid>

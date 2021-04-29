@@ -8,6 +8,15 @@ namespace HospitalInformationSystem.Model
 {
     class Medicine
     {
+        public Medicine(int id, string name, TypeOfMedicine type, string purpose, string wayOfUse, Medicine replacementMedicine)
+        {
+            Id = id;
+            Name = name;
+            Type = type;
+            Purpose = purpose;
+            WayOfUse = wayOfUse;
+            ReplacementMedicine = replacementMedicine;
+        }
         public int Id
         {
             get; set;
@@ -19,6 +28,18 @@ namespace HospitalInformationSystem.Model
         public TypeOfMedicine Type
         {
             get; set;
+        }
+        public string StringValueOfType
+        {
+            get
+            {
+                if (Type == TypeOfMedicine.Rastvor)
+                    return "Rastvor";
+                else if (Type == TypeOfMedicine.Sirup)
+                    return "Sirup";
+                else
+                    return "Tableta";
+            }
         }
         public string Purpose
         {

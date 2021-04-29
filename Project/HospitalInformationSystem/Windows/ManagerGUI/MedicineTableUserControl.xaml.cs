@@ -1,5 +1,8 @@
-﻿using System;
+﻿using HospitalInformationSystem.Controller;
+using HospitalInformationSystem.Model;
+using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -20,9 +23,17 @@ namespace HospitalInformationSystem.Windows.ManagerGUI
     /// </summary>
     public partial class MedicineTableUserControl : UserControl
     {
+        ObservableCollection<Medicine> medicineList;
         public MedicineTableUserControl()
         {
             InitializeComponent();
+            RefreshTable();
+        }
+        public void RefreshTable()
+        {
+            medicineList = new ObservableCollection<Medicine>(MedicineController.GetInstance().GetAllMedicines());
+            medicineTable.ItemsSource = null;
+            medicineTable.ItemsSource = medicineList;
         }
     }
 }

@@ -1,5 +1,8 @@
-﻿using System;
+﻿using HospitalInformationSystem.Controller;
+using HospitalInformationSystem.Model;
+using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -29,6 +32,20 @@ namespace HospitalInformationSystem.Windows.ManagerGUI
         private NewMedicineWindow()
         {
             InitializeComponent();
+            LoadComboBoxes();
+        }
+        private void LoadComboBoxes()
+        {
+            List<String> typeOfMedicineList = new List<String>();
+            typeOfMedicineList.Add("Rastvor");
+            typeOfMedicineList.Add("Sirup");
+            typeOfMedicineList.Add("Tableta");
+            typeComboBox.ItemsSource = typeOfMedicineList;
+
+            ObservableCollection<Medicine> replacementMedicinesList = new ObservableCollection<Medicine>(MedicineController.GetInstance().GetAllMedicines());
+            replacementMedicineComboBox.ItemsSource = null;
+            replacementMedicineComboBox.ItemsSource = replacementMedicinesList;
+
         }
 
         private void cancelButton_Click(object sender, RoutedEventArgs e)
@@ -39,6 +56,20 @@ namespace HospitalInformationSystem.Windows.ManagerGUI
         private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
         {
             instance = null;
+        }
+
+        private void confirmButton_Click(object sender, RoutedEventArgs e)
+        {
+            TypeOfMedicine typeOfMedicine = TypeOfMedicine.Rastvor;
+            if (string.Equals((string)typeComboBox.SelectedItem, "Rastvor"))
+                typeOfMedicine = TypeOfMedicine.Rastvor;
+            else if (string.Equals((string)typeComboBox.SelectedItem, "Sirupu"))
+                typeOfMedicine = TypeOfMedicine.Sirup;
+            else if (string.Equals((string)typeComboBox.SelectedItem, "Sirupu"))
+                typeOfMedicine = TypeOfMedicine.Tableta;
+
+            MedicineController.GetInstance().AddMedicine(new Medicine(int.Parse(idTextBox.Text), nameTextBox.Text, typeOfMedicine, purposeTextBoxt.Text, useTextBox.Text, null));
+            ManagerMainWindow.getInstance().medicineTableUserControl.RefreshTable();
         }
     }
 }

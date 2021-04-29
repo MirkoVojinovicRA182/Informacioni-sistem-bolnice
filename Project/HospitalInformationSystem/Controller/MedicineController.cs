@@ -35,5 +35,9 @@ namespace HospitalInformationSystem.Controller
         {
             medicineService.DeleteMedicine(medicineForDeleting);
         }
+        public void ChangeMedicine(Medicine oldMedicine, Medicine newMedicine)
+        {
+            medicineService.ChangeMedicine(oldMedicine, newMedicine);
+        }
     }
 }

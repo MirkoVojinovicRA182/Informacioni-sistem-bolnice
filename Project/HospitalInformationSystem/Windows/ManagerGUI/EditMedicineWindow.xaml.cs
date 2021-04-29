@@ -102,5 +102,13 @@ namespace HospitalInformationSystem.Windows.ManagerGUI
             medicineIngredientList.Remove((MedicineIngredient)ingredientsListBox.SelectedItem);
             RefreshIngredientsListBox();
         }
+
+        private void confirmButton_Click(object sender, RoutedEventArgs e)
+        {
+            MedicineController.GetInstance().ChangeMedicine(medicineForEdit, new Medicine(
+                int.Parse(idTextBox.Text), nameTextBox.Text, TypeOfMedicine.Dilution,
+                purposeTextBoxt.Text, useTextBox.Text, null, medicineIngredientList));
+            this.Close();
+        }
     }
 }

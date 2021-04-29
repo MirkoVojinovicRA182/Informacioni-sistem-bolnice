@@ -31,5 +31,15 @@ namespace HospitalInformationSystem.Service
                 if (this.medicineList.Contains(medicineForDeleting))
                     this.medicineList.Remove(medicineForDeleting);
         }
+        public void ChangeMedicine(Medicine oldMedicine, Medicine newMedicine)
+        {
+            oldMedicine.Id = newMedicine.Id;
+            oldMedicine.Name = newMedicine.Name;
+            oldMedicine.Type = newMedicine.Type;
+            oldMedicine.Purpose = newMedicine.Purpose;
+            oldMedicine.WayOfUse = newMedicine.WayOfUse;
+            oldMedicine.ReplacementMedicine = newMedicine.ReplacementMedicine;
+            oldMedicine.Ingredients = newMedicine.Ingredients;
+        }
     }
 }

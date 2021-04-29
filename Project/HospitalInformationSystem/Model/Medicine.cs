@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 
 namespace HospitalInformationSystem.Model
 {
-    class Medicine
+    public class Medicine
     {
-        public Medicine(int id, string name, TypeOfMedicine type, string purpose, string wayOfUse, Medicine replacementMedicine)
+        public Medicine(int id, string name, TypeOfMedicine type, string purpose, string wayOfUse, Medicine replacementMedicine, List<MedicineIngredient> medicineIngredients)
         {
             Id = id;
             Name = name;
@@ -16,6 +16,7 @@ namespace HospitalInformationSystem.Model
             Purpose = purpose;
             WayOfUse = wayOfUse;
             ReplacementMedicine = replacementMedicine;
+            Ingredients = medicineIngredients;
         }
         public int Id
         {

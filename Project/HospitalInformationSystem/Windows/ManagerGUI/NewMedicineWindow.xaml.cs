@@ -23,6 +23,7 @@ namespace HospitalInformationSystem.Windows.ManagerGUI
     public partial class NewMedicineWindow : Window
     {
         private static NewMedicineWindow instance = null;
+        private List<MedicineIngredient> medicineIngredientList = new List<MedicineIngredient>();
         public static NewMedicineWindow GetInstance()
         {
             if (instance == null)
@@ -70,9 +71,26 @@ namespace HospitalInformationSystem.Windows.ManagerGUI
                 typeOfMedicine = TypeOfMedicine.Tablet;
             else if (string.Equals((string)typeComboBox.SelectedItem, "Pilula"))
                 typeOfMedicine = TypeOfMedicine.Pill;
-            MedicineController.GetInstance().AddMedicine(new Medicine(int.Parse(idTextBox.Text), nameTextBox.Text, typeOfMedicine, purposeTextBoxt.Text, useTextBox.Text, null));
+            MedicineController.GetInstance().AddMedicine(new Medicine(int.Parse(idTextBox.Text), nameTextBox.Text, typeOfMedicine, purposeTextBoxt.Text, useTextBox.Text, null, medicineIngredientList));
             ManagerMainWindow.getInstance().medicineTableUserControl.RefreshTable();
             this.Close();
+        }
+
+        private void addNewIngredientButton_Click(object sender, RoutedEventArgs e)
+        {
+            NewIngredientWindow.GetInstance(medicineIngredientList).ShowDialog();
+            RefreshIngredientsListBox();
+        }
+        private void RefreshIngredientsListBox()
+        {
+            ingredientsListBox.ItemsSource = null;
+            ingredientsListBox.ItemsSource = medicineIngredientList;
+        }
+
+        private void deleteIngredientButton_Click(object sender, RoutedEventArgs e)
+        {
+            medicineIngredientList.Remove((MedicineIngredient)ingredientsListBox.SelectedItem);
+            RefreshIngredientsListBox();
         }
     }
 }

@@ -6,8 +6,14 @@ using System.Threading.Tasks;
 
 namespace HospitalInformationSystem.Model
 {
-    class MedicineIngredient
+    public class MedicineIngredient
     {
+        public MedicineIngredient(string name, int quantity, int rdi)
+        {
+            Name = name;
+            QuantityInAHundredGrams = quantity;
+            RecommendedDailyIntake = rdi;
+        }
         public string Name
         {
             get; set;

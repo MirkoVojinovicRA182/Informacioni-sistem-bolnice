@@ -30,5 +30,10 @@ namespace HospitalInformationSystem.Windows.ManagerGUI
         {
             InitializeComponent();
         }
+
+        private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            instance = null;
+        }
     }
 }

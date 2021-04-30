@@ -47,7 +47,6 @@ namespace HospitalInformationSystem.Windows.ManagerGUI
             loadTypeComboBox();
             loadRoom();
             equipmentApplyButton.IsEnabled = false;
-            renovationStatus.Text = selectedRoom.IsInRenovationState.ToString();
         }
 
         public static EditRoomWindow getInstance(Room selectedRoom)

@@ -33,6 +33,14 @@ namespace HospitalInformationSystem.Windows.ManagerGUI
         private NewEquipment()
         {
             InitializeComponent();
+            LoadTypeOfEquipmentComboBox();
+        }
+        private void LoadTypeOfEquipmentComboBox()
+        {
+            List<String> typeList = new List<String>();
+            typeList.Add("Statička");
+            typeList.Add("Dinamička");
+            typeOfEquipmentComboBox.ItemsSource = typeList;
         }
 
         private void newEquipmentWindow_Closing(object sender, System.ComponentModel.CancelEventArgs e)
@@ -47,17 +55,20 @@ namespace HospitalInformationSystem.Windows.ManagerGUI
             int quantity = int.TryParse(quanitityTextBox.Text, out quantity) ? quantity : 0;
             string description = decriptionTextBox.Text;
 
-
             TypeOfEquipment typeOfEquipment;
-            typeOfEquipment = TypeOfEquipment.Static;
+            if(typeOfEquipmentComboBox.SelectedIndex == 0)
+                typeOfEquipment = TypeOfEquipment.Static;
+            else
+                typeOfEquipment = TypeOfEquipment.Dynamic;
 
-
-            if(string.Compare(id, "") == 0)
+            if (string.Compare(id, "") == 0)
                 MessageBox.Show("Polje za unos šifre ne može biti prazno!", "Greška", MessageBoxButton.OK, MessageBoxImage.Error);
             else if(EquipmentController.getInstance().findEquipment(id) != null)
                 MessageBox.Show("U sistemu postoji oprema sa ovom šifrom!", "Greška", MessageBoxButton.OK, MessageBoxImage.Error);
             else if (string.Compare(nameTextBox.Text, "") == 0)
                 MessageBox.Show("Polje za unos naziva ne može biti prazno!", "Greška", MessageBoxButton.OK, MessageBoxImage.Error);
+            else if(typeOfEquipmentComboBox.SelectedItem == null)
+                MessageBox.Show("Niste odabrali tip opreme!", "Greška", MessageBoxButton.OK, MessageBoxImage.Error);
             else if (quantity == 0)
                 MessageBox.Show("Pogrešan unos količine!", "Greška", MessageBoxButton.OK, MessageBoxImage.Error);
             else

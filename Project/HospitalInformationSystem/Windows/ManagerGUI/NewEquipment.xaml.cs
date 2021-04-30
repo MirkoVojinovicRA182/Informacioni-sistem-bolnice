@@ -23,19 +23,16 @@ namespace HospitalInformationSystem.Windows.ManagerGUI
     {
 
         private static NewEquipment instance = null;
-        private int selectedEquipment;
 
-        public static NewEquipment getInstance(int selectedEquipment)
+        public static NewEquipment getInstance()
         {
             if (instance == null)
-                instance = new NewEquipment(selectedEquipment);
+                instance = new NewEquipment();
             return instance;
         }
         private NewEquipment(int selectedEquipment)
         {
             InitializeComponent();
-
-            this.selectedEquipment = selectedEquipment;
         }
 
         private void newEquipmentWindow_Closing(object sender, System.ComponentModel.CancelEventArgs e)
@@ -49,12 +46,11 @@ namespace HospitalInformationSystem.Windows.ManagerGUI
             string name = nameTextBox.Text;
             int quantity = int.TryParse(quanitityTextBox.Text, out quantity) ? quantity : 0;
             string description = decriptionTextBox.Text;
-            TypeOfEquipment typeOfEquipment;
 
-            if (selectedEquipment == 1)
-                typeOfEquipment = TypeOfEquipment.Static;
-            else
-                typeOfEquipment = TypeOfEquipment.Dynamic;
+
+            TypeOfEquipment typeOfEquipment;
+            typeOfEquipment = TypeOfEquipment.Static;
+
 
             if(string.Compare(id, "") == 0)
                 MessageBox.Show("Polje za unos šifre ne može biti prazno!", "Greška", MessageBoxButton.OK, MessageBoxImage.Error);
@@ -66,24 +62,16 @@ namespace HospitalInformationSystem.Windows.ManagerGUI
                 MessageBox.Show("Pogrešan unos količine!", "Greška", MessageBoxButton.OK, MessageBoxImage.Error);
             else
             {
-
                 Equipment equipment = new Equipment(id, name, typeOfEquipment, quantity, description);
-
                 EquipmentController.getInstance().addNewEquipment(equipment);
-
                 ManagerMainWindow.getInstance().equipmentTable.refreshTable();
-                ManagerMainWindow.getInstance().dynamicEquipmentTable.refreshTable();
-
                 //obavestavanje korisnika o uspesno unetoj opremi
                 MessageBox.Show("Uneta je nova oprema u sistem.", "Nova prostorija", MessageBoxButton.OK, MessageBoxImage.Information);
-
                 //brisanje polja nakon uspesnog unosa
-
                 idTextBox.Clear();
                 nameTextBox.Clear();
                 quanitityTextBox.Clear();
             }
-            
         }
 
         private void closeButton_Click(object sender, RoutedEventArgs e)

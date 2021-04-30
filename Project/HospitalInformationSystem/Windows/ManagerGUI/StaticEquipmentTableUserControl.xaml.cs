@@ -33,7 +33,7 @@ namespace HospitalInformationSystem.Windows.ManagerGUI
 
         public void refreshTable()
         {
-            equipmentList = new ObservableCollection<Equipment>(EquipmentController.getInstance().getStaticEquipment());
+            equipmentList = new ObservableCollection<Equipment>(EquipmentController.getInstance().getEquipment());
             equipmentTable.ItemsSource = null;
             equipmentTable.ItemsSource = equipmentList;
         }

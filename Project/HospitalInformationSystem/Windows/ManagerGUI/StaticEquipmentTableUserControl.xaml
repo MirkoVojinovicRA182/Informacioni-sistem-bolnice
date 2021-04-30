@@ -5,7 +5,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:HospitalInformationSystem.Windows.ManagerGUI"
              mc:Ignorable="d" 
-             d:DesignHeight="518.67" d:DesignWidth="977.095">
+             d:DesignHeight="500" d:DesignWidth="1000">
     <Grid>
 
         <DataGrid x:Name="equipmentTable" 
@@ -15,7 +15,7 @@
 				AutoGenerateColumns="False"
 				IsReadOnly="True"
 				SelectionMode="Single"
-				Height="450" 
+				Height="470" 
 				Margin="10,10,0,0" 
 				VerticalAlignment="Top" 
 				Width="950" 

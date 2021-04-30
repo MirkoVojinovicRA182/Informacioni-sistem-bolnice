@@ -86,49 +86,26 @@ namespace HospitalInformationSystem.Windows.ManagerGUI
 
         private void editEquipmentMenuItem_Click(object sender, RoutedEventArgs e)
         {
-            if (staticEquipmentTab.IsSelected)
-            {
-                if (equipmentTable.equipmentTable.SelectedItem != null)
-                    EditEquipment.getInstance((Equipment)this.equipmentTable.equipmentTable.SelectedItem).Show();
-                else
-                    MessageBox.Show("Niste odabrali opremu!", "Upozorenje", MessageBoxButton.OK, MessageBoxImage.Warning);
-            }
-            else if (dynamicEquipmentTab.IsSelected)
-            {
-                if (dynamicEquipmentTable.dynamicEquipmentTable.SelectedItem != null)
-                    EditEquipment.getInstance((Equipment)this.dynamicEquipmentTable.dynamicEquipmentTable.SelectedItem).Show();
-                else
-                    MessageBox.Show("Niste odabrali opremu!", "Upozorenje", MessageBoxButton.OK, MessageBoxImage.Warning);
-            }
+            if (equipmentTable.equipmentTable.SelectedItem != null)
+                EditEquipment.getInstance((Equipment)this.equipmentTable.equipmentTable.SelectedItem).Show();
+            else
+                MessageBox.Show("Odaberite opremu iz opšteg prikaza opreme!", "Upozorenje", MessageBoxButton.OK, MessageBoxImage.Warning);
         }
 
-        private void deleteEquipentMenuItem_Click(object sender, RoutedEventArgs e)
+        private void deleteEquipmentMenuItem_Click(object sender, RoutedEventArgs e)
         {
             Equipment selectedEquipment = null;
-            if (staticEquipmentTab.IsSelected)
+
+            if (equipmentTable.equipmentTable.SelectedItem != null)
+                selectedEquipment = (Equipment)this.equipmentTable.equipmentTable.SelectedItem;
+            else
             {
-                if (equipmentTable.equipmentTable.SelectedItem != null)
-                    selectedEquipment = (Equipment)this.equipmentTable.equipmentTable.SelectedItem;
-                else
-                {
-                    MessageBox.Show("Niste odabrali opremu!", "Upozorenje", MessageBoxButton.OK, MessageBoxImage.Warning);
-                    return;
-                }
-            }
-            else if (dynamicEquipmentTab.IsSelected)
-            {
-                if (dynamicEquipmentTable.dynamicEquipmentTable.SelectedItem != null)
-                    selectedEquipment = (Equipment)this.dynamicEquipmentTable.dynamicEquipmentTable.SelectedItem;
-                else
-                {
-                    MessageBox.Show("Niste odabrali opremu!", "Upozorenje", MessageBoxButton.OK, MessageBoxImage.Warning);
-                    return;
-                }
+                MessageBox.Show("Odaberite opremu iz opšteg prikaza opreme!", "Upozorenje", MessageBoxButton.OK, MessageBoxImage.Warning);
+                return;
             }
             RoomController.getInstance().deleteEquipment(selectedEquipment.Id);
             EquipmentController.getInstance().deleteEquipment(selectedEquipment);
             ManagerMainWindow.getInstance().equipmentTable.refreshTable();
-            ManagerMainWindow.getInstance().dynamicEquipmentTable.refreshTable();
             MessageBox.Show("Izabrana oprema je sada obrisana iz sistema.", "Brisanje opreme", MessageBoxButton.OK, MessageBoxImage.Information);
         }
         private void newMedicineMenuItem_Click(object sender, RoutedEventArgs e)
@@ -163,16 +140,14 @@ namespace HospitalInformationSystem.Windows.ManagerGUI
         {
             roomsUserControl.refreshTable();
             equipmentTable.refreshTable();
-            dynamicEquipmentTable.refreshTable();
-            detailEquipmentTable.LoadAllUserControlComponents();
+            medicineTableUserControl.RefreshTable();
         }
 
         private void staticDynamicTab_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             roomsUserControl.refreshTable();
             equipmentTable.refreshTable();
-            dynamicEquipmentTable.refreshTable();
-            detailEquipmentTable.LoadAllUserControlComponents();
+            medicineTableUserControl.RefreshTable();
         }
         private void moveEquipmentInMagacine()
         {

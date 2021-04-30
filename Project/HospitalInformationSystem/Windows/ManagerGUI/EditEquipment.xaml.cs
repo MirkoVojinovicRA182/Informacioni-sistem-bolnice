@@ -68,7 +68,6 @@ namespace HospitalInformationSystem.Windows.ManagerGUI
                 EquipmentController.getInstance().changeEquipment(selectedEquipment, id, name, typeOfEquipment, quantityInMagacine, oldQuantity, description);
 
                 ManagerMainWindow.getInstance().equipmentTable.refreshTable();
-                ManagerMainWindow.getInstance().dynamicEquipmentTable.refreshTable();
 
                 this.Close();
                 MessageBox.Show("Informacije o opremi su sada izmenjene.", "Izmena prostorije", MessageBoxButton.OK, MessageBoxImage.Information);

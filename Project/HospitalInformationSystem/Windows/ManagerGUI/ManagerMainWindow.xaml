@@ -23,9 +23,9 @@
                 <MenuItem x:Name="renovationMenuItem" Header="_Zakazivanje renoviranja" Click="renovationMenuItem_Click"/>
             </MenuItem>
             <MenuItem Header="Oprema">
-                <MenuItem x:Name="newEquipmentMenuItem" Header="_Unos novog" Click="newEquipmentMenuItem_Click"/>
-                <MenuItem x:Name="editEquipmentMenuItem" Header="_Izmena postojećeg" Click="editEquipmentMenuItem_Click"/>
-                <MenuItem x:Name="deleteEquipentMenuItem" Header="_Brisanje postojećeg" Click="deleteEquipentMenuItem_Click"/>
+                <MenuItem x:Name="newEquipmentMenuItem" Header="_Unos nove" Click="newEquipmentMenuItem_Click"/>
+                <MenuItem x:Name="editEquipmentMenuItem" Header="_Izmena postojeće" Click="editEquipmentMenuItem_Click"/>
+                <MenuItem x:Name="deleteEquipentMenuItem" Header="_Brisanje postojeće" Click="deleteEquipmentMenuItem_Click"/>
             </MenuItem>
             <MenuItem Header="Lekovi">
                 <MenuItem x:Name="newMedicineMenuItem" Header="_Unos novog" Click="newMedicineMenuItem_Click"/>
@@ -39,7 +39,14 @@
                 <ucRooms:RoomsTableUserControl x:Name="roomsUserControl"/>
             </TabItem>
             <TabItem x:Name="equipmentTab" Header="Oprema">
-                <local:StaticEquipmentTableUserControl x:Name="equipmentTable" />
+                <TabControl x:Name="staticDynamicTab" SelectionChanged="staticDynamicTab_SelectionChanged">
+                    <TabItem Header="Detaljan prikaz">
+                        <local:DetailEquipmentViewUserControl x:Name="detailEquipmentTable"/>
+                    </TabItem>
+                    <TabItem Header="Opšti prikaz">
+                        <local:StaticEquipmentTableUserControl x:Name="equipmentTable" />
+                    </TabItem>
+                </TabControl>
             </TabItem>
             <TabItem Header="Lekovi">
                 <local:MedicineTableUserControl x:Name="medicineTableUserControl"/>

@@ -18,7 +18,7 @@
 				Margin="10,10,0,0" 
 				VerticalAlignment="Top" 
 				Width="950" 
-				Background="CadetBlue">
+				Background="CadetBlue" SelectionChanged="medicineTable_SelectionChanged">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="ID" Width="*" Binding="{Binding Id}"></DataGridTextColumn>
                 <DataGridTextColumn Header="Naziv" Width="*" Binding="{Binding Name}"></DataGridTextColumn>

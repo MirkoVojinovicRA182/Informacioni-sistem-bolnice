@@ -30,7 +30,7 @@ namespace HospitalInformationSystem.Windows.ManagerGUI
                 instance = new NewEquipment();
             return instance;
         }
-        private NewEquipment(int selectedEquipment)
+        private NewEquipment()
         {
             InitializeComponent();
         }

@@ -39,5 +39,21 @@ namespace HospitalInformationSystem.Controller
         {
             medicineService.ChangeMedicine(oldMedicine, newMedicine);
         }
+        public void SetMedicineList(List<Medicine> newMedicineList)
+        {
+            medicineService.SetMedicineList(newMedicineList);
+        }
+        public void RemoveAllMedicines()
+        {
+            medicineService.RemoveAllMedicines();
+        }
+        public void SaveInFile()
+        {
+            medicineService.SaveInFile();
+        }
+        public void LoadFromFile()
+        {
+            medicineService.LoadFromFile();
+        }
     }
 }

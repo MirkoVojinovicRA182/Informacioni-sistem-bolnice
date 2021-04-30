@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 namespace HospitalInformationSystem.Model
 {
+    [Serializable]
     public class Medicine
     {
         public Medicine(int id, string name, TypeOfMedicine type, string purpose, string wayOfUse, Medicine replacementMedicine, List<MedicineIngredient> medicineIngredients)

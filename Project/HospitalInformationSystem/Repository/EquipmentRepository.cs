@@ -12,7 +12,7 @@ using System.Threading.Tasks;
 
 namespace HospitalInformationSystem.Repository
 {
-    class EquipmentRepository
+    class EquipmentRepository: IRepository
     {
         public void saveInFile()
         {

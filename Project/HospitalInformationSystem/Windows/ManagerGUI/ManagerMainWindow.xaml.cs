@@ -38,10 +38,11 @@ namespace HospitalInformationSystem.Windows.ManagerGUI
         {
             EquipmentController.getInstance().loadFromFile();
             RoomController.getInstance().loadFromFile();
+            MedicineController.GetInstance().LoadFromFile();
             InitializeComponent();
-            roomRepository = new RoomRepository();
             roomsUserControl.refreshTable();
             equipmentTable.refreshTable();
+            medicineTableUserControl.RefreshTable();
 
         }
 
@@ -57,6 +58,7 @@ namespace HospitalInformationSystem.Windows.ManagerGUI
 
             EquipmentController.getInstance().saveInFile();
             RoomController.getInstance().saveInFile();
+            MedicineController.GetInstance().SaveInFile();
         }
 
         private void newMenuItem_Click(object sender, RoutedEventArgs e)

@@ -1,4 +1,5 @@
 ﻿using HospitalInformationSystem.Model;
+using HospitalInformationSystem.Repository;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,9 +11,11 @@ namespace HospitalInformationSystem.Service
     class MedicineService
     {
         List<Medicine> medicineList;
+        MedicineRepository medicineRepository;
         public MedicineService()
         {
             medicineList = new List<Medicine>();
+            medicineRepository = new MedicineRepository();
         }
 
         public void AddMedicine(Medicine newMedicine)
@@ -40,6 +43,26 @@ namespace HospitalInformationSystem.Service
             oldMedicine.WayOfUse = newMedicine.WayOfUse;
             oldMedicine.ReplacementMedicine = newMedicine.ReplacementMedicine;
             oldMedicine.Ingredients = newMedicine.Ingredients;
+        }
+        public void SetMedicineList(List<Medicine> newMedicineList)
+        {
+            RemoveAllMedicines();
+            foreach (Medicine newMedicine in newMedicineList)
+                AddMedicine(newMedicine);
+        }
+        public void RemoveAllMedicines()
+        {
+            if (medicineList != null)
+                medicineList.Clear();
+        }
+        public void SaveInFile()
+        {
+            medicineRepository.saveInFile();
+        }
+
+        public void LoadFromFile()
+        {
+            medicineRepository.loadFromFile();
         }
     }
 }

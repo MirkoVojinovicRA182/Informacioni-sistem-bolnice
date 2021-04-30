@@ -67,6 +67,7 @@
     <Compile Include="Model\Medicine.cs" />
     <Compile Include="Model\MedicineIngredient.cs" />
     <Compile Include="Model\TypeOfMedicine.cs" />
+    <Compile Include="Repository\MedicineRepository.cs" />
     <Compile Include="Service\AppointmentService.cs" />
     <Compile Include="Service\DoctorService.cs" />
     <Compile Include="Service\MedicineService.cs" />

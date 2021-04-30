@@ -72,6 +72,11 @@ namespace HospitalInformationSystem.Windows.ManagerGUI
                 MessageBox.Show("Polje za unos naziva ne može biti prazno!", "Greška", MessageBoxButton.OK, MessageBoxImage.Error);
                 return false;
             }
+            else if(typeOfRoomComboBox.SelectedItem == null)
+            {
+                MessageBox.Show("Niste odabrali tip prostorije!", "Greška", MessageBoxButton.OK, MessageBoxImage.Error);
+                return false;
+            }
             else if (floor == 0)
             {
                 MessageBox.Show("Pogrešan unos sprata!", "Greška", MessageBoxButton.OK, MessageBoxImage.Error);
@@ -97,7 +102,6 @@ namespace HospitalInformationSystem.Windows.ManagerGUI
             list.Add("Prostorija za preglede");
 
             typeOfRoomComboBox.ItemsSource = list;
-            typeOfRoomComboBox.SelectedIndex = 0;
         }
 
         private TypeOfRoom loadType(string selectedValue)

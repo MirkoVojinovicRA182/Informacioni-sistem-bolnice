@@ -22,6 +22,7 @@ namespace HospitalInformationSystem.Windows.ManagerGUI
     /// </summary>
     public partial class EditMedicineWindow : Window
     {
+        private const string ERROR = "Greška";
         private Medicine medicineForEdit;
         private List<MedicineIngredient> medicineIngredientList = new List<MedicineIngredient>(); 
         private static EditMedicineWindow instance = null;
@@ -122,10 +123,60 @@ namespace HospitalInformationSystem.Windows.ManagerGUI
                 replacementMedicine = (Medicine)replacementMedicineComboBox.SelectedItem;
             else
                 replacementMedicine = medicineForEdit.ReplacementMedicine;
-            MedicineController.GetInstance().ChangeMedicine(medicineForEdit, new Medicine(
-                int.Parse(idTextBox.Text), nameTextBox.Text, typeOfMedicine,
-                purposeTextBoxt.Text, useTextBox.Text, replacementMedicine, medicineIngredientList));
-            this.Close();
+            if (CheckControlsInputCorrection())
+            {
+                MedicineController.GetInstance().ChangeMedicine(medicineForEdit, new Medicine(
+                    int.Parse(idTextBox.Text), nameTextBox.Text, typeOfMedicine,
+                    purposeTextBoxt.Text, useTextBox.Text, replacementMedicine, medicineIngredientList));
+                this.Close();
+            }
+        }
+
+        private bool CheckControlsInputCorrection()
+        {
+            if (!IdTextBoxCorrection())
+                return CreateErrorMessageBox("Šifra mora biti ceo broj!");
+            if (CheckTheExistenceOfId() && medicineForEdit.Id != int.Parse(idTextBox.Text))
+                return CreateErrorMessageBox("U sistemu postoji lek sa ovom šifrom!");
+            if (!NameTextBoxCorrection())
+                return CreateErrorMessageBox("Polje za unos imena ne može biti prazno!");
+            if (!PurposeTextBoxCorrection())
+                return CreateErrorMessageBox("Polje za unos namene ne može biti prazno!");
+            if (!WayOfUseTextBoxCorrection())
+                return CreateErrorMessageBox("Polje za unos načina upotrebe ne može biti prazno!");
+            if (CheckTheExistenceOfAnIngredient() == 0)
+                return CreateErrorMessageBox("Morate uneti bar jedan sastojak!");
+            return true;
+        }
+        private bool NameTextBoxCorrection()
+        {
+            return !(nameTextBox.Text == "");
+        }
+        private bool IdTextBoxCorrection()
+        {
+            int tryParseStringToInt = int.TryParse(idTextBox.Text, out tryParseStringToInt) ? tryParseStringToInt : 0;
+            return !(tryParseStringToInt == 0);
+        }
+        private bool CheckTheExistenceOfId()
+        {
+            return !(MedicineController.GetInstance().FindMedicineUsingId(int.Parse(idTextBox.Text)) == null);
+        }
+        private bool PurposeTextBoxCorrection()
+        {
+            return !(purposeTextBoxt.Text == "");
+        }
+        private bool WayOfUseTextBoxCorrection()
+        {
+            return !(useTextBox.Text == "");
+        }
+        private int CheckTheExistenceOfAnIngredient()
+        {
+            return ingredientsListBox.Items.Count;
+        }
+        private bool CreateErrorMessageBox(string result)
+        {
+            MessageBox.Show(result, ERROR, MessageBoxButton.OK, MessageBoxImage.Error);
+            return false;
         }
     }
 }

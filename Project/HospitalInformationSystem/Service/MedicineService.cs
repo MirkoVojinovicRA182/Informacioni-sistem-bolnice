@@ -64,5 +64,14 @@ namespace HospitalInformationSystem.Service
         {
             medicineRepository.loadFromFile();
         }
+        public Medicine FindMedicineUsingId(int id)
+        {
+            foreach(Medicine med in medicineList)
+            {
+                if (med.Id == id)
+                    return med;
+            }
+            return null;
+        }
     }
 }

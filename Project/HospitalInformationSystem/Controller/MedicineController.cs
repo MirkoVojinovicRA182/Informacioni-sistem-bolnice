@@ -55,5 +55,9 @@ namespace HospitalInformationSystem.Controller
         {
             medicineService.LoadFromFile();
         }
+        public Medicine FindMedicineUsingId(int id)
+        {
+            return  medicineService.FindMedicineUsingId(id);
+        }
     }
 }

@@ -39,7 +39,7 @@ namespace HospitalInformationSystem.Windows.ManagerGUI
             LoadList();
             RefreshTable();
         }
-        private void LoadList()
+        public void LoadList()
         {
             equipmentList = new ObservableCollection<DetailEquipmentDTO>();
 
@@ -73,7 +73,7 @@ namespace HospitalInformationSystem.Windows.ManagerGUI
             typeComboBox.ItemsSource = null;
             typeComboBox.ItemsSource = typeOfEquipmentList;
         }
-        private void RefreshTable()
+        public void RefreshTable()
         {
             detailEquipmentTable.ItemsSource = null;
             detailEquipmentTable.ItemsSource = equipmentList;

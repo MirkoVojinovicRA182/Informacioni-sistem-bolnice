@@ -172,8 +172,8 @@ namespace HospitalInformationSystem.Windows.ManagerGUI
             {
                 RoomController.getInstance().changeRoom(selectedRoom, int.Parse(idTextBox.Text), nameTextBox.Text, getType(typeComboBox.SelectedIndex), int.Parse(floorTextBox.Text));
                 ManagerMainWindow.getInstance().roomsUserControl.refreshTable();
-                this.Close();
                 MessageBox.Show("Informacije o prostoriji su sada izmenjene.", "Izmena informacija", MessageBoxButton.OK, MessageBoxImage.Information);
+                changeRoomButton.IsEnabled = false;
             }
         }
 
@@ -186,7 +186,7 @@ namespace HospitalInformationSystem.Windows.ManagerGUI
             changeQuantityOfEquipment();
             ManagerMainWindow.getInstance().roomsUserControl.refreshTable();
             MessageBox.Show("Informacije o opremi prostorije su sada izmenjene.", "Izmena informacija", MessageBoxButton.OK, MessageBoxImage.Information);
-            this.Close();
+            equipmentApplyButton.IsEnabled = false;
         }
         private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
         {

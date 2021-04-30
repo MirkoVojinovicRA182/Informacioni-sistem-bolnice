@@ -140,6 +140,7 @@ namespace HospitalInformationSystem.Windows.ManagerGUI
         {
             roomsUserControl.refreshTable();
             equipmentTable.refreshTable();
+            detailEquipmentTable.LoadAllUserControlComponents();
             medicineTableUserControl.RefreshTable();
         }
 
@@ -147,6 +148,7 @@ namespace HospitalInformationSystem.Windows.ManagerGUI
         {
             roomsUserControl.refreshTable();
             equipmentTable.refreshTable();
+            detailEquipmentTable.LoadAllUserControlComponents();
             medicineTableUserControl.RefreshTable();
         }
         private void moveEquipmentInMagacine()

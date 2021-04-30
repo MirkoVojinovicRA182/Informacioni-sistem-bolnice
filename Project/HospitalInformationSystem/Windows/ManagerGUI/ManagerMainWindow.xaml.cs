@@ -151,11 +151,16 @@ namespace HospitalInformationSystem.Windows.ManagerGUI
 
         private void editMenuItem_Click(object sender, RoutedEventArgs e)
         {
-
+            Room room = (Room)this.roomsUserControl.allRoomsTable.SelectedItem;
             if (roomTab.IsSelected) //tab prostorije
             {
-                if (roomsUserControl.allRoomsTable.SelectedItem != null)
-                    EditRoomWindow.getInstance((Room)this.roomsUserControl.allRoomsTable.SelectedItem).Show();
+                if (room != null)
+                {
+                    if (room.IsInRenovationState == 1)
+                        RenovationMessageWindow.GetInstance().Show();
+                    else
+                        EditRoomWindow.getInstance(room).Show();
+                }
                 else
                     MessageBox.Show("Niste odabrali prostoriju!", "Upozorenje", MessageBoxButton.OK, MessageBoxImage.Warning);
             }

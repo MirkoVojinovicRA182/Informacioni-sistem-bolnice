@@ -12,9 +12,8 @@ namespace HospitalInformationSystem.Windows.ManagerGUI
     /// </summary>
     public partial class ManagerMainWindow : Window
     {
-
+        Room room;
         private static ManagerMainWindow instance;
-
         public static ManagerMainWindow getInstance()
         {
             if (instance == null)
@@ -46,7 +45,7 @@ namespace HospitalInformationSystem.Windows.ManagerGUI
 
         private void editRoomMenuItem_Click(object sender, RoutedEventArgs e)
         {
-            Room room = (Room)this.roomsUserControl.allRoomsTable.SelectedItem;
+            room = (Room)this.roomsUserControl.allRoomsTable.SelectedItem;
             if (room != null)
             {
                 if (room.IsInRenovationState == 1)
@@ -60,12 +59,18 @@ namespace HospitalInformationSystem.Windows.ManagerGUI
 
         private void deleteRoomMenuItem_Click(object sender, RoutedEventArgs e)
         {
+            room = (Room)this.roomsUserControl.allRoomsTable.SelectedItem;
             if (roomsUserControl.allRoomsTable.SelectedItem != null)
             {
-                RoomController.getInstance().deleteRoom((Room)this.roomsUserControl.allRoomsTable.SelectedItem);
-                moveEquipmentInMagacine();
-                ManagerMainWindow.getInstance().roomsUserControl.refreshTable();
-                MessageBox.Show("Izabrana prostorija je sada obrisana iz sistema.", "Brisanje prostorije", MessageBoxButton.OK, MessageBoxImage.Information);
+                if (room.IsInRenovationState == 0)
+                {
+                    RoomController.getInstance().deleteRoom((Room)this.roomsUserControl.allRoomsTable.SelectedItem);
+                    moveEquipmentInMagacine();
+                    ManagerMainWindow.getInstance().roomsUserControl.refreshTable();
+                    MessageBox.Show("Izabrana prostorija je sada obrisana iz sistema.", "Brisanje prostorije", MessageBoxButton.OK, MessageBoxImage.Information);
+                }
+                else
+                    RenovationMessageWindow.GetInstance().Show();
             }
             else
                 MessageBox.Show("Niste odabrali prostoriju!", "Upozorenje", MessageBoxButton.OK, MessageBoxImage.Warning);

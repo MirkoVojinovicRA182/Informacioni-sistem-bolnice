@@ -6,7 +6,7 @@
         xmlns:local="clr-
         :HospitalInformationSystem.Windows.Manager"
         mc:Ignorable="d"
-        Title="Izmena prostorije" Height="450" Width="350" Closing="Window_Closing">
+        Title="Izmena opreme" Height="450" Width="350" Closing="Window_Closing">
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="6*"/>
@@ -27,7 +27,7 @@
         <TextBox x:Name="descriptionTextBox" Grid.Column="3" HorizontalAlignment="Left" Height="79" Margin="0.2,243,0,0" VerticalAlignment="Top" Width="180" Grid.ColumnSpan="2" SelectionChanged="descriptionTextBox_SelectionChanged">
         </TextBox>
         <Label Content="Tip:" Grid.Column="2" HorizontalAlignment="Left" Margin="0.4,124,0,0" VerticalAlignment="Top" FontSize="15" RenderTransformOrigin="0.423,0.836"/>
-        <ComboBox x:Name="typeComboBox" Grid.ColumnSpan="2" HorizontalAlignment="Left" VerticalAlignment="Top" Width="100" Grid.Column="3" Margin="0.2,124,0,0" SelectionChanged="typeComboBox_SelectionChanged">
+        <ComboBox x:Name="typeComboBox" Grid.ColumnSpan="2" HorizontalAlignment="Left" VerticalAlignment="Top" Width="100" Grid.Column="3" Margin="0.2,124,0,0" SelectionChanged="typeComboBox_SelectionChanged" FontSize="15">
         </ComboBox>
         <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" Text="(u magacinu)" VerticalAlignment="Top" Grid.Column="2" Margin="1.4,208,0,0" Width="100" FontStyle="Italic"/>
     </Grid>

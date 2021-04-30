@@ -41,8 +41,40 @@ namespace HospitalInformationSystem.Windows.ManagerGUI
 
         private void confirmButton_Click(object sender, RoutedEventArgs e)
         {
-            medicineIngredientList.Add(new MedicineIngredient(nameTextBox.Text, int.Parse(quantityInHundredGramsTextBox.Text), int.Parse(dailyIntakeTextBox.Text)));
-            this.Close();
+            if (CheckControlsInputCorrection())
+            {
+                medicineIngredientList.Add(new MedicineIngredient(nameTextBox.Text, double.Parse(quantityInHundredGramsTextBox.Text), int.Parse(dailyIntakeTextBox.Text)));
+                this.Close();
+            }
+        }
+        private bool CheckControlsInputCorrection()
+        {
+            if (!NameTextBoxCorrection())
+                return CreateErrorMessageBox("Niste uneli naziv sastojka!");
+            if (!QuantityInHundredGramsTextBoxCorrection())
+                return CreateErrorMessageBox("Niste pravilno uneli količinu u 100 grama!");
+            if (!DailyIntakeTextBoxCorrection())
+                return CreateErrorMessageBox("Niste pravilno uneli preporučeni dnevni unos!");
+            return true;
+        }
+        private bool NameTextBoxCorrection()
+        {
+            return !(nameTextBox.Text == "");
+        }
+        private bool QuantityInHundredGramsTextBoxCorrection()
+        {
+            double tryParseStringToDouble = double.TryParse(quantityInHundredGramsTextBox.Text, out tryParseStringToDouble) ? tryParseStringToDouble : 0;
+            return !(tryParseStringToDouble == 0);
+        }
+        private bool DailyIntakeTextBoxCorrection()
+        {
+            int tryParseStringToInt = int.TryParse(dailyIntakeTextBox.Text, out tryParseStringToInt) ? tryParseStringToInt : 0;
+            return !(tryParseStringToInt == 0);
+        }
+        private bool CreateErrorMessageBox(string result)
+        {
+            MessageBox.Show(result, "Greška", MessageBoxButton.OK, MessageBoxImage.Error);
+            return false;
         }
     }
 }

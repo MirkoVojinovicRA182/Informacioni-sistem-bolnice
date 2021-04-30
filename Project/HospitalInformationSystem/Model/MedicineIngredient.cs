@@ -9,7 +9,7 @@ namespace HospitalInformationSystem.Model
     [Serializable]
     public class MedicineIngredient
     {
-        public MedicineIngredient(string name, int quantity, int rdi)
+        public MedicineIngredient(string name, double quantity, int rdi)
         {
             Name = name;
             QuantityInAHundredGrams = quantity;
@@ -19,7 +19,7 @@ namespace HospitalInformationSystem.Model
         {
             get; set;
         }
-        public int QuantityInAHundredGrams
+        public double QuantityInAHundredGrams
         {
             get; set;
         }

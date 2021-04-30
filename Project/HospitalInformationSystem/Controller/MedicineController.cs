@@ -59,5 +59,9 @@ namespace HospitalInformationSystem.Controller
         {
             return  medicineService.FindMedicineUsingId(id);
         }
+        public void FindReplacementMedicineAndDeleteThem(Medicine replacementMedicine)
+        {
+            medicineService.FindReplacementMedicineAndDeleteThem(replacementMedicine);
+        }
     }
 }

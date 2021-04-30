@@ -73,5 +73,16 @@ namespace HospitalInformationSystem.Service
             }
             return null;
         }
+        public void FindReplacementMedicineAndDeleteThem(Medicine replacementMedicine)
+        {
+            foreach(Medicine medicine in medicineList)
+            {
+                if (Medicine.Equals(medicine.ReplacementMedicine, replacementMedicine))
+                {
+                    medicine.ReplacementMedicine = null;
+                    break;
+                }
+            }
+        }
     }
 }

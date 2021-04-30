@@ -48,7 +48,9 @@ namespace HospitalInformationSystem.Windows.ManagerGUI
             typeOfMedicineList.Add("Pilula");
             typeComboBox.ItemsSource = typeOfMedicineList;
 
+
             ObservableCollection<Medicine> replacementMedicinesList = new ObservableCollection<Medicine>(MedicineController.GetInstance().GetAllMedicines());
+            replacementMedicinesList.Remove(medicineForEdit);
             replacementMedicineComboBox.ItemsSource = null;
             replacementMedicineComboBox.ItemsSource = replacementMedicinesList;
         }
@@ -69,6 +71,7 @@ namespace HospitalInformationSystem.Windows.ManagerGUI
             SelectTypeInTypeOfMedicineComboBox();
             purposeTextBoxt.Text = medicineForEdit.Purpose;
             useTextBox.Text = medicineForEdit.WayOfUse;
+            nameOfReplacementMedicineTextBlock.Text = medicineForEdit.NameOfReplacementMedicine;
             RefreshIngredientsListBox();
         }
         private void SelectTypeInTypeOfMedicineComboBox()
@@ -105,9 +108,23 @@ namespace HospitalInformationSystem.Windows.ManagerGUI
 
         private void confirmButton_Click(object sender, RoutedEventArgs e)
         {
+            TypeOfMedicine typeOfMedicine = TypeOfMedicine.Dilution;
+            if (string.Equals((string)typeComboBox.SelectedItem, "Rastvor"))
+                typeOfMedicine = TypeOfMedicine.Dilution;
+            else if (string.Equals((string)typeComboBox.SelectedItem, "Sirup"))
+                typeOfMedicine = TypeOfMedicine.Syrup;
+            else if (string.Equals((string)typeComboBox.SelectedItem, "Tableta"))
+                typeOfMedicine = TypeOfMedicine.Tablet;
+            else if (string.Equals((string)typeComboBox.SelectedItem, "Pilula"))
+                typeOfMedicine = TypeOfMedicine.Pill;
+            Medicine replacementMedicine;
+            if (replacementMedicineComboBox.SelectedItem != null)
+                replacementMedicine = (Medicine)replacementMedicineComboBox.SelectedItem;
+            else
+                replacementMedicine = medicineForEdit.ReplacementMedicine;
             MedicineController.GetInstance().ChangeMedicine(medicineForEdit, new Medicine(
-                int.Parse(idTextBox.Text), nameTextBox.Text, TypeOfMedicine.Dilution,
-                purposeTextBoxt.Text, useTextBox.Text, null, medicineIngredientList));
+                int.Parse(idTextBox.Text), nameTextBox.Text, typeOfMedicine,
+                purposeTextBoxt.Text, useTextBox.Text, replacementMedicine, medicineIngredientList));
             this.Close();
         }
     }

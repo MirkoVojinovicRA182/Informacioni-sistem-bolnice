@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:HospitalInformationSystem.Windows.ManagerGUI"
         mc:Ignorable="d"
-        Title="Izmena leka" Height="550" Width="380" Closing="Window_Closing">
+        Title="Izmena leka" Height="600" Width="380" Closing="Window_Closing">
     <Grid>
         <Label Content="Šifra:" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="29,34,0,0" FontSize="15"/>
         <Label Content="Naziv:" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="29,82,0,0" FontSize="15"/>
@@ -27,18 +27,20 @@
                 </DataTemplate>
             </ComboBox.ItemTemplate>
         </ComboBox>
-        <Label Content="Sastojci:" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="29,374,0,0" FontSize="15"/>
-        <ListBox x:Name="ingredientsListBox" HorizontalAlignment="Left" Height="76" VerticalAlignment="Top" Width="143" Margin="152,352,0,0">
+        <Label Content="Sastojci:" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="29,403,0,0" FontSize="15"/>
+        <ListBox x:Name="ingredientsListBox" HorizontalAlignment="Left" Height="76" VerticalAlignment="Top" Width="143" Margin="152,381,0,0">
             <ListBox.ItemTemplate>
                 <DataTemplate>
                     <TextBlock Text="{Binding Name}" />
                 </DataTemplate>
             </ListBox.ItemTemplate>
         </ListBox>
-        <Button x:Name="confirmButton" Content="Potvrdi" HorizontalAlignment="Left" VerticalAlignment="Top" Width="100" Height="30" Margin="88,467,0,0" FontSize="15" Click="confirmButton_Click"/>
-        <Button x:Name="cancelButton" Content="Odustani" HorizontalAlignment="Left" VerticalAlignment="Top" Width="100" Height="30" Margin="220,467,0,0" FontSize="15" Click="cancelButton_Click"/>
-        <Button x:Name="addNewIngredientButton" Content="+" HorizontalAlignment="Left" VerticalAlignment="Top" Width="30" Height="30" Margin="300,352,0,0" FontSize="15" Click="addNewIngredientButton_Click"/>
-        <Button x:Name="deleteIngredientButton" Content="-" HorizontalAlignment="Left" VerticalAlignment="Top" Width="30" Height="30" Margin="300,398,0,0" FontSize="15" Click="deleteIngredientButton_Click"/>
+        <Button x:Name="confirmButton" Content="Potvrdi" HorizontalAlignment="Left" VerticalAlignment="Top" Width="100" Height="30" Margin="88,496,0,0" FontSize="15" Click="confirmButton_Click"/>
+        <Button x:Name="cancelButton" Content="Odustani" HorizontalAlignment="Left" VerticalAlignment="Top" Width="100" Height="30" Margin="220,496,0,0" FontSize="15" Click="cancelButton_Click"/>
+        <Button x:Name="addNewIngredientButton" Content="+" HorizontalAlignment="Left" VerticalAlignment="Top" Width="30" Height="30" Margin="300,381,0,0" FontSize="15" Click="addNewIngredientButton_Click"/>
+        <Button x:Name="deleteIngredientButton" Content="-" HorizontalAlignment="Left" VerticalAlignment="Top" Width="30" Height="30" Margin="300,427,0,0" FontSize="15" Click="deleteIngredientButton_Click"/>
+        <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" Text="trenutni zamenski: " VerticalAlignment="Top" Margin="152,331,0,0" FontStyle="Italic" Foreground="Black"/>
+        <TextBlock x:Name="nameOfReplacementMedicineTextBlock" HorizontalAlignment="Left" TextWrapping="Wrap" VerticalAlignment="Top" Margin="256,331,0,0" FontStyle="Italic" Foreground="Black" FontWeight="Bold"/>
 
     </Grid>
 </Window>

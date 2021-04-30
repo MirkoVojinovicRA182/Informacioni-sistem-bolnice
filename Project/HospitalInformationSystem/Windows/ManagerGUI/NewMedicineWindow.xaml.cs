@@ -71,7 +71,12 @@ namespace HospitalInformationSystem.Windows.ManagerGUI
                 typeOfMedicine = TypeOfMedicine.Tablet;
             else if (string.Equals((string)typeComboBox.SelectedItem, "Pilula"))
                 typeOfMedicine = TypeOfMedicine.Pill;
-            MedicineController.GetInstance().AddMedicine(new Medicine(int.Parse(idTextBox.Text), nameTextBox.Text, typeOfMedicine, purposeTextBoxt.Text, useTextBox.Text, null, medicineIngredientList));
+            Medicine replacementMedicine;
+            if (replacementMedicineComboBox.SelectedItem != null)
+                replacementMedicine = (Medicine)replacementMedicineComboBox.SelectedItem;
+            else
+                replacementMedicine = null;
+            MedicineController.GetInstance().AddMedicine(new Medicine(int.Parse(idTextBox.Text), nameTextBox.Text, typeOfMedicine, purposeTextBoxt.Text, useTextBox.Text, replacementMedicine, medicineIngredientList));
             ManagerMainWindow.getInstance().medicineTableUserControl.RefreshTable();
             this.Close();
         }

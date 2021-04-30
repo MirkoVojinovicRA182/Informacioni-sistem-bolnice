@@ -58,6 +58,16 @@ namespace HospitalInformationSystem.Model
             get; set;
         }
 
+        public string NameOfReplacementMedicine
+        {
+            get
+            {
+                if (ReplacementMedicine != null)
+                    return ReplacementMedicine.Name;
+                return "nema";
+            }
+        }
+
         public List<MedicineIngredient> Ingredients
         {
             get; set;

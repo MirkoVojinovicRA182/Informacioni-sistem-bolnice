@@ -120,6 +120,9 @@
     <Compile Include="Windows\DoctorGUI\DoctorShowPrescription.xaml.cs">
       <DependentUpon>DoctorShowPrescription.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Windows\DoctorGUI\MedicineInformationPreview.xaml.cs">
+      <DependentUpon>MedicineInformationPreview.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Windows\DoctorGUI\MedicinePreviewWindow.xaml.cs">
       <DependentUpon>MedicinePreviewWindow.xaml</DependentUpon>
     </Compile>
@@ -266,6 +269,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Windows\DoctorGUI\DoctorShowPrescription.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Windows\DoctorGUI\MedicineInformationPreview.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

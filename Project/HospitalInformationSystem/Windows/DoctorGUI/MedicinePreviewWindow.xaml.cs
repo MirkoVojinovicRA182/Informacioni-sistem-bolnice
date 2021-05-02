@@ -1,16 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using HospitalInformationSystem.Controller;
+using HospitalInformationSystem.Model;
+using System.Collections.ObjectModel;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
 
 namespace HospitalInformationSystem.Windows.DoctorGUI
 {
@@ -22,6 +13,20 @@ namespace HospitalInformationSystem.Windows.DoctorGUI
         public MedicinePreviewWindow()
         {
             InitializeComponent();
+            medicineTable.DataContext = MedicineController.GetInstance().GetAllMedicines();
+            refreshTable();
+        }
+
+        private void refreshTable()
+        {
+            medicineTable.ItemsSource = null;
+            medicineTable.ItemsSource = new ObservableCollection<Medicine>(MedicineController.GetInstance().GetAllMedicines());
+        }
+
+        private void previewMedicineButton_Click(object sender, RoutedEventArgs e)
+        {
+            MedicineInformationPreview medicineInformationPreview = new MedicineInformationPreview((Medicine)medicineTable.SelectedItem);
+            medicineInformationPreview.ShowDialog();
         }
     }
 }

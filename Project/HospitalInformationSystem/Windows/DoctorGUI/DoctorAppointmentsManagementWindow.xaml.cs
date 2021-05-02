@@ -87,5 +87,11 @@ namespace HospitalInformationSystem.Windows.DoctorGUI
             AppointmentController.getInstance().saveInFile();
             instance = null;
         }
+
+        private void medicineButton_Click(object sender, RoutedEventArgs e)
+        {
+            MedicinePreviewWindow medicinePreviewWindow = new MedicinePreviewWindow();
+            medicinePreviewWindow.ShowDialog();
+        }
     }
 }

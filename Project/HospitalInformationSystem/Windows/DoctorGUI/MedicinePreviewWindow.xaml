@@ -20,12 +20,12 @@
 				  Width="644" 
 				  Background="CadetBlue">
             <DataGrid.Columns>
-                <DataGridTextColumn Header="Id leka" Width="*" Binding="{Binding StartTime}"></DataGridTextColumn>
-                <DataGridTextColumn Header="Lek" Width="*" Binding="{Binding GetPatientNameSurname}"></DataGridTextColumn>
-                <DataGridTextColumn Header="Opis leka" Width="400" Binding="{Binding GetDoctorNameSurname}"></DataGridTextColumn>
+                <DataGridTextColumn Header="Id leka" Width="*" Binding="{Binding Id}"></DataGridTextColumn>
+                <DataGridTextColumn Header="Lek" Width="*" Binding="{Binding Name}"></DataGridTextColumn>
+                <DataGridTextColumn Header="Svrha leka" Width="400" Binding="{Binding Purpose}"></DataGridTextColumn>
             </DataGrid.Columns>
         </DataGrid>
-        <Button Content="Pregled&#xD;&#xA;leka" HorizontalAlignment="Left" Margin="659,10,0,0" VerticalAlignment="Top" Width="125" Height="51" FontSize="16"/>
+        <Button x:Name="previewMedicineButton" Content="Pregled&#xD;&#xA;leka" HorizontalAlignment="Left" Margin="659,10,0,0" VerticalAlignment="Top" Width="125" Height="51" FontSize="16" Click="previewMedicineButton_Click"/>
 
     </Grid>
 </Window>

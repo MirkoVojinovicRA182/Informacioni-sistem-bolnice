@@ -4,6 +4,7 @@
  * Purpose: Definition of the Class Model.Room
  ***********************************************************************/
 
+using HospitalInformationSystem.Model;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -27,6 +28,7 @@ namespace Model
             this.Floor = floor;
             this.Type = type;
             Equipment = new Hashtable();
+            RoomRenovationState = new RoomRenovationState(DateTime.Now, DateTime.Now);
         }
 
         ~Room()
@@ -85,6 +87,10 @@ namespace Model
         }
 
         public int IsInRenovationState
+        {
+            get; set;
+        }
+        public RoomRenovationState RoomRenovationState
         {
             get; set;
         }

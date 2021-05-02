@@ -1,4 +1,6 @@
-﻿using Model;
+﻿using HospitalInformationSystem.Controller;
+using HospitalInformationSystem.Model;
+using Model;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -42,6 +44,7 @@ namespace HospitalInformationSystem.Windows.ManagerGUI
 
         private void confirmButton_Click(object sender, RoutedEventArgs e)
         {
+            RoomController.getInstance().SetRenovationStateToRoom(selectedRoom, new RoomRenovationState(MakeStartDate(), MakeEndDate()));
             CreateThreadForRenovationSimulation(MakeStartDate(), MakeEndDate());
             GiveFeedbackToManager();
         }
@@ -71,10 +74,7 @@ namespace HospitalInformationSystem.Windows.ManagerGUI
             {
                 while (true)
                 {
-                    if (DateTime.Now >= startDate && DateTime.Now <= endDate)
-                        selectedRoom.IsInRenovationState = 1;
-                    else
-                        selectedRoom.IsInRenovationState = 0;
+                    RoomController.getInstance().CheckRenovationTerm(selectedRoom);
                 }
             });
             thread.Start();

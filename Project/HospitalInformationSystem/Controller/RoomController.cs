@@ -1,4 +1,5 @@
-﻿using HospitalInformationSystem.Service;
+﻿using HospitalInformationSystem.Model;
+using HospitalInformationSystem.Service;
 using Model;
 using System;
 using System.Collections;
@@ -70,6 +71,14 @@ namespace HospitalInformationSystem.Controller
         public bool findRoom(int id)
         {
             return roomService.findRoom(id);
+        }
+        public void SetRenovationStateToRoom(Room room, RoomRenovationState roomRenovationState)
+        {
+            roomService.SetRenovationStateToRoom(room, roomRenovationState);
+        }
+        public void CheckRenovationTerm(Room roomForRenovation)
+        {
+            roomService.CheckRenovationTerm(roomForRenovation);
         }
     }
 }

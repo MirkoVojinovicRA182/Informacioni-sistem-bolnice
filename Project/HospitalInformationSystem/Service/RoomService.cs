@@ -11,6 +11,8 @@ using System.Collections.Generic;
 using System.Collections;
 using HospitalInformationSystem.Controller;
 using HospitalInformationSystem.Repository;
+using HospitalInformationSystem.Model;
+using System;
 
 namespace HospitalInformationSystem.Service
 {
@@ -125,6 +127,17 @@ namespace HospitalInformationSystem.Service
             return false;
         }
 
-        //public bool checkID(int id){
+        public void SetRenovationStateToRoom(Room room, RoomRenovationState roomRenovationState)
+        {
+            room.RoomRenovationState = roomRenovationState;
+        }
+        public void CheckRenovationTerm(Room roomForRenovation)
+        {
+            if (DateTime.Now >= roomForRenovation.RoomRenovationState.StartDate && DateTime.Now <= roomForRenovation.RoomRenovationState.EndDate)
+                roomForRenovation.RoomRenovationState.ActivityStatus = true;
+            else
+                roomForRenovation.RoomRenovationState.ActivityStatus = false;
+
+        }
     }
 }

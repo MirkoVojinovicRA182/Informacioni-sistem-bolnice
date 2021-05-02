@@ -22,9 +22,9 @@ namespace HospitalInformationSystem.Windows.ManagerGUI
         }
         private ManagerMainWindow()
         {
-            EquipmentController.getInstance().loadFromFile();
-            RoomController.getInstance().loadFromFile();
-            MedicineController.GetInstance().LoadFromFile();
+            //EquipmentController.getInstance().loadFromFile();
+            //RoomController.getInstance().loadFromFile();
+            //MedicineController.GetInstance().LoadFromFile();
             InitializeComponent();
             roomsUserControl.refreshTable();
             equipmentTable.refreshTable();
@@ -81,7 +81,7 @@ namespace HospitalInformationSystem.Windows.ManagerGUI
             Room selectedRoom = (Room)roomsUserControl.allRoomsTable.SelectedItem;
             if (roomsUserControl.allRoomsTable.SelectedItem != null)
             {
-                if (selectedRoom.IsInRenovationState == 1)
+                if (selectedRoom.RoomRenovationState.ActivityStatus)
                     RenovationMessageWindow.GetInstance().ShowDialog();
                 else
                     RoomRenovationWindow.GetInstance(selectedRoom).ShowDialog();

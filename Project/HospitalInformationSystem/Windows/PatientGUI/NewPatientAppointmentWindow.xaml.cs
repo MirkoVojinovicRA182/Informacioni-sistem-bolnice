@@ -68,6 +68,9 @@ namespace HospitalInformationSystem.Windows.PatientGUI
 
             AppointmentController.getInstance().addAppointment(app);
 
+            app.doctor.AddAppointment(app);
+            app.patient.AddAppointment(app);
+
         }
 
         private void CloseButton_Click(object sender, RoutedEventArgs e)

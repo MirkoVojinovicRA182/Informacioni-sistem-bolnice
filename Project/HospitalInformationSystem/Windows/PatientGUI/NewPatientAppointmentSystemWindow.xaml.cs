@@ -69,6 +69,9 @@ namespace HospitalInformationSystem.Windows.PatientGUI
 
             AppointmentController.getInstance().addAppointment(app);
 
+            app.doctor.AddAppointment(app);
+            app.patient.AddAppointment(app);
+
         }
 
         private List<Appointment> RecommendAppointments()

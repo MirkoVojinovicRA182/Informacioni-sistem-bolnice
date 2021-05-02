@@ -1,17 +1,6 @@
 ﻿using Model;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
 
 namespace HospitalInformationSystem.Windows.DoctorGUI
 {
@@ -20,13 +9,14 @@ namespace HospitalInformationSystem.Windows.DoctorGUI
     /// </summary>
     public partial class DoctorShowAppointmentInformationWindow : Window
     {
-
+        Doctor doctor;
         Appointment appointment;
 
-        public DoctorShowAppointmentInformationWindow(Appointment appointment)
+        public DoctorShowAppointmentInformationWindow(Appointment appointment, Doctor doctor)
         {
             InitializeComponent();
             this.appointment = appointment;
+            this.doctor = doctor;
             initTextBoxes();
         }
 
@@ -47,7 +37,7 @@ namespace HospitalInformationSystem.Windows.DoctorGUI
         private void Button_Click(object sender, RoutedEventArgs e)
         { 
 
-            ShowPatientInformationWindow showPatientInformationWindow = new ShowPatientInformationWindow(appointment.patient);
+            ShowPatientInformationWindow showPatientInformationWindow = new ShowPatientInformationWindow(appointment.patient, doctor);
 
             showPatientInformationWindow.ShowDialog();
 

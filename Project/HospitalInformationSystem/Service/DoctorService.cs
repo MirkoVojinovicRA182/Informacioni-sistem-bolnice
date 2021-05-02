@@ -7,9 +7,11 @@
 using Model;
 using HospitalInformationSystem.Repository;
 using System.Collections.Generic;
+using System.IO;
 
 namespace HospitalInformationSystem.Service
 {
+
     public class DoctorService
     {
 
@@ -20,6 +22,7 @@ namespace HospitalInformationSystem.Service
         {
             // TODO: implement
             doctors = new List<Doctor>();
+            doctorFile = new DoctorRepository();
         }
 
         ~DoctorService()

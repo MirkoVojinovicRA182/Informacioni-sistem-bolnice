@@ -27,18 +27,9 @@
             </ComboBox.ItemTemplate>
         </ComboBox>
         <Label Content="Lekar:" HorizontalAlignment="Left" Height="28" Margin="39,74,0,0" VerticalAlignment="Top" Width="99" FontSize="14"/>
-        <ComboBox x:Name="doctorComboBox" HorizontalAlignment="Left" VerticalAlignment="Top" Width="139" Margin="176,74,0,0">
-            <ComboBox.ItemTemplate>
-                <DataTemplate>
-                    <TextBlock>
-                 <Run Text="{Binding Name}" />
-                 <Run Text="{Binding Surname}" />
-                    </TextBlock>
-                </DataTemplate>
-            </ComboBox.ItemTemplate>
-        </ComboBox>
         <Label Content="Vrsta termina:" HorizontalAlignment="Left" Height="35" Margin="39,232,0,0" VerticalAlignment="Top" Width="115" FontSize="14"/>
         <ComboBox x:Name="appointmentComboBox" HorizontalAlignment="Left" VerticalAlignment="Top" Width="139" Margin="176,232,0,0" SelectionChanged="appointmentComboBox_SelectionChanged"/>
+        <TextBox x:Name="doctorTextBox" HorizontalAlignment="Left" Height="28" Margin="176,74,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="139" FontSize="14" IsEnabled="False"/>
 
     </Grid>
 </Window>

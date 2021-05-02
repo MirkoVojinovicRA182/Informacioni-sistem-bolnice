@@ -109,8 +109,7 @@ namespace HospitalInformationSystem.Service
 
         public void loadFromFile()
         {
-            if (File.Exists("DoctorAppointments.dat"))
-                appointmentsFile.loadFromFile();
+            appointmentsFile.loadFromFile();
         }
 
     }

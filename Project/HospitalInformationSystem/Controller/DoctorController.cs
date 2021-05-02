@@ -1,7 +1,6 @@
 ﻿using Model;
 using HospitalInformationSystem.Service;
 using System.Collections.Generic;
-using System.IO;
 
 namespace HospitalInformationSystem.Controller
 {
@@ -56,8 +55,7 @@ namespace HospitalInformationSystem.Controller
 
         public void loadFromFile()
         {
-            if (File.Exists("Doctors.dat"))
-                doctorService.loadFromFile();
+            doctorService.loadFromFile();
         }
     }
 }

@@ -1,19 +1,8 @@
 ﻿using HospitalInformationSystem.Windows.ManagerGUI;
 using HospitalInformationSystem.Windows.DoctorGUI;
 using Model;
-using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
 using HospitalInformationSystem.Repository;
 using HospitalInformationSystem.Controller;
 using HospitalInformationSystem.Windows.PatientGUI;
@@ -28,18 +17,21 @@ namespace HospitalInformationSystem.Windows
     {
         private static Person person;
         PatientsRepository savePatients = new PatientsRepository();
-        AppointmentsRepository doctorAppFile = new AppointmentsRepository();
+ 
         public MainWindow()
         {
             InitializeComponent();
             savePatients.loadFromFile();
-            //save.loadFromFile();
-            doctorAppFile.loadFromFile();
+            AppointmentController.getInstance().loadFromFile();
+            DoctorController.getInstance().loadFromFile();
+            
 
-            var doctor = new Doctor("Marko", "Markovic", Specialization.Family_Physician, new Room(1, "Markova kancelarija", 1, TypeOfRoom.ExaminationRoom));
-            DoctorController.getInstance().addDoctor(new Doctor("Marko", "Markovic", Specialization.Family_Physician, new Room(1, "Markova prostorija", 1, TypeOfRoom.ExaminationRoom)));
-            DoctorController.getInstance().addDoctor(new Doctor("Jovan", "Jovanovic", Specialization.Family_Physician, new Room(2, "Jovanova prostorija", 2, TypeOfRoom.ExaminationRoom)));
-            DoctorController.getInstance().addDoctor(new Doctor("Stevan", "Stojanovic", Specialization.Family_Physician, new Room(3, "Stevanova prostorija", 3, TypeOfRoom.ExaminationRoom)));
+            /*var doctor = new Doctor("Marko", "Markovic", Specialization.Family_Physician, new Room(1, "Markova kancelarija", 1, TypeOfRoom.ExaminationRoom));
+            var doctor2 = new Doctor("Jovan", "Jovanovic", Specialization.Family_Physician, new Room(2, "Jovanova prostorija", 2, TypeOfRoom.ExaminationRoom));
+            var doctor3 = new Doctor("Stevan", "Stojanovic", Specialization.Family_Physician, new Room(3, "Stevanova prostorija", 3, TypeOfRoom.ExaminationRoom));
+            DoctorController.getInstance().addDoctor(doctor);
+            DoctorController.getInstance().addDoctor(doctor2);
+            DoctorController.getInstance().addDoctor(doctor3);*/
 
             Patient first = new Patient("Pera", "Pacijent", "1");
             Patient second = new Patient("Jova", "Pacijent", "2");
@@ -68,7 +60,9 @@ namespace HospitalInformationSystem.Windows
             //manager.Id = "52";
 
             AccountDataBase.getInstance().AddAccount(new Account("perapacijent1@yahoo.com", "pass", first));
-            AccountDataBase.getInstance().AddAccount(new Account("markomarkovic@yahoo.com", "pass", doctor));
+            AccountDataBase.getInstance().AddAccount(new Account("markomarkovic@yahoo.com", "pass", DoctorController.getInstance().getDoctors()[0]));
+            AccountDataBase.getInstance().AddAccount(new Account("jovanjovanovic@yahoo.com", "pass", DoctorController.getInstance().getDoctors()[1]));
+            AccountDataBase.getInstance().AddAccount(new Account("stevanstojanovic@yahoo.com", "pass", DoctorController.getInstance().getDoctors()[2]));
             AccountDataBase.getInstance().AddAccount(new Account("petarpetrovic@yahoo.com", "pass", secretary));
             AccountDataBase.getInstance().AddAccount(new Account("m", "pass", manager));
 
@@ -103,7 +97,8 @@ namespace HospitalInformationSystem.Windows
                     else if (accounts[i].Person.GetType() == DoctorController.getInstance().getDoctors().First().GetType())
                     {
                         loggedIn = true;
-                        DoctorAppointmentsManagementWindow window = new DoctorAppointmentsManagementWindow();
+                        person = accounts[i].Person;
+                        DoctorAppointmentsManagementWindow window = DoctorAppointmentsManagementWindow.GetInstance((Doctor)person);
                         window.Show();
                         //this.Hide();
                     }
@@ -131,7 +126,6 @@ namespace HospitalInformationSystem.Windows
 
         private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
         {
-            doctorAppFile.saveInFile();
             savePatients.saveInFile();
         }
     }

@@ -10,19 +10,29 @@ namespace HospitalInformationSystem.Windows.DoctorGUI
     /// </summary>
     public partial class DoctorAppointmentsManagementWindow : Window
     {
+        Doctor doctor;
         Appointment appointment;
         private ObservableCollection<Appointment> appointmentList;
-        public DoctorAppointmentsManagementWindow()
+
+        private static DoctorAppointmentsManagementWindow instance = null;
+
+        public static DoctorAppointmentsManagementWindow GetInstance(Doctor doctor)
+        {
+            if (instance == null)
+                instance = new DoctorAppointmentsManagementWindow(doctor);
+            return instance;
+        }
+        private DoctorAppointmentsManagementWindow(Doctor doctor)
         {
             InitializeComponent();
-            //appointmentsTable.DataContext = AppointmentDataBase.getInstance().GetAppointment();
+            this.doctor = doctor;
+            appointmentsTable.DataContext = doctor.GetAppointment();
             refreshTable();
         }
 
         private void addButton_Click(object sender, RoutedEventArgs e)
         {
-            Window2 doctorAddNewAppointmentWindow = new Window2();
-
+            Window2 doctorAddNewAppointmentWindow = new Window2(doctor);
 
             doctorAddNewAppointmentWindow.ShowDialog();
             
@@ -55,7 +65,7 @@ namespace HospitalInformationSystem.Windows.DoctorGUI
         }
         private void refreshTable()
         {
-            appointmentList = new ObservableCollection<Appointment>(AppointmentController.getInstance().getAppointment());
+            appointmentList = new ObservableCollection<Appointment>(doctor.GetAppointment());
             appointmentsTable.ItemsSource = null;
             appointmentsTable.ItemsSource = appointmentList;
         }
@@ -64,7 +74,7 @@ namespace HospitalInformationSystem.Windows.DoctorGUI
         {
             appointment = (Appointment)appointmentsTable.SelectedItem;
 
-            DoctorShowAppointmentInformationWindow doctorShowAppointmentInformationWindow = new DoctorShowAppointmentInformationWindow(appointment);
+            DoctorShowAppointmentInformationWindow doctorShowAppointmentInformationWindow = new DoctorShowAppointmentInformationWindow(appointment, doctor);
 
             doctorShowAppointmentInformationWindow.ShowDialog();
 
@@ -73,7 +83,9 @@ namespace HospitalInformationSystem.Windows.DoctorGUI
 
         private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
         {
-         
+            DoctorController.getInstance().saveInFlie();
+            AppointmentController.getInstance().saveInFile();
+            instance = null;
         }
     }
 }

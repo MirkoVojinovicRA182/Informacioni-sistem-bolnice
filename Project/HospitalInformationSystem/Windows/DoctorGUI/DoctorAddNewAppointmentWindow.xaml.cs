@@ -1,20 +1,7 @@
 ﻿using Model;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
-
-
-using HospitalInformationSystem.Service;
 using HospitalInformationSystem.Controller;
 
 namespace HospitalInformationSystem.Windows.DoctorGUI
@@ -24,20 +11,18 @@ namespace HospitalInformationSystem.Windows.DoctorGUI
     /// </summary>
     public partial class Window2 : Window
     {
-
+        Doctor doctor;
         private Room room;
         private TypeOfAppointment typeOfAppointment;
 
-        public Window2()
+        public Window2(Doctor doctor)
         {
             InitializeComponent();
-
-            //initPatients();
-            initTypeOfAppointment();
-            initDoctors();
-
+            this.doctor = doctor;
+            doctorTextBox.Text = doctor.Name + " " + doctor.Surname;
             patientComboBox.ItemsSource = PatientController.getInstance().getPatient();
             roomsListBox.DataContext = RoomController.getInstance().getRooms();
+            initTypeOfAppointment();
 
         }
 
@@ -64,15 +49,19 @@ namespace HospitalInformationSystem.Windows.DoctorGUI
             DateTime date = DateTime.ParseExact(dateTextBox.Text + " " + timeTextBox.Text, "dd.MM.yyyy. HH:mm", System.Globalization.CultureInfo.InvariantCulture);
            
 
-            Appointment app = new Appointment(date, typeOfAppointment, room, (Patient)patientComboBox.SelectedItem, (Doctor)doctorComboBox.SelectedItem);
-            AppointmentController.getInstance().addAppointment(app);
+            Appointment appointment = new Appointment(date, typeOfAppointment, room, (Patient)patientComboBox.SelectedItem, doctor);
+            AppointmentController.getInstance().addAppointment(appointment);
+            appointment.GetDoctor().AddAppointment(appointment);
+            appointment.GetPatient().AddAppointment(appointment);
+            
       
         }
 
 
         private void initTypeOfAppointment()
         {
-            appointmentComboBox.Items.Add("Operacija");
+            if(doctor.Specialization != Specialization.Family_Physician)
+                appointmentComboBox.Items.Add("Operacija");
             appointmentComboBox.Items.Add("Pregled");
         }
 
@@ -90,18 +79,10 @@ namespace HospitalInformationSystem.Windows.DoctorGUI
             {
                 roomLabel.Visibility = System.Windows.Visibility.Hidden;
                 roomsListBox.Visibility = System.Windows.Visibility.Hidden;
-
-                Doctor doctor = (Doctor)doctorComboBox.SelectedItem;
-
                 room = doctor.room;
                 typeOfAppointment = TypeOfAppointment.Pregled;
             }
 
-        }
-
-        private void initDoctors()
-        {
-            doctorComboBox.ItemsSource = DoctorController.getInstance().getDoctors();
         }
 
         private Boolean checkData()
@@ -122,12 +103,6 @@ namespace HospitalInformationSystem.Windows.DoctorGUI
                 return false;
             }
 
-            if (doctorComboBox.SelectedIndex == -1)
-            {
-                MessageBox.Show("Morate odabrati lekara!", "Lekara", MessageBoxButton.OK, MessageBoxImage.Error);
-                return false;
-            }
-
             if (appointmentComboBox.SelectedIndex == -1)
             {
                 MessageBox.Show("Morate odabrati vrstu termina!", "Termin", MessageBoxButton.OK, MessageBoxImage.Error);
@@ -140,7 +115,27 @@ namespace HospitalInformationSystem.Windows.DoctorGUI
                 return false;
             }
 
-                return true;
+            DateTime date1 = DateTime.ParseExact(dateTextBox.Text + " " + timeTextBox.Text, "dd.MM.yyyy. HH:mm", System.Globalization.CultureInfo.InvariantCulture);
+
+            foreach (Appointment appointment in doctor.GetAppointment())
+            {
+                if (date1.Ticks > appointment.StartTime.AddMinutes(-30).Ticks && date1.Ticks < appointment.StartTime.AddMinutes(30).Ticks)
+                {
+                    MessageBox.Show("Imate vec zakazan termin u odabranom vremenu!", "Termin", MessageBoxButton.OK, MessageBoxImage.Error);
+                    return false;
+                }
+            }
+            Patient patient = (Patient)patientComboBox.SelectedItem;
+            foreach (Appointment appointment in patient.GetAppointment())
+            {
+                if (date1.Ticks > appointment.StartTime.AddMinutes(-30).Ticks && date1.Ticks < appointment.StartTime.AddMinutes(30).Ticks)
+                {
+                    MessageBox.Show("Pacijent vec ima zakazan termin u odabranom vremenu!", "Termin", MessageBoxButton.OK, MessageBoxImage.Error);
+                    return false;
+                }
+            }
+
+            return true;
         }
     }
 

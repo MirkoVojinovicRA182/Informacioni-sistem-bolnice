@@ -22,8 +22,7 @@
         <TextBox x:Name="nameTextBox" Grid.Column="3" HorizontalAlignment="Left" Height="23" Margin="0.2,78,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="180" FontSize="15" Grid.ColumnSpan="2"/>
         <TextBox x:Name="quanitityTextBox" Grid.Column="3" HorizontalAlignment="Left" Height="23" Margin="0.2,191,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="44" FontSize="15" Grid.ColumnSpan="2"/>
         <TextBlock Grid.Column="3" HorizontalAlignment="Left" Margin="0.2,264,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="193" Height="79" FontSize="15" Grid.ColumnSpan="2"/>
-        <Button x:Name="addButton" Grid.ColumnSpan="2" Content="DODAJ" Grid.Column="2" HorizontalAlignment="Left" Margin="35.4,377,0,0" VerticalAlignment="Top" Width="100" Height="30" FontSize="15" Click="addButton_Click"/>
-        <Button x:Name="closeButton" Content="IZAĐI" Grid.Column="4" HorizontalAlignment="Left" Margin="0.2,377,0,0" VerticalAlignment="Top" Width="100" Height="30" FontSize="15" Click="closeButton_Click"/>
+        <Button x:Name="addButton" Grid.ColumnSpan="2" Content="DODAJ" Grid.Column="3" HorizontalAlignment="Left" Margin="0.2,365,0,0" VerticalAlignment="Top" Width="100" Height="30" FontSize="15" Click="addButton_Click"/>
         <TextBox x:Name="decriptionTextBox" Grid.Column="3" HorizontalAlignment="Left" Height="79" Margin="0.2,245,0,0" VerticalAlignment="Top" Width="180" Grid.ColumnSpan="2">
         </TextBox>
         <Label Content="Tip:" Grid.Column="2" HorizontalAlignment="Left" Margin="0.4,128,0,0" VerticalAlignment="Top" FontSize="15"/>

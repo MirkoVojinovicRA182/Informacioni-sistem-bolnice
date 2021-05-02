@@ -40,12 +40,9 @@ namespace HospitalInformationSystem.Windows.ManagerGUI
                 nameTextBox.Clear();
                 floorTextBox.Clear();
                 typeOfRoomComboBox.SelectedIndex = 0;
-
-
                 changeQuantityInMagacineOfDynamicEquipment();
-
                 ManagerMainWindow.getInstance().roomsUserControl.refreshTable();
-
+                this.Close();
                 MessageBox.Show("Uneta je nova prostorija u sistem.", "Nova prostorija", MessageBoxButton.OK, MessageBoxImage.Information);
             }
         }
@@ -87,7 +84,6 @@ namespace HospitalInformationSystem.Windows.ManagerGUI
                 RoomController.getInstance().createRoom(floor, id, name, type, equipment);
                 return true;
             }
-
         }
 
         private void loadComboBox()
@@ -123,12 +119,6 @@ namespace HospitalInformationSystem.Windows.ManagerGUI
             return type;
 
         }
-        private void closeButton_Click(object sender, RoutedEventArgs e)
-        {
-            this.Close();
-            instance = null;
-        }
-
         private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
         {
             instance = null;

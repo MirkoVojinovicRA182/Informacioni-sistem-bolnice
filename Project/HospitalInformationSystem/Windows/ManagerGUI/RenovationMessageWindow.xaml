@@ -17,16 +17,6 @@
                 </TransformGroup>
             </TextBlock.RenderTransform>
         </TextBlock>
-        <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" Text="(U fazi renoviranja nije moguće izmeniti ili obrisati prostoriju)" VerticalAlignment="Top" Margin="7,156,0,0" Width="385" FontSize="15" FontFamily="Yu Gothic UI Light" FontWeight="Bold" RenderTransformOrigin="0.5,0.5">
-            <TextBlock.RenderTransform>
-                <TransformGroup>
-                    <ScaleTransform/>
-                    <SkewTransform AngleY="-0.644"/>
-                    <RotateTransform Angle="4.782"/>
-                    <TranslateTransform X="0.345" Y="-1.926"/>
-                </TransformGroup>
-            </TextBlock.RenderTransform>
-        </TextBlock>
 
     </Grid>
 </Window>

@@ -90,11 +90,6 @@ namespace HospitalInformationSystem.Windows.ManagerGUI
         {
             instance = null;
         }
-        private void cancelButton_Click(object sender, RoutedEventArgs e)
-        {
-            this.Close();
-        }
-
         private void addNewIngredientButton_Click(object sender, RoutedEventArgs e)
         {
             NewIngredientWindow.GetInstance(medicineIngredientList).ShowDialog();

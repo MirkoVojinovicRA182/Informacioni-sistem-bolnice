@@ -98,14 +98,6 @@ namespace HospitalInformationSystem.Windows.ManagerGUI
             else
                 typeComboBox.SelectedIndex = 1;
         }
-
-        private void closeButton_Click(object sender, RoutedEventArgs e)
-        {
-            instance = null;
-
-            this.Close();
-        }
-
         private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
         {
             instance = null;

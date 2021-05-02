@@ -25,6 +25,8 @@ namespace HospitalInformationSystem.Windows.ManagerGUI
     {
         private Room selectedRoom;
         private static RoomRenovationWindow instance = null;
+        private DateTime startDate;
+        private DateTime endDate;
         public static RoomRenovationWindow GetInstance(Room selectedRoom)
         {
             if (instance == null)
@@ -44,9 +46,21 @@ namespace HospitalInformationSystem.Windows.ManagerGUI
 
         private void confirmButton_Click(object sender, RoutedEventArgs e)
         {
-            RoomController.getInstance().SetRenovationStateToRoom(selectedRoom, new RoomRenovationState(MakeStartDate(), MakeEndDate()));
-            CreateThreadForRenovationSimulation(MakeStartDate(), MakeEndDate());
-            GiveFeedbackToManager();
+            MakeTerm();
+            if (CheckTheCorrectnessOfTheTerm())
+            {
+                RoomController.getInstance().SetRenovationStateToRoom(selectedRoom, new RoomRenovationState(startDate, endDate));
+                CreateThreadForRenovationSimulation(startDate, endDate);
+                GiveFeedbackToManager();
+            }
+            else
+                MessageBox.Show("Nije moguće zakazati renoviranje u izabranom terminu jer je tada zauzeta.", "Greška", MessageBoxButton.OK, MessageBoxImage.Hand);
+
+        }
+        private void MakeTerm()
+        {
+            startDate = MakeStartDate();
+            endDate = MakeEndDate();
         }
 
         private DateTime MakeStartDate()
@@ -100,6 +114,19 @@ namespace HospitalInformationSystem.Windows.ManagerGUI
         private void GiveFeedbackToManager()
         {
             this.Close();
+        }
+        private bool CheckTheCorrectnessOfTheTerm()
+        {
+            foreach (Appointment app in AppointmentController.getInstance().getAppointment())
+            {
+                if (Room.Equals(app.room, selectedRoom))
+                {
+                    if (app.StartTime >= startDate && app.StartTime <= endDate)
+                        return false;
+                }
+            }
+
+            return true;
         }
 
     }

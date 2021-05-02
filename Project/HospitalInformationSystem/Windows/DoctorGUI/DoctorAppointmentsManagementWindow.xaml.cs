@@ -1,4 +1,5 @@
 ﻿using HospitalInformationSystem.Controller;
+using HospitalInformationSystem.Repository;
 using Model;
 using System.Collections.ObjectModel;
 using System.Windows;
@@ -12,10 +13,12 @@ namespace HospitalInformationSystem.Windows.DoctorGUI
     {
         Appointment appointment;
         private ObservableCollection<Appointment> appointmentList;
+        AppointmentsRepository doctorAppFile = new AppointmentsRepository();
         public DoctorAppointmentsManagementWindow()
         {
             InitializeComponent();
             //appointmentsTable.DataContext = AppointmentDataBase.getInstance().GetAppointment();
+            doctorAppFile.loadFromFile();
             refreshTable();
         }
 
@@ -73,7 +76,7 @@ namespace HospitalInformationSystem.Windows.DoctorGUI
 
         private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
         {
-         
+            doctorAppFile.saveInFile();
         }
     }
 }

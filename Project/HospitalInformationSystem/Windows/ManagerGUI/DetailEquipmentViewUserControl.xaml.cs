@@ -35,6 +35,8 @@ namespace HospitalInformationSystem.Windows.ManagerGUI
 
         public void LoadAllUserControlComponents()
         {
+            stateTextBox.Clear();
+            nameTextBox.Clear();
             LoadComboBoxes();
             LoadList();
             RefreshTable();

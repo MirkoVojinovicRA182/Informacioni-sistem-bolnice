@@ -184,7 +184,7 @@ namespace HospitalInformationSystem.Windows.ManagerGUI
             changeQuantityInMagacineOfEquipment();
             //promena usled eventualnog brisanja opreme
             changeQuantityOfEquipment();
-            ManagerMainWindow.getInstance().roomsUserControl.refreshTable();
+            //ManagerMainWindow.getInstance().roomsUserControl.refreshTable();
             MessageBox.Show("Informacije o opremi prostorije su sada izmenjene.", "Izmena informacija", MessageBoxButton.OK, MessageBoxImage.Information);
             equipmentApplyButton.IsEnabled = false;
         }
@@ -255,7 +255,6 @@ namespace HospitalInformationSystem.Windows.ManagerGUI
             foreach (DictionaryEntry de in selectedRoom.Equipment)
                 equipment.Add(de.Key, de.Value);
 
-            //equipment = selectedRoom.Equipment;
             refreshDynamicEquipmentListBox();
             refreshStaticEquipmentListBox();
         }

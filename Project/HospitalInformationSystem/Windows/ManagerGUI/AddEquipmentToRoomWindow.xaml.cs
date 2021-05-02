@@ -114,16 +114,7 @@ namespace HospitalInformationSystem.Windows.ManagerGUI
             }
             else
                 MessageBox.Show("Niste odabrali opremu!", "Upozorenje", MessageBoxButton.OK, MessageBoxImage.Warning);
-        }
-
-        public Equipment getEquipment()
-        {
-            return this.selectedEquipment;
-        }
-
-        public int getQuantity()
-        {
-            return this.quantity;
+            instance = null;
         }
     }
 }

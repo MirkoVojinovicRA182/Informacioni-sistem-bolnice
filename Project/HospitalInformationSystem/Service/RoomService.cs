@@ -40,10 +40,8 @@ namespace HospitalInformationSystem.Service
         {
             // TODO: implement
             Room newRoom = new Room(id, name, floor, type);
-            newRoom.Equipment = equipment;
-
+            setRoomEquipment(newRoom, equipment);
             roomList.Add(newRoom);
-
         }
 
         public void deleteRoom(Room room)
@@ -71,6 +69,8 @@ namespace HospitalInformationSystem.Service
         }
         public void setRoomEquipment(Room room, Hashtable eq)
         {
+            if (room.Equipment == null)
+                room.Equipment = new Hashtable();
             room.Equipment.Clear();
             foreach (DictionaryEntry de in eq)
                 room.Equipment.Add(de.Key, de.Value);

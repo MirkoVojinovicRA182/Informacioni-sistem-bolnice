@@ -52,12 +52,6 @@ namespace HospitalInformationSystem.Windows.ManagerGUI
             replacementMedicineComboBox.ItemsSource = replacementMedicinesList;
 
         }
-
-        private void cancelButton_Click(object sender, RoutedEventArgs e)
-        {
-            this.Close();
-        }
-
         private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
         {
             instance = null;
@@ -84,6 +78,7 @@ namespace HospitalInformationSystem.Windows.ManagerGUI
                 MedicineController.GetInstance().AddMedicine(new Medicine(int.Parse(idTextBox.Text), nameTextBox.Text, typeOfMedicine, purposeTextBoxt.Text, useTextBox.Text, replacementMedicine, medicineIngredientList));
                 ManagerMainWindow.getInstance().medicineTableUserControl.RefreshTable();
                 this.Close();
+                MessageBox.Show("Unet je novi lek u sistem.", "Novi lek", MessageBoxButton.OK, MessageBoxImage.Information);
             }
         }
 

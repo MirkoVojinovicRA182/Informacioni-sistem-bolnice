@@ -35,8 +35,7 @@
                 </DataTemplate>
             </ListBox.ItemTemplate>
         </ListBox>
-        <Button x:Name="confirmButton" Content="Potvrdi" HorizontalAlignment="Left" VerticalAlignment="Top" Width="100" Height="30" Margin="88,496,0,0" FontSize="15" Click="confirmButton_Click"/>
-        <Button x:Name="cancelButton" Content="Odustani" HorizontalAlignment="Left" VerticalAlignment="Top" Width="100" Height="30" Margin="220,496,0,0" FontSize="15" Click="cancelButton_Click"/>
+        <Button x:Name="confirmButton" Content="Potvrdi" HorizontalAlignment="Left" VerticalAlignment="Top" Width="100" Height="30" Margin="152,500,0,0" FontSize="15" Click="confirmButton_Click"/>
         <Button x:Name="addNewIngredientButton" Content="+" HorizontalAlignment="Left" VerticalAlignment="Top" Width="30" Height="30" Margin="300,381,0,0" FontSize="15" Click="addNewIngredientButton_Click"/>
         <Button x:Name="deleteIngredientButton" Content="-" HorizontalAlignment="Left" VerticalAlignment="Top" Width="30" Height="30" Margin="300,427,0,0" FontSize="15" Click="deleteIngredientButton_Click"/>
         <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" Text="trenutni zamenski: " VerticalAlignment="Top" Margin="152,331,0,0" FontStyle="Italic" Foreground="Black"/>

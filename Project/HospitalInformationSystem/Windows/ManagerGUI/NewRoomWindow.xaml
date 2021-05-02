@@ -18,12 +18,11 @@
         <Label Content="Naziv:" HorizontalAlignment="Left" Margin="31.4,82,0,0" VerticalAlignment="Top" Grid.Column="1" FontSize="15" Height="30" Width="49"/>
         <Label Content="Tip:" HorizontalAlignment="Left" Margin="31.4,130,0,0" VerticalAlignment="Top" Grid.Column="1" FontSize="15" Height="30" Width="33"/>
         <Label Content="Sprat:" HorizontalAlignment="Left" Margin="31.4,178,0,0" VerticalAlignment="Top" Grid.Column="1" FontSize="15" Height="30" Width="48"/>
-        <Button x:Name="confirmButton" Content="DODAJ" HorizontalAlignment="Left" Margin="110.6,270,0,0" VerticalAlignment="Top" Width="100" Height="30" FontSize="15" Click="confirmButton_Click" Grid.Column="2"/>
+        <Button x:Name="confirmButton" Content="DODAJ" HorizontalAlignment="Left" Margin="176.6,262,0,0" VerticalAlignment="Top" Width="100" Height="30" FontSize="15" Click="confirmButton_Click" Grid.Column="2"/>
         <ComboBox x:Name="typeOfRoomComboBox" HorizontalAlignment="Left" Margin="40.6,130,0,0" VerticalAlignment="Top" Width="170" Grid.Column="2" Height="27" FontSize="15"/>
         <TextBox x:Name="idTextBox" HorizontalAlignment="Left" Height="23" Margin="40.6,30,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="88" Grid.Column="2" FontSize="15"/>
         <TextBox x:Name="nameTextBox" HorizontalAlignment="Left" Height="23" Margin="40.6,82,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="170" Grid.Column="2" FontSize="15"/>
         <TextBox x:Name="floorTextBox" HorizontalAlignment="Left" Height="23" Margin="40.6,183,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="45" Grid.Column="2" FontSize="15"/>
-        <Button x:Name="closeButton" Content="IZAĐI" HorizontalAlignment="Left" Margin="240.6,270,0,0" VerticalAlignment="Top" Width="100" Height="30" FontSize="16" Click="closeButton_Click" Grid.ColumnSpan="3" Grid.Column="2"/>
         <ListBox x:Name="dynamicEquipmentListBox" Grid.ColumnSpan="3" HorizontalAlignment="Left" Height="70" VerticalAlignment="Top" Width="150" Grid.Column="2" Margin="240.6,136,0,0">
             <ListBox.ItemTemplate>
                 <DataTemplate>

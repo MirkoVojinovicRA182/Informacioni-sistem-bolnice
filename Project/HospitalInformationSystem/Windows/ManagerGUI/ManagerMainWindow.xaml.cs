@@ -78,10 +78,17 @@ namespace HospitalInformationSystem.Windows.ManagerGUI
 
         private void renovationMenuItem_Click(object sender, RoutedEventArgs e)
         {
+            Room selectedRoom = (Room)roomsUserControl.allRoomsTable.SelectedItem;
             if (roomsUserControl.allRoomsTable.SelectedItem != null)
-                RoomRenovationWindow.GetInstance((Room)roomsUserControl.allRoomsTable.SelectedItem).ShowDialog();
+            {
+                if (selectedRoom.IsInRenovationState == 1)
+                    RenovationMessageWindow.GetInstance().ShowDialog();
+                else
+                    RoomRenovationWindow.GetInstance(selectedRoom).ShowDialog();
+            }
             else
                 MessageBox.Show("Izaberite prostoriju iz tabele!", "Upozorenje", MessageBoxButton.OK, MessageBoxImage.Warning);
+
         }
 
         private void newEquipmentMenuItem_Click(object sender, RoutedEventArgs e)

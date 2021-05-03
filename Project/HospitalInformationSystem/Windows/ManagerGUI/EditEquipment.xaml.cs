@@ -76,11 +76,14 @@ namespace HospitalInformationSystem.Windows.ManagerGUI
 
         private void fillControls()
         {
+            Room magacine = RoomController.getInstance().GetMagacine();
             idTextBox.Text = selectedEquipment.Id;
             nameTextBox.Text = selectedEquipment.Name;
+            quanitityTextBox.Text = magacine.Equipment[selectedEquipment.Id].ToString();
             //quanitityTextBox.Text = selectedEquipment.QuantityInMagacine.ToString();
             descriptionTextBox.Text = selectedEquipment.Description;
             loadTypeComboBox();
+            oldQuantity = (int)magacine.Equipment[selectedEquipment.Id];
             //oldQuantity = selectedEquipment.QuantityInMagacine;
         }
 

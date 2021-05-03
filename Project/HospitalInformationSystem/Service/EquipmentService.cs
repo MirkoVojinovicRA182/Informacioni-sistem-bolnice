@@ -85,6 +85,7 @@ namespace HospitalInformationSystem.Service
             equipment.Name = name;
             equipment.Type = typeOfEquipment;
             //equipment.QuantityInMagacine = newQuantity;
+            RoomController.getInstance().GetMagacine().Equipment[id] = newQuantity;
             equipment.Description = description;
             if (newQuantity > oldQuantity)
                 equipment.Quantity += newQuantity - oldQuantity;

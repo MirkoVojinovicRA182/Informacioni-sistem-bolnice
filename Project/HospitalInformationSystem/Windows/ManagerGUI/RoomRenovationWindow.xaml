@@ -11,10 +11,10 @@
         <Label Content="Datum početka:" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="25,88,0,0" FontSize="15"/>
         <Label Content="Vreme kraja:" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="25,157,0,0" FontSize="15"/>
         <Label Content="Datum kraja:" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="25,207,0,0" FontSize="15" RenderTransformOrigin="0.467,5.303"/>
-        <ComboBox x:Name="startTimeComboBox" HorizontalAlignment="Left" VerticalAlignment="Top" Width="143" Margin="164,39,0,0" FontSize="15"/>
-        <ComboBox x:Name="endTimeComboBox" HorizontalAlignment="Left" VerticalAlignment="Top" Width="143" Margin="164,161,0,0" FontSize="15"/>
-        <DatePicker x:Name="startDatePicker" HorizontalAlignment="Left" Margin="164,88,0,0" VerticalAlignment="Top" Width="143" FontSize="15"/>
-        <DatePicker x:Name="endDatePicker" HorizontalAlignment="Left" Margin="164,211,0,0" VerticalAlignment="Top" Width="143" FontSize="15"/>
+        <ComboBox x:Name="startTimeComboBox" HorizontalAlignment="Left" VerticalAlignment="Top" Width="143" Margin="164,39,0,0" FontSize="15" SelectionChanged="ComboBoxControlsSelectionChanged"/>
+        <ComboBox x:Name="endTimeComboBox" HorizontalAlignment="Left" VerticalAlignment="Top" Width="143" Margin="164,161,0,0" FontSize="15" SelectionChanged="ComboBoxControlsSelectionChanged"/>
+        <DatePicker x:Name="startDatePicker" HorizontalAlignment="Left" Margin="164,88,0,0" VerticalAlignment="Top" Width="143" FontSize="15" LayoutUpdated="DatePickerControlsLayoutUpdated"/>
+        <DatePicker x:Name="endDatePicker" HorizontalAlignment="Left" Margin="164,211,0,0" VerticalAlignment="Top" Width="143" FontSize="15" LayoutUpdated="DatePickerControlsLayoutUpdated"/>
         <Button x:Name="confirmButton" Content="ZAKAŽI" HorizontalAlignment="Left" VerticalAlignment="Top" Width="100" Height="30" FontSize="15" Margin="126,271,0,0" Click="confirmButton_Click"/>
     </Grid>
 </Window>

@@ -38,6 +38,7 @@ namespace HospitalInformationSystem.Windows.ManagerGUI
             InitializeComponent();
             this.selectedRoom = selectedRoom;
             LoadTimeComboBoxes();
+            confirmButton.IsEnabled = false;
         }
         private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
         {
@@ -128,6 +129,21 @@ namespace HospitalInformationSystem.Windows.ManagerGUI
 
             return true;
         }
+        private void ComboBoxControlsSelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            CheckIfTheTermIsSelected();
+        }
 
+        private void DatePickerControlsLayoutUpdated(object sender, EventArgs e)
+        {
+            CheckIfTheTermIsSelected();
+        }
+        private void CheckIfTheTermIsSelected()
+        {
+            if (startTimeComboBox.SelectedItem != null && endTimeComboBox.SelectedItem != null && startDatePicker.SelectedDate != null && endDatePicker.SelectedDate != null)
+                confirmButton.IsEnabled = true;
+            else
+                confirmButton.IsEnabled = false;
+        }
     }
 }

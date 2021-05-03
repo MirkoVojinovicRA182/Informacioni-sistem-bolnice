@@ -66,6 +66,7 @@ namespace HospitalInformationSystem.Windows.PatientGUI
             Appointment appointment = (Appointment)AppointmentDataGrid.SelectedItem;
 
             Appointment app = new Appointment(appointment.StartTime, appointment.Type, appointment.room, appointment.patient, appointment.doctor);
+            app.SchedulingTime = DateTime.Now;
 
             AppointmentController.getInstance().addAppointment(app);
 

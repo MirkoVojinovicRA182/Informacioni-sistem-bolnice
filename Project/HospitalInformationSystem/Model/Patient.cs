@@ -76,10 +76,10 @@ namespace Model
             LBO = lbo;
         }
 
-        public Patient(string username, string name, PatientActivity activity)
+        public Patient(string name, string surname, PatientActivity activity)
         {
-            Username = username;
             Name = name;
+            Surname = surname;
             Activity = activity;
         }
 

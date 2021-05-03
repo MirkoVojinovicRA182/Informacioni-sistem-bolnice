@@ -40,9 +40,9 @@ namespace HospitalInformationSystem.Windows.PatientGUI
             var days = new List<DayOfWeek>();
             days.Add(DayOfWeek.Monday);
             days.Add(DayOfWeek.Tuesday);
-            bool b = true;
-            therapy.Add(new Therapy(Medication.Albuterol, 3, days, default(DateTime).Add(DateTime.ParseExact("21:46", "HH:mm", CultureInfo.InvariantCulture).TimeOfDay), b));
-            therapy.Add(new Therapy(Medication.Losartan, 2, days, default(DateTime).Add(DateTime.ParseExact("14:00", "HH:mm", CultureInfo.InvariantCulture).TimeOfDay), b));
+            bool notificationsEnabled = true;
+            therapy.Add(new Therapy(Medication.Albuterol, 3, days, default(DateTime).Add(DateTime.ParseExact("21:46", "HH:mm", CultureInfo.InvariantCulture).TimeOfDay), notificationsEnabled));
+            therapy.Add(new Therapy(Medication.Losartan, 2, days, default(DateTime).Add(DateTime.ParseExact("14:00", "HH:mm", CultureInfo.InvariantCulture).TimeOfDay), notificationsEnabled));
             this.patient = patient;
             this.patient.SetTherapy(therapy);
             Notify();
@@ -58,9 +58,76 @@ namespace HospitalInformationSystem.Windows.PatientGUI
 
         private void NewAppointmentButton_Click(object sender, RoutedEventArgs e)
         {
+            CheckIfPatientIsTroll();
+            if (patient.Activity.IsTroll == false)
+            {
+                ShowNewAppointmentWindow();
+            }
+            else
+            {
+                MessageBox.Show("Zakazivanje termina je onomogućeno zbog sumnjive aktivnosti na ovom nalogu.", "Zakazivanje termina", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+        }
+
+        private void CheckIfPatientIsTroll()
+        {
+            SetPatientActivity();
+
+            if (patient.Activity.NumberOfMovedAppointmentsInMonth > 3 || patient.Activity.NumberOfScheduledAppointmentsInDay > 5)
+            {
+                patient.Activity.IsTroll = true;
+            }
+        }
+
+        private void SetPatientActivity()
+        {
+            patient.Activity.NumberOfMovedAppointmentsInMonth = GetNumberOfMovedAppointmentsInThePastMonth();
+            patient.Activity.NumberOfScheduledAppointmentsInDay = GetNumberOfAppointmentsScheduledInPastDay();
+        }
+
+        private int GetNumberOfAppointmentsScheduledInPastDay()
+        {
+            int numberOfAppointments = 0;
+            foreach (var appointment in AppointmentController.getInstance().GetAppointmentsByPatient(patient))
+            {
+                if (AppointmentWasScheduledInThePastDay(appointment))
+                {
+                    numberOfAppointments++;
+                }
+            }
+            return numberOfAppointments;
+        }
+
+        private static bool AppointmentWasScheduledInThePastDay(Appointment appointment)
+        {
+            return appointment.SchedulingTime.CompareTo(DateTime.Now.AddDays(-1)) > 0 && appointment.SchedulingTime.CompareTo(DateTime.Now) < 0;
+        }
+
+        private int GetNumberOfMovedAppointmentsInThePastMonth()
+        {
+            int numberOfAppointments = 0;
+            foreach (var appointment in AppointmentController.getInstance().GetAppointmentsByPatient(patient))
+            {
+                if (appointment.HasBeenMoved)
+                {
+                    if (AppointmentWasMovedInThePastMonth(appointment))
+                    {
+                        numberOfAppointments++;
+                    }
+                }
+            }
+            return numberOfAppointments;
+        }
+
+        private static bool AppointmentWasMovedInThePastMonth(Appointment appointment)
+        {
+            return appointment.SchedulingTime.CompareTo(DateTime.Now.AddMonths(-1)) > 0 && appointment.SchedulingTime.CompareTo(DateTime.Now) < 0;
+        }
+
+        private void ShowNewAppointmentWindow()
+        {
             NewPatientAppointmentWindow window = new NewPatientAppointmentWindow(patient);
             window.ShowDialog();
-
             RefreshTable();
         }
 
@@ -142,7 +209,7 @@ namespace HospitalInformationSystem.Windows.PatientGUI
             NotificationWindow window = new NotificationWindow();
             for (int i = 0; i < therapies.Count; i++)
             {
-                if (therapies[i].Days.Contains(DateTime.Now.DayOfWeek) & therapies[i].NotificationEnabled == true & DateTime.Now.TimeOfDay.CompareTo(therapies[i].Time.AddMinutes(-61).TimeOfDay) > 0 & DateTime.Now.TimeOfDay.CompareTo(therapies[i].Time.AddMinutes(-59).TimeOfDay) < 0)
+                if (DateTime.Now.TimeOfDay.CompareTo(therapies[i].Time.AddMinutes(-61).TimeOfDay) > 0 && DateTime.Now.TimeOfDay.CompareTo(therapies[i].Time.AddMinutes(-59).TimeOfDay) < 0)
                 {
                     window.medicatonText.Text = therapies[i].Medication.ToString();
                     window.timeText.Text = therapies[i].TimeString;
@@ -228,6 +295,7 @@ namespace HospitalInformationSystem.Windows.PatientGUI
 
         private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
         {
+            CheckIfPatientIsTroll();
             instance = null;
         }
 

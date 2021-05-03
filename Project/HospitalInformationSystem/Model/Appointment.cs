@@ -133,5 +133,20 @@ namespace Model
             set { }
         }
 
+        public bool HasBeenMoved
+        {
+            get; set;
+        }
+
+        public DateTime SchedulingTime
+        {
+            get; set;
+        }
+
+        public DateTime MovingTime
+        {
+            get; set;
+        }
+
     }
 }

@@ -51,7 +51,7 @@ namespace HospitalInformationSystem.Windows.PatientGUI
 
             if (IsValidDate(lastTimeToMoveAppointment))
             {
-                EditAppointment();
+                MoveAppointmentIfNotTaken();
             }
             else
             {
@@ -60,19 +60,28 @@ namespace HospitalInformationSystem.Windows.PatientGUI
             }
         }
 
-        private void EditAppointment()
+        private void MoveAppointmentIfNotTaken()
         {
-            Appointment newAppointment = appointmentForEditing;
-            AppointmentController.getInstance().ChangeStartTime(newAppointment, ParseDateTime());
-            if (AppointmentIsTaken(newAppointment))
+            Appointment movedAppointment = new Appointment();
+            movedAppointment.StartTime = ParseDateTime();
+            movedAppointment.doctor = appointmentForEditing.doctor;
+
+            if (AppointmentIsTaken(movedAppointment))
             {
                 MessageBox.Show("Termin je zauzet.", "Greška", MessageBoxButton.OK, MessageBoxImage.Information);
             }
             else
             {
-                AppointmentController.getInstance().ChangeStartTime(appointmentForEditing, ParseDateTime());
-                MessageBox.Show("Termin je izmenjen.", "Menjanje termina", MessageBoxButton.OK, MessageBoxImage.Information);
+                MoveAppointment();
             }
+        }
+
+        private void MoveAppointment()
+        {
+            AppointmentController.getInstance().ChangeStartTime(appointmentForEditing, ParseDateTime());
+            appointmentForEditing.HasBeenMoved = true;
+            appointmentForEditing.MovingTime = DateTime.Now;
+            MessageBox.Show("Termin je izmenjen.", "Menjanje termina", MessageBoxButton.OK, MessageBoxImage.Information);
         }
 
         private bool IsValidDate(DateTime lastTimeToChange)

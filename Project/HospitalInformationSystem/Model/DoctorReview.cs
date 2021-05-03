@@ -30,7 +30,6 @@ namespace HospitalInformationSystem.Model
             get; set;
         }
 
-
     }
 
 }

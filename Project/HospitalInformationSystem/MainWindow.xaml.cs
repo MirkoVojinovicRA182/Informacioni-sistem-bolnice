@@ -42,7 +42,7 @@ namespace HospitalInformationSystem.Windows
             DoctorController.getInstance().addDoctor(new Doctor("Jovan", "Jovanovic", Specialization.Family_Physician, new Room(2, "Jovanova prostorija", 2, TypeOfRoom.ExaminationRoom)));
             DoctorController.getInstance().addDoctor(new Doctor("Stevan", "Stojanovic", Specialization.Family_Physician, new Room(3, "Stevanova prostorija", 3, TypeOfRoom.ExaminationRoom)));
 
-            Patient first = new Patient("Pera", "Pacijent", new PatientActivity(0));
+            Patient first = new Patient("Pera", "Pacijent", new PatientActivity(0, 0, 0, false));
             Patient second = new Patient("Jova", "Pacijent", "2");
             Patient third = new Patient("Mika", "Pacijent", "3");
 

@@ -3,18 +3,9 @@ using HospitalInformationSystem.Model;
 using Model;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Threading;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
 
 namespace HospitalInformationSystem.Windows.ManagerGUI
 {
@@ -23,65 +14,105 @@ namespace HospitalInformationSystem.Windows.ManagerGUI
     /// </summary>
     public partial class RoomRenovationWindow : Window
     {
-        private Room selectedRoom;
-        private static RoomRenovationWindow instance = null;
-        private DateTime startDate;
-        private DateTime endDate;
-        public static RoomRenovationWindow GetInstance(Room selectedRoom)
+        private Room roomForRenovation;
+        private DateTime startTermDate;
+        private DateTime endTermDate;
+        string[] selectedTimeSeparator = { ":", };
+        private static RoomRenovationWindow instance;
+        public static RoomRenovationWindow GetInstance(Room roomForRenovation)
         {
             if (instance == null)
-                instance = new RoomRenovationWindow(selectedRoom);
+                instance = new RoomRenovationWindow(roomForRenovation);
             return instance;
         }
-        private RoomRenovationWindow(Room selectedRoom)
+        private RoomRenovationWindow(Room roomForRenovation)
         {
             InitializeComponent();
-            this.selectedRoom = selectedRoom;
+            this.roomForRenovation = roomForRenovation;
             LoadTimeComboBoxes();
-            confirmButton.IsEnabled = false;
         }
-        private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
+        private void LoadTimeComboBoxes()
         {
-            instance = null;
+            startTimeComboBox.ItemsSource = GetTimeList();
+            endTimeComboBox.ItemsSource = GetTimeList();
+        }
+        private List<String> GetTimeList()
+        {
+            List<String> timeList = new List<String>();
+            foreach(string hour in GetHourList())
+            {
+                foreach(string minute in GetMinuteList())
+                {
+                    timeList.Add(hour + ":" + minute);
+                }
+            }
+            return timeList;
+        }
+        private List<String> GetHourList()
+        {
+            List<String> hourList = new List<String>();
+            for(int i = 6; i <= 21; i++)
+            {
+                hourList.Add(GetHour(i));
+            }
+            return hourList;
+        }
+        private string GetHour(int currentHour)
+        {
+            if (currentHour >= 6 && currentHour <= 9)
+                return "0" + currentHour.ToString();
+            else
+                return currentHour.ToString();
+        }
+        private List<String> GetMinuteList()
+        {
+            List<String> minuteList = new List<String>();
+            for (int i = 0; i <= 59; i++)
+            {
+                minuteList.Add(GetMinute(i));
+            }
+            return minuteList;
+        }
+        private string GetMinute(int currentMinute)
+        {
+            if (currentMinute >= 0 && currentMinute <= 9)
+                return "0" + currentMinute.ToString();
+            else
+                return currentMinute.ToString();
         }
 
         private void confirmButton_Click(object sender, RoutedEventArgs e)
         {
-            MakeTerm();
             if (CheckTheCorrectnessOfTheTerm())
             {
-                RoomController.getInstance().SetRenovationStateToRoom(selectedRoom, new RoomRenovationState(startDate, endDate));
-                CreateThreadForRenovationSimulation(startDate, endDate);
+                RoomController.getInstance().SetRenovationStateToRoom(roomForRenovation, CreateRoomRenovationState());
+                CreateThreadForRenovationSimulation(startTermDate, endTermDate);
                 GiveFeedbackToManager();
             }
             else
                 MessageBox.Show("Nije moguće zakazati renoviranje u izabranom terminu jer je tada zauzeta.", "Greška", MessageBoxButton.OK, MessageBoxImage.Hand);
-
         }
-        private void MakeTerm()
+        private RoomRenovationState CreateRoomRenovationState()
         {
-            startDate = MakeStartDate();
-            endDate = MakeEndDate();
+            return new RoomRenovationState(GetDate((string)startTimeComboBox.SelectedItem, startDatePicker), GetDate((string)endTimeComboBox.SelectedItem, endDatePicker));
         }
-
-        private DateTime MakeStartDate()
+        private DateTime GetDate(string selectedTime, DatePicker selectedDate)
         {
-            string selectedStartTime = (string)startTimeComboBox.SelectedItem;
-            string[] separator1 = { ":", };
-            string[] atributesOfSelectedStartTime = selectedStartTime.Split(separator1, StringSplitOptions.None);
-            DateTime selectedStartDate = (DateTime)startDatePicker.SelectedDate;
-            return new DateTime(selectedStartDate.Year, selectedStartDate.Month, selectedStartDate.Day,
-                int.Parse(atributesOfSelectedStartTime[0]), int.Parse(atributesOfSelectedStartTime[1]), 00);
+            string[] elementsOfSelectedTime = selectedTime.Split(selectedTimeSeparator, StringSplitOptions.None);
+            return new DateTime(selectedDate.SelectedDate.Value.Year, selectedDate.SelectedDate.Value.Month, selectedDate.SelectedDate.Value.Day,
+                int.Parse(elementsOfSelectedTime[0]), int.Parse(elementsOfSelectedTime[1]), 00);
         }
-
-        private DateTime MakeEndDate()
+        private bool CheckTheCorrectnessOfTheTerm()
         {
-            string selectedEndTime = (string)endTimeComboBox.SelectedItem;
-            string[] separator2 = { ":", };
-            string[] atributesOfSelectedEndTime = selectedEndTime.Split(separator2, StringSplitOptions.None);
-            DateTime selectedEndDate = (DateTime)endDatePicker.SelectedDate;
-            return new DateTime(selectedEndDate.Year, selectedEndDate.Month, selectedEndDate.Day,
-                int.Parse(atributesOfSelectedEndTime[0]), int.Parse(atributesOfSelectedEndTime[1]), 00);
+            foreach (Appointment currentAppointment in AppointmentController.getInstance().getAppointment())
+            {
+                if (Room.Equals(currentAppointment.room, roomForRenovation))
+                {
+                    if (currentAppointment.StartTime >= startTermDate && currentAppointment.StartTime <= endTermDate)
+                        return false;
+                }
+            }
+            return true;
         }
         private void CreateThreadForRenovationSimulation(DateTime startDate, DateTime endDate)
         {
@@ -89,45 +120,15 @@ namespace HospitalInformationSystem.Windows.ManagerGUI
             {
                 while (true)
                 {
-                    RoomController.getInstance().CheckRenovationTerm(selectedRoom);
+                    RoomController.getInstance().CheckRenovationTerm(roomForRenovation);
                 }
             });
             thread.Start();
         }
-        private void LoadTimeComboBoxes()
-        {
-            startTimeComboBox.ItemsSource = GetAllTimes();
-            endTimeComboBox.ItemsSource = GetAllTimes();
-        }
-
-        private List<String> GetAllTimes()
-        {
-            List<String> timesList = new List<String>();
-            for (int i = 6; i <= 21; i++)
-            {
-                for (int j = 0; j <= 59; j++)
-                {
-                    timesList.Add(i.ToString() + ":" + j.ToString());
-                }
-            }
-            return timesList;
-        }
         private void GiveFeedbackToManager()
         {
             this.Close();
-        }
-        private bool CheckTheCorrectnessOfTheTerm()
-        {
-            foreach (Appointment app in AppointmentController.getInstance().getAppointment())
-            {
-                if (Room.Equals(app.room, selectedRoom))
-                {
-                    if (app.StartTime >= startDate && app.StartTime <= endDate)
-                        return false;
-                }
-            }
-
-            return true;
+            MessageBox.Show("Uspešno ste zakazali renoviranje prostorije.", "Obaveštenje", MessageBoxButton.OK, MessageBoxImage.Information);
         }
         private void ComboBoxControlsSelectionChanged(object sender, SelectionChangedEventArgs e)
         {
@@ -144,6 +145,10 @@ namespace HospitalInformationSystem.Windows.ManagerGUI
                 confirmButton.IsEnabled = true;
             else
                 confirmButton.IsEnabled = false;
+        }
+        private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            instance = null;
         }
     }
 }

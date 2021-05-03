@@ -38,8 +38,8 @@ namespace HospitalInformationSystem.Windows.ManagerGUI
             InitializeComponent();
             roomRepository = new RoomRepository();
 
-            EquipmentController.getInstance().loadFromFile();
-            RoomController.getInstance().loadFromFile();
+            //EquipmentController.getInstance().loadFromFile();
+            //RoomController.getInstance().loadFromFile();
 
             roomsTable.refreshTable();
             equipmentTable.refreshTable();

@@ -1,0 +1,41 @@
+﻿<Window x:Class="HospitalInformationSystem.Windows.PatientGUI.ReviewHospitalWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:HospitalInformationSystem.Windows.PatientGUI"
+        mc:Ignorable="d"
+        Title="ReviewHospitalWindow" Height="533.607" Width="800">
+    <Grid>
+        <ScrollViewer HorizontalAlignment="Left" Height="594" VerticalAlignment="Top" Width="792" Margin="0,10,0,0" VerticalScrollBarVisibility="Hidden">
+            <Label Content="1. Da li ste zadovoljni sa uslugama bolnice?&#xA;&#xA;2. Da li ste zadovoljni sa čistoćom bolnice? &#xA;&#xA;3. Koliko je dobro opremljena bolnica?&#xA;&#xA;4. Da li ste zadovoljni sa ljubaznošću lekara?&#xA;&#xA;5. Da li ste zadovoljni sa sposobnostima lekara?&#xD;&#xA;&#xD;&#xA;6. Da li ste zadovoljni sa ljubaznošću medicinskih tehničara?&#xA;&#xA;7. Da li ste zadovoljni sa sposobnostima medicinskih tehničara?&#xD;&#xA;&#xD;&#xA;Ocena:&#xA;" FontSize="20" Width="780" Height="613"/>
+        </ScrollViewer>
+        <RadioButton Content="Veoma zadovoljni" GroupName="1" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="12,52,0,0"/>
+        <RadioButton Content="Zadovoljni" GroupName="1" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="133,52,0,0"/>
+        <RadioButton Content="Nezadovoljni" GroupName="1" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="221,52,0,0"/>
+        <RadioButton Content="Veoma zadovoljni" GroupName="2" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10,104,0,0"/>
+        <RadioButton Content="Zadovoljni" GroupName="2" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="132,104,0,0"/>
+        <RadioButton Content="Nezadovoljni" GroupName="2" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="223,104,0,0"/>
+        <RadioButton Content="Veoma dobro" GroupName="3" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10,155,0,0"/>
+        <RadioButton Content="Dobro" GroupName="3" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="132,155,0,0"/>
+        <RadioButton Content="Loše" GroupName="3" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="224,155,0,0"/>
+        <RadioButton Content="Veoma zadovoljni" GroupName="4" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10,209,0,0"/>
+        <RadioButton Content="Zadovoljni" GroupName="4" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="133,209,0,0"/>
+        <RadioButton Content="Nezadovoljni" GroupName="4" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="224,209,0,0"/>
+        <RadioButton Content="Veoma zadovoljni" GroupName="5" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10,263,0,0"/>
+        <RadioButton Content="Zadovoljni" GroupName="5" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="133,263,0,0"/>
+        <RadioButton Content="Nezadovoljni" GroupName="5" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="225,263,0,0"/>
+        <RadioButton Content="1" GroupName="rating" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10,421,0,0"/>
+        <RadioButton Content="2" GroupName="rating" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="70,421,0,0"/>
+        <RadioButton Content="3" GroupName="rating" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="130,421,0,0"/>
+        <RadioButton Content="4" GroupName="rating" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="190,421,0,0"/>
+        <RadioButton Content="5" GroupName="rating" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="250,421,0,0"/>
+        <Button Content="Slanje ankete" HorizontalAlignment="Left" VerticalAlignment="Top" Width="164" Margin="282,450,0,0" Height="35" Click="Button_Click"/>
+        <RadioButton Content="Veoma zadovoljni" GroupName="6" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10,315,0,0"/>
+        <RadioButton Content="Zadovoljni" GroupName="6" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="133,315,0,0"/>
+        <RadioButton Content="Nezadovoljni" GroupName="6" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="225,315,0,0"/>
+        <RadioButton Content="Veoma zadovoljni" GroupName="7" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10,369,0,0"/>
+        <RadioButton Content="Zadovoljni" GroupName="7" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="133,369,0,0"/>
+        <RadioButton Content="Nezadovoljni" GroupName="7" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="225,369,0,0"/>
+    </Grid>
+</Window>

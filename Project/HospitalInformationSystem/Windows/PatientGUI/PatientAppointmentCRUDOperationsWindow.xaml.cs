@@ -35,7 +35,7 @@ namespace HospitalInformationSystem.Windows.PatientGUI
         public PatientAppointmentCRUDOperationsWindow(Patient patient)
         {
             InitializeComponent();
-            AppointmentDataGrid.ItemsSource = AppointmentController.getInstance().getAppointment();
+            AppointmentDataGrid.ItemsSource = AppointmentController.getInstance().GetAppointmentsByPatient(patient);
             var therapy = new List<Therapy>();
             var days = new List<DayOfWeek>();
             days.Add(DayOfWeek.Monday);
@@ -142,7 +142,7 @@ namespace HospitalInformationSystem.Windows.PatientGUI
             NotificationWindow window = new NotificationWindow();
             for (int i = 0; i < therapies.Count; i++)
             {
-                if (therapies[i].Days.Contains(DateTime.Now.DayOfWeek) & therapies[i].NotificationEnabled == true & DateTime.Now.TimeOfDay.CompareTo(therapies[i].Time.AddMinutes(-61).TimeOfDay) > 0 & DateTime.Now.TimeOfDay.CompareTo(therapies[i].Time.AddMinutes(61).TimeOfDay) < 0)
+                if (therapies[i].Days.Contains(DateTime.Now.DayOfWeek) & therapies[i].NotificationEnabled == true & DateTime.Now.TimeOfDay.CompareTo(therapies[i].Time.AddMinutes(-61).TimeOfDay) > 0 & DateTime.Now.TimeOfDay.CompareTo(therapies[i].Time.AddMinutes(-59).TimeOfDay) < 0)
                 {
                     window.medicatonText.Text = therapies[i].Medication.ToString();
                     window.timeText.Text = therapies[i].TimeString;
@@ -153,9 +153,83 @@ namespace HospitalInformationSystem.Windows.PatientGUI
             window.ShowDialog();
         }
 
+        private void RateDoctorButton_Click(object sender, RoutedEventArgs e)
+        {
+            if (AppointmentReviewValidation())
+            {
+                ShowDoctorReviewWindow();
+            }
+            else
+            {
+                MessageBox.Show("Niste izabrali pregled koji se završio.", "Greška", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+        }
+
+        private void RateHospitalButton_Click(object sender, RoutedEventArgs e)
+        {
+            if (HospitalReviewValidation())
+            {
+                ShowHospitalReviewWindow();
+            }
+            else
+            {
+                MessageBox.Show("Niste imali dovoljno pregleda da bi ste ocenjivali bolnicu.", "Ocenjivanje bolnice", MessageBoxButton.OK, MessageBoxImage.Information);
+            }
+        }
+
+        private bool HospitalReviewValidation()
+        {
+            CalculateFinishedAppointments();
+            return patient.Activity.NumberOfFinishedAppointmentsSinceReview >= 5;
+        }
+
+        private void CalculateFinishedAppointments()
+        {
+            foreach (var appointment in AppointmentController.getInstance().GetAppointmentsByPatient(patient))
+            {
+                if (AppointmentIsFinished(appointment))
+                {
+                    patient.Activity.NumberOfFinishedAppointmentsSinceReview++;
+                }
+            }
+        }
+
+        private static bool AppointmentIsFinished(Appointment appointment)
+        {
+            return DateTime.Now.CompareTo(appointment.StartTime.AddMinutes(30)) > 0;
+        }
+
+        private void ShowHospitalReviewWindow()
+        {
+            ReviewHospitalWindow window = new ReviewHospitalWindow(this.patient);
+            window.ShowDialog();
+        }
+
+        private bool AppointmentReviewValidation()
+        {
+            return AppointmentIsSelected() && AppointmentIsFinished();
+        }
+
+        private bool AppointmentIsSelected()
+        {
+            return AppointmentDataGrid.SelectedItem != null;
+        }
+
+        private bool AppointmentIsFinished()
+        {
+            return DateTime.Now.CompareTo(AppointmentController.getInstance().GetStartTime((Appointment)AppointmentDataGrid.SelectedItem).AddMinutes(30)) > 0;
+        }
+
+        private void ShowDoctorReviewWindow()
+        {
+            ReviewDoctorWindow window = new ReviewDoctorWindow((Appointment)AppointmentDataGrid.SelectedItem);
+            window.ShowDialog();
+        }
+
         private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
         {
             instance = null;
         }
+
     }
 }

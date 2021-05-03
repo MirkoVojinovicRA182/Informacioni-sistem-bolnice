@@ -18,6 +18,7 @@ using HospitalInformationSystem.Repository;
 using HospitalInformationSystem.Controller;
 using HospitalInformationSystem.Windows.PatientGUI;
 using HospitalInformationSystem.Windows.SecretaryGUI;
+using HospitalInformationSystem.Model;
 
 namespace HospitalInformationSystem.Windows
 {
@@ -41,7 +42,7 @@ namespace HospitalInformationSystem.Windows
             DoctorController.getInstance().addDoctor(new Doctor("Jovan", "Jovanovic", Specialization.Family_Physician, new Room(2, "Jovanova prostorija", 2, TypeOfRoom.ExaminationRoom)));
             DoctorController.getInstance().addDoctor(new Doctor("Stevan", "Stojanovic", Specialization.Family_Physician, new Room(3, "Stevanova prostorija", 3, TypeOfRoom.ExaminationRoom)));
 
-            Patient first = new Patient("Pera", "Pacijent", "1");
+            Patient first = new Patient("Pera", "Pacijent", new PatientActivity(0));
             Patient second = new Patient("Jova", "Pacijent", "2");
             Patient third = new Patient("Mika", "Pacijent", "3");
 
@@ -62,7 +63,7 @@ namespace HospitalInformationSystem.Windows
             secretary.Surname = "Petrovic";
             //secretary.Id = "12";
 
-            Model.Manager manager = new Model.Manager();
+            Manager manager = new Manager();
             manager.Name = "Stefan";
             manager.Surname = "Jovanovic";
             //manager.Id = "52";
@@ -78,7 +79,7 @@ namespace HospitalInformationSystem.Windows
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            Model.Manager manager = new Model.Manager();
+            Manager manager = new Manager();
             Secretary secretary = new Secretary();
             bool loggedIn = false;
             var accounts = AccountDataBase.getInstance().GetAccount();

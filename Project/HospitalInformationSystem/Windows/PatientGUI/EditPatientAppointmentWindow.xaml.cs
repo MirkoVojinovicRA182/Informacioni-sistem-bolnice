@@ -23,11 +23,12 @@ namespace HospitalInformationSystem.Windows.PatientGUI
 
         private void LoadDateComboBox()
         {
+            string dateTimeFormat = "dd.MM.yyyy";
             List<string> validDateList = new List<string>();
-            validDateList.Add(appointmentForEditing.StartTime.Date.AddDays(1).ToString("dd.MM.yyyy"));
-            validDateList.Add(appointmentForEditing.StartTime.Date.AddDays(2).ToString("dd.MM.yyyy"));
-            validDateList.Add(appointmentForEditing.StartTime.Date.AddDays(-1).ToString("dd.MM.yyyy"));
-            validDateList.Add(appointmentForEditing.StartTime.Date.AddDays(-2).ToString("dd.MM.yyyy"));
+            validDateList.AddRange(new List<string>() { appointmentForEditing.StartTime.Date.AddDays(-2).ToString(dateTimeFormat), 
+                                                        appointmentForEditing.StartTime.Date.AddDays(-1).ToString(dateTimeFormat),
+                                                        appointmentForEditing.StartTime.Date.AddDays(1).ToString(dateTimeFormat), 
+                                                        appointmentForEditing.StartTime.Date.AddDays(2).ToString(dateTimeFormat) });
             dateComboBox.ItemsSource = null;
             dateComboBox.ItemsSource = validDateList;
         }
@@ -40,27 +41,37 @@ namespace HospitalInformationSystem.Windows.PatientGUI
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            EditAppointment();
+            AttemptToEditAppointment();
         }
 
-        private void EditAppointment()
+        private void AttemptToEditAppointment()
         {
-            string date = (string)dateComboBox.SelectedItem;
-            string time = timeTextBox.Text;
-            string dateTime = date + " " + time;
-            DateTime newStartTime = DateTime.ParseExact(dateTime, "dd.MM.yyyy HH:mm", CultureInfo.InvariantCulture);
-            DateTime oldTime = appointmentForEditing.StartTime;
-            DateTime lastTimeToChange = oldTime.AddDays(-1);
+            DateTime originalTime = AppointmentController.getInstance().GetStartTime(appointmentForEditing);
+            DateTime lastTimeToMoveAppointment = originalTime.AddDays(-1);
 
-            if (IsValidDate(lastTimeToChange))
+            if (IsValidDate(lastTimeToMoveAppointment))
             {
-                AppointmentController.getInstance().ChangeStartTime(appointmentForEditing, newStartTime);
-                MessageBox.Show("Termin je izmenjen.", "Menjanje termina", MessageBoxButton.OK, MessageBoxImage.Information);
-            } 
+                EditAppointment();
+            }
             else
             {
                 MessageBox.Show("Prekasno je da se termin pomera", "Greška", MessageBoxButton.OK, MessageBoxImage.Information);
                 this.Close();
+            }
+        }
+
+        private void EditAppointment()
+        {
+            Appointment newAppointment = appointmentForEditing;
+            AppointmentController.getInstance().ChangeStartTime(newAppointment, ParseDateTime());
+            if (AppointmentIsTaken(newAppointment))
+            {
+                MessageBox.Show("Termin je zauzet.", "Greška", MessageBoxButton.OK, MessageBoxImage.Information);
+            }
+            else
+            {
+                AppointmentController.getInstance().ChangeStartTime(appointmentForEditing, ParseDateTime());
+                MessageBox.Show("Termin je izmenjen.", "Menjanje termina", MessageBoxButton.OK, MessageBoxImage.Information);
             }
         }
 
@@ -69,6 +80,32 @@ namespace HospitalInformationSystem.Windows.PatientGUI
             if (DateTime.Now.CompareTo(lastTimeToChange) < 0)
                 return true;
             return false;
+        }
+
+        private bool AppointmentIsTaken(Appointment appointment)
+        {
+            bool isTaken = false;
+            for (int i = 0; i < AppointmentController.getInstance().getAppointment().Count; i++) {
+                if (StartTimesAndDoctorsAreEqual(appointment, AppointmentController.getInstance().getAppointment()[i]))
+                {
+                    isTaken = true;
+                }
+            }
+            return isTaken;
+        }
+
+        private bool StartTimesAndDoctorsAreEqual(Appointment appointment1, Appointment appointment2)
+        {
+            return AppointmentController.getInstance().GetStartTime(appointment1) == AppointmentController.getInstance().GetStartTime(appointment2)
+                    && AppointmentController.getInstance().GetDoctor(appointment1) == AppointmentController.getInstance().GetDoctor(appointment2);
+        }
+
+        private DateTime ParseDateTime()
+        {
+            string date = (string)dateComboBox.SelectedItem;
+            string time = timeTextBox.Text;
+            string dateTime = date + " " + time;
+            return DateTime.ParseExact(dateTime, "dd.MM.yyyy HH:mm", CultureInfo.InvariantCulture);
         }
 
         private void CloseButton_Click(object sender, RoutedEventArgs e)

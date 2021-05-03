@@ -97,9 +97,32 @@ namespace HospitalInformationSystem.Service
             return list;
         }
 
+        public List<Appointment> GetAppointmentsByPatient(Patient patient)
+        {
+            List<Appointment> list = new List<Appointment>();
+
+            foreach (var appointment in appointments)
+            {
+                if (Object.Equals(appointment.patient, patient))
+                    list.Add(appointment);
+            }
+
+            return list;
+        }
+
         public void ChangeStartTime(Appointment appointmentForChange, DateTime newStartTime)
         {
             appointmentForChange.StartTime = newStartTime;
+        }
+
+        public DateTime GetStartTime(Appointment appointment)
+        {
+            return appointment.StartTime;
+        }
+
+        public Doctor GetDoctor(Appointment appointment)
+        {
+            return appointment.doctor;
         }
 
         public void saveInFile()

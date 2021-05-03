@@ -1,4 +1,5 @@
-﻿using HospitalInformationSystem.Repository;
+﻿using HospitalInformationSystem.Controller;
+using HospitalInformationSystem.Repository;
 using Model;
 using System;
 using System.Collections;
@@ -83,7 +84,7 @@ namespace HospitalInformationSystem.Service
             equipment.Id = id;
             equipment.Name = name;
             equipment.Type = typeOfEquipment;
-            equipment.QuantityInMagacine = newQuantity;
+            //equipment.QuantityInMagacine = newQuantity;
             equipment.Description = description;
             if (newQuantity > oldQuantity)
                 equipment.Quantity += newQuantity - oldQuantity;
@@ -110,20 +111,26 @@ namespace HospitalInformationSystem.Service
 
         public void changeQuantityInMagacine(string id, int quantity)
         {
-            foreach(Equipment equipment in equipmentList)
+            /*foreach(Equipment equipment in equipmentList)
             {
                 if (string.Equals(equipment.Id, id))
                     equipment.QuantityInMagacine -= quantity;
-            }
+            }*/
+            Room magacine = RoomController.getInstance().GetMagacine();
+            int currentValue = (int)magacine.Equipment[id];
+            magacine.Equipment[id] = currentValue - quantity;
         }
 
         public void moveEquipmentInMagacine(string id, int quantity)
         {
-            foreach (Equipment equipment in equipmentList)
+            /*foreach (Equipment equipment in equipmentList)
             {
                 if (string.Equals(equipment.Id, id))
                     equipment.QuantityInMagacine += quantity;
-            }
+            }*/
+            Room magacine = RoomController.getInstance().GetMagacine();
+            int currentValue = (int)magacine.Equipment[id];
+            magacine.Equipment[id] = currentValue + quantity;
         }
 
         public void removeQuantity(string id, int quantity)

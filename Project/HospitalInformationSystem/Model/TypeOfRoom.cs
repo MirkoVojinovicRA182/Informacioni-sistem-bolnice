@@ -13,6 +13,7 @@ namespace Model
         Office,
         RestRoom,
         HospitalizationRoom,
-        RoomWithBeds
+        RoomWithBeds,
+        Magacine
     }
 }

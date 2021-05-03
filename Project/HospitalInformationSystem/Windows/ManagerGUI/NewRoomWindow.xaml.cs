@@ -96,7 +96,6 @@ namespace HospitalInformationSystem.Windows.ManagerGUI
             list.Add("Sala za hospitalizaciju");
             list.Add("Kancelarija");
             list.Add("Prostorija za preglede");
-
             typeOfRoomComboBox.ItemsSource = list;
         }
 

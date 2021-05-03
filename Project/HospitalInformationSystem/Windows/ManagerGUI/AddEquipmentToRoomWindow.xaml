@@ -10,7 +10,7 @@
         <ListBox x:Name="equipmentListBox" HorizontalAlignment="Left" Height="80" VerticalAlignment="Top" Width="220" Margin="10,49,0,0">
             <ListBox.ItemTemplate>
                 <DataTemplate>
-                    <TextBlock Text="{Binding getNameQuantityForNewRoom}" />
+                    <TextBlock Text="{Binding Name}" />
                 </DataTemplate>
             </ListBox.ItemTemplate>
         </ListBox>

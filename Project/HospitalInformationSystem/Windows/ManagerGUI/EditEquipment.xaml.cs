@@ -78,10 +78,10 @@ namespace HospitalInformationSystem.Windows.ManagerGUI
         {
             idTextBox.Text = selectedEquipment.Id;
             nameTextBox.Text = selectedEquipment.Name;
-            quanitityTextBox.Text = selectedEquipment.QuantityInMagacine.ToString();
+            //quanitityTextBox.Text = selectedEquipment.QuantityInMagacine.ToString();
             descriptionTextBox.Text = selectedEquipment.Description;
             loadTypeComboBox();
-            oldQuantity = selectedEquipment.QuantityInMagacine;
+            //oldQuantity = selectedEquipment.QuantityInMagacine;
         }
 
         private void loadTypeComboBox()
@@ -107,7 +107,7 @@ namespace HospitalInformationSystem.Windows.ManagerGUI
         {
             int quantityInMagacine = int.TryParse(quanitityTextBox.Text, out quantityInMagacine) ? quantityInMagacine : 0;
 
-            if (idTextBox.Text != selectedEquipment.Id || nameTextBox.Text != selectedEquipment.Name || (string)typeComboBox.SelectedItem != selectedEquipment.GetStringType || quantityInMagacine != selectedEquipment.QuantityInMagacine || descriptionTextBox.Text != selectedEquipment.Description)
+            if (idTextBox.Text != selectedEquipment.Id || nameTextBox.Text != selectedEquipment.Name || (string)typeComboBox.SelectedItem != selectedEquipment.GetStringType || /*quantityInMagacine != selectedEquipment.QuantityInMagacine ||*/ descriptionTextBox.Text != selectedEquipment.Description)
                 changeButton.IsEnabled = true;
             else
                 changeButton.IsEnabled = false;

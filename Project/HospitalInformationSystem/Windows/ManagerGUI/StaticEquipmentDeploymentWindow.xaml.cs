@@ -104,10 +104,7 @@ namespace HospitalInformationSystem.Windows.ManagerGUI
                         //brisanje opreme iz trenutne prostorije
                         RoomController.getInstance().changeStaticEquipmentState(currentRoom, quantityOfSelectedEquipment, quantityForMoving, idOfSelectedEquipment);
                         //dodavanje opreme u zeljenu prostoriju
-                        if (!string.Equals(nextRoom.Name, "Magacin"))
-                            RoomController.getInstance().moveStaticEqToNextRoom(nextRoom, quantityForMoving, idOfSelectedEquipment);
-                        else
-                            EquipmentController.getInstance().moveEquipmentInMagacine(idOfSelectedEquipment, quantityForMoving);
+                        RoomController.getInstance().moveStaticEqToNextRoom(nextRoom, quantityForMoving, idOfSelectedEquipment);
                         break;
                     }
                 }
@@ -120,7 +117,6 @@ namespace HospitalInformationSystem.Windows.ManagerGUI
         {
             roomList = new ObservableCollection<Room>(RoomController.getInstance().getRooms());
             roomList.Remove(currentRoom);
-            roomList.Add(new Room(0, "Magacin", -1, TypeOfRoom.Office));
             nextRoomComboBox.ItemsSource = null;
             nextRoomComboBox.ItemsSource = roomList;
         }
@@ -134,7 +130,7 @@ namespace HospitalInformationSystem.Windows.ManagerGUI
         private List<String> GetAllTimes()
         {
             List<String> timesList = new List<String>();
-            for (int i = 6; i <= 23; i++)
+            for (int i = 0; i <= 23; i++)
             {
                 for (int j = 0; j <= 59; j++)
                 {

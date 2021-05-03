@@ -73,9 +73,11 @@ namespace HospitalInformationSystem.Windows.ManagerGUI
                 MessageBox.Show("Pogrešan unos količine!", "Greška", MessageBoxButton.OK, MessageBoxImage.Error);
             else
             {
-                EquipmentController.getInstance().addNewEquipment(new Equipment(id, name, typeOfEquipment, quantity, description));
+                Equipment equipment = new Equipment(id, name, typeOfEquipment, quantity, description);
+                EquipmentController.getInstance().addNewEquipment(equipment);
                 ManagerMainWindow.getInstance().equipmentTable.refreshTable();
                 ManagerMainWindow.getInstance().detailEquipmentTable.LoadAllUserControlComponents();
+                RoomController.getInstance().AddEquipmentToMagacine(equipment);
                 //obavestavanje korisnika o uspesno unetoj opremi
                 this.Close();
                 MessageBox.Show("Uneta je nova oprema u sistem.", "Nova prostorija", MessageBoxButton.OK, MessageBoxImage.Information);

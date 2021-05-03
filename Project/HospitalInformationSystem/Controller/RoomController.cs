@@ -80,5 +80,13 @@ namespace HospitalInformationSystem.Controller
         {
             roomService.CheckRenovationTerm(roomForRenovation);
         }
+        public Room GetMagacine()
+        {
+            return roomService.GetMagacine();
+        }
+        public void AddEquipmentToMagacine(Equipment newEquipment)
+        {
+            roomService.AddEquipmentToMagacine(newEquipment);
+        }
     }
 }

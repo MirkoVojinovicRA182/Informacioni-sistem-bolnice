@@ -56,11 +56,11 @@ namespace HospitalInformationSystem.Windows.ManagerGUI
             }
 
             //prolazak kroz magacin
-            foreach (Equipment eq in EquipmentController.getInstance().getEquipment())
+            /*foreach (Equipment eq in EquipmentController.getInstance().getEquipment())
             {
                 if (eq.QuantityInMagacine > 0)
                     equipmentList.Add(new DetailEquipmentDTO(eq.Name, eq.GetStringType, eq.QuantityInMagacine, "Magacin"));
-            }
+            }*/
         }
         private void LoadComboBoxes()
         {

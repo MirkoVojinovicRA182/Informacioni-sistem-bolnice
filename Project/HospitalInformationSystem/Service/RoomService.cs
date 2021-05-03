@@ -137,7 +137,19 @@ namespace HospitalInformationSystem.Service
                 roomForRenovation.RoomRenovationState.ActivityStatus = true;
             else
                 roomForRenovation.RoomRenovationState.ActivityStatus = false;
-
+        }
+        public Room GetMagacine()
+        {
+            foreach(Room room in roomList)
+            {
+                if (string.Equals(room.Name, "Magacin"))
+                    return room;
+            }
+            return null;
+        }
+        public void AddEquipmentToMagacine(Equipment newEquipment)
+        {
+            GetMagacine().Equipment.Add(newEquipment.Id, newEquipment.Quantity);
         }
     }
 }

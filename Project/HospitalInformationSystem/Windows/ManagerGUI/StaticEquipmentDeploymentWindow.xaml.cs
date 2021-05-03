@@ -100,10 +100,14 @@ namespace HospitalInformationSystem.Windows.ManagerGUI
                     DateTime now = DateTime.Now;
                     if (DateTime.Equals(dateForMovingEquipment.Year, now.Year) && DateTime.Equals(dateForMovingEquipment.Month, now.Month) && DateTime.Equals(dateForMovingEquipment.Day, now.Day) && DateTime.Equals(dateForMovingEquipment.Hour, now.Hour) && DateTime.Equals(dateForMovingEquipment.Minute, now.Minute))
                     {
+
                         //brisanje opreme iz trenutne prostorije
                         RoomController.getInstance().changeStaticEquipmentState(currentRoom, quantityOfSelectedEquipment, quantityForMoving, idOfSelectedEquipment);
                         //dodavanje opreme u zeljenu prostoriju
-                        RoomController.getInstance().moveStaticEqToNextRoom(nextRoom, quantityForMoving, idOfSelectedEquipment);
+                        if (!string.Equals(nextRoom.Name, "Magacin"))
+                            RoomController.getInstance().moveStaticEqToNextRoom(nextRoom, quantityForMoving, idOfSelectedEquipment);
+                        else
+                            EquipmentController.getInstance().moveEquipmentInMagacine(idOfSelectedEquipment, quantityForMoving);
                         break;
                     }
                 }
@@ -116,6 +120,7 @@ namespace HospitalInformationSystem.Windows.ManagerGUI
         {
             roomList = new ObservableCollection<Room>(RoomController.getInstance().getRooms());
             roomList.Remove(currentRoom);
+            roomList.Add(new Room(0, "Magacin", -1, TypeOfRoom.Office));
             nextRoomComboBox.ItemsSource = null;
             nextRoomComboBox.ItemsSource = roomList;
         }
@@ -129,7 +134,7 @@ namespace HospitalInformationSystem.Windows.ManagerGUI
         private List<String> GetAllTimes()
         {
             List<String> timesList = new List<String>();
-            for (int i = 6; i <= 21; i++)
+            for (int i = 6; i <= 23; i++)
             {
                 for (int j = 0; j <= 59; j++)
                 {

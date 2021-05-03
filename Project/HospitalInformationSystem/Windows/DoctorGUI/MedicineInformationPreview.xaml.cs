@@ -42,6 +42,10 @@ namespace HospitalInformationSystem.Windows.DoctorGUI
                 wayOfUseTextBox.IsEnabled = true;
                 medicineReplacmentComboBox.IsEnabled = true;
                 medicineTypeComboBox.IsEnabled = true;
+                addIngredientButton.IsEnabled = true;
+                deleteIngredientButton.IsEnabled = true;
+                medicineIngredientsComboBox.Visibility = Visibility.Visible;
+                medicineIngredientsComboBox.IsEnabled = true;
                 editMedicine.Content = "Zavrsi";
             }
             else
@@ -51,8 +55,23 @@ namespace HospitalInformationSystem.Windows.DoctorGUI
                 medicine.Type = (TypeOfMedicine)medicineTypeComboBox.SelectedItem;
                 medicine.Purpose = medicinePurposeTextBox.Text;
                 medicine.WayOfUse = wayOfUseTextBox.Text;
+                medicineIngredientsComboBox.IsEnabled = false;
+                medicineIngredientsComboBox.Visibility = Visibility.Hidden;
+                addIngredientButton.IsEnabled = false;
+                deleteIngredientButton.IsEnabled = false;
             }
             
+        }
+
+        private void addIngredientButton_Click(object sender, RoutedEventArgs e)
+        {
+            medicine.Ingredients.Add((MedicineIngredient)medicineIngredientsComboBox.SelectedItem);
+        }
+
+        private void deleteIngredientButton_Click(object sender, RoutedEventArgs e)
+        {
+            if((MedicineIngredient)medicineIngredientsTable.SelectedItem != null)
+                medicine.Ingredients.Remove((MedicineIngredient)medicineIngredientsTable.SelectedItem);
         }
     }
 }

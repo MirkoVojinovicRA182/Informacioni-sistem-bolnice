@@ -41,22 +41,23 @@ namespace HospitalInformationSystem.Windows.DoctorGUI
 
         private void changeButton_Click(object sender, RoutedEventArgs e)
         {
-            appointment = (Appointment)appointmentsTable.SelectedItem;
-            
-            DoctorEditAppointmentWindow doctorEditAppointmentWindow = new DoctorEditAppointmentWindow(appointment);
-
-            doctorEditAppointmentWindow.ShowDialog();
-
-            refreshTable();
+            if ((Appointment)appointmentsTable.SelectedItem != null)
+            {
+                appointment = (Appointment)appointmentsTable.SelectedItem;
+                DoctorEditAppointmentWindow doctorEditAppointmentWindow = new DoctorEditAppointmentWindow(appointment);
+                doctorEditAppointmentWindow.ShowDialog();
+                refreshTable();
+            }
         }
 
         private void deleteButton_Click(object sender, RoutedEventArgs e)
         {
-            appointment = (Appointment)appointmentsTable.SelectedItem;
-
-            AppointmentController.getInstance().removeAppointment(appointment);
-
-            refreshTable();
+            if ((Appointment)appointmentsTable.SelectedItem != null)
+            {
+                appointment = (Appointment)appointmentsTable.SelectedItem;
+                AppointmentController.getInstance().removeAppointment(appointment);
+                refreshTable();
+            }
         }
 
         private void closeButton_Click(object sender, RoutedEventArgs e)
@@ -72,13 +73,13 @@ namespace HospitalInformationSystem.Windows.DoctorGUI
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            appointment = (Appointment)appointmentsTable.SelectedItem;
-
-            DoctorShowAppointmentInformationWindow doctorShowAppointmentInformationWindow = new DoctorShowAppointmentInformationWindow(appointment, doctor);
-
-            doctorShowAppointmentInformationWindow.ShowDialog();
-
-            refreshTable();
+            if ((Appointment)appointmentsTable.SelectedItem != null)
+            {
+                appointment = (Appointment)appointmentsTable.SelectedItem;
+                DoctorShowAppointmentInformationWindow doctorShowAppointmentInformationWindow = new DoctorShowAppointmentInformationWindow(appointment, doctor);
+                doctorShowAppointmentInformationWindow.ShowDialog();
+                refreshTable();
+            }
         }
 
         private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)

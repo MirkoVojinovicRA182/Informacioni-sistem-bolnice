@@ -19,15 +19,18 @@
         <DataGrid x:Name="medicineIngredientsTable" HorizontalAlignment="Left" Height="148" Margin="10,313,0,0" VerticalAlignment="Top" Width="342">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Ime sastojka" Width="*" Binding="{Binding Name}"></DataGridTextColumn>
-                <DataGridTextColumn Header="Kolicina" Width="100" Binding="{Binding QuantityInAHundredGrams}"></DataGridTextColumn>
+                <DataGridTextColumn Header="Kolicina u 100 grama" Width="130" Binding="{Binding QuantityInAHundredGrams}"></DataGridTextColumn>
                 <DataGridTextColumn Header="RDI" Width="50" Binding="{Binding RecommendedDailyIntake}"></DataGridTextColumn>
             </DataGrid.Columns>
         </DataGrid>
         <Label Content="Svrha leka:" HorizontalAlignment="Left" Margin="10,112,0,0" VerticalAlignment="Top" FontSize="14"/>
         <TextBox x:Name="medicinePurposeTextBox" HorizontalAlignment="Left" Height="29" Margin="90,112,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="146" FontSize="16" IsEnabled="False"/>
-        <Button x:Name="editMedicine" Content="Izmeni" HorizontalAlignment="Left" Height="43" Margin="10,493,0,0" VerticalAlignment="Top" Width="128" FontSize="16" Click="editMedicine_Click"/>
-        <Button x:Name="addComment" Content="Dodaj&#xD;&#xA;komentar" HorizontalAlignment="Left" Height="43" Margin="224,493,0,0" VerticalAlignment="Top" Width="128" FontSize="16"/>
+        <Button x:Name="editMedicine" Content="IZMENI" HorizontalAlignment="Left" Height="43" Margin="10,517,0,0" VerticalAlignment="Top" Width="128" FontSize="16" Click="editMedicine_Click"/>
+        <Button x:Name="addComment" Content="DODAJ&#xD;&#xA;KOMENTAR" HorizontalAlignment="Left" Height="43" Margin="224,517,0,0" VerticalAlignment="Top" Width="128" FontSize="16"/>
         <ComboBox x:Name="medicineReplacmentComboBox" HorizontalAlignment="Left" Height="29" Margin="116,44,0,0" VerticalAlignment="Top" Width="120" FontSize="16" IsEnabled="False" />
         <ComboBox x:Name="medicineTypeComboBox" HorizontalAlignment="Left" Height="29" Margin="76,78,0,0" VerticalAlignment="Top" Width="160" IsEnabled="False" FontSize="16"/>
+        <Button x:Name="addIngredientButton" Content="DODAJ" HorizontalAlignment="Left" Height="19" Margin="10,470,0,0" VerticalAlignment="Top" Width="75" IsEnabled="False" Click="addIngredientButton_Click"/>
+        <Button x:Name="deleteIngredientButton" Content="OBRISI" HorizontalAlignment="Left" Height="19" Margin="277,470,0,0" VerticalAlignment="Top" Width="75" IsEnabled="False" Click="deleteIngredientButton_Click"/>
+        <ComboBox x:Name="medicineIngredientsComboBox" HorizontalAlignment="Left" Height="23" Margin="90,466,0,0" VerticalAlignment="Top" Width="99" IsEnabled="False" Visibility="Hidden"/>
     </Grid>
 </Window>

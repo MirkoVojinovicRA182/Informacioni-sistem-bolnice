@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:HospitalInformationSystem.Windows.DoctorGUI"
         mc:Ignorable="d"
-        Title="Pregled lekova" Height="450" Width="800">
+        Title="Pregled lekova" Height="450" Width="800" Closing="Window_Closing">
     <Grid>
         <DataGrid x:Name="medicineTable" 
 				  HorizontalAlignment="Left" 

@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:HospitalInformationSystem.Windows.DoctorGUI"
         mc:Ignorable="d"
-        Title="Pregled informacija o leku" Height="600" Width="369.135">
+        Title="Pregled informacija o leku" Height="600" Width="369.135" Closing="Window_Closing">
     <Grid>
         <Label Content="ID:" HorizontalAlignment="Left" Margin="274,10,0,0" VerticalAlignment="Top" FontSize="14"/>
         <Label x:Name="medicineIdLabel" Content="ID:" HorizontalAlignment="Left" Margin="306,10,0,0" VerticalAlignment="Top" FontSize="14" Width="46"/>
@@ -16,7 +16,9 @@
         <Label Content="Nacin koriscenja:" HorizontalAlignment="Left" Margin="10,147,0,0" VerticalAlignment="Top" FontSize="14"/>
         <TextBox x:Name="wayOfUseTextBox" HorizontalAlignment="Left" Height="98" Margin="10,180,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="342" FontSize="16" IsEnabled="False"/>
         <Label Content="Sastojci:" HorizontalAlignment="Left" Margin="10,284,0,0" VerticalAlignment="Top" FontSize="14"/>
-        <DataGrid x:Name="medicineIngredientsTable" HorizontalAlignment="Left" Height="148" Margin="10,313,0,0" VerticalAlignment="Top" Width="342">
+        <DataGrid x:Name="medicineIngredientsTable" HorizontalAlignment="Left" Height="148" Margin="10,313,0,0" VerticalAlignment="Top" Width="342" CanUserAddRows="False" 
+			      CanUserResizeColumns="False" 
+				  AutoGenerateColumns="False">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Ime sastojka" Width="*" Binding="{Binding Name}"></DataGridTextColumn>
                 <DataGridTextColumn Header="Kolicina u 100 grama" Width="130" Binding="{Binding QuantityInAHundredGrams}"></DataGridTextColumn>
@@ -27,10 +29,17 @@
         <TextBox x:Name="medicinePurposeTextBox" HorizontalAlignment="Left" Height="29" Margin="90,112,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="146" FontSize="16" IsEnabled="False"/>
         <Button x:Name="editMedicine" Content="IZMENI" HorizontalAlignment="Left" Height="43" Margin="10,517,0,0" VerticalAlignment="Top" Width="128" FontSize="16" Click="editMedicine_Click"/>
         <Button x:Name="addComment" Content="DODAJ&#xD;&#xA;KOMENTAR" HorizontalAlignment="Left" Height="43" Margin="224,517,0,0" VerticalAlignment="Top" Width="128" FontSize="16"/>
-        <ComboBox x:Name="medicineReplacmentComboBox" HorizontalAlignment="Left" Height="29" Margin="116,44,0,0" VerticalAlignment="Top" Width="120" FontSize="16" IsEnabled="False" />
+        <ComboBox x:Name="medicineReplacmentComboBox" HorizontalAlignment="Left" Height="29" Margin="116,44,0,0" VerticalAlignment="Top" Width="120" FontSize="16" IsEnabled="False">
+            <ComboBox.ItemTemplate>
+                <DataTemplate>
+                    <TextBlock>
+                 <Run Text="{Binding Name}" />
+                    </TextBlock>
+                </DataTemplate>
+            </ComboBox.ItemTemplate>
+        </ComboBox>
         <ComboBox x:Name="medicineTypeComboBox" HorizontalAlignment="Left" Height="29" Margin="76,78,0,0" VerticalAlignment="Top" Width="160" IsEnabled="False" FontSize="16"/>
         <Button x:Name="addIngredientButton" Content="DODAJ" HorizontalAlignment="Left" Height="19" Margin="10,470,0,0" VerticalAlignment="Top" Width="75" IsEnabled="False" Click="addIngredientButton_Click"/>
         <Button x:Name="deleteIngredientButton" Content="OBRISI" HorizontalAlignment="Left" Height="19" Margin="277,470,0,0" VerticalAlignment="Top" Width="75" IsEnabled="False" Click="deleteIngredientButton_Click"/>
-        <ComboBox x:Name="medicineIngredientsComboBox" HorizontalAlignment="Left" Height="23" Margin="90,466,0,0" VerticalAlignment="Top" Width="99" IsEnabled="False" Visibility="Hidden"/>
     </Grid>
 </Window>

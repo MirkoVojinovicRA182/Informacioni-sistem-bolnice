@@ -108,6 +108,9 @@
     <Compile Include="Windows\DoctorGUI\DoctorAddNewAppointmentWindow.xaml.cs">
       <DependentUpon>DoctorAddNewAppointmentWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Windows\DoctorGUI\DoctorAddNewIngredientWindow.xaml.cs">
+      <DependentUpon>DoctorAddNewIngredientWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Windows\DoctorGUI\DoctorAppointmentsManagementWindow.xaml.cs">
       <DependentUpon>DoctorAppointmentsManagementWindow.xaml</DependentUpon>
     </Compile>
@@ -255,6 +258,10 @@
     <Page Include="Windows\DoctorGUI\DoctorAddNewAppointmentWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Windows\DoctorGUI\DoctorAddNewIngredientWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Windows\DoctorGUI\DoctorAppointmentsManagementWindow.xaml">
       <SubType>Designer</SubType>

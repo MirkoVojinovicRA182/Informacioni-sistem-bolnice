@@ -10,14 +10,22 @@ namespace HospitalInformationSystem.Windows.DoctorGUI
     /// </summary>
     public partial class MedicinePreviewWindow : Window
     {
-        public MedicinePreviewWindow()
+        private static MedicinePreviewWindow instance = null;
+
+        public static MedicinePreviewWindow GetInstance()
+        {
+            if (instance == null)
+                instance = new MedicinePreviewWindow();
+            return instance;
+        }
+        private MedicinePreviewWindow()
         {
             InitializeComponent();
             medicineTable.DataContext = MedicineController.GetInstance().GetAllMedicines();
-            refreshTable();
+            RefreshTable();
         }
 
-        private void refreshTable()
+        public void RefreshTable()
         {
             medicineTable.ItemsSource = null;
             medicineTable.ItemsSource = new ObservableCollection<Medicine>(MedicineController.GetInstance().GetAllMedicines());
@@ -25,8 +33,13 @@ namespace HospitalInformationSystem.Windows.DoctorGUI
 
         private void previewMedicineButton_Click(object sender, RoutedEventArgs e)
         {
-            MedicineInformationPreview medicineInformationPreview = new MedicineInformationPreview((Medicine)medicineTable.SelectedItem);
+            MedicineInformationPreview medicineInformationPreview = MedicineInformationPreview.GetInstance((Medicine)medicineTable.SelectedItem);
             medicineInformationPreview.ShowDialog();
+        }
+
+        private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            instance = null;
         }
     }
 }

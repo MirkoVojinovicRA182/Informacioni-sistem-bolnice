@@ -91,7 +91,7 @@ namespace HospitalInformationSystem.Windows.DoctorGUI
 
         private void medicineButton_Click(object sender, RoutedEventArgs e)
         {
-            MedicinePreviewWindow medicinePreviewWindow = new MedicinePreviewWindow();
+            MedicinePreviewWindow medicinePreviewWindow = MedicinePreviewWindow.GetInstance();
             medicinePreviewWindow.ShowDialog();
         }
     }

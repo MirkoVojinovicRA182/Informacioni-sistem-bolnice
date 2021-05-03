@@ -60,6 +60,8 @@ namespace HospitalInformationSystem.Windows.ManagerGUI
         private void deleteRoomMenuItem_Click(object sender, RoutedEventArgs e)
         {
             room = (Room)this.roomsUserControl.allRoomsTable.SelectedItem;
+            if (string.Equals(room.Name, "Magacin"))
+                return;
             if (roomsUserControl.allRoomsTable.SelectedItem != null)
             {
                 if (room.IsInRenovationState == 0)

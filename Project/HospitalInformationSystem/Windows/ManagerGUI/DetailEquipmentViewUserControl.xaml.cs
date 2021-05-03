@@ -65,7 +65,6 @@ namespace HospitalInformationSystem.Windows.ManagerGUI
         private void LoadComboBoxes()
         {
             roomsList = new ObservableCollection<Room>(RoomController.getInstance().getRooms());
-            roomsList.Add(new Room(500, "Magacin", 0, TypeOfRoom.Office));
             locationComboBox.ItemsSource = null;
             locationComboBox.ItemsSource = roomsList;
 

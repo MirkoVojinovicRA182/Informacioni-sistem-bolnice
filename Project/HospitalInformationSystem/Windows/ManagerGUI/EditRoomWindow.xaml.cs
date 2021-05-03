@@ -47,6 +47,13 @@ namespace HospitalInformationSystem.Windows.ManagerGUI
             loadTypeComboBox();
             loadRoom();
             equipmentApplyButton.IsEnabled = false;
+
+            if(string.Equals(selectedRoom.Name, "Magacin"))
+            {
+                addDynamicButton.IsEnabled = false;
+                removeDynamicButton.IsEnabled = false;
+                addStaticButton.IsEnabled = false;
+            }
         }
 
         public static EditRoomWindow getInstance(Room selectedRoom)

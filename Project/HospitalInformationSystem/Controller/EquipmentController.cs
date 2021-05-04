@@ -55,9 +55,9 @@ namespace HospitalInformationSystem.Controller
             equipmentService.deleteEquipment(equipment);
         }
 
-        public void changeEquipment(Equipment equipment, string id, string name, TypeOfEquipment typeOfEquipment, int newQuantity, int oldQuantity, string description)
+        public void changeEquipment(Equipment equipment, string name, TypeOfEquipment typeOfEquipment, int newQuantity, int oldQuantity, string description)
         {
-            equipmentService.changeEquipment(equipment, id, name, typeOfEquipment, newQuantity, oldQuantity, description);
+            equipmentService.changeEquipment(equipment, name, typeOfEquipment, newQuantity, oldQuantity, description);
         }
 
         public void saveInFile()

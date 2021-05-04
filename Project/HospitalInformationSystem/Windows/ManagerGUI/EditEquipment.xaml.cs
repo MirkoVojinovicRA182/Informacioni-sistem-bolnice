@@ -41,7 +41,6 @@ namespace HospitalInformationSystem.Windows.ManagerGUI
 
         private void changeButton_Click(object sender, RoutedEventArgs e)
         {
-            string id = idTextBox.Text;
             string name = nameTextBox.Text;
             TypeOfEquipment typeOfEquipment;
 
@@ -55,18 +54,14 @@ namespace HospitalInformationSystem.Windows.ManagerGUI
             int quantityInMagacine = int.TryParse(quanitityTextBox.Text, out quantityInMagacine) ? quantityInMagacine : 0;
             string description = descriptionTextBox.Text;
 
-            if (string.Compare(id, "") == 0)
-                MessageBox.Show("Polje za unos šifre ne može biti prazno!", "Greška", MessageBoxButton.OK, MessageBoxImage.Error);
-            else if (EquipmentController.getInstance().findEquipment(id) != null && !string.Equals(id, selectedEquipment.Id))
-                MessageBox.Show("U sistemu postoji oprema sa ovom šifrom!", "Greška", MessageBoxButton.OK, MessageBoxImage.Error);
-            else if (string.Compare(nameTextBox.Text, "") == 0)
+            if (string.Compare(nameTextBox.Text, "") == 0)
                 MessageBox.Show("Polje za unos naziva ne može biti prazno!", "Greška", MessageBoxButton.OK, MessageBoxImage.Error);
             else if (quantityInMagacine == 0 || quantityInMagacine < 0)
                 MessageBox.Show("Pogrešan unos količine!", "Greška", MessageBoxButton.OK, MessageBoxImage.Error);
             else
             {
-                EquipmentController.getInstance().changeEquipment(selectedEquipment, id, name, typeOfEquipment, quantityInMagacine, oldQuantity, description);
-
+                EquipmentController.getInstance().changeEquipment(selectedEquipment, name, typeOfEquipment, quantityInMagacine, oldQuantity, description);
+                //promeniti u prostoriji id opreme
                 ManagerMainWindow.getInstance().equipmentTable.refreshTable();
 
                 this.Close();
@@ -77,7 +72,6 @@ namespace HospitalInformationSystem.Windows.ManagerGUI
         private void fillControls()
         {
             Room magacine = RoomController.getInstance().GetMagacine();
-            idTextBox.Text = selectedEquipment.Id;
             nameTextBox.Text = selectedEquipment.Name;
             quanitityTextBox.Text = magacine.Equipment[selectedEquipment.Id].ToString();
             //quanitityTextBox.Text = selectedEquipment.QuantityInMagacine.ToString();
@@ -110,17 +104,11 @@ namespace HospitalInformationSystem.Windows.ManagerGUI
         {
             int quantityInMagacine = int.TryParse(quanitityTextBox.Text, out quantityInMagacine) ? quantityInMagacine : 0;
 
-            if (idTextBox.Text != selectedEquipment.Id || nameTextBox.Text != selectedEquipment.Name || (string)typeComboBox.SelectedItem != selectedEquipment.GetStringType || /*quantityInMagacine != selectedEquipment.QuantityInMagacine ||*/ descriptionTextBox.Text != selectedEquipment.Description)
+            if (nameTextBox.Text != selectedEquipment.Name || (string)typeComboBox.SelectedItem != selectedEquipment.GetStringType || /*quantityInMagacine != selectedEquipment.QuantityInMagacine ||*/ descriptionTextBox.Text != selectedEquipment.Description)
                 changeButton.IsEnabled = true;
             else
                 changeButton.IsEnabled = false;
         }
-
-        private void idTextBox_SelectionChanged(object sender, RoutedEventArgs e)
-        {
-            checkControls();
-        }
-
         private void nameTextBox_SelectionChanged(object sender, RoutedEventArgs e)
         {
             checkControls();

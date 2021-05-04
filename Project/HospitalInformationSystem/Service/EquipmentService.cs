@@ -79,13 +79,12 @@ namespace HospitalInformationSystem.Service
                     this.equipmentList.Remove(equipment);
         }
 
-        public void changeEquipment(Equipment equipment, string id, string name, TypeOfEquipment typeOfEquipment, int newQuantity, int oldQuantity, string description)
+        public void changeEquipment(Equipment equipment, string name, TypeOfEquipment typeOfEquipment, int newQuantity, int oldQuantity, string description)
         {
-            equipment.Id = id;
             equipment.Name = name;
             equipment.Type = typeOfEquipment;
             //equipment.QuantityInMagacine = newQuantity;
-            RoomController.getInstance().GetMagacine().Equipment[id] = newQuantity;
+            RoomController.getInstance().GetMagacine().Equipment[equipment.Id] = newQuantity;
             equipment.Description = description;
             if (newQuantity > oldQuantity)
                 equipment.Quantity += newQuantity - oldQuantity;

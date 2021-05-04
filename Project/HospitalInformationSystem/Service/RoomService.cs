@@ -151,5 +151,9 @@ namespace HospitalInformationSystem.Service
         {
             GetMagacine().Equipment.Add(newEquipment.Id, newEquipment.Quantity);
         }
+        public void ChangeEquipmentId(string id)
+        {
+
+        }
     }
 }

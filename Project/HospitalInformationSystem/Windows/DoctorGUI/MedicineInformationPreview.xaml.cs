@@ -134,5 +134,10 @@ namespace HospitalInformationSystem.Windows.DoctorGUI
             MedicinePreviewWindow.GetInstance().RefreshTable();
             instance = null;
         }
+
+        private void addCommentButton_Click(object sender, RoutedEventArgs e)
+        {
+            AddCommentOnMedicineWindow.GetInstance(medicine).ShowDialog();
+        }
     }
 }

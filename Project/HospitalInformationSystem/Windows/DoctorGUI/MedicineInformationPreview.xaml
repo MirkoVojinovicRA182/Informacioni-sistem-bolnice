@@ -28,7 +28,7 @@
         <Label Content="Svrha leka:" HorizontalAlignment="Left" Margin="10,112,0,0" VerticalAlignment="Top" FontSize="14"/>
         <TextBox x:Name="medicinePurposeTextBox" HorizontalAlignment="Left" Height="29" Margin="90,112,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="146" FontSize="16" IsEnabled="False"/>
         <Button x:Name="editMedicine" Content="IZMENI" HorizontalAlignment="Left" Height="43" Margin="10,517,0,0" VerticalAlignment="Top" Width="128" FontSize="16" Click="editMedicine_Click"/>
-        <Button x:Name="addComment" Content="DODAJ&#xD;&#xA;KOMENTAR" HorizontalAlignment="Left" Height="43" Margin="224,517,0,0" VerticalAlignment="Top" Width="128" FontSize="16"/>
+        <Button x:Name="addCommentButton" Content="DODAJ&#xD;&#xA;KOMENTAR" HorizontalAlignment="Left" Height="43" Margin="224,517,0,0" VerticalAlignment="Top" Width="128" FontSize="16" Click="addCommentButton_Click"/>
         <ComboBox x:Name="medicineReplacmentComboBox" HorizontalAlignment="Left" Height="29" Margin="116,44,0,0" VerticalAlignment="Top" Width="120" FontSize="16" IsEnabled="False">
             <ComboBox.ItemTemplate>
                 <DataTemplate>

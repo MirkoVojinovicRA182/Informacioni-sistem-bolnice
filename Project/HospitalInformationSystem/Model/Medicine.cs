@@ -72,5 +72,10 @@ namespace HospitalInformationSystem.Model
         {
             get; set;
         }
+
+        public string comment
+        {
+            get; set;
+        }
     }
 }

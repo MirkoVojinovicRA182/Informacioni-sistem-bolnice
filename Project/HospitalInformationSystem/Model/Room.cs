@@ -16,11 +16,6 @@ namespace Model
     {
         private string stringValueOfEnumType;
 
-        public Room()
-        {
-            // TODO: implement
-        }
-
         public Room(int id, string name, int floor, TypeOfRoom type)
         {
             this.Id = id;
@@ -29,11 +24,6 @@ namespace Model
             this.Type = type;
             Equipment = new Hashtable();
             RoomRenovationState = new RoomRenovationState(DateTime.Now, DateTime.Now);
-        }
-
-        ~Room()
-        {
-            // TODO: implement
         }
 
         public string Name
@@ -84,11 +74,6 @@ namespace Model
                 return stringValueOfEnumType;
             }
             set { }
-        }
-
-        public int IsInRenovationState
-        {
-            get; set;
         }
         public RoomRenovationState RoomRenovationState
         {

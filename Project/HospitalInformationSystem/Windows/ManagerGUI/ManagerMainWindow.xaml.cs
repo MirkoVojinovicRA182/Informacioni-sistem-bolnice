@@ -64,7 +64,7 @@ namespace HospitalInformationSystem.Windows.ManagerGUI
                 room = (Room)this.roomsUserControl.allRoomsTable.SelectedItem;
                 if (string.Equals(room.Name, "Magacin"))
                     return;
-                if (room.IsInRenovationState == 0)
+                if (room.RoomRenovationState.ActivityStatus)
                 {
                     RoomController.getInstance().deleteRoom((Room)this.roomsUserControl.allRoomsTable.SelectedItem);
                     moveEquipmentInMagacine();

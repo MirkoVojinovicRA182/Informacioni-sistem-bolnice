@@ -44,6 +44,7 @@ namespace HospitalInformationSystem.Model
                 else
                     return "Pilula";
             }
+            set { }
         }
         public string Purpose
         {
@@ -66,6 +67,7 @@ namespace HospitalInformationSystem.Model
                     return ReplacementMedicine.Name;
                 return "nema";
             }
+            set { }
         }
 
         public List<MedicineIngredient> Ingredients
@@ -73,7 +75,7 @@ namespace HospitalInformationSystem.Model
             get; set;
         }
 
-        public string comment
+        public string Comment
         {
             get; set;
         }

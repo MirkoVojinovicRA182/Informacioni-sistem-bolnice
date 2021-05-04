@@ -28,7 +28,7 @@ namespace HospitalInformationSystem.Windows.DoctorGUI
         {
             if (commentTextBox.Text.Length > 0)
             {
-                medicine.comment = commentTextBox.Text;
+                medicine.Comment = commentTextBox.Text;
                 MessageBox.Show("Uspesno ste dodali komentar na lek.", "Komentar", MessageBoxButton.OK, MessageBoxImage.Information);
             }
         }

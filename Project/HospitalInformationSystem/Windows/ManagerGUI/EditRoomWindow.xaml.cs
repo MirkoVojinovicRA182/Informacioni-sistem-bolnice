@@ -182,6 +182,7 @@ namespace HospitalInformationSystem.Windows.ManagerGUI
                 ManagerMainWindow.getInstance().roomsUserControl.refreshTable();
                 MessageBox.Show("Informacije o prostoriji su sada izmenjene.", "Izmena informacija", MessageBoxButton.OK, MessageBoxImage.Information);
                 changeRoomButton.IsEnabled = false;
+                this.Close();
             }
         }
 

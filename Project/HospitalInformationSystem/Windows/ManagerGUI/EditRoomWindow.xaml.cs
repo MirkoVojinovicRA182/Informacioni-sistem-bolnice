@@ -54,6 +54,7 @@ namespace HospitalInformationSystem.Windows.ManagerGUI
                 removeDynamicButton.IsEnabled = false;
                 addStaticButton.IsEnabled = false;
                 additionOfDynamicEquipmentButton.IsEnabled = false;
+                typeComboBox.IsEnabled = false;
             }
         }
 

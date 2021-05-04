@@ -1,0 +1,59 @@
+﻿using HospitalInformationSystem.Controller;
+using Model;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Windows;
+using System.Windows.Controls;
+using System.Windows.Data;
+using System.Windows.Documents;
+using System.Windows.Input;
+using System.Windows.Media;
+using System.Windows.Media.Imaging;
+using System.Windows.Shapes;
+
+namespace HospitalInformationSystem.Windows.ManagerGUI
+{
+    /// <summary>
+    /// Interaction logic for SupplementingDynamicEquipmentWindow.xaml
+    /// </summary>
+    public partial class SupplementingDynamicEquipmentWindow : Window
+    {
+        Room selectedRoom;
+        string idOfSelectedEquipment;
+        private static SupplementingDynamicEquipmentWindow instance;
+        public static SupplementingDynamicEquipmentWindow GetInstance(Room selectedRoom, string idOfSelectedEquipment)
+        {
+            if (instance == null)
+                instance = new SupplementingDynamicEquipmentWindow(selectedRoom, idOfSelectedEquipment);
+            return instance;
+        }
+        private SupplementingDynamicEquipmentWindow(Room selectedRoom, string idOfSelectedEquipment)
+        {
+            InitializeComponent();
+            this.selectedRoom = selectedRoom;
+            this.idOfSelectedEquipment = idOfSelectedEquipment;
+        }
+        private void SupplyRoomDynamicEquipment(Room selectedRoom, string idOfSelectedEquipment)
+        {
+            int currentQuantity = (int)selectedRoom.Equipment[idOfSelectedEquipment];
+            selectedRoom.Equipment[idOfSelectedEquipment] = currentQuantity + int.Parse(quantityTextBox.Text); 
+        }
+
+        private void confirmButton_Click(object sender, RoutedEventArgs e)
+        {
+            SupplyRoomDynamicEquipment(selectedRoom, idOfSelectedEquipment);
+            EquipmentController.getInstance().changeQuantityInMagacine(idOfSelectedEquipment, int.Parse(quantityTextBox.Text));
+            EditRoomWindow.getInstance(selectedRoom).RefreshEquipmentList();
+            EditRoomWindow.getInstance(selectedRoom).refreshDynamicEquipmentListBox();
+            this.Close();
+        }
+
+        private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            instance = null;
+        }
+    }
+}

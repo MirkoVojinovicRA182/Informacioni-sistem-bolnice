@@ -53,6 +53,7 @@ namespace HospitalInformationSystem.Windows.ManagerGUI
                 addDynamicButton.IsEnabled = false;
                 removeDynamicButton.IsEnabled = false;
                 addStaticButton.IsEnabled = false;
+                additionOfDynamicEquipmentButton.IsEnabled = false;
             }
         }
 
@@ -256,17 +257,18 @@ namespace HospitalInformationSystem.Windows.ManagerGUI
             nameTextBox.Text = selectedRoom.Name;
             floorTextBox.Text = selectedRoom.Floor.ToString();
             fiilTypeComboBox(selectedRoom.Type);
-
-            equipment.Clear();
-
-            foreach (DictionaryEntry de in selectedRoom.Equipment)
-                equipment.Add(de.Key, de.Value);
-
+            RefreshEquipmentList();
             refreshDynamicEquipmentListBox();
             refreshStaticEquipmentListBox();
         }
+        public void RefreshEquipmentList()
+        {
+            equipment.Clear();
+            foreach (DictionaryEntry de in selectedRoom.Equipment)
+                equipment.Add(de.Key, de.Value);
+        }
 
-        private void refreshDynamicEquipmentListBox()
+        public void refreshDynamicEquipmentListBox()
         {
             dynamicEquipmentListBox.ItemsSource = null;
             dynamicEquipmentListBox.ItemsSource = loadDynamicEquimpentInListBox();
@@ -366,6 +368,20 @@ namespace HospitalInformationSystem.Windows.ManagerGUI
         private void staticEquipmentListBox_LayoutUpdated(object sender, EventArgs e)
         {
             checkEquipment();
+        }
+
+        private void additionOfDynamicEquipmentButton_Click(object sender, RoutedEventArgs e)
+        {
+            if (dynamicEquipmentListBox.SelectedItem != null)
+            {
+                string nameOfSelectedEquipment = (string)dynamicEquipmentListBox.SelectedItem;
+                string[] separator = { " x", };
+                string[] atributesOfSelectedEquipment = nameOfSelectedEquipment.Split(separator, StringSplitOptions.None);
+                string idOfSelectedEquipment = EquipmentController.getInstance().getEquipmentId(atributesOfSelectedEquipment[0]);
+                SupplementingDynamicEquipmentWindow.GetInstance(selectedRoom, idOfSelectedEquipment).ShowDialog();
+            }
+            else
+                MessageBox.Show("Niste odabrali opremu!", "Greška", MessageBoxButton.OK, MessageBoxImage.Error);
         }
     }
 }

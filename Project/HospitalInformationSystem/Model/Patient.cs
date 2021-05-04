@@ -95,7 +95,7 @@ namespace Model
         }
 
         /// <pdGenerated>default setter</pdGenerated>
-        public void SetAppointment(System.Collections.ArrayList newAppointment)
+        public void SetAppointment(List<Appointment> newAppointment)
         {
             RemoveAllAppointment();
             foreach (Appointment oAppointment in newAppointment)

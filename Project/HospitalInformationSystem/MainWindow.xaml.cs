@@ -27,18 +27,18 @@ namespace HospitalInformationSystem.Windows
             DoctorController.getInstance().loadFromFile();
 
 
-            /*var doctor = new Doctor("Marko", "Markovic", Specialization.Family_Physician, new Room(1, "Markova kancelarija", 1, TypeOfRoom.ExaminationRoom));
+            var doctor = new Doctor("Marko", "Markovic", Specialization.Family_Physician, new Room(1, "Markova kancelarija", 1, TypeOfRoom.ExaminationRoom));
             var doctor2 = new Doctor("Jovan", "Jovanovic", Specialization.Family_Physician, new Room(2, "Jovanova prostorija", 2, TypeOfRoom.ExaminationRoom));
             var doctor3 = new Doctor("Stevan", "Stojanovic", Specialization.Family_Physician, new Room(3, "Stevanova prostorija", 3, TypeOfRoom.ExaminationRoom));
             DoctorController.getInstance().addDoctor(doctor);
             DoctorController.getInstance().addDoctor(doctor2);
-            DoctorController.getInstance().addDoctor(doctor3);*/
-            //var doctor = new Doctor("Darko", "Ilic", Specialization.Surgeon, new Room(1, "Darkova kancelarija", 4, TypeOfRoom.ExaminationRoom));
-            //DoctorController.getInstance().addDoctor(doctor);
+            DoctorController.getInstance().addDoctor(doctor3);
+            var doctor4 = new Doctor("Darko", "Ilic", Specialization.Surgeon, new Room(1, "Darkova kancelarija", 4, TypeOfRoom.ExaminationRoom));
+            DoctorController.getInstance().addDoctor(doctor4);
 
             Patient first = new Patient("Pera", "Pacijent", new PatientActivity(0, 0, 0, false));
-            Patient second = new Patient("Jova", "Pacijent", "2");
-            Patient third = new Patient("Mika", "Pacijent", "3");
+            Patient second = new Patient("Jova", "Pacijent", new PatientActivity(0, 0, 0, false));
+            Patient third = new Patient("Mika", "Pacijent", new PatientActivity(0, 0, 0, false));
 
             MedicalRecord firstMedicalRecord = new MedicalRecord(1);
             MedicalRecord secondMedicalRecord = new MedicalRecord(2);
@@ -63,6 +63,8 @@ namespace HospitalInformationSystem.Windows
             //manager.Id = "52";
 
             AccountDataBase.getInstance().AddAccount(new Account("perapacijent1@yahoo.com", "pass", first));
+            AccountDataBase.getInstance().AddAccount(new Account("jovapacijent@yahoo.com", "pass", second));
+            AccountDataBase.getInstance().AddAccount(new Account("mikapacijent@yahoo.com", "pass", third));
             AccountDataBase.getInstance().AddAccount(new Account("markomarkovic@yahoo.com", "pass", DoctorController.getInstance().getDoctors()[0]));
             AccountDataBase.getInstance().AddAccount(new Account("jovanjovanovic@yahoo.com", "pass", DoctorController.getInstance().getDoctors()[1]));
             AccountDataBase.getInstance().AddAccount(new Account("stevanstojanovic@yahoo.com", "pass", DoctorController.getInstance().getDoctors()[2]));

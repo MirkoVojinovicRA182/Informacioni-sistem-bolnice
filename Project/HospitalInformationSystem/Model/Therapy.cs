@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 namespace Model
 {
+    [Serializable]
     public class Therapy
     {
         public Therapy(Medication medication, int dosage, List<DayOfWeek> days, DateTime time, bool notification)

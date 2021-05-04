@@ -52,9 +52,11 @@ namespace HospitalInformationSystem.Windows.DoctorGUI
             Appointment appointment = new Appointment(date, typeOfAppointment, room, (Patient)patientComboBox.SelectedItem, doctor);
             AppointmentController.getInstance().addAppointment(appointment);
             appointment.GetDoctor().AddAppointment(appointment);
-            appointment.GetPatient().AddAppointment(appointment);
-            
-      
+            //appointment.GetPatient().AddAppointment(appointment);
+            Patient patient = (Patient)patientComboBox.SelectedItem;
+            patient.AddAppointment(appointment);
+
+
         }
 
 

@@ -35,7 +35,7 @@ namespace HospitalInformationSystem.Windows.PatientGUI
         public PatientAppointmentCRUDOperationsWindow(Patient patient)
         {
             InitializeComponent();
-            AppointmentDataGrid.ItemsSource = AppointmentController.getInstance().GetAppointmentsByPatient(patient);
+            //AppointmentDataGrid.ItemsSource = AppointmentController.getInstance().GetAppointmentsByPatient(patient);
             var therapy = new List<Therapy>();
             var days = new List<DayOfWeek>();
             days.Add(DayOfWeek.Monday);
@@ -46,6 +46,7 @@ namespace HospitalInformationSystem.Windows.PatientGUI
             therapy.Add(new Therapy(Medication.Losartan, 2, days, default(DateTime).Add(DateTime.ParseExact("10:00", "HH:mm", CultureInfo.InvariantCulture).TimeOfDay), notificationsEnabled));
             this.patient = patient;
             this.patient.SetTherapy(therapy);
+            AppointmentDataGrid.DataContext = patient.GetAppointment();
             Notify();
             RefreshTable();
         }
@@ -171,7 +172,7 @@ namespace HospitalInformationSystem.Windows.PatientGUI
         }
         public void RefreshTable()
         {
-            appointmentList = new ObservableCollection<Appointment>(AppointmentController.getInstance().getAppointment());
+            appointmentList = new ObservableCollection<Appointment>(patient.GetAppointment());
             AppointmentDataGrid.ItemsSource = null;
             AppointmentDataGrid.ItemsSource = appointmentList;
         }

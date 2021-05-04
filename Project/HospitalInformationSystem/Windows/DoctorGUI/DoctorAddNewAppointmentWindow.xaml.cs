@@ -28,16 +28,25 @@ namespace HospitalInformationSystem.Windows.DoctorGUI
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-
             if (checkData())
             {
                 if (String.Compare((string)appointmentComboBox.SelectedItem, "Operacija") == 0)
+                {
                     room = (Room)roomsListBox.SelectedItem;
-
+                    if (!CheckRoomState(room))
+                    {
+                        MessageBox.Show("Prostorija je zauzeta u datom terminu!", "Greska", MessageBoxButton.OK, MessageBoxImage.Warning);
+                        return;
+                    }
+                }
                 createAppointment();
-
                 MessageBox.Show("Termin je uspesno zakazan", "Novi Termin", MessageBoxButton.OK, MessageBoxImage.Information);
             }
+        }
+        private bool CheckRoomState(Room room)
+        {
+            DateTime dateOfAppointment = DateTime.ParseExact(dateTextBox.Text + " " + timeTextBox.Text, "dd.MM.yyyy. HH:mm", System.Globalization.CultureInfo.InvariantCulture);
+            return dateOfAppointment.AddMinutes(30) < room.RoomRenovationState.StartDate || dateOfAppointment > room.RoomRenovationState.EndDate;
         }
 
         private void roomsListBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -47,8 +56,6 @@ namespace HospitalInformationSystem.Windows.DoctorGUI
         private void createAppointment()
         {
             DateTime date = DateTime.ParseExact(dateTextBox.Text + " " + timeTextBox.Text, "dd.MM.yyyy. HH:mm", System.Globalization.CultureInfo.InvariantCulture);
-           
-
             Appointment appointment = new Appointment(date, typeOfAppointment, room, (Patient)patientComboBox.SelectedItem, doctor);
             AppointmentController.getInstance().addAppointment(appointment);
             appointment.GetDoctor().AddAppointment(appointment);
@@ -73,9 +80,7 @@ namespace HospitalInformationSystem.Windows.DoctorGUI
             {
                 roomLabel.Visibility = System.Windows.Visibility.Visible;
                 roomsListBox.Visibility = System.Windows.Visibility.Visible;
-
                 typeOfAppointment = TypeOfAppointment.Operacija;
-
             }
             else
             {

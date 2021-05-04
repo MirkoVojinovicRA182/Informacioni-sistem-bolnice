@@ -27,14 +27,14 @@ namespace HospitalInformationSystem.Windows
             DoctorController.getInstance().loadFromFile();
 
 
-            var doctor = new Doctor("Marko", "Markovic", Specialization.Family_Physician, new Room(1, "Markova kancelarija", 1, TypeOfRoom.ExaminationRoom));
+            /*var doctor = new Doctor("Marko", "Markovic", Specialization.Family_Physician, new Room(1, "Markova kancelarija", 1, TypeOfRoom.ExaminationRoom));
             var doctor2 = new Doctor("Jovan", "Jovanovic", Specialization.Family_Physician, new Room(2, "Jovanova prostorija", 2, TypeOfRoom.ExaminationRoom));
             var doctor3 = new Doctor("Stevan", "Stojanovic", Specialization.Family_Physician, new Room(3, "Stevanova prostorija", 3, TypeOfRoom.ExaminationRoom));
             DoctorController.getInstance().addDoctor(doctor);
             DoctorController.getInstance().addDoctor(doctor2);
             DoctorController.getInstance().addDoctor(doctor3);
             var doctor4 = new Doctor("Darko", "Ilic", Specialization.Surgeon, new Room(1, "Darkova kancelarija", 4, TypeOfRoom.ExaminationRoom));
-            DoctorController.getInstance().addDoctor(doctor4);
+            DoctorController.getInstance().addDoctor(doctor4);*/
 
             Patient first = new Patient("Pera", "Pacijent", new PatientActivity(0, 0, 0, false));
             Patient second = new Patient("Jova", "Pacijent", new PatientActivity(0, 0, 0, false));

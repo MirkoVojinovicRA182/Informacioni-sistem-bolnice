@@ -59,11 +59,11 @@ namespace HospitalInformationSystem.Windows.ManagerGUI
 
         private void deleteRoomMenuItem_Click(object sender, RoutedEventArgs e)
         {
-            room = (Room)this.roomsUserControl.allRoomsTable.SelectedItem;
-            if (string.Equals(room.Name, "Magacin"))
-                return;
             if (roomsUserControl.allRoomsTable.SelectedItem != null)
             {
+                room = (Room)this.roomsUserControl.allRoomsTable.SelectedItem;
+                if (string.Equals(room.Name, "Magacin"))
+                    return;
                 if (room.IsInRenovationState == 0)
                 {
                     RoomController.getInstance().deleteRoom((Room)this.roomsUserControl.allRoomsTable.SelectedItem);

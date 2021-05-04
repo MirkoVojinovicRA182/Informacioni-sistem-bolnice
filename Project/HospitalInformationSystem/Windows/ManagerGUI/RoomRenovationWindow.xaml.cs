@@ -104,11 +104,16 @@ namespace HospitalInformationSystem.Windows.ManagerGUI
         }
         private bool CheckTheCorrectnessOfTheTerm()
         {
-            foreach (Appointment currentAppointment in AppointmentController.getInstance().getAppointment())
+            startTermDate = GetDate((string)startTimeComboBox.SelectedItem, startDatePicker);
+            endTermDate = GetDate((string)endTimeComboBox.SelectedItem, endDatePicker);
+            List<Appointment> list = AppointmentController.getInstance().getAppointment();
+            foreach (Appointment currentAppointment in list)
             {
-                if (Room.Equals(currentAppointment.room, roomForRenovation))
+                if (string.Equals(currentAppointment.room.Name, roomForRenovation.Name))
                 {
-                    if (currentAppointment.StartTime >= startTermDate && currentAppointment.StartTime <= endTermDate)
+                    if ((currentAppointment.StartTime >= startTermDate && currentAppointment.StartTime <= endTermDate) ||
+                        (startTermDate >= currentAppointment.StartTime && startTermDate <= currentAppointment.StartTime.AddMinutes(30) ||
+                        (currentAppointment.StartTime.AddMinutes(30) >= startTermDate && currentAppointment.StartTime.AddMinutes(30) <= endTermDate)))
                         return false;
                 }
             }

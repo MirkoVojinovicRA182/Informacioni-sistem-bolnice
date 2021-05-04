@@ -56,6 +56,8 @@ namespace HospitalInformationSystem.Windows.DoctorGUI
             {
                 appointment = (Appointment)appointmentsTable.SelectedItem;
                 AppointmentController.getInstance().removeAppointment(appointment);
+                doctor.RemoveAppointment(appointment);
+                appointment.GetPatient().RemoveAppointment(appointment);
                 refreshTable();
             }
         }

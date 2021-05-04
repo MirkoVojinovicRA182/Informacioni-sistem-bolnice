@@ -72,8 +72,6 @@ namespace HospitalInformationSystem.Windows
             AccountDataBase.getInstance().AddAccount(new Account("petarpetrovic@yahoo.com", "pass", secretary));
             AccountDataBase.getInstance().AddAccount(new Account("m", "pass", manager));
 
-            ManagerMainWindow.getInstance().Show();
-
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)

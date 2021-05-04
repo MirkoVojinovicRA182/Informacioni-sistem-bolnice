@@ -22,6 +22,7 @@ namespace HospitalInformationSystem.Windows
         public MainWindow()
         {
             InitializeComponent();
+            RoomController.getInstance().loadFromFile();
             savePatients.loadFromFile();
             AppointmentController.getInstance().loadFromFile();
             DoctorController.getInstance().loadFromFile();

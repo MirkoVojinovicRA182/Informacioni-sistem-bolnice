@@ -11,7 +11,8 @@ namespace HospitalInformationSystem.Windows.DoctorGUI
     /// </summary>
     public partial class ReferralLetterWindow : Window
     {
-        private Patient patient;
+        private const string dateApperence = "dd.MM.yyyy. HH:mm";
+        private Patient patientForReferralLetter;
         private static ReferralLetterWindow instance = null;
         public static ReferralLetterWindow GetInstance(Patient patient)
         {
@@ -19,15 +20,15 @@ namespace HospitalInformationSystem.Windows.DoctorGUI
                 instance = new ReferralLetterWindow(patient);
             return instance;
         }
-        private ReferralLetterWindow(Patient patient)
+        private ReferralLetterWindow(Patient patientForReferralLetter)
         {
             InitializeComponent();
-            this.patient = patient;
+            this.patientForReferralLetter = patientForReferralLetter;
             initReferralLetterData();
         }
         private void initReferralLetterData()
         {
-            patientNameLabel.Content = patient.Name + " " + patient.Surname;
+            patientNameLabel.Content = patientForReferralLetter.Name + " " + patientForReferralLetter.Surname;
             InitSpecializationComboBox();
             InitDoctorComboBox();
             InitAppointmentTypeComboBox();
@@ -79,21 +80,17 @@ namespace HospitalInformationSystem.Windows.DoctorGUI
         }
         private void InitRoomsListBox()
         {
-            List<Room> roomsList = new List<Room>();
+            List<Room> operationRoomsList = new List<Room>();
             foreach(Room room in RoomController.getInstance().getRooms())
             {
                 if (room.Type == TypeOfRoom.OperationRoom)
-                    roomsList.Add(room);
+                    operationRoomsList.Add(room);
             }
-            roomsListBox.DataContext = RoomController.getInstance().getRooms();
+            roomsListBox.DataContext = operationRoomsList;
         }
         private bool CheckInputs()
         {
-            return (CheckSpecialization() && CheckDoctor() && CheckAppointmentType() && CheckRoom() && CheckDate());
-        }
-        private bool CheckSpecialization()
-        {
-            return !(specializationComboBox.SelectedIndex < 0);
+            return (CheckDoctor() && CheckRoomInput() && CheckDate() && CheckDoctorAppointments() && CheckRoomState());
         }
         private bool CheckDoctor()
         {
@@ -104,13 +101,13 @@ namespace HospitalInformationSystem.Windows.DoctorGUI
             }
             return true;
         }
-        private bool CheckAppointmentType()
+        private bool CheckSelectedRoom()
         {
-            return !(typeOfAppointmentComboBox.SelectedIndex < 0);
+            return ((TypeOfAppointment)typeOfAppointmentComboBox.SelectedItem == TypeOfAppointment.Operacija && roomsListBox.SelectedIndex < 0);
         }
-        private bool CheckRoom()
+        private bool CheckRoomInput()
         {
-            if ((TypeOfAppointment)typeOfAppointmentComboBox.SelectedItem == TypeOfAppointment.Operacija && roomsListBox.SelectedIndex < 0)
+            if (CheckSelectedRoom())
             {
                 MessageBox.Show("Morate odabrati prostoriju!", "Prostorija", MessageBoxButton.OK, MessageBoxImage.Error);
                 return false;
@@ -121,13 +118,44 @@ namespace HospitalInformationSystem.Windows.DoctorGUI
         {
             try
             {
-                DateTime date = DateTime.ParseExact(dateTextBox.Text + " " + timeTextBox.Text, 
-                    "dd.MM.yyyy. HH:mm", System.Globalization.CultureInfo.InvariantCulture);
+                DateTime date = DateTime.ParseExact(dateTextBox.Text + " " + timeTextBox.Text,
+                    dateApperence, System.Globalization.CultureInfo.InvariantCulture);
             }
             catch (Exception e)
             {
                 MessageBox.Show("Nevalidan format za datum ili vreme!", "Datum", MessageBoxButton.OK, MessageBoxImage.Error);
                 return false;
+            }
+            return true;
+        }
+        private bool CheckDoctorAppointments()
+        {
+            DateTime inputDate = DateTime.ParseExact(dateTextBox.Text + " " + timeTextBox.Text,
+                                                    dateApperence, System.Globalization.CultureInfo.InvariantCulture);
+            Doctor doctor = (Doctor)doctorComboBox.SelectedItem;
+            foreach (Appointment appointment in doctor.GetAppointment())
+            {
+                if (inputDate.Ticks > appointment.StartTime.AddMinutes(-30).Ticks && 
+                    inputDate.Ticks < appointment.StartTime.AddMinutes(30).Ticks)
+                {
+                    MessageBox.Show("Odabrani doktor vec ima termin u odabrano vreme!", "Termin", MessageBoxButton.OK, MessageBoxImage.Error);
+                    return false;
+                }
+            }
+            return true;
+        }
+        private bool CheckRoomState()
+        {
+            if (CheckSelectedRoom())
+            {
+                Room room = (Room)roomsListBox.SelectedItem;
+                DateTime dateOfAppointment = DateTime.ParseExact(dateTextBox.Text + " " + timeTextBox.Text,
+                                                                dateApperence, System.Globalization.CultureInfo.InvariantCulture);
+                if (!(dateOfAppointment.AddMinutes(30) < room.RoomRenovationState.StartDate || dateOfAppointment > room.RoomRenovationState.EndDate))
+                {
+                    MessageBox.Show("Prostorija je zauzeta u odabranom terminu!", "Termin", MessageBoxButton.OK, MessageBoxImage.Error);
+                    return false;
+                }
             }
             return true;
         }
@@ -158,24 +186,27 @@ namespace HospitalInformationSystem.Windows.DoctorGUI
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            if(CheckInputs() && (TypeOfAppointment)typeOfAppointmentComboBox.SelectedItem == TypeOfAppointment.Operacija)
+            if(CheckInputs() && CheckSelectedRoom())
             {
+                Doctor doctor = (Doctor)doctorComboBox.SelectedItem;
                 Appointment appointment = new Appointment(DateTime.ParseExact(dateTextBox.Text + " " + timeTextBox.Text,
-                    "dd.MM.yyyy. HH:mm", System.Globalization.CultureInfo.InvariantCulture),
+                    dateApperence, System.Globalization.CultureInfo.InvariantCulture),
                     (TypeOfAppointment)typeOfAppointmentComboBox.SelectedItem,
-                    (Room)roomsListBox.SelectedItem, patient, (Doctor)doctorComboBox.SelectedItem);
+                    (Room)roomsListBox.SelectedItem, patientForReferralLetter, doctor);
                 AppointmentController.getInstance().addAppointment(appointment);
-                appointment.GetDoctor().AddAppointment(appointment);
-                patient.AddAppointment(appointment);
+                doctor.AddAppointment(appointment);
+                patientForReferralLetter.AddAppointment(appointment);
 
             }
             else if(CheckInputs())
             {
                 Doctor doctor = (Doctor)doctorComboBox.SelectedItem;
                 Appointment appointment = new Appointment(DateTime.ParseExact(dateTextBox.Text + " " + timeTextBox.Text,
-                    "dd.MM.yyyy. HH:mm", System.Globalization.CultureInfo.InvariantCulture),
+                    dateApperence, System.Globalization.CultureInfo.InvariantCulture),
                     (TypeOfAppointment)typeOfAppointmentComboBox.SelectedItem,
-                    doctor.room, patient, doctor);
+                    doctor.room, patientForReferralLetter, doctor);
+                doctor.AddAppointment(appointment);
+                patientForReferralLetter.AddAppointment(appointment);
             }
         }
     }

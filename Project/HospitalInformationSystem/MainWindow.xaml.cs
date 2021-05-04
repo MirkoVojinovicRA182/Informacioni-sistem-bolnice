@@ -24,7 +24,7 @@ namespace HospitalInformationSystem.Windows
             savePatients.loadFromFile();
             AppointmentController.getInstance().loadFromFile();
             DoctorController.getInstance().loadFromFile();
-            
+
 
             /*var doctor = new Doctor("Marko", "Markovic", Specialization.Family_Physician, new Room(1, "Markova kancelarija", 1, TypeOfRoom.ExaminationRoom));
             var doctor2 = new Doctor("Jovan", "Jovanovic", Specialization.Family_Physician, new Room(2, "Jovanova prostorija", 2, TypeOfRoom.ExaminationRoom));
@@ -32,6 +32,8 @@ namespace HospitalInformationSystem.Windows
             DoctorController.getInstance().addDoctor(doctor);
             DoctorController.getInstance().addDoctor(doctor2);
             DoctorController.getInstance().addDoctor(doctor3);*/
+            //var doctor = new Doctor("Darko", "Ilic", Specialization.Surgeon, new Room(1, "Darkova kancelarija", 4, TypeOfRoom.ExaminationRoom));
+            //DoctorController.getInstance().addDoctor(doctor);
 
             Patient first = new Patient("Pera", "Pacijent", "1");
             Patient second = new Patient("Jova", "Pacijent", "2");
@@ -63,6 +65,7 @@ namespace HospitalInformationSystem.Windows
             AccountDataBase.getInstance().AddAccount(new Account("markomarkovic@yahoo.com", "pass", DoctorController.getInstance().getDoctors()[0]));
             AccountDataBase.getInstance().AddAccount(new Account("jovanjovanovic@yahoo.com", "pass", DoctorController.getInstance().getDoctors()[1]));
             AccountDataBase.getInstance().AddAccount(new Account("stevanstojanovic@yahoo.com", "pass", DoctorController.getInstance().getDoctors()[2]));
+            AccountDataBase.getInstance().AddAccount(new Account("darkoilic@yahoo.com", "pass", DoctorController.getInstance().getDoctors()[3]));
             AccountDataBase.getInstance().AddAccount(new Account("petarpetrovic@yahoo.com", "pass", secretary));
             AccountDataBase.getInstance().AddAccount(new Account("m", "pass", manager));
 

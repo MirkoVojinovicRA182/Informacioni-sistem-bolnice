@@ -55,5 +55,16 @@ namespace HospitalInformationSystem.Windows.DoctorGUI
 
             doctorShowPrescription.ShowDialog();
         }
+
+        private void allergensButton_Click(object sender, RoutedEventArgs e)
+        {
+            DoctorAllergensPreviewWindow doctorAllergensPreviewWindow = new DoctorAllergensPreviewWindow(patient.GetMedicalRecord());
+            doctorAllergensPreviewWindow.ShowDialog();
+        }
+
+        private void referralLetterButton_Click(object sender, RoutedEventArgs e)
+        {
+            ReferralLetterWindow.GetInstance(patient).ShowDialog();
+        }
     }
 }

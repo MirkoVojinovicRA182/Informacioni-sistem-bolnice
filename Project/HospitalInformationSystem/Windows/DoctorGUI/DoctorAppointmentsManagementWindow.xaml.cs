@@ -1,5 +1,4 @@
 ﻿using HospitalInformationSystem.Controller;
-using HospitalInformationSystem.Repository;
 using Model;
 using System.Collections.ObjectModel;
 using System.Windows;
@@ -11,21 +10,29 @@ namespace HospitalInformationSystem.Windows.DoctorGUI
     /// </summary>
     public partial class DoctorAppointmentsManagementWindow : Window
     {
+        Doctor doctor;
         Appointment appointment;
         private ObservableCollection<Appointment> appointmentList;
-        AppointmentsRepository doctorAppFile = new AppointmentsRepository();
-        public DoctorAppointmentsManagementWindow()
+
+        private static DoctorAppointmentsManagementWindow instance = null;
+
+        public static DoctorAppointmentsManagementWindow GetInstance(Doctor doctor)
+        {
+            if (instance == null)
+                instance = new DoctorAppointmentsManagementWindow(doctor);
+            return instance;
+        }
+        private DoctorAppointmentsManagementWindow(Doctor doctor)
         {
             InitializeComponent();
-            //appointmentsTable.DataContext = AppointmentDataBase.getInstance().GetAppointment();
-            doctorAppFile.loadFromFile();
+            this.doctor = doctor;
+            appointmentsTable.DataContext = doctor.GetAppointment();
             refreshTable();
         }
 
         private void addButton_Click(object sender, RoutedEventArgs e)
         {
-            Window2 doctorAddNewAppointmentWindow = new Window2();
-
+            Window2 doctorAddNewAppointmentWindow = new Window2(doctor);
 
             doctorAddNewAppointmentWindow.ShowDialog();
             
@@ -34,22 +41,23 @@ namespace HospitalInformationSystem.Windows.DoctorGUI
 
         private void changeButton_Click(object sender, RoutedEventArgs e)
         {
-            appointment = (Appointment)appointmentsTable.SelectedItem;
-            
-            DoctorEditAppointmentWindow doctorEditAppointmentWindow = new DoctorEditAppointmentWindow(appointment);
-
-            doctorEditAppointmentWindow.ShowDialog();
-
-            refreshTable();
+            if ((Appointment)appointmentsTable.SelectedItem != null)
+            {
+                appointment = (Appointment)appointmentsTable.SelectedItem;
+                DoctorEditAppointmentWindow doctorEditAppointmentWindow = new DoctorEditAppointmentWindow(appointment);
+                doctorEditAppointmentWindow.ShowDialog();
+                refreshTable();
+            }
         }
 
         private void deleteButton_Click(object sender, RoutedEventArgs e)
         {
-            appointment = (Appointment)appointmentsTable.SelectedItem;
-
-            AppointmentController.getInstance().removeAppointment(appointment);
-
-            refreshTable();
+            if ((Appointment)appointmentsTable.SelectedItem != null)
+            {
+                appointment = (Appointment)appointmentsTable.SelectedItem;
+                AppointmentController.getInstance().removeAppointment(appointment);
+                refreshTable();
+            }
         }
 
         private void closeButton_Click(object sender, RoutedEventArgs e)
@@ -58,25 +66,33 @@ namespace HospitalInformationSystem.Windows.DoctorGUI
         }
         private void refreshTable()
         {
-            appointmentList = new ObservableCollection<Appointment>(AppointmentController.getInstance().getAppointment());
+            appointmentList = new ObservableCollection<Appointment>(doctor.GetAppointment());
             appointmentsTable.ItemsSource = null;
             appointmentsTable.ItemsSource = appointmentList;
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            appointment = (Appointment)appointmentsTable.SelectedItem;
-
-            DoctorShowAppointmentInformationWindow doctorShowAppointmentInformationWindow = new DoctorShowAppointmentInformationWindow(appointment);
-
-            doctorShowAppointmentInformationWindow.ShowDialog();
-
-            refreshTable();
+            if ((Appointment)appointmentsTable.SelectedItem != null)
+            {
+                appointment = (Appointment)appointmentsTable.SelectedItem;
+                DoctorShowAppointmentInformationWindow doctorShowAppointmentInformationWindow = new DoctorShowAppointmentInformationWindow(appointment, doctor);
+                doctorShowAppointmentInformationWindow.ShowDialog();
+                refreshTable();
+            }
         }
 
         private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
         {
-            doctorAppFile.saveInFile();
+            DoctorController.getInstance().saveInFlie();
+            AppointmentController.getInstance().saveInFile();
+            instance = null;
+        }
+
+        private void medicineButton_Click(object sender, RoutedEventArgs e)
+        {
+            MedicinePreviewWindow medicinePreviewWindow = MedicinePreviewWindow.GetInstance();
+            medicinePreviewWindow.ShowDialog();
         }
     }
 }

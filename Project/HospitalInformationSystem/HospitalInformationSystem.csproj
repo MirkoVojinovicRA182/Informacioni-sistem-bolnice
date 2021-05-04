@@ -97,6 +97,9 @@
     <Compile Include="Model\TypeOfRoom.cs" />
     <Compile Include="Repository\EquipmentRepository.cs" />
     <Compile Include="Service\EquipmentService.cs" />
+    <Compile Include="Windows\DoctorGUI\AddCommentOnMedicineWindow.xaml.cs">
+      <DependentUpon>AddCommentOnMedicineWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Windows\DoctorGUI\AddPrescriptionWindow.xaml.cs">
       <DependentUpon>AddPrescriptionWindow.xaml</DependentUpon>
     </Compile>
@@ -109,6 +112,12 @@
     <Compile Include="Windows\DoctorGUI\DoctorAddNewAppointmentWindow.xaml.cs">
       <DependentUpon>DoctorAddNewAppointmentWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Windows\DoctorGUI\DoctorAddNewIngredientWindow.xaml.cs">
+      <DependentUpon>DoctorAddNewIngredientWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Windows\DoctorGUI\DoctorAllergensPreviewWindow.xaml.cs">
+      <DependentUpon>DoctorAllergensPreviewWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Windows\DoctorGUI\DoctorAppointmentsManagementWindow.xaml.cs">
       <DependentUpon>DoctorAppointmentsManagementWindow.xaml</DependentUpon>
     </Compile>
@@ -120,6 +129,15 @@
     </Compile>
     <Compile Include="Windows\DoctorGUI\DoctorShowPrescription.xaml.cs">
       <DependentUpon>DoctorShowPrescription.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Windows\DoctorGUI\MedicineInformationPreview.xaml.cs">
+      <DependentUpon>MedicineInformationPreview.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Windows\DoctorGUI\MedicinePreviewWindow.xaml.cs">
+      <DependentUpon>MedicinePreviewWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Windows\DoctorGUI\ReferralLetterWindow.xaml.cs">
+      <DependentUpon>ReferralLetterWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="Windows\ManagerGUI\DetailEquipmentDTO.cs" />
     <Compile Include="Windows\ManagerGUI\DetailEquipmentViewUserControl.xaml.cs">
@@ -238,6 +256,10 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="Windows\DoctorGUI\AddCommentOnMedicineWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Windows\DoctorGUI\AddPrescriptionWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -254,6 +276,14 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
+    <Page Include="Windows\DoctorGUI\DoctorAddNewIngredientWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Windows\DoctorGUI\DoctorAllergensPreviewWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Windows\DoctorGUI\DoctorAppointmentsManagementWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -267,6 +297,18 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Windows\DoctorGUI\DoctorShowPrescription.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Windows\DoctorGUI\MedicineInformationPreview.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Windows\DoctorGUI\MedicinePreviewWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Windows\DoctorGUI\ReferralLetterWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

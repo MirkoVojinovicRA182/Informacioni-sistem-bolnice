@@ -14,11 +14,11 @@
         <Label x:Name="nameLabel" Content="ime prezime" HorizontalAlignment="Left" Margin="143,84,0,0" VerticalAlignment="Top" FontSize="16"/>
         <Label Content="Krvna grupa:" HorizontalAlignment="Left" Margin="29,116,0,0" VerticalAlignment="Top" FontSize="16"/>
         <Label x:Name="bloodTypeLabel" Content="A+" HorizontalAlignment="Left" Margin="143,116,0,0" VerticalAlignment="Top" FontSize="16"/>
-        <Button Content="Prikaz istorije bolesti" HorizontalAlignment="Left" Margin="448,52,0,0" VerticalAlignment="Top" Width="306" FontSize="20" Height="64"/>
-        <Button x:Name="addAnamnesisButton" Content="Pisanje anamneze" HorizontalAlignment="Left" Margin="448,121,0,0" VerticalAlignment="Top" Width="306" FontSize="20" Height="64" Click="addAnamnesisButton_Click"/>
-        <Button x:Name="anamnesisPreviewButton" Content="Pregled anamneza" HorizontalAlignment="Left" Margin="448,190,0,0" VerticalAlignment="Top" Width="306" FontSize="20" Height="64" Click="anamnesisPreviewButton_Click"/>
-        <Button x:Name="addPrescriptionButton" Content="Izdavanje recepta" HorizontalAlignment="Left" Margin="448,259,0,0" VerticalAlignment="Top" Width="306" FontSize="20" Height="64" Click="addPrescriptionButton_Click"/>
-        <Button x:Name="showPrescriptionButton" Content="Pregled recepata" HorizontalAlignment="Left" Margin="448,328,0,0" VerticalAlignment="Top" Width="306" FontSize="20" Height="64" Click="showPrescriptionButton_Click"/>
+        <Button Content="Prikaz istorije bolesti" HorizontalAlignment="Left" Margin="448,52,0,0" VerticalAlignment="Top" Width="306" FontSize="20" Height="45"/>
+        <Button x:Name="addAnamnesisButton" Content="Pisanje anamneze" HorizontalAlignment="Left" Margin="448,102,0,0" VerticalAlignment="Top" Width="306" FontSize="20" Height="46" Click="addAnamnesisButton_Click"/>
+        <Button x:Name="anamnesisPreviewButton" Content="Pregled anamneza" HorizontalAlignment="Left" Margin="448,153,0,0" VerticalAlignment="Top" Width="306" FontSize="20" Height="46" Click="anamnesisPreviewButton_Click"/>
+        <Button x:Name="addPrescriptionButton" Content="Izdavanje recepta" HorizontalAlignment="Left" Margin="448,204,0,0" VerticalAlignment="Top" Width="306" FontSize="20" Height="46" Click="addPrescriptionButton_Click"/>
+        <Button x:Name="showPrescriptionButton" Content="Pregled recepata" HorizontalAlignment="Left" Margin="448,255,0,0" VerticalAlignment="Top" Width="306" FontSize="20" Height="46" Click="showPrescriptionButton_Click"/>
         <Label Content="Datum rodjenja:" HorizontalAlignment="Left" Margin="29,148,0,0" VerticalAlignment="Top" FontSize="16"/>
         <Label x:Name="dateOfBirthLabel" Content="datum" HorizontalAlignment="Left" Margin="143,148,0,0" VerticalAlignment="Top" FontSize="16"/>
         <Label Content="JMBG:" HorizontalAlignment="Left" Margin="29,185,0,0" VerticalAlignment="Top" FontSize="16"/>
@@ -29,6 +29,8 @@
         <Label x:Name="phoneNumberLabel" Content="Br. telefona" HorizontalAlignment="Left" Margin="143,259,0,0" VerticalAlignment="Top" FontSize="16"/>
         <Label Content="E-mail:" HorizontalAlignment="Left" Margin="29,296,0,0" VerticalAlignment="Top" FontSize="16"/>
         <Label x:Name="emailLabel" Content="e-mail" HorizontalAlignment="Left" Margin="145,296,0,0" VerticalAlignment="Top" FontSize="16"/>
+        <Button x:Name="allergensButton" Content="Alergeni" HorizontalAlignment="Left" Height="45" Margin="448,306,0,0" VerticalAlignment="Top" Width="306" FontSize="20" Click="allergensButton_Click"/>
+        <Button x:Name="referralLetterButton" Content="Izdavanje upute" HorizontalAlignment="Left" Height="46" Margin="448,356,0,0" VerticalAlignment="Top" Width="306" FontSize="20" Click="referralLetterButton_Click"/>
 
     </Grid>
 </Window>

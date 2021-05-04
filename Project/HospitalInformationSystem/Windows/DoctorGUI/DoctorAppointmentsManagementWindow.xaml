@@ -32,5 +32,6 @@
     <Button x:Name="deleteButton" Content="OBRIŠI" HorizontalAlignment="Left" Margin="738,91,0,0" VerticalAlignment="Top" Width="141" FontSize="16" Click="deleteButton_Click"/>
     <Button x:Name="closeButton" Content="IZAĐI" HorizontalAlignment="Left" Margin="738,384,0,0" VerticalAlignment="Top" Width="141" FontSize="16" Click="closeButton_Click"/>
         <Button Content="PREGLED" HorizontalAlignment="Left" Margin="738,138,0,0" VerticalAlignment="Top" Width="141" FontSize="16" Click="Button_Click"/>
+        <Button x:Name="medicineButton" Content="LEKOVI" HorizontalAlignment="Left" Height="23" Margin="738,184,0,0" VerticalAlignment="Top" Width="141" FontSize="16" Click="medicineButton_Click"/>
     </Grid>
 </Window>

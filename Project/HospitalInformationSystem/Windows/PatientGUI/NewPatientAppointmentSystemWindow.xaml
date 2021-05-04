@@ -24,17 +24,6 @@
                 </DataTemplate>
             </ComboBox.ItemTemplate>
         </ComboBox>
-        <Label Content="Pacijent:" HorizontalAlignment="Left" Margin="33,170,0,0" VerticalAlignment="Top"/>
-        <ComboBox x:Name="patientComboBox" HorizontalAlignment="Left" Margin="120,171,0,0" VerticalAlignment="Top" Width="201">
-            <ComboBox.ItemTemplate>
-                <DataTemplate>
-                    <TextBlock>
-                 <Run Text="{Binding Name}" />
-                 <Run Text="{Binding Surname}" />
-                    </TextBlock>
-                </DataTemplate>
-            </ComboBox.ItemTemplate>
-        </ComboBox>
         <DataGrid x:Name="AppointmentDataGrid" Background="Silver" CanUserAddRows="False" AutoGenerateColumns="False" CanUserResizeColumns="False" IsReadOnly="True" HorizontalAlignment="Left" Height="285" VerticalAlignment="Top" Width="523" Margin="349,10,0,0">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Datum i vreme" Width="*" Binding="{Binding StartTime}"></DataGridTextColumn>

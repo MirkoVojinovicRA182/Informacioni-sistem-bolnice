@@ -51,7 +51,7 @@ namespace HospitalInformationSystem.Windows.PatientGUI
 
         private void New_Button_Click(object sender, RoutedEventArgs e)
         {
-            NewPatientAppointmentSystemWindow window = new NewPatientAppointmentSystemWindow();
+            NewPatientAppointmentSystemWindow window = new NewPatientAppointmentSystemWindow(patient);
             window.ShowDialog();
         }
 
@@ -65,6 +65,7 @@ namespace HospitalInformationSystem.Windows.PatientGUI
             Doctor doctor = (Doctor)DoctorComboBox.SelectedItem;
 
             Appointment app = new Appointment(startTime, TypeOfAppointment.Pregled, doctor.room, patient, doctor);
+            app.SchedulingTime = DateTime.Now;
 
             AppointmentController.getInstance().addAppointment(app);
 

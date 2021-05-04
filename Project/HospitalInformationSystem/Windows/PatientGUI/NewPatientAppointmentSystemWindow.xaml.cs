@@ -26,17 +26,14 @@ namespace HospitalInformationSystem.Windows.PatientGUI
     {
 
         private ObservableCollection<Appointment> appointmentList;
-        private List<Patient> initialPatients;
-        public NewPatientAppointmentSystemWindow()
+        private Patient patient;
+        public NewPatientAppointmentSystemWindow(Patient patient)
         {
             InitializeComponent();
-
+            this.patient = patient;
             var list = DoctorController.getInstance().getDoctors();
 
             DoctorComboBox.ItemsSource = list;
-
-            initPatients();
-
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
@@ -66,6 +63,7 @@ namespace HospitalInformationSystem.Windows.PatientGUI
             Appointment appointment = (Appointment)AppointmentDataGrid.SelectedItem;
 
             Appointment app = new Appointment(appointment.StartTime, appointment.Type, appointment.room, appointment.patient, appointment.doctor);
+            app.SchedulingTime = DateTime.Now;
 
             AppointmentController.getInstance().addAppointment(app);
 
@@ -132,7 +130,7 @@ namespace HospitalInformationSystem.Windows.PatientGUI
 
             for (int i = 0; i < dateTimes.Count; i++)
             {
-                recommendedAppointments.Add(new Appointment(dateTimes[i], TypeOfAppointment.Pregled, doctor.room, (Patient)patientComboBox.SelectedItem, doctor));
+                recommendedAppointments.Add(new Appointment(dateTimes[i], TypeOfAppointment.Pregled, doctor.room, patient, doctor));
             }
 
             for (int i = 0; i < recommendedAppointments.Count; i++)
@@ -174,7 +172,7 @@ namespace HospitalInformationSystem.Windows.PatientGUI
 
                     for (int i = 0; i < dateTimes.Count; i++)
                     {
-                        recommendedAppointments.Add(new Appointment(dateTimes[i], TypeOfAppointment.Pregled, doctor.room, (Patient)patientComboBox.SelectedItem, doctor));
+                        recommendedAppointments.Add(new Appointment(dateTimes[i], TypeOfAppointment.Pregled, doctor.room, patient, doctor));
                     }
 
                     for (int i = 0; i < recommendedAppointments.Count; i++)
@@ -198,7 +196,7 @@ namespace HospitalInformationSystem.Windows.PatientGUI
                             for (int j = 0; j < dateTimes.Count; j++)
                             {
  
-                                recommendedAppointments.Add(new Appointment(dateTimes[j], TypeOfAppointment.Pregled, doctors[i].room, (Patient)patientComboBox.SelectedItem, doctors[i]));
+                                recommendedAppointments.Add(new Appointment(dateTimes[j], TypeOfAppointment.Pregled, doctors[i].room, patient, doctors[i]));
                             }
                         }
                     }
@@ -224,22 +222,6 @@ namespace HospitalInformationSystem.Windows.PatientGUI
             appointmentList = new ObservableCollection<Appointment>(RecommendAppointments());
             AppointmentDataGrid.ItemsSource = null;
             AppointmentDataGrid.ItemsSource = appointmentList;
-        }
-
-        private void initPatients()
-        {
-            initialPatients = new List<Patient>();
-
-            Patient first = new Patient("Pera", "Pacijent 1", "1");
-            Patient second = new Patient("Jova", "Pacijent 2", "2");
-            Patient third = new Patient("Mika", "Pacijent 3", "3");
-
-            initialPatients.Add(first);
-            initialPatients.Add(second);
-            initialPatients.Add(third);
-
-
-            patientComboBox.ItemsSource = initialPatients;
         }
 
     }

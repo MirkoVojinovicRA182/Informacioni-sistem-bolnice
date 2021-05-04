@@ -63,6 +63,16 @@ namespace HospitalInformationSystem.Controller
             appointmentService.ChangeStartTime(appointmentForChange, newStartTime);
         }
 
+        public DateTime GetStartTime(Appointment appointment)
+        {
+            return appointmentService.GetStartTime(appointment);
+        }
+
+        public Doctor GetDoctor(Appointment appointment)
+        {
+            return appointmentService.GetDoctor(appointment);
+        }
+
         public void saveInFile()
         {
             appointmentService.saveInFile();
@@ -71,6 +81,11 @@ namespace HospitalInformationSystem.Controller
         public void loadFromFile()
         {
             appointmentService.loadFromFile();
+        }
+
+        public List<Appointment> GetAppointmentsByPatient(Patient patient)
+        {
+            return appointmentService.GetAppointmentsByPatient(patient);
         }
     }
 }

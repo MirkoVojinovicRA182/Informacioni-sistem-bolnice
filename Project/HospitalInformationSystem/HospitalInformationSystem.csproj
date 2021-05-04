@@ -69,6 +69,9 @@
     <Compile Include="Model\RoomRenovationState.cs" />
     <Compile Include="Model\TypeOfMedicine.cs" />
     <Compile Include="Repository\MedicineRepository.cs" />
+    <Compile Include="Model\DoctorReview.cs" />
+    <Compile Include="Model\HospitalReview.cs" />
+    <Compile Include="Model\PatientActivity.cs" />
     <Compile Include="Service\AppointmentService.cs" />
     <Compile Include="Service\DoctorService.cs" />
     <Compile Include="Service\MedicineService.cs" />
@@ -214,6 +217,12 @@
     </Compile>
     <Compile Include="Windows\PatientGUI\NotificationWindow.xaml.cs">
       <DependentUpon>NotificationWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Windows\PatientGUI\ReviewDoctorWindow.xaml.cs">
+      <DependentUpon>ReviewDoctorWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Windows\PatientGUI\ReviewHospitalWindow.xaml.cs">
+      <DependentUpon>ReviewHospitalWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="Windows\SecretaryGUI\AddAccount.xaml.cs">
       <DependentUpon>AddAccount.xaml</DependentUpon>
@@ -411,6 +420,14 @@
     <Page Include="Windows\PatientGUI\NotificationWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Windows\PatientGUI\ReviewDoctorWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Windows\PatientGUI\ReviewHospitalWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Windows\SecretaryGUI\AddAccount.xaml">
       <Generator>MSBuild:Compile</Generator>

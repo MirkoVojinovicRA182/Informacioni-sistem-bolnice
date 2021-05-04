@@ -35,14 +35,15 @@ namespace HospitalInformationSystem.Windows.PatientGUI
         public PatientAppointmentCRUDOperationsWindow(Patient patient)
         {
             InitializeComponent();
-            AppointmentDataGrid.ItemsSource = AppointmentController.getInstance().getAppointment();
+            AppointmentDataGrid.ItemsSource = AppointmentController.getInstance().GetAppointmentsByPatient(patient);
             var therapy = new List<Therapy>();
             var days = new List<DayOfWeek>();
             days.Add(DayOfWeek.Monday);
             days.Add(DayOfWeek.Tuesday);
-            bool b = true;
-            therapy.Add(new Therapy(Medication.Albuterol, 3, days, default(DateTime).Add(DateTime.ParseExact("21:46", "HH:mm", CultureInfo.InvariantCulture).TimeOfDay), b));
-            therapy.Add(new Therapy(Medication.Losartan, 2, days, default(DateTime).Add(DateTime.ParseExact("14:00", "HH:mm", CultureInfo.InvariantCulture).TimeOfDay), b));
+            days.Add(DayOfWeek.Wednesday);
+            bool notificationsEnabled = true;
+            therapy.Add(new Therapy(Medication.Albuterol, 3, days, default(DateTime).Add(DateTime.ParseExact("13:35", "HH:mm", CultureInfo.InvariantCulture).TimeOfDay), notificationsEnabled));
+            therapy.Add(new Therapy(Medication.Losartan, 2, days, default(DateTime).Add(DateTime.ParseExact("10:00", "HH:mm", CultureInfo.InvariantCulture).TimeOfDay), notificationsEnabled));
             this.patient = patient;
             this.patient.SetTherapy(therapy);
             Notify();
@@ -58,9 +59,76 @@ namespace HospitalInformationSystem.Windows.PatientGUI
 
         private void NewAppointmentButton_Click(object sender, RoutedEventArgs e)
         {
+            CheckIfPatientIsTroll();
+            if (patient.Activity.IsTroll == false)
+            {
+                ShowNewAppointmentWindow();
+            }
+            else
+            {
+                MessageBox.Show("Zakazivanje termina je onomogućeno zbog sumnjive aktivnosti na ovom nalogu.", "Zakazivanje termina", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+        }
+
+        private void CheckIfPatientIsTroll()
+        {
+            SetPatientActivity();
+
+            if (patient.Activity.NumberOfMovedAppointmentsInMonth > 3 || patient.Activity.NumberOfScheduledAppointmentsInDay > 5)
+            {
+                patient.Activity.IsTroll = true;
+            }
+        }
+
+        private void SetPatientActivity()
+        {
+            patient.Activity.NumberOfMovedAppointmentsInMonth = GetNumberOfMovedAppointmentsInThePastMonth();
+            patient.Activity.NumberOfScheduledAppointmentsInDay = GetNumberOfAppointmentsScheduledInPastDay();
+        }
+
+        private int GetNumberOfAppointmentsScheduledInPastDay()
+        {
+            int numberOfAppointments = 0;
+            foreach (var appointment in AppointmentController.getInstance().GetAppointmentsByPatient(patient))
+            {
+                if (AppointmentWasScheduledInThePastDay(appointment))
+                {
+                    numberOfAppointments++;
+                }
+            }
+            return numberOfAppointments;
+        }
+
+        private static bool AppointmentWasScheduledInThePastDay(Appointment appointment)
+        {
+            return appointment.SchedulingTime.CompareTo(DateTime.Now.AddDays(-1)) > 0 && appointment.SchedulingTime.CompareTo(DateTime.Now) < 0;
+        }
+
+        private int GetNumberOfMovedAppointmentsInThePastMonth()
+        {
+            int numberOfAppointments = 0;
+            foreach (var appointment in AppointmentController.getInstance().GetAppointmentsByPatient(patient))
+            {
+                if (appointment.HasBeenMoved)
+                {
+                    if (AppointmentWasMovedInThePastMonth(appointment))
+                    {
+                        numberOfAppointments++;
+                    }
+                }
+            }
+            return numberOfAppointments;
+        }
+
+        private static bool AppointmentWasMovedInThePastMonth(Appointment appointment)
+        {
+            return appointment.SchedulingTime.CompareTo(DateTime.Now.AddMonths(-1)) > 0 && appointment.SchedulingTime.CompareTo(DateTime.Now) < 0;
+        }
+
+        private void ShowNewAppointmentWindow()
+        {
             NewPatientAppointmentWindow window = new NewPatientAppointmentWindow(patient);
             window.ShowDialog();
-
             RefreshTable();
         }
 
@@ -142,20 +210,96 @@ namespace HospitalInformationSystem.Windows.PatientGUI
             NotificationWindow window = new NotificationWindow();
             for (int i = 0; i < therapies.Count; i++)
             {
-                if (therapies[i].Days.Contains(DateTime.Now.DayOfWeek) & therapies[i].NotificationEnabled == true & DateTime.Now.TimeOfDay.CompareTo(therapies[i].Time.AddMinutes(-61).TimeOfDay) > 0 & DateTime.Now.TimeOfDay.CompareTo(therapies[i].Time.AddMinutes(61).TimeOfDay) < 0)
+                if (DateTime.Now.TimeOfDay.CompareTo(therapies[i].Time.AddMinutes(-61).TimeOfDay) > 0 && DateTime.Now.TimeOfDay.CompareTo(therapies[i].Time.AddMinutes(-59).TimeOfDay) < 0)
                 {
                     window.medicatonText.Text = therapies[i].Medication.ToString();
                     window.timeText.Text = therapies[i].TimeString;
                     window.doseText.Text = therapies[i].Dosage.ToString();
+                    window.ShowDialog();
                 }
 
             }
+
+        }
+
+        private void RateDoctorButton_Click(object sender, RoutedEventArgs e)
+        {
+            if (AppointmentReviewValidation())
+            {
+                ShowDoctorReviewWindow();
+            }
+            else
+            {
+                MessageBox.Show("Niste izabrali pregled koji se završio.", "Greška", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+        }
+
+        private void RateHospitalButton_Click(object sender, RoutedEventArgs e)
+        {
+            if (HospitalReviewValidation())
+            {
+                ShowHospitalReviewWindow();
+            }
+            else
+            {
+                MessageBox.Show("Niste imali dovoljno pregleda da bi ste ocenjivali bolnicu.", "Ocenjivanje bolnice", MessageBoxButton.OK, MessageBoxImage.Information);
+            }
+        }
+
+        private bool HospitalReviewValidation()
+        {
+            CalculateFinishedAppointments();
+            return patient.Activity.NumberOfFinishedAppointmentsSinceReview >= 5;
+        }
+
+        private void CalculateFinishedAppointments()
+        {
+            foreach (var appointment in AppointmentController.getInstance().GetAppointmentsByPatient(patient))
+            {
+                if (AppointmentIsFinished(appointment))
+                {
+                    patient.Activity.NumberOfFinishedAppointmentsSinceReview++;
+                }
+            }
+        }
+
+        private static bool AppointmentIsFinished(Appointment appointment)
+        {
+            return DateTime.Now.CompareTo(appointment.StartTime.AddMinutes(30)) > 0;
+        }
+
+        private void ShowHospitalReviewWindow()
+        {
+            ReviewHospitalWindow window = new ReviewHospitalWindow(this.patient);
+            window.ShowDialog();
+        }
+
+        private bool AppointmentReviewValidation()
+        {
+            return AppointmentIsSelected() && AppointmentIsFinished();
+        }
+
+        private bool AppointmentIsSelected()
+        {
+            return AppointmentDataGrid.SelectedItem != null;
+        }
+
+        private bool AppointmentIsFinished()
+        {
+            return DateTime.Now.CompareTo(AppointmentController.getInstance().GetStartTime((Appointment)AppointmentDataGrid.SelectedItem).AddMinutes(30)) > 0;
+        }
+
+        private void ShowDoctorReviewWindow()
+        {
+            ReviewDoctorWindow window = new ReviewDoctorWindow((Appointment)AppointmentDataGrid.SelectedItem);
             window.ShowDialog();
         }
 
         private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
         {
+            CheckIfPatientIsTroll();
             instance = null;
         }
+
     }
 }

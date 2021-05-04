@@ -5,6 +5,7 @@
  * Purpose: Definition of the Class Model.Patient
  ***********************************************************************/
 
+using HospitalInformationSystem.Model;
 using System;
 using System.Collections.Generic;
 
@@ -25,6 +26,10 @@ namespace Model
         { get; set; }
         public string LBO
         { get; set; }
+        public PatientActivity Activity
+        {
+            get; set;
+        }
 
         private MedicalRecord medicalRecord;
 
@@ -71,14 +76,21 @@ namespace Model
             LBO = lbo;
         }
 
-        public System.Collections.ArrayList appointment;
+        public Patient(string name, string surname, PatientActivity activity)
+        {
+            Name = name;
+            Surname = surname;
+            Activity = activity;
+        }
+
+        public List<Appointment> appointment;
         private List<Therapy> therapy;
 
         /// <pdGenerated>default getter</pdGenerated>
-        public System.Collections.ArrayList GetAppointment()
+        public List<Appointment> GetAppointment()
         {
             if (appointment == null)
-                appointment = new System.Collections.ArrayList();
+                appointment = new List<Appointment>();
             return appointment;
         }
 
@@ -96,7 +108,7 @@ namespace Model
             if (newAppointment == null)
                 return;
             if (this.appointment == null)
-                this.appointment = new System.Collections.ArrayList();
+                this.appointment = new List<Appointment>();
             if (!this.appointment.Contains(newAppointment))
             {
                 this.appointment.Add(newAppointment);

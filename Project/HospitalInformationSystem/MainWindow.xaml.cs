@@ -7,6 +7,7 @@ using HospitalInformationSystem.Repository;
 using HospitalInformationSystem.Controller;
 using HospitalInformationSystem.Windows.PatientGUI;
 using HospitalInformationSystem.Windows.SecretaryGUI;
+using HospitalInformationSystem.Model;
 
 namespace HospitalInformationSystem.Windows
 {
@@ -35,7 +36,7 @@ namespace HospitalInformationSystem.Windows
             //var doctor = new Doctor("Darko", "Ilic", Specialization.Surgeon, new Room(1, "Darkova kancelarija", 4, TypeOfRoom.ExaminationRoom));
             //DoctorController.getInstance().addDoctor(doctor);
 
-            Patient first = new Patient("Pera", "Pacijent", "1");
+            Patient first = new Patient("Pera", "Pacijent", new PatientActivity(0, 0, 0, false));
             Patient second = new Patient("Jova", "Pacijent", "2");
             Patient third = new Patient("Mika", "Pacijent", "3");
 

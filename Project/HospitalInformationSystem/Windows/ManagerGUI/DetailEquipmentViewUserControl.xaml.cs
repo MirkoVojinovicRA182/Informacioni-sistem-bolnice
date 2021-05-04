@@ -88,14 +88,25 @@ namespace HospitalInformationSystem.Windows.ManagerGUI
                 FindEquipmentByName();
             if(typeComboBox.SelectedItem != null)
                 FindEquipmentByType();
-            if(stateTextBox.Text != "")
+            if (stateTextBox.Text != "")
+            {
+                if (CheckQuantityEntry() == 0)
+                {
+                    MessageBox.Show("Pogrešan unos stanja!", "Greška", MessageBoxButton.OK, MessageBoxImage.Error);
+                    return;
+                }
                 FindEquipmentByState();
-            if(locationComboBox.SelectedItem != null)
+            }
+            if (locationComboBox.SelectedItem != null)
                 FindEquipmentByLocation();
             detailEquipmentTable.ItemsSource = null;
             detailEquipmentTable.ItemsSource = equipmentList;
         }
-
+        private int CheckQuantityEntry()
+        {
+            int quantity = int.TryParse(stateTextBox.Text, out quantity) ? quantity : 0;
+            return quantity;
+        }
         private void FindEquipmentByName()
         {
             for(int i = equipmentList.Count - 1; i > -1; i--)

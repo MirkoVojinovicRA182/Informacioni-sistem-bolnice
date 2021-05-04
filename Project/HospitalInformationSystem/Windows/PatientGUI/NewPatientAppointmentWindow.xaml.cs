@@ -51,7 +51,7 @@ namespace HospitalInformationSystem.Windows.PatientGUI
 
         private void New_Button_Click(object sender, RoutedEventArgs e)
         {
-            NewPatientAppointmentSystemWindow window = new NewPatientAppointmentSystemWindow();
+            NewPatientAppointmentSystemWindow window = new NewPatientAppointmentSystemWindow(patient);
             window.ShowDialog();
         }
 

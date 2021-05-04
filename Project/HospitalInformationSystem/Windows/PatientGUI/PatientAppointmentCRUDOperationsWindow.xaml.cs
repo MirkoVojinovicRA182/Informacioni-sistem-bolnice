@@ -40,9 +40,10 @@ namespace HospitalInformationSystem.Windows.PatientGUI
             var days = new List<DayOfWeek>();
             days.Add(DayOfWeek.Monday);
             days.Add(DayOfWeek.Tuesday);
+            days.Add(DayOfWeek.Wednesday);
             bool notificationsEnabled = true;
-            therapy.Add(new Therapy(Medication.Albuterol, 3, days, default(DateTime).Add(DateTime.ParseExact("21:46", "HH:mm", CultureInfo.InvariantCulture).TimeOfDay), notificationsEnabled));
-            therapy.Add(new Therapy(Medication.Losartan, 2, days, default(DateTime).Add(DateTime.ParseExact("14:00", "HH:mm", CultureInfo.InvariantCulture).TimeOfDay), notificationsEnabled));
+            therapy.Add(new Therapy(Medication.Albuterol, 3, days, default(DateTime).Add(DateTime.ParseExact("13:35", "HH:mm", CultureInfo.InvariantCulture).TimeOfDay), notificationsEnabled));
+            therapy.Add(new Therapy(Medication.Losartan, 2, days, default(DateTime).Add(DateTime.ParseExact("10:00", "HH:mm", CultureInfo.InvariantCulture).TimeOfDay), notificationsEnabled));
             this.patient = patient;
             this.patient.SetTherapy(therapy);
             Notify();
@@ -214,10 +215,11 @@ namespace HospitalInformationSystem.Windows.PatientGUI
                     window.medicatonText.Text = therapies[i].Medication.ToString();
                     window.timeText.Text = therapies[i].TimeString;
                     window.doseText.Text = therapies[i].Dosage.ToString();
+                    window.ShowDialog();
                 }
 
             }
-            window.ShowDialog();
+
         }
 
         private void RateDoctorButton_Click(object sender, RoutedEventArgs e)

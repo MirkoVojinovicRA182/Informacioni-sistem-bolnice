@@ -44,16 +44,26 @@ namespace HospitalInformationSystem.Windows.ManagerGUI
 
         private void confirmButton_Click(object sender, RoutedEventArgs e)
         {
-            SupplyRoomDynamicEquipment(selectedRoom, idOfSelectedEquipment);
-            EquipmentController.getInstance().changeQuantityInMagacine(idOfSelectedEquipment, int.Parse(quantityTextBox.Text));
-            EditRoomWindow.getInstance(selectedRoom).RefreshEquipmentList();
-            EditRoomWindow.getInstance(selectedRoom).refreshDynamicEquipmentListBox();
-            this.Close();
+            if (CheckTheEnteredQuantity())
+            {
+                SupplyRoomDynamicEquipment(selectedRoom, idOfSelectedEquipment);
+                EquipmentController.getInstance().changeQuantityInMagacine(idOfSelectedEquipment, int.Parse(quantityTextBox.Text));
+                EditRoomWindow.getInstance(selectedRoom).RefreshEquipmentList();
+                EditRoomWindow.getInstance(selectedRoom).refreshDynamicEquipmentListBox();
+                this.Close();
+            }
+            else
+                MessageBox.Show("Pogrešan unos količine!", "Greška", MessageBoxButton.OK, MessageBoxImage.Error);
         }
 
         private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
         {
             instance = null;
+        }
+        private bool CheckTheEnteredQuantity()
+        {
+            int enteredQuantity = int.TryParse(quantityTextBox.Text, out enteredQuantity) ? enteredQuantity : 0;
+            return enteredQuantity > 0 && enteredQuantity <= (int)RoomController.getInstance().GetMagacine().Equipment[idOfSelectedEquipment];
         }
     }
 }

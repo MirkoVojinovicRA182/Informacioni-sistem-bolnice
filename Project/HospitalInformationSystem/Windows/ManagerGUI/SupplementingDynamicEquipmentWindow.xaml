@@ -9,7 +9,7 @@
     <Grid>
         <TextBlock HorizontalAlignment="Left" Margin="78,21,0,0" TextWrapping="Wrap" Text="Unesite količinu:" VerticalAlignment="Top" FontSize="20"/>
         <Button x:Name="confirmButton" Content="POTVRDI" HorizontalAlignment="Left" VerticalAlignment="Top" Width="100" Height="30" Margin="92,130,0,0" Click="confirmButton_Click"/>
-        <TextBox x:Name="quantityTextBox" HorizontalAlignment="Left" Height="23" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="60" Margin="112,70,0,0"/>
+        <TextBox x:Name="quantityTextBox" HorizontalAlignment="Left" Height="23" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="60" Margin="112,70,0,0" FontSize="15"/>
 
     </Grid>
 </Window>

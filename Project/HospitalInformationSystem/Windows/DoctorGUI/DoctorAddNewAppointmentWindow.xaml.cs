@@ -52,6 +52,15 @@ namespace HospitalInformationSystem.Windows.DoctorGUI
                         return;
                     }
                 }
+                else
+                {
+                    room = doctor.room;
+                    if (!CheckRoomState(room))
+                    {
+                        MessageBox.Show("Prostorija je zauzeta u datom terminu!", "Greska", MessageBoxButton.OK, MessageBoxImage.Warning);
+                        return;
+                    }
+                }
                 createAppointment();
                 MessageBox.Show("Termin je uspesno zakazan", "Novi Termin", MessageBoxButton.OK, MessageBoxImage.Information);
             }

@@ -37,14 +37,18 @@ namespace HospitalInformationSystem.Windows
             AppointmentController.getInstance().loadFromFile();
             DoctorController.getInstance().loadFromFile();
 
-            /*var doctor = new Doctor("Marko", "Markovic", Specialization.Family_Physician, room1);
-            var doctor2 = new Doctor("Jovan", "Jovanovic", Specialization.Family_Physician, room2);
-            var doctor3 = new Doctor("Stevan", "Stojanovic", Specialization.Family_Physician, room3);
+            /*var doctor = new Doctor("Marko", "Markovic", Specialization.Family_Physician, RoomController.getInstance().getRooms()[0]);
+            var doctor2 = new Doctor("Jovan", "Jovanovic", Specialization.Family_Physician, RoomController.getInstance().getRooms()[1]);
+            var doctor3 = new Doctor("Stevan", "Stojanovic", Specialization.Family_Physician, RoomController.getInstance().getRooms()[2]);
             DoctorController.getInstance().addDoctor(doctor);
             DoctorController.getInstance().addDoctor(doctor2);
             DoctorController.getInstance().addDoctor(doctor3);
-            var doctor4 = new Doctor("Darko", "Ilic", Specialization.Surgeon, room4);
+            var doctor4 = new Doctor("Darko", "Ilic", Specialization.Surgeon, RoomController.getInstance().getRooms()[3]);
             DoctorController.getInstance().addDoctor(doctor4);*/
+            DoctorController.getInstance().getDoctors()[0].room = RoomController.getInstance().getRooms()[0];
+            DoctorController.getInstance().getDoctors()[1].room = RoomController.getInstance().getRooms()[1];
+            DoctorController.getInstance().getDoctors()[2].room = RoomController.getInstance().getRooms()[2];
+            DoctorController.getInstance().getDoctors()[3].room = RoomController.getInstance().getRooms()[3];
 
             Patient first = new Patient("Pera", "Pacijent", new PatientActivity(0, 0, 0, false));
             Patient second = new Patient("Jova", "Pacijent", new PatientActivity(0, 0, 0, false));

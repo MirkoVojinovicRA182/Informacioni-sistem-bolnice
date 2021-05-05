@@ -300,6 +300,7 @@ namespace HospitalInformationSystem.Windows.PatientGUI
         {
             CheckIfPatientIsTroll();
             instance = null;
+            AppointmentController.getInstance().saveInFile();
         }
 
     }

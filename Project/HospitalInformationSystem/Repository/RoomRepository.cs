@@ -38,21 +38,23 @@ namespace HospitalInformationSystem.Repository
 
         public void loadFromFile()
         {
-                      
-            FileStream fs = new FileStream("Rooms.dat", FileMode.Open);
-            try
+            if (File.Exists("Rooms.dat"))
             {
-                BinaryFormatter formatter = new BinaryFormatter();
-                    
-                RoomController.getInstance().setRooms((List<Room>)formatter.Deserialize(fs));
-            }
-            catch (SerializationException e)
-            {
-                throw;
-            }
-            finally
-            {
-                fs.Close();
+                FileStream fs = new FileStream("Rooms.dat", FileMode.Open);
+                try
+                {
+                    BinaryFormatter formatter = new BinaryFormatter();
+
+                    RoomController.getInstance().setRooms((List<Room>)formatter.Deserialize(fs));
+                }
+                catch (SerializationException e)
+                {
+                    throw;
+                }
+                finally
+                {
+                    fs.Close();
+                }
             }
         }
 

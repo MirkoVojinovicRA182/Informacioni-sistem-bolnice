@@ -68,7 +68,6 @@ namespace HospitalInformationSystem.Repository
                 {
                     BinaryFormatter formatter = new BinaryFormatter();
                     PatientController.getInstance().setPatient((List<Patient>)formatter.Deserialize(fs));
-                    //PatientDataBase.getInstance().getPatient()[0].setMedicalRecord(new MedicalRecord(1));
                 }
                 catch (SerializationException e)
                 {

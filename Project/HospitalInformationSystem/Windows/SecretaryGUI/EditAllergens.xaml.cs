@@ -21,12 +21,11 @@ namespace HospitalInformationSystem.Windows.SecretaryGUI
     public partial class EditAllergens : Window
     {
         Patient patient = null;
-        public EditAllergens(Patient p)
+        public EditAllergens(Patient patient)
         {
             InitializeComponent();
-            patient = p;
-            allergensDataGrid.ItemsSource = p.GetMedicalRecord().AllergensList;
-            
+            this.patient = patient;
+            allergensDataGrid.ItemsSource = this.patient.GetMedicalRecord().AllergensList;
         }
 
         private void allergensDataGrid_Unloaded(object sender, RoutedEventArgs e)

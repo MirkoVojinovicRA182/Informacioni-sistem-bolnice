@@ -25,6 +25,7 @@ namespace HospitalInformationSystem.Windows.SecretaryGUI
         public MainPatientManagement()
         {
             InitializeComponent();
+            PatientController.getInstance().LoadFromFile();
             accountsList.ItemsSource = PatientController.getInstance().getPatient();
             izmeniBtn.IsEnabled = false;
             obrisiBtn.IsEnabled = false;   
@@ -76,7 +77,13 @@ namespace HospitalInformationSystem.Windows.SecretaryGUI
 
         private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
         {
-            
+            PatientController.getInstance().SaveInFile();
+        }
+
+        private void vestiBtn_Click(object sender, RoutedEventArgs e)
+        {
+            NewsPage news = new NewsPage();
+            news.ShowDialog();
         }
     }
 }

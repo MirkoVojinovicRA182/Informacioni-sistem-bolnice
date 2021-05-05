@@ -4,6 +4,7 @@
  * Purpose: Definition of the Class Service.PatientManagement
  ***********************************************************************/
 
+using HospitalInformationSystem.Repository;
 using Model;
 using System;
 using System.Collections.Generic;
@@ -13,13 +14,29 @@ namespace HospitalInformationSystem.Service
 {
     public class PatientService
     {
-
+        public int patientsCounter;
+        public int allergensCounter;
         public List<Patient> patients;
         public List<Allergen> allergens;
+        PatientsRepository repository;
 
         public PatientService()
         {
             patients = new List<Patient>();
+            allergens = new List<Allergen>();
+            repository = new PatientsRepository();
+        }
+
+        public void SaveInFile()
+        {
+            repository.saveInFile();
+        }
+
+        public void LoadFromFile()
+        {
+            repository.loadFromFile();
+            patientsCounter = patients.Count;
+            allergensCounter = allergens.Count;
         }
 
         public void CreatePatient(string username, string name, string surname,
@@ -29,6 +46,7 @@ namespace HospitalInformationSystem.Service
             Patient patient = new Patient(username, name, surname,
             dateOfBirth, phoneNumber, email, parentsName,
             gender, jmbg, isGuest, blood, lbo);
+            patient.ID = patientsCounter++;
             System.Console.WriteLine("NAPRAVLJEN PACIJENT :" + patient);
             patients.Add(patient);
             
@@ -58,6 +76,7 @@ namespace HospitalInformationSystem.Service
                 if (a.Name == newAllergen.Name)
                     return;
             }
+            newAllergen.ID = allergensCounter++;
             this.allergens.Add(newAllergen);
         }
 

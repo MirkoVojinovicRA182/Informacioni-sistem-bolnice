@@ -12,6 +12,7 @@ namespace HospitalInformationSystem.Controller
     class PatientController
     {
         private static PatientController instance = null;
+        private PatientService patientService;
 
         public static PatientController getInstance()
         {
@@ -19,12 +20,21 @@ namespace HospitalInformationSystem.Controller
                 instance = new PatientController();
             return instance;
         }
-
-        private PatientService patientService;
         private PatientController()
         {
             patientService = new PatientService();
         }
+
+        public void SaveInFile()
+        {
+            patientService.SaveInFile();
+        }
+
+        public void LoadFromFile()
+        {
+            patientService.LoadFromFile();
+        }
+
         public void CreatePatient(string username, string name, string surname,
             DateTime dateOfBirth, string phoneNumber, string email, string parentsName,
             string gender, string jmbg, bool isGuest, BloodType blood, string lbo)

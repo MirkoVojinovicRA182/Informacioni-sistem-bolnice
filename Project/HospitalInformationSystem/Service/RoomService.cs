@@ -5,8 +5,6 @@
  ***********************************************************************/
 
 using Model;
-using HospitalInformationSystem.Windows;
-using HospitalInformationSystem.Service;
 using System.Collections.Generic;
 using System.Collections;
 using HospitalInformationSystem.Controller;

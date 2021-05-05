@@ -18,15 +18,16 @@ namespace Model
             A,
             B
         }
-
+        public int ID
+        { get; set; }
         public bool IsGuest
         { get; set; }
         public BloodType Blood
         { get; set; }
         public string LBO
         { get; set; }
-
-        private MedicalRecord medicalRecord;
+        public MedicalRecord MedicalRecord
+        { get; set; }
 
         public Patient()
         {
@@ -69,6 +70,7 @@ namespace Model
             IsGuest = isGuest;
             Blood = blood;
             LBO = lbo;
+            MedicalRecord = new MedicalRecord();
         }
 
         public System.Collections.ArrayList appointment;
@@ -134,12 +136,12 @@ namespace Model
 
         public void setMedicalRecord(MedicalRecord medicalRecord)
         {
-            this.medicalRecord = medicalRecord;
+            this.MedicalRecord = medicalRecord;
         }
 
         public MedicalRecord GetMedicalRecord()
         {
-            return medicalRecord;
+            return MedicalRecord;
         }
 
         public List<Therapy> GetTherapy()

@@ -58,10 +58,14 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Controller\AnnouncementsController.cs" />
     <Compile Include="Controller\AppointmentController.cs" />
     <Compile Include="Controller\DoctorController.cs" />
     <Compile Include="Controller\PatientController.cs" />
     <Compile Include="Controller\RoomController.cs" />
+    <Compile Include="Model\Announcement.cs" />
+    <Compile Include="Repository\AnnouncementsRepository.cs" />
+    <Compile Include="Service\AnnouncementsService.cs" />
     <Compile Include="Service\AppointmentService.cs" />
     <Compile Include="Service\DoctorService.cs" />
     <Compile Include="Service\PatientService.cs" />
@@ -193,6 +197,12 @@
     <Compile Include="Repository\IRepository.cs" />
     <Compile Include="Repository\PatientsRepository.cs" />
     <Compile Include="Repository\RoomRepository.cs" />
+    <Compile Include="Windows\SecretaryGUI\NewAnnouncement.xaml.cs">
+      <DependentUpon>NewAnnouncement.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Windows\SecretaryGUI\NewsPage.xaml.cs">
+      <DependentUpon>NewsPage.xaml</DependentUpon>
+    </Compile>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -334,6 +344,14 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Windows\DoctorGUI\ShowPatientInformationWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Windows\SecretaryGUI\NewAnnouncement.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Windows\SecretaryGUI\NewsPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

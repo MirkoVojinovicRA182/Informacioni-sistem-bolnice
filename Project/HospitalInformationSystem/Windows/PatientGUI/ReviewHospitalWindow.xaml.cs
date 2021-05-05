@@ -1,4 +1,5 @@
-﻿using Model;
+﻿using HospitalInformationSystem.Model;
+using Model;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -24,6 +25,8 @@ namespace HospitalInformationSystem.Windows.PatientGUI
         public ReviewHospitalWindow(Patient patient)
         {
             InitializeComponent();
+            LoadQuestionsComboBoxes();
+            LoadRatingComboBox();
             this.patient = patient;
         }
 
@@ -31,6 +34,36 @@ namespace HospitalInformationSystem.Windows.PatientGUI
         {
             ResetNumberOfFinishedAppointments();
             this.Close();
+        }
+
+        private void CollectAnswers()
+        {
+            HospitalReview review = new HospitalReview(GetAnswers(), (int)comboBoxRating.SelectedItem);
+        }
+
+        private void LoadQuestionsComboBoxes()
+        {
+            List<AnswersHospitalSurvey> answers = new List<AnswersHospitalSurvey>();
+            answers.AddRange(new List<AnswersHospitalSurvey> { AnswersHospitalSurvey.Veoma_zadovoljni, AnswersHospitalSurvey.Zadovoljni, AnswersHospitalSurvey.Nezadovoljni });
+            comboBoxQuestion1.ItemsSource = answers;
+            comboBoxQuestion2.ItemsSource = answers;
+            comboBoxQuestion3.ItemsSource = answers;
+            comboBoxQuestion4.ItemsSource = answers;
+            comboBoxQuestion5.ItemsSource = answers;
+            comboBoxQuestion6.ItemsSource = answers;
+            comboBoxQuestion7.ItemsSource = answers;
+        }
+        private void LoadRatingComboBox()
+        {
+            comboBoxRating.ItemsSource = new List<int>() { 1, 2, 3, 4, 5 };
+        }
+
+        public List<AnswersHospitalSurvey> GetAnswers()
+        {
+            return new List<AnswersHospitalSurvey> { (AnswersHospitalSurvey)comboBoxQuestion1.SelectedItem, (AnswersHospitalSurvey)comboBoxQuestion2.SelectedItem,
+                                                    (AnswersHospitalSurvey)comboBoxQuestion3.SelectedItem, (AnswersHospitalSurvey)comboBoxQuestion4.SelectedItem,
+                                                    (AnswersHospitalSurvey)comboBoxQuestion5.SelectedItem, (AnswersHospitalSurvey)comboBoxQuestion6.SelectedItem,
+                                                    (AnswersHospitalSurvey)comboBoxQuestion3.SelectedItem };
         }
 
         private void ResetNumberOfFinishedAppointments()

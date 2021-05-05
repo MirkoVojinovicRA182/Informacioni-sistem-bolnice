@@ -8,6 +8,8 @@ using HospitalInformationSystem.Controller;
 using HospitalInformationSystem.Windows.PatientGUI;
 using HospitalInformationSystem.Windows.SecretaryGUI;
 using HospitalInformationSystem.Model;
+using System;
+using System.Collections.Generic;
 
 namespace HospitalInformationSystem.Windows
 {
@@ -140,6 +142,51 @@ namespace HospitalInformationSystem.Windows
         private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
         {
             savePatients.saveInFile();
+        }
+
+        public static List<String> GetTimeList()
+        {
+            List<String> timeList = new List<String>();
+            foreach (string hour in GetHourList())
+            {
+                foreach (string minute in GetMinuteList())
+                {
+                    timeList.Add(hour + ":" + minute);
+                }
+            }
+            return timeList;
+        }
+        public static List<String> GetHourList()
+        {
+            List<String> hourList = new List<String>();
+            for (int i = 6; i <= 21; i++)
+            {
+                hourList.Add(GetHour(i));
+            }
+            return hourList;
+        }
+        public static string GetHour(int currentHour)
+        {
+            if (currentHour >= 6 && currentHour <= 9)
+                return "0" + currentHour.ToString();
+            else
+                return currentHour.ToString();
+        }
+        public static List<String> GetMinuteList()
+        {
+            List<String> minuteList = new List<String>();
+            for (int i = 0; i <= 59; i++)
+            {
+                minuteList.Add(GetMinute(i));
+            }
+            return minuteList;
+        }
+        public static string GetMinute(int currentMinute)
+        {
+            if (currentMinute >= 0 && currentMinute <= 9)
+                return "0" + currentMinute.ToString();
+            else
+                return currentMinute.ToString();
         }
     }
 }

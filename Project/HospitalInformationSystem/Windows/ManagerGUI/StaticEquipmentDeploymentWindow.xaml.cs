@@ -124,20 +124,7 @@ namespace HospitalInformationSystem.Windows.ManagerGUI
         private void LoadTimeComboBox()
         {
             timeComboBox.ItemsSource = null;
-            timeComboBox.ItemsSource = GetAllTimes();
-        }
-
-        private List<String> GetAllTimes()
-        {
-            List<String> timesList = new List<String>();
-            for (int i = 0; i <= 23; i++)
-            {
-                for (int j = 0; j <= 59; j++)
-                {
-                    timesList.Add(i.ToString() + ":" + j.ToString());
-                }
-            }
-            return timesList;
+            timeComboBox.ItemsSource = MainWindow.GetTimeList();
         }
     }
 }

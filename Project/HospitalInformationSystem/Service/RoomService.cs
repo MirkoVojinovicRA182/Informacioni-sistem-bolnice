@@ -159,5 +159,15 @@ namespace HospitalInformationSystem.Service
         {
             roomList.Add(newRoom);
         }
+        public List<Appointment> GetAppointmentsInRoom(string nameOfRoom)
+        {
+            List<Appointment> appointmentsInRoom = new List<Appointment>();
+            foreach (Appointment app in AppointmentController.getInstance().getAppointment())
+            {
+                if (string.Equals(app.room.Name, nameOfRoom))
+                    appointmentsInRoom.Add(app);
+            }
+            return appointmentsInRoom;
+        }
     }
 }

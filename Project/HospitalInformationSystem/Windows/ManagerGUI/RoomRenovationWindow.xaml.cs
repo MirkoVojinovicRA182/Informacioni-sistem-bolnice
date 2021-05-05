@@ -33,93 +33,59 @@ namespace HospitalInformationSystem.Windows.ManagerGUI
         }
         private void LoadTimeComboBoxes()
         {
-            startTimeComboBox.ItemsSource = GetTimeList();
-            endTimeComboBox.ItemsSource = GetTimeList();
+            startTimeComboBox.ItemsSource = MainWindow.GetTimeList();
+            endTimeComboBox.ItemsSource = MainWindow.GetTimeList();
         }
-        private List<String> GetTimeList()
-        {
-            List<String> timeList = new List<String>();
-            foreach(string hour in GetHourList())
-            {
-                foreach(string minute in GetMinuteList())
-                {
-                    timeList.Add(hour + ":" + minute);
-                }
-            }
-            return timeList;
-        }
-        private List<String> GetHourList()
-        {
-            List<String> hourList = new List<String>();
-            for(int i = 6; i <= 21; i++)
-            {
-                hourList.Add(GetHour(i));
-            }
-            return hourList;
-        }
-        private string GetHour(int currentHour)
-        {
-            if (currentHour >= 6 && currentHour <= 9)
-                return "0" + currentHour.ToString();
-            else
-                return currentHour.ToString();
-        }
-        private List<String> GetMinuteList()
-        {
-            List<String> minuteList = new List<String>();
-            for (int i = 0; i <= 59; i++)
-            {
-                minuteList.Add(GetMinute(i));
-            }
-            return minuteList;
-        }
-        private string GetMinute(int currentMinute)
-        {
-            if (currentMinute >= 0 && currentMinute <= 9)
-                return "0" + currentMinute.ToString();
-            else
-                return currentMinute.ToString();
-        }
-
         private void confirmButton_Click(object sender, RoutedEventArgs e)
         {
+            MakeStartAndEndTermDate();
             if (CheckTheCorrectnessOfTheTerm())
             {
-                RoomController.getInstance().SetRenovationStateToRoom(roomForRenovation, CreateRoomRenovationState());
-                CreateThreadForRenovationSimulation(startTermDate, endTermDate);
+                RoomController.getInstance().SetRenovationStateToRoom(roomForRenovation, NewRoomRenovationState());
+                CreateThreadForRenovationSimulation();
                 GiveFeedbackToManager();
             }
             else
                 MessageBox.Show("Nije moguće zakazati renoviranje u izabranom terminu jer je tada zauzeta.", "Greška", MessageBoxButton.OK, MessageBoxImage.Hand);
         }
-        private RoomRenovationState CreateRoomRenovationState()
-        {
-            return new RoomRenovationState(GetDate((string)startTimeComboBox.SelectedItem, startDatePicker), GetDate((string)endTimeComboBox.SelectedItem, endDatePicker));
-        }
-        private DateTime GetDate(string selectedTime, DatePicker selectedDate)
-        {
-            string[] elementsOfSelectedTime = selectedTime.Split(selectedTimeSeparator, StringSplitOptions.None);
-            return new DateTime(selectedDate.SelectedDate.Value.Year, selectedDate.SelectedDate.Value.Month, selectedDate.SelectedDate.Value.Day,
-                int.Parse(elementsOfSelectedTime[0]), int.Parse(elementsOfSelectedTime[1]), 00);
-        }
         private bool CheckTheCorrectnessOfTheTerm()
         {
-            startTermDate = GetDate((string)startTimeComboBox.SelectedItem, startDatePicker);
-            endTermDate = GetDate((string)endTimeComboBox.SelectedItem, endDatePicker);
-            List<Appointment> list = AppointmentController.getInstance().getAppointment();
-            foreach (Appointment currentAppointment in list)
+            foreach(Appointment appointment in RoomController.getInstance().GetAppointmentsInRoom(roomForRenovation.Name))
             {
-                if (string.Equals(currentAppointment.room.Name, roomForRenovation.Name))
-                {
-                    if ((currentAppointment.StartTime >= startTermDate && currentAppointment.StartTime <= endTermDate) ||
-                        (startTermDate >= currentAppointment.StartTime && startTermDate <= currentAppointment.StartTime.AddMinutes(30) ||
-                        (currentAppointment.StartTime.AddMinutes(30) >= startTermDate && currentAppointment.StartTime.AddMinutes(30) <= endTermDate)))
-                        return false;
-                }
+                if (AppointmentStartIsBetweenTermTimeSpan(appointment) || TermIsInAppointmentTimeSpan(appointment) ||
+                    AppointmentEndIsBetweenTermTimeSpan(appointment))
+                    return false;
             }
             return true;
         }
-        private void CreateThreadForRenovationSimulation(DateTime startDate, DateTime endDate)
+        private void MakeStartAndEndTermDate()
+        {
+            startTermDate = GetDate((string)startTimeComboBox.SelectedItem, startDatePicker);
+            endTermDate = GetDate((string)endTimeComboBox.SelectedItem, endDatePicker);
+        }
+        private DateTime GetDate(string selectedTime, DatePicker datePickerWpfControl)
+        {
+            string[] elementsOfSelectedTime = selectedTime.Split(selectedTimeSeparator, StringSplitOptions.None);
+            return new DateTime(datePickerWpfControl.SelectedDate.Value.Year, datePickerWpfControl.SelectedDate.Value.Month, datePickerWpfControl.SelectedDate.Value.Day,
+                int.Parse(elementsOfSelectedTime[0]), int.Parse(elementsOfSelectedTime[1]), 00);
+        }
+        private bool AppointmentStartIsBetweenTermTimeSpan(Appointment appointment)
+        {
+            return appointment.StartTime >= startTermDate && appointment.StartTime <= endTermDate;
+        }
+        private bool TermIsInAppointmentTimeSpan(Appointment appointment)
+        {
+            return startTermDate >= appointment.StartTime && startTermDate <= appointment.StartTime.AddMinutes(30);
+        }
+        private bool AppointmentEndIsBetweenTermTimeSpan(Appointment appointment)
+        {
+            return appointment.StartTime.AddMinutes(30) >= startTermDate && appointment.StartTime.AddMinutes(30) <= endTermDate;
+        }
+        private RoomRenovationState NewRoomRenovationState()
+        {
+            return new RoomRenovationState(GetDate((string)startTimeComboBox.SelectedItem, startDatePicker), GetDate((string)endTimeComboBox.SelectedItem, endDatePicker));
+        }
+        private void CreateThreadForRenovationSimulation()
         {
             Thread thread = new Thread(() =>
             {
@@ -146,10 +112,7 @@ namespace HospitalInformationSystem.Windows.ManagerGUI
         }
         private void CheckIfTheTermIsSelected()
         {
-            if (startTimeComboBox.SelectedItem != null && endTimeComboBox.SelectedItem != null && startDatePicker.SelectedDate != null && endDatePicker.SelectedDate != null)
-                confirmButton.IsEnabled = true;
-            else
-                confirmButton.IsEnabled = false;
+            confirmButton.IsEnabled = (startTimeComboBox.SelectedItem != null && endTimeComboBox.SelectedItem != null && startDatePicker.SelectedDate != null && endDatePicker.SelectedDate != null);
         }
         private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
         {

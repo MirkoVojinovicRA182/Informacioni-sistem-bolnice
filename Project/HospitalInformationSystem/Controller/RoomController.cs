@@ -92,5 +92,9 @@ namespace HospitalInformationSystem.Controller
         {
             roomService.AddRoomToRoomList(newRoom);
         }
+        public List<Appointment> GetAppointmentsInRoom(string nameOfRoom)
+        {
+            return roomService.GetAppointmentsInRoom(nameOfRoom);
+        }
     }
 }

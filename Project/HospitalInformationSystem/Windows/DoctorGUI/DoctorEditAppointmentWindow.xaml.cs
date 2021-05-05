@@ -1,19 +1,7 @@
 ﻿using HospitalInformationSystem.Controller;
-using HospitalInformationSystem.Service;
 using Model;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
 
 namespace HospitalInformationSystem.Windows.DoctorGUI
 {
@@ -63,7 +51,7 @@ namespace HospitalInformationSystem.Windows.DoctorGUI
 
         private void confirmButton_Click(object sender, RoutedEventArgs e)
         {
-            if (checkData())
+            if (checkData() && CheckRoomState((Room)roomComboBox.SelectedItem))
             {
                 DateTime date = DateTime.ParseExact(dateTextBox.Text + " " + timeTextBox.Text, "dd.MM.yyyy. HH:mm", System.Globalization.CultureInfo.InvariantCulture);
                 Room newRoom;
@@ -81,7 +69,7 @@ namespace HospitalInformationSystem.Windows.DoctorGUI
             }
         }
 
-        private Boolean checkData()
+        private bool checkData()
         {
             try
             {
@@ -94,6 +82,12 @@ namespace HospitalInformationSystem.Windows.DoctorGUI
             }
 
             return true;
+        }
+
+        private bool CheckRoomState(Room room)
+        {
+            DateTime dateOfAppointment = DateTime.ParseExact(dateTextBox.Text + " " + timeTextBox.Text, "dd.MM.yyyy. HH:mm", System.Globalization.CultureInfo.InvariantCulture);
+            return dateOfAppointment.AddMinutes(30) < room.RoomRenovationState.StartDate || dateOfAppointment > room.RoomRenovationState.EndDate;
         }
     }
 }

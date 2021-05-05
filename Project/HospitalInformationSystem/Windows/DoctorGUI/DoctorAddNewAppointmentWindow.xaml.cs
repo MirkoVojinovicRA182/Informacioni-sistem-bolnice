@@ -3,6 +3,7 @@ using System;
 using System.Windows;
 using System.Windows.Controls;
 using HospitalInformationSystem.Controller;
+using System.Collections.Generic;
 
 namespace HospitalInformationSystem.Windows.DoctorGUI
 {
@@ -21,9 +22,21 @@ namespace HospitalInformationSystem.Windows.DoctorGUI
             this.doctor = doctor;
             doctorTextBox.Text = doctor.Name + " " + doctor.Surname;
             patientComboBox.ItemsSource = PatientController.getInstance().getPatient();
-            roomsListBox.DataContext = RoomController.getInstance().getRooms();
+            //roomsListBox.DataContext = RoomController.getInstance().getRooms();
+            initRooms();
             initTypeOfAppointment();
 
+        }
+
+        private void initRooms()
+        {
+            List<Room> roomsList = new List<Room>();
+            foreach(Room room in RoomController.getInstance().getRooms())
+            {
+                if (room.Type == TypeOfRoom.OperationRoom)
+                    roomsList.Add(room);
+            }
+            roomsListBox.DataContext = roomsList;
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)

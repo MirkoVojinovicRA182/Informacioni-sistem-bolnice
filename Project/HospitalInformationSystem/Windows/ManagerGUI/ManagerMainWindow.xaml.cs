@@ -22,6 +22,7 @@ namespace HospitalInformationSystem.Windows.ManagerGUI
         }
         private ManagerMainWindow()
         {
+            int count = AppointmentController.getInstance().getAppointment().Count;
             EquipmentController.getInstance().loadFromFile();
             RoomController.getInstance().loadFromFile();
             MedicineController.GetInstance().LoadFromFile();

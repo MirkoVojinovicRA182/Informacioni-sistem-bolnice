@@ -88,5 +88,9 @@ namespace HospitalInformationSystem.Controller
         {
             roomService.AddEquipmentToMagacine(newEquipment);
         }
+        public void AddRoomToRoomList(Room newRoom)
+        {
+            roomService.AddRoomToRoomList(newRoom);
+        }
     }
 }

@@ -155,5 +155,9 @@ namespace HospitalInformationSystem.Service
         {
 
         }
+        public void AddRoomToRoomList(Room newRoom)
+        {
+            roomList.Add(newRoom);
+        }
     }
 }

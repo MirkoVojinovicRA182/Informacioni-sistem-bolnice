@@ -96,6 +96,7 @@ namespace HospitalInformationSystem.Windows.ManagerGUI
             list.Add("Sala za hospitalizaciju");
             list.Add("Kancelarija");
             list.Add("Prostorija za preglede");
+            list.Add("Magacin");
             typeOfRoomComboBox.ItemsSource = list;
         }
 
@@ -114,6 +115,8 @@ namespace HospitalInformationSystem.Windows.ManagerGUI
                 type = TypeOfRoom.Office;
             else if (String.Compare(selectedValue, "Prostorija za preglede") == 0)
                 type = TypeOfRoom.ExaminationRoom;
+            else if (String.Compare(selectedValue, "Magacin") == 0)
+                type = TypeOfRoom.Magacine;
 
             return type;
 

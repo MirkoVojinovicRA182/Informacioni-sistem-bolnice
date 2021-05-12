@@ -23,39 +23,39 @@ namespace HospitalInformationSystem.Controller
             doctorService = new DoctorService();
         }
 
-        public List<Doctor> getDoctors()
+        public List<Doctor> GetDoctors()
         {
             return doctorService.getDoctors();
         }
 
-        public void setDoctors(List<Doctor> newDoctor)
+        public void SetDoctors(List<Doctor> newDoctorsList)
         {
-            doctorService.setDoctors(newDoctor);
+            doctorService.SetDoctors(newDoctorsList);
         }
 
-        public void addDoctor(Doctor newDoctor)
+        public void AddDoctor(Doctor newDoctor)
         {
-            doctorService.addDoctor(newDoctor);
+            doctorService.AddDoctor(newDoctor);
         }
 
-        public void removeDoctor(Doctor oldDoctor)
+        public void RemoveDoctor(Doctor oldDoctor)
         {
-            doctorService.removeDoctor(oldDoctor);
+            doctorService.RemoveDoctor(oldDoctor);
         }
 
-        public void removeAllDoctors()
+        public void RemoveAllDoctors()
         {
-            doctorService.removeAllDoctors();
+            doctorService.RemoveAllDoctors();
         }
 
-        public void saveInFlie()
+        public void SaveInFlie()
         {
-            doctorService.saveInFile();
+            doctorService.SaveInFile();
         }
 
-        public void loadFromFile()
+        public void LoadFromFile()
         {
-            doctorService.loadFromFile();
+            doctorService.LoadFromFile();
         }
     }
 }

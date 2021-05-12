@@ -81,7 +81,7 @@ namespace HospitalInformationSystem.Windows.ManagerGUI
             }
             else
             {
-                RoomController.GetInstance().CreateRoom(floor, id, name, type, equipment);
+                RoomController.GetInstance().CreateRoom(new Room(id, name, floor, type, equipment));
                 return true;
             }
         }

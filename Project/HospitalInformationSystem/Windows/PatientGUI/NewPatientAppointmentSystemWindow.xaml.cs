@@ -31,7 +31,7 @@ namespace HospitalInformationSystem.Windows.PatientGUI
         {
             InitializeComponent();
             this.patient = patient;
-            var list = DoctorController.getInstance().getDoctors();
+            var list = DoctorController.getInstance().GetDoctors();
 
             DoctorComboBox.ItemsSource = list;
         }
@@ -188,7 +188,7 @@ namespace HospitalInformationSystem.Windows.PatientGUI
                 }
                 else
                 {
-                    var doctors = DoctorController.getInstance().getDoctors();
+                    var doctors = DoctorController.getInstance().GetDoctors();
                     for (int i = 0; i < doctors.Count; i++)
                     {
                         if(doctors[i].GetType() == doctor.GetType()) 

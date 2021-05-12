@@ -2,99 +2,127 @@
 using Model;
 using System.Collections.ObjectModel;
 using System.Windows;
+using System.Windows.Input;
 
 namespace HospitalInformationSystem.Windows.DoctorGUI
 {
-    /// <summary>
-    /// Interaction logic for DoctorAppointmentsManagementWindow.xaml
-    /// </summary>
     public partial class DoctorAppointmentsManagementWindow : Window
     {
-        Doctor doctor;
+        Doctor loggedDoctor;
         Appointment appointment;
-        private ObservableCollection<Appointment> appointmentList;
+        private ObservableCollection<Appointment> loggedDoctorAppointmentsList;
 
         private static DoctorAppointmentsManagementWindow instance = null;
 
-        public static DoctorAppointmentsManagementWindow GetInstance(Doctor doctor)
+        public static DoctorAppointmentsManagementWindow GetInstance(Doctor loggedDoctor)
         {
             if (instance == null)
-                instance = new DoctorAppointmentsManagementWindow(doctor);
+                instance = new DoctorAppointmentsManagementWindow(loggedDoctor);
             return instance;
         }
-        private DoctorAppointmentsManagementWindow(Doctor doctor)
+        private DoctorAppointmentsManagementWindow(Doctor loggedDoctor)
         {
             InitializeComponent();
-            this.doctor = doctor;
-            appointmentsTable.DataContext = doctor.GetAppointment();
-            refreshTable();
+            this.loggedDoctor = loggedDoctor;
+            appointmentsTable.DataContext = loggedDoctor.GetAppointment();
+            RefreshTable();
         }
 
-        private void addButton_Click(object sender, RoutedEventArgs e)
+        public void RefreshTable()
         {
-            Window2 doctorAddNewAppointmentWindow = new Window2(doctor);
-
-            doctorAddNewAppointmentWindow.ShowDialog();
-            
-            refreshTable();
+            loggedDoctorAppointmentsList = new ObservableCollection<Appointment>(loggedDoctor.GetAppointment());
+            appointmentsTable.ItemsSource = null;
+            appointmentsTable.ItemsSource = loggedDoctorAppointmentsList;
         }
 
-        private void changeButton_Click(object sender, RoutedEventArgs e)
+        private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            DoctorController.getInstance().SaveInFlie();
+            AppointmentController.getInstance().saveInFile();
+            instance = null;
+        }
+
+        private void OpenNewAppointmentWindow()
+        {
+            Window2 doctorAddNewAppointmentWindow = new Window2(loggedDoctor);
+            doctorAddNewAppointmentWindow.ShowDialog();
+            RefreshTable();
+        }
+
+        private void OpenEditAppointmentWindow()
         {
             if ((Appointment)appointmentsTable.SelectedItem != null)
             {
                 appointment = (Appointment)appointmentsTable.SelectedItem;
                 DoctorEditAppointmentWindow doctorEditAppointmentWindow = new DoctorEditAppointmentWindow(appointment);
                 doctorEditAppointmentWindow.ShowDialog();
-                refreshTable();
+                RefreshTable();
             }
         }
 
-        private void deleteButton_Click(object sender, RoutedEventArgs e)
+        private void DeleteAppointment()
         {
             if ((Appointment)appointmentsTable.SelectedItem != null)
             {
                 appointment = (Appointment)appointmentsTable.SelectedItem;
                 AppointmentController.getInstance().removeAppointment(appointment);
-                doctor.RemoveAppointment(appointment);
+                loggedDoctor.RemoveAppointment(appointment);
                 appointment.GetPatient().RemoveAppointment(appointment);
-                refreshTable();
+                RefreshTable();
             }
         }
 
-        private void closeButton_Click(object sender, RoutedEventArgs e)
-        {
-            this.Close();
-        }
-        private void refreshTable()
-        {
-            appointmentList = new ObservableCollection<Appointment>(doctor.GetAppointment());
-            appointmentsTable.ItemsSource = null;
-            appointmentsTable.ItemsSource = appointmentList;
-        }
-
-        private void Button_Click(object sender, RoutedEventArgs e)
+        private void OpenAppointmentPreviewWindow()
         {
             if ((Appointment)appointmentsTable.SelectedItem != null)
             {
                 appointment = (Appointment)appointmentsTable.SelectedItem;
-                DoctorShowAppointmentInformationWindow doctorShowAppointmentInformationWindow = new DoctorShowAppointmentInformationWindow(appointment, doctor);
+                DoctorShowAppointmentInformationWindow doctorShowAppointmentInformationWindow = new DoctorShowAppointmentInformationWindow(appointment, loggedDoctor);
                 doctorShowAppointmentInformationWindow.ShowDialog();
-                refreshTable();
+                RefreshTable();
             }
         }
 
-        private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
+        private void ClosingWindow()
         {
-            DoctorController.getInstance().saveInFlie();
+            DoctorController.getInstance().SaveInFlie();
             AppointmentController.getInstance().saveInFile();
+            this.Close();
             instance = null;
         }
 
-        private void medicineButton_Click(object sender, RoutedEventArgs e)
+        private void CheckKeyPress()
         {
-            MedicinePreviewWindow medicinePreviewWindow = MedicinePreviewWindow.GetInstance();
-            medicinePreviewWindow.ShowDialog();
+            if ((Keyboard.IsKeyDown(Key.LeftCtrl) || Keyboard.IsKeyDown(Key.RightCtrl)) && Keyboard.IsKeyDown(Key.A))
+            {
+                OpenNewAppointmentWindow();
+            }
+            else if ((Keyboard.IsKeyDown(Key.LeftCtrl) || Keyboard.IsKeyDown(Key.RightCtrl)) && Keyboard.IsKeyDown(Key.E))
+            {
+                OpenEditAppointmentWindow();
+            }
+            else if ((Keyboard.IsKeyDown(Key.LeftCtrl) || Keyboard.IsKeyDown(Key.RightCtrl)) && Keyboard.IsKeyDown(Key.D))
+            {
+                DeleteAppointment();
+            }
+            else if (Keyboard.IsKeyDown(Key.Enter))
+            {
+                OpenAppointmentPreviewWindow();
+            }
+            else if ((Keyboard.IsKeyDown(Key.LeftCtrl) || Keyboard.IsKeyDown(Key.RightCtrl)) && Keyboard.IsKeyDown(Key.Q))
+            {
+                ClosingWindow();
+            }
+        }
+
+        private void Window_KeyDown(object sender, KeyEventArgs e)
+        {
+            CheckKeyPress();
+        }
+
+        private void appointmentsTable_PreviewKeyDown(object sender, KeyEventArgs e)
+        {
+            CheckKeyPress();
         }
     }
 }

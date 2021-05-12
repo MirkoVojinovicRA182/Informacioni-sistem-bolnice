@@ -14,7 +14,6 @@ namespace Model
     {
         public Doctor()
         {
-            // TODO: implement
         }
 
         public Doctor(string name, string surname, string username, Room room, Specialization specialization)
@@ -28,7 +27,6 @@ namespace Model
 
         public Doctor(string name, string surname, Specialization specialization, Room room)
         {
-            // TODO: implement
             this.Name = name;
             this.Surname = surname;
             this.Specialization = specialization;
@@ -46,7 +44,7 @@ namespace Model
 
         public void SetAppointment(List<Appointment> newAppointment)
         {
-            RemoveAllAppointment();
+            RemoveAllAppointments();
             foreach (Appointment oAppointment in newAppointment)
                 AddAppointment(oAppointment);
         }
@@ -76,7 +74,7 @@ namespace Model
                 }
         }
 
-        public void RemoveAllAppointment()
+        public void RemoveAllAppointments()
         {
             if (appointments != null)
             {

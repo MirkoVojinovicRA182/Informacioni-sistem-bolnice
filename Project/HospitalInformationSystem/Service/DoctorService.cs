@@ -15,69 +15,67 @@ namespace HospitalInformationSystem.Service
     public class DoctorService
     {
 
-        private List<Doctor> doctors;
-        DoctorRepository doctorFile;
+        private List<Doctor> doctorsList;
+        private DoctorRepository doctorsFile;
 
         public DoctorService()
         {
-            // TODO: implement
-            doctors = new List<Doctor>();
-            doctorFile = new DoctorRepository();
+            doctorsList = new List<Doctor>();
+            doctorsFile = new DoctorRepository();
         }
 
         ~DoctorService()
         {
-            // TODO: implement
         }
 
         public List<Doctor> getDoctors()
         {
-            if (doctors == null)
-                doctors = new List<Doctor>();
-            return doctors;
+            if (doctorsList == null)
+                doctorsList = new List<Doctor>();
+            return doctorsList;
         }
 
 
-        public void setDoctors(List<Doctor> newDoctor)
+        public void SetDoctors(List<Doctor> newDoctorsList)
         {
-            removeAllDoctors();
-            foreach (Doctor oDoctor in newDoctor)
-                addDoctor(oDoctor);
+            RemoveAllDoctors();
+            foreach (Doctor oDoctor in newDoctorsList)
+                AddDoctor(oDoctor);
         }
 
-        public void addDoctor(Doctor newDoctor)
+        public void AddDoctor(Doctor newDoctor)
         {
             if (newDoctor == null)
                 return;
-            if (this.doctors == null)
-                this.doctors = new List<Doctor>();
-            if (!this.doctors.Contains(newDoctor))
-                this.doctors.Add(newDoctor);
+            if (this.doctorsList == null)
+                this.doctorsList = new List<Doctor>();
+            if (!this.doctorsList.Contains(newDoctor))
+                this.doctorsList.Add(newDoctor);
         }
 
-        public void removeDoctor(Doctor oldDoctor)
+        public void RemoveDoctor(Doctor oldDoctor)
         {
             if (oldDoctor == null)
                 return;
-            if (this.doctors != null)
-                if (this.doctors.Contains(oldDoctor))
-                    this.doctors.Remove(oldDoctor);
+            if (this.doctorsList != null)
+                if (this.doctorsList.Contains(oldDoctor))
+                    this.doctorsList.Remove(oldDoctor);
         }
 
-        public void removeAllDoctors()
+        public void RemoveAllDoctors()
         {
-            if (doctors != null)
-                doctors.Clear();
+            if (doctorsList != null)
+                doctorsList.Clear();
         }
 
-        public void saveInFile()
+        public void SaveInFile()
         {
-            doctorFile.saveInFile();
+            doctorsFile.saveInFile();
         }
 
-        public void loadFromFile()
+        public void LoadFromFile()
         {
-            doctorFile.loadFromFile();
+            doctorsFile.loadFromFile();
         }
 
     }

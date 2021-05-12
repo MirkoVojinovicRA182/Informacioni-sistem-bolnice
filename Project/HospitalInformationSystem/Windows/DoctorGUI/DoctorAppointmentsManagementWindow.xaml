@@ -5,33 +5,41 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:HospitalInformationSystem.Windows"
         mc:Ignorable="d"
-        Title="Upravljanje terminima lekara" Height="450" Width="900" Closing="Window_Closing">
-<Grid>
-    <DataGrid x:Name="appointmentsTable" 
+        Title="Upravljanje terminima lekara" Height="450" Width="900" Closing="Window_Closing" KeyDown="Window_KeyDown">
+    <Grid>
+        <DataGrid x:Name="appointmentsTable" 
 				  HorizontalAlignment="Left" 
 				  CanUserAddRows="False" 
 			      CanUserResizeColumns="False" 
 				  AutoGenerateColumns="False"
 				  IsReadOnly="True"
 				  SelectionMode="Single"
-				  Height="399" 
-				  Margin="10,10,0,0" 
+				  Height="318" 
+				  Margin="10,91,0,0" 
 				  VerticalAlignment="Top" 
-				  Width="710" 
-				  Background="CadetBlue">
-        <DataGrid.Columns>
+				  Width="874" 
+				  Background="CadetBlue" PreviewKeyDown="appointmentsTable_PreviewKeyDown">
+            <DataGrid.Columns>
                 <DataGridTextColumn Header="Datum i vreme" Width="*" Binding="{Binding StartTime}"></DataGridTextColumn>
                 <DataGridTextColumn Header="Pacijent" Width="*" Binding="{Binding GetPatientNameSurname}"></DataGridTextColumn>
                 <DataGridTextColumn Header="Lekar" Width="*" Binding="{Binding GetDoctorNameSurname}"></DataGridTextColumn>
                 <DataGridTextColumn Header="ID prostorije" Width="*" Binding="{Binding GetRoomID}"></DataGridTextColumn>
                 <DataGridTextColumn Header="Vrsta termina" Width="*" Binding="{Binding Type}"></DataGridTextColumn>
-        </DataGrid.Columns>
-    </DataGrid>
-    <Button x:Name="addButton" Content="DODAJ" HorizontalAlignment="Left" Margin="738,10,0,0" VerticalAlignment="Top" Width="141" FontSize="16" Click="addButton_Click"/>
-    <Button x:Name="changeButton" Content="IZMENI" HorizontalAlignment="Left" Margin="738,47,0,0" VerticalAlignment="Top" Width="141" FontSize="16" Click="changeButton_Click"/>
-    <Button x:Name="deleteButton" Content="OBRIŠI" HorizontalAlignment="Left" Margin="738,91,0,0" VerticalAlignment="Top" Width="141" FontSize="16" Click="deleteButton_Click"/>
-    <Button x:Name="closeButton" Content="IZAĐI" HorizontalAlignment="Left" Margin="738,384,0,0" VerticalAlignment="Top" Width="141" FontSize="16" Click="closeButton_Click"/>
-        <Button Content="PREGLED" HorizontalAlignment="Left" Margin="738,138,0,0" VerticalAlignment="Top" Width="141" FontSize="16" Click="Button_Click"/>
-        <Button x:Name="medicineButton" Content="LEKOVI" HorizontalAlignment="Left" Height="23" Margin="738,184,0,0" VerticalAlignment="Top" Width="141" FontSize="16" Click="medicineButton_Click"/>
+            </DataGrid.Columns>
+        </DataGrid>
+        <Border BorderBrush="Black" BorderThickness="1" HorizontalAlignment="Left" Height="77" Margin="11,9,0,0" VerticalAlignment="Top" Width="782">
+            <Image x:Name="addImage" HorizontalAlignment="Left" Height="50" Margin="0.2,0.2,0,0" VerticalAlignment="Top" Width="50" Source="addIcon.png"/>
+        </Border>
+        <Border BorderBrush="Black" BorderThickness="1" HorizontalAlignment="Left" Height="77" Margin="793,9,0,0" VerticalAlignment="Top" Width="86"/>
+        <Label Content="CTRL+A" HorizontalAlignment="Left" Margin="11,60,0,0" VerticalAlignment="Top"/>
+        <Image HorizontalAlignment="Left" Height="50" Margin="69,10,0,0" VerticalAlignment="Top" Width="50" Source="editIcon.png"/>
+        <Label Content="CTRL+E" HorizontalAlignment="Left" Margin="64,60,0,0" VerticalAlignment="Top"/>
+        <Image HorizontalAlignment="Left" Height="50" Margin="124,9,0,0" VerticalAlignment="Top" Width="50" Source="deleteIcon.png"/>
+        <Label Content="CTRL+D" HorizontalAlignment="Left" Margin="124,60,0,0" VerticalAlignment="Top"/>
+        <Image HorizontalAlignment="Left" Height="50" Margin="182,10,0,0" VerticalAlignment="Top" Width="50" Source="appointmentIcon.png"/>
+        <Label Content="ENTER" HorizontalAlignment="Left" Margin="187,60,0,0" VerticalAlignment="Top"/>
+        <Image HorizontalAlignment="Left" Height="50" Margin="738,10,0,0" VerticalAlignment="Top" Width="50" Source="quitIcon.png"/>
+        <Label Content="CTRL+Q" HorizontalAlignment="Left" Margin="738,60,0,0" VerticalAlignment="Top"/>
+        <Label Content="Pritisnite&#xD;&#xA;Tab da&#xD;&#xA;selektujete&#xD;&#xA;tabelu" HorizontalAlignment="Left" Margin="798,10,0,0" VerticalAlignment="Top" Height="76" Width="81"/>
     </Grid>
 </Window>

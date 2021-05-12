@@ -25,6 +25,17 @@ namespace Model
             Equipment = new Hashtable();
             RoomRenovationState = new RoomRenovationState(DateTime.Now, DateTime.Now);
         }
+        public Room(int id, string name, int floor, TypeOfRoom type, Hashtable equipment)
+        {
+            this.Id = id;
+            this.Name = name;
+            this.Floor = floor;
+            this.Type = type;
+            Equipment = equipment;
+            RoomRenovationState = new RoomRenovationState(DateTime.Now, DateTime.Now);
+            RoomRenovationState.ActivityStatus = true;
+        }
+
 
         public string Name
         {

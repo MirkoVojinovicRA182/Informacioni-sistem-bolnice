@@ -1,6 +1,7 @@
 ﻿using Model;
 using System;
 using System.Windows;
+using System.Windows.Input;
 
 namespace HospitalInformationSystem.Windows.DoctorGUI
 {
@@ -34,13 +35,22 @@ namespace HospitalInformationSystem.Windows.DoctorGUI
             }
         }
 
-        private void Button_Click(object sender, RoutedEventArgs e)
-        { 
+        private void CheckKeyPress()
+        {
+            if (Keyboard.IsKeyDown(Key.Enter))
+            {
+                ShowPatientInformationWindow showPatientInformationWindow = new ShowPatientInformationWindow(appointment.patient, doctor);
+                showPatientInformationWindow.ShowDialog();
+            }
+            else if (Keyboard.IsKeyDown(Key.Escape))
+            {
+                this.Close();
+            }
+        }
 
-            ShowPatientInformationWindow showPatientInformationWindow = new ShowPatientInformationWindow(appointment.patient, doctor);
-
-            showPatientInformationWindow.ShowDialog();
-
+        private void Window_KeyDown(object sender, System.Windows.Input.KeyEventArgs e)
+        {
+            CheckKeyPress();
         }
     }
 }

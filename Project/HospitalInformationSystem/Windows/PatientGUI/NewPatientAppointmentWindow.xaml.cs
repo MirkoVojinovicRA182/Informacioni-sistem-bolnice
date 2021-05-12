@@ -30,7 +30,7 @@ namespace HospitalInformationSystem.Windows.PatientGUI
             InitializeComponent();
 
             this.patient = patient;
-            var list = DoctorController.getInstance().getDoctors();
+            var list = DoctorController.getInstance().GetDoctors();
 
             DoctorComboBox.ItemsSource = list;
 

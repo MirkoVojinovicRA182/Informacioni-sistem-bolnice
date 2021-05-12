@@ -19,40 +19,32 @@ namespace HospitalInformationSystem.Service
     public class RoomService
     {
 
-        List<Room> roomList;
-        RoomRepository roomR;
+        private List<Room> _allRooms;
+        private RoomRepository _repository;
         public RoomService()
         {
-            roomList = new List<Room>();
-            roomR = new RoomRepository();
+            _allRooms = new List<Room>();
+            _repository = new RoomRepository();
         }
 
         public void SaveRoomsInFile()
         {
-            roomR.saveInFile();
+            _repository.saveInFile();
         }
 
         public void LoadRoomsFromFile()
         {
-            roomR.loadFromFile();
+            _repository.loadFromFile();
         }
-        public void CreateRoom(int floor, int id, string name, TypeOfRoom type, Hashtable equipment)
+        public void CreateRoom(Room newRoom)
         {
-            // TODO: implement
-            Room newRoom = new Room(id, name, floor, type);
-            setRoomEquipment(newRoom, equipment);
-            roomList.Add(newRoom);
+            _allRooms.Add(newRoom);
         }
 
         public void DeleteRoom(Room room)
         {
-            // TODO: implement
-
-            roomList.Remove(room);
-
-            //brisanje termina koji se odvijaju u datoj prostoriji
+            _allRooms.Remove(room);
             List<Appointment> list = AppointmentController.getInstance().findAppointmentByRoom(room);
-
             foreach(Appointment appointment in list)
             {
                 AppointmentController.getInstance().removeAppointment(appointment);
@@ -60,13 +52,12 @@ namespace HospitalInformationSystem.Service
         }
         public void ChangeRoom(Room room, int newId, string newName, TypeOfRoom newType, int newFloor)
         {
-            // TODO: implement
             room.Id = newId;
             room.Name = newName;
             room.Type = newType;
             room.Floor = newFloor;
-
         }
+
         public void SetRoomEquipment(Room room, Hashtable eq)
         {
             if (room.Equipment == null)
@@ -77,8 +68,7 @@ namespace HospitalInformationSystem.Service
         }
         public void DeleteEquipment(string id)
         {
-            //List<Room> rooms = RoomDataBase.getInstance().getRooms();
-            foreach(Room room in roomList)
+            foreach(Room room in _allRooms)
             {
                 if (room.Equipment.Contains(id))
                     room.Equipment.Remove(id);
@@ -86,16 +76,14 @@ namespace HospitalInformationSystem.Service
         }
         public List<Room> GetRooms()
         {
-            //return RoomDataBase.getInstance().getRooms();
-
-            return roomList;
+            return _allRooms;
         }
         public void SetRooms(List<Room> rooms)
         {
-            roomList.Clear();
+            _allRooms.Clear();
 
             foreach (Room room in rooms)
-                roomList.Add(room);
+                _allRooms.Add(room);
         }
         public void ChangeStaticEquipmentState(Room room, int currentQuantity, int moveQuantity, string key)
         {
@@ -119,7 +107,7 @@ namespace HospitalInformationSystem.Service
         }
         public bool FindRoom(int id)
         {
-            foreach (Room room in roomList)
+            foreach (Room room in _allRooms)
             {
                 if (room.Id == id)
                     return true;
@@ -140,7 +128,7 @@ namespace HospitalInformationSystem.Service
         }
         public Room GetMagacine()
         {
-            foreach(Room room in roomList)
+            foreach(Room room in _allRooms)
             {
                 if (string.Equals(room.Name, "Magacin"))
                     return room;
@@ -157,7 +145,7 @@ namespace HospitalInformationSystem.Service
         }
         public void AddRoomToRoomList(Room newRoom)
         {
-            roomList.Add(newRoom);
+            _allRooms.Add(newRoom);
         }
         public List<Appointment> GetAppointmentsInRoom(string nameOfRoom)
         {

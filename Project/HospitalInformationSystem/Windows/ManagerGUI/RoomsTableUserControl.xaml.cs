@@ -49,7 +49,7 @@ namespace HospitalInformationSystem.Windows.ManagerGUI
             selectedRoom = (Room)allRoomsTable.SelectedItem;
 
             if (selectedRoom != null)
-                RoomService.deleteRoom(selectedRoom);
+                RoomController.GetInstance().DeleteRoom(selectedRoom);
             else
                 MessageBox.Show("Niste izabrali prostoriju!", "Upozorenje", MessageBoxButton.OK, MessageBoxImage.Warning);
 

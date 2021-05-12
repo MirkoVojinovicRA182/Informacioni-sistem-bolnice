@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:HospitalInformationSystem.Windows"
         mc:Ignorable="d"
-        Title="DoctorShowAppointmentInformationWindow" Height="420" Width="300">
+        Title="DoctorShowAppointmentInformationWindow" Height="420" Width="300" KeyDown="Window_KeyDown">
     <Grid>
         <Label Content="Datum:" HorizontalAlignment="Left" Margin="32,35,0,0" VerticalAlignment="Top" FontSize="18"/>
         <Label Content="Vreme:" HorizontalAlignment="Left" Margin="32,91,0,0" VerticalAlignment="Top" FontSize="18"/>
@@ -15,9 +15,13 @@
         <TextBox x:Name="timeTextBox" HorizontalAlignment="Left" Height="27" Margin="152,91,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" FontSize="18" IsEnabled="False"/>
         <TextBox x:Name="dateTextBox" HorizontalAlignment="Left" Height="27" Margin="152,35,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" FontSize="18" IsEnabled="False"/>
         <TextBox x:Name="patientTextBox" HorizontalAlignment="Left" Height="29" Margin="152,205,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" FontSize="18" IsEnabled="False"/>
-        <Button Content="Pogledaj&#xD;&#xA;pacijenta" HorizontalAlignment="Center" Margin="99,329,101.6,0" VerticalAlignment="Top" Width="93" FontSize="18" Click="Button_Click"/>
         <Label x:Name="roomLabel" Content="Prostorija:" HorizontalAlignment="Left" Margin="32,260,0,0" VerticalAlignment="Top" FontSize="18" Visibility="Hidden"/>
         <TextBox x:Name="roomTextBox" HorizontalAlignment="Left" Height="23" Margin="152,265,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" FontSize="18" IsEnabled="False" Visibility="Hidden"/>
+        <Image HorizontalAlignment="Left" Height="70" Margin="32,260,0,0" VerticalAlignment="Top" Width="70" Source="patientIcon.png"/>
+        <Label Content="Prikaz informacija&#xD;&#xA;o pacijentu" HorizontalAlignment="Left" Height="65" Margin="127,265,0,0" VerticalAlignment="Top" Width="157" FontSize="18"/>
+        <Image HorizontalAlignment="Left" Height="40" Margin="232,325,0,0" VerticalAlignment="Top" Width="40" Source="quitIcon.png"/>
+        <Label Content="ESC" HorizontalAlignment="Left" Margin="237,360,0,0" VerticalAlignment="Top"/>
+        <Label Content="ENTER" HorizontalAlignment="Left" Margin="39,330,0,0" VerticalAlignment="Top" FontSize="16"/>
 
     </Grid>
 </Window>

@@ -111,6 +111,7 @@ namespace HospitalInformationSystem.Windows.DoctorGUI
                 medicineReplacmentComboBox.IsEnabled = false;
                 medicineTypeComboBox.IsEnabled = false;
                 editMedicine.Content = "IZMENI";
+                //MedicineController.GetInstance().ChangeMedicine(oldMedicine, newMedicine);
             }
             
         }

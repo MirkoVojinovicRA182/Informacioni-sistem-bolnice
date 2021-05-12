@@ -32,9 +32,10 @@ namespace HospitalInformationSystem.Controller
         {
             _roomService.LoadRoomsFromFile();
         }
-        public void CreateRoom(int floor, int id, string name, TypeOfRoom type, Hashtable equipment)
+        public void CreateRoom(/*int floor, int id, string name, TypeOfRoom type, Hashtable equipment*/ Room newRoom)
         {
-            _roomService.CreateRoom(floor, id, name, type, equipment);
+            //_roomService.CreateRoom(floor, id, name, type, equipment);
+            _roomService.CreateRoom(newRoom);
         }
         public void ChangeRoom(Room room, int newId, string newName, TypeOfRoom newType, int newFloor)
         {

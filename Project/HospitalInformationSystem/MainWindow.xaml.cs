@@ -35,7 +35,7 @@ namespace HospitalInformationSystem.Windows
             RoomController.GetInstance().LoadRoomsFromFile();
             savePatients.loadFromFile();
             AppointmentController.getInstance().loadFromFile();
-            DoctorController.getInstance().loadFromFile();
+            DoctorController.getInstance().LoadFromFile();
 
             /*var doctor = new Doctor("Marko", "Markovic", Specialization.Family_Physician, RoomController.getInstance().getRooms()[0]);
             var doctor2 = new Doctor("Jovan", "Jovanovic", Specialization.Family_Physician, RoomController.getInstance().getRooms()[1]);
@@ -45,10 +45,10 @@ namespace HospitalInformationSystem.Windows
             DoctorController.getInstance().addDoctor(doctor3);
             var doctor4 = new Doctor("Darko", "Ilic", Specialization.Surgeon, RoomController.getInstance().getRooms()[3]);
             DoctorController.getInstance().addDoctor(doctor4);*/
-            DoctorController.getInstance().getDoctors()[0].room = RoomController.GetInstance().GetRooms()[0];
-            DoctorController.getInstance().getDoctors()[1].room = RoomController.GetInstance().GetRooms()[1];
-            DoctorController.getInstance().getDoctors()[2].room = RoomController.GetInstance().GetRooms()[2];
-            DoctorController.getInstance().getDoctors()[3].room = RoomController.GetInstance().GetRooms()[3];
+            DoctorController.getInstance().GetDoctors()[0].room = RoomController.GetInstance().GetRooms()[0];
+            DoctorController.getInstance().GetDoctors()[1].room = RoomController.GetInstance().GetRooms()[1];
+            DoctorController.getInstance().GetDoctors()[2].room = RoomController.GetInstance().GetRooms()[2];
+            DoctorController.getInstance().GetDoctors()[3].room = RoomController.GetInstance().GetRooms()[3];
 
             Patient first = new Patient("Pera", "Pacijent", new PatientActivity(0, 0, 0, false));
             Patient second = new Patient("Jova", "Pacijent", new PatientActivity(0, 0, 0, false));
@@ -80,15 +80,15 @@ namespace HospitalInformationSystem.Windows
             AccountDataBase.getInstance().AddAccount(new Account("perapacijent1@yahoo.com", "pass", first));
             AccountDataBase.getInstance().AddAccount(new Account("jovapacijent@yahoo.com", "pass", second));
             AccountDataBase.getInstance().AddAccount(new Account("mikapacijent@yahoo.com", "pass", third));
-            AccountDataBase.getInstance().AddAccount(new Account("markomarkovic@yahoo.com", "pass", DoctorController.getInstance().getDoctors()[0]));
-            AccountDataBase.getInstance().AddAccount(new Account("jovanjovanovic@yahoo.com", "pass", DoctorController.getInstance().getDoctors()[1]));
-            AccountDataBase.getInstance().AddAccount(new Account("stevanstojanovic@yahoo.com", "pass", DoctorController.getInstance().getDoctors()[2]));
-            AccountDataBase.getInstance().AddAccount(new Account("darkoilic@yahoo.com", "pass", DoctorController.getInstance().getDoctors()[3]));
+            AccountDataBase.getInstance().AddAccount(new Account("markomarkovic@yahoo.com", "pass", DoctorController.getInstance().GetDoctors()[0]));
+            AccountDataBase.getInstance().AddAccount(new Account("jovanjovanovic@yahoo.com", "pass", DoctorController.getInstance().GetDoctors()[1]));
+            AccountDataBase.getInstance().AddAccount(new Account("stevanstojanovic@yahoo.com", "pass", DoctorController.getInstance().GetDoctors()[2]));
+            AccountDataBase.getInstance().AddAccount(new Account("darkoilic@yahoo.com", "pass", DoctorController.getInstance().GetDoctors()[3]));
             AccountDataBase.getInstance().AddAccount(new Account("petarpetrovic@yahoo.com", "pass", secretary));
             AccountDataBase.getInstance().AddAccount(new Account("m", "pass", manager));
 
-            ManagerMainWindow.getInstance().ShowDialog();
-            this.Close();
+            //ManagerMainWindow.getInstance().ShowDialog();
+            //this.Close();
 
         }
 
@@ -116,11 +116,11 @@ namespace HospitalInformationSystem.Windows
                         window.Show();
                         //this.Hide();
                     }
-                    else if (accounts[i].Person.GetType() == DoctorController.getInstance().getDoctors().First().GetType())
+                    else if (accounts[i].Person.GetType() == DoctorController.getInstance().GetDoctors().First().GetType())
                     {
                         loggedIn = true;
                         person = accounts[i].Person;
-                        DoctorAppointmentsManagementWindow window = DoctorAppointmentsManagementWindow.GetInstance((Doctor)person);
+                        DoctorMainWindow window = DoctorMainWindow.GetInstance((Doctor)person);
                         window.Show();
                         //this.Hide();
                     }

@@ -62,7 +62,7 @@ namespace HospitalInformationSystem.Windows.DoctorGUI
         private void InitDoctorComboBox()
         {
             List<Doctor> doctorList = new List<Doctor>();
-            foreach(Doctor doctor in DoctorController.getInstance().getDoctors())
+            foreach(Doctor doctor in DoctorController.getInstance().GetDoctors())
             {
                 if(doctor.Specialization == specializationComboBoxTransform())
                     doctorList.Add(doctor);

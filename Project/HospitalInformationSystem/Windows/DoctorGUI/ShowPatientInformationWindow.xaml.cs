@@ -1,5 +1,6 @@
 ﻿using Model;
 using System.Windows;
+using System.Windows.Input;
 
 namespace HospitalInformationSystem.Windows.DoctorGUI
 {
@@ -20,21 +21,31 @@ namespace HospitalInformationSystem.Windows.DoctorGUI
             jmbgLabel.Content = patient.Jmbg;
         }
 
-        private void medicalRecordButton_Click(object sender, RoutedEventArgs e)
+        private void CheckKeyPress()
         {
-
-            MedicalRecordWindow medicalRecordWindow = new MedicalRecordWindow(patient);
-
-            medicalRecordWindow.ShowDialog();
+            if (Keyboard.IsKeyDown(Key.Enter))
+            {
+                MedicalRecordWindow medicalRecordWindow = new MedicalRecordWindow(patient);
+                medicalRecordWindow.ShowDialog();
+            }
+            else if (Keyboard.IsKeyDown(Key.Escape))
+            {
+                this.Close();
+            }
         }
 
-        private void newAppointmentButton_Click(object sender, RoutedEventArgs e)
+        private void Window_KeyDown(object sender, System.Windows.Input.KeyEventArgs e)
+        {
+            CheckKeyPress();
+        }
+
+        /*private void newAppointmentButton_Click(object sender, RoutedEventArgs e)
         {
             Window2 doctorAddNewAppointmentWindow = new Window2(doctor);
 
             doctorAddNewAppointmentWindow.ShowDialog();
-            doctorAddNewAppointmentWindow.patientComboBox.SelectedIndex = 10;
-            doctorAddNewAppointmentWindow.patientComboBox.SelectedItem = patient;
-        }
+            doctorAddNewAppointmentWindow.patientListBox.SelectedIndex = 10;
+            doctorAddNewAppointmentWindow.patientListBox.SelectedItem = patient;
+        }*/
     }
 }

@@ -27,16 +27,16 @@ namespace HospitalInformationSystem.Service
             roomR = new RoomRepository();
         }
 
-        public void saveInFile()
+        public void SaveRoomsInFile()
         {
             roomR.saveInFile();
         }
 
-        public void loadFromFile()
+        public void LoadRoomsFromFile()
         {
             roomR.loadFromFile();
         }
-        public void createRoom(int floor, int id, string name, TypeOfRoom type, Hashtable equipment)
+        public void CreateRoom(int floor, int id, string name, TypeOfRoom type, Hashtable equipment)
         {
             // TODO: implement
             Room newRoom = new Room(id, name, floor, type);
@@ -44,7 +44,7 @@ namespace HospitalInformationSystem.Service
             roomList.Add(newRoom);
         }
 
-        public void deleteRoom(Room room)
+        public void DeleteRoom(Room room)
         {
             // TODO: implement
 
@@ -58,7 +58,7 @@ namespace HospitalInformationSystem.Service
                 AppointmentController.getInstance().removeAppointment(appointment);
             }
         }
-        public void changeRoom(Room room, int newId, string newName, TypeOfRoom newType, int newFloor)
+        public void ChangeRoom(Room room, int newId, string newName, TypeOfRoom newType, int newFloor)
         {
             // TODO: implement
             room.Id = newId;
@@ -67,7 +67,7 @@ namespace HospitalInformationSystem.Service
             room.Floor = newFloor;
 
         }
-        public void setRoomEquipment(Room room, Hashtable eq)
+        public void SetRoomEquipment(Room room, Hashtable eq)
         {
             if (room.Equipment == null)
                 room.Equipment = new Hashtable();
@@ -75,7 +75,7 @@ namespace HospitalInformationSystem.Service
             foreach (DictionaryEntry de in eq)
                 room.Equipment.Add(de.Key, de.Value);
         }
-        public void deleteEquipment(string id)
+        public void DeleteEquipment(string id)
         {
             //List<Room> rooms = RoomDataBase.getInstance().getRooms();
             foreach(Room room in roomList)
@@ -84,20 +84,20 @@ namespace HospitalInformationSystem.Service
                     room.Equipment.Remove(id);
             }
         }
-        public List<Room> getRooms()
+        public List<Room> GetRooms()
         {
             //return RoomDataBase.getInstance().getRooms();
 
             return roomList;
         }
-        public void setRooms(List<Room> rooms)
+        public void SetRooms(List<Room> rooms)
         {
             roomList.Clear();
 
             foreach (Room room in rooms)
                 roomList.Add(room);
         }
-        public void changeStaticEquipmentState(Room room, int currentQuantity, int moveQuantity, string key)
+        public void ChangeStaticEquipmentState(Room room, int currentQuantity, int moveQuantity, string key)
         {
             room.Equipment[key] = currentQuantity - moveQuantity;
 
@@ -105,7 +105,7 @@ namespace HospitalInformationSystem.Service
                 room.Equipment.Remove(key);
             
         }
-        public void moveStaticEqToNextRoom(Room room, int moveQuantity, string key)
+        public void MoveStaticEqToNextRoom(Room room, int moveQuantity, string key)
         {
             if (room.Equipment.Contains(key))
             {
@@ -117,7 +117,7 @@ namespace HospitalInformationSystem.Service
                 room.Equipment.Add(key, moveQuantity);
             }
         }
-        public bool findRoom(int id)
+        public bool FindRoom(int id)
         {
             foreach (Room room in roomList)
             {

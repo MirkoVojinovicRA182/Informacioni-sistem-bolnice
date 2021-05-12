@@ -32,7 +32,7 @@ namespace HospitalInformationSystem.Windows
             RoomController.getInstance().AddRoomToRoomList(room2);
             RoomController.getInstance().AddRoomToRoomList(room3);
             RoomController.getInstance().AddRoomToRoomList(room4);*/
-            RoomController.GetInstance().LoadFromFile();
+            RoomController.GetInstance().LoadRoomsFromFile();
             savePatients.loadFromFile();
             AppointmentController.getInstance().loadFromFile();
             DoctorController.getInstance().loadFromFile();

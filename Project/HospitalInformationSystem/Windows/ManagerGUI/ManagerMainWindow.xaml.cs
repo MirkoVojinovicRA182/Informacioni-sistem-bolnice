@@ -24,7 +24,7 @@ namespace HospitalInformationSystem.Windows.ManagerGUI
         {
             int count = AppointmentController.getInstance().getAppointment().Count;
             EquipmentController.getInstance().loadFromFile();
-            RoomController.GetInstance().LoadFromFile();
+            RoomController.GetInstance().LoadRoomsFromFile();
             MedicineController.GetInstance().LoadFromFile();
             InitializeComponent();
             roomsUserControl.refreshTable();
@@ -177,7 +177,7 @@ namespace HospitalInformationSystem.Windows.ManagerGUI
             instance = null;
 
             EquipmentController.getInstance().saveInFile();
-            RoomController.GetInstance().SaveInFile();
+            RoomController.GetInstance().SaveRoomsInFile();
             MedicineController.GetInstance().SaveInFile();
         }
     }

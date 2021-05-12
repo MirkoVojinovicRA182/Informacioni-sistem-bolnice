@@ -24,53 +24,53 @@ namespace HospitalInformationSystem.Controller
         {
             _roomService = new RoomService();
         }
-        public void SaveInFile()
+        public void SaveRoomsInFile()
         {
-            _roomService.saveInFile();
+            _roomService.SaveRoomsInFile();
         }
-        public void LoadFromFile()
+        public void LoadRoomsFromFile()
         {
-            _roomService.loadFromFile();
+            _roomService.LoadRoomsFromFile();
         }
         public void CreateRoom(int floor, int id, string name, TypeOfRoom type, Hashtable equipment)
         {
-            _roomService.createRoom(floor, id, name, type, equipment);
+            _roomService.CreateRoom(floor, id, name, type, equipment);
         }
         public void ChangeRoom(Room room, int newId, string newName, TypeOfRoom newType, int newFloor)
         {
-            _roomService.changeRoom(room, newId, newName, newType, newFloor);
+            _roomService.ChangeRoom(room, newId, newName, newType, newFloor);
         }
         public void SetRoomEquipment(Room room, Hashtable eq)
         {
-            _roomService.setRoomEquipment(room, eq);
+            _roomService.SetRoomEquipment(room, eq);
         }
         public void DeleteEquipment(string id)
         {
-            _roomService.deleteEquipment(id);
+            _roomService.DeleteEquipment(id);
         }
         public void DeleteRoom(Room room)
         {
-            _roomService.deleteRoom(room);
+            _roomService.DeleteRoom(room);
         }
         public List<Room> GetRooms()
         {
-            return _roomService.getRooms();
+            return _roomService.GetRooms();
         }
         public void SetRooms(List<Room> rooms)
         {
-            _roomService.setRooms(rooms);
+            _roomService.SetRooms(rooms);
         }
         public void ChangeStaticEquipmentState(Room room, int currentQuantity, int moveQuantity, string key)
         {
-            _roomService.changeStaticEquipmentState(room, currentQuantity, moveQuantity, key);
+            _roomService.ChangeStaticEquipmentState(room, currentQuantity, moveQuantity, key);
         }
         public void MoveStaticEqToNextRoom(Room room, int moveQuantity, string key)
         {
-            _roomService.moveStaticEqToNextRoom(room, moveQuantity, key);
+            _roomService.MoveStaticEqToNextRoom(room, moveQuantity, key);
         }
         public bool FindRoom(int id)
         {
-            return _roomService.findRoom(id);
+            return _roomService.FindRoom(id);
         }
         public void SetRenovationStateToRoom(Room room, RoomRenovationState roomRenovationState)
         {

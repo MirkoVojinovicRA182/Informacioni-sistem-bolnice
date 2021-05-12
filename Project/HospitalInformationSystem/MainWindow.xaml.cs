@@ -168,7 +168,7 @@ namespace HospitalInformationSystem.Windows
         public static List<String> GetHourList()
         {
             List<String> hourList = new List<String>();
-            for (int i = 6; i <= 21; i++)
+            for (int i = 6; i <= 23; i++)
             {
                 hourList.Add(GetHour(i));
             }

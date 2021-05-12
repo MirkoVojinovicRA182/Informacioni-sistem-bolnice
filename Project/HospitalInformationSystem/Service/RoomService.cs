@@ -131,5 +131,9 @@ namespace HospitalInformationSystem.Service
             }
             return appointmentsInRoom;
         }
+        public bool RoomActivityStatus(Room room)
+        {
+            return room.RoomRenovationState.ActivityStatus;
+        }
     }
 }

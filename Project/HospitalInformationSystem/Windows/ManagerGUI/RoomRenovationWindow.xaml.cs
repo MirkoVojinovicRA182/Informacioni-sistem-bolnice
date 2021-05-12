@@ -42,10 +42,10 @@ namespace HospitalInformationSystem.Windows.ManagerGUI
             MakeStartAndEndTermDate();
             if (CheckTheCorrectnessOfTheTerm())
             {
-                //RoomController.GetInstance().SetRenovationStateToRoom(roomForRenovation, NewRoomRenovationState());
-                CheckWindowOptionalSelection();
-                //CreateThreadForRenovationSimulation();
-                //GiveFeedbackToManager();
+                RoomController.GetInstance().SetRenovationStateToRoom(roomForRenovation, NewRoomRenovationState());
+                CreateThreadForRenovationSimulation();
+                CheckWindowOptionalControlsSelection();
+                GiveFeedbackToManager();
                 this.Close();
             }
             else
@@ -99,13 +99,63 @@ namespace HospitalInformationSystem.Windows.ManagerGUI
             });
             thread.Start();
         }
-        private void CheckWindowOptionalSelection()
+        private void CheckWindowOptionalControlsSelection()
         {
             if ((bool)duplicateRoomCheckBox.IsChecked)
-                MessageBox.Show("Kliknuto je na podelu na dve.");
-            else if(roomForMergeComboBox.SelectedItem != null)
-                MessageBox.Show("Kliknuto je na podelu na dve.");
+            {
+                CreateThreadForDuplicatingRoom();
+            }
+            else if (roomForMergeComboBox.SelectedItem != null)
+            {
+                CreateThreadForRoomMerge((Room)roomForMergeComboBox.SelectedItem);
+            }
 
+        }
+        private void CreateThreadForRoomMerge(Room selectedRoomForMerge)
+        {
+            Thread thread = new Thread(() =>
+            {
+                while (true)
+                {
+                    if(MergeIsDone(selectedRoomForMerge))
+                        break;
+                }
+            });
+            thread.Start();
+        }
+        private bool MergeIsDone(Room selectedRoomForMerge)
+        {
+            if (!RoomController.GetInstance().RoomActivityStatus(roomForRenovation) && DateTime.Now >= endTermDate)
+            {
+                RoomController.GetInstance().CreateRoom(new Room(roomForRenovation.Id, newMergedRoomTextBox.Text, roomForRenovation.Floor, roomForRenovation.Type));
+                RoomController.GetInstance().DeleteRoom(roomForRenovation);
+                RoomController.GetInstance().DeleteRoom(selectedRoomForMerge);
+                return true;
+            }
+            return false;
+        }
+        private void CreateThreadForDuplicatingRoom()
+        {
+            Thread thread = new Thread(() =>
+            {
+                while (true)
+                {
+                    if (RoomIsDuplicated())
+                        break;
+                }
+            });
+            thread.Start();
+        }
+        private bool RoomIsDuplicated()
+        {
+            if (!RoomController.GetInstance().RoomActivityStatus(roomForRenovation) && DateTime.Now >= endTermDate)
+            {
+                RoomController.GetInstance().CreateRoom(new Room(RoomController.GetInstance().GetRooms().Count, roomForRenovation.Name + "A", roomForRenovation.Floor, roomForRenovation.Type));
+                RoomController.GetInstance().CreateRoom(new Room(RoomController.GetInstance().GetRooms().Count, roomForRenovation.Name + "B", roomForRenovation.Floor, roomForRenovation.Type));
+                RoomController.GetInstance().DeleteRoom(roomForRenovation);
+                return true;
+            }
+            return false;
         }
         private void GiveFeedbackToManager()
         {

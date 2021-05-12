@@ -93,5 +93,9 @@ namespace HospitalInformationSystem.Controller
         {
             return _roomService.GetAppointmentsInRoom(nameOfRoom);
         }
+        public bool RoomActivityStatus(Room room)
+        {
+            return _roomService.RoomActivityStatus(room);
+        }
     }
 }

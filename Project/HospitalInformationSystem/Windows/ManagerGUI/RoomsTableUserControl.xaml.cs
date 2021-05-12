@@ -80,5 +80,11 @@ namespace HospitalInformationSystem.Windows.ManagerGUI
         {
             e.Handled = true;
         }
+
+        private void allRoomsTable_SourceUpdated(object sender, DataTransferEventArgs e)
+        {
+            refreshTable();
+            e.Handled = true;
+        }
     }
 }

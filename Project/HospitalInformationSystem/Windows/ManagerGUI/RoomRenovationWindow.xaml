@@ -18,8 +18,8 @@
         <Button x:Name="confirmButton" Content="ZAKAŽI" HorizontalAlignment="Left" VerticalAlignment="Top" Width="100" Height="30" FontSize="15" Margin="274,281,0,0" Click="confirmButton_Click" IsEnabled="False"/>
         <GroupBox Header="Opciono:" HorizontalAlignment="Left" Height="206" VerticalAlignment="Top" Width="216" Margin="331,31,0,0" FontSize="15">
             <Grid>
-                <Label Content="Spoj u jednu sa:" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="47,96,0,0"/>
-                <ComboBox x:Name="roomForMergeComboBox" HorizontalAlignment="Left" Margin="10,136,0,0" VerticalAlignment="Top" Width="156" LayoutUpdated="roomForMergeComboBox_LayoutUpdated">
+                <Label Content="Spoj u jednu sa:" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="23,68,0,0"/>
+                <ComboBox x:Name="roomForMergeComboBox" HorizontalAlignment="Left" Margin="29,98,0,0" VerticalAlignment="Top" Width="137" LayoutUpdated="roomForMergeComboBox_LayoutUpdated">
                     <ComboBox.ItemTemplate>
                         <DataTemplate>
                             <TextBlock>
@@ -29,7 +29,10 @@
                     </ComboBox.ItemTemplate>
                 </ComboBox>
                 <CheckBox x:Name="duplicateRoomCheckBox" Content="Podeli na dve prostorije" HorizontalAlignment="Left" Margin="23,19,0,0" VerticalAlignment="Top" LayoutUpdated="duplicateRoomCheckBox_LayoutUpdated"/>
-                <Button x:Name="cancelSelectionButton" Content="X" HorizontalAlignment="Left" Margin="171,136,0,0" VerticalAlignment="Top" Width="33" Height="26" Click="cancelSelectionButton_Click"/>
+                <Button x:Name="cancelSelectionButton" Content="X" HorizontalAlignment="Left" Margin="171,98,0,0" VerticalAlignment="Top" Width="33" Height="26" Click="cancelSelectionButton_Click"/>
+                <Label Content="naziv nove: " HorizontalAlignment="Left" VerticalAlignment="Top" Margin="23,140,0,0" FontSize="10" FontStyle="Italic"/>
+                <Border BorderBrush="Black" BorderThickness="1" HorizontalAlignment="Left" Height="1" Margin="0,57,0,0" VerticalAlignment="Top" Width="204"/>
+                <TextBox x:Name="newMergedRoomTextBox" HorizontalAlignment="Left" Height="23" Margin="89,139,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="108" FontSize="10"/>
             </Grid>
         </GroupBox>
 

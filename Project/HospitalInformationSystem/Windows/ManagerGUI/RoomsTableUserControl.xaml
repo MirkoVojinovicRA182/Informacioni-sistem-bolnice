@@ -18,7 +18,7 @@
 				  Margin="10,10,4.9,0" 
 				  VerticalAlignment="Top" 
 				  Background="CadetBlue"
-                  SelectionUnit="FullRow" RenderTransformOrigin="0.5,0.5" SelectionChanged="allRoomsTable_SelectionChanged">
+                  SelectionUnit="FullRow" RenderTransformOrigin="0.5,0.5" SelectionChanged="allRoomsTable_SelectionChanged" SourceUpdated="allRoomsTable_SourceUpdated">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="ID" Width="*" Binding="{Binding Id}"></DataGridTextColumn>
                 <DataGridTextColumn Header="Naziv" Width="*" Binding="{Binding Name}"></DataGridTextColumn>

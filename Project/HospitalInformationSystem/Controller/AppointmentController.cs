@@ -87,5 +87,9 @@ namespace HospitalInformationSystem.Controller
         {
             return appointmentService.GetAppointmentsByPatient(patient);
         }
+        public void DeleteAllAppointmentsFromRoom(Room room)
+        {
+            appointmentService.DeleteAllAppointmentsFromRoom(room);
+        }
     }
 }

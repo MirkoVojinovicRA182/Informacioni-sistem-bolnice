@@ -118,7 +118,6 @@ namespace HospitalInformationSystem.Windows.ManagerGUI
                 MessageBox.Show("Odaberite opremu iz opšteg prikaza opreme!", "Upozorenje", MessageBoxButton.OK, MessageBoxImage.Warning);
                 return;
             }
-            RoomController.GetInstance().DeleteEquipment(selectedEquipment.Id);
             EquipmentController.getInstance().deleteEquipment(selectedEquipment);
             ManagerMainWindow.getInstance().equipmentTable.refreshTable();
             MessageBox.Show("Izabrana oprema je sada obrisana iz sistema.", "Brisanje opreme", MessageBoxButton.OK, MessageBoxImage.Information);

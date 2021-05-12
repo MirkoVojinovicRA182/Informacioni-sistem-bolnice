@@ -77,6 +77,11 @@ namespace HospitalInformationSystem.Service
             if (this.equipmentList != null)
                 if (this.equipmentList.Contains(equipment))
                     this.equipmentList.Remove(equipment);
+            foreach (Room room in RoomController.GetInstance().GetRooms())
+            {
+                if (room.Equipment.Contains(equipment.Id))
+                    room.Equipment.Remove(equipment.Id);
+            }
         }
 
         public void changeEquipment(Equipment equipment, string name, TypeOfEquipment typeOfEquipment, int newQuantity, int oldQuantity, string description)

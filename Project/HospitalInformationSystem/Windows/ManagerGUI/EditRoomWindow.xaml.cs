@@ -171,7 +171,7 @@ namespace HospitalInformationSystem.Windows.ManagerGUI
 
             if (id == 0)
                 MessageBox.Show("Pogrešan unos šifre!", "Greška", MessageBoxButton.OK, MessageBoxImage.Error);
-            else if (RoomController.GetInstance().FindRoom(id) && id != selectedRoom.Id)
+            else if (RoomController.GetInstance().RoomIsFounded(id) && id != selectedRoom.Id)
                 MessageBox.Show("U sistemu postoji prostorija sa ovom šifrom!", "Greška", MessageBoxButton.OK, MessageBoxImage.Error);
             else if (string.Compare(nameTextBox.Text, "") == 0)
                 MessageBox.Show("Polje za unos naziva ne može biti prazno!", "Greška", MessageBoxButton.OK, MessageBoxImage.Error);
@@ -179,7 +179,7 @@ namespace HospitalInformationSystem.Windows.ManagerGUI
                 MessageBox.Show("Pogrešan unos sprata!", "Greška", MessageBoxButton.OK, MessageBoxImage.Error);
             else
             {
-                RoomController.GetInstance().ChangeRoom(selectedRoom, int.Parse(idTextBox.Text), nameTextBox.Text, getType(typeComboBox.SelectedIndex), int.Parse(floorTextBox.Text));
+                RoomController.GetInstance().ChangeRoom(selectedRoom, new Room(int.Parse(idTextBox.Text), nameTextBox.Text, int.Parse(floorTextBox.Text), getType(typeComboBox.SelectedIndex)));
                 ManagerMainWindow.getInstance().roomsUserControl.refreshTable();
                 MessageBox.Show("Informacije o prostoriji su sada izmenjene.", "Izmena informacija", MessageBoxButton.OK, MessageBoxImage.Information);
                 changeRoomButton.IsEnabled = false;

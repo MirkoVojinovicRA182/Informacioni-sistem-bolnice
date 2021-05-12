@@ -134,6 +134,13 @@ namespace HospitalInformationSystem.Service
         {
             appointmentsFile.loadFromFile();
         }
+        public void DeleteAllAppointmentsFromRoom(Room room)
+        {
+            foreach (Appointment appointmentForRemove in findAppointmentByRoom(room))
+            {
+                removeAppointment(appointmentForRemove);
+            }
+        }
 
     }
 }

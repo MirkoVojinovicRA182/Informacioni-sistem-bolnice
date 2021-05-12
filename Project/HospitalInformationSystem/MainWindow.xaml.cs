@@ -24,27 +24,29 @@ namespace HospitalInformationSystem.Windows
         public MainWindow()
         {
             InitializeComponent();
-            /*Room room1 = new Room(2, "Prostorija dr Marka", 1, TypeOfRoom.ExaminationRoom);
-            Room room2 = new Room(3, "Prostorija dr Jovana", 1, TypeOfRoom.ExaminationRoom);
-            Room room3 = new Room(4, "Prostorija dr Stevana", 1, TypeOfRoom.ExaminationRoom);
-            Room room4 = new Room(5, "Prostorija dr Darka", 1, TypeOfRoom.ExaminationRoom);
-            RoomController.getInstance().AddRoomToRoomList(room1);
-            RoomController.getInstance().AddRoomToRoomList(room2);
-            RoomController.getInstance().AddRoomToRoomList(room3);
-            RoomController.getInstance().AddRoomToRoomList(room4);*/
+            Room room1 = new Room(1, "Magacin", -1, TypeOfRoom.Magacine);
+            Room room2 = new Room(2, "Prostorija dr Marka", 1, TypeOfRoom.ExaminationRoom);
+            Room room3 = new Room(3, "Prostorija dr Jovana", 1, TypeOfRoom.ExaminationRoom);
+            Room room4 = new Room(4, "Prostorija dr Stevana", 1, TypeOfRoom.ExaminationRoom);
+            Room room5 = new Room(5, "Prostorija dr Darka", 1, TypeOfRoom.ExaminationRoom);
+            RoomController.GetInstance().AddRoomToRoomList(room1);
+            RoomController.GetInstance().AddRoomToRoomList(room2);
+            RoomController.GetInstance().AddRoomToRoomList(room3);
+            RoomController.GetInstance().AddRoomToRoomList(room4);
+            RoomController.GetInstance().AddRoomToRoomList(room5);
             RoomController.GetInstance().LoadRoomsFromFile();
             savePatients.loadFromFile();
             AppointmentController.getInstance().loadFromFile();
             DoctorController.getInstance().LoadFromFile();
 
-            /*var doctor = new Doctor("Marko", "Markovic", Specialization.Family_Physician, RoomController.getInstance().getRooms()[0]);
-            var doctor2 = new Doctor("Jovan", "Jovanovic", Specialization.Family_Physician, RoomController.getInstance().getRooms()[1]);
-            var doctor3 = new Doctor("Stevan", "Stojanovic", Specialization.Family_Physician, RoomController.getInstance().getRooms()[2]);
-            DoctorController.getInstance().addDoctor(doctor);
-            DoctorController.getInstance().addDoctor(doctor2);
-            DoctorController.getInstance().addDoctor(doctor3);
-            var doctor4 = new Doctor("Darko", "Ilic", Specialization.Surgeon, RoomController.getInstance().getRooms()[3]);
-            DoctorController.getInstance().addDoctor(doctor4);*/
+            var doctor = new Doctor("Marko", "Markovic", Specialization.Family_Physician, RoomController.GetInstance().GetRooms()[0]);
+            var doctor2 = new Doctor("Jovan", "Jovanovic", Specialization.Family_Physician, RoomController.GetInstance().GetRooms()[1]);
+            var doctor3 = new Doctor("Stevan", "Stojanovic", Specialization.Family_Physician, RoomController.GetInstance().GetRooms()[2]);
+            DoctorController.getInstance().AddDoctor(doctor);
+            DoctorController.getInstance().AddDoctor(doctor2);
+            DoctorController.getInstance().AddDoctor(doctor3);
+            var doctor4 = new Doctor("Darko", "Ilic", Specialization.Surgeon, RoomController.GetInstance().GetRooms()[3]);
+            DoctorController.getInstance().AddDoctor(doctor4);
             DoctorController.getInstance().GetDoctors()[0].room = RoomController.GetInstance().GetRooms()[0];
             DoctorController.getInstance().GetDoctors()[1].room = RoomController.GetInstance().GetRooms()[1];
             DoctorController.getInstance().GetDoctors()[2].room = RoomController.GetInstance().GetRooms()[2];

@@ -18,7 +18,6 @@ namespace HospitalInformationSystem.Service
 {
     public class RoomService
     {
-
         private List<Room> _allRooms;
         private RoomRepository _repository;
         public RoomService()
@@ -26,12 +25,10 @@ namespace HospitalInformationSystem.Service
             _allRooms = new List<Room>();
             _repository = new RoomRepository();
         }
-
         public void SaveRoomsInFile()
         {
             _repository.saveInFile();
         }
-
         public void LoadRoomsFromFile()
         {
             _repository.loadFromFile();
@@ -40,49 +37,32 @@ namespace HospitalInformationSystem.Service
         {
             _allRooms.Add(newRoom);
         }
-
         public void DeleteRoom(Room room)
         {
             _allRooms.Remove(room);
-            List<Appointment> list = AppointmentController.getInstance().findAppointmentByRoom(room);
-            foreach(Appointment appointment in list)
-            {
-                AppointmentController.getInstance().removeAppointment(appointment);
-            }
+            AppointmentController.getInstance().DeleteAllAppointmentsFromRoom(room);
         }
-        public void ChangeRoom(Room room, int newId, string newName, TypeOfRoom newType, int newFloor)
+        public void ChangeRoom(Room roomForChange, Room roomDTO)
         {
-            room.Id = newId;
-            room.Name = newName;
-            room.Type = newType;
-            room.Floor = newFloor;
+            roomForChange.Id = roomDTO.Id;
+            roomForChange.Name = roomDTO.Name;
+            roomForChange.Type = roomDTO.Type;
+            roomForChange.Floor = roomDTO.Floor;
         }
-
-        public void SetRoomEquipment(Room room, Hashtable eq)
+        public void SetRoomEquipment(Room room, Hashtable newEquipment)
         {
-            if (room.Equipment == null)
-                room.Equipment = new Hashtable();
             room.Equipment.Clear();
-            foreach (DictionaryEntry de in eq)
+            foreach (DictionaryEntry de in newEquipment)
                 room.Equipment.Add(de.Key, de.Value);
-        }
-        public void DeleteEquipment(string id)
-        {
-            foreach(Room room in _allRooms)
-            {
-                if (room.Equipment.Contains(id))
-                    room.Equipment.Remove(id);
-            }
         }
         public List<Room> GetRooms()
         {
             return _allRooms;
         }
-        public void SetRooms(List<Room> rooms)
+        public void SetRooms(List<Room> newRooms)
         {
             _allRooms.Clear();
-
-            foreach (Room room in rooms)
+            foreach (Room room in newRooms)
                 _allRooms.Add(room);
         }
         public void ChangeStaticEquipmentState(Room room, int currentQuantity, int moveQuantity, string key)
@@ -105,35 +85,27 @@ namespace HospitalInformationSystem.Service
                 room.Equipment.Add(key, moveQuantity);
             }
         }
-        public bool FindRoom(int id)
+        public bool RoomIsFounded(int roomId)
         {
             foreach (Room room in _allRooms)
             {
-                if (room.Id == id)
+                if (room.Id == roomId)
                     return true;
             }
             return false;
         }
-
         public void SetRenovationStateToRoom(Room room, RoomRenovationState roomRenovationState)
         {
             room.RoomRenovationState = roomRenovationState;
         }
         public void CheckRenovationTerm(Room roomForRenovation)
         {
-            if (DateTime.Now >= roomForRenovation.RoomRenovationState.StartDate && DateTime.Now <= roomForRenovation.RoomRenovationState.EndDate)
-                roomForRenovation.RoomRenovationState.ActivityStatus = true;
-            else
-                roomForRenovation.RoomRenovationState.ActivityStatus = false;
+            roomForRenovation.RoomRenovationState.ActivityStatus = DateTime.Now >= roomForRenovation.RoomRenovationState.StartDate && 
+                DateTime.Now <= roomForRenovation.RoomRenovationState.EndDate;
         }
         public Room GetMagacine()
         {
-            foreach(Room room in _allRooms)
-            {
-                if (string.Equals(room.Name, "Magacin"))
-                    return room;
-            }
-            return null;
+            return _allRooms[0];
         }
         public void AddEquipmentToMagacine(Equipment newEquipment)
         {

@@ -22,7 +22,7 @@ namespace HospitalInformationSystem.Repository
             BinaryFormatter formatter = new BinaryFormatter();
             try
             {
-                formatter.Serialize(fs, RoomController.GetInstance().getRooms());
+                formatter.Serialize(fs, RoomController.GetInstance().GetRooms());
             }
             catch (SerializationException e)
             {
@@ -45,7 +45,7 @@ namespace HospitalInformationSystem.Repository
                 {
                     BinaryFormatter formatter = new BinaryFormatter();
 
-                    RoomController.GetInstance().setRooms((List<Room>)formatter.Deserialize(fs));
+                    RoomController.GetInstance().SetRooms((List<Room>)formatter.Deserialize(fs));
                 }
                 catch (SerializationException e)
                 {

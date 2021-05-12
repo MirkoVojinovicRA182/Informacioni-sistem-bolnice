@@ -24,51 +24,51 @@ namespace HospitalInformationSystem.Controller
         {
             _roomService = new RoomService();
         }
-        public void saveInFile()
+        public void SaveInFile()
         {
             _roomService.saveInFile();
         }
-        public void loadFromFile()
+        public void LoadFromFile()
         {
             _roomService.loadFromFile();
         }
-        public void createRoom(int floor, int id, string name, TypeOfRoom type, Hashtable equipment)
+        public void CreateRoom(int floor, int id, string name, TypeOfRoom type, Hashtable equipment)
         {
             _roomService.createRoom(floor, id, name, type, equipment);
         }
-        public void changeRoom(Room room, int newId, string newName, TypeOfRoom newType, int newFloor)
+        public void ChangeRoom(Room room, int newId, string newName, TypeOfRoom newType, int newFloor)
         {
             _roomService.changeRoom(room, newId, newName, newType, newFloor);
         }
-        public void setRoomEquipment(Room room, Hashtable eq)
+        public void SetRoomEquipment(Room room, Hashtable eq)
         {
             _roomService.setRoomEquipment(room, eq);
         }
-        public void deleteEquipment(string id)
+        public void DeleteEquipment(string id)
         {
             _roomService.deleteEquipment(id);
         }
-        public void deleteRoom(Room room)
+        public void DeleteRoom(Room room)
         {
             _roomService.deleteRoom(room);
         }
-        public List<Room> getRooms()
+        public List<Room> GetRooms()
         {
             return _roomService.getRooms();
         }
-        public void setRooms(List<Room> rooms)
+        public void SetRooms(List<Room> rooms)
         {
             _roomService.setRooms(rooms);
         }
-        public void changeStaticEquipmentState(Room room, int currentQuantity, int moveQuantity, string key)
+        public void ChangeStaticEquipmentState(Room room, int currentQuantity, int moveQuantity, string key)
         {
             _roomService.changeStaticEquipmentState(room, currentQuantity, moveQuantity, key);
         }
-        public void moveStaticEqToNextRoom(Room room, int moveQuantity, string key)
+        public void MoveStaticEqToNextRoom(Room room, int moveQuantity, string key)
         {
             _roomService.moveStaticEqToNextRoom(room, moveQuantity, key);
         }
-        public bool findRoom(int id)
+        public bool FindRoom(int id)
         {
             return _roomService.findRoom(id);
         }

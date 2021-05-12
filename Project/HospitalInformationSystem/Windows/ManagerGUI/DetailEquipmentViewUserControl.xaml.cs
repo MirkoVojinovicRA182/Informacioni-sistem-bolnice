@@ -46,7 +46,7 @@ namespace HospitalInformationSystem.Windows.ManagerGUI
             equipmentList = new ObservableCollection<DetailEquipmentDTO>();
 
             //prolazak kroz sve prostorije
-            foreach (Room room in RoomController.GetInstance().getRooms())
+            foreach (Room room in RoomController.GetInstance().GetRooms())
             {
                 foreach (DictionaryEntry de in room.Equipment)
                 {
@@ -64,7 +64,7 @@ namespace HospitalInformationSystem.Windows.ManagerGUI
         }
         private void LoadComboBoxes()
         {
-            roomsList = new ObservableCollection<Room>(RoomController.GetInstance().getRooms());
+            roomsList = new ObservableCollection<Room>(RoomController.GetInstance().GetRooms());
             locationComboBox.ItemsSource = null;
             locationComboBox.ItemsSource = roomsList;
 

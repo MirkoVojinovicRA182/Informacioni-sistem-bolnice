@@ -102,9 +102,9 @@ namespace HospitalInformationSystem.Windows.ManagerGUI
                     {
 
                         //brisanje opreme iz trenutne prostorije
-                        RoomController.GetInstance().changeStaticEquipmentState(currentRoom, quantityOfSelectedEquipment, quantityForMoving, idOfSelectedEquipment);
+                        RoomController.GetInstance().ChangeStaticEquipmentState(currentRoom, quantityOfSelectedEquipment, quantityForMoving, idOfSelectedEquipment);
                         //dodavanje opreme u zeljenu prostoriju
-                        RoomController.GetInstance().moveStaticEqToNextRoom(nextRoom, quantityForMoving, idOfSelectedEquipment);
+                        RoomController.GetInstance().MoveStaticEqToNextRoom(nextRoom, quantityForMoving, idOfSelectedEquipment);
                         break;
                     }
                 }
@@ -115,7 +115,7 @@ namespace HospitalInformationSystem.Windows.ManagerGUI
 
         private void LoadRoomComboBox()
         {
-            roomList = new ObservableCollection<Room>(RoomController.GetInstance().getRooms());
+            roomList = new ObservableCollection<Room>(RoomController.GetInstance().GetRooms());
             roomList.Remove(currentRoom);
             nextRoomComboBox.ItemsSource = null;
             nextRoomComboBox.ItemsSource = roomList;

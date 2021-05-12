@@ -58,13 +58,13 @@ namespace HospitalInformationSystem.Windows.ManagerGUI
 
         public void refreshTable()
         {
-            roomList = new ObservableCollection<Room>(RoomController.GetInstance().getRooms());
+            roomList = new ObservableCollection<Room>(RoomController.GetInstance().GetRooms());
             allRoomsTable.ItemsSource = null;
             allRoomsTable.ItemsSource = roomList;
 
             allRoomsTable.AreRowDetailsFrozen = false;
 
-            if (RoomController.GetInstance().getRooms().Count != 0)
+            if (RoomController.GetInstance().GetRooms().Count != 0)
             {
                 //changeButton.IsEnabled = true;
                 //deleteButton.IsEnabled = true;

@@ -171,7 +171,7 @@ namespace HospitalInformationSystem.Windows.ManagerGUI
 
             if (id == 0)
                 MessageBox.Show("Pogrešan unos šifre!", "Greška", MessageBoxButton.OK, MessageBoxImage.Error);
-            else if (RoomController.GetInstance().findRoom(id) && id != selectedRoom.Id)
+            else if (RoomController.GetInstance().FindRoom(id) && id != selectedRoom.Id)
                 MessageBox.Show("U sistemu postoji prostorija sa ovom šifrom!", "Greška", MessageBoxButton.OK, MessageBoxImage.Error);
             else if (string.Compare(nameTextBox.Text, "") == 0)
                 MessageBox.Show("Polje za unos naziva ne može biti prazno!", "Greška", MessageBoxButton.OK, MessageBoxImage.Error);
@@ -179,7 +179,7 @@ namespace HospitalInformationSystem.Windows.ManagerGUI
                 MessageBox.Show("Pogrešan unos sprata!", "Greška", MessageBoxButton.OK, MessageBoxImage.Error);
             else
             {
-                RoomController.GetInstance().changeRoom(selectedRoom, int.Parse(idTextBox.Text), nameTextBox.Text, getType(typeComboBox.SelectedIndex), int.Parse(floorTextBox.Text));
+                RoomController.GetInstance().ChangeRoom(selectedRoom, int.Parse(idTextBox.Text), nameTextBox.Text, getType(typeComboBox.SelectedIndex), int.Parse(floorTextBox.Text));
                 ManagerMainWindow.getInstance().roomsUserControl.refreshTable();
                 MessageBox.Show("Informacije o prostoriji su sada izmenjene.", "Izmena informacija", MessageBoxButton.OK, MessageBoxImage.Information);
                 changeRoomButton.IsEnabled = false;
@@ -189,7 +189,7 @@ namespace HospitalInformationSystem.Windows.ManagerGUI
 
         private void equipmentApplyButton_Click(object sender, RoutedEventArgs e)
         {
-            RoomController.GetInstance().setRoomEquipment(selectedRoom, equipment);
+            RoomController.GetInstance().SetRoomEquipment(selectedRoom, equipment);
             //promena usled dodavanja neke nove opreme
             changeQuantityInMagacineOfEquipment();
             //promena usled eventualnog brisanja opreme

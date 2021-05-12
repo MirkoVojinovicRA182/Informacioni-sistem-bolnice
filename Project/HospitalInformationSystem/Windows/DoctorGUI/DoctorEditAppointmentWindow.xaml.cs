@@ -38,7 +38,7 @@ namespace HospitalInformationSystem.Windows.DoctorGUI
 
         private void loadRoomComboBox()
         {
-            roomComboBox.ItemsSource = RoomController.GetInstance().getRooms();
+            roomComboBox.ItemsSource = RoomController.GetInstance().GetRooms();
             roomComboBox.SelectedIndex = 10;
         }
 

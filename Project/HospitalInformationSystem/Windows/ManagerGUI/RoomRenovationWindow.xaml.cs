@@ -29,6 +29,7 @@ namespace HospitalInformationSystem.Windows.ManagerGUI
         {
             InitializeComponent();
             this.roomForRenovation = roomForRenovation;
+            roomForMergeComboBox.ItemsSource = RoomController.GetInstance().GetRooms();
             LoadTimeComboBoxes();
         }
         private void LoadTimeComboBoxes()
@@ -41,22 +42,14 @@ namespace HospitalInformationSystem.Windows.ManagerGUI
             MakeStartAndEndTermDate();
             if (CheckTheCorrectnessOfTheTerm())
             {
-                RoomController.GetInstance().SetRenovationStateToRoom(roomForRenovation, NewRoomRenovationState());
-                CreateThreadForRenovationSimulation();
-                GiveFeedbackToManager();
+                //RoomController.GetInstance().SetRenovationStateToRoom(roomForRenovation, NewRoomRenovationState());
+                CheckWindowOptionalSelection();
+                //CreateThreadForRenovationSimulation();
+                //GiveFeedbackToManager();
+                this.Close();
             }
             else
                 MessageBox.Show("Nije moguće zakazati renoviranje u izabranom terminu jer je tada zauzeta.", "Greška", MessageBoxButton.OK, MessageBoxImage.Hand);
-        }
-        private bool CheckTheCorrectnessOfTheTerm()
-        {
-            foreach(Appointment appointment in RoomController.GetInstance().GetAppointmentsInRoom(roomForRenovation.Name))
-            {
-                if (AppointmentStartIsBetweenTermTimeSpan(appointment) || TermIsInAppointmentTimeSpan(appointment) ||
-                    AppointmentEndIsBetweenTermTimeSpan(appointment))
-                    return false;
-            }
-            return true;
         }
         private void MakeStartAndEndTermDate()
         {
@@ -68,6 +61,16 @@ namespace HospitalInformationSystem.Windows.ManagerGUI
             string[] elementsOfSelectedTime = selectedTime.Split(selectedTimeSeparator, StringSplitOptions.None);
             return new DateTime(datePickerWpfControl.SelectedDate.Value.Year, datePickerWpfControl.SelectedDate.Value.Month, datePickerWpfControl.SelectedDate.Value.Day,
                 int.Parse(elementsOfSelectedTime[0]), int.Parse(elementsOfSelectedTime[1]), 00);
+        }
+        private bool CheckTheCorrectnessOfTheTerm()
+        {
+            foreach(Appointment appointment in RoomController.GetInstance().GetAppointmentsInRoom(roomForRenovation.Name))
+            {
+                if (AppointmentStartIsBetweenTermTimeSpan(appointment) || TermIsInAppointmentTimeSpan(appointment) ||
+                    AppointmentEndIsBetweenTermTimeSpan(appointment))
+                    return false;
+            }
+            return true;
         }
         private bool AppointmentStartIsBetweenTermTimeSpan(Appointment appointment)
         {
@@ -96,6 +99,14 @@ namespace HospitalInformationSystem.Windows.ManagerGUI
             });
             thread.Start();
         }
+        private void CheckWindowOptionalSelection()
+        {
+            if ((bool)duplicateRoomCheckBox.IsChecked)
+                MessageBox.Show("Kliknuto je na podelu na dve.");
+            else if(roomForMergeComboBox.SelectedItem != null)
+                MessageBox.Show("Kliknuto je na podelu na dve.");
+
+        }
         private void GiveFeedbackToManager()
         {
             this.Close();
@@ -113,6 +124,20 @@ namespace HospitalInformationSystem.Windows.ManagerGUI
         private void CheckIfTheTermIsSelected()
         {
             confirmButton.IsEnabled = (startTimeComboBox.SelectedItem != null && endTimeComboBox.SelectedItem != null && startDatePicker.SelectedDate != null && endDatePicker.SelectedDate != null);
+        }
+        private void duplicateRoomCheckBox_LayoutUpdated(object sender, EventArgs e)
+        {
+            roomForMergeComboBox.IsEnabled = !(bool)duplicateRoomCheckBox.IsChecked;
+        }
+
+        private void roomForMergeComboBox_LayoutUpdated(object sender, EventArgs e)
+        {
+            duplicateRoomCheckBox.IsEnabled = roomForMergeComboBox.SelectedItem == null;
+         }
+
+        private void cancelSelectionButton_Click(object sender, RoutedEventArgs e)
+        {
+            roomForMergeComboBox.SelectedIndex = -1;
         }
         private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
         {

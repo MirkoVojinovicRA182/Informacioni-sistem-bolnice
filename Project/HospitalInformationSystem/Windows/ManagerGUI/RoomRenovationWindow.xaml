@@ -5,16 +5,33 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:HospitalInformationSystem.Windows.ManagerGUI"
         mc:Ignorable="d"
-        Title="Renoviranje prostorije" Height="350" Width="350" Closing="Window_Closing" ResizeMode="NoResize">
+        Title="Renoviranje prostorije" Height="350" Width="600" Closing="Window_Closing" ResizeMode="NoResize">
     <Grid Background="#FFFDFDFD">
         <Label Content="Vreme početka:" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="25,39,0,0" FontSize="15"/>
         <Label Content="Datum početka:" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="25,88,0,0" FontSize="15"/>
         <Label Content="Vreme kraja:" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="25,157,0,0" FontSize="15"/>
         <Label Content="Datum kraja:" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="25,207,0,0" FontSize="15" RenderTransformOrigin="0.467,5.303"/>
-        <ComboBox x:Name="startTimeComboBox" HorizontalAlignment="Left" VerticalAlignment="Top" Width="143" Margin="164,39,0,0" FontSize="15" SelectionChanged="ComboBoxControlsSelectionChanged"/>
+        <ComboBox x:Name="startTimeComboBox" HorizontalAlignment="Left" VerticalAlignment="Top" Width="143" Margin="164,43,0,0" FontSize="15" SelectionChanged="ComboBoxControlsSelectionChanged"/>
         <ComboBox x:Name="endTimeComboBox" HorizontalAlignment="Left" VerticalAlignment="Top" Width="143" Margin="164,161,0,0" FontSize="15" SelectionChanged="ComboBoxControlsSelectionChanged"/>
         <DatePicker x:Name="startDatePicker" HorizontalAlignment="Left" Margin="164,88,0,0" VerticalAlignment="Top" Width="143" FontSize="15" LayoutUpdated="DatePickerControlsLayoutUpdated"/>
         <DatePicker x:Name="endDatePicker" HorizontalAlignment="Left" Margin="164,211,0,0" VerticalAlignment="Top" Width="143" FontSize="15" LayoutUpdated="DatePickerControlsLayoutUpdated"/>
-        <Button x:Name="confirmButton" Content="ZAKAŽI" HorizontalAlignment="Left" VerticalAlignment="Top" Width="100" Height="30" FontSize="15" Margin="126,271,0,0" Click="confirmButton_Click" IsEnabled="False"/>
+        <Button x:Name="confirmButton" Content="ZAKAŽI" HorizontalAlignment="Left" VerticalAlignment="Top" Width="100" Height="30" FontSize="15" Margin="274,281,0,0" Click="confirmButton_Click" IsEnabled="False"/>
+        <GroupBox Header="Opciono:" HorizontalAlignment="Left" Height="206" VerticalAlignment="Top" Width="216" Margin="331,31,0,0" FontSize="15">
+            <Grid>
+                <Label Content="Spoj u jednu sa:" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="47,96,0,0"/>
+                <ComboBox x:Name="roomForMergeComboBox" HorizontalAlignment="Left" Margin="10,136,0,0" VerticalAlignment="Top" Width="156" LayoutUpdated="roomForMergeComboBox_LayoutUpdated">
+                    <ComboBox.ItemTemplate>
+                        <DataTemplate>
+                            <TextBlock>
+                                <Run Text="{Binding Name}" />
+                            </TextBlock>
+                        </DataTemplate>
+                    </ComboBox.ItemTemplate>
+                </ComboBox>
+                <CheckBox x:Name="duplicateRoomCheckBox" Content="Podeli na dve prostorije" HorizontalAlignment="Left" Margin="23,19,0,0" VerticalAlignment="Top" LayoutUpdated="duplicateRoomCheckBox_LayoutUpdated"/>
+                <Button x:Name="cancelSelectionButton" Content="X" HorizontalAlignment="Left" Margin="171,136,0,0" VerticalAlignment="Top" Width="33" Height="26" Click="cancelSelectionButton_Click"/>
+            </Grid>
+        </GroupBox>
+
     </Grid>
 </Window>

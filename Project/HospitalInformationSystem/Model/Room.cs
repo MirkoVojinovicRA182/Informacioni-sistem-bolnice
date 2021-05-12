@@ -33,7 +33,6 @@ namespace Model
             this.Type = type;
             Equipment = equipment;
             RoomRenovationState = new RoomRenovationState(DateTime.Now, DateTime.Now);
-            RoomRenovationState.ActivityStatus = true;
         }
 
 

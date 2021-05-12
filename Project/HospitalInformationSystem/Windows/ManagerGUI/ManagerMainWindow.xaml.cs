@@ -65,7 +65,7 @@ namespace HospitalInformationSystem.Windows.ManagerGUI
                 room = (Room)this.roomsUserControl.allRoomsTable.SelectedItem;
                 if (string.Equals(room.Name, "Magacin"))
                     return;
-                if (room.RoomRenovationState.ActivityStatus)
+                if (!room.RoomRenovationState.ActivityStatus)
                 {
                     RoomController.GetInstance().DeleteRoom((Room)this.roomsUserControl.allRoomsTable.SelectedItem);
                     moveEquipmentInMagacine();
@@ -178,6 +178,14 @@ namespace HospitalInformationSystem.Windows.ManagerGUI
             EquipmentController.getInstance().saveInFile();
             RoomController.GetInstance().SaveRoomsInFile();
             MedicineController.GetInstance().SaveInFile();
+        }
+        private void mergeRooms_Click(object sender, RoutedEventArgs e)
+        {
+            MergeTwoRoomsWindow.GetInstance().ShowDialog();
+        }
+        private void duplicateRoom_Click(object sender, RoutedEventArgs e)
+        {
+
         }
     }
 }

@@ -1,0 +1,24 @@
+﻿<Window x:Class="HospitalInformationSystem.Windows.ManagerGUI.MergeTwoRoomsWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:HospitalInformationSystem.Windows.ManagerGUI"
+        mc:Ignorable="d"
+        Title="Spajanje dve prostorije u jednu" Height="480" Width="350" Closing="Window_Closing">
+    <Grid>
+        <Label Content="Vreme početka:" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="29,148,0,0" FontSize="15"/>
+        <Label Content="Datum početka:" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="29,197,0,0" FontSize="15"/>
+        <Label Content="Vreme kraja:" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="29,266,0,0" FontSize="15"/>
+        <Label Content="Datum kraja:" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="29,316,0,0" FontSize="15" RenderTransformOrigin="0.467,5.303"/>
+        <ComboBox x:Name="startTimeComboBox" HorizontalAlignment="Left" VerticalAlignment="Top" Width="143" Margin="168,148,0,0" FontSize="15"/>
+        <ComboBox x:Name="endTimeComboBox" HorizontalAlignment="Left" VerticalAlignment="Top" Width="143" Margin="168,270,0,0" FontSize="15"/>
+        <DatePicker x:Name="startDatePicker" HorizontalAlignment="Left" Margin="168,197,0,0" VerticalAlignment="Top" Width="143" FontSize="15"/>
+        <DatePicker x:Name="endDatePicker" HorizontalAlignment="Left" Margin="168,320,0,0" VerticalAlignment="Top" Width="143" FontSize="15"/>
+        <Button x:Name="confirmButton" Content="ZAKAŽI" HorizontalAlignment="Left" VerticalAlignment="Top" Width="100" Height="30" FontSize="15" Margin="130,400,0,0"/>
+        <Label Content="Druga prostorija:" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="29,73,0,0" FontSize="15"/>
+        <Label Content="Prva prostorija:" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="29,25,0,0" FontSize="15"/>
+        <ComboBox HorizontalAlignment="Left" VerticalAlignment="Top" Width="143" Margin="168,25,0,0" FontSize="15"/>
+        <ComboBox HorizontalAlignment="Left" VerticalAlignment="Top" Width="143" Margin="168,73,0,0" FontSize="15"/>
+    </Grid>
+</Window>

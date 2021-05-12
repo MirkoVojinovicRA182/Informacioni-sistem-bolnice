@@ -20,7 +20,10 @@
                 <MenuItem x:Name="editRoomMenuItem" Header="_Izmena postojeće" Click="editRoomMenuItem_Click"/>
                 <MenuItem x:Name="deleteRoomMenuItem" Header="_Brisanje postojeće" Click="deleteRoomMenuItem_Click"/>
                 <Separator />
-                <MenuItem x:Name="renovationMenuItem" Header="_Zakazivanje renoviranja" Click="renovationMenuItem_Click"/>
+                <MenuItem x:Name="renovationMenuItem" Header="_Renoviranje" Click="renovationMenuItem_Click"/>
+                <Separator />
+                <MenuItem x:Name="mergeRooms" Header="_Spajanje u jednu" Click="mergeRooms_Click"/>
+                <MenuItem x:Name="duplicateRoom" Header="_Podela jedne" Click="duplicateRoom_Click"/>
             </MenuItem>
             <MenuItem Header="Oprema">
                 <MenuItem x:Name="newEquipmentMenuItem" Header="_Unos nove" Click="newEquipmentMenuItem_Click"/>

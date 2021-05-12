@@ -89,8 +89,8 @@ namespace HospitalInformationSystem.Windows
             AccountDataBase.getInstance().AddAccount(new Account("petarpetrovic@yahoo.com", "pass", secretary));
             AccountDataBase.getInstance().AddAccount(new Account("m", "pass", manager));
 
-            //ManagerMainWindow.getInstance().ShowDialog();
-            //this.Close();
+            ManagerMainWindow.getInstance().ShowDialog();
+            this.Close();
 
         }
 

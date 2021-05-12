@@ -161,6 +161,9 @@
     <Compile Include="Windows\ManagerGUI\MedicineTableUserControl.xaml.cs">
       <DependentUpon>MedicineTableUserControl.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Windows\ManagerGUI\MergeTwoRoomsWindow.xaml.cs">
+      <DependentUpon>MergeTwoRoomsWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Windows\ManagerGUI\NewIngredientWindow.xaml.cs">
       <DependentUpon>NewIngredientWindow.xaml</DependentUpon>
     </Compile>
@@ -345,6 +348,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Windows\ManagerGUI\MedicineTableUserControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Windows\ManagerGUI\MergeTwoRoomsWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

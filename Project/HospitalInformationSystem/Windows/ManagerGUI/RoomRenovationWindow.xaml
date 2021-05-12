@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:HospitalInformationSystem.Windows.ManagerGUI"
         mc:Ignorable="d"
         Title="Renoviranje prostorije" Height="350" Width="350" Closing="Window_Closing" ResizeMode="NoResize">
-    <Grid>
+    <Grid Background="#FFFDFDFD">
         <Label Content="Vreme početka:" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="25,39,0,0" FontSize="15"/>
         <Label Content="Datum početka:" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="25,88,0,0" FontSize="15"/>
         <Label Content="Vreme kraja:" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="25,157,0,0" FontSize="15"/>

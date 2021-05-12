@@ -65,9 +65,9 @@ namespace HospitalInformationSystem.Controller
         {
             _roomService.MoveStaticEqToNextRoom(room, moveQuantity, key);
         }
-        public bool RoomIsFounded(int roomId)
+        public bool RoomExists(int roomId)
         {
-            return _roomService.RoomIsFounded(roomId);
+            return _roomService.RoomExists(roomId);
         }
         public void SetRenovationStateToRoom(Room room, RoomRenovationState roomRenovationState)
         {

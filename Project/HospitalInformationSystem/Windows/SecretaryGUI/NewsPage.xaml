@@ -7,9 +7,9 @@
         mc:Ignorable="d"
         Title="News" Height="450" Width="800">
     <Grid>
-        <Button x:Name="addBtn" Content="Dodaj" HorizontalAlignment="Left" Margin="334,372,0,0" VerticalAlignment="Top" Width="75" RenderTransformOrigin="0.306,0.465" Click="addBtn_Click"/>
-        <Button x:Name="editBtn" Content="Izmeni" HorizontalAlignment="Left" Margin="489,372,0,0" VerticalAlignment="Top" Width="75" Click="editBtn_Click"/>
-        <Button x:Name="deleteBtn" Content="Obrisi" HorizontalAlignment="Left" Margin="641,372,0,0" VerticalAlignment="Top" Width="75" Click="deleteBtn_Click"/>
+        <Button x:Name="addBtn" Content="Dodaj" HorizontalAlignment="Left" Margin="334,372,0,0" VerticalAlignment="Top" Width="75" RenderTransformOrigin="0.306,0.465" Click="AddBtn_Click"/>
+        <Button x:Name="editBtn" Content="Izmeni" HorizontalAlignment="Left" Margin="489,372,0,0" VerticalAlignment="Top" Width="75" Click="EditBtn_Click"/>
+        <Button x:Name="deleteBtn" Content="Obrisi" HorizontalAlignment="Left" Margin="641,372,0,0" VerticalAlignment="Top" Width="75" Click="DeleteBtn_Click"/>
         <ListView x:Name="announcementsList" HorizontalAlignment="Left" Height="321" Margin="294,25,0,0" VerticalAlignment="Top" Width="471">
             <ListBox.ItemTemplate>
                 <DataTemplate>

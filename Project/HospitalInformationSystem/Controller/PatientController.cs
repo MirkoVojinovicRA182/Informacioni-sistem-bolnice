@@ -2,6 +2,7 @@
 using Model;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -43,12 +44,12 @@ namespace HospitalInformationSystem.Controller
               dateOfBirth,  phoneNumber,  email,  parentsName,
               gender,  jmbg, isGuest,  blood,  lbo);
         }
-        public List<Allergen> getAllergens()
+        public ObservableCollection<Allergen> getAllergens()
         {
             return patientService.getAllergens();
         }
 
-        public void setAllergens(List<Allergen> allergenList)
+        public void setAllergens(ObservableCollection<Allergen> allergenList)
         {
             patientService.setAllergens(allergenList);
         }
@@ -58,12 +59,12 @@ namespace HospitalInformationSystem.Controller
             patientService.addAllergen(newAllergen);
         }
 
-        public List<Patient> getPatient()
+        public ObservableCollection<Patient> getPatient()
         {
             return patientService.getPatient();
         }
 
-        public void setPatient(List<Patient> newPatient)
+        public void setPatient(ObservableCollection<Patient> newPatient)
         {
             patientService.setPatient(newPatient);
         }

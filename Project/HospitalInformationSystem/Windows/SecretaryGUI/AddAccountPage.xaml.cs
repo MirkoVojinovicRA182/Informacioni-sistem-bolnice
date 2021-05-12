@@ -1,25 +1,33 @@
-﻿
-using HospitalInformationSystem.Controller;
-using HospitalInformationSystem.Service;
+﻿using HospitalInformationSystem.Controller;
 using System;
+using System.Collections.Generic;
 using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 using System.Windows;
+using System.Windows.Controls;
+using System.Windows.Data;
+using System.Windows.Documents;
+using System.Windows.Input;
+using System.Windows.Media;
+using System.Windows.Media.Imaging;
+using System.Windows.Navigation;
+using System.Windows.Shapes;
 using static Model.Patient;
 
 namespace HospitalInformationSystem.Windows.SecretaryGUI
 {
     /// <summary>
-    /// Interaction logic for AddAccount.xaml
+    /// Interaction logic for AddAccountPage.xaml
     /// </summary>
-    public partial class AddAccount : Window
+    public partial class AddAccountPage : Page
     {
         public AccountsPage ParentPage { get; set; }
-
-        public AddAccount()
+        public AddAccountPage(AccountsPage accountsPage)
         {
             InitializeComponent();
+            ParentPage = accountsPage;
         }
-
         private void potvrdiBtn_Click(object sender, RoutedEventArgs e)
         {
             Console.WriteLine(nameTxt.Text + surnameTxt.Text);
@@ -29,20 +37,18 @@ namespace HospitalInformationSystem.Windows.SecretaryGUI
 
             //Console.WriteLine(nameTxt.Text + surnameTxt.Text + idTxt.Text);
             //Console.WriteLine(Model.PatientDataBase.getInstance().GetPatient());
-            //ParentPage.RefreshList();
-            Close();
-
+            ParentPage.RefreshList();
         }
 
-        private void otkaziBtn_Click(object sender, RoutedEventArgs e)
+        private void OtkaziBtn_Click(object sender, RoutedEventArgs e)
         {
-            Close();
+            NavigationService.Navigate(new AccountsPage(ParentPage.MainWindow));
         }
 
-        private void bloodCmb_Loaded(object sender, RoutedEventArgs e)
+        private void BloodCmb_Loaded(object sender, RoutedEventArgs e)
         {
-
             bloodCmb.ItemsSource = Enum.GetValues(typeof(BloodType)).Cast<BloodType>();
         }
+
     }
 }

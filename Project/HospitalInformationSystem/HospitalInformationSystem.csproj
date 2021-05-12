@@ -168,14 +168,29 @@
     <Compile Include="Windows\PatientGUI\NotificationWindow.xaml.cs">
       <DependentUpon>NotificationWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Windows\SecretaryGUI\AccountsPage.xaml.cs">
+      <DependentUpon>AccountsPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Windows\SecretaryGUI\AddAccount.xaml.cs">
       <DependentUpon>AddAccount.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Windows\SecretaryGUI\AddAccountPage.xaml.cs">
+      <DependentUpon>AddAccountPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Windows\SecretaryGUI\AddAllergen.xaml.cs">
       <DependentUpon>AddAllergen.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Windows\SecretaryGUI\AllergensPage.xaml.cs">
+      <DependentUpon>AllergensPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Windows\SecretaryGUI\AnnouncementsPage.xaml.cs">
+      <DependentUpon>AnnouncementsPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Windows\SecretaryGUI\EditAccount.xaml.cs">
       <DependentUpon>EditAccount.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Windows\SecretaryGUI\EditAccountPage.xaml.cs">
+      <DependentUpon>EditAccountPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Windows\SecretaryGUI\EditAllergens.xaml.cs">
       <DependentUpon>EditAllergens.xaml</DependentUpon>
@@ -315,17 +330,37 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
+    <Page Include="Windows\SecretaryGUI\AccountsPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Windows\SecretaryGUI\AddAccount.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Windows\SecretaryGUI\AddAccountPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Windows\SecretaryGUI\AddAllergen.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
+    <Page Include="Windows\SecretaryGUI\AllergensPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Windows\SecretaryGUI\AnnouncementsPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Windows\SecretaryGUI\EditAccount.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Windows\SecretaryGUI\EditAccountPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Windows\SecretaryGUI\EditAllergens.xaml">
       <SubType>Designer</SubType>
@@ -357,9 +392,11 @@
     </Page>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Properties\AssemblyInfo.cs">
+    <Resource Include="Images\Secretary\accounts.png" />
+    <Resource Include="Images\Secretary\user.png" />
+    <Resource Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
-    </Compile>
+    </Resource>
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -370,10 +407,10 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
-    <EmbeddedResource Include="Properties\Resources.resx">
+    <Resource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
-    </EmbeddedResource>
+    </Resource>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -383,6 +420,9 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Resource Include="Images\Secretary\allergens.png" />
+    <Resource Include="Images\Secretary\announcements.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

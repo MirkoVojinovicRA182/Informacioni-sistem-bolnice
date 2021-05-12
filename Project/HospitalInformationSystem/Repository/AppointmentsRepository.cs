@@ -15,7 +15,7 @@ namespace HospitalInformationSystem.Repository
 {
     public class AppointmentsRepository : IRepository
     {
-        public void saveInFile()
+        public void SaveInFile()
         {
             // TODO: implement
             FileStream fs = new FileStream("Appointments.dat", FileMode.Create);
@@ -27,7 +27,6 @@ namespace HospitalInformationSystem.Repository
             }
             catch (SerializationException e)
             {
-
                 throw;
             }
             finally
@@ -37,7 +36,7 @@ namespace HospitalInformationSystem.Repository
 
         }
 
-        public void loadFromFile()
+        public void LoadFromFile()
         {
             if (File.Exists("Appointments.dat"))
             {

@@ -7,6 +7,7 @@
 using HospitalInformationSystem.Controller;
 using Model;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.IO;
 using System.Runtime.Serialization;
 using System.Runtime.Serialization.Formatters.Binary;
@@ -15,7 +16,7 @@ namespace HospitalInformationSystem.Repository
 {
     public class PatientsRepository : IRepository
     {
-        public void saveInFile()
+        public void SaveInFile()
         {
             FileStream fs = new FileStream("Accounts.dat", FileMode.Create);
             FileStream fs2 = new FileStream("Allergens.dat", FileMode.Create);
@@ -28,8 +29,7 @@ namespace HospitalInformationSystem.Repository
             }
             catch (SerializationException e)
             {
-
-                throw;
+                throw e;
             }
             finally
             {
@@ -39,20 +39,19 @@ namespace HospitalInformationSystem.Repository
 
         }
 
-        public void loadFromFile()
+        public void LoadFromFile()
         {
-
             if (File.Exists("Allergens.dat"))
             {
                 FileStream fs2 = new FileStream("Allergens.dat", FileMode.Open);
                 try
                 {
                     BinaryFormatter formatter = new BinaryFormatter();
-                    PatientController.getInstance().setAllergens((List<Allergen>)formatter.Deserialize(fs2));
+                    PatientController.getInstance().setAllergens((ObservableCollection<Allergen>)formatter.Deserialize(fs2));
                 }
                 catch (SerializationException e)
                 {
-                    throw;
+                    throw e;
                 }
                 finally
                 {
@@ -67,11 +66,11 @@ namespace HospitalInformationSystem.Repository
                 try
                 {
                     BinaryFormatter formatter = new BinaryFormatter();
-                    PatientController.getInstance().setPatient((List<Patient>)formatter.Deserialize(fs));
+                    PatientController.getInstance().setPatient((ObservableCollection<Patient>)formatter.Deserialize(fs));
                 }
                 catch (SerializationException e)
                 {
-                    throw;
+                    throw e;
                 }
                 finally
                 {

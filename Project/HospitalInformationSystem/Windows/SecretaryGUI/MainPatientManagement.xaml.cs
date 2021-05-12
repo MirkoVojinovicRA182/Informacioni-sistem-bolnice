@@ -13,7 +13,7 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
+using System.IO;
 
 namespace HospitalInformationSystem.Windows.SecretaryGUI
 {
@@ -25,56 +25,15 @@ namespace HospitalInformationSystem.Windows.SecretaryGUI
         public MainPatientManagement()
         {
             InitializeComponent();
-            PatientController.getInstance().LoadFromFile();
-            accountsList.ItemsSource = PatientController.getInstance().getPatient();
-            izmeniBtn.IsEnabled = false;
-            obrisiBtn.IsEnabled = false;   
+            //string imgPath = Path.Combine(Environment.CurrentDirectory, "..", "..", "Images", "Secretary", "accounts.png");
+            //Image img = new Image();
+            //img.Source = new BitmapImage(new Uri(imgPath));
+            //naloziBtn.Content = img;
         }
-
-        public void RefreshList()
+        private void naloziBtn_Click(object sender, RoutedEventArgs e)
         {
-            accountsList.Items.Refresh();
+            MainFrame.Content = new AccountsPage(this);
         }
-
-        private void accountsList_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-
-        }
-
-        private void dodajButton_Click(object sender, RoutedEventArgs e)
-        {
-            AddAccount addAccount = new AddAccount();
-            addAccount.ParentWindow = this;
-            addAccount.ShowDialog();
-        }
-
-        private void obrisiButton_Click(object sender, RoutedEventArgs e)
-        {
-            PatientController.getInstance().RemovePatient((Patient)accountsList.SelectedItem);
-            RefreshList();
-        }
-
-        private void izmeniButton_Click(object sender, RoutedEventArgs e)
-        {
-            if(accountsList.SelectedValue != null) { 
-                EditAccount editAccount = new EditAccount((Patient)accountsList.SelectedItem);
-                editAccount.ParentWindow = this;
-                editAccount.ShowDialog();
-            }
-        }
-
-        private void accountsList_SelectionChanged_1(object sender, SelectionChangedEventArgs e)
-        {
-            izmeniBtn.IsEnabled = true;
-            obrisiBtn.IsEnabled = true;
-        }
-
-        private void Button_Click(object sender, RoutedEventArgs e)
-        {
-            AddAllergen addAllergen = new AddAllergen();
-            addAllergen.ShowDialog();
-        }
-
         private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
         {
             PatientController.getInstance().SaveInFile();
@@ -82,8 +41,12 @@ namespace HospitalInformationSystem.Windows.SecretaryGUI
 
         private void vestiBtn_Click(object sender, RoutedEventArgs e)
         {
-            NewsPage news = new NewsPage();
-            news.ShowDialog();
+            MainFrame.Content = new AnnouncementsPage();
+        }
+
+        private void allergensBtn_Click(object sender, RoutedEventArgs e)
+        {
+            MainFrame.Content = new AllergensPage();
         }
     }
 }

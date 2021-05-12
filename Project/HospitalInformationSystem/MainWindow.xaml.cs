@@ -61,7 +61,7 @@ namespace HospitalInformationSystem.Windows
             AccountDataBase.getInstance().AddAccount(new Account("s", "s", secretary));
             AccountDataBase.getInstance().AddAccount(new Account("m", "pass", manager));
 
-            ManagerMainWindow.getInstance().Show();
+            //ManagerMainWindow.getInstance().Show();
 
         }
 
@@ -86,6 +86,7 @@ namespace HospitalInformationSystem.Windows
                     {
                         loggedIn = true;
                         MainPatientManagement window = new MainPatientManagement();
+                        PatientController.getInstance().LoadFromFile();
                         window.Show();
                         //this.Hide();
                     }
@@ -120,7 +121,7 @@ namespace HospitalInformationSystem.Windows
 
         private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
         {
-            doctorAppFile.saveInFile();
+            doctorAppFile.SaveInFile();
         }
     }
 }

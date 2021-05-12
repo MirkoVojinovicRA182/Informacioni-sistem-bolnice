@@ -104,13 +104,13 @@ namespace HospitalInformationSystem.Service
 
         public void saveInFile()
         {
-            appointmentsFile.saveInFile();
+            appointmentsFile.SaveInFile();
         }
 
         public void loadFromFile()
         {
             if (File.Exists("DoctorAppointments.dat"))
-                appointmentsFile.loadFromFile();
+                appointmentsFile.LoadFromFile();
         }
 
     }

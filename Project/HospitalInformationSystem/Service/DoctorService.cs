@@ -18,14 +18,11 @@ namespace HospitalInformationSystem.Service
 
         public DoctorService()
         {
-            // TODO: implement
             doctors = new List<Doctor>();
+            doctorFile = new DoctorRepository();
         }
 
-        ~DoctorService()
-        {
-            // TODO: implement
-        }
+        ~DoctorService() { }
 
         public List<Doctor> getDoctors()
         {
@@ -69,12 +66,12 @@ namespace HospitalInformationSystem.Service
 
         public void saveInFile()
         {
-            doctorFile.saveInFile();
+            doctorFile.SaveInFile();
         }
 
         public void loadFromFile()
         {
-            doctorFile.loadFromFile();
+            doctorFile.LoadFromFile();
         }
 
     }

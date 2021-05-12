@@ -26,7 +26,7 @@ namespace HospitalInformationSystem.Windows.PatientGUI
     {
 
         private ObservableCollection<Appointment> appointmentList;
-        private List<Patient> initialPatients;
+        private ObservableCollection<Patient> initialPatients;
         public NewPatientAppointmentSystemWindow()
         {
             InitializeComponent();
@@ -225,7 +225,7 @@ namespace HospitalInformationSystem.Windows.PatientGUI
 
         private void initPatients()
         {
-            initialPatients = new List<Patient>();
+            initialPatients = new ObservableCollection<Patient>();
 
             Patient first = new Patient("Pera", "Pacijent 1", "1");
             Patient second = new Patient("Jova", "Pacijent 2", "2");

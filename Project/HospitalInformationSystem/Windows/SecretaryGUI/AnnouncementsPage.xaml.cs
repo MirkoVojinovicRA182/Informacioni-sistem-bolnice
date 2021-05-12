@@ -12,33 +12,38 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
+using System.Windows.Navigation;
 using System.Windows.Shapes;
 
 namespace HospitalInformationSystem.Windows.SecretaryGUI
 {
     /// <summary>
-    /// Interaction logic for News.xaml
+    /// Interaction logic for AnnouncementsPage.xaml
     /// </summary>
-    public partial class NewsPage : Window
+    public partial class AnnouncementsPage : Page
     {
-        public NewsPage()
+        public AnnouncementsPage()
         {
             InitializeComponent();
             announcementsList.ItemsSource = AnnouncementsController.getInstance().getAnnouncements();
         }
+
         private void DeleteBtn_Click(object sender, RoutedEventArgs e)
         {
             AnnouncementsController.getInstance().getAnnouncements().Remove((Announcement)announcementsList.SelectedItem);
         }
+
         private void AddBtn_Click(object sender, RoutedEventArgs e)
         {
-            NewAnnouncement newAnnouncement = new NewAnnouncement();
-            newAnnouncement.ShowDialog();
+            //NewAnnouncement newAnnouncement = new NewAnnouncement();
+            //newAnnouncement.ShowDialog();
         }
+
         private void EditBtn_Click(object sender, RoutedEventArgs e)
         {
-            NewAnnouncement newAnnouncement = new NewAnnouncement((Announcement)announcementsList.SelectedItem, this);
-            newAnnouncement.ShowDialog();
+            //NewAnnouncement newAnnouncement = new NewAnnouncement((Announcement)announcementsList.SelectedItem, this);
+            //newAnnouncement.ShowDialog();
         }
+
     }
 }

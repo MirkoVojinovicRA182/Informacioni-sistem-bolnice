@@ -40,10 +40,10 @@ namespace HospitalInformationSystem.Service
         public void DeleteRoom(Room room)
         {
             _allRooms.Remove(room);
-            AppointmentController.getInstance().DeleteAllAppointmentsFromRoom(room);
         }
         public void ChangeRoom(Room roomForChange, Room roomDTO)
         {
+            //prebaciti u room class
             roomForChange.Id = roomDTO.Id;
             roomForChange.Name = roomDTO.Name;
             roomForChange.Type = roomDTO.Type;
@@ -85,7 +85,8 @@ namespace HospitalInformationSystem.Service
                 room.Equipment.Add(key, moveQuantity);
             }
         }
-        public bool RoomIsFounded(int roomId)
+        //mozda ici u repos
+        public bool RoomExists(int roomId)
         {
             foreach (Room room in _allRooms)
             {
@@ -103,6 +104,7 @@ namespace HospitalInformationSystem.Service
             roomForRenovation.RoomRenovationState.ActivityStatus = DateTime.Now >= roomForRenovation.RoomRenovationState.StartDate && 
                 DateTime.Now <= roomForRenovation.RoomRenovationState.EndDate;
         }
+        //staviti u repo
         public Room GetMagacine()
         {
             return _allRooms[0];

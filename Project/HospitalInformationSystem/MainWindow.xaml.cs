@@ -24,7 +24,7 @@ namespace HospitalInformationSystem.Windows
         public MainWindow()
         {
             InitializeComponent();
-            Room room1 = new Room(1, "Magacin", -1, TypeOfRoom.Magacine);
+            /*Room room1 = new Room(1, "Magacin", -1, TypeOfRoom.Magacine);
             Room room2 = new Room(2, "Prostorija dr Marka", 1, TypeOfRoom.ExaminationRoom);
             Room room3 = new Room(3, "Prostorija dr Jovana", 1, TypeOfRoom.ExaminationRoom);
             Room room4 = new Room(4, "Prostorija dr Stevana", 1, TypeOfRoom.ExaminationRoom);
@@ -33,7 +33,7 @@ namespace HospitalInformationSystem.Windows
             RoomController.GetInstance().AddRoomToRoomList(room2);
             RoomController.GetInstance().AddRoomToRoomList(room3);
             RoomController.GetInstance().AddRoomToRoomList(room4);
-            RoomController.GetInstance().AddRoomToRoomList(room5);
+            RoomController.GetInstance().AddRoomToRoomList(room5);*/
             RoomController.GetInstance().LoadRoomsFromFile();
             savePatients.loadFromFile();
             AppointmentController.getInstance().loadFromFile();

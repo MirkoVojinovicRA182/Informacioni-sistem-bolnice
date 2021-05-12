@@ -39,6 +39,7 @@ namespace HospitalInformationSystem.Controller
         public void DeleteRoom(Room room)
         {
             _roomService.DeleteRoom(room);
+            AppointmentController.getInstance().DeleteAllAppointmentsFromRoom(room);
         }
         public void ChangeRoom(Room roomForChange, Room roomDTO)
         {

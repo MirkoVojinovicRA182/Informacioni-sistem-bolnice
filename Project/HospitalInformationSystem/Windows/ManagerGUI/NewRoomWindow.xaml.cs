@@ -59,7 +59,7 @@ namespace HospitalInformationSystem.Windows.ManagerGUI
                 MessageBox.Show("Pogrešan unos šifre!", "Greška", MessageBoxButton.OK, MessageBoxImage.Error);
                 return false;
             }
-            else if (RoomController.getInstance().findRoom(id))
+            else if (RoomController.GetInstance().findRoom(id))
             {
                 MessageBox.Show("U sistemu postoji prostorija sa ovom šifrom!", "Greška", MessageBoxButton.OK, MessageBoxImage.Error);
                 return false;
@@ -81,7 +81,7 @@ namespace HospitalInformationSystem.Windows.ManagerGUI
             }
             else
             {
-                RoomController.getInstance().createRoom(floor, id, name, type, equipment);
+                RoomController.GetInstance().createRoom(floor, id, name, type, equipment);
                 return true;
             }
         }

@@ -12,89 +12,89 @@ namespace HospitalInformationSystem.Controller
 {
     class RoomController
     {
-        RoomService roomService;
-        private static RoomController instance = null;
-        public static RoomController getInstance()
+        private RoomService _roomService;
+        private static RoomController _instance;
+        public static RoomController GetInstance()
         {
-            if (instance == null)
-                instance = new RoomController();
-            return instance;
+            if (_instance == null)
+                _instance = new RoomController();
+            return _instance;
         }
         private RoomController()
         {
-            roomService = new RoomService();
+            _roomService = new RoomService();
         }
         public void saveInFile()
         {
-            roomService.saveInFile();
+            _roomService.saveInFile();
         }
         public void loadFromFile()
         {
-            roomService.loadFromFile();
+            _roomService.loadFromFile();
         }
         public void createRoom(int floor, int id, string name, TypeOfRoom type, Hashtable equipment)
         {
-            roomService.createRoom(floor, id, name, type, equipment);
+            _roomService.createRoom(floor, id, name, type, equipment);
         }
         public void changeRoom(Room room, int newId, string newName, TypeOfRoom newType, int newFloor)
         {
-            roomService.changeRoom(room, newId, newName, newType, newFloor);
+            _roomService.changeRoom(room, newId, newName, newType, newFloor);
         }
         public void setRoomEquipment(Room room, Hashtable eq)
         {
-            roomService.setRoomEquipment(room, eq);
+            _roomService.setRoomEquipment(room, eq);
         }
         public void deleteEquipment(string id)
         {
-            roomService.deleteEquipment(id);
+            _roomService.deleteEquipment(id);
         }
         public void deleteRoom(Room room)
         {
-            roomService.deleteRoom(room);
+            _roomService.deleteRoom(room);
         }
         public List<Room> getRooms()
         {
-            return roomService.getRooms();
+            return _roomService.getRooms();
         }
         public void setRooms(List<Room> rooms)
         {
-            roomService.setRooms(rooms);
+            _roomService.setRooms(rooms);
         }
         public void changeStaticEquipmentState(Room room, int currentQuantity, int moveQuantity, string key)
         {
-            roomService.changeStaticEquipmentState(room, currentQuantity, moveQuantity, key);
+            _roomService.changeStaticEquipmentState(room, currentQuantity, moveQuantity, key);
         }
         public void moveStaticEqToNextRoom(Room room, int moveQuantity, string key)
         {
-            roomService.moveStaticEqToNextRoom(room, moveQuantity, key);
+            _roomService.moveStaticEqToNextRoom(room, moveQuantity, key);
         }
         public bool findRoom(int id)
         {
-            return roomService.findRoom(id);
+            return _roomService.findRoom(id);
         }
         public void SetRenovationStateToRoom(Room room, RoomRenovationState roomRenovationState)
         {
-            roomService.SetRenovationStateToRoom(room, roomRenovationState);
+            _roomService.SetRenovationStateToRoom(room, roomRenovationState);
         }
         public void CheckRenovationTerm(Room roomForRenovation)
         {
-            roomService.CheckRenovationTerm(roomForRenovation);
+            _roomService.CheckRenovationTerm(roomForRenovation);
         }
         public Room GetMagacine()
         {
-            return roomService.GetMagacine();
+            return _roomService.GetMagacine();
         }
         public void AddEquipmentToMagacine(Equipment newEquipment)
         {
-            roomService.AddEquipmentToMagacine(newEquipment);
+            _roomService.AddEquipmentToMagacine(newEquipment);
         }
         public void AddRoomToRoomList(Room newRoom)
         {
-            roomService.AddRoomToRoomList(newRoom);
+            _roomService.AddRoomToRoomList(newRoom);
         }
         public List<Appointment> GetAppointmentsInRoom(string nameOfRoom)
         {
-            return roomService.GetAppointmentsInRoom(nameOfRoom);
+            return _roomService.GetAppointmentsInRoom(nameOfRoom);
         }
     }
 }

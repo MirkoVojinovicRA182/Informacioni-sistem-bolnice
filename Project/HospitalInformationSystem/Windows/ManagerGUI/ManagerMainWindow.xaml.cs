@@ -24,7 +24,7 @@ namespace HospitalInformationSystem.Windows.ManagerGUI
         {
             int count = AppointmentController.getInstance().getAppointment().Count;
             EquipmentController.getInstance().loadFromFile();
-            RoomController.getInstance().loadFromFile();
+            RoomController.GetInstance().loadFromFile();
             MedicineController.GetInstance().LoadFromFile();
             InitializeComponent();
             roomsUserControl.refreshTable();
@@ -67,7 +67,7 @@ namespace HospitalInformationSystem.Windows.ManagerGUI
                     return;
                 if (room.RoomRenovationState.ActivityStatus)
                 {
-                    RoomController.getInstance().deleteRoom((Room)this.roomsUserControl.allRoomsTable.SelectedItem);
+                    RoomController.GetInstance().deleteRoom((Room)this.roomsUserControl.allRoomsTable.SelectedItem);
                     moveEquipmentInMagacine();
                     ManagerMainWindow.getInstance().roomsUserControl.refreshTable();
                     MessageBox.Show("Izabrana prostorija je sada obrisana iz sistema.", "Brisanje prostorije", MessageBoxButton.OK, MessageBoxImage.Information);
@@ -118,7 +118,7 @@ namespace HospitalInformationSystem.Windows.ManagerGUI
                 MessageBox.Show("Odaberite opremu iz opšteg prikaza opreme!", "Upozorenje", MessageBoxButton.OK, MessageBoxImage.Warning);
                 return;
             }
-            RoomController.getInstance().deleteEquipment(selectedEquipment.Id);
+            RoomController.GetInstance().deleteEquipment(selectedEquipment.Id);
             EquipmentController.getInstance().deleteEquipment(selectedEquipment);
             ManagerMainWindow.getInstance().equipmentTable.refreshTable();
             MessageBox.Show("Izabrana oprema je sada obrisana iz sistema.", "Brisanje opreme", MessageBoxButton.OK, MessageBoxImage.Information);
@@ -177,7 +177,7 @@ namespace HospitalInformationSystem.Windows.ManagerGUI
             instance = null;
 
             EquipmentController.getInstance().saveInFile();
-            RoomController.getInstance().saveInFile();
+            RoomController.GetInstance().saveInFile();
             MedicineController.GetInstance().SaveInFile();
         }
     }

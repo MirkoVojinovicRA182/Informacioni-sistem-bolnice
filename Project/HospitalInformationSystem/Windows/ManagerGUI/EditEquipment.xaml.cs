@@ -71,7 +71,7 @@ namespace HospitalInformationSystem.Windows.ManagerGUI
 
         private void fillControls()
         {
-            Room magacine = RoomController.getInstance().GetMagacine();
+            Room magacine = RoomController.GetInstance().GetMagacine();
             nameTextBox.Text = selectedEquipment.Name;
             quanitityTextBox.Text = magacine.Equipment[selectedEquipment.Id].ToString();
             //quanitityTextBox.Text = selectedEquipment.QuantityInMagacine.ToString();

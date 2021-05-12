@@ -63,7 +63,7 @@ namespace HospitalInformationSystem.Windows.ManagerGUI
         private bool CheckTheEnteredQuantity()
         {
             int enteredQuantity = int.TryParse(quantityTextBox.Text, out enteredQuantity) ? enteredQuantity : 0;
-            return enteredQuantity > 0 && enteredQuantity <= (int)RoomController.getInstance().GetMagacine().Equipment[idOfSelectedEquipment];
+            return enteredQuantity > 0 && enteredQuantity <= (int)RoomController.GetInstance().GetMagacine().Equipment[idOfSelectedEquipment];
         }
     }
 }

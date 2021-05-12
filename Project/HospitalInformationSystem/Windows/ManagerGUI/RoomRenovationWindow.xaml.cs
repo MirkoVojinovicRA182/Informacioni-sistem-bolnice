@@ -41,7 +41,7 @@ namespace HospitalInformationSystem.Windows.ManagerGUI
             MakeStartAndEndTermDate();
             if (CheckTheCorrectnessOfTheTerm())
             {
-                RoomController.getInstance().SetRenovationStateToRoom(roomForRenovation, NewRoomRenovationState());
+                RoomController.GetInstance().SetRenovationStateToRoom(roomForRenovation, NewRoomRenovationState());
                 CreateThreadForRenovationSimulation();
                 GiveFeedbackToManager();
             }
@@ -50,7 +50,7 @@ namespace HospitalInformationSystem.Windows.ManagerGUI
         }
         private bool CheckTheCorrectnessOfTheTerm()
         {
-            foreach(Appointment appointment in RoomController.getInstance().GetAppointmentsInRoom(roomForRenovation.Name))
+            foreach(Appointment appointment in RoomController.GetInstance().GetAppointmentsInRoom(roomForRenovation.Name))
             {
                 if (AppointmentStartIsBetweenTermTimeSpan(appointment) || TermIsInAppointmentTimeSpan(appointment) ||
                     AppointmentEndIsBetweenTermTimeSpan(appointment))
@@ -91,7 +91,7 @@ namespace HospitalInformationSystem.Windows.ManagerGUI
             {
                 while (true)
                 {
-                    RoomController.getInstance().CheckRenovationTerm(roomForRenovation);
+                    RoomController.GetInstance().CheckRenovationTerm(roomForRenovation);
                 }
             });
             thread.Start();

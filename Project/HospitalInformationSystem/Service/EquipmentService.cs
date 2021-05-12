@@ -84,7 +84,7 @@ namespace HospitalInformationSystem.Service
             equipment.Name = name;
             equipment.Type = typeOfEquipment;
             //equipment.QuantityInMagacine = newQuantity;
-            RoomController.getInstance().GetMagacine().Equipment[equipment.Id] = newQuantity;
+            RoomController.GetInstance().GetMagacine().Equipment[equipment.Id] = newQuantity;
             equipment.Description = description;
             if (newQuantity > oldQuantity)
                 equipment.Quantity += newQuantity - oldQuantity;
@@ -116,7 +116,7 @@ namespace HospitalInformationSystem.Service
                 if (string.Equals(equipment.Id, id))
                     equipment.QuantityInMagacine -= quantity;
             }*/
-            Room magacine = RoomController.getInstance().GetMagacine();
+            Room magacine = RoomController.GetInstance().GetMagacine();
             int currentValue = (int)magacine.Equipment[id];
             magacine.Equipment[id] = currentValue - quantity;
         }
@@ -128,7 +128,7 @@ namespace HospitalInformationSystem.Service
                 if (string.Equals(equipment.Id, id))
                     equipment.QuantityInMagacine += quantity;
             }*/
-            Room magacine = RoomController.getInstance().GetMagacine();
+            Room magacine = RoomController.GetInstance().GetMagacine();
             int currentValue = (int)magacine.Equipment[id];
             magacine.Equipment[id] = currentValue + quantity;
         }

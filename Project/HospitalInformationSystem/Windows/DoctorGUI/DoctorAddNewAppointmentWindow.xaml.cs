@@ -31,7 +31,7 @@ namespace HospitalInformationSystem.Windows.DoctorGUI
         private void initRooms()
         {
             List<Room> roomsList = new List<Room>();
-            foreach(Room room in RoomController.getInstance().getRooms())
+            foreach(Room room in RoomController.GetInstance().getRooms())
             {
                 if (room.Type == TypeOfRoom.OperationRoom)
                     roomsList.Add(room);

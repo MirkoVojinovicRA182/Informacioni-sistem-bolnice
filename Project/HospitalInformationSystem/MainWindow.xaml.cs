@@ -32,7 +32,7 @@ namespace HospitalInformationSystem.Windows
             RoomController.getInstance().AddRoomToRoomList(room2);
             RoomController.getInstance().AddRoomToRoomList(room3);
             RoomController.getInstance().AddRoomToRoomList(room4);*/
-            RoomController.getInstance().loadFromFile();
+            RoomController.GetInstance().loadFromFile();
             savePatients.loadFromFile();
             AppointmentController.getInstance().loadFromFile();
             DoctorController.getInstance().loadFromFile();
@@ -45,10 +45,10 @@ namespace HospitalInformationSystem.Windows
             DoctorController.getInstance().addDoctor(doctor3);
             var doctor4 = new Doctor("Darko", "Ilic", Specialization.Surgeon, RoomController.getInstance().getRooms()[3]);
             DoctorController.getInstance().addDoctor(doctor4);*/
-            DoctorController.getInstance().getDoctors()[0].room = RoomController.getInstance().getRooms()[0];
-            DoctorController.getInstance().getDoctors()[1].room = RoomController.getInstance().getRooms()[1];
-            DoctorController.getInstance().getDoctors()[2].room = RoomController.getInstance().getRooms()[2];
-            DoctorController.getInstance().getDoctors()[3].room = RoomController.getInstance().getRooms()[3];
+            DoctorController.getInstance().getDoctors()[0].room = RoomController.GetInstance().getRooms()[0];
+            DoctorController.getInstance().getDoctors()[1].room = RoomController.GetInstance().getRooms()[1];
+            DoctorController.getInstance().getDoctors()[2].room = RoomController.GetInstance().getRooms()[2];
+            DoctorController.getInstance().getDoctors()[3].room = RoomController.GetInstance().getRooms()[3];
 
             Patient first = new Patient("Pera", "Pacijent", new PatientActivity(0, 0, 0, false));
             Patient second = new Patient("Jova", "Pacijent", new PatientActivity(0, 0, 0, false));
@@ -86,6 +86,9 @@ namespace HospitalInformationSystem.Windows
             AccountDataBase.getInstance().AddAccount(new Account("darkoilic@yahoo.com", "pass", DoctorController.getInstance().getDoctors()[3]));
             AccountDataBase.getInstance().AddAccount(new Account("petarpetrovic@yahoo.com", "pass", secretary));
             AccountDataBase.getInstance().AddAccount(new Account("m", "pass", manager));
+
+            ManagerMainWindow.getInstance().ShowDialog();
+            this.Close();
 
         }
 

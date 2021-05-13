@@ -30,6 +30,8 @@ namespace HospitalInformationSystem.Windows.ManagerGUI
             roomsUserControl.refreshTable();
             equipmentTable.refreshTable();
             medicineTableUserControl.RefreshTable();
+            if(MedicineCommentsExists())
+                MedicineCommentNotificationWindow.GetInstance().Show();
 
         }
 
@@ -171,6 +173,15 @@ namespace HospitalInformationSystem.Windows.ManagerGUI
             EquipmentController.getInstance().saveInFile();
             RoomController.GetInstance().SaveRoomsInFile();
             MedicineController.GetInstance().SaveInFile();
+        }
+        private bool MedicineCommentsExists()
+        {
+            return MedicineController.GetInstance().MedicineCommentExists();
+        }
+
+        private void medicineComments_Click(object sender, RoutedEventArgs e)
+        {
+
         }
     }
 }

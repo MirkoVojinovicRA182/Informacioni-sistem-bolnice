@@ -1,0 +1,15 @@
+﻿<Window x:Class="HospitalInformationSystem.Windows.ManagerGUI.MedicineCommentNotificationWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:HospitalInformationSystem.Windows.ManagerGUI"
+        mc:Ignorable="d"
+        Title="Obaveštenje" Height="200" Width="350" Closing="Window_Closing">
+    <Grid>
+        <TextBox HorizontalAlignment="Left" Height="21" Margin="19,46,-38.4,0" TextWrapping="Wrap" Text="Niste revidirali sve komentare o lekovima!" VerticalAlignment="Top" Width="313" FontSize="15" FontWeight="Bold"/>
+        <Button x:Name="lookCommentButton" Content="Pogledaj" HorizontalAlignment="Left" VerticalAlignment="Top" Width="100" Height="30" Margin="64,115,0,0" Click="lookCommentButton_Click"/>
+        <Button x:Name="closeButton" Content="Izađi" HorizontalAlignment="Left" VerticalAlignment="Top" Width="100" Height="30" Margin="187,115,0,0" Click="closeButton_Click"/>
+
+    </Grid>
+</Window>

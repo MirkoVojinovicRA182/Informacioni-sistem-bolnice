@@ -32,6 +32,8 @@
                 <MenuItem x:Name="newMedicineMenuItem" Header="_Unos novog" Click="newMedicineMenuItem_Click"/>
                 <MenuItem x:Name="editMedicineMenuItem" Header="_Izmena postojećeg" Click="editMedicineMenuItem_Click"/>
                 <MenuItem x:Name="removeMedicineMenuItem" Header="_Brisanje postojećeg" Click="removeMedicineMenuItem_Click"/>
+                <Separator />
+                <MenuItem x:Name="medicineComments" Header="_Komentari lekara" Click="medicineComments_Click" />
             </MenuItem>
         </Menu>
         <TextBox AcceptsReturn="True" />

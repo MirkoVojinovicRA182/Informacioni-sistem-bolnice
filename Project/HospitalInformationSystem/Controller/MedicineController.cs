@@ -63,5 +63,9 @@ namespace HospitalInformationSystem.Controller
         {
             medicineService.FindReplacementMedicineAndDeleteThem(replacementMedicine);
         }
+        public bool MedicineCommentExists()
+        {
+            return medicineService.MedicineCommentExists();
+        }
     }
 }

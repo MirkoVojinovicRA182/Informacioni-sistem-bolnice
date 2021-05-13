@@ -84,5 +84,14 @@ namespace HospitalInformationSystem.Service
                 }
             }
         }
+        public bool MedicineCommentExists()
+        {
+            foreach(Medicine medicine in medicineList)
+            {
+                if (medicine.Comment != null)
+                    return true;
+            }
+            return false;
+        }
     }
 }

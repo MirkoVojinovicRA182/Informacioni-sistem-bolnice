@@ -85,12 +85,11 @@ namespace HospitalInformationSystem.Windows
             AccountDataBase.getInstance().AddAccount(new Account("markomarkovic@yahoo.com", "pass", DoctorController.getInstance().GetDoctors()[0]));
             AccountDataBase.getInstance().AddAccount(new Account("jovanjovanovic@yahoo.com", "pass", DoctorController.getInstance().GetDoctors()[1]));
             AccountDataBase.getInstance().AddAccount(new Account("stevanstojanovic@yahoo.com", "pass", DoctorController.getInstance().GetDoctors()[2]));
-            AccountDataBase.getInstance().AddAccount(new Account("darkoilic@yahoo.com", "pass", DoctorController.getInstance().GetDoctors()[3]));
+            AccountDataBase.getInstance().AddAccount(new Account("d", "pass", DoctorController.getInstance().GetDoctors()[3]));
             AccountDataBase.getInstance().AddAccount(new Account("petarpetrovic@yahoo.com", "pass", secretary));
             AccountDataBase.getInstance().AddAccount(new Account("m", "pass", manager));
 
-            ManagerMainWindow.getInstance().ShowDialog();
-            this.Close();
+            ManagerMainWindow.getInstance().Show();
 
         }
 

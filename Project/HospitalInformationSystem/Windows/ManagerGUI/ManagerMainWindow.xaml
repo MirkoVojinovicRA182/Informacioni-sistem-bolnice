@@ -22,8 +22,6 @@
                 <Separator />
                 <MenuItem x:Name="renovationMenuItem" Header="_Renoviranje" Click="renovationMenuItem_Click"/>
                 <Separator />
-                <MenuItem x:Name="mergeRooms" Header="_Spajanje u jednu" Click="mergeRooms_Click"/>
-                <MenuItem x:Name="duplicateRoom" Header="_Podela jedne" Click="duplicateRoom_Click"/>
             </MenuItem>
             <MenuItem Header="Oprema">
                 <MenuItem x:Name="newEquipmentMenuItem" Header="_Unos nove" Click="newEquipmentMenuItem_Click"/>

@@ -39,14 +39,14 @@ namespace HospitalInformationSystem.Windows
             AppointmentController.getInstance().loadFromFile();
             DoctorController.getInstance().LoadFromFile();
 
-            var doctor = new Doctor("Marko", "Markovic", Specialization.Family_Physician, RoomController.GetInstance().GetRooms()[0]);
+            /*var doctor = new Doctor("Marko", "Markovic", Specialization.Family_Physician, RoomController.GetInstance().GetRooms()[0]);
             var doctor2 = new Doctor("Jovan", "Jovanovic", Specialization.Family_Physician, RoomController.GetInstance().GetRooms()[1]);
             var doctor3 = new Doctor("Stevan", "Stojanovic", Specialization.Family_Physician, RoomController.GetInstance().GetRooms()[2]);
             DoctorController.getInstance().AddDoctor(doctor);
             DoctorController.getInstance().AddDoctor(doctor2);
             DoctorController.getInstance().AddDoctor(doctor3);
             var doctor4 = new Doctor("Darko", "Ilic", Specialization.Surgeon, RoomController.GetInstance().GetRooms()[3]);
-            DoctorController.getInstance().AddDoctor(doctor4);
+            DoctorController.getInstance().AddDoctor(doctor4);*/
             DoctorController.getInstance().GetDoctors()[0].room = RoomController.GetInstance().GetRooms()[0];
             DoctorController.getInstance().GetDoctors()[1].room = RoomController.GetInstance().GetRooms()[1];
             DoctorController.getInstance().GetDoctors()[2].room = RoomController.GetInstance().GetRooms()[2];

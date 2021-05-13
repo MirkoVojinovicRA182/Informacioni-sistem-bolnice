@@ -141,6 +141,5 @@ namespace HospitalInformationSystem.Service
                 removeAppointment(appointmentForRemove);
             }
         }
-
     }
 }

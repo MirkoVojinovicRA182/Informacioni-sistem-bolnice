@@ -178,6 +178,7 @@ namespace HospitalInformationSystem.Windows.ManagerGUI
         private void duplicateRoomCheckBox_LayoutUpdated(object sender, EventArgs e)
         {
             roomForMergeComboBox.IsEnabled = !(bool)duplicateRoomCheckBox.IsChecked;
+            newMergedRoomTextBox.IsEnabled = !(bool)duplicateRoomCheckBox.IsChecked;
         }
 
         private void roomForMergeComboBox_LayoutUpdated(object sender, EventArgs e)

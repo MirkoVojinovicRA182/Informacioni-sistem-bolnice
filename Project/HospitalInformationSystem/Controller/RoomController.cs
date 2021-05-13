@@ -13,6 +13,8 @@ namespace HospitalInformationSystem.Controller
     class RoomController
     {
         private RoomService _roomService;
+        private EquipmentService _equipmentService;
+        private AppointmentService _appointmentService;
         private static RoomController _instance;
         public static RoomController GetInstance()
         {
@@ -23,6 +25,8 @@ namespace HospitalInformationSystem.Controller
         private RoomController()
         {
             _roomService = new RoomService();
+            _appointmentService = new AppointmentService();
+            _equipmentService = new EquipmentService();
         }
         public void SaveRoomsInFile()
         {
@@ -39,7 +43,8 @@ namespace HospitalInformationSystem.Controller
         public void DeleteRoom(Room room)
         {
             _roomService.DeleteRoom(room);
-            AppointmentController.getInstance().DeleteAllAppointmentsFromRoom(room);
+            _appointmentService.DeleteAllAppointmentsFromRoom(room);
+            _equipmentService.MoveEquipmentFromRoomToMagacine(room);
         }
         public void ChangeRoom(Room roomForChange, Room roomDTO)
         {

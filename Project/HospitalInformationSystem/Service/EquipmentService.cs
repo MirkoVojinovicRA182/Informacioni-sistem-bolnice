@@ -125,17 +125,14 @@ namespace HospitalInformationSystem.Service
             int currentValue = (int)magacine.Equipment[id];
             magacine.Equipment[id] = currentValue - quantity;
         }
-
-        public void moveEquipmentInMagacine(string id, int quantity)
+        public void MoveEquipmentFromRoomToMagacine(Room room)
         {
-            /*foreach (Equipment equipment in equipmentList)
-            {
-                if (string.Equals(equipment.Id, id))
-                    equipment.QuantityInMagacine += quantity;
-            }*/
             Room magacine = RoomController.GetInstance().GetMagacine();
-            int currentValue = (int)magacine.Equipment[id];
-            magacine.Equipment[id] = currentValue + quantity;
+            foreach (DictionaryEntry roomEquipment in room.Equipment)
+            {
+                int currentValue = (int)magacine.Equipment[roomEquipment.Key];
+                magacine.Equipment[(string)roomEquipment.Key] = currentValue + (int)roomEquipment.Value;
+            }
         }
 
         public void removeQuantity(string id, int quantity)

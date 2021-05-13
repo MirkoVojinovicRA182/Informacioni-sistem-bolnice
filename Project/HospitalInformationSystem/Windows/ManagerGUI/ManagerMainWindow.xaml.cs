@@ -68,7 +68,6 @@ namespace HospitalInformationSystem.Windows.ManagerGUI
                 if (!room.RoomRenovationState.ActivityStatus)
                 {
                     RoomController.GetInstance().DeleteRoom((Room)this.roomsUserControl.allRoomsTable.SelectedItem);
-                    moveEquipmentInMagacine();
                     ManagerMainWindow.getInstance().roomsUserControl.refreshTable();
                     MessageBox.Show("Izabrana prostorija je sada obrisana iz sistema.", "Brisanje prostorije", MessageBoxButton.OK, MessageBoxImage.Information);
                 }
@@ -165,12 +164,6 @@ namespace HospitalInformationSystem.Windows.ManagerGUI
             detailEquipmentTable.LoadAllUserControlComponents();
             medicineTableUserControl.RefreshTable();
         }
-        private void moveEquipmentInMagacine()
-        {
-            Room selectedRoom = (Room)this.roomsUserControl.allRoomsTable.SelectedItem;
-            foreach (DictionaryEntry de in selectedRoom.Equipment)
-                EquipmentController.getInstance().moveEquipmentInMagacine(de.Key.ToString(), (int)de.Value);
-        }
         private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
         {
             instance = null;
@@ -178,14 +171,6 @@ namespace HospitalInformationSystem.Windows.ManagerGUI
             EquipmentController.getInstance().saveInFile();
             RoomController.GetInstance().SaveRoomsInFile();
             MedicineController.GetInstance().SaveInFile();
-        }
-        private void mergeRooms_Click(object sender, RoutedEventArgs e)
-        {
-            MergeTwoRoomsWindow.GetInstance().ShowDialog();
-        }
-        private void duplicateRoom_Click(object sender, RoutedEventArgs e)
-        {
-
         }
     }
 }

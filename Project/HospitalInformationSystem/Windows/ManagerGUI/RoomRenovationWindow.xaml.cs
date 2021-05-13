@@ -93,25 +93,41 @@ namespace HospitalInformationSystem.Windows.ManagerGUI
         {
             if ((bool)duplicateRoomCheckBox.IsChecked)
             {
-                RoomController.GetInstance().SetRenovationStateToRoom(roomSelectedFromTable, NewRoomRenovationState());
-                CreateThreadForRenovationSimulation(roomSelectedFromTable);
-                CreateThreadForDuplicatingRoom();
+                StartRoomDuplicate();
             }
             else if (roomForMergeComboBox.SelectedItem != null)
             {
-                nameOfNewRoom = newMergedRoomTextBox.Text;
-                roomSelectedFromComboBox = (Room)roomForMergeComboBox.SelectedItem;
-                RoomController.GetInstance().SetRenovationStateToRoom(roomSelectedFromTable, NewRoomRenovationState());
-                RoomController.GetInstance().SetRenovationStateToRoom((Room)roomForMergeComboBox.SelectedItem, NewRoomRenovationState());
-                CreateThreadForRenovationSimulation(roomSelectedFromTable);
-                CreateThreadForRenovationSimulation((Room)roomForMergeComboBox.SelectedItem);
-                CreateThreadForRoomMerge();
+                StartRoomsMerge();
             }
             else
-                CreateThreadForRenovationSimulation(roomSelectedFromTable);
+                StartCommonRenovation();
 
         }
-        private void CreateThreadForRenovationSimulation(Room roomForRenovation)
+        private void StartRoomDuplicate()
+        {
+            RoomController.GetInstance().SetRenovationStateToRoom(roomSelectedFromTable, NewRoomRenovationState());
+            CreateThreadForChangeRoomActivityStatus(roomSelectedFromTable);
+            CreateThreadForDuplicatingRoom();
+        }
+        private void StartRoomsMerge()
+        {
+            GetRoomForMergeAndNewRoomName();
+            RoomController.GetInstance().SetRenovationStateToRoom(roomSelectedFromTable, NewRoomRenovationState());
+            RoomController.GetInstance().SetRenovationStateToRoom((Room)roomForMergeComboBox.SelectedItem, NewRoomRenovationState());
+            CreateThreadForChangeRoomActivityStatus(roomSelectedFromTable);
+            CreateThreadForChangeRoomActivityStatus((Room)roomForMergeComboBox.SelectedItem);
+            CreateThreadForRoomMerge();
+        }
+        private void GetRoomForMergeAndNewRoomName()
+        {
+            nameOfNewRoom = newMergedRoomTextBox.Text;
+            roomSelectedFromComboBox = (Room)roomForMergeComboBox.SelectedItem;
+        }
+        private void StartCommonRenovation()
+        {
+            CreateThreadForChangeRoomActivityStatus(roomSelectedFromTable);
+        }
+        private void CreateThreadForChangeRoomActivityStatus(Room roomForRenovation)
         {
             Thread thread = new Thread(() =>
             {
@@ -123,10 +139,6 @@ namespace HospitalInformationSystem.Windows.ManagerGUI
                 }
             });
             thread.Start();
-        }
-        private bool RenovationIsComplete()
-        {
-            return !RoomController.GetInstance().RoomActivityStatus(roomSelectedFromTable) && DateTime.Now >= endTermDate;
         }
         private void CreateThreadForDuplicatingRoom()
         {
@@ -169,6 +181,10 @@ namespace HospitalInformationSystem.Windows.ManagerGUI
             RoomController.GetInstance().CreateRoom(new Room(roomSelectedFromTable.Id, nameOfNewRoom, roomSelectedFromTable.Floor, roomSelectedFromTable.Type));
             RoomController.GetInstance().DeleteRoom(roomSelectedFromTable);
             RoomController.GetInstance().DeleteRoom(roomSelectedFromComboBox);
+        }
+        private bool RenovationIsComplete()
+        {
+            return !RoomController.GetInstance().RoomActivityStatus(roomSelectedFromTable) && DateTime.Now >= endTermDate;
         }
         private void GiveFeedbackToManager()
         {

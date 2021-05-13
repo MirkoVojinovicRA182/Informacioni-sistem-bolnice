@@ -78,9 +78,9 @@ namespace HospitalInformationSystem.Controller
         {
             _roomService.SetRenovationStateToRoom(room, roomRenovationState);
         }
-        public void CheckRenovationTerm(Room roomForRenovation)
+        public void ChangeRoomActivityStatus(Room roomForRenovation)
         {
-            _roomService.CheckRenovationTerm(roomForRenovation);
+            _roomService.ChangeRoomActivityStatus(roomForRenovation);
         }
         public Room GetMagacine()
         {

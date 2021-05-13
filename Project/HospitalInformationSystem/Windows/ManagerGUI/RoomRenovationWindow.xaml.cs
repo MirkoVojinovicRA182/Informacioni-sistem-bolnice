@@ -14,10 +14,12 @@ namespace HospitalInformationSystem.Windows.ManagerGUI
     /// </summary>
     public partial class RoomRenovationWindow : Window
     {
-        private Room roomForRenovation;
+        private Room roomSelectedFromTable;
+        private Room roomSelectedFromComboBox;
         private DateTime startTermDate;
         private DateTime endTermDate;
-        string[] selectedTimeSeparator = { ":", };
+        private string[] selectedTimeSeparator = { ":", };
+        private string nameOfNewRoom;
         private static RoomRenovationWindow instance;
         public static RoomRenovationWindow GetInstance(Room roomForRenovation)
         {
@@ -28,7 +30,7 @@ namespace HospitalInformationSystem.Windows.ManagerGUI
         private RoomRenovationWindow(Room roomForRenovation)
         {
             InitializeComponent();
-            this.roomForRenovation = roomForRenovation;
+            this.roomSelectedFromTable = roomForRenovation;
             roomForMergeComboBox.ItemsSource = RoomController.GetInstance().GetRooms();
             LoadTimeComboBoxes();
         }
@@ -39,11 +41,10 @@ namespace HospitalInformationSystem.Windows.ManagerGUI
         }
         private void confirmButton_Click(object sender, RoutedEventArgs e)
         {
+
             MakeStartAndEndTermDate();
             if (CheckTheCorrectnessOfTheTerm())
             {
-                RoomController.GetInstance().SetRenovationStateToRoom(roomForRenovation, NewRoomRenovationState());
-                CreateThreadForRenovationSimulation();
                 CheckWindowOptionalControlsSelection();
                 GiveFeedbackToManager();
                 this.Close();
@@ -64,7 +65,7 @@ namespace HospitalInformationSystem.Windows.ManagerGUI
         }
         private bool CheckTheCorrectnessOfTheTerm()
         {
-            foreach(Appointment appointment in RoomController.GetInstance().GetAppointmentsInRoom(roomForRenovation.Name))
+            foreach(Appointment appointment in RoomController.GetInstance().GetAppointmentsInRoom(roomSelectedFromTable.Name))
             {
                 if (AppointmentStartIsBetweenTermTimeSpan(appointment) || TermIsInAppointmentTimeSpan(appointment) ||
                     AppointmentEndIsBetweenTermTimeSpan(appointment))
@@ -88,51 +89,44 @@ namespace HospitalInformationSystem.Windows.ManagerGUI
         {
             return new RoomRenovationState(GetDate((string)startTimeComboBox.SelectedItem, startDatePicker), GetDate((string)endTimeComboBox.SelectedItem, endDatePicker));
         }
-        private void CreateThreadForRenovationSimulation()
-        {
-            Thread thread = new Thread(() =>
-            {
-                while (true)
-                {
-                    RoomController.GetInstance().CheckRenovationTerm(roomForRenovation);
-                }
-            });
-            thread.Start();
-        }
         private void CheckWindowOptionalControlsSelection()
         {
             if ((bool)duplicateRoomCheckBox.IsChecked)
             {
+                RoomController.GetInstance().SetRenovationStateToRoom(roomSelectedFromTable, NewRoomRenovationState());
+                CreateThreadForRenovationSimulation(roomSelectedFromTable);
                 CreateThreadForDuplicatingRoom();
             }
             else if (roomForMergeComboBox.SelectedItem != null)
             {
-                CreateThreadForRoomMerge((Room)roomForMergeComboBox.SelectedItem);
+                nameOfNewRoom = newMergedRoomTextBox.Text;
+                roomSelectedFromComboBox = (Room)roomForMergeComboBox.SelectedItem;
+                RoomController.GetInstance().SetRenovationStateToRoom(roomSelectedFromTable, NewRoomRenovationState());
+                RoomController.GetInstance().SetRenovationStateToRoom((Room)roomForMergeComboBox.SelectedItem, NewRoomRenovationState());
+                CreateThreadForRenovationSimulation(roomSelectedFromTable);
+                CreateThreadForRenovationSimulation((Room)roomForMergeComboBox.SelectedItem);
+                CreateThreadForRoomMerge();
             }
+            else
+                CreateThreadForRenovationSimulation(roomSelectedFromTable);
 
         }
-        private void CreateThreadForRoomMerge(Room selectedRoomForMerge)
+        private void CreateThreadForRenovationSimulation(Room roomForRenovation)
         {
             Thread thread = new Thread(() =>
             {
                 while (true)
                 {
-                    if(MergeIsDone(selectedRoomForMerge))
+                    RoomController.GetInstance().ChangeRoomActivityStatus(roomForRenovation);
+                    if (RenovationIsComplete())
                         break;
                 }
             });
             thread.Start();
         }
-        private bool MergeIsDone(Room selectedRoomForMerge)
+        private bool RenovationIsComplete()
         {
-            if (!RoomController.GetInstance().RoomActivityStatus(roomForRenovation) && DateTime.Now >= endTermDate)
-            {
-                RoomController.GetInstance().CreateRoom(new Room(roomForRenovation.Id, newMergedRoomTextBox.Text, roomForRenovation.Floor, roomForRenovation.Type));
-                RoomController.GetInstance().DeleteRoom(roomForRenovation);
-                RoomController.GetInstance().DeleteRoom(selectedRoomForMerge);
-                return true;
-            }
-            return false;
+            return !RoomController.GetInstance().RoomActivityStatus(roomSelectedFromTable) && DateTime.Now >= endTermDate;
         }
         private void CreateThreadForDuplicatingRoom()
         {
@@ -140,22 +134,41 @@ namespace HospitalInformationSystem.Windows.ManagerGUI
             {
                 while (true)
                 {
-                    if (RoomIsDuplicated())
+                    if (RenovationIsComplete())
+                    {
+                        DeleteOneAndCreateTwoRooms();
                         break;
+                    }
                 }
             });
             thread.Start();
         }
-        private bool RoomIsDuplicated()
+        private void DeleteOneAndCreateTwoRooms()
         {
-            if (!RoomController.GetInstance().RoomActivityStatus(roomForRenovation) && DateTime.Now >= endTermDate)
+            RoomController.GetInstance().CreateRoom(new Room(RoomController.GetInstance().GetRooms().Count, roomSelectedFromTable.Name + "A", roomSelectedFromTable.Floor, roomSelectedFromTable.Type));
+            RoomController.GetInstance().CreateRoom(new Room(RoomController.GetInstance().GetRooms().Count, roomSelectedFromTable.Name + "B", roomSelectedFromTable.Floor, roomSelectedFromTable.Type));
+            RoomController.GetInstance().DeleteRoom(roomSelectedFromTable);
+        }
+        private void CreateThreadForRoomMerge()
+        {
+            Thread thread = new Thread(() =>
             {
-                RoomController.GetInstance().CreateRoom(new Room(RoomController.GetInstance().GetRooms().Count, roomForRenovation.Name + "A", roomForRenovation.Floor, roomForRenovation.Type));
-                RoomController.GetInstance().CreateRoom(new Room(RoomController.GetInstance().GetRooms().Count, roomForRenovation.Name + "B", roomForRenovation.Floor, roomForRenovation.Type));
-                RoomController.GetInstance().DeleteRoom(roomForRenovation);
-                return true;
-            }
-            return false;
+                while (true)
+                {
+                    if (RenovationIsComplete())
+                    {
+                        MergeRooms();
+                        break;
+                    }
+                }
+            });
+            thread.Start();
+        }
+        private void MergeRooms()
+        {
+            RoomController.GetInstance().CreateRoom(new Room(roomSelectedFromTable.Id, nameOfNewRoom, roomSelectedFromTable.Floor, roomSelectedFromTable.Type));
+            RoomController.GetInstance().DeleteRoom(roomSelectedFromTable);
+            RoomController.GetInstance().DeleteRoom(roomSelectedFromComboBox);
         }
         private void GiveFeedbackToManager()
         {

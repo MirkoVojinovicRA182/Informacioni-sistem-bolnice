@@ -99,7 +99,7 @@ namespace HospitalInformationSystem.Service
         {
             room.RoomRenovationState = roomRenovationState;
         }
-        public void CheckRenovationTerm(Room roomForRenovation)
+        public void ChangeRoomActivityStatus(Room roomForRenovation)
         {
             roomForRenovation.RoomRenovationState.ActivityStatus = DateTime.Now >= roomForRenovation.RoomRenovationState.StartDate && 
                 DateTime.Now <= roomForRenovation.RoomRenovationState.EndDate;

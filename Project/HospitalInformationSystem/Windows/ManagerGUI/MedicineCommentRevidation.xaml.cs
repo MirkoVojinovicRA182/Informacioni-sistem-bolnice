@@ -42,10 +42,16 @@ namespace HospitalInformationSystem.Windows.ManagerGUI
 
         private void acceptCommentButton_Click(object sender, RoutedEventArgs e)
         {
-            EditMedicineWindow.GetInstance(_commentedMedicine).Show();
+            EditMedicineWindow.GetInstance(_commentedMedicine).ShowDialog();
+            SetCommentToNullAndCloseWindow();
         }
 
         private void declineCommentButton_Click(object sender, RoutedEventArgs e)
+        {
+            _commentedMedicine.Comment = null;
+            SetCommentToNullAndCloseWindow();
+        }
+        private void SetCommentToNullAndCloseWindow()
         {
             _commentedMedicine.Comment = null;
             MedicineWithCommentPreview.GetInstance().LoadListBox();

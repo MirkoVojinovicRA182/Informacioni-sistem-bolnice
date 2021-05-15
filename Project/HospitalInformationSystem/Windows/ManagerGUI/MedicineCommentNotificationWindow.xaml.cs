@@ -38,6 +38,7 @@ namespace HospitalInformationSystem.Windows.ManagerGUI
 
         private void lookCommentButton_Click(object sender, RoutedEventArgs e)
         {
+            MedicineWithCommentPreview.GetInstance().Show();
             this.Close();
         }
 

@@ -67,5 +67,9 @@ namespace HospitalInformationSystem.Controller
         {
             return medicineService.MedicineCommentExists();
         }
+        public List<Medicine> GetAllMedicinesWithComment()
+        {
+            return medicineService.GetAllMedicinesWithComment();
+        }
     }
 }

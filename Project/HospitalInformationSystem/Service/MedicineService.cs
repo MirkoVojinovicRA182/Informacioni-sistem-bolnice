@@ -93,5 +93,15 @@ namespace HospitalInformationSystem.Service
             }
             return false;
         }
+        public List<Medicine> GetAllMedicinesWithComment()
+        {
+            List<Medicine> medicinesWithComment = new List<Medicine>();
+            foreach (Medicine medicine in medicineList)
+            {
+                if (medicine.Comment != null)
+                    medicinesWithComment.Add(medicine);
+            }
+            return medicinesWithComment;
+        }
     }
 }

@@ -1,4 +1,5 @@
-﻿using Model;
+﻿using HospitalInformationSystem.Controller;
+using Model;
 using System.Windows;
 using System.Windows.Input;
 
@@ -74,6 +75,7 @@ namespace HospitalInformationSystem.Windows.DoctorGUI
         private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
         {
             instance = null;
+            MedicineController.GetInstance().SaveInFile();
         }
     }
 }

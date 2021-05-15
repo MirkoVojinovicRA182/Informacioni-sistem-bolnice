@@ -181,7 +181,7 @@ namespace HospitalInformationSystem.Windows.ManagerGUI
 
         private void medicineComments_Click(object sender, RoutedEventArgs e)
         {
-
+            MedicineWithCommentPreview.GetInstance().Show();
         }
     }
 }

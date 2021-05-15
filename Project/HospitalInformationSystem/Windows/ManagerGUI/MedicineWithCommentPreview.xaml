@@ -8,7 +8,7 @@
         Title="" Height="310" Width="190" Closing="Window_Closing">
     <Grid>
         <Label Content="Komentarisani lekovi:" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10,10,0,0" FontSize="15" FontWeight="Bold"/>
-        <ListBox x:Name="medicineListBox" HorizontalAlignment="Left" Height="215" VerticalAlignment="Top" Width="143" Margin="19,45,0,0" FontSize="15" FontStyle="Italic">
+        <ListBox x:Name="medicineListBox" HorizontalAlignment="Left" Height="215" VerticalAlignment="Top" Width="143" Margin="19,45,0,0" FontSize="15" FontStyle="Italic" SelectionChanged="medicineListBox_SelectionChanged">
             <ListBox.ItemTemplate>
                 <DataTemplate>
                     <TextBlock>

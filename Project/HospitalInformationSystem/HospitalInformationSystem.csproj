@@ -161,6 +161,9 @@
     <Compile Include="Windows\ManagerGUI\MedicineCommentNotificationWindow.xaml.cs">
       <DependentUpon>MedicineCommentNotificationWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Windows\ManagerGUI\MedicineCommentRevidation.xaml.cs">
+      <DependentUpon>MedicineCommentRevidation.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Windows\ManagerGUI\MedicineTableUserControl.xaml.cs">
       <DependentUpon>MedicineTableUserControl.xaml</DependentUpon>
     </Compile>
@@ -351,6 +354,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Windows\ManagerGUI\MedicineCommentNotificationWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Windows\ManagerGUI\MedicineCommentRevidation.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

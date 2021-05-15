@@ -35,7 +35,7 @@ namespace HospitalInformationSystem.Windows.ManagerGUI
             InitializeComponent();
             LoadListBox();
         }
-        private void LoadListBox()
+        public void LoadListBox()
         {
             _medicinesWithComment = new ObservableCollection<Medicine>(MedicineController.GetInstance().GetAllMedicinesWithComment());
             medicineListBox.ItemsSource = null;
@@ -45,6 +45,11 @@ namespace HospitalInformationSystem.Windows.ManagerGUI
         private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
         {
             _instance = null;
+        }
+
+        private void medicineListBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            MedicineCommentRevidation.GetInstance((Medicine)medicineListBox.SelectedItem).Show();
         }
     }
 }

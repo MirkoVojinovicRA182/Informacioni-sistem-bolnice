@@ -31,7 +31,7 @@ namespace HospitalInformationSystem.Windows.ManagerGUI
             equipmentTable.refreshTable();
             medicineTableUserControl.RefreshTable();
             if(MedicineCommentsExists())
-                MedicineCommentNotificationWindow.GetInstance().Show();
+                MedicineCommentNotificationWindow.GetInstance().ShowDialog();
 
         }
 

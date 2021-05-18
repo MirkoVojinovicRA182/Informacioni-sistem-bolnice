@@ -233,6 +233,15 @@
     <Compile Include="Windows\PatientGUI\NotificationWindow.xaml.cs">
       <DependentUpon>NotificationWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Windows\PatientGUI\PatientAnamnesisWindow.xaml.cs">
+      <DependentUpon>PatientAnamnesisWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Windows\PatientGUI\PatientMainWindow.xaml.cs">
+      <DependentUpon>PatientMainWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Windows\PatientGUI\PatientTherapiesWindow.xaml.cs">
+      <DependentUpon>PatientTherapiesWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Windows\PatientGUI\ReviewDoctorWindow.xaml.cs">
       <DependentUpon>ReviewDoctorWindow.xaml</DependentUpon>
     </Compile>
@@ -452,6 +461,18 @@
     <Page Include="Windows\PatientGUI\NotificationWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Windows\PatientGUI\PatientAnamnesisWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Windows\PatientGUI\PatientMainWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Windows\PatientGUI\PatientTherapiesWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Windows\PatientGUI\ReviewDoctorWindow.xaml">
       <SubType>Designer</SubType>

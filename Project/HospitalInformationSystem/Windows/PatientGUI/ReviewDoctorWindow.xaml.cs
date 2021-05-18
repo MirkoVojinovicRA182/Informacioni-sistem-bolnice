@@ -62,7 +62,16 @@ namespace HospitalInformationSystem.Windows.PatientGUI
                                                     (AnswersDoctorSurvey)comboBoxQuestion3.SelectedItem, (AnswersDoctorSurvey)comboBoxQuestion4.SelectedItem };
         }
 
+        private void HomeButton_Click(object sender, RoutedEventArgs e)
+        {
+            this.Close();
+            PatientMainWindow.GetInstance(appointmentForReviewing.patient).Show();
+        }
 
-
+        private void BackButton_Click(object sender, RoutedEventArgs e)
+        {
+            this.Close();
+            PatientAppointmentCRUDOperationsWindow.getInstance(appointmentForReviewing.patient).Show();
+        }
     }
 }

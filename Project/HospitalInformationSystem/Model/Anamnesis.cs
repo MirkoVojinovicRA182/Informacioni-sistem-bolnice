@@ -42,6 +42,14 @@ namespace Model
 
         }
 
+        public string Note
+        {
+            get;
+
+            set;
+
+        }
+
 
     }
 }

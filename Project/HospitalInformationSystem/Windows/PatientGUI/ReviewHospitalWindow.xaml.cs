@@ -34,6 +34,7 @@ namespace HospitalInformationSystem.Windows.PatientGUI
         {
             ResetNumberOfFinishedAppointments();
             this.Close();
+            PatientMainWindow.GetInstance(patient).Show();
         }
 
         private void CollectAnswers()
@@ -69,6 +70,18 @@ namespace HospitalInformationSystem.Windows.PatientGUI
         private void ResetNumberOfFinishedAppointments()
         {
             patient.Activity.NumberOfFinishedAppointmentsSinceReview = 0;
+        }
+
+        private void HomeButton_Click(object sender, RoutedEventArgs e)
+        {
+            this.Close();
+            PatientMainWindow.GetInstance(patient).Show();
+        }
+
+        private void BackButton_Click(object sender, RoutedEventArgs e)
+        {
+            this.Close();
+            PatientMainWindow.GetInstance(patient).Show();
         }
     }
 }

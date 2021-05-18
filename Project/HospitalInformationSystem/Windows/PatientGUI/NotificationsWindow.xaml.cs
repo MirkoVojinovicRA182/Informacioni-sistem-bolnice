@@ -47,5 +47,17 @@ namespace HospitalInformationSystem.Windows.PatientGUI
             TherapiesDataGrid.ItemsSource = null;
             TherapiesDataGrid.ItemsSource = therapyList;
         }
+
+        private void HomeButton_Click(object sender, RoutedEventArgs e)
+        {
+            this.Close();
+            PatientMainWindow.GetInstance(patient).Show();
+        }
+
+        private void BackButton_Click(object sender, RoutedEventArgs e)
+        {
+            this.Close();
+            PatientMainWindow.GetInstance(patient).Show();
+        }
     }
 }

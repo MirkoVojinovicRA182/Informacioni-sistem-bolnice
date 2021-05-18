@@ -13,12 +13,14 @@ namespace HospitalInformationSystem.Windows.PatientGUI
     public partial class EditPatientAppointmentWindow : Window
     {
         private Appointment appointmentForEditing;
-        public EditPatientAppointmentWindow(Appointment forEditing)
+        private PatientAppointmentCRUDOperationsWindow previousWindow;
+        public EditPatientAppointmentWindow(Appointment forEditing, PatientAppointmentCRUDOperationsWindow window)
         {
             InitializeComponent();
             this.appointmentForEditing = forEditing;
+            previousWindow = window;
             LoadDateComboBox();
-            LoadTimeTextBox();
+            LoadTimeComboBox();
         }
 
         private void LoadDateComboBox()
@@ -31,12 +33,6 @@ namespace HospitalInformationSystem.Windows.PatientGUI
                                                         appointmentForEditing.StartTime.Date.AddDays(2).ToString(dateTimeFormat) });
             dateComboBox.ItemsSource = null;
             dateComboBox.ItemsSource = validDateList;
-        }
-
-        private void LoadTimeTextBox()
-        {
-            string[] dateTime = appointmentForEditing.StartTime.ToString("dd.MM.yyyy HH:mm").Split(' ');
-            timeTextBox.Text = dateTime[1];
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
@@ -112,14 +108,29 @@ namespace HospitalInformationSystem.Windows.PatientGUI
         private DateTime ParseDateTime()
         {
             string date = (string)dateComboBox.SelectedItem;
-            string time = timeTextBox.Text;
+            string time = (string)timeComboBox.SelectedItem;
             string dateTime = date + " " + time;
             return DateTime.ParseExact(dateTime, "dd.MM.yyyy HH:mm", CultureInfo.InvariantCulture);
         }
 
-        private void CloseButton_Click(object sender, RoutedEventArgs e)
+        private void LoadTimeComboBox()
+        {
+            var timesStringList = new List<string>();
+            timesStringList.AddRange(new List<string>() { "08:00", "08:30", "09:00", "09:30", "10:00", "10:30", "11:00", "11:30" , "12:00", "12:30", "13:00", "13:30",
+                                                    "14:00", "14:30", "15:00", "15:30", "16:00", "16:30", "17:00", "17:30" , "18:00", "18:30", "19:00", "19:30"
+                                                  });
+            timeComboBox.ItemsSource = timesStringList;
+        }
+
+        private void HomeButton_Click(object sender, RoutedEventArgs e)
         {
             this.Close();
+            PatientMainWindow.GetInstance(appointmentForEditing.patient).Show();
+        }
+        private void BackButton_Click(object sender, RoutedEventArgs e)
+        {
+            this.Close();
+            previousWindow.Show();
         }
     }
 }

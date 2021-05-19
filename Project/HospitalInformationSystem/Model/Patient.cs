@@ -198,6 +198,18 @@ namespace Model
             return Name + " " + Surname;
         }
 
+        public string GetPatientNameAndSurname
+        {
+            get { return Name + " " + Surname; }
+            set { }
+        }
+
+        public int GetMedicalRecordId
+        {
+            get { return medicalRecord.getId(); }
+            set { }
+        }
+
         public HospitalTreatment hospitalTreatment { get; set; }
     }
 }

@@ -9,10 +9,16 @@ namespace HospitalInformationSystem.Windows.DoctorGUI
     /// </summary>
     public partial class ShowPatientInformationWindow : Window
     {
-        Doctor doctor;
-        Patient patient;
-
-        public ShowPatientInformationWindow(Patient patient, Doctor doctor)
+        private Doctor doctor;
+        private Patient patient;
+        private static ShowPatientInformationWindow instance = null;
+        public static ShowPatientInformationWindow GetInstance(Patient patient, Doctor doctor)
+        {
+            if (instance == null)
+                instance = new ShowPatientInformationWindow(patient, doctor);
+            return instance;
+        }
+        private ShowPatientInformationWindow(Patient patient, Doctor doctor)
         {
             InitializeComponent();
             this.patient = patient;
@@ -23,10 +29,15 @@ namespace HospitalInformationSystem.Windows.DoctorGUI
 
         private void CheckKeyPress()
         {
-            if (Keyboard.IsKeyDown(Key.Enter))
+            if ((Keyboard.IsKeyDown(Key.LeftCtrl) || Keyboard.IsKeyDown(Key.RightCtrl)) && Keyboard.IsKeyDown(Key.Z))
             {
                 MedicalRecordWindow medicalRecordWindow = new MedicalRecordWindow(patient);
                 medicalRecordWindow.ShowDialog();
+            }
+            else if ((Keyboard.IsKeyDown(Key.LeftCtrl) || Keyboard.IsKeyDown(Key.RightCtrl)) && Keyboard.IsKeyDown(Key.T))
+            {
+                SendToHospitalTreatmentWindow window = SendToHospitalTreatmentWindow.GetInstance(patient);
+                window.Show();
             }
             else if (Keyboard.IsKeyDown(Key.Escape))
             {
@@ -39,13 +50,9 @@ namespace HospitalInformationSystem.Windows.DoctorGUI
             CheckKeyPress();
         }
 
-        /*private void newAppointmentButton_Click(object sender, RoutedEventArgs e)
+        private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
         {
-            Window2 doctorAddNewAppointmentWindow = new Window2(doctor);
-
-            doctorAddNewAppointmentWindow.ShowDialog();
-            doctorAddNewAppointmentWindow.patientListBox.SelectedIndex = 10;
-            doctorAddNewAppointmentWindow.patientListBox.SelectedItem = patient;
-        }*/
+            instance = null;
+        }
     }
 }

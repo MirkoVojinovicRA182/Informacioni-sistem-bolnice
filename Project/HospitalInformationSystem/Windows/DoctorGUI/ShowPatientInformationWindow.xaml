@@ -5,18 +5,21 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:HospitalInformationSystem.Windows"
         mc:Ignorable="d"
-        Title="ShowPatientInformationWindow" Height="420" Width="350" KeyDown="Window_KeyDown">
+        Title="ShowPatientInformationWindow" Height="420" Width="350" KeyDown="Window_KeyDown" Closing="Window_Closing">
     <Grid>
         <Label Content="Pacijent:" HorizontalAlignment="Left" Margin="121,10,0,0" VerticalAlignment="Top" FontSize="18"/>
         <Label x:Name="nameLabel" Content="Ime i prezime" HorizontalAlignment="Left" Margin="201,10,0,0" VerticalAlignment="Top" FontSize="18"/>
         <Label Content="JMBG:" HorizontalAlignment="Left" Margin="121,44,0,0" VerticalAlignment="Top" FontSize="18"/>
         <Label x:Name="jmbgLabel" Content="JMBG" HorizontalAlignment="Left" Margin="201,44,0,0" VerticalAlignment="Top" FontSize="18"/>
         <Image HorizontalAlignment="Left" Height="80" Margin="10,10,0,0" VerticalAlignment="Top" Width="80" Source="patientsIcon.png"/>
-        <Image HorizontalAlignment="Left" Height="100" Margin="10,95,0,0" VerticalAlignment="Top" Width="100" Source="medicalRecordIcon.png"/>
-        <Label Content="Pregled zdravstvenog&#xD;&#xA;kartona pacijenta" HorizontalAlignment="Left" Height="67" Margin="125,112,0,0" VerticalAlignment="Top" Width="197" FontSize="18"/>
-        <Label Content="ENTER" HorizontalAlignment="Left" Margin="36,200,0,0" VerticalAlignment="Top" FontSize="14"/>
+        <Image HorizontalAlignment="Left" Height="70" Margin="10,95,0,0" VerticalAlignment="Top" Width="70" Source="medicalRecordIcon.png"/>
+        <Label Content="Pregled zdravstvenog&#xD;&#xA;kartona pacijenta" HorizontalAlignment="Left" Height="67" Margin="125,98,0,0" VerticalAlignment="Top" Width="197" FontSize="18"/>
+        <Label Content="CTRL+Z" HorizontalAlignment="Left" Margin="15,165,0,0" VerticalAlignment="Top" FontSize="14"/>
         <Image HorizontalAlignment="Left" Height="40" Margin="282,320,0,0" VerticalAlignment="Top" Width="40" Source="quitIcon.png"/>
         <Label Content="ESC" HorizontalAlignment="Left" Margin="287,358,0,0" VerticalAlignment="Top"/>
+        <Image HorizontalAlignment="Left" Height="70" Margin="10,204,0,0" VerticalAlignment="Top" Width="70" Source="hospitalTreatmentIcon.png"/>
+        <Label Content="Slanje pacijenta na&#xD;&#xA;bolnicko lecenje" HorizontalAlignment="Left" Height="67" Margin="125,204,0,0" VerticalAlignment="Top" Width="197" FontSize="18"/>
+        <Label Content="CTRL+T" HorizontalAlignment="Left" Margin="18,274,0,0" VerticalAlignment="Top" FontSize="14"/>
 
     </Grid>
 </Window>

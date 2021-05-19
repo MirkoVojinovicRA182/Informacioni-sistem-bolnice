@@ -197,5 +197,7 @@ namespace Model
         {
             return Name + " " + Surname;
         }
+
+        public HospitalTreatment hospitalTreatment { get; set; }
     }
 }

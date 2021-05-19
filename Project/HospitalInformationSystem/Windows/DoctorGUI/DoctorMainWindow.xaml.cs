@@ -22,11 +22,18 @@ namespace HospitalInformationSystem.Windows.DoctorGUI
         private DoctorMainWindow(Doctor doctor)
         {
             InitializeComponent();
+            LoadDataFromFiles();
             this.doctor = doctor;
-            initData();
+            InitData();
         }
-
-        private void initData()
+        private void LoadDataFromFiles()
+        {
+            RoomController.getInstance().loadFromFile();
+            DoctorController.getInstance().LoadFromFile();
+            PatientController.getInstance().LoadFromFile();
+            AppointmentController.getInstance().loadFromFile();
+        }
+        private void InitData()
         {
             nameLabel.Content = doctor.Name + " " + doctor.Surname;
             if (doctor.Specialization == Specialization.Family_Physician)
@@ -48,7 +55,8 @@ namespace HospitalInformationSystem.Windows.DoctorGUI
         {
             if ((Keyboard.IsKeyDown(Key.LeftCtrl) || Keyboard.IsKeyDown(Key.RightCtrl)) && Keyboard.IsKeyDown(Key.P))
             {
-                
+                PatientPreviewWindow window = PatientPreviewWindow.GetInstance(doctor);
+                window.Show();
             }
             else if((Keyboard.IsKeyDown(Key.LeftCtrl) || Keyboard.IsKeyDown(Key.RightCtrl)) && Keyboard.IsKeyDown(Key.K))
             {
@@ -74,8 +82,11 @@ namespace HospitalInformationSystem.Windows.DoctorGUI
 
         private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
         {
+            DoctorController.getInstance().SaveInFlie();
+            RoomController.getInstance().saveInFile();
+            AppointmentController.getInstance().saveInFile();
+            PatientController.getInstance().SaveInFile();
             instance = null;
-            MedicineController.GetInstance().SaveInFile();
         }
     }
 }

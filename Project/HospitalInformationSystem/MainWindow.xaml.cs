@@ -19,7 +19,6 @@ namespace HospitalInformationSystem.Windows
     public partial class MainWindow : Window
     {
         private static Person person;
-        PatientsRepository savePatients = new PatientsRepository();
  
         public MainWindow()
         {
@@ -35,7 +34,7 @@ namespace HospitalInformationSystem.Windows
             RoomController.GetInstance().AddRoomToRoomList(room4);
             RoomController.GetInstance().AddRoomToRoomList(room5);*/
             RoomController.GetInstance().LoadRoomsFromFile();
-            savePatients.loadFromFile();
+            PatientController.getInstance().LoadFromFile();
             AppointmentController.getInstance().loadFromFile();
             DoctorController.getInstance().LoadFromFile();
 
@@ -149,7 +148,7 @@ namespace HospitalInformationSystem.Windows
 
         private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
         {
-            savePatients.saveInFile();
+            PatientController.getInstance().SaveInFile();
         }
 
         public static List<String> GetTimeList()

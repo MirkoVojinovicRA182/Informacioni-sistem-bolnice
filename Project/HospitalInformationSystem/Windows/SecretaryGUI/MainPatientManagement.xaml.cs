@@ -1,19 +1,7 @@
 ﻿using HospitalInformationSystem.Controller;
-using HospitalInformationSystem.Windows.SecretaryGUI;
 using Model;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
 
 namespace HospitalInformationSystem.Windows.SecretaryGUI
 {
@@ -70,13 +58,16 @@ namespace HospitalInformationSystem.Windows.SecretaryGUI
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            AddAllergen addAllergen = new AddAllergen();
-            addAllergen.ShowDialog();
+            if (accountsList.SelectedIndex >= 0)
+            {
+                AddAllergen addAllergen = new AddAllergen((Patient)accountsList.SelectedItem);
+                addAllergen.ShowDialog();
+            }
         }
 
         private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
         {
-            
+            PatientController.getInstance().SaveInFile();
         }
     }
 }

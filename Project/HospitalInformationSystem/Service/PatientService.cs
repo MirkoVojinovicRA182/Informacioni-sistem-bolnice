@@ -129,6 +129,8 @@ namespace HospitalInformationSystem.Service
 
         public void AddAllergenToPatient(Patient patientToAddAllergen, string allergen)
         {
+            if (patientToAddAllergen.Allergens == null)
+                patientToAddAllergen.Allergens = new List<string>();
             patientToAddAllergen.Allergens.Add(allergen);
         }
         public void SaveInFile()

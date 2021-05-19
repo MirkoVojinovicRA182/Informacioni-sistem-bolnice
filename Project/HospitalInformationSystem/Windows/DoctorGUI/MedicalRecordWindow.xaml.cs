@@ -58,7 +58,7 @@ namespace HospitalInformationSystem.Windows.DoctorGUI
 
         private void allergensButton_Click(object sender, RoutedEventArgs e)
         {
-            DoctorAllergensPreviewWindow doctorAllergensPreviewWindow = new DoctorAllergensPreviewWindow(patient.GetMedicalRecord());
+            DoctorAllergensPreviewWindow doctorAllergensPreviewWindow = new DoctorAllergensPreviewWindow(patient);
             doctorAllergensPreviewWindow.ShowDialog();
         }
 

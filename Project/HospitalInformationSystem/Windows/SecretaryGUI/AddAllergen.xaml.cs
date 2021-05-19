@@ -21,9 +21,11 @@ namespace HospitalInformationSystem.Windows.SecretaryGUI
     /// </summary>
     public partial class AddAllergen : Window
     {
-        public AddAllergen()
+        Patient patientToAddAllergen;
+        public AddAllergen(Patient patientToAddAllergen)
         {
             InitializeComponent();
+            this.patientToAddAllergen = patientToAddAllergen;
         }
 
         private void addAllergenBtn_Click(object sender, RoutedEventArgs e)
@@ -31,6 +33,7 @@ namespace HospitalInformationSystem.Windows.SecretaryGUI
             Allergen newAllergen = new Allergen(allergenNameTxt.Text);
             newAllergen.isAllergic = false;
             PatientController.getInstance().addAllergen(newAllergen);
+            PatientController.getInstance().AddAllergenToPatient(patientToAddAllergen, allergenNameTxt.Text);
         }
     }
 }

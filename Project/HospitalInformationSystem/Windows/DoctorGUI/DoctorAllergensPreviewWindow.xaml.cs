@@ -8,10 +8,10 @@ namespace HospitalInformationSystem.Windows.DoctorGUI
     /// </summary>
     public partial class DoctorAllergensPreviewWindow : Window
     {
-        public DoctorAllergensPreviewWindow(MedicalRecord medicalRecord)
+        public DoctorAllergensPreviewWindow(Patient patientToViewAllergens)
         {
             InitializeComponent();
-            allergensListBox.DataContext = medicalRecord.AllergensList;
+            allergensListBox.ItemsSource = patientToViewAllergens.Allergens;
         }
     }
 }

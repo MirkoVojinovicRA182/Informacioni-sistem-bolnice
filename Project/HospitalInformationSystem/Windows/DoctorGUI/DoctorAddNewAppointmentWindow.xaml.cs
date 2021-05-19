@@ -38,12 +38,12 @@ namespace HospitalInformationSystem.Windows.DoctorGUI
         private void InitRooms()
         {
             List<Room> roomsList = new List<Room>();
-            foreach(Room room in RoomController.GetInstance().GetRooms())
+            foreach(Room room in RoomController.getInstance().getRooms())
             {
                 if (room.Type == TypeOfRoom.OperationRoom)
                     roomsList.Add(room);
             }
-            roomsListBox.DataContext = roomsList;
+            operationRoomsListBox.ItemsSource = roomsList;
         }
 
         private void InitTypeOfAppointment()
@@ -60,10 +60,6 @@ namespace HospitalInformationSystem.Windows.DoctorGUI
             return dateOfAppointment.AddMinutes(30) < room.RoomRenovationState.StartDate || dateOfAppointment > room.RoomRenovationState.EndDate;
         }
 
-        private void roomsListBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            selectedRoomForAppointment = (Room)roomsListBox.SelectedItem;
-        }
         private void createAppointment()
         {
             DateTime date = DateTime.ParseExact(dateTextBox.Text + " " + timeTextBox.Text, dateTemplate, System.Globalization.CultureInfo.InvariantCulture);
@@ -80,13 +76,15 @@ namespace HospitalInformationSystem.Windows.DoctorGUI
             if (String.Compare((string)appointmentComboBox.SelectedItem, "Operacija") == 0)
             {
                 roomLabel.Visibility = Visibility.Visible;
-                roomsListBox.Visibility = Visibility.Visible;
+                operationRoomsListBox.Visibility = Visibility.Visible;
+                operationRoomsListBox.IsEnabled = true;
                 typeOfAppointment = TypeOfAppointment.Operacija;
             }
             else
             {
                 roomLabel.Visibility = Visibility.Hidden;
-                roomsListBox.Visibility = Visibility.Hidden;
+                operationRoomsListBox.Visibility = Visibility.Hidden;
+                operationRoomsListBox.IsEnabled = false;
                 selectedRoomForAppointment = loggedDoctor.room;
                 typeOfAppointment = TypeOfAppointment.Pregled;
             }
@@ -130,7 +128,7 @@ namespace HospitalInformationSystem.Windows.DoctorGUI
 
         private bool CheckSelectedRoom()
         {
-            if (appointmentComboBox.SelectedItem.Equals("Operacija") && roomsListBox.SelectedIndex < 0)
+            if (appointmentComboBox.SelectedItem.Equals("Operacija") && operationRoomsListBox.SelectedIndex < 0)
             {
                 MessageBox.Show("Morate odabrati prostoriju!", "Termin", MessageBoxButton.OK, MessageBoxImage.Error);
                 return false;
@@ -180,23 +178,24 @@ namespace HospitalInformationSystem.Windows.DoctorGUI
             return (String.Compare((string)appointmentComboBox.SelectedItem, "Operacija") == 0);
         }
 
-        private void AppointmentIsOperation()
-        {
-
-        }
-
         private void CheckKeyPress()
         {
             if ((Keyboard.IsKeyDown(Key.LeftCtrl) || Keyboard.IsKeyDown(Key.RightCtrl)) && Keyboard.IsKeyDown(Key.A))
             {
                 if (CheckAllInputs() && IsSelectedAppointmentOperation())
                 {
-                        selectedRoomForAppointment = (Room)roomsListBox.SelectedItem;
+                        selectedRoomForAppointment = (Room)operationRoomsListBox.SelectedItem;
                         if (!CheckRoomState(selectedRoomForAppointment))
                         {
                             MessageBox.Show("Prostorija je zauzeta u datom terminu!", "Greska", MessageBoxButton.OK, MessageBoxImage.Warning);
                             return;
                         }
+                    createAppointment();
+                    MessageBox.Show("Termin je uspesno zakazan", "Novi Termin", MessageBoxButton.OK, MessageBoxImage.Information);
+                }
+                else if (CheckAllInputs())
+                {
+                    selectedRoomForAppointment = loggedDoctor.room;
                     createAppointment();
                     MessageBox.Show("Termin je uspesno zakazan", "Novi Termin", MessageBoxButton.OK, MessageBoxImage.Information);
                 }
@@ -213,6 +212,16 @@ namespace HospitalInformationSystem.Windows.DoctorGUI
         }
 
         private void patientListBox_PreviewKeyDown(object sender, KeyEventArgs e)
+        {
+            CheckKeyPress();
+        }
+
+        private void operationRoomsListBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            selectedRoomForAppointment = (Room)operationRoomsListBox.SelectedItem;
+        }
+
+        private void operationRoomsListBox_PreviewKeyDown(object sender, KeyEventArgs e)
         {
             CheckKeyPress();
         }

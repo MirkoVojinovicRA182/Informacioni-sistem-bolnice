@@ -1,4 +1,5 @@
-﻿using HospitalInformationSystem.Service;
+﻿using HospitalInformationSystem.Model;
+using HospitalInformationSystem.Service;
 using Model;
 using System;
 using System.Collections.Generic;
@@ -75,6 +76,26 @@ namespace HospitalInformationSystem.Controller
         public void AddPrescription(Patient patient, Prescription prescription)
         {
             patientService.AddPrescription(patient, prescription);
+        }
+
+        public void AddHospitalTreatment(Patient patientToSendOnHospitalTreatmant, HospitalTreatment hospitalTreatment)
+        {
+            patientService.AddHospitalTreatment(patientToSendOnHospitalTreatmant, hospitalTreatment);
+        }
+
+        public void EditHospitalTreatment(Patient patientToEditHospitalTreatment, DateTime startTime, DateTime endTime, Room roomForTreatment)
+        {
+            patientService.EditHospitalTreatment(patientToEditHospitalTreatment, startTime, endTime, roomForTreatment);
+        }
+
+        public void SaveInFile()
+        {
+            patientService.SaveInFile();
+        }
+
+        public void LoadFromFile()
+        {
+            patientService.LoadFromFile();
         }
     }
 }

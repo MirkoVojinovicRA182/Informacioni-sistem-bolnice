@@ -4,6 +4,8 @@
  * Purpose: Definition of the Class Service.PatientManagement
  ***********************************************************************/
 
+using HospitalInformationSystem.Model;
+using HospitalInformationSystem.Repository;
 using Model;
 using System;
 using System.Collections.Generic;
@@ -13,13 +15,14 @@ namespace HospitalInformationSystem.Service
 {
     public class PatientService
     {
-
+        PatientsRepository patientsFile;
         public List<Patient> patients;
         public List<Allergen> allergens;
 
         public PatientService()
         {
             patients = new List<Patient>();
+            patientsFile = new PatientsRepository();
         }
 
         public void CreatePatient(string username, string name, string surname,
@@ -110,6 +113,27 @@ namespace HospitalInformationSystem.Service
         public void AddPrescription(Patient patient, Prescription prescription)
         {
             patient.GetMedicalRecord().addPrescription(prescription);
+        }
+
+        public void AddHospitalTreatment(Patient patientToSendOnHospitalTreatmant, HospitalTreatment hospitalTreatment)
+        {
+            patientToSendOnHospitalTreatmant.hospitalTreatment = hospitalTreatment;
+        }
+
+        public void EditHospitalTreatment(Patient patientToEditHospitalTreatment, DateTime startTime, DateTime endTime, Room roomForTreatment)
+        {
+            patientToEditHospitalTreatment.hospitalTreatment.treatmentStartDate = startTime;
+            patientToEditHospitalTreatment.hospitalTreatment.treatmentEndDate = endTime;
+            patientToEditHospitalTreatment.hospitalTreatment.treatmentRoom = roomForTreatment;
+        }
+        public void SaveInFile()
+        {
+            patientsFile.saveInFile();
+        }
+
+        public void LoadFromFile()
+        {
+            patientsFile.loadFromFile();
         }
     }
 }

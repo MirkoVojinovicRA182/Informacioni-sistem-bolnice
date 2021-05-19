@@ -88,6 +88,11 @@ namespace HospitalInformationSystem.Controller
             patientService.EditHospitalTreatment(patientToEditHospitalTreatment, startTime, endTime, roomForTreatment);
         }
 
+        public void AddAllergenToPatient(Patient patientToAddAllergen, string allergen)
+        {
+            patientService.AddAllergenToPatient(patientToAddAllergen, allergen);
+        }
+
         public void SaveInFile()
         {
             patientService.SaveInFile();

@@ -126,6 +126,11 @@ namespace HospitalInformationSystem.Service
             patientToEditHospitalTreatment.hospitalTreatment.treatmentEndDate = endTime;
             patientToEditHospitalTreatment.hospitalTreatment.treatmentRoom = roomForTreatment;
         }
+
+        public void AddAllergenToPatient(Patient patientToAddAllergen, string allergen)
+        {
+            patientToAddAllergen.Allergens.Add(allergen);
+        }
         public void SaveInFile()
         {
             patientsFile.saveInFile();

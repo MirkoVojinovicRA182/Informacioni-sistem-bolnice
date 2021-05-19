@@ -4,6 +4,7 @@
  * Purpose: Definition of the Class Service.PatientManagement
  ***********************************************************************/
 
+using HospitalInformationSystem.Controller;
 using HospitalInformationSystem.Model;
 using HospitalInformationSystem.Repository;
 using Model;
@@ -132,6 +133,16 @@ namespace HospitalInformationSystem.Service
             if (patientToAddAllergen.Allergens == null)
                 patientToAddAllergen.Allergens = new List<string>();
             patientToAddAllergen.Allergens.Add(allergen);
+        }
+
+        public List<Patient> GetPatientsOnHospitalTretment()
+        {
+            List<Patient> patientsOnHospitalTretment = new List<Patient>();
+            foreach(Patient patient in PatientController.getInstance().getPatient())
+            {
+                if (patient.hospitalTreatment != null) patientsOnHospitalTretment.Add(patient);
+            }
+            return patientsOnHospitalTretment;
         }
         public void SaveInFile()
         {

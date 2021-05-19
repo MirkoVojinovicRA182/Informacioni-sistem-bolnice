@@ -93,6 +93,10 @@ namespace HospitalInformationSystem.Controller
             patientService.AddAllergenToPatient(patientToAddAllergen, allergen);
         }
 
+        public List<Patient> GetPatientsOnHospitalTretment()
+        {
+            return patientService.GetPatientsOnHospitalTretment();
+        }
         public void SaveInFile()
         {
             patientService.SaveInFile();

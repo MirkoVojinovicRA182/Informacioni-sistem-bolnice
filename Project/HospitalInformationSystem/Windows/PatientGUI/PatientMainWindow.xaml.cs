@@ -1,4 +1,6 @@
-﻿using Model;
+﻿using HospitalInformationSystem.Controller;
+using HospitalInformationSystem.Model;
+using Model;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -26,6 +28,10 @@ namespace HospitalInformationSystem.Windows.PatientGUI
         {
             InitializeComponent();
             loggedInPatient = patient;
+            Notification notification = new Notification("AAAAAAAAA", new DateTime(2021, 5, 10, 2, 55, 0), new DateTime(2021, 5, 11, 2, 5, 0), new DateTime(2021, 5, 25, 2, 5, 0), true);
+            notification.Patient = loggedInPatient;
+            NotificationController.GetInstance().AddNotification(notification);
+            Notify();
         }
  
         public static PatientMainWindow GetInstance(Patient patient)
@@ -72,6 +78,49 @@ namespace HospitalInformationSystem.Windows.PatientGUI
         {
             PatientAnamnesisWindow window = new PatientAnamnesisWindow(loggedInPatient);
             window.Show();
+        }
+
+
+        public void Notify()
+        {
+            TimeSpan dayTime = new TimeSpan(24, 00, 00);
+            TimeSpan currentTime = TimeSpan.Parse(DateTime.Now.ToString("HH:mm:ss"));
+            List<TimeSpan> notificationTime = new List<TimeSpan>();
+            List<Notification> notifications = NotificationController.GetInstance().GetNotifications();
+
+            for (int i = 0; i < notifications.Count; i++)
+            {
+                if (notifications[i].StartDate.CompareTo(DateTime.Now) < 0 && notifications[i].EndDate.CompareTo(DateTime.Now) > 0 && notifications[i].IsEnabled == true)
+                {
+                    notificationTime.Add(notifications[i].Time.TimeOfDay);
+                }
+            }
+
+            for (int i = 0; i < notificationTime.Count; i++)
+            {
+                TimeSpan timeToNotification = ((dayTime - currentTime) + notificationTime[i]);
+                if (timeToNotification.TotalHours > 24)
+                    timeToNotification -= new TimeSpan(24, 0, 0);
+                var dispatcherTimer = new System.Windows.Threading.DispatcherTimer();
+                dispatcherTimer.Tick += new EventHandler(DispatcherTimer_Tick);
+                dispatcherTimer.Interval = timeToNotification;
+                dispatcherTimer.Start();
+            }
+
+        }
+
+        public void DispatcherTimer_Tick(object sender, EventArgs e)
+        {
+            List<Notification> notifications = NotificationController.GetInstance().GetNotificationsByPatient(loggedInPatient);
+            CustomNotificationWindow window = new CustomNotificationWindow();
+            for (int i = 0; i < notifications.Count; i++)
+            {
+                if (DateTime.Now.TimeOfDay.CompareTo(notifications[i].Time.AddMinutes(-1).TimeOfDay) > 0 && DateTime.Now.TimeOfDay.CompareTo(notifications[i].Time.AddMinutes(1).TimeOfDay) < 0)
+                {
+                    window.notificationTextBlock.Text = notifications[i].Contents;
+                    window.ShowDialog();
+                }
+            }
         }
     }
 }

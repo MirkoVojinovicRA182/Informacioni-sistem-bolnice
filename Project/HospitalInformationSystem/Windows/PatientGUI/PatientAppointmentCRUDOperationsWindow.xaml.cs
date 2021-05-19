@@ -219,9 +219,7 @@ namespace HospitalInformationSystem.Windows.PatientGUI
                     window.doseText.Text = therapies[i].Dosage.ToString();
                     window.ShowDialog();
                 }
-
             }
-
         }
 
         private void RateDoctorButton_Click(object sender, RoutedEventArgs e)

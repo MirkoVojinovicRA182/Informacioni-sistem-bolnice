@@ -66,7 +66,6 @@ namespace HospitalInformationSystem.Windows
             PatientController.getInstance().getPatient().Add(first);
             PatientController.getInstance().getPatient().Add(second);
             PatientController.getInstance().getPatient().Add(third);
-
             Secretary secretary = new Secretary();
             secretary.Name = "Petar";
             secretary.Surname = "Petrovic";

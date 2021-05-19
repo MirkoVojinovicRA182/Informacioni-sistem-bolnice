@@ -95,9 +95,13 @@ namespace HospitalInformationSystem.Windows.DoctorGUI
         {
             return (roomsListBox.SelectedIndex >= 0);
         }
+        private bool CheckIfRoomHaveBeds()
+        {
+            return (((Room)roomsListBox.SelectedItem).Equipment.Contains("22"));
+        }
         private bool CheckAllInputs()
         {
-            return (CheckSelectedRoom() && CheckEndDateInput() && CheckStartDateInput());
+            return (CheckSelectedRoom() && CheckEndDateInput() && CheckStartDateInput() && CheckIfRoomHaveBeds());
         }
         private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
         {

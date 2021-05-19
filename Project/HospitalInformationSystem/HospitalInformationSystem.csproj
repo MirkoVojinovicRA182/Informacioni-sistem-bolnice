@@ -64,6 +64,7 @@
     <Compile Include="Controller\MedicineController.cs" />
     <Compile Include="Controller\PatientController.cs" />
     <Compile Include="Controller\RoomController.cs" />
+    <Compile Include="Model\HospitalTreatment.cs" />
     <Compile Include="Model\Medicine.cs" />
     <Compile Include="Model\MedicineIngredient.cs" />
     <Compile Include="Model\RoomRenovationState.cs" />
@@ -136,6 +137,9 @@
     <Compile Include="Windows\DoctorGUI\DoctorShowPrescription.xaml.cs">
       <DependentUpon>DoctorShowPrescription.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Windows\DoctorGUI\EditHospitalTreatmentWindow.xaml.cs">
+      <DependentUpon>EditHospitalTreatmentWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Windows\DoctorGUI\MedicalRecordWindow.xaml.cs">
       <DependentUpon>MedicalRecordWindow.xaml</DependentUpon>
     </Compile>
@@ -145,8 +149,14 @@
     <Compile Include="Windows\DoctorGUI\MedicinePreviewWindow.xaml.cs">
       <DependentUpon>MedicinePreviewWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Windows\DoctorGUI\PatientPreviewWindow.xaml.cs">
+      <DependentUpon>PatientPreviewWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Windows\DoctorGUI\ReferralLetterWindow.xaml.cs">
       <DependentUpon>ReferralLetterWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Windows\DoctorGUI\SendToHospitalTreatmentWindow.xaml.cs">
+      <DependentUpon>SendToHospitalTreatmentWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="Windows\DoctorGUI\ShowPatientInformationWindow.xaml.cs">
       <DependentUpon>ShowPatientInformationWindow.xaml</DependentUpon>
@@ -325,6 +335,10 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
+    <Page Include="Windows\DoctorGUI\EditHospitalTreatmentWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="Windows\DoctorGUI\MedicalRecordWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -337,7 +351,15 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
+    <Page Include="Windows\DoctorGUI\PatientPreviewWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="Windows\DoctorGUI\ReferralLetterWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Windows\DoctorGUI\SendToHospitalTreatmentWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
@@ -530,6 +552,9 @@
     <Resource Include="Windows\DoctorGUI\patientsIcon.png" />
     <Resource Include="Windows\DoctorGUI\quitIcon.png" />
     <Resource Include="Windows\DoctorGUI\reportIcon.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Windows\DoctorGUI\hospitalTreatmentIcon.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -37,7 +37,7 @@ namespace HospitalInformationSystem.Windows.DoctorGUI
         private void InitRoomsForHospitalTreatment()
         {
             List<Room> roomsForHospitalTreatment = new List<Room>();
-            foreach (Room roomWithBed in RoomController.getInstance().getRooms())
+            foreach (Room roomWithBed in RoomController.GetInstance().GetRooms())
                 if (roomWithBed.Type == TypeOfRoom.RoomWithBeds) roomsForHospitalTreatment.Add(roomWithBed);
             roomsListBox.ItemsSource = roomsForHospitalTreatment;
             currentRoom.Content = patientForEdit.hospitalTreatment.treatmentRoom.Name;

@@ -28,7 +28,7 @@ namespace HospitalInformationSystem.Windows.DoctorGUI
         }
         private void LoadDataFromFiles()
         {
-            RoomController.getInstance().loadFromFile();
+            RoomController.GetInstance().LoadRoomsFromFile();
             DoctorController.getInstance().LoadFromFile();
             PatientController.getInstance().LoadFromFile();
             AppointmentController.getInstance().loadFromFile();
@@ -83,7 +83,7 @@ namespace HospitalInformationSystem.Windows.DoctorGUI
         private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
         {
             DoctorController.getInstance().SaveInFlie();
-            RoomController.getInstance().saveInFile();
+            RoomController.GetInstance().SaveRoomsInFile();
             AppointmentController.getInstance().saveInFile();
             PatientController.getInstance().SaveInFile();
             instance = null;

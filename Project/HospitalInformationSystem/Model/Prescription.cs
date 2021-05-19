@@ -1,4 +1,5 @@
-﻿using System;
+﻿using HospitalInformationSystem.Model;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -14,7 +15,7 @@ namespace Model
 
         }
 
-        public Prescription(string medicine, DateTime startTime, DateTime endTime, string info)
+        public Prescription(Medicine medicine, DateTime startTime, DateTime endTime, string info)
         {
             this.medicine = medicine;
             this.startTime = startTime;
@@ -22,7 +23,7 @@ namespace Model
             this.info = info;
         }
 
-        public string medicine
+        public Medicine medicine
         {
             get;
 

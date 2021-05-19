@@ -13,9 +13,17 @@
         <Label Content="Doza i dodatne informacije:" HorizontalAlignment="Left" Margin="28,150,0,0" VerticalAlignment="Top" FontSize="18"/>
         <TextBox x:Name="endDateTextBox" HorizontalAlignment="Left" Height="35" Margin="174,115,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="155" FontSize="18"/>
         <TextBox x:Name="startDateTextBox" HorizontalAlignment="Left" Height="35" Margin="174,71,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="155" FontSize="18"/>
-        <TextBox x:Name="medicineTextBox" HorizontalAlignment="Left" Height="35" Margin="174,31,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="155" FontSize="18"/>
         <TextBox x:Name="infoTextBox" HorizontalAlignment="Left" Height="161" Margin="28,189,0,0" TextWrapping="Wrap" Text="Informacije o dozi leka i sve ostale dodatne informacije o terapiji." VerticalAlignment="Top" Width="301" FontSize="18"/>
         <Button x:Name="addPrescriptionButton" Content="Izdaj recept" HorizontalAlignment="Center" Margin="119,383,115,0" VerticalAlignment="Top" Width="110" FontSize="18" Click="addPrescriptionButton_Click"/>
+        <ComboBox x:Name="medicineComboBox" HorizontalAlignment="Left" Height="34" Margin="174,33,0,0" VerticalAlignment="Top" Width="155">
+            <ComboBox.ItemTemplate>
+                <DataTemplate>
+                    <TextBlock>
+                 <Run Text="{Binding Name}" />
+                    </TextBlock>
+                </DataTemplate>
+            </ComboBox.ItemTemplate>
+        </ComboBox>
 
     </Grid>
 </Window>

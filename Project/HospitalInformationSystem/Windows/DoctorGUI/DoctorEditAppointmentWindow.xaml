@@ -7,20 +7,10 @@
         mc:Ignorable="d"
         Title="Izmena termina" Height="420" Width="300" KeyDown="Window_KeyDown">
     <Grid>
-        <Label x:Name="roomLabel" Content="Prostorija:" HorizontalAlignment="Left" Height="32" Margin="28,223,0,0" VerticalAlignment="Top" Width="107" FontSize="14" Visibility="Hidden"/>
         <Label Content="Datum:" HorizontalAlignment="Left" Height="37" Margin="28,40,0,0" VerticalAlignment="Top" Width="107" FontSize="14"/>
         <TextBox x:Name="dateTextBox" HorizontalAlignment="Left" Height="37" Margin="135,40,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="128" FontSize="14"/>
         <Label Content="Vreme:" HorizontalAlignment="Left" Height="32" Margin="28,90,0,0" VerticalAlignment="Top" Width="107" FontSize="14"/>
         <TextBox x:Name="timeTextBox" HorizontalAlignment="Left" Height="32" Margin="135,90,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="128" FontSize="14"/>
-        <ComboBox x:Name="roomComboBox" HorizontalAlignment="Left" Margin="135,228,0,0" VerticalAlignment="Top" Width="128" Text="{Binding Name}" Visibility="Hidden" IsEnabled="False">
-            <ComboBox.ItemTemplate>
-                <DataTemplate>
-                    <TextBlock>
-                 <Run Text="{Binding Name}" />
-                    </TextBlock>
-                </DataTemplate>
-            </ComboBox.ItemTemplate>
-        </ComboBox>
         <Label Content="Pacijent:" HorizontalAlignment="Left" Margin="28,140,0,0" VerticalAlignment="Top" FontSize="14" RenderTransformOrigin="0.527,-0.207"/>
         <ListBox x:Name="patientListBox" HorizontalAlignment="Left" Height="135" Margin="28,174,0,0" VerticalAlignment="Top" Width="235" PreviewKeyDown="patientListBox_PreviewKeyDown"/>
         <Image HorizontalAlignment="Left" Height="40" Margin="15,320,0,0" VerticalAlignment="Top" Width="40" Source="editIcon.png"/>

@@ -18,7 +18,7 @@
             <ComboBox.ItemTemplate>
                 <DataTemplate>
                     <TextBlock>
-                 <Run Text="{Binding medicine}" />
+                 <Run Text="{Binding medicine.Name}" />
                     </TextBlock>
                 </DataTemplate>
             </ComboBox.ItemTemplate>

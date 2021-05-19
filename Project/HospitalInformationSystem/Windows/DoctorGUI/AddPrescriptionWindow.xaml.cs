@@ -1,4 +1,5 @@
 ﻿using HospitalInformationSystem.Controller;
+using HospitalInformationSystem.Model;
 using Model;
 using System;
 using System.Windows;
@@ -16,13 +17,14 @@ namespace HospitalInformationSystem.Windows.DoctorGUI
         {
             InitializeComponent();
             this.patient = patient;
+            medicineComboBox.ItemsSource = MedicineController.GetInstance().GetAllMedicines();
         }
 
         private void addPrescriptionButton_Click(object sender, RoutedEventArgs e)
         {
             if(AllInputsCheck())
             {
-                Prescription newPrescription = new Prescription(medicineTextBox.Text, DateTime.ParseExact(startDateTextBox.Text, "dd.MM.yyyy.", System.Globalization.CultureInfo.InvariantCulture), DateTime.ParseExact(endDateTextBox.Text, "dd.MM.yyyy.", System.Globalization.CultureInfo.InvariantCulture), infoTextBox.Text);
+                Prescription newPrescription = new Prescription((Medicine)medicineComboBox.SelectedItem, DateTime.ParseExact(startDateTextBox.Text, "dd.MM.yyyy.", System.Globalization.CultureInfo.InvariantCulture), DateTime.ParseExact(endDateTextBox.Text, "dd.MM.yyyy.", System.Globalization.CultureInfo.InvariantCulture), infoTextBox.Text);
                 PatientController.getInstance().AddPrescription(patient, newPrescription);
                 MessageBox.Show("Recept je uspešno izdat.", "Prescription", MessageBoxButton.OK, MessageBoxImage.Information);
             }
@@ -30,7 +32,7 @@ namespace HospitalInformationSystem.Windows.DoctorGUI
 
         public bool CheckInputOfMedicineTextBox()
         {
-            if (medicineTextBox.Text.Length < 1)
+            if (medicineComboBox.SelectedIndex < 0)
             {
                 MessageBox.Show("Morate uneti lek!", "Medicine", MessageBoxButton.OK, MessageBoxImage.Error);
                 return false;

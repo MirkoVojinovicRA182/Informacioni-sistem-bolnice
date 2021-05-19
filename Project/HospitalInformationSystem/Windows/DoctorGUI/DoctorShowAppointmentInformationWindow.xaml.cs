@@ -39,7 +39,7 @@ namespace HospitalInformationSystem.Windows.DoctorGUI
         {
             if (Keyboard.IsKeyDown(Key.Enter))
             {
-                ShowPatientInformationWindow showPatientInformationWindow = new ShowPatientInformationWindow(appointment.patient, doctor);
+                ShowPatientInformationWindow showPatientInformationWindow = ShowPatientInformationWindow.GetInstance(appointment.patient, doctor);
                 showPatientInformationWindow.ShowDialog();
             }
             else if (Keyboard.IsKeyDown(Key.Escape))

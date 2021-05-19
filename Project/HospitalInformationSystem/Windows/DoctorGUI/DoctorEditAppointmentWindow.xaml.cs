@@ -11,8 +11,7 @@ namespace HospitalInformationSystem.Windows.DoctorGUI
     /// </summary>
     public partial class DoctorEditAppointmentWindow : Window
     {
-
-        Appointment appointment;
+        private Appointment appointment;
         public DoctorEditAppointmentWindow(Appointment appointment)
         {
             InitializeComponent();
@@ -21,13 +20,13 @@ namespace HospitalInformationSystem.Windows.DoctorGUI
             loadRoomComboBox();
             loadPatientComboBox();
 
-            if (appointment.Type.Equals(TypeOfAppointment.Operacija))
+            /*if (appointment.Type.Equals(TypeOfAppointment.Operacija))
             {
                 roomLabel.Visibility = Visibility.Visible;
                 roomComboBox.Visibility = Visibility.Visible;
                 roomComboBox.IsEnabled = true;
                 roomComboBox.SelectedItem = appointment.room;
-            }
+            }*/
         }
         private void loadPatient()
         {
@@ -37,8 +36,8 @@ namespace HospitalInformationSystem.Windows.DoctorGUI
 
         private void loadRoomComboBox()
         {
-            roomComboBox.ItemsSource = RoomController.GetInstance().GetRooms();
-            roomComboBox.SelectedIndex = 10;
+            //roomComboBox.ItemsSource = RoomController.getInstance().getRooms();
+            //roomComboBox.SelectedIndex = 10;
         }
 
         private void loadPatientComboBox()
@@ -73,19 +72,23 @@ namespace HospitalInformationSystem.Windows.DoctorGUI
         {
             if ((Keyboard.IsKeyDown(Key.LeftCtrl) || Keyboard.IsKeyDown(Key.RightCtrl)) && Keyboard.IsKeyDown(Key.E))
             {
-                if (checkData()/* && CheckRoomState((Room)roomComboBox.SelectedItem)*/)
+                if (checkData() && CheckRoomState(appointment.room))
                 {
                     DateTime date = DateTime.ParseExact(dateTextBox.Text + " " + timeTextBox.Text, "dd.MM.yyyy. HH:mm", System.Globalization.CultureInfo.InvariantCulture);
                     Room newRoom;
                     if (appointment.Type.Equals(TypeOfAppointment.Operacija))
                     {
-                        newRoom = (Room)roomComboBox.SelectedItem;
+                        //newRoom = (Room)roomComboBox.SelectedItem;
+                        newRoom = appointment.room;
                     }
                     else
                     {
                         newRoom = appointment.room;
                     }
-                    AppointmentController.getInstance().changeAppointment(appointment, date, appointment.Type, newRoom, (Patient)patientListBox.SelectedItem, appointment.doctor);
+                    if(patientListBox.SelectedIndex < 0)
+                        AppointmentController.getInstance().changeAppointment(appointment, date, appointment.Type, newRoom, appointment.patient, appointment.doctor);
+                    else
+                        AppointmentController.getInstance().changeAppointment(appointment, date, appointment.Type, newRoom, (Patient)patientListBox.SelectedItem, appointment.doctor);
                     MessageBox.Show("Informacije o terminu su sada izmenjene.", "Izmena informacija", MessageBoxButton.OK, MessageBoxImage.Information);
                 }
             }

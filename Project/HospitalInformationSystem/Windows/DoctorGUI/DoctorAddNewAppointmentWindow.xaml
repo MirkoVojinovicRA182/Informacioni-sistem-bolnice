@@ -6,24 +6,23 @@
         xmlns:local="clr-namespace:HospitalInformationSystem.Windows"
         xmlns:Model="clr-namespace:Model" x:Class="HospitalInformationSystem.Windows.DoctorGUI.Window2"
         mc:Ignorable="d"
-        Title="Dodavanje novog termina" Height="450" Width="350" ResizeMode="NoResize" KeyDown="Window_KeyDown">
+        Title="Dodavanje novog termina" Height="585.484" Width="350" ResizeMode="NoResize" KeyDown="Window_KeyDown">
     <Grid>
-        <Label x:Name="roomLabel" Content="Prostorija:" HorizontalAlignment="Left" Height="35" Margin="39,302,0,0" VerticalAlignment="Top" Width="99" FontSize="14" Visibility="Hidden"/>
         <Label Content="Datum:" HorizontalAlignment="Left" Height="30" Margin="39,30,0,0" VerticalAlignment="Top" Width="99" FontSize="14"/>
         <TextBox x:Name="dateTextBox" HorizontalAlignment="Left" Height="30" Margin="176,30,0,0" TextWrapping="Wrap" Text="01.01.2021." VerticalAlignment="Top" Width="139" FontSize="14"/>
         <Label Content="Vreme:" HorizontalAlignment="Left" Height="35" Margin="39,70,0,0" VerticalAlignment="Top" Width="99" FontSize="14"/>
         <TextBox x:Name="timeTextBox" HorizontalAlignment="Left" Height="31" Margin="176,70,0,0" TextWrapping="Wrap" Text="12:00" VerticalAlignment="Top" Width="139" FontSize="14" RenderTransformOrigin="0.379,1.258"/>
-        <ListBox x:Name="roomsListBox" HorizontalAlignment="Left" Height="49" Margin="176,288,0,0" VerticalAlignment="Top" Width="139"  ItemsSource="{Binding}" DisplayMemberPath="Name" Visibility="Hidden" SelectionChanged="roomsListBox_SelectionChanged"/>
         <Label Content="Pacijent:" HorizontalAlignment="Left" Height="28" Margin="39,190,0,0" VerticalAlignment="Top" Width="99" FontSize="14"/>
         <Label Content="Lekar:" HorizontalAlignment="Left" Height="28" Margin="39,110,0,0" VerticalAlignment="Top" Width="99" FontSize="14"/>
         <Label Content="Vrsta termina:" HorizontalAlignment="Left" Height="35" Margin="39,150,0,0" VerticalAlignment="Top" Width="115" FontSize="14"/>
         <ComboBox x:Name="appointmentComboBox" HorizontalAlignment="Left" VerticalAlignment="Top" Width="139" Margin="176,150,0,0" SelectionChanged="appointmentComboBox_SelectionChanged"/>
         <TextBox x:Name="doctorTextBox" HorizontalAlignment="Left" Height="28" Margin="176,110,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="139" FontSize="14" IsEnabled="False"/>
-        <ListBox x:Name="patientListBox" HorizontalAlignment="Left" Height="114" Margin="39,223,0,0" VerticalAlignment="Top" Width="276" PreviewKeyDown="patientListBox_PreviewKeyDown"/>
-        <Image HorizontalAlignment="Left" Height="40" Margin="15,355,0,0" VerticalAlignment="Top" Width="40" Source="addIcon.png"/>
-        <Image HorizontalAlignment="Left" Height="40" Margin="294,355,0,0" VerticalAlignment="Top" Width="40" Source="quitIcon.png"/>
-        <Label Content="CTRL+A" HorizontalAlignment="Left" Margin="10,390,0,0" VerticalAlignment="Top"/>
-        <Label Content="ESC" HorizontalAlignment="Left" Margin="300,390,0,0" VerticalAlignment="Top"/>
-
+        <ListBox x:Name="patientListBox" HorizontalAlignment="Left" Height="114" Margin="39,218,0,0" VerticalAlignment="Top" Width="276" PreviewKeyDown="patientListBox_PreviewKeyDown"/>
+        <Image HorizontalAlignment="Left" Height="40" Margin="15,489,0,0" VerticalAlignment="Top" Width="40" Source="addIcon.png"/>
+        <Image HorizontalAlignment="Left" Height="40" Margin="294,489,0,0" VerticalAlignment="Top" Width="40" Source="quitIcon.png"/>
+        <Label Content="CTRL+A" HorizontalAlignment="Left" Margin="10,524,0,0" VerticalAlignment="Top"/>
+        <Label Content="ESC" HorizontalAlignment="Left" Margin="300,524,0,0" VerticalAlignment="Top"/>
+        <Label x:Name="roomLabel" Content="Prostorije:" HorizontalAlignment="Left" Height="28" Margin="39,345,0,0" VerticalAlignment="Top" Width="99" FontSize="14" Visibility="Hidden"/>
+        <ListBox x:Name="operationRoomsListBox" HorizontalAlignment="Left" Height="105" Margin="39,373,0,0" VerticalAlignment="Top" Width="276" SelectionChanged="operationRoomsListBox_SelectionChanged" Visibility="Hidden" IsEnabled="False" ItemsSource="{Binding}" DisplayMemberPath="Name" PreviewKeyDown="operationRoomsListBox_PreviewKeyDown"/>
     </Grid>
 </Window>

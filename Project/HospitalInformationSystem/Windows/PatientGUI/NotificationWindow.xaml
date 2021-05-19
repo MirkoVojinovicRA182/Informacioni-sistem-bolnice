@@ -5,14 +5,14 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:HospitalInformationSystem.Windows.PatientGUI"
         mc:Ignorable="d"
-        Title="Notifikacija" Height="197.951" Width="549.18" WindowStartupLocation="CenterScreen">
-    <Grid>
-        <Label Content="LEK: &#xD;&#xA;" HorizontalAlignment="Left" Margin="24,10,0,0" VerticalAlignment="Top" Width="377" Height="62" FontSize="20"/>
-        <TextBlock x:Name="medicatonText" HorizontalAlignment="Left" Margin="159,15,0,0" TextWrapping="Wrap" Text="TextBlock" VerticalAlignment="Top" FontSize="20"/>
-        <Label Content="Uzeti u:" HorizontalAlignment="Left" Margin="24,54,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.26,0.114" FontSize="20"/>
-        <TextBlock x:Name="timeText" HorizontalAlignment="Left" Margin="159,61,0,0" TextWrapping="Wrap" Text="TextBlock" VerticalAlignment="Top" FontSize="20"/>
-        <Label Content="Uzeti:" HorizontalAlignment="Left" Margin="24,102,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.26,0.114" FontSize="20"/>
-        <TextBlock x:Name="doseText" HorizontalAlignment="Left" Margin="159,108,0,0" TextWrapping="Wrap" Text="TextBlock" VerticalAlignment="Top" FontSize="20"/>
+        Title="Notifikacija" Height="167.951" Width="287" WindowStartupLocation="CenterScreen">
+    <Grid Margin="0,0,0,10">
+        <Label Content="LEK: &#xD;&#xA;" HorizontalAlignment="Left" Margin="9,10,0,0" VerticalAlignment="Top" Width="247" Height="56" FontSize="20"/>
+        <TextBlock x:Name="medicatonText" HorizontalAlignment="Left" Margin="87,15,0,0" TextWrapping="Wrap" Text="TextBlock" VerticalAlignment="Top" FontSize="20" Width="158" Height="24"/>
+        <Label Content="Uzeti u:" HorizontalAlignment="Left" Margin="9,50,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.26,0.114" FontSize="20" Width="84" Height="33"/>
+        <TextBlock x:Name="timeText" HorizontalAlignment="Left" Margin="87,56,0,0" TextWrapping="Wrap" Text="TextBlock" VerticalAlignment="Top" FontSize="20" Width="158" Height="25"/>
+        <Label Content="Uzeti:" HorizontalAlignment="Left" Margin="9,93,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.26,0.114" FontSize="20" Width="63" Height="34"/>
+        <TextBlock x:Name="doseText" HorizontalAlignment="Left" Margin="88,99,0,0" TextWrapping="Wrap" Text="TextBlock" VerticalAlignment="Top" FontSize="20" Width="157" Height="24"/>
 
     </Grid>
 </Window>

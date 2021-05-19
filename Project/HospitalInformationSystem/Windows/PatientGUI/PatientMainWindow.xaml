@@ -1,0 +1,25 @@
+﻿<Window x:Class="HospitalInformationSystem.Windows.PatientGUI.PatientMainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:HospitalInformationSystem.Windows.PatientGUI"
+        mc:Ignorable="d"
+        Title="PatientMainWindow" Height="516" Width="271" Background="#FF4C90F1">
+    <Grid Margin="0,0,2,36">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="43*"/>
+            <ColumnDefinition Width="44*"/>
+        </Grid.ColumnDefinitions>
+        <Button Content="Pregledi" HorizontalAlignment="Left" VerticalAlignment="Top" Width="128" Margin="3,59,0,0" Height="104" Click="AppointmentsButton_Click" Grid.ColumnSpan="2"/>
+        <Button Content="Terapije" HorizontalAlignment="Left" VerticalAlignment="Top" Width="128" Margin="3.213,59,0,0" Height="104" Click="TherapiesButton_Click" Grid.Column="1"/>
+        <Button Content="Notifikacije" HorizontalAlignment="Left" VerticalAlignment="Top" Width="128" Margin="3,165,0,0" Height="104" Click="NotificationsButton_Click" Grid.ColumnSpan="2"/>
+        <Button x:Name="anamnesisButton" Content="Anamneze" HorizontalAlignment="Left" VerticalAlignment="Top" Width="128" Margin="3,165,0,0" Height="104" Grid.Column="1" Click="AnamnesisButton_Click"/>
+        <Button Content="Plaćanje" HorizontalAlignment="Left" VerticalAlignment="Top" Width="128" Margin="3,270,0,0" Height="103" Grid.ColumnSpan="2"/>
+        <Button Content="Ocenjivanje bolnice" HorizontalAlignment="Left" VerticalAlignment="Top" Width="128" Margin="3,270,0,0" Height="103" Click="HospitalReviewButton_Click" Grid.Column="1"/>
+        <Button Content="Odjava" HorizontalAlignment="Left" VerticalAlignment="Top" Width="162" Margin="50,404,0,0" Height="45" Background="#FFE84242" Click="LogOffButton_Click" Grid.ColumnSpan="2"/>
+        <ToolBar HorizontalAlignment="Left" Height="44" VerticalAlignment="Top" Width="263" Margin="0,0,-2,0" Grid.ColumnSpan="2">
+            <Label Content="" Height="45" VerticalAlignment="Top" Width="89"/>
+        </ToolBar>
+    </Grid>
+</Window>

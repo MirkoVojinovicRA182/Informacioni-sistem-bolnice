@@ -27,21 +27,19 @@ namespace HospitalInformationSystem.Windows.PatientGUI
 
         private ObservableCollection<Appointment> appointmentList;
         private Patient patient;
-        public NewPatientAppointmentSystemWindow(Patient patient)
+        private NewPatientAppointmentWindow previousWindow;
+        public NewPatientAppointmentSystemWindow(Patient patient, NewPatientAppointmentWindow window)
         {
             InitializeComponent();
             this.patient = patient;
             var list = DoctorController.getInstance().GetDoctors();
-
+            previousWindow = window;
             DoctorComboBox.ItemsSource = list;
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             CreateNewAppointment();
-
-            startDateTextBox.Clear();
-            endDateTextBox.Clear();
 
             MessageBox.Show("Kreiran je novi termin.", "Novi termin", MessageBoxButton.OK, MessageBoxImage.Information);
 
@@ -88,15 +86,12 @@ namespace HospitalInformationSystem.Windows.PatientGUI
                                                     "14:00", "14:30", "15:00", "15:30", "16:00", "16:30", "17:00", "17:30" , "18:00", "18:30", "19:00", "19:30"
                                                   });
 
-
             var dateTimes = new List<DateTime>();
             var dates = new List<DateTime>();
             var datesString = new List<string>();
 
-            string start = startDateTextBox.Text;
-            string end = endDateTextBox.Text;
-            DateTime startDateTime = DateTime.ParseExact(start + " " + "00:00", "dd.MM.yyyy. HH:mm", provider);
-            var endDateTime = DateTime.ParseExact(end + " " + "00:00", "dd.MM.yyyy. HH:mm", provider);
+            DateTime startDateTime = (DateTime)startDatePicker.SelectedDate;
+            var endDateTime = (DateTime)endDatePicker.SelectedDate;
             
             /*for (int i = 0; i < patients.Count; i++)
             {
@@ -224,5 +219,16 @@ namespace HospitalInformationSystem.Windows.PatientGUI
             AppointmentDataGrid.ItemsSource = appointmentList;
         }
 
+        private void HomeButton_Click(object sender, RoutedEventArgs e)
+        {
+            this.Close();
+            PatientMainWindow.GetInstance(patient).Show();
+        }
+
+        private void BackButton_Click(object sender, RoutedEventArgs e)
+        {
+            this.Close();
+            previousWindow.Show();
+        }
     }
 }

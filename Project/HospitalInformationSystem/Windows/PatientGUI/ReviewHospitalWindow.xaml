@@ -5,19 +5,25 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:HospitalInformationSystem.Windows.PatientGUI"
         mc:Ignorable="d"
-        Title="ReviewHospitalWindow" Height="533.607" Width="800">
-    <Grid>
-        <ScrollViewer HorizontalAlignment="Left" Height="594" VerticalAlignment="Top" Width="792" Margin="0,10,0,0" VerticalScrollBarVisibility="Hidden">
-            <Label Content="1. Da li ste zadovoljni sa uslugama bolnice?&#xA;&#xA;2. Da li ste zadovoljni sa čistoćom bolnice? &#xA;&#xA;3. Da li ste zadovoljni sa opremljenošću bolnice?&#xA;&#xA;4. Da li ste zadovoljni sa ljubaznošću lekara?&#xA;&#xA;5. Da li ste zadovoljni sa sposobnostima lekara?&#xA;&#xA;6. Da li ste zadovoljni sa ljubaznošću medicinskih tehničara?&#xA;&#xA;7. Da li ste zadovoljni sa sposobnostima medicinskih tehničara?&#xA;&#xA;Ocena:&#xA;" FontSize="20" Width="780" Height="613"/>
-        </ScrollViewer>
-        <Button Content="Slanje ankete" HorizontalAlignment="Left" VerticalAlignment="Top" Width="164" Margin="282,450,0,0" Height="35" Click="Button_Click"/>
-        <ComboBox x:Name="comboBoxQuestion1" HorizontalAlignment="Left" VerticalAlignment="Top" Width="120" Margin="37,45,0,0"/>
-        <ComboBox x:Name="comboBoxQuestion2" HorizontalAlignment="Left" VerticalAlignment="Top" Width="120" Margin="37,98,0,0"/>
-        <ComboBox x:Name="comboBoxQuestion3" HorizontalAlignment="Left" VerticalAlignment="Top" Width="120" Margin="37,152,0,0"/>
-        <ComboBox x:Name="comboBoxQuestion4" HorizontalAlignment="Left" VerticalAlignment="Top" Width="120" Margin="37,204,0,0"/>
-        <ComboBox x:Name="comboBoxQuestion5" HorizontalAlignment="Left" VerticalAlignment="Top" Width="120" Margin="37,259,0,0"/>
-        <ComboBox x:Name="comboBoxQuestion6" HorizontalAlignment="Left" VerticalAlignment="Top" Width="120" Margin="37,311,0,0"/>
-        <ComboBox x:Name="comboBoxQuestion7" HorizontalAlignment="Left" VerticalAlignment="Top" Width="120" Margin="37,363,0,0"/>
-        <ComboBox x:Name="comboBoxRating" HorizontalAlignment="Left" VerticalAlignment="Top" Width="120" Margin="37,421,0,0"/>
-    </Grid>
+        Title="ReviewHospitalWindow" Height="516" Width="271">
+    <ScrollViewer VerticalScrollBarVisibility="Hidden" Margin="0,0,0,1" >
+        <Grid Width="263" Height="648">
+            <Rectangle Fill="#FF4C90F1" HorizontalAlignment="Left" Height="88" Stroke="Black" VerticalAlignment="Top" Width="265" Margin="-2,560,0,0"/>
+            <TextBlock TextWrapping="Wrap" Text="1. Da li ste zadovoljni sa uslugama bolnice?&#xA;&#xA;2. Da li ste zadovoljni sa čistoćom bolnice? &#xA;&#xA;3. Da li ste zadovoljni sa opremljenošću bolnice?&#xA;&#xA;4. Da li ste zadovoljni sa ljubaznošću lekara?&#xA;&#xA;5. Da li ste zadovoljni sa sposobnostima lekara?&#xA;&#xA;6. Da li ste zadovoljni sa ljubaznošću medicinskih tehničara?&#xA;&#xA;7. Da li ste zadovoljni sa sposobnostima medicinskih tehničara?&#xA;&#xA;Ocena:&#xA;" FontSize="15" Margin="4,49,0,0"/>
+            <Button Content="Slanje ankete" HorizontalAlignment="Left" VerticalAlignment="Top" Width="164" Margin="49,587,0,0" Height="36" Click="Button_Click"/>
+            <ComboBox x:Name="comboBoxQuestion1" HorizontalAlignment="Left" VerticalAlignment="Top" Width="120" Margin="37,89,0,0"/>
+            <ComboBox x:Name="comboBoxQuestion2" HorizontalAlignment="Left" VerticalAlignment="Top" Width="120" Margin="37,149,0,0"/>
+            <ComboBox x:Name="comboBoxQuestion3" HorizontalAlignment="Left" VerticalAlignment="Top" Width="120" Margin="37,210,0,0"/>
+            <ComboBox x:Name="comboBoxQuestion4" HorizontalAlignment="Left" VerticalAlignment="Top" Width="120" Margin="37,269,0,0"/>
+            <ComboBox x:Name="comboBoxQuestion5" HorizontalAlignment="Left" VerticalAlignment="Top" Width="120" Margin="37,329,0,0"/>
+            <ComboBox x:Name="comboBoxQuestion6" HorizontalAlignment="Left" VerticalAlignment="Top" Width="120" Margin="36,387,0,0"/>
+            <ComboBox x:Name="comboBoxQuestion7" HorizontalAlignment="Left" VerticalAlignment="Top" Width="120" Margin="37,450,0,0"/>
+            <ComboBox x:Name="comboBoxRating" HorizontalAlignment="Left" VerticalAlignment="Top" Width="120" Margin="37,492,0,0"/>
+            <ToolBar HorizontalAlignment="Left" Height="44" VerticalAlignment="Top" Width="263">
+                <Button Content="Back" VerticalAlignment="Stretch" Width="75" Click="BackButton_Click"/>
+                <Label Content="" Height="45" VerticalAlignment="Top" Width="89"/>
+                <Button Content="Home" Height="45" VerticalAlignment="Top" Width="75" Click="HomeButton_Click" Margin="0,-3"/>
+            </ToolBar>
+        </Grid>
+    </ScrollViewer >
 </Window>

@@ -5,25 +5,28 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:HospitalInformationSystem.Windows.PatientGUI"
         mc:Ignorable="d"
-        Title="Novi termin" Height="350" Width="339">
+        Title="Novi termin" Height="516" Width="271">
     <Grid>
-        <Label Content="Datum:" HorizontalAlignment="Left" Margin="33,49,0,0" VerticalAlignment="Top"/>
-        <Label Content="Vreme:" HorizontalAlignment="Left" Margin="33,89,0,0" VerticalAlignment="Top"/>
-        <Label Content="Lekar:" HorizontalAlignment="Left" Margin="33,131,0,0" VerticalAlignment="Top"/>
-        <TextBox x:Name="dateTextBox" HorizontalAlignment="Left" Height="23" Margin="120,49,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="88"/>
-        <TextBox x:Name="timeTextBox" HorizontalAlignment="Left" Height="23" Margin="120,92,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="88"/>
-        <Button x:Name="confirmButton" Content="POTVRDI" Margin="70,270,0,0" VerticalAlignment="Top" FontSize="16" Click="Button_Click" HorizontalAlignment="Left" Width="75"/>
-        <Button x:Name="closeButton" Content="IZAĐI" Margin="182,270,0,0" VerticalAlignment="Top" FontSize="16" Click="CloseButton_Click" HorizontalAlignment="Left" Width="75"/>
-        <ComboBox x:Name="DoctorComboBox" HorizontalAlignment="Left" VerticalAlignment="Top" Width="201" Margin="120,133,0,0">
+        <Rectangle Fill="#FF4C90F1" HorizontalAlignment="Left" Height="88" Stroke="Black" VerticalAlignment="Top" Width="424" Margin="0,611,-2,0"/>
+        <Label Content="Datum:" HorizontalAlignment="Left" Margin="9,94,0,0" VerticalAlignment="Top" FontSize="15"/>
+        <Label Content="Vreme:" HorizontalAlignment="Left" Margin="9,149,0,0" VerticalAlignment="Top" FontSize="15"/>
+        <Label Content="Lekar:" HorizontalAlignment="Left" Margin="9,210,0,0" VerticalAlignment="Top" FontSize="15"/>
+        <ComboBox x:Name="DoctorComboBox" HorizontalAlignment="Left" VerticalAlignment="Top" Width="157" Margin="96,212,0,0" Height="24">
             <ComboBox.ItemTemplate>
                 <DataTemplate>
-                    <TextBlock>
-                 <Run Text="{Binding Name}" />
-                 <Run Text="{Binding Surname}" />
-                    </TextBlock>
+                    <TextBlock><Run Text="{Binding Name}" /><Run Text=" "/><Run Text="{Binding Surname}" /></TextBlock>
                 </DataTemplate>
             </ComboBox.ItemTemplate>
         </ComboBox>
-        <Button x:Name="newSystemButton" Content="Na osnovu preporuke" Click="New_Button_Click" HorizontalAlignment="Left" Margin="102,230,0,0" VerticalAlignment="Top" Width="124"/>
+        <Button x:Name="newSystemButton" Content="Na osnovu preporuke" Click="New_Button_Click" HorizontalAlignment="Left" Margin="41,266,0,0" VerticalAlignment="Top" Width="179" Height="34" FontSize="15"/>
+        <DatePicker x:Name="datePicker" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="96,94,0,0"/>
+        <ComboBox x:Name="timeComboBox" HorizontalAlignment="Left" VerticalAlignment="Top" Width="157" Margin="96,153,0,0" Height="24"/>
+        <ToolBar HorizontalAlignment="Left" Height="44" VerticalAlignment="Top" Width="263">
+            <Button Content="Back" VerticalAlignment="Stretch" Width="75" Click="BackButton_Click"/>
+            <Label Content="" Height="45" VerticalAlignment="Top" Width="89"/>
+            <Button Content="Home" Height="45" VerticalAlignment="Top" Width="75" Click="HomeButton_Click" Margin="0,-3"/>
+        </ToolBar>
+        <Rectangle Fill="#FF4C90F1" HorizontalAlignment="Left" Height="135" Stroke="Black" VerticalAlignment="Top" Width="263" Margin="0,349,0,0"/>
+        <Button x:Name="confirmButton_Copy" Content="Potvrda" Margin="78,400,0,0" VerticalAlignment="Top" FontSize="16" Click="Button_Click" HorizontalAlignment="Left" Width="105" Height="34"/>
     </Grid>
 </Window>

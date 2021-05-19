@@ -62,20 +62,24 @@
     <Compile Include="Controller\AppointmentController.cs" />
     <Compile Include="Controller\DoctorController.cs" />
     <Compile Include="Controller\MedicineController.cs" />
+    <Compile Include="Controller\NotificationController.cs" />
     <Compile Include="Controller\PatientController.cs" />
     <Compile Include="Controller\RoomController.cs" />
     <Compile Include="Model\HospitalTreatment.cs" />
     <Compile Include="Model\Medicine.cs" />
     <Compile Include="Model\MedicineIngredient.cs" />
+    <Compile Include="Model\Notification.cs" />
     <Compile Include="Model\RoomRenovationState.cs" />
     <Compile Include="Model\TypeOfMedicine.cs" />
     <Compile Include="Repository\MedicineRepository.cs" />
     <Compile Include="Model\DoctorReview.cs" />
     <Compile Include="Model\HospitalReview.cs" />
     <Compile Include="Model\PatientActivity.cs" />
+    <Compile Include="Repository\NotificationRepository.cs" />
     <Compile Include="Service\AppointmentService.cs" />
     <Compile Include="Service\DoctorService.cs" />
     <Compile Include="Service\MedicineService.cs" />
+    <Compile Include="Service\NotificationService.cs" />
     <Compile Include="Service\PatientService.cs" />
     <Compile Include="Service\RoomService.cs" />
     <Compile Include="Controller\EquipmentController.cs" />
@@ -195,6 +199,12 @@
     <Compile Include="Windows\ManagerGUI\SupplementingDynamicEquipmentWindow.xaml.cs">
       <DependentUpon>SupplementingDynamicEquipmentWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Windows\PatientGUI\CustomNotificationsWindow.xaml.cs">
+      <DependentUpon>CustomNotificationsWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Windows\PatientGUI\CustomNotificationWindow.xaml.cs">
+      <DependentUpon>CustomNotificationWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Windows\PatientGUI\EditPatientAppointmentWindow.xaml.cs">
       <DependentUpon>EditPatientAppointmentWindow.xaml</DependentUpon>
     </Compile>
@@ -242,6 +252,15 @@
     </Compile>
     <Compile Include="Windows\PatientGUI\NotificationWindow.xaml.cs">
       <DependentUpon>NotificationWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Windows\PatientGUI\PatientAnamnesisWindow.xaml.cs">
+      <DependentUpon>PatientAnamnesisWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Windows\PatientGUI\PatientMainWindow.xaml.cs">
+      <DependentUpon>PatientMainWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Windows\PatientGUI\PatientTherapiesWindow.xaml.cs">
+      <DependentUpon>PatientTherapiesWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="Windows\PatientGUI\ReviewDoctorWindow.xaml.cs">
       <DependentUpon>ReviewDoctorWindow.xaml</DependentUpon>
@@ -411,6 +430,14 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Windows\PatientGUI\CustomNotificationsWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Windows\PatientGUI\CustomNotificationWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Windows\PatientGUI\EditPatientAppointmentWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -474,6 +501,18 @@
     <Page Include="Windows\PatientGUI\NotificationWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Windows\PatientGUI\PatientAnamnesisWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Windows\PatientGUI\PatientMainWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Windows\PatientGUI\PatientTherapiesWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Windows\PatientGUI\ReviewDoctorWindow.xaml">
       <SubType>Designer</SubType>

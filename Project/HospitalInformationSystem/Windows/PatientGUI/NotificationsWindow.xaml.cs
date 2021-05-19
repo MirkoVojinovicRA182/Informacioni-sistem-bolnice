@@ -22,11 +22,11 @@ namespace HospitalInformationSystem.Windows.PatientGUI
     /// </summary>
     public partial class NotificationsWindow : Window
     {
-        private Patient patient;
+        private Patient loggedInPatient;
         public NotificationsWindow(Patient patient)
         {
             InitializeComponent();
-            this.patient = patient;
+            loggedInPatient= patient;
             RefreshTable();
         }
 
@@ -43,9 +43,27 @@ namespace HospitalInformationSystem.Windows.PatientGUI
 
         public void RefreshTable()
         {
-            var therapyList = new ObservableCollection<Therapy>(patient.GetTherapy());
+            var therapyList = new ObservableCollection<Therapy>(loggedInPatient.GetTherapy());
             TherapiesDataGrid.ItemsSource = null;
             TherapiesDataGrid.ItemsSource = therapyList;
+        }
+
+        private void HomeButton_Click(object sender, RoutedEventArgs e)
+        {
+            this.Close();
+            PatientMainWindow.GetInstance(loggedInPatient).Show();
+        }
+
+        private void BackButton_Click(object sender, RoutedEventArgs e)
+        {
+            this.Close();
+            PatientMainWindow.GetInstance(loggedInPatient).Show();
+        }
+
+        private void CustomNotificationButton_Click(object sender, RoutedEventArgs e)
+        {
+            CustomNotificationsWindow window = new CustomNotificationsWindow(loggedInPatient);
+            window.Show();
         }
     }
 }

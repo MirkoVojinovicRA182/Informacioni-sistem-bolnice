@@ -5,36 +5,36 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:HospitalInformationSystem.Windows.PatientGUI"
         mc:Ignorable="d"
-        Title="Novi termin" Height="350" Width="900">
-    <Grid>
-        <Label Content="Od:" HorizontalAlignment="Left" Margin="33,49,0,0" VerticalAlignment="Top"/>
-        <Label Content="Do:" HorizontalAlignment="Left" Margin="33,89,0,0" VerticalAlignment="Top"/>
-        <Label Content="Lekar:" HorizontalAlignment="Left" Margin="33,131,0,0" VerticalAlignment="Top"/>
-        <TextBox x:Name="startDateTextBox" HorizontalAlignment="Left" Height="23" Margin="120,49,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="88"/>
-        <TextBox x:Name="endDateTextBox" HorizontalAlignment="Left" Height="23" Margin="120,92,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="88"/>
-        <Button x:Name="confirmButton" Content="POTVRDI" Margin="70,270,0,0" VerticalAlignment="Top" FontSize="16" Click="Button_Click" HorizontalAlignment="Left" Width="75"/>
-        <Button x:Name="closeButton" Content="IZAĐI" Margin="182,270,0,0" VerticalAlignment="Top" FontSize="16" Click="CloseButton_Click" HorizontalAlignment="Left" Width="75"/>
-        <ComboBox x:Name="DoctorComboBox" HorizontalAlignment="Left" VerticalAlignment="Top" Width="201" Margin="120,133,0,0">
+        Title="Novi termin" Height="516" Width="271">
+    <Grid Margin="0,0,2,0">
+        <Label Content="Od:" HorizontalAlignment="Left" Margin="15,49,0,0" VerticalAlignment="Top" FontSize="15"/>
+        <Label Content="Do:" HorizontalAlignment="Left" Margin="15,89,0,0" VerticalAlignment="Top" FontSize="15"/>
+        <Label Content="Lekar:" HorizontalAlignment="Left" Margin="8,128,0,0" VerticalAlignment="Top" FontSize="15"/>
+        <ComboBox x:Name="DoctorComboBox" HorizontalAlignment="Left" VerticalAlignment="Top" Width="170" Margin="68,130,0,0" FontSize="15">
             <ComboBox.ItemTemplate>
                 <DataTemplate>
-                    <TextBlock>
-                 <Run Text="{Binding Name}" />
-                 <Run Text="{Binding Surname}" />
-                    </TextBlock>
+                    <TextBlock><Run Text="{Binding Name}" /><Run Text=" "/><Run Text="{Binding Surname}" /></TextBlock>
                 </DataTemplate>
             </ComboBox.ItemTemplate>
         </ComboBox>
-        <DataGrid x:Name="AppointmentDataGrid" Background="Silver" CanUserAddRows="False" AutoGenerateColumns="False" CanUserResizeColumns="False" IsReadOnly="True" HorizontalAlignment="Left" Height="285" VerticalAlignment="Top" Width="523" Margin="349,10,0,0">
+        <DataGrid x:Name="AppointmentDataGrid" Background="Silver" CanUserAddRows="False" AutoGenerateColumns="False" CanUserResizeColumns="False" IsReadOnly="True" HorizontalAlignment="Left" Height="209" VerticalAlignment="Top" Width="263" Margin="0,276,-2,0">
             <DataGrid.Columns>
-                <DataGridTextColumn Header="Datum i vreme" Width="*" Binding="{Binding StartTime}"></DataGridTextColumn>
-                <DataGridTextColumn Header="Pacijent" Width="*" Binding="{Binding GetPatientNameSurname}"></DataGridTextColumn>
-                <DataGridTextColumn Header="Lekar" Width="*" Binding="{Binding GetDoctorNameSurname}"></DataGridTextColumn>
-                <DataGridTextColumn Header="ID prostorije" Width="*" Binding="{Binding GetRoomID}"></DataGridTextColumn>
-                <DataGridTextColumn Header="Vrsta termina" Width="*" Binding="{Binding Type}"></DataGridTextColumn>
+                <DataGridTextColumn Header="Datum" Width="*" Binding="{Binding StartTime}"/>
+                <DataGridTextColumn Header="Lekar" Width="*" Binding="{Binding GetDoctorNameSurname}"/>
+                <DataGridTextColumn Header="Prostorija" Width="*" Binding="{Binding GetRoomID}"/>
+                <DataGridTextColumn Header="Vrsta" Width="*" Binding="{Binding Type}"/>
             </DataGrid.Columns>
         </DataGrid>
-        <RadioButton x:Name="DoctorPriorityRadioButton" Content="Prioritet mi je lekar" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="26,210,0,0" IsChecked ="True"/>
-        <RadioButton x:Name="TimePriorityRadioButton" Content="Prioritet mi je vreme pregleda" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="150,210,0,0"/>
-        <Button Content="Preporuka" Click="RecommendButton_Click" HorizontalAlignment="Left" Margin="246,74,0,0" VerticalAlignment="Top" Width="75"/>
+        <RadioButton x:Name="DoctorPriorityRadioButton" Content="Prioritet mi je lekar" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="5,165,0,0" IsChecked ="True" FontSize="15"/>
+        <RadioButton x:Name="TimePriorityRadioButton" Content="Prioritet mi je vreme pregleda" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="5,194,0,0" FontSize="15"/>
+        <Button Content="Preporuka" Click="RecommendButton_Click" HorizontalAlignment="Left" Margin="15,229,0,0" VerticalAlignment="Top" Width="105" FontSize="15" Height="34"/>
+        <DatePicker x:Name="startDatePicker" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="68,53,0,0"/>
+        <DatePicker x:Name="endDatePicker" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="68,92,0,0"/>
+        <ToolBar HorizontalAlignment="Left" Height="44" VerticalAlignment="Top" Width="263" Margin="0,0,-2,0">
+            <Button Content="Back" VerticalAlignment="Stretch" Width="75" Click="BackButton_Click"/>
+            <Label Content="" Height="45" VerticalAlignment="Top" Width="89"/>
+            <Button Content="Home" Height="45" VerticalAlignment="Top" Width="75" Click="HomeButton_Click" Margin="0,-2,0,-4"/>
+        </ToolBar>
+        <Button Content="Zakaži" Click="Button_Click" HorizontalAlignment="Left" Margin="138,229,0,0" VerticalAlignment="Top" Width="105" FontSize="15" Height="34"/>
     </Grid>
 </Window>

@@ -1,0 +1,34 @@
+﻿<Window x:Class="HospitalInformationSystem.Windows.PatientGUI.CustomNotificationsWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:HospitalInformationSystem.Windows.PatientGUI"
+        mc:Ignorable="d"
+        Title="CustomNotificationsWindow" Height="516" Width="271" Background="#FF4C90F1">
+    <Grid Background="White">
+        <ToolBar HorizontalAlignment="Left" Height="44" VerticalAlignment="Top" Width="263">
+            <Button Content="Back" VerticalAlignment="Stretch" Width="75" Click="BackButton_Click"/>
+            <Label Content="" Height="45" VerticalAlignment="Top" Width="89"/>
+            <Button Content="Home" Height="45" VerticalAlignment="Top" Width="75" Click="HomeButton_Click" Margin="0,-3"/>
+        </ToolBar>
+        <ComboBox x:Name="notificationComboBox" HorizontalAlignment="Left" VerticalAlignment="Top" Width="120" Margin="123,66,0,0" DataContextChanged="NotificationComboBox_DataContextChanged" SelectionChanged="NotificationComboBox_SelectionChanged"/>
+        <Rectangle Fill="#FF4C90F1" HorizontalAlignment="Left" Height="84" Stroke="Black" VerticalAlignment="Top" Width="265" Margin="-2,401,0,0"/>
+        <Label Content="Notifikacija:" HorizontalAlignment="Left" Margin="10,61,0,0" VerticalAlignment="Top" FontSize="15" Width="94"/>
+        <Label Content="Vreme:" HorizontalAlignment="Left" Margin="10,97,0,0" VerticalAlignment="Top" FontSize="15" Width="94"/>
+        <ComboBox x:Name="hourComboBox" HorizontalAlignment="Left" VerticalAlignment="Top" Width="50" Margin="123,102,0,0"/>
+        <ComboBox x:Name="minuteComboBox" HorizontalAlignment="Left" VerticalAlignment="Top" Width="50" Margin="193,102,0,0"/>
+        <Label Content=":" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="176,98,0,0"/>
+        <TextBox x:Name="notificationTextBox" HorizontalAlignment="Left" Height="168" Margin="10,230,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="243" FontSize="15"/>
+        <Label Content="Notifikacija: " HorizontalAlignment="Left" Margin="5,202,0,0" VerticalAlignment="Top" FontSize="15"/>
+        <Button x:Name="newNotificationButton" Content="Nova notifikacija" HorizontalAlignment="Left" VerticalAlignment="Top" Width="99" Margin="74,405,0,0" Height="35" Click="NewNotificationButton_Click"/>
+        <Button x:Name="deleteNotificationButton" Content="Obriši notifikaciju" HorizontalAlignment="Left" VerticalAlignment="Top" Width="99" Margin="74,444,0,0" Height="35" Click="DeleteNotificationButton_Click"/>
+        <Button x:Name="changeNotification" Content="Sačuvaj " HorizontalAlignment="Left" VerticalAlignment="Top" Width="55" Margin="193,427,0,0" Height="35" Click="ChangeButton_Click"/>
+        <CheckBox x:Name="notificationCheckBox" Content="Uključi/isključi" HorizontalAlignment="Left" Margin="106,208,0,0" VerticalAlignment="Top" FontSize="15"/>
+        <Label Content="Od:" HorizontalAlignment="Left" Margin="10,133,0,0" VerticalAlignment="Top" FontSize="15" Width="94"/>
+        <Label Content="Do:" HorizontalAlignment="Left" Margin="10,165,0,0" VerticalAlignment="Top" FontSize="15" Width="94"/>
+        <DatePicker x:Name="startDatePicker" HorizontalAlignment="Left" Margin="123,135,0,0" VerticalAlignment="Top"/>
+        <DatePicker x:Name="endDatePicker" HorizontalAlignment="Left" Margin="123,168,0,0" VerticalAlignment="Top"/>
+
+    </Grid>
+</Window>

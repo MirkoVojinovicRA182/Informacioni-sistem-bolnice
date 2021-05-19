@@ -5,17 +5,28 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:HospitalInformationSystem.Windows.PatientGUI"
         mc:Ignorable="d"
-        Title="NotificationsWindow" Height="450" Width="800">
-    <Grid>
-        <DataGrid x:Name="TherapiesDataGrid" Background="Silver" CanUserAddRows="False" AutoGenerateColumns="False" CanUserResizeColumns="False" IsReadOnly="True" HorizontalAlignment="Left" Height="312" VerticalAlignment="Top" Width="792">
+        Title="NotificationsWindow" Height="516" Width="271" Background="#FF4C90F1">
+    <Grid Margin="0,0,2,0">
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition Height="14*"/>
+        </Grid.RowDefinitions>
+        <DataGrid x:Name="TherapiesDataGrid" Background="Silver" CanUserAddRows="False" AutoGenerateColumns="False" CanUserResizeColumns="False" IsReadOnly="True" HorizontalAlignment="Left" Height="254" VerticalAlignment="Top" Width="263" Margin="0,199,-2,0" Grid.Row="1" ScrollViewer.CanContentScroll="True" ScrollViewer.VerticalScrollBarVisibility="Auto" ScrollViewer.HorizontalScrollBarVisibility="Auto">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Lek" Width="*" Binding="{Binding Medication}"></DataGridTextColumn>
-                <DataGridTextColumn Header="Doza" Width="*" Binding="{Binding Dosage}"></DataGridTextColumn>
-                <DataGridTextColumn Header="Dani u nedelji" Width="*" Binding="{Binding DaysString}"></DataGridTextColumn>
+                <DataGridTextColumn Header="Dani" Width="*" Binding="{Binding DaysString}"></DataGridTextColumn>
                 <DataGridTextColumn Header="Vreme" Width="*" Binding="{Binding TimeString}"></DataGridTextColumn>
                 <DataGridTextColumn Header="Notifikacije" Width="*" Binding="{Binding NotificationEnabledString}"></DataGridTextColumn>
             </DataGrid.Columns>
         </DataGrid>
-        <Button Content="Notifikacije za selektovanu terapiju" HorizontalAlignment="Left" Margin="280,344,0,0" VerticalAlignment="Top" Width="235" Click="Button_Click" Height="45"/>
+        <Button Content="Uključi/isključi" HorizontalAlignment="Left" Margin="65,47,0,0" VerticalAlignment="Top" Width="122" Click="Button_Click" Height="36" Grid.Row="1"/>
+        <Label Content="Notifikacije za selektovanu terapiju:" HorizontalAlignment="Left" Margin="10,12,0,0" Grid.Row="1" VerticalAlignment="Top" Width="246" FontSize="15"/>
+        <Button Content="Custom notifikacije" HorizontalAlignment="Left" Margin="128,548,0,0" VerticalAlignment="Top" Width="162" Click="Button_Click" Height="45" Grid.Row="1"/>
+        <ToolBar HorizontalAlignment="Left" Height="44" VerticalAlignment="Top" Width="263" Margin="0,0,-2,0" Grid.RowSpan="2">
+            <Button Content="Back" VerticalAlignment="Stretch" Width="75" Click="BackButton_Click"/>
+            <Label Content="" Height="45" VerticalAlignment="Top" Width="89"/>
+            <Button Content="Home" Height="45" VerticalAlignment="Top" Width="75" Click="HomeButton_Click" Margin="0,-3" Background="{x:Null}"/>
+        </ToolBar>
+        <Button Content="Kreirane notifikacije" HorizontalAlignment="Left" Margin="65,149,0,0" VerticalAlignment="Top" Width="122" Click="CustomNotificationButton_Click" Height="36" Grid.Row="1"/>
     </Grid>
 </Window>

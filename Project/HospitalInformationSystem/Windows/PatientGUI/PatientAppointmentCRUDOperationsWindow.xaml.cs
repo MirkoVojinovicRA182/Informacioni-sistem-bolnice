@@ -128,6 +128,7 @@ namespace HospitalInformationSystem.Windows.PatientGUI
         private void ShowNewAppointmentWindow()
         {
             NewPatientAppointmentWindow window = new NewPatientAppointmentWindow(patient);
+            this.Hide();
             window.ShowDialog();
             RefreshTable();
         }
@@ -154,8 +155,8 @@ namespace HospitalInformationSystem.Windows.PatientGUI
         private void EditButton_Click(object sender, RoutedEventArgs e)
         {
             Appointment selectedRow = (Appointment)AppointmentDataGrid.SelectedItem;
-            EditPatientAppointmentWindow window = new EditPatientAppointmentWindow(selectedRow);
-
+            EditPatientAppointmentWindow window = new EditPatientAppointmentWindow(selectedRow, this);
+            this.Hide();
             window.ShowDialog();
 
             RefreshTable();
@@ -218,9 +219,7 @@ namespace HospitalInformationSystem.Windows.PatientGUI
                     window.doseText.Text = therapies[i].Dosage.ToString();
                     window.ShowDialog();
                 }
-
             }
-
         }
 
         private void RateDoctorButton_Click(object sender, RoutedEventArgs e)
@@ -303,5 +302,22 @@ namespace HospitalInformationSystem.Windows.PatientGUI
             AppointmentController.getInstance().saveInFile();
         }
 
+        private void HomeButton_Click(object sender, RoutedEventArgs e)
+        {
+            CheckIfPatientIsTroll();
+            instance = null;
+            AppointmentController.getInstance().saveInFile();
+            this.Close();
+            PatientMainWindow.GetInstance(patient).Show();
+        }
+
+        private void BackButton_Click(object sender, RoutedEventArgs e)
+        {
+            CheckIfPatientIsTroll();
+            instance = null;
+            AppointmentController.getInstance().saveInFile();
+            this.Close();
+            PatientMainWindow.GetInstance(patient).Show();
+        }
     }
 }

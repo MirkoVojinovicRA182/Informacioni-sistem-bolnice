@@ -82,9 +82,23 @@ namespace HospitalInformationSystem.Windows.DoctorGUI
             return true;
         }
 
+        private bool CheckPatientsAllergens()
+        {
+            foreach(MedicineIngredient medicineIngredients in ((Medicine)medicineComboBox.SelectedItem).Ingredients)
+            {
+                if (patient.Allergens.Contains(medicineIngredients.Name) || patient.Allergens.Contains(((Medicine)medicineComboBox.SelectedItem).Name))
+                {
+                    MessageBox.Show("Pacijent je alergican na sastojke leka!", "Alergeni", MessageBoxButton.OK, MessageBoxImage.Error);
+                    return false;
+                }
+            }
+            return true;
+        }
+
         public bool AllInputsCheck()
         {
-            if (CheckInputOfMedicineTextBox() && CheckInputOfInfoTextBox() && CheckInputOfStartDateTextBox() && CheckInputOfEndDateTextBox())
+            if (CheckInputOfMedicineTextBox() && CheckInputOfInfoTextBox() && CheckInputOfStartDateTextBox()
+                && CheckInputOfEndDateTextBox() && CheckPatientsAllergens())
                 return true;
             return false;
         }

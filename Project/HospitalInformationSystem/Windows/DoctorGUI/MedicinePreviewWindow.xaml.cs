@@ -33,13 +33,17 @@ namespace HospitalInformationSystem.Windows.DoctorGUI
 
         private void previewMedicineButton_Click(object sender, RoutedEventArgs e)
         {
-            MedicineInformationPreview medicineInformationPreview = MedicineInformationPreview.GetInstance((Medicine)medicineTable.SelectedItem);
-            medicineInformationPreview.ShowDialog();
+            if (medicineTable.SelectedIndex >= 0)
+            {
+                MedicineInformationPreview medicineInformationPreview = MedicineInformationPreview.GetInstance((Medicine)medicineTable.SelectedItem);
+                medicineInformationPreview.ShowDialog();
+            }
         }
 
         private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
         {
             instance = null;
+            MedicineController.GetInstance().SaveInFile();
         }
     }
 }

@@ -1,4 +1,6 @@
 ﻿
+using HospitalInformationSystem.Controller;
+using HospitalInformationSystem.Model;
 using Model;
 using System;
 using System.Collections.Generic;
@@ -27,25 +29,43 @@ namespace HospitalInformationSystem.Windows.PatientGUI
         {
             InitializeComponent();
             loggedInPatient= patient;
+            LoadHourComboBox();
+            LoadMinuteComboBox();
             RefreshTable();
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            Therapy therapy = (Therapy)TherapiesDataGrid.SelectedItem;
-            if (therapy.NotificationEnabled)
-                therapy.NotificationEnabled = false;
-            else
-                therapy.NotificationEnabled = true;
-            TherapiesDataGrid.SelectedItem = therapy;
-            RefreshTable();
+            Prescription prescription = (Prescription)PrescriptionsDataGrid.SelectedItem;
+            Notification prescriptionNotification = new Notification(prescription.medicine.Name + " " + prescription.info, GetTimeFromComboBoxes(), prescription.startTime, prescription.endTime, true);
+            prescriptionNotification.Patient = loggedInPatient;
+            if(!NotificationController.GetInstance().GetNotifications().Contains(prescriptionNotification))
+            {
+                NotificationController.GetInstance().AddNotification(prescriptionNotification);
+            }
+            PatientMainWindow.GetInstance(loggedInPatient).Notify();
+        }
+
+        private DateTime GetTimeFromComboBoxes()
+        {
+            return DateTime.Parse(hourComboBox.SelectedItem + ":" + minuteComboBox.SelectedItem);
+        }
+
+        private void LoadHourComboBox()
+        {
+            hourComboBox.ItemsSource = Enumerable.Range(0, 24);
+        }
+
+        private void LoadMinuteComboBox()
+        {
+            minuteComboBox.ItemsSource = Enumerable.Range(0, 60).ToList<int>();
         }
 
         public void RefreshTable()
         {
-            var therapyList = new ObservableCollection<Therapy>(loggedInPatient.GetTherapy());
-            TherapiesDataGrid.ItemsSource = null;
-            TherapiesDataGrid.ItemsSource = therapyList;
+            var prescriptionList = new ObservableCollection<Prescription>(loggedInPatient.GetMedicalRecord().getPrescriptions());
+            PrescriptionsDataGrid.ItemsSource = null;
+            PrescriptionsDataGrid.ItemsSource = prescriptionList;
         }
 
         private void HomeButton_Click(object sender, RoutedEventArgs e)

@@ -86,7 +86,7 @@ namespace HospitalInformationSystem.Windows.PatientGUI
 
         private void LoadHourComboBox()
         {
-            hourComboBox.ItemsSource = Enumerable.Range(0, 23);
+            hourComboBox.ItemsSource = Enumerable.Range(0, 24);
         }
 
         private void LoadMinuteComboBox()

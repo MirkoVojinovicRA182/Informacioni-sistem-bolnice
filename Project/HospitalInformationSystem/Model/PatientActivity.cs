@@ -32,6 +32,11 @@ namespace HospitalInformationSystem.Model
             get; set;
         }
 
+        public DateTime HospitalReviewTime
+        {
+            get; set;
+        }
+
         public bool IsTroll
         {
             get; set;

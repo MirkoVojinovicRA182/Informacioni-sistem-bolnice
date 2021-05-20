@@ -38,6 +38,7 @@ namespace HospitalInformationSystem.Windows.PatientGUI
             newNotification.Patient = loggedInPatient;
             NotificationController.GetInstance().AddNotification(newNotification);
             LoadNotificationComboBox();
+            PatientMainWindow.GetInstance(loggedInPatient).Notify();
         }
 
         private void NotificationComboBox_DataContextChanged(object sender, DependencyPropertyChangedEventArgs e)
@@ -67,9 +68,9 @@ namespace HospitalInformationSystem.Windows.PatientGUI
         {
             string time = notification.Time.ToString();
             string[] timeArray = time.Split(':');
-            string[] minuteArray = timeArray[2].Split(' ');
-            hourComboBox.SelectedItem = Int32.Parse(timeArray[1]);
-            minuteComboBox.SelectedItem = Int32.Parse(minuteArray[0]);
+            string[] hourArray = timeArray[0].Split(' ');
+            hourComboBox.SelectedItem = Int32.Parse(hourArray[1]);
+            minuteComboBox.SelectedItem = Int32.Parse(timeArray[1]);
         }
 
         private void NotificationComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -112,12 +113,14 @@ namespace HospitalInformationSystem.Windows.PatientGUI
         private void DeleteNotificationButton_Click(object sender, RoutedEventArgs e)
         {
             NotificationController.GetInstance().RemoveNotification((Notification)notificationComboBox.SelectedItem);
+            PatientMainWindow.GetInstance(loggedInPatient).Notify();
         }
 
         private void ChangeButton_Click(object sender, RoutedEventArgs e)
         {
             Notification newNotification = new Notification(notificationTextBox.Text, GetTimeFromComboBoxes(), (DateTime)startDatePicker.SelectedDate, (DateTime)endDatePicker.SelectedDate, (bool)notificationCheckBox.IsChecked);
             NotificationController.GetInstance().ChangeNotification((Notification)notificationComboBox.SelectedItem, newNotification);
+            PatientMainWindow.GetInstance(loggedInPatient).Notify();
         }
     }
 }

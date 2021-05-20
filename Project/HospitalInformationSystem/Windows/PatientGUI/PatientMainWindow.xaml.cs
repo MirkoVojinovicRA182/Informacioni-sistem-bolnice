@@ -61,17 +61,42 @@ namespace HospitalInformationSystem.Windows.PatientGUI
             window.Show();
             this.Hide();
         }
-
         private void HospitalReviewButton_Click(object sender, RoutedEventArgs e)
         {
-            ReviewHospitalWindow window = new ReviewHospitalWindow(loggedInPatient);
-            window.Show();
-            this.Hide();
+            if (HospitalReviewValidation())
+            { 
+                ReviewHospitalWindow window = new ReviewHospitalWindow(loggedInPatient);
+                window.Show();
+                this.Hide();
+            } else
+            {
+                MessageBox.Show("Niste imali dovoljno pregleda od prethodnog puta kada ste ocenjivali bolnicu da bi ste je ponovo ocenjivali.", "Ocenjivanje bolnice", MessageBoxButton.OK, MessageBoxImage.Information);
+            }
+        }
+
+        private bool HospitalReviewValidation()
+        {
+            CalculateFinishedAppointments();
+            return loggedInPatient.Activity.NumberOfFinishedAppointmentsSinceReview >= 5;
+        }
+
+        private void CalculateFinishedAppointments()
+        {
+            foreach (var appointment in AppointmentController.getInstance().GetAppointmentsByPatient(loggedInPatient))
+            {
+                if (AppointmentIsFinished(appointment) && appointment.StartTime.AddMinutes(30).CompareTo(loggedInPatient.Activity.HospitalReviewTime) > 0)
+                {
+                    loggedInPatient.Activity.NumberOfFinishedAppointmentsSinceReview++;
+                }
+            }
+        }
+        private static bool AppointmentIsFinished(Appointment appointment)
+        {
+            return DateTime.Now.CompareTo(appointment.StartTime.AddMinutes(30)) > 0;
         }
         private void LogOffButton_Click(object sender, RoutedEventArgs e)
         {
             this.Close();
-            
         }
 
         private void AnamnesisButton_Click(object sender, RoutedEventArgs e)

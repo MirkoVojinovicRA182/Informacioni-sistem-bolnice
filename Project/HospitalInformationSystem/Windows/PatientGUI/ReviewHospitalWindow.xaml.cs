@@ -33,6 +33,7 @@ namespace HospitalInformationSystem.Windows.PatientGUI
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             ResetNumberOfFinishedAppointments();
+            patient.Activity.HospitalReviewTime = DateTime.Now;
             this.Close();
             PatientMainWindow.GetInstance(patient).Show();
         }

@@ -2,6 +2,7 @@
 using HospitalInformationSystem.Model;
 using Model;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Windows;
 using System.Windows.Input;
@@ -97,7 +98,13 @@ namespace HospitalInformationSystem.Windows.DoctorGUI
         }
         private bool CheckIfRoomHaveBeds()
         {
-            return (((Room)roomsListBox.SelectedItem).Equipment.Contains("22"));
+            foreach(DictionaryEntry de in ((Room)roomsListBox.SelectedItem).Equipment)
+            {
+                string str = EquipmentController.getInstance().getEquipmentName(de.Key.ToString());
+                if (str.Equals("Krevet"))
+                    return true;
+            }
+            return false;
         }
         private bool CheckAllInputs()
         {

@@ -14,6 +14,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using System.Windows.Threading;
 
 namespace HospitalInformationSystem.Windows.PatientGUI
 {
@@ -24,13 +25,12 @@ namespace HospitalInformationSystem.Windows.PatientGUI
     {
         private Patient loggedInPatient;
         private static PatientMainWindow instance = null;
+        private List<DispatcherTimer> notificationTimers = new List<DispatcherTimer>();
         public PatientMainWindow(Patient patient)
         {
             InitializeComponent();
             loggedInPatient = patient;
-            Notification notification = new Notification("AAAAAAAAA", new DateTime(2021, 5, 10, 2, 55, 0), new DateTime(2021, 5, 11, 2, 5, 0), new DateTime(2021, 5, 25, 2, 5, 0), true);
-            notification.Patient = loggedInPatient;
-            NotificationController.GetInstance().AddNotification(notification);
+            loggedInPatient.GetMedicalRecord().addPrescription(new Prescription(new Medicine(1, "Albuterol", TypeOfMedicine.Tablet, "2", "1", new List<MedicineIngredient>()), new DateTime(2021, 5, 10, 2, 55, 0), new DateTime(2021, 5, 29, 2, 5, 0), "info"));
             Notify();
         }
  
@@ -61,17 +61,42 @@ namespace HospitalInformationSystem.Windows.PatientGUI
             window.Show();
             this.Hide();
         }
-
         private void HospitalReviewButton_Click(object sender, RoutedEventArgs e)
         {
-            ReviewHospitalWindow window = new ReviewHospitalWindow(loggedInPatient);
-            window.Show();
-            this.Hide();
+            if (HospitalReviewValidation())
+            { 
+                ReviewHospitalWindow window = new ReviewHospitalWindow(loggedInPatient);
+                window.Show();
+                this.Hide();
+            } else
+            {
+                MessageBox.Show("Niste imali dovoljno pregleda od prethodnog puta kada ste ocenjivali bolnicu da bi ste je ponovo ocenjivali.", "Ocenjivanje bolnice", MessageBoxButton.OK, MessageBoxImage.Information);
+            }
+        }
+
+        private bool HospitalReviewValidation()
+        {
+            CalculateFinishedAppointments();
+            return loggedInPatient.Activity.NumberOfFinishedAppointmentsSinceReview >= 5;
+        }
+
+        private void CalculateFinishedAppointments()
+        {
+            foreach (var appointment in AppointmentController.getInstance().GetAppointmentsByPatient(loggedInPatient))
+            {
+                if (AppointmentIsFinished(appointment) && appointment.StartTime.AddMinutes(30).CompareTo(loggedInPatient.Activity.HospitalReviewTime) > 0)
+                {
+                    loggedInPatient.Activity.NumberOfFinishedAppointmentsSinceReview++;
+                }
+            }
+        }
+        private static bool AppointmentIsFinished(Appointment appointment)
+        {
+            return DateTime.Now.CompareTo(appointment.StartTime.AddMinutes(30)) > 0;
         }
         private void LogOffButton_Click(object sender, RoutedEventArgs e)
         {
             this.Close();
-            
         }
 
         private void AnamnesisButton_Click(object sender, RoutedEventArgs e)
@@ -101,10 +126,10 @@ namespace HospitalInformationSystem.Windows.PatientGUI
                 TimeSpan timeToNotification = ((dayTime - currentTime) + notificationTime[i]);
                 if (timeToNotification.TotalHours > 24)
                     timeToNotification -= new TimeSpan(24, 0, 0);
-                var dispatcherTimer = new System.Windows.Threading.DispatcherTimer();
-                dispatcherTimer.Tick += new EventHandler(DispatcherTimer_Tick);
-                dispatcherTimer.Interval = timeToNotification;
-                dispatcherTimer.Start();
+                notificationTimers.Add(new System.Windows.Threading.DispatcherTimer());
+                notificationTimers[i].Tick += new EventHandler(DispatcherTimer_Tick);
+                notificationTimers[i].Interval = timeToNotification;
+                notificationTimers[i].Start();
             }
 
         }

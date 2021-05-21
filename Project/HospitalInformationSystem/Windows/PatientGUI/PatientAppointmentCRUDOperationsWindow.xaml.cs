@@ -36,17 +36,7 @@ namespace HospitalInformationSystem.Windows.PatientGUI
         {
             InitializeComponent();
             AppointmentDataGrid.ItemsSource = AppointmentController.getInstance().GetAppointmentsByPatient(patient);
-            var therapy = new List<Therapy>();
-            var days = new List<DayOfWeek>();
-            days.Add(DayOfWeek.Monday);
-            days.Add(DayOfWeek.Tuesday);
-            days.Add(DayOfWeek.Wednesday);
-            bool notificationsEnabled = true;
-            therapy.Add(new Therapy(Medication.Albuterol, 3, days, default(DateTime).Add(DateTime.ParseExact("13:35", "HH:mm", CultureInfo.InvariantCulture).TimeOfDay), notificationsEnabled));
-            therapy.Add(new Therapy(Medication.Losartan, 2, days, default(DateTime).Add(DateTime.ParseExact("10:00", "HH:mm", CultureInfo.InvariantCulture).TimeOfDay), notificationsEnabled));
             this.patient = patient;
-            this.patient.SetTherapy(therapy);
-            Notify();
             RefreshTable();
         }
 
@@ -176,50 +166,6 @@ namespace HospitalInformationSystem.Windows.PatientGUI
             appointmentList = new ObservableCollection<Appointment>(AppointmentController.getInstance().getAppointment());
             AppointmentDataGrid.ItemsSource = null;
             AppointmentDataGrid.ItemsSource = appointmentList;
-        }
-        private void Notify()
-        {
-
-            var therapies = patient.GetTherapy();
-            TimeSpan dayTime = new TimeSpan(24, 00, 00);
-            TimeSpan currentTime = TimeSpan.Parse(DateTime.Now.ToString("HH:mm"));
-            List<TimeSpan> notificationTime = new List<TimeSpan>();
-
-            for (int i = 0; i < therapies.Count; i++)
-            {
-                if (therapies[i].Days.Contains(DateTime.Now.DayOfWeek) & therapies[i].NotificationEnabled == true)
-                {
-                    notificationTime.Add(therapies[i].Time.AddHours(-1).TimeOfDay);
-                }
-            }
-
-            for (int i = 0; i < notificationTime.Count; i++)
-            {
-                TimeSpan timeToNotification = ((dayTime - currentTime) + notificationTime[i]);
-                if (timeToNotification.TotalHours > 24)
-                    timeToNotification -= new TimeSpan(24, 0, 0);
-                var dispatcherTimer = new System.Windows.Threading.DispatcherTimer();
-                dispatcherTimer.Tick += new EventHandler(DispatcherTimer_Tick);
-                dispatcherTimer.Interval = timeToNotification;
-                dispatcherTimer.Start();
-            }
-
-        }
- 
-        private static void DispatcherTimer_Tick(object sender, EventArgs e)
-        {
-            var therapies = PatientAppointmentCRUDOperationsWindow.getInstance((Patient)MainWindow.GetUser()).patient.GetTherapy();
-            NotificationWindow window = new NotificationWindow();
-            for (int i = 0; i < therapies.Count; i++)
-            {
-                if (DateTime.Now.TimeOfDay.CompareTo(therapies[i].Time.AddMinutes(-61).TimeOfDay) > 0 && DateTime.Now.TimeOfDay.CompareTo(therapies[i].Time.AddMinutes(-59).TimeOfDay) < 0)
-                {
-                    window.medicatonText.Text = therapies[i].Medication.ToString();
-                    window.timeText.Text = therapies[i].TimeString;
-                    window.doseText.Text = therapies[i].Dosage.ToString();
-                    window.ShowDialog();
-                }
-            }
         }
 
         private void RateDoctorButton_Click(object sender, RoutedEventArgs e)

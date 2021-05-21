@@ -12,7 +12,15 @@
             <Label Content="" Height="45" VerticalAlignment="Top" Width="89"/>
             <Button Content="Home" Height="45" VerticalAlignment="Top" Width="75" Click="HomeButton_Click" Margin="0,-3"/>
         </ToolBar>
-        <ComboBox x:Name="notificationComboBox" HorizontalAlignment="Left" VerticalAlignment="Top" Width="120" Margin="123,66,0,0" DataContextChanged="NotificationComboBox_DataContextChanged" SelectionChanged="NotificationComboBox_SelectionChanged"/>
+        <ComboBox x:Name="notificationComboBox" HorizontalAlignment="Left" VerticalAlignment="Top" Width="120" Margin="123,66,0,0" DataContextChanged="NotificationComboBox_DataContextChanged" SelectionChanged="NotificationComboBox_SelectionChanged">
+            <ComboBox.ItemTemplate>
+                <DataTemplate>
+                    <TextBlock>
+                 <Run Text="{Binding Contents}" />
+                    </TextBlock>
+                </DataTemplate>
+            </ComboBox.ItemTemplate>
+        </ComboBox>
         <Rectangle Fill="#FF4C90F1" HorizontalAlignment="Left" Height="84" Stroke="Black" VerticalAlignment="Top" Width="265" Margin="-2,401,0,0"/>
         <Label Content="Notifikacija:" HorizontalAlignment="Left" Margin="10,61,0,0" VerticalAlignment="Top" FontSize="15" Width="94"/>
         <Label Content="Vreme:" HorizontalAlignment="Left" Margin="10,97,0,0" VerticalAlignment="Top" FontSize="15" Width="94"/>

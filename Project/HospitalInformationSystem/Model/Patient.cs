@@ -77,6 +77,7 @@ namespace Model
             Blood = blood;
             LBO = lbo;
             this.Allergens = new List<string>();
+            this.medicalRecord = new MedicalRecord();
         }
 
         public Patient(string name, string surname, PatientActivity activity)

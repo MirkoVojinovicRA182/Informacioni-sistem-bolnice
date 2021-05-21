@@ -63,7 +63,10 @@ namespace HospitalInformationSystem.Windows.PatientGUI
 
         public void RefreshTable()
         {
-            var prescriptionList = new ObservableCollection<Prescription>(loggedInPatient.GetMedicalRecord().getPrescriptions());
+            //var prescriptionList = new ObservableCollection<Prescription>(loggedInPatient.GetMedicalRecord().getPrescriptions());
+            ObservableCollection<Prescription> prescriptionList = new ObservableCollection<Prescription>();
+            foreach (Prescription prescription in loggedInPatient.GetMedicalRecord().getPrescriptions())
+                prescriptionList.Add(prescription);
             PrescriptionsDataGrid.ItemsSource = null;
             PrescriptionsDataGrid.ItemsSource = prescriptionList;
         }

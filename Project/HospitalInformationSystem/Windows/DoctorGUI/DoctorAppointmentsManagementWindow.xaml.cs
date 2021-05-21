@@ -30,7 +30,7 @@ namespace HospitalInformationSystem.Windows.DoctorGUI
 
         public void RefreshTable()
         {
-            loggedDoctorAppointmentsList = new ObservableCollection<Appointment>(loggedDoctor.GetAppointment());
+            loggedDoctorAppointmentsList = new ObservableCollection<Appointment>(AppointmentController.getInstance().GetAppointmentsByDoctor(loggedDoctor));
             appointmentsTable.ItemsSource = null;
             appointmentsTable.ItemsSource = loggedDoctorAppointmentsList;
         }

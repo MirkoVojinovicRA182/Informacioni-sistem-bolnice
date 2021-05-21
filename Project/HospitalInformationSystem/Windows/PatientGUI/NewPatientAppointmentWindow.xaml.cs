@@ -66,10 +66,6 @@ namespace HospitalInformationSystem.Windows.PatientGUI
             app.SchedulingTime = DateTime.Now;
 
             AppointmentController.getInstance().addAppointment(app);
-
-            app.doctor.AddAppointment(app);
-            app.patient.AddAppointment(app);
-
         }
 
         private void LoadTimeComboBox()

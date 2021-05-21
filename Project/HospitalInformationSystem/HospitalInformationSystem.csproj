@@ -165,7 +165,7 @@
     <Compile Include="Windows\DoctorGUI\ShowPatientInformationWindow.xaml.cs">
       <DependentUpon>ShowPatientInformationWindow.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Windows\ManagerGUI\DetailEquipmentDTO.cs" />
+    <Compile Include="DTO\DetailEquipmentDTO.cs" />
     <Compile Include="Windows\ManagerGUI\DetailEquipmentViewUserControl.xaml.cs">
       <DependentUpon>DetailEquipmentViewUserControl.xaml</DependentUpon>
     </Compile>

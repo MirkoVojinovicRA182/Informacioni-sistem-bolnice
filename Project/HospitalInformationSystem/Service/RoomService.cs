@@ -39,14 +39,6 @@ namespace HospitalInformationSystem.Service
         {
             GetRooms().Remove(room);
         }
-        /*public void ChangeRoom(Room roomForChange, Room roomDTO)
-        {
-            //prebaciti u room class
-            roomForChange.Id = roomDTO.Id;
-            roomForChange.Name = roomDTO.Name;
-            roomForChange.Type = roomDTO.Type;
-            roomForChange.Floor = roomDTO.Floor;
-        }*/
         public void SetRoomEquipment(Room room, Hashtable newEquipment)
         {
             room.Equipment.Clear();

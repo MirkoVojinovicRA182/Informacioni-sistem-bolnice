@@ -1,4 +1,5 @@
 ﻿using HospitalInformationSystem.Controller;
+using HospitalInformationSystem.DTO;
 using Model;
 using System;
 using System.Collections;

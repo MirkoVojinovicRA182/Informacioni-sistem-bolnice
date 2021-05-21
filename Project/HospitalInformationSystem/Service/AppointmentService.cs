@@ -110,6 +110,19 @@ namespace HospitalInformationSystem.Service
             return list;
         }
 
+        public List<Appointment> GetAppointmentsByDoctor(Doctor doctor)
+        {
+            List<Appointment> list = new List<Appointment>();
+
+            foreach (var appointment in appointments)
+            {
+                if (appointment.doctor.Name == doctor.Name)
+                    list.Add(appointment);
+            }
+
+            return list;
+        }
+
         public void ChangeStartTime(Appointment appointmentForChange, DateTime newStartTime)
         {
             appointmentForChange.StartTime = newStartTime;

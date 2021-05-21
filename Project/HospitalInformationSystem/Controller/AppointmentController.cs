@@ -87,6 +87,10 @@ namespace HospitalInformationSystem.Controller
         {
             return appointmentService.GetAppointmentsByPatient(patient);
         }
+        public List<Appointment> GetAppointmentsByDoctor(Doctor doctor)
+        {
+            return appointmentService.GetAppointmentsByDoctor(doctor);
+        }
         public void DeleteAllAppointmentsFromRoom(Room room)
         {
             appointmentService.DeleteAllAppointmentsFromRoom(room);

@@ -26,6 +26,7 @@ namespace HospitalInformationSystem.Windows.ManagerGUI
     public partial class DetailEquipmentViewUserControl : UserControl
     {
         private ObservableCollection<DetailEquipmentDTO> equipmentList;
+
         private ObservableCollection<Room> roomsList;
 
         public DetailEquipmentViewUserControl()

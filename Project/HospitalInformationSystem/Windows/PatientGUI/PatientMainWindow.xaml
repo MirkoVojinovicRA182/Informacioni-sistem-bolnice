@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:HospitalInformationSystem.Windows.PatientGUI"
         mc:Ignorable="d"
-        Title="PatientMainWindow" Height="516" Width="271" Background="#FF4C90F1">
+        Title="PatientMainWindow" Height="516" Width="271" Background="#FF4C90F1" Closing="Window_Closing">
     <Grid Margin="0,0,2,36">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="43*"/>

@@ -60,8 +60,7 @@ namespace HospitalInformationSystem.Windows.DoctorGUI
             }
             else if((Keyboard.IsKeyDown(Key.LeftCtrl) || Keyboard.IsKeyDown(Key.RightCtrl)) && Keyboard.IsKeyDown(Key.K))
             {
-                DoctorAppointmentsManagementWindow window = DoctorAppointmentsManagementWindow.GetInstance(doctor);
-                window.Show();
+                DoctorAppointmentsManagementWindow.GetInstance(doctor).Show();
             }
             else if ((Keyboard.IsKeyDown(Key.LeftCtrl) || Keyboard.IsKeyDown(Key.RightCtrl)) && Keyboard.IsKeyDown(Key.M))
             {

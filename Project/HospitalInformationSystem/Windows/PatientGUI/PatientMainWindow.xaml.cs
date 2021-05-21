@@ -43,7 +43,6 @@ namespace HospitalInformationSystem.Windows.PatientGUI
 
         private void LoadDataFromFiles()
         {
-            RoomController.GetInstance().LoadRoomsFromFile();
             DoctorController.getInstance().LoadFromFile();
             PatientController.getInstance().LoadFromFile();
             AppointmentController.getInstance().loadFromFile();
@@ -104,7 +103,6 @@ namespace HospitalInformationSystem.Windows.PatientGUI
         }
         private void LogOffButton_Click(object sender, RoutedEventArgs e)
         {
-            instance = null;
             this.Close();
         }
 
@@ -113,16 +111,6 @@ namespace HospitalInformationSystem.Windows.PatientGUI
             PatientAnamnesisWindow window = new PatientAnamnesisWindow(loggedInPatient);
             window.Show();
         }
-
-        private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
-        {
-            DoctorController.getInstance().SaveInFlie();
-            RoomController.GetInstance().SaveRoomsInFile();
-            AppointmentController.getInstance().saveInFile();
-            PatientController.getInstance().SaveInFile();
-            instance = null;
-        }
-
         public void Notify()
         {
             TimeSpan dayTime = new TimeSpan(24, 00, 00);
@@ -163,6 +151,14 @@ namespace HospitalInformationSystem.Windows.PatientGUI
                     window.ShowDialog();
                 }
             }
+        }
+
+        private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            DoctorController.getInstance().SaveInFlie();
+            AppointmentController.getInstance().saveInFile();
+            PatientController.getInstance().SaveInFile();
+            instance = null;
         }
     }
 }

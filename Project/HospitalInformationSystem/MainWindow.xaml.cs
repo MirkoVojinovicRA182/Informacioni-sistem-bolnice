@@ -23,35 +23,40 @@ namespace HospitalInformationSystem.Windows
         public MainWindow()
         {
             InitializeComponent();
-            /*Room room1 = new Room(1, "Magacin", -1, TypeOfRoom.Magacine);
-            Room room2 = new Room(2, "Prostorija dr Marka", 1, TypeOfRoom.ExaminationRoom);
-            Room room3 = new Room(3, "Prostorija dr Jovana", 1, TypeOfRoom.ExaminationRoom);
-            Room room4 = new Room(4, "Prostorija dr Stevana", 1, TypeOfRoom.ExaminationRoom);
-            Room room5 = new Room(5, "Prostorija dr Darka", 1, TypeOfRoom.ExaminationRoom);
+            RoomController.GetInstance().LoadRoomsFromFile();
+            PatientController.getInstance().LoadFromFile();
+            AppointmentController.getInstance().loadFromFile();
+            DoctorController.getInstance().LoadFromFile();
+            
+            /*Room room1 = new Room(1, "Magacin", -1, TypeOfRoom.Magacine, new System.Collections.Hashtable());
+            Room room2 = new Room(2, "Prostorija dr Marka", 1, TypeOfRoom.ExaminationRoom, new System.Collections.Hashtable());
+            Room room3 = new Room(3, "Prostorija dr Jovana", 1, TypeOfRoom.ExaminationRoom, new System.Collections.Hashtable());
+            Room room4 = new Room(4, "Prostorija dr Stevana", 1, TypeOfRoom.ExaminationRoom, new System.Collections.Hashtable());
+            Room room5 = new Room(5, "Prostorija dr Darka", 1, TypeOfRoom.ExaminationRoom, new System.Collections.Hashtable());
             RoomController.GetInstance().AddRoomToRoomList(room1);
             RoomController.GetInstance().AddRoomToRoomList(room2);
             RoomController.GetInstance().AddRoomToRoomList(room3);
             RoomController.GetInstance().AddRoomToRoomList(room4);
-            RoomController.GetInstance().AddRoomToRoomList(room5);*/
+            RoomController.GetInstance().AddRoomToRoomList(room5);
             RoomController.GetInstance().LoadRoomsFromFile();
             PatientController.getInstance().LoadFromFile();
             AppointmentController.getInstance().loadFromFile();
             DoctorController.getInstance().LoadFromFile();
 
-            /*var doctor = new Doctor("Marko", "Markovic", Specialization.Family_Physician, RoomController.GetInstance().GetRooms()[0]);
+            var doctor = new Doctor("Marko", "Markovic", Specialization.Family_Physician, RoomController.GetInstance().GetRooms()[0]);
             var doctor2 = new Doctor("Jovan", "Jovanovic", Specialization.Family_Physician, RoomController.GetInstance().GetRooms()[1]);
             var doctor3 = new Doctor("Stevan", "Stojanovic", Specialization.Family_Physician, RoomController.GetInstance().GetRooms()[2]);
             DoctorController.getInstance().AddDoctor(doctor);
             DoctorController.getInstance().AddDoctor(doctor2);
             DoctorController.getInstance().AddDoctor(doctor3);
             var doctor4 = new Doctor("Darko", "Ilic", Specialization.Surgeon, RoomController.GetInstance().GetRooms()[3]);
-            DoctorController.getInstance().AddDoctor(doctor4);*/
+            DoctorController.getInstance().AddDoctor(doctor4);
             DoctorController.getInstance().GetDoctors()[0].room = RoomController.GetInstance().GetRooms()[0];
             DoctorController.getInstance().GetDoctors()[1].room = RoomController.GetInstance().GetRooms()[1];
             DoctorController.getInstance().GetDoctors()[2].room = RoomController.GetInstance().GetRooms()[2];
             DoctorController.getInstance().GetDoctors()[3].room = RoomController.GetInstance().GetRooms()[3];
 
-            /*Patient first = new Patient("Pera", "Pacijent", new PatientActivity(0, 0, 0, false));
+            Patient first = new Patient("Pera", "Pacijent", new PatientActivity(0, 0, 0, false));
             first.Jmbg = "001";
             Patient second = new Patient("Jova", "Pacijent", new PatientActivity(0, 0, 0, false));
             second.Jmbg = "002";
@@ -69,6 +74,7 @@ namespace HospitalInformationSystem.Windows
             PatientController.getInstance().getPatient().Add(first);
             PatientController.getInstance().getPatient().Add(second);
             PatientController.getInstance().getPatient().Add(third);*/
+
             Secretary secretary = new Secretary();
             secretary.Name = "Petar";
             secretary.Surname = "Petrovic";
@@ -80,17 +86,17 @@ namespace HospitalInformationSystem.Windows
             //manager.Id = "52";
 
 
-            AccountDataBase.getInstance().AddAccount(new Account("perapacijent1@yahoo.com", "pass", PatientController.getInstance().getPatient()[0]));
-            AccountDataBase.getInstance().AddAccount(new Account("jovapacijent@yahoo.com", "pass", PatientController.getInstance().getPatient()[1]));
-            AccountDataBase.getInstance().AddAccount(new Account("mikapacijent@yahoo.com", "pass", PatientController.getInstance().getPatient()[2]));
-            AccountDataBase.getInstance().AddAccount(new Account("markomarkovic@yahoo.com", "pass", DoctorController.getInstance().GetDoctors()[0]));
-            AccountDataBase.getInstance().AddAccount(new Account("jovanjovanovic@yahoo.com", "pass", DoctorController.getInstance().GetDoctors()[1]));
-            AccountDataBase.getInstance().AddAccount(new Account("stevanstojanovic@yahoo.com", "pass", DoctorController.getInstance().GetDoctors()[2]));
-            AccountDataBase.getInstance().AddAccount(new Account("d", "pass", DoctorController.getInstance().GetDoctors()[3]));
-            AccountDataBase.getInstance().AddAccount(new Account("petarpetrovic@yahoo.com", "pass", secretary));
-            AccountDataBase.getInstance().AddAccount(new Account("m", "pass", manager));
+            AccountDataBase.getInstance().AddAccount(new Account("pera", "pass", PatientController.getInstance().getPatient()[0]));
+            AccountDataBase.getInstance().AddAccount(new Account("jova", "pass", PatientController.getInstance().getPatient()[1]));
+            AccountDataBase.getInstance().AddAccount(new Account("mika", "pass", PatientController.getInstance().getPatient()[2]));
+            AccountDataBase.getInstance().AddAccount(new Account("marko", "pass", DoctorController.getInstance().GetDoctors()[0]));
+            AccountDataBase.getInstance().AddAccount(new Account("jovan", "pass", DoctorController.getInstance().GetDoctors()[1]));
+            AccountDataBase.getInstance().AddAccount(new Account("stevan", "pass", DoctorController.getInstance().GetDoctors()[2]));
+            AccountDataBase.getInstance().AddAccount(new Account("darko", "pass", DoctorController.getInstance().GetDoctors()[3]));
+            AccountDataBase.getInstance().AddAccount(new Account("petar", "pass", secretary));
+            AccountDataBase.getInstance().AddAccount(new Account("u", "pass", manager));
 
-            ManagerMainWindow.getInstance().Show();
+            //ManagerMainWindow.getInstance().Show();
 
         }
 
@@ -135,9 +141,8 @@ namespace HospitalInformationSystem.Windows
                             if (((Patient)accounts[i].Person).Jmbg == patient.Jmbg)
                                 rightPatient = patient;
                         }
-                        PatientMainWindow window = PatientMainWindow.GetInstance(rightPatient);
                         person = accounts[i].Person;
-                        window.Show();
+                        PatientMainWindow.GetInstance(rightPatient).Show();
                     }
                 }
             }

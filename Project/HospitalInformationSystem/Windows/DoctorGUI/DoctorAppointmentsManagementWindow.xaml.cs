@@ -24,7 +24,7 @@ namespace HospitalInformationSystem.Windows.DoctorGUI
         {
             InitializeComponent();
             this.loggedDoctor = loggedDoctor;
-            appointmentsTable.DataContext = loggedDoctor.GetAppointment();
+            //appointmentsTable.DataContext = loggedDoctor.GetAppointment();
             RefreshTable();
         }
 

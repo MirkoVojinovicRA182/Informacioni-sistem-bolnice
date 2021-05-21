@@ -39,12 +39,6 @@ namespace HospitalInformationSystem.Service
         {
             GetRooms().Remove(room);
         }
-        public void SetRoomEquipment(Room room, Hashtable newEquipment)
-        {
-            room.Equipment.Clear();
-            foreach (DictionaryEntry de in newEquipment)
-                room.Equipment.Add(de.Key, de.Value);
-        }
         public List<Room> GetRooms()
         {
             return _repository.GetRooms();

@@ -189,7 +189,8 @@ namespace HospitalInformationSystem.Windows.ManagerGUI
 
         private void equipmentApplyButton_Click(object sender, RoutedEventArgs e)
         {
-            RoomController.GetInstance().SetRoomEquipment(selectedRoom, equipment);
+            //RoomController.GetInstance().SetRoomEquipment(selectedRoom, equipment);
+            selectedRoom.Equipment = equipment;
             //promena usled dodavanja neke nove opreme
             changeQuantityInMagacineOfEquipment();
             //promena usled eventualnog brisanja opreme

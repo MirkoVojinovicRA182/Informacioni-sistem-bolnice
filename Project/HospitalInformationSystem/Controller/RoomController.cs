@@ -46,10 +46,6 @@ namespace HospitalInformationSystem.Controller
             _appointmentService.DeleteAllAppointmentsFromRoom(room);
             _equipmentService.MoveEquipmentFromRoomToMagacine(room);
         }
-        public void SetRoomEquipment(Room room, Hashtable eq)
-        {
-            _roomService.SetRoomEquipment(room, eq);
-        }
         public List<Room> GetRooms()
         {
             return _roomService.GetRooms();

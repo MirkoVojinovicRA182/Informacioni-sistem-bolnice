@@ -15,14 +15,14 @@ namespace Model
     public class Room
     {
         private string stringValueOfEnumType;
-
+        private Hashtable _equipment;
         public Room(int id, string name, int floor, TypeOfRoom type)
         {
             this.Id = id;
             this.Name = name;
             this.Floor = floor;
             this.Type = type;
-            Equipment = new Hashtable();
+            _equipment = new Hashtable();
             RoomRenovationState = new RoomRenovationState(DateTime.Now, DateTime.Now);
         }
         public Room(int id, string name, int floor, TypeOfRoom type, Hashtable equipment)
@@ -31,7 +31,7 @@ namespace Model
             this.Name = name;
             this.Floor = floor;
             this.Type = type;
-            Equipment = equipment;
+            _equipment = equipment;
             RoomRenovationState = new RoomRenovationState(DateTime.Now, DateTime.Now);
         }
 
@@ -40,19 +40,14 @@ namespace Model
         {
             get; set;
         }
-
-
         public int Floor
         {
             get; set;
         }
-
         public int Id
         {
             get; set;
         }
-
-
         public TypeOfRoom Type
         {
             get; set;
@@ -60,8 +55,12 @@ namespace Model
 
         public Hashtable Equipment
         {
-            get;
-            set;
+            get { return _equipment; }
+            set
+            {
+                foreach (DictionaryEntry de in value)
+                    _equipment.Add(de.Key, de.Value);
+            }
         }
 
         public string StringValueOfEnumType

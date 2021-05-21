@@ -120,7 +120,7 @@ namespace HospitalInformationSystem.Windows.ManagerGUI
                 replacementMedicine = medicineForEdit.ReplacementMedicine;
             if (CheckControlsInputCorrection())
             {
-                MedicineController.GetInstance().ChangeMedicine(medicineForEdit, new Medicine(
+                medicineForEdit.UpdateMedicine(new Medicine(
                     int.Parse(idTextBox.Text), nameTextBox.Text, typeOfMedicine,
                     purposeTextBoxt.Text, useTextBox.Text, replacementMedicine, medicineIngredientList));
                 this.Close();
@@ -154,7 +154,7 @@ namespace HospitalInformationSystem.Windows.ManagerGUI
         }
         private bool CheckTheExistenceOfId()
         {
-            return !(MedicineController.GetInstance().FindMedicineUsingId(int.Parse(idTextBox.Text)) == null);
+            return !(MedicineController.GetInstance().FindMedicineById(int.Parse(idTextBox.Text)) == null);
         }
         private bool PurposeTextBoxCorrection()
         {

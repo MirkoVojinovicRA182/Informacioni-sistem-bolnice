@@ -10,98 +10,50 @@ namespace HospitalInformationSystem.Service
 {
     class MedicineService
     {
-        List<Medicine> medicineList;
-        MedicineRepository medicineRepository;
+        MedicineRepository _medicineRepository;
         public MedicineService()
         {
-            medicineList = new List<Medicine>();
-            medicineRepository = new MedicineRepository();
+            _medicineRepository = new MedicineRepository();
         }
-
         public void AddMedicine(Medicine newMedicine)
         {
-            medicineList.Add(newMedicine);
+            _medicineRepository.AddMedicine(newMedicine);
         }
         public List<Medicine> GetAllMedicines()
         {
-            return medicineList;
+            return _medicineRepository.GetAllMedicines();
         }
         public void DeleteMedicine(Medicine medicineForDeleting)
         {
-            if (medicineForDeleting == null)
-                return;
-            if (medicineList != null)
-                if (this.medicineList.Contains(medicineForDeleting))
-                    this.medicineList.Remove(medicineForDeleting);
-        }
-        public void ChangeMedicine(Medicine oldMedicine, Medicine newMedicine)
-        {
-            oldMedicine.Id = newMedicine.Id;
-            oldMedicine.Name = newMedicine.Name;
-            oldMedicine.Type = newMedicine.Type;
-            oldMedicine.Purpose = newMedicine.Purpose;
-            oldMedicine.WayOfUse = newMedicine.WayOfUse;
-            oldMedicine.ReplacementMedicine = newMedicine.ReplacementMedicine;
-            oldMedicine.Ingredients = newMedicine.Ingredients;
+            _medicineRepository.DeleteMedicine(medicineForDeleting);
         }
         public void SetMedicineList(List<Medicine> newMedicineList)
         {
-            RemoveAllMedicines();
-            foreach (Medicine newMedicine in newMedicineList)
-                AddMedicine(newMedicine);
-        }
-        public void RemoveAllMedicines()
-        {
-            if (medicineList != null)
-                medicineList.Clear();
+            _medicineRepository.SetMedicineList(newMedicineList);
         }
         public void SaveInFile()
         {
-            medicineRepository.saveInFile();
+            _medicineRepository.saveInFile();
         }
-
         public void LoadFromFile()
         {
-            medicineRepository.loadFromFile();
+            _medicineRepository.loadFromFile();
         }
-        public Medicine FindMedicineUsingId(int id)
+        public Medicine FindMedicineById(int id)
         {
-            foreach(Medicine med in medicineList)
-            {
-                if (med.Id == id)
-                    return med;
-            }
-            return null;
+            return _medicineRepository.FindMedicineById(id);
         }
-        public void FindReplacementMedicineAndDeleteThem(Medicine replacementMedicine)
+        public void DeleteReplacementMedicine(Medicine replacementMedicine)
         {
-            foreach(Medicine medicine in medicineList)
-            {
-                if (Medicine.Equals(medicine.ReplacementMedicine, replacementMedicine))
-                {
-                    medicine.ReplacementMedicine = null;
-                    break;
-                }
-            }
+            _medicineRepository.DeleteReplacementMedicine(replacementMedicine);
         }
         public bool MedicineCommentExists()
         {
-            foreach(Medicine medicine in medicineList)
-            {
-                if (medicine.Comment != null)
-                    return true;
-            }
-            return false;
+            return _medicineRepository.MedicineCommentExists();
         }
         public List<Medicine> GetAllMedicinesWithComment()
         {
-            List<Medicine> medicinesWithComment = new List<Medicine>();
-            foreach (Medicine medicine in medicineList)
-            {
-                if (medicine.Comment != null)
-                    medicinesWithComment.Add(medicine);
-            }
-            return medicinesWithComment;
+            return _medicineRepository.GetAllMedicinesWithComment();
         }
     }
 }

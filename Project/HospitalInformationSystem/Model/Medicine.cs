@@ -88,5 +88,16 @@ namespace HospitalInformationSystem.Model
         {
             get; set;
         }
+
+        public void UpdateMedicine(Medicine newMedicine)
+        {
+            this.Id = newMedicine.Id;
+            this.Name = newMedicine.Name;
+            this.Type = newMedicine.Type;
+            this.Purpose = newMedicine.Purpose;
+            this.WayOfUse = newMedicine.WayOfUse;
+            this.ReplacementMedicine = newMedicine.ReplacementMedicine;
+            this.Ingredients = newMedicine.Ingredients;
+        }
     }
 }

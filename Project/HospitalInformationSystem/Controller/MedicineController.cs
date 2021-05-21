@@ -35,17 +35,9 @@ namespace HospitalInformationSystem.Controller
         {
             medicineService.DeleteMedicine(medicineForDeleting);
         }
-        public void ChangeMedicine(Medicine oldMedicine, Medicine newMedicine)
-        {
-            medicineService.ChangeMedicine(oldMedicine, newMedicine);
-        }
         public void SetMedicineList(List<Medicine> newMedicineList)
         {
             medicineService.SetMedicineList(newMedicineList);
-        }
-        public void RemoveAllMedicines()
-        {
-            medicineService.RemoveAllMedicines();
         }
         public void SaveInFile()
         {
@@ -55,13 +47,13 @@ namespace HospitalInformationSystem.Controller
         {
             medicineService.LoadFromFile();
         }
-        public Medicine FindMedicineUsingId(int id)
+        public Medicine FindMedicineById(int id)
         {
-            return  medicineService.FindMedicineUsingId(id);
+            return  medicineService.FindMedicineById(id);
         }
-        public void FindReplacementMedicineAndDeleteThem(Medicine replacementMedicine)
+        public void DeleteReplacementMedicine(Medicine replacementMedicine)
         {
-            medicineService.FindReplacementMedicineAndDeleteThem(replacementMedicine);
+            medicineService.DeleteReplacementMedicine(replacementMedicine);
         }
         public bool MedicineCommentExists()
         {

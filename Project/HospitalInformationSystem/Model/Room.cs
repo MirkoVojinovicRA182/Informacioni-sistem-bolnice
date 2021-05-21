@@ -1,9 +1,3 @@
-/***********************************************************************
- * Module:  Room.cs
- * Author:  Mirko
- * Purpose: Definition of the Class Model.Room
- ***********************************************************************/
-
 using HospitalInformationSystem.DTO;
 using HospitalInformationSystem.Model;
 using System;

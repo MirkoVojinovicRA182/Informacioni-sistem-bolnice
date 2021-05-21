@@ -103,7 +103,7 @@ namespace HospitalInformationSystem.Service
 
             foreach (var appointment in appointments)
             {
-                if (Object.Equals(appointment.patient, patient))
+                if (appointment.patient.Jmbg == patient.Jmbg)
                     list.Add(appointment);
             }
 

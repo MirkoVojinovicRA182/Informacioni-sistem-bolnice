@@ -35,7 +35,6 @@ namespace HospitalInformationSystem.Windows.PatientGUI
         public PatientAppointmentCRUDOperationsWindow(Patient patient)
         {
             InitializeComponent();
-            AppointmentDataGrid.ItemsSource = AppointmentController.getInstance().GetAppointmentsByPatient(patient);
             this.patient = patient;
             RefreshTable();
         }
@@ -163,7 +162,7 @@ namespace HospitalInformationSystem.Windows.PatientGUI
         }
         public void RefreshTable()
         {
-            appointmentList = new ObservableCollection<Appointment>(AppointmentController.getInstance().getAppointment());
+            appointmentList = new ObservableCollection<Appointment>(AppointmentController.getInstance().GetAppointmentsByPatient(patient));
             AppointmentDataGrid.ItemsSource = null;
             AppointmentDataGrid.ItemsSource = appointmentList;
         }
@@ -252,8 +251,9 @@ namespace HospitalInformationSystem.Windows.PatientGUI
         {
             CheckIfPatientIsTroll();
             instance = null;
-            AppointmentController.getInstance().saveInFile();
             this.Close();
+            AppointmentController.getInstance().saveInFile();
+            PatientMainWindow.GetInstance(patient);
             PatientMainWindow.GetInstance(patient).Show();
         }
 
@@ -261,8 +261,9 @@ namespace HospitalInformationSystem.Windows.PatientGUI
         {
             CheckIfPatientIsTroll();
             instance = null;
-            AppointmentController.getInstance().saveInFile();
             this.Close();
+            AppointmentController.getInstance().saveInFile();
+            PatientMainWindow.GetInstance(patient);
             PatientMainWindow.GetInstance(patient).Show();
         }
     }

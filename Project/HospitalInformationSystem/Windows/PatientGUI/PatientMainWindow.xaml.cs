@@ -29,8 +29,8 @@ namespace HospitalInformationSystem.Windows.PatientGUI
         public PatientMainWindow(Patient patient)
         {
             InitializeComponent();
+            LoadDataFromFiles();
             loggedInPatient = patient;
-            loggedInPatient.GetMedicalRecord().addPrescription(new Prescription(new Medicine(1, "Albuterol", TypeOfMedicine.Tablet, "2", "1", new List<MedicineIngredient>()), new DateTime(2021, 5, 10, 2, 55, 0), new DateTime(2021, 5, 29, 2, 5, 0), "info"));
             Notify();
         }
  
@@ -39,6 +39,14 @@ namespace HospitalInformationSystem.Windows.PatientGUI
             if (instance == null)
                 instance = new PatientMainWindow(patient);
             return instance;
+        }
+
+        private void LoadDataFromFiles()
+        {
+            RoomController.GetInstance().LoadRoomsFromFile();
+            DoctorController.getInstance().LoadFromFile();
+            PatientController.getInstance().LoadFromFile();
+            AppointmentController.getInstance().loadFromFile();
         }
 
         private void AppointmentsButton_Click(object sender, RoutedEventArgs e)
@@ -96,6 +104,7 @@ namespace HospitalInformationSystem.Windows.PatientGUI
         }
         private void LogOffButton_Click(object sender, RoutedEventArgs e)
         {
+            instance = null;
             this.Close();
         }
 
@@ -105,6 +114,14 @@ namespace HospitalInformationSystem.Windows.PatientGUI
             window.Show();
         }
 
+        private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            DoctorController.getInstance().SaveInFlie();
+            RoomController.GetInstance().SaveRoomsInFile();
+            AppointmentController.getInstance().saveInFile();
+            PatientController.getInstance().SaveInFile();
+            instance = null;
+        }
 
         public void Notify()
         {

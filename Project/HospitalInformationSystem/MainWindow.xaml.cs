@@ -52,8 +52,11 @@ namespace HospitalInformationSystem.Windows
             DoctorController.getInstance().GetDoctors()[3].room = RoomController.GetInstance().GetRooms()[3];
 
             /*Patient first = new Patient("Pera", "Pacijent", new PatientActivity(0, 0, 0, false));
+            first.Jmbg = "001";
             Patient second = new Patient("Jova", "Pacijent", new PatientActivity(0, 0, 0, false));
+            second.Jmbg = "002";
             Patient third = new Patient("Mika", "Pacijent", new PatientActivity(0, 0, 0, false));
+            third.Jmbg = "003";
 
             MedicalRecord firstMedicalRecord = new MedicalRecord(1);
             MedicalRecord secondMedicalRecord = new MedicalRecord(2);
@@ -126,10 +129,15 @@ namespace HospitalInformationSystem.Windows
                     else
                     {
                         loggedIn = true;
-                        PatientAppointmentCRUDOperationsWindow window = PatientAppointmentCRUDOperationsWindow.getInstance((Patient)accounts[i].Person);
+                        Patient rightPatient = null;
+                        foreach (var patient in PatientController.getInstance().getPatient())
+                        {
+                            if (((Patient)accounts[i].Person).Jmbg == patient.Jmbg)
+                                rightPatient = patient;
+                        }
+                        PatientMainWindow window = PatientMainWindow.GetInstance(rightPatient);
                         person = accounts[i].Person;
                         window.Show();
-                        //this.Hide();
                     }
                 }
             }

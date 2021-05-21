@@ -36,10 +36,6 @@ namespace HospitalInformationSystem.Controller
         {
             _roomService.LoadRoomsFromFile();
         }
-        public void AddNewRoom(Room newRoom)
-        {
-            _roomService.AddNewRoom(newRoom);
-        }
         public void DeleteRoom(Room room)
         {
             _roomService.DeleteRoom(room);
@@ -50,25 +46,9 @@ namespace HospitalInformationSystem.Controller
         {
             return _roomService.GetRooms();
         }
-        public void ChangeStaticEquipmentState(Room room, int currentQuantity, int moveQuantity, string key)
-        {
-            _roomService.ChangeStaticEquipmentState(room, currentQuantity, moveQuantity, key);
-        }
-        public void MoveStaticEqToNextRoom(Room room, int moveQuantity, string key)
-        {
-            _roomService.MoveStaticEqToNextRoom(room, moveQuantity, key);
-        }
         public bool RoomExists(int roomId)
         {
             return _roomService.RoomExists(roomId);
-        }
-        public void SetRenovationStateToRoom(Room room, RoomRenovationState roomRenovationState)
-        {
-            _roomService.SetRenovationStateToRoom(room, roomRenovationState);
-        }
-        public void ChangeRoomActivityStatus(Room roomForRenovation)
-        {
-            _roomService.ChangeRoomActivityStatus(roomForRenovation);
         }
         public Room GetMagacine()
         {
@@ -85,10 +65,6 @@ namespace HospitalInformationSystem.Controller
         public List<Appointment> GetAppointmentsInRoom(string nameOfRoom)
         {
             return _roomService.GetAppointmentsInRoom(nameOfRoom);
-        }
-        public bool RoomActivityStatus(Room room)
-        {
-            return _roomService.RoomActivityStatus(room);
         }
     }
 }

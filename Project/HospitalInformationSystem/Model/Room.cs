@@ -4,6 +4,7 @@
  * Purpose: Definition of the Class Model.Room
  ***********************************************************************/
 
+using HospitalInformationSystem.DTO;
 using HospitalInformationSystem.Model;
 using System;
 using System.Collections;
@@ -16,15 +17,6 @@ namespace Model
     {
         private string stringValueOfEnumType;
         private Hashtable _equipment;
-        public Room(int id, string name, int floor, TypeOfRoom type)
-        {
-            this.Id = id;
-            this.Name = name;
-            this.Floor = floor;
-            this.Type = type;
-            _equipment = new Hashtable();
-            RoomRenovationState = new RoomRenovationState(DateTime.Now, DateTime.Now);
-        }
         public Room(int id, string name, int floor, TypeOfRoom type, Hashtable equipment)
         {
             this.Id = id;
@@ -34,8 +26,6 @@ namespace Model
             _equipment = equipment;
             RoomRenovationState = new RoomRenovationState(DateTime.Now, DateTime.Now);
         }
-
-
         public string Name
         {
             get; set;
@@ -88,12 +78,28 @@ namespace Model
         {
             get; set;
         }
-        public void EditProperties(Room roomDTO)
+        public void UpdateProperties(RoomDTO dto)
         {
-            this.Id = roomDTO.Id;
-            this.Name = roomDTO.Name;
-            this.Type = roomDTO.Type;
-            this.Floor = roomDTO.Floor;
+            this.Id = dto.Id;
+            this.Name = dto.Name;
+            this.Type = dto.Type;
+            this.Floor = dto.Floor;
+        }
+        public void ChangeEquipmentState(int quantityForMove, string key)
+        {
+            if (((int)_equipment[key] - quantityForMove) == 0)
+            {
+                _equipment.Remove(key);
+                return;
+            }
+            _equipment[key] = (int)_equipment[key] - quantityForMove;
+        }
+        public void AcceptEquipmentFromOtherRoom(int moveQuantity, string key)
+        {
+            if (_equipment.Contains(key))
+                _equipment[key] = (int)_equipment[key] + moveQuantity;
+            else
+                _equipment.Add(key, moveQuantity);
         }
     }
 }

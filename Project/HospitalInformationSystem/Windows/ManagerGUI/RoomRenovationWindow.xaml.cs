@@ -105,15 +105,17 @@ namespace HospitalInformationSystem.Windows.ManagerGUI
         }
         private void StartRoomDuplicate()
         {
-            RoomController.GetInstance().SetRenovationStateToRoom(roomSelectedFromTable, NewRoomRenovationState());
+            //RoomController.GetInstance().SetRenovationStateToRoom(roomSelectedFromTable, NewRoomRenovationState());
+            roomSelectedFromTable.RoomRenovationState = NewRoomRenovationState();
             CreateThreadForChangeRoomActivityStatus(roomSelectedFromTable);
             CreateThreadForDuplicatingRoom();
         }
         private void StartRoomsMerge()
         {
             GetRoomForMergeAndNewRoomName();
-            RoomController.GetInstance().SetRenovationStateToRoom(roomSelectedFromTable, NewRoomRenovationState());
-            RoomController.GetInstance().SetRenovationStateToRoom((Room)roomForMergeComboBox.SelectedItem, NewRoomRenovationState());
+            roomSelectedFromTable.RoomRenovationState = NewRoomRenovationState();
+            Room roomForMerge = (Room)roomForMergeComboBox.SelectedItem;
+            roomForMerge.RoomRenovationState = NewRoomRenovationState();
             CreateThreadForChangeRoomActivityStatus(roomSelectedFromTable);
             CreateThreadForChangeRoomActivityStatus((Room)roomForMergeComboBox.SelectedItem);
             CreateThreadForRoomMerge();
@@ -133,7 +135,8 @@ namespace HospitalInformationSystem.Windows.ManagerGUI
             {
                 while (true)
                 {
-                    RoomController.GetInstance().ChangeRoomActivityStatus(roomForRenovation);
+                    roomForRenovation.RoomRenovationState.ActivityStatus = DateTime.Now >= roomForRenovation.RoomRenovationState.StartDate 
+                    && DateTime.Now <= roomForRenovation.RoomRenovationState.EndDate;
                     if (RenovationIsComplete())
                         break;
                 }
@@ -157,8 +160,8 @@ namespace HospitalInformationSystem.Windows.ManagerGUI
         }
         private void DeleteOneAndCreateTwoRooms()
         {
-            RoomController.GetInstance().AddNewRoom(new Room(RoomController.GetInstance().GetRooms().Count, roomSelectedFromTable.Name + "A", roomSelectedFromTable.Floor, roomSelectedFromTable.Type));
-            RoomController.GetInstance().AddNewRoom(new Room(RoomController.GetInstance().GetRooms().Count, roomSelectedFromTable.Name + "B", roomSelectedFromTable.Floor, roomSelectedFromTable.Type));
+            RoomController.GetInstance().AddRoomToRoomList(new Room(RoomController.GetInstance().GetRooms().Count, roomSelectedFromTable.Name + "A", roomSelectedFromTable.Floor, roomSelectedFromTable.Type, new System.Collections.Hashtable()));
+            RoomController.GetInstance().AddRoomToRoomList(new Room(RoomController.GetInstance().GetRooms().Count, roomSelectedFromTable.Name + "B", roomSelectedFromTable.Floor, roomSelectedFromTable.Type, new System.Collections.Hashtable()));
             RoomController.GetInstance().DeleteRoom(roomSelectedFromTable);
         }
         private void CreateThreadForRoomMerge()
@@ -178,13 +181,13 @@ namespace HospitalInformationSystem.Windows.ManagerGUI
         }
         private void MergeRooms()
         {
-            RoomController.GetInstance().AddNewRoom(new Room(roomSelectedFromTable.Id, nameOfNewRoom, roomSelectedFromTable.Floor, roomSelectedFromTable.Type));
+            RoomController.GetInstance().AddRoomToRoomList(new Room(roomSelectedFromTable.Id, nameOfNewRoom, roomSelectedFromTable.Floor, roomSelectedFromTable.Type, new System.Collections.Hashtable()));
             RoomController.GetInstance().DeleteRoom(roomSelectedFromTable);
             RoomController.GetInstance().DeleteRoom(roomSelectedFromComboBox);
         }
         private bool RenovationIsComplete()
         {
-            return !RoomController.GetInstance().RoomActivityStatus(roomSelectedFromTable) && DateTime.Now >= endTermDate;
+            return !roomSelectedFromTable.RoomRenovationState.ActivityStatus && DateTime.Now >= endTermDate;
         }
         private void GiveFeedbackToManager()
         {

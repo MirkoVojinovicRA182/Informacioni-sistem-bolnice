@@ -31,10 +31,6 @@ namespace HospitalInformationSystem.Service
         {
             _repository.loadFromFile();
         }
-        public void AddNewRoom(Room newRoom)
-        {
-            GetRooms().Add(newRoom);
-        }
         public void DeleteRoom(Room room)
         {
             GetRooms().Remove(room);
@@ -43,31 +39,9 @@ namespace HospitalInformationSystem.Service
         {
             return _repository.GetRooms();
         }
-        public void ChangeStaticEquipmentState(Room room, int currentQuantity, int moveQuantity, string key)
-        {
-            room.Equipment[key] = currentQuantity - moveQuantity;
-            if ((currentQuantity - moveQuantity) == 0)
-                room.Equipment.Remove(key);
-        }
-        public void MoveStaticEqToNextRoom(Room room, int moveQuantity, string key)
-        {
-            if (room.Equipment.Contains(key))
-                room.Equipment[key] = (int)room.Equipment[key] + moveQuantity;
-            else
-                room.Equipment.Add(key, moveQuantity);
-        }
         public bool RoomExists(int roomId)
         {
             return _repository.RoomExists(roomId);
-        }
-        public void SetRenovationStateToRoom(Room room, RoomRenovationState roomRenovationState)
-        {
-            room.RoomRenovationState = roomRenovationState;
-        }
-        public void ChangeRoomActivityStatus(Room roomForRenovation)
-        {
-            roomForRenovation.RoomRenovationState.ActivityStatus = DateTime.Now >= roomForRenovation.RoomRenovationState.StartDate && 
-                DateTime.Now <= roomForRenovation.RoomRenovationState.EndDate;
         }
         public Room GetMagacine()
         {
@@ -84,10 +58,6 @@ namespace HospitalInformationSystem.Service
         public List<Appointment> GetAppointmentsInRoom(string nameOfRoom)
         {
             return _repository.GetAppointmentsInRoom(nameOfRoom);
-        }
-        public bool RoomActivityStatus(Room room)
-        {
-            return room.RoomRenovationState.ActivityStatus;
         }
     }
 }

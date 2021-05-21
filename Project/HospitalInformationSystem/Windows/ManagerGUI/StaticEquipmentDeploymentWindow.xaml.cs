@@ -28,7 +28,7 @@ namespace HospitalInformationSystem.Windows.ManagerGUI
         private static StaticEquipmentDeploymentWindow instance = null;
         private Room currentRoom;
         private Room nextRoom;
-        private int quantityForMoving;
+        private int quantityForMove;
         private ObservableCollection<Room> roomList;
         private int quantityOfSelectedEquipment;
         private string idOfSelectedEquipment;
@@ -53,12 +53,12 @@ namespace HospitalInformationSystem.Windows.ManagerGUI
         private void confirmButton_Click(object sender, RoutedEventArgs e)
         {
             nextRoom = (Room)nextRoomComboBox.SelectedItem;
-            quantityForMoving = int.TryParse(quantityTextBox.Text, out quantityForMoving) ? quantityForMoving : 0;
+            quantityForMove = int.TryParse(quantityTextBox.Text, out quantityForMove) ? quantityForMove : 0;
             if (CheckQuantityForMoving())
             {
                 DateTime dateForMovingEquipment = CreateDateTimeObject();
                 CreateThreadForMovingEquipment(dateForMovingEquipment);
-                SuccessMovingWindow.getInstance(quantityOfSelectedEquipment, quantityOfSelectedEquipment - quantityForMoving).Show();
+                SuccessMovingWindow.getInstance(quantityOfSelectedEquipment, quantityOfSelectedEquipment - quantityForMove).Show();
                 this.Close();
             }
             else
@@ -77,7 +77,7 @@ namespace HospitalInformationSystem.Windows.ManagerGUI
 
         private bool CheckQuantityForMoving()
         {
-            return (quantityForMoving > 0 && quantityForMoving <= quantityOfSelectedEquipment);
+            return (quantityForMove > 0 && quantityForMove <= quantityOfSelectedEquipment);
         }
 
         private DateTime CreateDateTimeObject()
@@ -100,11 +100,10 @@ namespace HospitalInformationSystem.Windows.ManagerGUI
                     DateTime now = DateTime.Now;
                     if (DateTime.Equals(dateForMovingEquipment.Year, now.Year) && DateTime.Equals(dateForMovingEquipment.Month, now.Month) && DateTime.Equals(dateForMovingEquipment.Day, now.Day) && DateTime.Equals(dateForMovingEquipment.Hour, now.Hour) && DateTime.Equals(dateForMovingEquipment.Minute, now.Minute))
                     {
-
                         //brisanje opreme iz trenutne prostorije
-                        RoomController.GetInstance().ChangeStaticEquipmentState(currentRoom, quantityOfSelectedEquipment, quantityForMoving, idOfSelectedEquipment);
+                        currentRoom.ChangeEquipmentState(quantityForMove, idOfSelectedEquipment);
                         //dodavanje opreme u zeljenu prostoriju
-                        RoomController.GetInstance().MoveStaticEqToNextRoom(nextRoom, quantityForMoving, idOfSelectedEquipment);
+                        nextRoom.AcceptEquipmentFromOtherRoom(quantityForMove, idOfSelectedEquipment);
                         break;
                     }
                 }

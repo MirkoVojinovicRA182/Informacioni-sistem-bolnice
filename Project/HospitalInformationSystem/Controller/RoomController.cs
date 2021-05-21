@@ -36,9 +36,9 @@ namespace HospitalInformationSystem.Controller
         {
             _roomService.LoadRoomsFromFile();
         }
-        public void CreateRoom(Room newRoom)
+        public void AddNewRoom(Room newRoom)
         {
-            _roomService.CreateRoom(newRoom);
+            _roomService.AddNewRoom(newRoom);
         }
         public void DeleteRoom(Room room)
         {
@@ -46,10 +46,10 @@ namespace HospitalInformationSystem.Controller
             _appointmentService.DeleteAllAppointmentsFromRoom(room);
             _equipmentService.MoveEquipmentFromRoomToMagacine(room);
         }
-        public void ChangeRoom(Room roomForChange, Room roomDTO)
+        /*public void ChangeRoom(Room roomForChange, Room roomDTO)
         {
             _roomService.ChangeRoom(roomForChange, roomDTO);
-        }
+        }*/
         public void SetRoomEquipment(Room room, Hashtable eq)
         {
             _roomService.SetRoomEquipment(room, eq);
@@ -57,10 +57,6 @@ namespace HospitalInformationSystem.Controller
         public List<Room> GetRooms()
         {
             return _roomService.GetRooms();
-        }
-        public void SetRooms(List<Room> rooms)
-        {
-            _roomService.SetRooms(rooms);
         }
         public void ChangeStaticEquipmentState(Room room, int currentQuantity, int moveQuantity, string key)
         {

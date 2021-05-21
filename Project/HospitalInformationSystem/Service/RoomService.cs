@@ -18,11 +18,9 @@ namespace HospitalInformationSystem.Service
 {
     public class RoomService
     {
-        private List<Room> _allRooms;
         private RoomRepository _repository;
         public RoomService()
         {
-            _allRooms = new List<Room>();
             _repository = new RoomRepository();
         }
         public void SaveRoomsInFile()
@@ -33,22 +31,22 @@ namespace HospitalInformationSystem.Service
         {
             _repository.loadFromFile();
         }
-        public void CreateRoom(Room newRoom)
+        public void AddNewRoom(Room newRoom)
         {
-            _allRooms.Add(newRoom);
+            GetRooms().Add(newRoom);
         }
         public void DeleteRoom(Room room)
         {
-            _allRooms.Remove(room);
+            GetRooms().Remove(room);
         }
-        public void ChangeRoom(Room roomForChange, Room roomDTO)
+        /*public void ChangeRoom(Room roomForChange, Room roomDTO)
         {
             //prebaciti u room class
             roomForChange.Id = roomDTO.Id;
             roomForChange.Name = roomDTO.Name;
             roomForChange.Type = roomDTO.Type;
             roomForChange.Floor = roomDTO.Floor;
-        }
+        }*/
         public void SetRoomEquipment(Room room, Hashtable newEquipment)
         {
             room.Equipment.Clear();
@@ -57,43 +55,24 @@ namespace HospitalInformationSystem.Service
         }
         public List<Room> GetRooms()
         {
-            return _allRooms;
-        }
-        public void SetRooms(List<Room> newRooms)
-        {
-            _allRooms.Clear();
-            foreach (Room room in newRooms)
-                _allRooms.Add(room);
+            return _repository.GetRooms();
         }
         public void ChangeStaticEquipmentState(Room room, int currentQuantity, int moveQuantity, string key)
         {
             room.Equipment[key] = currentQuantity - moveQuantity;
-
             if ((currentQuantity - moveQuantity) == 0)
                 room.Equipment.Remove(key);
-            
         }
         public void MoveStaticEqToNextRoom(Room room, int moveQuantity, string key)
         {
             if (room.Equipment.Contains(key))
-            {
-                int currentQuantity = (int)room.Equipment[key];
-                room.Equipment[key] = currentQuantity + moveQuantity;
-            }
+                room.Equipment[key] = (int)room.Equipment[key] + moveQuantity;
             else
-            {
                 room.Equipment.Add(key, moveQuantity);
-            }
         }
-        //mozda ici u repos
         public bool RoomExists(int roomId)
         {
-            foreach (Room room in _allRooms)
-            {
-                if (room.Id == roomId)
-                    return true;
-            }
-            return false;
+            return _repository.RoomExists(roomId);
         }
         public void SetRenovationStateToRoom(Room room, RoomRenovationState roomRenovationState)
         {
@@ -104,32 +83,21 @@ namespace HospitalInformationSystem.Service
             roomForRenovation.RoomRenovationState.ActivityStatus = DateTime.Now >= roomForRenovation.RoomRenovationState.StartDate && 
                 DateTime.Now <= roomForRenovation.RoomRenovationState.EndDate;
         }
-        //staviti u repo
         public Room GetMagacine()
         {
-            return _allRooms[0];
+            return _repository.GetMagacine();
         }
         public void AddEquipmentToMagacine(Equipment newEquipment)
         {
             GetMagacine().Equipment.Add(newEquipment.Id, newEquipment.Quantity);
         }
-        public void ChangeEquipmentId(string id)
-        {
-
-        }
         public void AddRoomToRoomList(Room newRoom)
         {
-            _allRooms.Add(newRoom);
+            GetRooms().Add(newRoom);
         }
         public List<Appointment> GetAppointmentsInRoom(string nameOfRoom)
         {
-            List<Appointment> appointmentsInRoom = new List<Appointment>();
-            foreach (Appointment app in AppointmentController.getInstance().getAppointment())
-            {
-                if (string.Equals(app.room.Name, nameOfRoom))
-                    appointmentsInRoom.Add(app);
-            }
-            return appointmentsInRoom;
+            return _repository.GetAppointmentsInRoom(nameOfRoom);
         }
         public bool RoomActivityStatus(Room room)
         {

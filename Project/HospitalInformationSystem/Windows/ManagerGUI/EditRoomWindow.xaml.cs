@@ -179,7 +179,7 @@ namespace HospitalInformationSystem.Windows.ManagerGUI
                 MessageBox.Show("Pogrešan unos sprata!", "Greška", MessageBoxButton.OK, MessageBoxImage.Error);
             else
             {
-                RoomController.GetInstance().ChangeRoom(selectedRoom, new Room(int.Parse(idTextBox.Text), nameTextBox.Text, int.Parse(floorTextBox.Text), getType(typeComboBox.SelectedIndex)));
+                selectedRoom.EditProperties(new Room(int.Parse(idTextBox.Text), nameTextBox.Text, int.Parse(floorTextBox.Text), getType(typeComboBox.SelectedIndex)));
                 ManagerMainWindow.getInstance().roomsUserControl.refreshTable();
                 MessageBox.Show("Informacije o prostoriji su sada izmenjene.", "Izmena informacija", MessageBoxButton.OK, MessageBoxImage.Information);
                 changeRoomButton.IsEnabled = false;

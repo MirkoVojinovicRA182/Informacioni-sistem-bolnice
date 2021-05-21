@@ -157,8 +157,8 @@ namespace HospitalInformationSystem.Windows.ManagerGUI
         }
         private void DeleteOneAndCreateTwoRooms()
         {
-            RoomController.GetInstance().CreateRoom(new Room(RoomController.GetInstance().GetRooms().Count, roomSelectedFromTable.Name + "A", roomSelectedFromTable.Floor, roomSelectedFromTable.Type));
-            RoomController.GetInstance().CreateRoom(new Room(RoomController.GetInstance().GetRooms().Count, roomSelectedFromTable.Name + "B", roomSelectedFromTable.Floor, roomSelectedFromTable.Type));
+            RoomController.GetInstance().AddNewRoom(new Room(RoomController.GetInstance().GetRooms().Count, roomSelectedFromTable.Name + "A", roomSelectedFromTable.Floor, roomSelectedFromTable.Type));
+            RoomController.GetInstance().AddNewRoom(new Room(RoomController.GetInstance().GetRooms().Count, roomSelectedFromTable.Name + "B", roomSelectedFromTable.Floor, roomSelectedFromTable.Type));
             RoomController.GetInstance().DeleteRoom(roomSelectedFromTable);
         }
         private void CreateThreadForRoomMerge()
@@ -178,7 +178,7 @@ namespace HospitalInformationSystem.Windows.ManagerGUI
         }
         private void MergeRooms()
         {
-            RoomController.GetInstance().CreateRoom(new Room(roomSelectedFromTable.Id, nameOfNewRoom, roomSelectedFromTable.Floor, roomSelectedFromTable.Type));
+            RoomController.GetInstance().AddNewRoom(new Room(roomSelectedFromTable.Id, nameOfNewRoom, roomSelectedFromTable.Floor, roomSelectedFromTable.Type));
             RoomController.GetInstance().DeleteRoom(roomSelectedFromTable);
             RoomController.GetInstance().DeleteRoom(roomSelectedFromComboBox);
         }

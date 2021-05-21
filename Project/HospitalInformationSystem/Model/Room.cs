@@ -89,5 +89,12 @@ namespace Model
         {
             get; set;
         }
+        public void EditProperties(Room roomDTO)
+        {
+            this.Id = roomDTO.Id;
+            this.Name = roomDTO.Name;
+            this.Type = roomDTO.Type;
+            this.Floor = roomDTO.Floor;
+        }
     }
 }

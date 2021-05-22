@@ -59,6 +59,10 @@ namespace HospitalInformationSystem.Repository
                 }
             }
         }
+        public void AddRoomToRoomList(Room newRoom)
+        {
+            _allRooms.Add(newRoom);
+        }
         public List<Room> GetRooms()
         {
             return _allRooms;
@@ -91,6 +95,10 @@ namespace HospitalInformationSystem.Repository
                     appointmentsInRoom.Add(app);
             }
             return appointmentsInRoom;
+        }
+        public void DeleteRoom(Room room)
+        {
+            _allRooms.Remove(room);
         }
     }
 }

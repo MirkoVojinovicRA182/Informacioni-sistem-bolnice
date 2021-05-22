@@ -54,10 +54,6 @@ namespace HospitalInformationSystem.Controller
         {
             return _roomService.GetMagacine();
         }
-        public void AddEquipmentToMagacine(Equipment newEquipment)
-        {
-            _roomService.AddEquipmentToMagacine(newEquipment);
-        }
         public void AddRoomToRoomList(Room newRoom)
         {
             _roomService.AddRoomToRoomList(newRoom);

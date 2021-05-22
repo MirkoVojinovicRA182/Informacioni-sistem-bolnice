@@ -31,9 +31,13 @@ namespace HospitalInformationSystem.Service
         {
             _repository.loadFromFile();
         }
+        public void AddRoomToRoomList(Room newRoom)
+        {
+            _repository.AddRoomToRoomList(newRoom);
+        }
         public void DeleteRoom(Room room)
         {
-            GetRooms().Remove(room);
+            _repository.DeleteRoom(room);
         }
         public List<Room> GetRooms()
         {
@@ -46,14 +50,6 @@ namespace HospitalInformationSystem.Service
         public Room GetMagacine()
         {
             return _repository.GetMagacine();
-        }
-        public void AddEquipmentToMagacine(Equipment newEquipment)
-        {
-            GetMagacine().Equipment.Add(newEquipment.Id, newEquipment.Quantity);
-        }
-        public void AddRoomToRoomList(Room newRoom)
-        {
-            GetRooms().Add(newRoom);
         }
         public List<Appointment> GetAppointmentsInRoom(string nameOfRoom)
         {

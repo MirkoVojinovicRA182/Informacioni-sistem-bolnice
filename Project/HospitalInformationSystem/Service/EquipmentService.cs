@@ -15,6 +15,7 @@ namespace HospitalInformationSystem.Service
 
         List<Equipment> equipmentList;
         EquipmentRepository er;
+        
         public EquipmentService()
         {
             equipmentList = new List<Equipment>();

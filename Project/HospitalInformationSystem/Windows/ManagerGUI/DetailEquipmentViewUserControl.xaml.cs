@@ -52,7 +52,7 @@ namespace HospitalInformationSystem.Windows.ManagerGUI
             {
                 foreach (DictionaryEntry de in room.Equipment)
                 {
-                    Equipment eq = EquipmentController.getInstance().findEquipment(de.Key.ToString());
+                    Equipment eq = EquipmentController.getInstance().findEquipmentById(de.Key.ToString());
                     equipmentList.Add(new DetailEquipmentDTO(eq.Name, eq.GetStringType, (int)de.Value, room.Name));
                 }
             }

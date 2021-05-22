@@ -63,7 +63,7 @@ namespace HospitalInformationSystem.Windows.ManagerGUI
 
             if (string.Compare(id, "") == 0)
                 MessageBox.Show("Polje za unos šifre ne može biti prazno!", "Greška", MessageBoxButton.OK, MessageBoxImage.Error);
-            else if(EquipmentController.getInstance().findEquipment(id) != null)
+            else if(EquipmentController.getInstance().findEquipmentById(id) != null)
                 MessageBox.Show("U sistemu postoji oprema sa ovom šifrom!", "Greška", MessageBoxButton.OK, MessageBoxImage.Error);
             else if (string.Compare(nameTextBox.Text, "") == 0)
                 MessageBox.Show("Polje za unos naziva ne može biti prazno!", "Greška", MessageBoxButton.OK, MessageBoxImage.Error);

@@ -11,8 +11,7 @@ namespace HospitalInformationSystem.Controller
 {
     class EquipmentController
     {
-        EquipmentService equipmentService;
-
+        EquipmentService _equipmentService;
         private static EquipmentController instance = null;
 
         public static EquipmentController getInstance()
@@ -23,84 +22,60 @@ namespace HospitalInformationSystem.Controller
         }
         private EquipmentController()
         {
-            equipmentService = new EquipmentService();
+            _equipmentService = new EquipmentService();
         }
 
         public void addNewEquipment(Equipment equipment)
         {
-            equipmentService.addNewEquipment(equipment);
+            _equipmentService.addNewEquipment(equipment);
         }
 
         public List<Equipment> getStaticEquipment()
         {
-            return equipmentService.getStaticEquipment();
+            return _equipmentService.getStaticEquipment();
         }
 
         public List<Equipment> getDynamicEquipment()
         {
-            return equipmentService.getDynamicEquipment();
+            return _equipmentService.getDynamicEquipment();
         }
 
         public List<Equipment> getEquipment()
         {
-            return this.equipmentService.getEquipment();
-        }
-
-        public void setEquipment(List<Equipment> equipment)
-        {
-            equipmentService.setEquipment(equipment);
+            return this._equipmentService.getEquipment();
         }
         public void deleteEquipment(Equipment equipment)
         {
-            equipmentService.deleteEquipment(equipment);
+            _equipmentService.deleteEquipment(equipment);
+            RoomController.GetInstance().RemoveEquipmentFromRooms(equipment);
         }
-
-        public void changeEquipment(Equipment equipment, string name, TypeOfEquipment typeOfEquipment, int newQuantity, int oldQuantity, string description)
-        {
-            equipmentService.changeEquipment(equipment, name, typeOfEquipment, newQuantity, oldQuantity, description);
-        }
-
         public void saveInFile()
         {
-            equipmentService.saveInFile();
+            _equipmentService.saveInFile();
         }
 
         public void loadFromFile()
         {
-            equipmentService.loadFromFile();
+            _equipmentService.loadFromFile();
         }
-
-        public void changeQuantityInMagacine(string id, int quantity)
-        {
-            equipmentService.changeQuantityInMagacine(id, quantity);
-        }
-        public void removeQuantity(string id, int quantity)
-        {
-            equipmentService.removeQuantity(id, quantity);
-        }
-
         public string getEquipmentName(string id)
         {
-            return equipmentService.getEquipmentName(id);
+            return _equipmentService.getEquipmentNameById(id);
         }
 
         public string getEquipmentId(string name)
         {
-            return equipmentService.getEquipmentId(name);
+            return _equipmentService.getEquipmentIdByName(name);
         }
 
         public TypeOfEquipment getEquipmentType(string id)
         {
-            return equipmentService.getEquipmentType(id);
+            return _equipmentService.getEquipmentTypeById(id);
         }
 
-        public Equipment findEquipment(string id)
+        public Equipment findEquipmentById(string id)
         {
-            return equipmentService.findEquipment(id);
-        }
-        public bool equipmentExist(string id, Hashtable roomEq)
-        {
-            return equipmentService.equipmentExist(id, roomEq);
+            return _equipmentService.findEquipmentById(id);
         }
     }
 }

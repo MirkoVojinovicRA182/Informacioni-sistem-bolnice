@@ -1,4 +1,5 @@
 ﻿using HospitalInformationSystem.Controller;
+using HospitalInformationSystem.DTO;
 using Model;
 using System;
 using System.Collections.Generic;
@@ -51,16 +52,17 @@ namespace HospitalInformationSystem.Windows.ManagerGUI
             else
                 typeOfEquipment = selectedEquipment.Type;
 
-            int quantityInMagacine = int.TryParse(quanitityTextBox.Text, out quantityInMagacine) ? quantityInMagacine : 0;
+            int newQuantity = int.TryParse(quanitityTextBox.Text, out newQuantity) ? newQuantity : 0;
             string description = descriptionTextBox.Text;
 
             if (string.Compare(nameTextBox.Text, "") == 0)
                 MessageBox.Show("Polje za unos naziva ne može biti prazno!", "Greška", MessageBoxButton.OK, MessageBoxImage.Error);
-            else if (quantityInMagacine == 0 || quantityInMagacine < 0)
+            else if (newQuantity == 0 || newQuantity < 0)
                 MessageBox.Show("Pogrešan unos količine!", "Greška", MessageBoxButton.OK, MessageBoxImage.Error);
             else
             {
-                EquipmentController.getInstance().changeEquipment(selectedEquipment, name, typeOfEquipment, quantityInMagacine, oldQuantity, description);
+                selectedEquipment.UpdateProperties(new EquipmentDTO(name, typeOfEquipment, description, newQuantity, oldQuantity));
+                RoomController.GetInstance().GetMagacine().Equipment[selectedEquipment.Id] = newQuantity;
                 //promeniti u prostoriji id opreme
                 ManagerMainWindow.getInstance().equipmentTable.refreshTable();
 
@@ -74,11 +76,9 @@ namespace HospitalInformationSystem.Windows.ManagerGUI
             Room magacine = RoomController.GetInstance().GetMagacine();
             nameTextBox.Text = selectedEquipment.Name;
             quanitityTextBox.Text = magacine.Equipment[selectedEquipment.Id].ToString();
-            //quanitityTextBox.Text = selectedEquipment.QuantityInMagacine.ToString();
             descriptionTextBox.Text = selectedEquipment.Description;
             loadTypeComboBox();
             oldQuantity = (int)magacine.Equipment[selectedEquipment.Id];
-            //oldQuantity = selectedEquipment.QuantityInMagacine;
         }
 
         private void loadTypeComboBox()

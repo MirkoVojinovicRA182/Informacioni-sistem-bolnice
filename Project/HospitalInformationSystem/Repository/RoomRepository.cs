@@ -6,6 +6,8 @@
 
 using HospitalInformationSystem.Controller;
 using Model;
+using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.IO;
 using System.Runtime.Serialization;
@@ -86,6 +88,16 @@ namespace HospitalInformationSystem.Repository
         {
             return _allRooms[0];
         }
+        public bool EquipmentExistInRoom(string id, Hashtable roomEq)
+        {
+            foreach (DictionaryEntry de in roomEq)
+            {
+                if (string.Compare(id, de.Key.ToString()) == 0)
+                    return true;
+            }
+            return false;
+        }
+
         public List<Appointment> GetAppointmentsInRoom(string nameOfRoom)
         {
             List<Appointment> appointmentsInRoom = new List<Appointment>();

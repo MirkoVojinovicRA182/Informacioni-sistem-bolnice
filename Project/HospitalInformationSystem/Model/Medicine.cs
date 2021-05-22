@@ -91,13 +91,13 @@ namespace HospitalInformationSystem.Model
 
         public void UpdateMedicine(Medicine newMedicine)
         {
-            this.Id = newMedicine.Id;
-            this.Name = newMedicine.Name;
-            this.Type = newMedicine.Type;
-            this.Purpose = newMedicine.Purpose;
-            this.WayOfUse = newMedicine.WayOfUse;
-            this.ReplacementMedicine = newMedicine.ReplacementMedicine;
-            this.Ingredients = newMedicine.Ingredients;
+            Id = newMedicine.Id;
+            Name = newMedicine.Name;
+            Type = newMedicine.Type;
+            Purpose = newMedicine.Purpose;
+            WayOfUse = newMedicine.WayOfUse;
+            ReplacementMedicine = newMedicine.ReplacementMedicine;
+            Ingredients = newMedicine.Ingredients;
         }
     }
 }

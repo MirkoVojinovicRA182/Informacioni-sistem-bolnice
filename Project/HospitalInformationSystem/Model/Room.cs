@@ -7,17 +7,18 @@ using System.Collections.Generic;
 namespace Model
 {
     [Serializable]
-    public class Room
+    public class Room : RoomEquipment
     {
         private string stringValueOfEnumType;
-        private Hashtable _equipment;
-        public Room(int id, string name, int floor, TypeOfRoom type, Hashtable equipment)
+        private RoomEquipment _equipmentInRoom;
+
+        public Room(int id, string name, int floor, TypeOfRoom type, RoomEquipment equipment)
         {
             this.Id = id;
             this.Name = name;
             this.Floor = floor;
             this.Type = type;
-            _equipment = equipment;
+            _equipmentInRoom = equipment;
             RoomRenovationState = new RoomRenovationState(DateTime.Now, DateTime.Now);
         }
         public string Name
@@ -37,14 +38,10 @@ namespace Model
             get; set;
         }
 
-        public Hashtable Equipment
+        public RoomEquipment EquipmentInRoom
         {
-            get { return _equipment; }
-            set
-            {
-                foreach (DictionaryEntry de in value)
-                    _equipment.Add(de.Key, de.Value);
-            }
+            get { return _equipmentInRoom; }
+            set { _equipmentInRoom = value; }
         }
 
         public string StringValueOfEnumType
@@ -74,26 +71,10 @@ namespace Model
         }
         public void UpdateProperties(RoomDTO dto)
         {
-            this.Id = dto.Id;
-            this.Name = dto.Name;
-            this.Type = dto.Type;
-            this.Floor = dto.Floor;
-        }
-        public void ChangeEquipmentState(int quantityForMove, string key)
-        {
-            if (((int)_equipment[key] - quantityForMove) == 0)
-            {
-                _equipment.Remove(key);
-                return;
-            }
-            _equipment[key] = (int)_equipment[key] - quantityForMove;
-        }
-        public void AcceptEquipmentFromOtherRoom(int moveQuantity, string key)
-        {
-            if (_equipment.Contains(key))
-                _equipment[key] = (int)_equipment[key] + moveQuantity;
-            else
-                _equipment.Add(key, moveQuantity);
+            Id = dto.Id;
+            Name = dto.Name;
+            Type = dto.Type;
+            Floor = dto.Floor;
         }
     }
 }

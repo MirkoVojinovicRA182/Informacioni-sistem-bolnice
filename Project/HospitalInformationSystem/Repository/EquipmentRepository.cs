@@ -14,6 +14,11 @@ namespace HospitalInformationSystem.Repository
 {
     class EquipmentRepository: IRepository
     {
+        List<Equipment> _equipmentList;
+        public EquipmentRepository()
+        {
+            _equipmentList = new List<Equipment>();
+        }
         public void saveInFile()
         {
             FileStream fs = new FileStream("Equipment.dat", FileMode.Create);
@@ -21,7 +26,7 @@ namespace HospitalInformationSystem.Repository
             BinaryFormatter formatter = new BinaryFormatter();
             try
             {
-                formatter.Serialize(fs, EquipmentController.getInstance().getEquipment());
+                formatter.Serialize(fs, _equipmentList);
             }
             catch (SerializationException e)
             {
@@ -43,7 +48,7 @@ namespace HospitalInformationSystem.Repository
                 try
                 {
                     BinaryFormatter formatter = new BinaryFormatter();
-                    EquipmentController.getInstance().setEquipment((List<Equipment>)formatter.Deserialize(fs));
+                    setEquipment((List<Equipment>)formatter.Deserialize(fs));
                 }
                 catch (SerializationException e)
                 {
@@ -54,7 +59,87 @@ namespace HospitalInformationSystem.Repository
                     fs.Close();
                 }
             }
+        }
+        public void addNewEquipment(Equipment equipment)
+        {
+            _equipmentList.Add(equipment);
+        }
+        public List<Equipment> getStaticEquipment()
+        {
+            List<Equipment> staticEquipment = new List<Equipment>();
+            foreach (Equipment equipment in _equipmentList)
+            {
+                if (equipment.Type == TypeOfEquipment.Static)
+                    staticEquipment.Add(equipment);
+            }
+            return staticEquipment;
+        }
+        public List<Equipment> getDynamicEquipment()
+        {
+            List<Equipment> dynamicEquipment = new List<Equipment>();
 
+            foreach (Equipment equipment in _equipmentList)
+            {
+                if (equipment.Type == TypeOfEquipment.Dynamic)
+                    dynamicEquipment.Add(equipment);
+            }
+
+            return dynamicEquipment;
+        }
+        public List<Equipment> getEquipment()
+        {
+            return _equipmentList;
+        }
+        public void setEquipment(List<Equipment> equipment)
+        {
+            _equipmentList.Clear();
+            foreach (Equipment eq in equipment)
+                _equipmentList.Add(eq);
+        }
+        public void deleteEquipment(Equipment equipment)
+        {
+            _equipmentList.Remove(equipment);
+        }
+        public string getEquipmentNameById(string id)
+        {
+            String foundedName = "";
+            foreach (Equipment eq in _equipmentList)
+            {
+                if (string.Equals(eq.Id, id))
+                    foundedName = eq.Name;
+            }
+            return foundedName;
+        }
+        public string getEquipmentIdByName(string name)
+        {
+            String foundedId = "";
+            foreach (Equipment eq in _equipmentList)
+            {
+                if (string.Equals(eq.Name, name))
+                    foundedId = eq.Id;
+            }
+            return foundedId;
+        }
+
+        public TypeOfEquipment getEquipmentTypeById(string id)
+        {
+            TypeOfEquipment type = TypeOfEquipment.Static;
+            foreach (Equipment eq in _equipmentList)
+            {
+                if (string.Equals(eq.Id, id))
+                    type = eq.Type;
+            }
+            return type;
+        }
+
+        public Equipment findEquipmentById(string id)
+        {
+            foreach (Equipment eq in _equipmentList)
+            {
+                if (string.Equals(eq.Id, id))
+                    return eq;
+            }
+            return null;
         }
     }
 }

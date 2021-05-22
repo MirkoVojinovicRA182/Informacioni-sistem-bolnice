@@ -16,12 +16,12 @@ namespace HospitalInformationSystem.Windows.ManagerGUI
     public partial class NewRoomWindow : Window
     {
         private static NewRoomWindow instance = null;
-        private Hashtable equipment;
+        private RoomEquipment roomEquipment;
         private NewRoomWindow()
         {
             InitializeComponent();
             loadComboBox();
-            equipment = new Hashtable();
+            roomEquipment = new RoomEquipment();
         }
 
         public static NewRoomWindow getInstance()
@@ -81,7 +81,7 @@ namespace HospitalInformationSystem.Windows.ManagerGUI
             }
             else
             {
-                RoomController.GetInstance().AddRoomToRoomList(new Room(id, name, floor, type, equipment));
+                RoomController.GetInstance().AddRoomToRoomList(new Room(id, name, floor, type, roomEquipment));
                 return true;
             }
         }
@@ -130,7 +130,7 @@ namespace HospitalInformationSystem.Windows.ManagerGUI
         {
             try
             {
-                this.equipment.Add(id, quantity);
+                this.roomEquipment.Equipment.Add(id, quantity);
             }
             catch(Exception e)
             {
@@ -143,12 +143,12 @@ namespace HospitalInformationSystem.Windows.ManagerGUI
 
         private void addDynamicButton_Click(object sender, RoutedEventArgs e)
         {
-            AddEquipmentToRoomWindow.getInstance(equipment, "dinamicka", "newRoom").Show();
+            AddEquipmentToRoomWindow.getInstance(roomEquipment.Equipment, "dinamicka", "newRoom").Show();
         }
 
         private void addStaticButton_Click(object sender, RoutedEventArgs e)
         {
-            AddEquipmentToRoomWindow.getInstance(equipment, "staticka", "newRoom").Show();
+            AddEquipmentToRoomWindow.getInstance(roomEquipment.Equipment, "staticka", "newRoom").Show();
         }
 
         private void removeDynamicButton_Click(object sender, RoutedEventArgs e)
@@ -162,7 +162,7 @@ namespace HospitalInformationSystem.Windows.ManagerGUI
 
                 string[] atributesOfSelectedEquipment = nameOfSelectedEquipment.Split(separator, StringSplitOptions.None);
 
-                equipment.Remove(EquipmentController.getInstance().getEquipmentId(atributesOfSelectedEquipment[0]));
+                roomEquipment.Equipment.Remove(EquipmentController.getInstance().getEquipmentId(atributesOfSelectedEquipment[0]));
 
 
                 refreshDynamicEquipmentListBox();
@@ -183,7 +183,7 @@ namespace HospitalInformationSystem.Windows.ManagerGUI
 
                 string[] atributesOfSelectedEquipment = nameOfSelectedEquipment.Split(separator, StringSplitOptions.None);
 
-                equipment.Remove(EquipmentController.getInstance().getEquipmentId(atributesOfSelectedEquipment[0]));
+                roomEquipment.Equipment.Remove(EquipmentController.getInstance().getEquipmentId(atributesOfSelectedEquipment[0]));
 
                 refreshStaticEquipmentListBox();
             }
@@ -206,16 +206,16 @@ namespace HospitalInformationSystem.Windows.ManagerGUI
 
         private void changeQuantityInMagacineOfDynamicEquipment()
         {
-            foreach(DictionaryEntry de in equipment)
+            foreach(DictionaryEntry de in roomEquipment.Equipment)
             {
-                EquipmentController.getInstance().changeQuantityInMagacine(de.Key.ToString(), (int)de.Value);
+                RoomController.GetInstance().GetMagacine().ReduceEquipmentQuantity(de.Key.ToString(), (int)de.Value);
             }
         }
 
         private List<String> loadDynamicEquimpentInListBox()
         {
             List<String> list = new List<String>();
-            foreach(DictionaryEntry de in equipment)
+            foreach(DictionaryEntry de in roomEquipment.Equipment)
             {
                 string id = EquipmentController.getInstance().getEquipmentName(de.Key.ToString());
                 if(EquipmentController.getInstance().getEquipmentType(de.Key.ToString()) == TypeOfEquipment.Dynamic)
@@ -228,7 +228,7 @@ namespace HospitalInformationSystem.Windows.ManagerGUI
         private List<String> loadStaticEquimpentInListBox()
         {
             List<String> list = new List<String>();
-            foreach (DictionaryEntry de in equipment)
+            foreach (DictionaryEntry de in roomEquipment.Equipment)
             {
                 string id = EquipmentController.getInstance().getEquipmentName(de.Key.ToString());
                 if (EquipmentController.getInstance().getEquipmentType(de.Key.ToString()) == TypeOfEquipment.Static)

@@ -1,25 +1,21 @@
-﻿/***********************************************************************
- * Module:  Room.cs
- * Author:  Mirko
- * Purpose: Definition of the Class Model.Room
- ***********************************************************************/
-
+﻿using System;
 using System.Collections;
 
 namespace Model
 {
+    [Serializable]
     public class RoomEquipment
     {
         private Hashtable _equipment;
-        public Hashtable Equipment
+        public RoomEquipment()
         {
-            get { return _equipment; }
-            set
-            {
-                foreach (DictionaryEntry de in value)
-                    _equipment.Add(de.Key, de.Value);
-            }
+            _equipment = new Hashtable();
         }
+        public Hashtable Equipment { 
+            get { return _equipment; }
+            set { _equipment = value; }
+        }
+
         public void ChangeEquipmentState(int quantityForMove, string key)
         {
             if (((int)_equipment[key] - quantityForMove) == 0)
@@ -35,6 +31,10 @@ namespace Model
                 _equipment[key] = (int)_equipment[key] + moveQuantity;
             else
                 _equipment.Add(key, moveQuantity);
+        }
+        public void ReduceEquipmentQuantity(string equipmentId, int quantity)
+        {
+            _equipment[equipmentId] = (int)_equipment[equipmentId] - quantity;
         }
     }
 }

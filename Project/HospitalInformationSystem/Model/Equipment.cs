@@ -4,6 +4,7 @@
  * Purpose: Definition of the Class Model.Equipment
  ***********************************************************************/
 
+using HospitalInformationSystem.DTO;
 using System;
 
 namespace Model
@@ -11,7 +12,6 @@ namespace Model
     [Serializable]
     public class Equipment
     {
-
         public Equipment(string id, string name, TypeOfEquipment typeOfEquipment, int quantity, string description)
         {
             this.Id = id;
@@ -19,19 +19,16 @@ namespace Model
             this.Type = typeOfEquipment;
             this.Quantity = quantity;
             this.Description = description;
-            //this.QuantityInMagacine = quantity;
         }
         public string Id
         {
             get; set;
         }
-
         public string Name
         {
             get; set;
 
         }
-
         public TypeOfEquipment Type
         {
             get; set;
@@ -46,12 +43,6 @@ namespace Model
         {
             get; set;
         }
-
-        /*public int QuantityInMagacine
-        {
-            get; set;
-        }*/
-
         public string GetStringType
         {
             get
@@ -62,15 +53,19 @@ namespace Model
                     return "Dinamička";
             }
         }
-
-        /*public string getNameQuantityForNewRoom
+        public void UpdateProperties(EquipmentDTO equipmentDTO)
         {
-            get
-            {
-                return Name + " x" + QuantityInMagacine;
-            }
-            
-        }*/
-
+            Name = equipmentDTO.Name;
+            Type = equipmentDTO.Type;
+            Description = equipmentDTO.Description;
+            if (equipmentDTO.NewQuantity > equipmentDTO.CurrentQuantityInMagacine)
+                Quantity += equipmentDTO.NewQuantity - equipmentDTO.CurrentQuantityInMagacine;
+            else
+                Quantity -= equipmentDTO.CurrentQuantityInMagacine - equipmentDTO.NewQuantity;
+        }
+        public void ReduceQuantity(int quantity)
+        {
+            Quantity -= quantity;
+        }
     }
 }

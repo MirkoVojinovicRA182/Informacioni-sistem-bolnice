@@ -65,6 +65,7 @@
     <Compile Include="Controller\NotificationController.cs" />
     <Compile Include="Controller\PatientController.cs" />
     <Compile Include="Controller\RoomController.cs" />
+    <Compile Include="DTO\EquipmentDTO.cs" />
     <Compile Include="DTO\RoomDTO.cs" />
     <Compile Include="Model\HospitalTreatment.cs" />
     <Compile Include="Model\Medicine.cs" />

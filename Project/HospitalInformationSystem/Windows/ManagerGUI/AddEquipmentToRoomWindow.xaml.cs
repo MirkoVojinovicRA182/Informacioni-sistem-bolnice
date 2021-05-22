@@ -61,7 +61,7 @@ namespace HospitalInformationSystem.Windows.ManagerGUI
                 equipmentList = new ObservableCollection<Equipment>(list);
                 foreach (DictionaryEntry de in roomEq)
                 {
-                    equipmentList.Remove(EquipmentController.getInstance().findEquipment(de.Key.ToString()));
+                    equipmentList.Remove(EquipmentController.getInstance().findEquipmentById(de.Key.ToString()));
                 }
             }
             else
@@ -80,7 +80,7 @@ namespace HospitalInformationSystem.Windows.ManagerGUI
                 equipmentList = new ObservableCollection<Equipment>(list);
                 foreach (DictionaryEntry de in roomEq)
                 {
-                    equipmentList.Remove(EquipmentController.getInstance().findEquipment(de.Key.ToString()));
+                    equipmentList.Remove(EquipmentController.getInstance().findEquipmentById(de.Key.ToString()));
                 }
             }
 

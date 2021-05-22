@@ -47,7 +47,7 @@ namespace HospitalInformationSystem.Windows.ManagerGUI
             if (CheckTheEnteredQuantity())
             {
                 SupplyRoomDynamicEquipment(selectedRoom, idOfSelectedEquipment);
-                EquipmentController.getInstance().changeQuantityInMagacine(idOfSelectedEquipment, int.Parse(quantityTextBox.Text));
+                RoomController.GetInstance().GetMagacine().ReduceEquipmentQuantity(idOfSelectedEquipment, int.Parse(quantityTextBox.Text));
                 EditRoomWindow.getInstance(selectedRoom).RefreshEquipmentList();
                 EditRoomWindow.getInstance(selectedRoom).refreshDynamicEquipmentListBox();
                 this.Close();

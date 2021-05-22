@@ -40,7 +40,7 @@ namespace HospitalInformationSystem.Controller
         {
             _roomService.DeleteRoom(room);
             _appointmentService.DeleteAllAppointmentsFromRoom(room);
-            _equipmentService.MoveEquipmentFromRoomToMagacine(room);
+            _roomService.MoveRoomEquipmentToMagacine(room);
         }
         public List<Room> GetRooms()
         {
@@ -61,6 +61,14 @@ namespace HospitalInformationSystem.Controller
         public List<Appointment> GetAppointmentsInRoom(string nameOfRoom)
         {
             return _roomService.GetAppointmentsInRoom(nameOfRoom);
+        }
+        public void RemoveEquipmentFromRooms(Equipment equipment)
+        {
+            _roomService.RemoveEquipmentFromRooms(equipment);
+        }
+        public bool EquipmentExistInRoom(string id, Hashtable roomEq)
+        {
+            return _roomService.EquipmentExistInRoom(id, roomEq);
         }
     }
 }

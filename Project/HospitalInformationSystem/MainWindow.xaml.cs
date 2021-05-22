@@ -27,12 +27,16 @@ namespace HospitalInformationSystem.Windows
             PatientController.getInstance().LoadFromFile();
             AppointmentController.getInstance().loadFromFile();
             DoctorController.getInstance().LoadFromFile();
+            /*RoomController.GetInstance().LoadRoomsFromFile();
+            PatientController.getInstance().LoadFromFile();
+            AppointmentController.getInstance().loadFromFile();
+            DoctorController.getInstance().LoadFromFile();
             
-            /*Room room1 = new Room(1, "Magacin", -1, TypeOfRoom.Magacine, new System.Collections.Hashtable());
-            Room room2 = new Room(2, "Prostorija dr Marka", 1, TypeOfRoom.ExaminationRoom, new System.Collections.Hashtable());
-            Room room3 = new Room(3, "Prostorija dr Jovana", 1, TypeOfRoom.ExaminationRoom, new System.Collections.Hashtable());
-            Room room4 = new Room(4, "Prostorija dr Stevana", 1, TypeOfRoom.ExaminationRoom, new System.Collections.Hashtable());
-            Room room5 = new Room(5, "Prostorija dr Darka", 1, TypeOfRoom.ExaminationRoom, new System.Collections.Hashtable());
+            Room room1 = new Room(1, "Magacin", -1, TypeOfRoom.Magacine, new RoomEquipment());
+            Room room2 = new Room(2, "Prostorija dr Marka", 1, TypeOfRoom.ExaminationRoom, new RoomEquipment());
+            Room room3 = new Room(3, "Prostorija dr Jovana", 1, TypeOfRoom.ExaminationRoom, new RoomEquipment());
+            Room room4 = new Room(4, "Prostorija dr Stevana", 1, TypeOfRoom.ExaminationRoom, new RoomEquipment());
+            Room room5 = new Room(5, "Prostorija dr Darka", 1, TypeOfRoom.ExaminationRoom, new RoomEquipment());
             RoomController.GetInstance().AddRoomToRoomList(room1);
             RoomController.GetInstance().AddRoomToRoomList(room2);
             RoomController.GetInstance().AddRoomToRoomList(room3);

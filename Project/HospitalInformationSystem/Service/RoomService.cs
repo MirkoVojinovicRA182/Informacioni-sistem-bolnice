@@ -1,9 +1,3 @@
-/***********************************************************************
- * Module:  RoomService.cs
- * Author:  Mirko
- * Purpose: Definition of the Class Service.RoomService
- ***********************************************************************/
-
 using Model;
 using HospitalInformationSystem.Windows;
 using HospitalInformationSystem.Service;
@@ -54,6 +48,25 @@ namespace HospitalInformationSystem.Service
         public List<Appointment> GetAppointmentsInRoom(string nameOfRoom)
         {
             return _repository.GetAppointmentsInRoom(nameOfRoom);
+        }
+        public void RemoveEquipmentFromRooms(Equipment equipment)
+        {
+            foreach (Room room in RoomController.GetInstance().GetRooms())
+            {
+                if (room.Equipment.Contains(equipment.Id))
+                    room.Equipment.Remove(equipment.Id);
+            }
+        }
+        public void MoveRoomEquipmentToMagacine(Room room)
+        {
+            foreach (DictionaryEntry roomEquipment in room.Equipment)
+            {
+                GetMagacine().Equipment[(string)roomEquipment.Key] = (int)GetMagacine().Equipment[roomEquipment.Key] + (int)roomEquipment.Value;
+            }
+        }
+        public bool EquipmentExistInRoom(string id, Hashtable roomEq)
+        {
+            return _repository.EquipmentExistInRoom(id, roomEq);
         }
     }
 }

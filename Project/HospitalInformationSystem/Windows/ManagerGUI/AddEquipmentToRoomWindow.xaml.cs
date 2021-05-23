@@ -53,7 +53,7 @@ namespace HospitalInformationSystem.Windows.ManagerGUI
                     return;
                 foreach(Equipment eq in list)
                 {
-                    if (/*eq.QuantityInMagacine == 0*/(int)RoomController.GetInstance().GetMagacine().Equipment[eq.Id] == 0)
+                    if (/*eq.QuantityInMagacine == 0*/(int)RoomController.GetInstance().GetMagacine().EquipmentInRoom.Equipment[eq.Id] == 0)
                         list.Remove(eq);
                     if (list.Count == 0)
                         break;
@@ -72,7 +72,7 @@ namespace HospitalInformationSystem.Windows.ManagerGUI
                     return;
                 foreach (Equipment eq in list)
                 {
-                    if (/*eq.QuantityInMagacine == 0*/(int)RoomController.GetInstance().GetMagacine().Equipment[eq.Id] == 0)
+                    if (/*eq.QuantityInMagacine == 0*/(int)RoomController.GetInstance().GetMagacine().EquipmentInRoom.Equipment[eq.Id] == 0)
                         list.Remove(eq);
                     if (list.Count == 0)
                         break;
@@ -99,7 +99,7 @@ namespace HospitalInformationSystem.Windows.ManagerGUI
             {
                 selectedEquipment = (Equipment)equipmentListBox.SelectedItem;
                 quantity = int.TryParse(quantityTextBox.Text, out quantity) ? quantity : 0;
-                if (quantity != 0 && quantity > 0 && quantity <= /*eq.QuantityInMagacine == 0*/(int)RoomController.GetInstance().GetMagacine().Equipment[selectedEquipment.Id])
+                if (quantity != 0 && quantity > 0 && quantity <= /*eq.QuantityInMagacine == 0*/(int)RoomController.GetInstance().GetMagacine().EquipmentInRoom.Equipment[selectedEquipment.Id])
                 {
                     if (string.Equals(window, "newRoom"))
                         NewRoomWindow.getInstance().addEquipment(selectedEquipment.Id, quantity);

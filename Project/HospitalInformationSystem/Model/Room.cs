@@ -7,18 +7,17 @@ using System.Collections.Generic;
 namespace Model
 {
     [Serializable]
-    public class Room : RoomEquipment
+    public class Room
     {
         private string stringValueOfEnumType;
         private RoomEquipment _equipmentInRoom;
-
-        public Room(int id, string name, int floor, TypeOfRoom type, RoomEquipment equipment)
+        public Room(int id, string name, int floor, TypeOfRoom type, Hashtable equipment)
         {
             this.Id = id;
             this.Name = name;
             this.Floor = floor;
             this.Type = type;
-            _equipmentInRoom = equipment;
+            _equipmentInRoom = new RoomEquipment(equipment);
             RoomRenovationState = new RoomRenovationState(DateTime.Now, DateTime.Now);
         }
         public string Name

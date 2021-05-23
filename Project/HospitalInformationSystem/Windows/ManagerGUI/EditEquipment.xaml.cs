@@ -62,7 +62,7 @@ namespace HospitalInformationSystem.Windows.ManagerGUI
             else
             {
                 selectedEquipment.UpdateProperties(new EquipmentDTO(name, typeOfEquipment, description, newQuantity, oldQuantity));
-                RoomController.GetInstance().GetMagacine().Equipment[selectedEquipment.Id] = newQuantity;
+                RoomController.GetInstance().GetMagacine().EquipmentInRoom.Equipment[selectedEquipment.Id] = newQuantity;
                 //promeniti u prostoriji id opreme
                 ManagerMainWindow.getInstance().equipmentTable.refreshTable();
 
@@ -75,10 +75,10 @@ namespace HospitalInformationSystem.Windows.ManagerGUI
         {
             Room magacine = RoomController.GetInstance().GetMagacine();
             nameTextBox.Text = selectedEquipment.Name;
-            quanitityTextBox.Text = magacine.Equipment[selectedEquipment.Id].ToString();
+            quanitityTextBox.Text = magacine.EquipmentInRoom.Equipment[selectedEquipment.Id].ToString();
             descriptionTextBox.Text = selectedEquipment.Description;
             loadTypeComboBox();
-            oldQuantity = (int)magacine.Equipment[selectedEquipment.Id];
+            oldQuantity = (int)magacine.EquipmentInRoom.Equipment[selectedEquipment.Id];
         }
 
         private void loadTypeComboBox()

@@ -6,10 +6,10 @@ namespace Model
     [Serializable]
     public class RoomEquipment
     {
-        private Hashtable _equipment;
-        public RoomEquipment()
+        private Hashtable _equipment = new Hashtable();
+        public RoomEquipment(Hashtable equipment)
         {
-            _equipment = new Hashtable();
+            _equipment = equipment;
         }
         public Hashtable Equipment { 
             get { return _equipment; }

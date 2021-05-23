@@ -101,9 +101,9 @@ namespace HospitalInformationSystem.Windows.ManagerGUI
                     if (DateTime.Equals(dateForMovingEquipment.Year, now.Year) && DateTime.Equals(dateForMovingEquipment.Month, now.Month) && DateTime.Equals(dateForMovingEquipment.Day, now.Day) && DateTime.Equals(dateForMovingEquipment.Hour, now.Hour) && DateTime.Equals(dateForMovingEquipment.Minute, now.Minute))
                     {
                         //brisanje opreme iz trenutne prostorije
-                        currentRoom.ChangeEquipmentState(quantityForMove, idOfSelectedEquipment);
+                        currentRoom.EquipmentInRoom.ChangeEquipmentState(quantityForMove, idOfSelectedEquipment);
                         //dodavanje opreme u zeljenu prostoriju
-                        nextRoom.AcceptEquipmentFromOtherRoom(quantityForMove, idOfSelectedEquipment);
+                        nextRoom.EquipmentInRoom.AcceptEquipmentFromOtherRoom(quantityForMove, idOfSelectedEquipment);
                         break;
                     }
                 }

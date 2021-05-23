@@ -98,7 +98,7 @@ namespace HospitalInformationSystem.Windows.DoctorGUI
         }
         private bool CheckIfRoomHaveBeds()
         {
-            foreach(DictionaryEntry de in ((Room)roomsListBox.SelectedItem).Equipment)
+            foreach(DictionaryEntry de in ((Room)roomsListBox.SelectedItem).EquipmentInRoom.Equipment)
             {
                 string str = EquipmentController.getInstance().getEquipmentName(de.Key.ToString());
                 if (str.Equals("Krevet"))

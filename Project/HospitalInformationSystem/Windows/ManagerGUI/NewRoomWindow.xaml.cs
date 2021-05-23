@@ -16,12 +16,12 @@ namespace HospitalInformationSystem.Windows.ManagerGUI
     public partial class NewRoomWindow : Window
     {
         private static NewRoomWindow instance = null;
-        private RoomEquipment roomEquipment;
+        private Hashtable roomEquipment;
         private NewRoomWindow()
         {
             InitializeComponent();
             loadComboBox();
-            roomEquipment = new RoomEquipment();
+            roomEquipment = new Hashtable();
         }
 
         public static NewRoomWindow getInstance()
@@ -130,7 +130,7 @@ namespace HospitalInformationSystem.Windows.ManagerGUI
         {
             try
             {
-                this.roomEquipment.Equipment.Add(id, quantity);
+                this.roomEquipment.Add(id, quantity);
             }
             catch(Exception e)
             {
@@ -143,12 +143,12 @@ namespace HospitalInformationSystem.Windows.ManagerGUI
 
         private void addDynamicButton_Click(object sender, RoutedEventArgs e)
         {
-            AddEquipmentToRoomWindow.getInstance(roomEquipment.Equipment, "dinamicka", "newRoom").Show();
+            AddEquipmentToRoomWindow.getInstance(roomEquipment, "dinamicka", "newRoom").Show();
         }
 
         private void addStaticButton_Click(object sender, RoutedEventArgs e)
         {
-            AddEquipmentToRoomWindow.getInstance(roomEquipment.Equipment, "staticka", "newRoom").Show();
+            AddEquipmentToRoomWindow.getInstance(roomEquipment, "staticka", "newRoom").Show();
         }
 
         private void removeDynamicButton_Click(object sender, RoutedEventArgs e)
@@ -162,7 +162,7 @@ namespace HospitalInformationSystem.Windows.ManagerGUI
 
                 string[] atributesOfSelectedEquipment = nameOfSelectedEquipment.Split(separator, StringSplitOptions.None);
 
-                roomEquipment.Equipment.Remove(EquipmentController.getInstance().getEquipmentId(atributesOfSelectedEquipment[0]));
+                roomEquipment.Remove(EquipmentController.getInstance().getEquipmentId(atributesOfSelectedEquipment[0]));
 
 
                 refreshDynamicEquipmentListBox();
@@ -183,7 +183,7 @@ namespace HospitalInformationSystem.Windows.ManagerGUI
 
                 string[] atributesOfSelectedEquipment = nameOfSelectedEquipment.Split(separator, StringSplitOptions.None);
 
-                roomEquipment.Equipment.Remove(EquipmentController.getInstance().getEquipmentId(atributesOfSelectedEquipment[0]));
+                roomEquipment.Remove(EquipmentController.getInstance().getEquipmentId(atributesOfSelectedEquipment[0]));
 
                 refreshStaticEquipmentListBox();
             }
@@ -206,16 +206,16 @@ namespace HospitalInformationSystem.Windows.ManagerGUI
 
         private void changeQuantityInMagacineOfDynamicEquipment()
         {
-            foreach(DictionaryEntry de in roomEquipment.Equipment)
+            foreach(DictionaryEntry de in roomEquipment)
             {
-                RoomController.GetInstance().GetMagacine().ReduceEquipmentQuantity(de.Key.ToString(), (int)de.Value);
+                RoomController.GetInstance().GetMagacine().EquipmentInRoom.ReduceEquipmentQuantity(de.Key.ToString(), (int)de.Value);
             }
         }
 
         private List<String> loadDynamicEquimpentInListBox()
         {
             List<String> list = new List<String>();
-            foreach(DictionaryEntry de in roomEquipment.Equipment)
+            foreach(DictionaryEntry de in roomEquipment)
             {
                 string id = EquipmentController.getInstance().getEquipmentName(de.Key.ToString());
                 if(EquipmentController.getInstance().getEquipmentType(de.Key.ToString()) == TypeOfEquipment.Dynamic)
@@ -228,7 +228,7 @@ namespace HospitalInformationSystem.Windows.ManagerGUI
         private List<String> loadStaticEquimpentInListBox()
         {
             List<String> list = new List<String>();
-            foreach (DictionaryEntry de in roomEquipment.Equipment)
+            foreach (DictionaryEntry de in roomEquipment)
             {
                 string id = EquipmentController.getInstance().getEquipmentName(de.Key.ToString());
                 if (EquipmentController.getInstance().getEquipmentType(de.Key.ToString()) == TypeOfEquipment.Static)

@@ -50,7 +50,7 @@ namespace HospitalInformationSystem.Windows.ManagerGUI
             //prolazak kroz sve prostorije
             foreach (Room room in RoomController.GetInstance().GetRooms())
             {
-                foreach (DictionaryEntry de in room.Equipment)
+                foreach (DictionaryEntry de in room.EquipmentInRoom.Equipment)
                 {
                     Equipment eq = EquipmentController.getInstance().findEquipmentById(de.Key.ToString());
                     equipmentList.Add(new DetailEquipmentDTO(eq.Name, eq.GetStringType, (int)de.Value, room.Name));

@@ -53,15 +53,15 @@ namespace HospitalInformationSystem.Service
         {
             foreach (Room room in RoomController.GetInstance().GetRooms())
             {
-                if (room.Equipment.Contains(equipment.Id))
-                    room.Equipment.Remove(equipment.Id);
+                if (room.EquipmentInRoom.Equipment.Contains(equipment.Id))
+                    room.EquipmentInRoom.Equipment.Remove(equipment.Id);
             }
         }
         public void MoveRoomEquipmentToMagacine(Room room)
         {
-            foreach (DictionaryEntry roomEquipment in room.Equipment)
+            foreach (DictionaryEntry roomEquipment in room.EquipmentInRoom.Equipment)
             {
-                GetMagacine().Equipment[(string)roomEquipment.Key] = (int)GetMagacine().Equipment[roomEquipment.Key] + (int)roomEquipment.Value;
+                GetMagacine().EquipmentInRoom.Equipment[(string)roomEquipment.Key] = (int)GetMagacine().EquipmentInRoom.Equipment[roomEquipment.Key] + (int)roomEquipment.Value;
             }
         }
         public bool EquipmentExistInRoom(string id, Hashtable roomEq)

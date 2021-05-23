@@ -1,10 +1,4 @@
-﻿/***********************************************************************
- * Module:  Equipment.cs
- * Author:  Mirko
- * Purpose: Definition of the Class Model.Equipment
- ***********************************************************************/
-
-using HospitalInformationSystem.DTO;
+﻿using HospitalInformationSystem.DTO;
 using System;
 
 namespace Model

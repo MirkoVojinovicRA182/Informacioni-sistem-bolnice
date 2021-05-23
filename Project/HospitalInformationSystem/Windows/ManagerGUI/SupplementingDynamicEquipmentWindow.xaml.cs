@@ -38,8 +38,8 @@ namespace HospitalInformationSystem.Windows.ManagerGUI
         }
         private void SupplyRoomDynamicEquipment(Room selectedRoom, string idOfSelectedEquipment)
         {
-            int currentQuantity = (int)selectedRoom.Equipment[idOfSelectedEquipment];
-            selectedRoom.Equipment[idOfSelectedEquipment] = currentQuantity + int.Parse(quantityTextBox.Text); 
+            int currentQuantity = (int)selectedRoom.EquipmentInRoom.Equipment[idOfSelectedEquipment];
+            selectedRoom.EquipmentInRoom.Equipment[idOfSelectedEquipment] = currentQuantity + int.Parse(quantityTextBox.Text); 
         }
 
         private void confirmButton_Click(object sender, RoutedEventArgs e)
@@ -47,7 +47,7 @@ namespace HospitalInformationSystem.Windows.ManagerGUI
             if (CheckTheEnteredQuantity())
             {
                 SupplyRoomDynamicEquipment(selectedRoom, idOfSelectedEquipment);
-                RoomController.GetInstance().GetMagacine().ReduceEquipmentQuantity(idOfSelectedEquipment, int.Parse(quantityTextBox.Text));
+                RoomController.GetInstance().GetMagacine().EquipmentInRoom.ReduceEquipmentQuantity(idOfSelectedEquipment, int.Parse(quantityTextBox.Text));
                 EditRoomWindow.getInstance(selectedRoom).RefreshEquipmentList();
                 EditRoomWindow.getInstance(selectedRoom).refreshDynamicEquipmentListBox();
                 this.Close();
@@ -63,7 +63,7 @@ namespace HospitalInformationSystem.Windows.ManagerGUI
         private bool CheckTheEnteredQuantity()
         {
             int enteredQuantity = int.TryParse(quantityTextBox.Text, out enteredQuantity) ? enteredQuantity : 0;
-            return enteredQuantity > 0 && enteredQuantity <= (int)RoomController.GetInstance().GetMagacine().Equipment[idOfSelectedEquipment];
+            return enteredQuantity > 0 && enteredQuantity <= (int)RoomController.GetInstance().GetMagacine().EquipmentInRoom.Equipment[idOfSelectedEquipment];
         }
     }
 }

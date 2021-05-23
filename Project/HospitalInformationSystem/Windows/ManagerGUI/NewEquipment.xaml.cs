@@ -76,7 +76,7 @@ namespace HospitalInformationSystem.Windows.ManagerGUI
                 Equipment equipment = new Equipment(id, name, typeOfEquipment, quantity, description);
                 EquipmentController.getInstance().addNewEquipment(equipment);
                 ManagerMainWindow.getInstance().equipmentTable.refreshTable();
-                RoomController.GetInstance().GetMagacine().Equipment.Add(equipment.Id, equipment.Quantity);
+                RoomController.GetInstance().GetMagacine().EquipmentInRoom.Equipment.Add(equipment.Id, equipment.Quantity);
                 ManagerMainWindow.getInstance().detailEquipmentTable.LoadAllUserControlComponents();
                 //obavestavanje korisnika o uspesno unetoj opremi
                 this.Close();

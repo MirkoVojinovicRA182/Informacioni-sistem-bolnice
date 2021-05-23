@@ -20,7 +20,7 @@ namespace HospitalInformationSystem.Windows.ManagerGUI
         //pamti svu opremu koja cija je kolicina u nekom momentu bila umanjena
         private Hashtable allDistinctions;
 
-        private RoomEquipment roomEquipment;
+        private Hashtable roomEquipment;
         //pamti svu opremu koja je u trenutnoj sesiji dodata prostoriji
         private Hashtable newEquipment;
 
@@ -29,7 +29,7 @@ namespace HospitalInformationSystem.Windows.ManagerGUI
         {
             InitializeComponent();
             this.selectedRoom = selectedRoom;
-            roomEquipment = new RoomEquipment();
+            roomEquipment = new Hashtable();
             allDistinctions = new Hashtable();
             newEquipment = new Hashtable();
             //checkEquipment();
@@ -56,12 +56,12 @@ namespace HospitalInformationSystem.Windows.ManagerGUI
 
         private void addDynamicButton_Click(object sender, RoutedEventArgs e)
         {
-            AddEquipmentToRoomWindow.getInstance(roomEquipment.Equipment, "dinamicka", "editRoom").Show();
+            AddEquipmentToRoomWindow.getInstance(roomEquipment, "dinamicka", "editRoom").Show();
         }
 
         private void addStaticButton_Click(object sender, RoutedEventArgs e)
         {
-            AddEquipmentToRoomWindow.getInstance(roomEquipment.Equipment, "staticka", "editRoom").Show();
+            AddEquipmentToRoomWindow.getInstance(roomEquipment, "staticka", "editRoom").Show();
         }
 
 
@@ -70,7 +70,7 @@ namespace HospitalInformationSystem.Windows.ManagerGUI
             try
             {
                 newEquipment.Add(id, quantity);
-                roomEquipment.Equipment.Add(id, quantity);
+                roomEquipment.Add(id, quantity);
             }
             catch (Exception e)
             {
@@ -97,7 +97,7 @@ namespace HospitalInformationSystem.Windows.ManagerGUI
 
                 int value = int.Parse(atributesOfSelectedEquipment[1]);
 
-                if (RoomController.GetInstance().EquipmentExistInRoom(key, selectedRoom.Equipment))
+                if (RoomController.GetInstance().EquipmentExistInRoom(key, selectedRoom.EquipmentInRoom.Equipment))
                     StaticEquipmentDeploymentWindow.getInstance(selectedRoom, value, key).Show();
                 else
                     MessageBox.Show("Prvo dodajte opremu, zatim zakažite njeno premeštanje!", "Upozorenje", MessageBoxButton.OK, MessageBoxImage.Warning);
@@ -131,18 +131,18 @@ namespace HospitalInformationSystem.Windows.ManagerGUI
                     distinction = currentQuantity - removedQuantity;
                     if (distinction == 0)
                     {
-                        this.roomEquipment.Equipment.Remove(key);
+                        this.roomEquipment.Remove(key);
                         this.newEquipment.Remove(key);
                     }
                     else
-                        roomEquipment.Equipment[key] = distinction;
+                        roomEquipment[key] = distinction;
 
                     if (allDistinctions.Contains(key))
                     {
                         allDistinctions.Remove(key);
                     }
 
-                    if(selectedRoom.Equipment.Contains(key))
+                    if(selectedRoom.EquipmentInRoom.Equipment.Contains(key))
                         allDistinctions.Add(key, removedQuantity);
 
                     refreshDynamicEquipmentListBox();
@@ -179,7 +179,7 @@ namespace HospitalInformationSystem.Windows.ManagerGUI
         private void equipmentApplyButton_Click(object sender, RoutedEventArgs e)
         {
             //RoomController.GetInstance().SetRoomEquipment(selectedRoom, equipment);
-            selectedRoom.EquipmentInRoom = roomEquipment;
+            selectedRoom.EquipmentInRoom.Equipment = roomEquipment;
             //promena usled dodavanja neke nove opreme
             changeQuantityInMagacineOfEquipment();
             //promena usled eventualnog brisanja opreme
@@ -255,9 +255,9 @@ namespace HospitalInformationSystem.Windows.ManagerGUI
         }
         public void RefreshEquipmentList()
         {
-            roomEquipment.Equipment.Clear();
-            foreach (DictionaryEntry de in selectedRoom.Equipment)
-                roomEquipment.Equipment.Add(de.Key, de.Value);
+            roomEquipment.Clear();
+            foreach (DictionaryEntry de in selectedRoom.EquipmentInRoom.Equipment)
+                roomEquipment.Add(de.Key, de.Value);
         }
 
         public void refreshDynamicEquipmentListBox()
@@ -276,7 +276,7 @@ namespace HospitalInformationSystem.Windows.ManagerGUI
         {
             foreach (DictionaryEntry de in newEquipment)
             {
-                RoomController.GetInstance().GetMagacine().ReduceEquipmentQuantity(de.Key.ToString(), (int)de.Value);
+                RoomController.GetInstance().GetMagacine().EquipmentInRoom.ReduceEquipmentQuantity(de.Key.ToString(), (int)de.Value);
             }
         }
 
@@ -291,7 +291,7 @@ namespace HospitalInformationSystem.Windows.ManagerGUI
         private List<String> loadDynamicEquimpentInListBox()
         {
             List<String> list = new List<String>();
-            foreach (DictionaryEntry de in roomEquipment.Equipment)
+            foreach (DictionaryEntry de in roomEquipment)
             {
                 string id = EquipmentController.getInstance().getEquipmentName(de.Key.ToString());
                 if (EquipmentController.getInstance().getEquipmentType(de.Key.ToString()) == TypeOfEquipment.Dynamic)
@@ -304,7 +304,7 @@ namespace HospitalInformationSystem.Windows.ManagerGUI
         private List<String> loadStaticEquimpentInListBox()
         {
             List<String> list = new List<String>();
-            foreach (DictionaryEntry de in roomEquipment.Equipment)
+            foreach (DictionaryEntry de in roomEquipment)
             {
                 string id = EquipmentController.getInstance().getEquipmentName(de.Key.ToString());
                 if (EquipmentController.getInstance().getEquipmentType(de.Key.ToString()) == TypeOfEquipment.Static)

@@ -30,16 +30,12 @@ namespace HospitalInformationSystem.Windows.ManagerGUI
             InitializeComponent();
             refreshTable();
         }
-
         public void refreshTable()
         {
             equipmentList = new ObservableCollection<Equipment>(EquipmentController.getInstance().getEquipment());
             equipmentTable.ItemsSource = null;
             equipmentTable.ItemsSource = equipmentList;
         }
-
-
-
         public Equipment getSelectedEquipment()
         {
             return this.selectedEquipment;

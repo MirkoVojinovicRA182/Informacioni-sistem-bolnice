@@ -77,13 +77,11 @@ namespace HospitalInformationSystem.Repository
         public List<Equipment> getDynamicEquipment()
         {
             List<Equipment> dynamicEquipment = new List<Equipment>();
-
             foreach (Equipment equipment in _equipmentList)
             {
                 if (equipment.Type == TypeOfEquipment.Dynamic)
                     dynamicEquipment.Add(equipment);
             }
-
             return dynamicEquipment;
         }
         public List<Equipment> getEquipment()
@@ -120,7 +118,6 @@ namespace HospitalInformationSystem.Repository
             }
             return foundedId;
         }
-
         public TypeOfEquipment getEquipmentTypeById(string id)
         {
             TypeOfEquipment type = TypeOfEquipment.Static;
@@ -131,7 +128,6 @@ namespace HospitalInformationSystem.Repository
             }
             return type;
         }
-
         public Equipment findEquipmentById(string id)
         {
             foreach (Equipment eq in _equipmentList)

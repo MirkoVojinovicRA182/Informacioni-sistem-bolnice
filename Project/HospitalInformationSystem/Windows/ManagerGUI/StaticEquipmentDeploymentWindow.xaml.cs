@@ -29,80 +29,81 @@ namespace HospitalInformationSystem.Windows.ManagerGUI
         private Room currentRoom;
         private Room nextRoom;
         private int quantityForMove;
-        private ObservableCollection<Room> roomList;
+        private ObservableCollection<Room> potencialRoomForMove;
         private int quantityOfSelectedEquipment;
         private string idOfSelectedEquipment;
-        public static StaticEquipmentDeploymentWindow getInstance(Room currentRoom, int quantityOfSelectedEquipment, string idOfSelectedEquipment)
+        public static StaticEquipmentDeploymentWindow getInstance(Room currentRoom, string idOfSelectedEquipment)
         {
             if (instance == null)
-                instance = new StaticEquipmentDeploymentWindow(currentRoom, quantityOfSelectedEquipment, idOfSelectedEquipment);
+                instance = new StaticEquipmentDeploymentWindow(currentRoom, idOfSelectedEquipment);
             return instance;
         }
-        private StaticEquipmentDeploymentWindow(Room currentRoom, int quantityOfSelectedEquipment, string idOfSelectedEquipment)
+        private StaticEquipmentDeploymentWindow(Room currentRoom, string idOfSelectedEquipment)
         {
             InitializeComponent();
             this.currentRoom = currentRoom;
-            this.quantityOfSelectedEquipment = quantityOfSelectedEquipment;
+            this.quantityOfSelectedEquipment = (int)currentRoom.EquipmentInRoom.Equipment[idOfSelectedEquipment];
             this.idOfSelectedEquipment = idOfSelectedEquipment;
             currentRoomTextBlock.Text = currentRoom.Name;
             LoadRoomComboBox();
             LoadTimeComboBox();
         }
-
-
         private void confirmButton_Click(object sender, RoutedEventArgs e)
         {
             nextRoom = (Room)nextRoomComboBox.SelectedItem;
             quantityForMove = int.TryParse(quantityTextBox.Text, out quantityForMove) ? quantityForMove : 0;
-            if (CheckQuantityForMoving())
+            if (AllInputsAreValid())
             {
-                DateTime dateForMovingEquipment = CreateDateTimeObject();
-                CreateThreadForMovingEquipment(dateForMovingEquipment);
+                CreateThreadForMovingEquipment(CreateDateTimeObject());
                 SuccessMovingWindow.getInstance(quantityOfSelectedEquipment, quantityOfSelectedEquipment - quantityForMove).Show();
                 this.Close();
             }
             else
-                MessageBox.Show("Pogrešan unos količine!", "Greška", MessageBoxButton.OK, MessageBoxImage.Error);
+                MessageBox.Show("Niste uneli sve informacije!", "Greška", MessageBoxButton.OK, MessageBoxImage.Error);
         }
-
         private void closeButton_Click(object sender, RoutedEventArgs e)
         {
             this.Close();
         }
-
         private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
         {
             instance = null;
         }
-
         private bool CheckQuantityForMoving()
         {
             return (quantityForMove > 0 && quantityForMove <= quantityOfSelectedEquipment);
         }
-
+        private bool CheckTimeInput()
+        {
+            return timeComboBox.SelectedItem != null;
+        }
+        private bool CheckDateInput()
+        {
+            return datePicker.SelectedDate != null;
+        }
+        private bool AllInputsAreValid()
+        {
+            return CheckQuantityForMoving() && CheckTimeInput() && CheckDateInput();
+        }
         private DateTime CreateDateTimeObject()
         {
-            string selectedTime = (string)timeComboBox.SelectedItem;
+            string elementsOfSelectedTime = (string)timeComboBox.SelectedItem;
             string[] separator = { ":", };
-            string[] atributesOfSelectedTime = selectedTime.Split(separator, StringSplitOptions.None);
+            string[] atributesOfSelectedTime = elementsOfSelectedTime.Split(separator, StringSplitOptions.None);
             DateTime selectedDate = (DateTime)datePicker.SelectedDate;
             return new DateTime(selectedDate.Year, selectedDate.Month, selectedDate.Day, 
                 int.Parse(atributesOfSelectedTime[0]), int.Parse(atributesOfSelectedTime[1]), 00);
         }
-
         private void CreateThreadForMovingEquipment(DateTime dateForMovingEquipment)
         {
             Thread tr = new Thread(() =>
             {
-                //bool isMoved = false;
                 while (true)
                 {
-                    DateTime now = DateTime.Now;
-                    if (DateTime.Equals(dateForMovingEquipment.Year, now.Year) && DateTime.Equals(dateForMovingEquipment.Month, now.Month) && DateTime.Equals(dateForMovingEquipment.Day, now.Day) && DateTime.Equals(dateForMovingEquipment.Hour, now.Hour) && DateTime.Equals(dateForMovingEquipment.Minute, now.Minute))
+                    DateTime dateForCompare = new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day, DateTime.Now.Hour, DateTime.Now.Minute, 0);
+                    if(dateForMovingEquipment.Equals(dateForCompare))
                     {
-                        //brisanje opreme iz trenutne prostorije
                         currentRoom.EquipmentInRoom.ChangeEquipmentState(quantityForMove, idOfSelectedEquipment);
-                        //dodavanje opreme u zeljenu prostoriju
                         nextRoom.EquipmentInRoom.AcceptEquipmentFromOtherRoom(quantityForMove, idOfSelectedEquipment);
                         break;
                     }
@@ -111,15 +112,13 @@ namespace HospitalInformationSystem.Windows.ManagerGUI
 
             tr.Start();
         }
-
         private void LoadRoomComboBox()
         {
-            roomList = new ObservableCollection<Room>(RoomController.GetInstance().GetRooms());
-            roomList.Remove(currentRoom);
+            potencialRoomForMove = new ObservableCollection<Room>(RoomController.GetInstance().GetRooms());
+            potencialRoomForMove.Remove(currentRoom);
             nextRoomComboBox.ItemsSource = null;
-            nextRoomComboBox.ItemsSource = roomList;
+            nextRoomComboBox.ItemsSource = potencialRoomForMove;
         }
-
         private void LoadTimeComboBox()
         {
             timeComboBox.ItemsSource = null;

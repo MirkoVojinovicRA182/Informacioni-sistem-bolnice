@@ -98,7 +98,7 @@ namespace HospitalInformationSystem.Windows.ManagerGUI
                 int value = int.Parse(atributesOfSelectedEquipment[1]);
 
                 if (RoomController.GetInstance().EquipmentExistInRoom(key, selectedRoom.EquipmentInRoom.Equipment))
-                    StaticEquipmentDeploymentWindow.getInstance(selectedRoom, value, key).Show();
+                    StaticEquipmentDeploymentWindow.getInstance(selectedRoom, key).Show();
                 else
                     MessageBox.Show("Prvo dodajte opremu, zatim zakažite njeno premeštanje!", "Upozorenje", MessageBoxButton.OK, MessageBoxImage.Warning);
             }

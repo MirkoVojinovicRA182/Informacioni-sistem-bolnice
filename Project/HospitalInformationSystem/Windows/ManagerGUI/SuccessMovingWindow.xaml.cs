@@ -30,7 +30,6 @@ namespace HospitalInformationSystem.Windows.ManagerGUI
         private SuccessMovingWindow(int currentQuantity, int finalQuantity)
         {
             InitializeComponent();
-
             currentStateTextBlock.Text = currentQuantity.ToString();
             finalStateTextBlock.Text = finalQuantity.ToString();
         }
@@ -39,7 +38,6 @@ namespace HospitalInformationSystem.Windows.ManagerGUI
         {
             instance = null;
         }
-
         private void okButton_Click(object sender, RoutedEventArgs e)
         {
             this.Close();

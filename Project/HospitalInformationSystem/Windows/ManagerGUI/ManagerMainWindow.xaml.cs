@@ -22,30 +22,39 @@ namespace HospitalInformationSystem.Windows.ManagerGUI
         }
         private ManagerMainWindow()
         {
-            int count = AppointmentController.getInstance().getAppointment().Count;
-            EquipmentController.getInstance().loadFromFile();
-            RoomController.GetInstance().LoadRoomsFromFile();
-            MedicineController.GetInstance().LoadFromFile();
             InitializeComponent();
-            roomsUserControl.refreshTable();
-            equipmentTable.refreshTable();
-            medicineTableUserControl.RefreshTable();
-            if(MedicineCommentsExists())
+            Deserialize();
+            RefreshTables();
+            if (MedicineCommentsExists())
                 MedicineCommentNotificationWindow.GetInstance().ShowDialog();
 
         }
-
+        private void Deserialize()
+        {
+            RoomController.GetInstance().LoadRoomsFromFile();
+            EquipmentController.getInstance().loadFromFile();
+            MedicineController.GetInstance().LoadFromFile();
+        }
+        private void RefreshTables()
+        {
+            roomsUserControl.refreshTable();
+            equipmentTable.refreshTable();
+            detailEquipmentTable.LoadAllUserControlComponents();
+            medicineTableUserControl.RefreshTable();
+        }
+        private bool MedicineCommentsExists()
+        {
+            return MedicineController.GetInstance().MedicineCommentExists();
+        }
         private void exitMenuItem_Click(object sender, RoutedEventArgs e)
         {
             this.Close();
             instance = null;
         }
-
         private void newRoomMenuItem_Click(object sender, RoutedEventArgs e)
         {
             NewRoomWindow.getInstance().Show();
         }
-
         private void editRoomMenuItem_Click(object sender, RoutedEventArgs e)
         {
             room = (Room)this.roomsUserControl.allRoomsTable.SelectedItem;
@@ -59,7 +68,6 @@ namespace HospitalInformationSystem.Windows.ManagerGUI
             else
                 MessageBox.Show("Niste odabrali prostoriju!", "Upozorenje", MessageBoxButton.OK, MessageBoxImage.Warning);
         }
-
         private void deleteRoomMenuItem_Click(object sender, RoutedEventArgs e)
         {
             if (roomsUserControl.allRoomsTable.SelectedItem != null)
@@ -79,7 +87,6 @@ namespace HospitalInformationSystem.Windows.ManagerGUI
             else
                 MessageBox.Show("Niste odabrali prostoriju!", "Upozorenje", MessageBoxButton.OK, MessageBoxImage.Warning);
         }
-
         private void renovationMenuItem_Click(object sender, RoutedEventArgs e)
         {
             Room selectedRoom = (Room)roomsUserControl.allRoomsTable.SelectedItem;
@@ -94,12 +101,10 @@ namespace HospitalInformationSystem.Windows.ManagerGUI
                 MessageBox.Show("Izaberite prostoriju iz tabele!", "Upozorenje", MessageBoxButton.OK, MessageBoxImage.Warning);
 
         }
-
         private void newEquipmentMenuItem_Click(object sender, RoutedEventArgs e)
         {
             NewEquipment.getInstance().Show();
         }
-
         private void editEquipmentMenuItem_Click(object sender, RoutedEventArgs e)
         {
             if (equipmentTable.equipmentTable.SelectedItem != null)
@@ -107,7 +112,6 @@ namespace HospitalInformationSystem.Windows.ManagerGUI
             else
                 MessageBox.Show("Odaberite opremu iz opšteg prikaza opreme!", "Upozorenje", MessageBoxButton.OK, MessageBoxImage.Warning);
         }
-
         private void deleteEquipmentMenuItem_Click(object sender, RoutedEventArgs e)
         {
             Equipment selectedEquipment = null;
@@ -127,7 +131,6 @@ namespace HospitalInformationSystem.Windows.ManagerGUI
         {
             NewMedicineWindow.GetInstance().Show();
         }
-
         private void editMedicineMenuItem_Click(object sender, RoutedEventArgs e)
         {
             if (medicineTableUserControl.medicineTable.SelectedItem != null)
@@ -138,7 +141,6 @@ namespace HospitalInformationSystem.Windows.ManagerGUI
             else
                 MessageBox.Show("Izaberite lek iz tabele!", "Upozorenje", MessageBoxButton.OK, MessageBoxImage.Warning);
         }
-
         private void removeMedicineMenuItem_Click(object sender, RoutedEventArgs e)
         {
             if (medicineTableUserControl.medicineTable.SelectedItem != null)
@@ -151,37 +153,28 @@ namespace HospitalInformationSystem.Windows.ManagerGUI
             else
                 MessageBox.Show("Izaberite lek iz tabele!", "Upozorenje", MessageBoxButton.OK, MessageBoxImage.Warning);
         }
+        private void medicineComments_Click(object sender, RoutedEventArgs e)
+        {
+            MedicineWithCommentPreview.GetInstance().Show();
+        }
         private void mainTabs_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            roomsUserControl.refreshTable();
-            equipmentTable.refreshTable();
-            detailEquipmentTable.LoadAllUserControlComponents();
-            medicineTableUserControl.RefreshTable();
+            RefreshTables();
         }
-
         private void staticDynamicTab_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            roomsUserControl.refreshTable();
-            equipmentTable.refreshTable();
-            detailEquipmentTable.LoadAllUserControlComponents();
-            medicineTableUserControl.RefreshTable();
+            RefreshTables();
         }
         private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
         {
             instance = null;
-
+            Serialize();
+        }
+        private void Serialize()
+        {
             EquipmentController.getInstance().saveInFile();
             RoomController.GetInstance().SaveRoomsInFile();
             MedicineController.GetInstance().SaveInFile();
-        }
-        private bool MedicineCommentsExists()
-        {
-            return MedicineController.GetInstance().MedicineCommentExists();
-        }
-
-        private void medicineComments_Click(object sender, RoutedEventArgs e)
-        {
-            MedicineWithCommentPreview.GetInstance().Show();
         }
     }
 }

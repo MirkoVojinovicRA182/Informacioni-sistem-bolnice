@@ -28,7 +28,6 @@ namespace HospitalInformationSystem.Windows.ManagerGUI
         private Equipment selectedEquipment;
         private int quantity;
         private string window;
-
         public static AddEquipmentToRoomWindow getInstance(Hashtable roomEq, string equipmentType, string window)
         {
             if (instance == null)
@@ -41,10 +40,8 @@ namespace HospitalInformationSystem.Windows.ManagerGUI
             loadEquipment(equipmentType, roomEq);
             this.window = window;
         }
-
         private void loadEquipment(string equipmentType, Hashtable roomEq)
         {
-
             if (string.Equals(equipmentType, "dinamicka"))
             {
                 List<Equipment> list = EquipmentController.getInstance().getDynamicEquipment();
@@ -83,16 +80,13 @@ namespace HospitalInformationSystem.Windows.ManagerGUI
                     equipmentList.Remove(EquipmentController.getInstance().findEquipmentById(de.Key.ToString()));
                 }
             }
-
             equipmentListBox.ItemsSource = null;
             equipmentListBox.ItemsSource = equipmentList;
         }
-
         private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
         {
             instance = null;
         }
-
         private void confirmButton_Click(object sender, RoutedEventArgs e)
         {
             if (equipmentListBox.SelectedItem != null)
@@ -102,10 +96,11 @@ namespace HospitalInformationSystem.Windows.ManagerGUI
                 if (quantity != 0 && quantity > 0 && quantity <= /*eq.QuantityInMagacine == 0*/(int)RoomController.GetInstance().GetMagacine().EquipmentInRoom.Equipment[selectedEquipment.Id])
                 {
                     if (string.Equals(window, "newRoom"))
-                        NewRoomWindow.getInstance().addEquipment(selectedEquipment.Id, quantity);
+                        NewRoomWindow.getInstance().addEquipmentToRoom(selectedEquipment.Id, quantity);
                     else
                         EditRoomWindow.getInstance((Room)ManagerMainWindow.getInstance().roomsUserControl.allRoomsTable.SelectedItem).addEquipment(selectedEquipment.Id, quantity);
-
+                    NewRoomWindow.getInstance().refreshDynamicEquipmentListBox();
+                    NewRoomWindow.getInstance().refreshStaticEquipmentListBox();
                     this.Close();
 
                 }

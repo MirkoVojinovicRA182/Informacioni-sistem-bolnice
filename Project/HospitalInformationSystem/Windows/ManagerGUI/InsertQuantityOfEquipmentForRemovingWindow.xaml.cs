@@ -43,7 +43,6 @@ namespace HospitalInformationSystem.Windows.ManagerGUI
             {
                 itSubmitted = true;
                 this.Close();
-                instance = null;
             }
             else
                 MessageBox.Show("Pogrešan unos količine!", "Greška", MessageBoxButton.OK, MessageBoxImage.Error);

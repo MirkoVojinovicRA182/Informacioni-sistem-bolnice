@@ -71,9 +71,9 @@ namespace HospitalInformationSystem.Windows.ManagerGUI
             int tryParseStringToInt = int.TryParse(dailyIntakeTextBox.Text, out tryParseStringToInt) ? tryParseStringToInt : 0;
             return !(tryParseStringToInt == 0);
         }
-        private bool CreateErrorMessageBox(string result)
+        private bool CreateErrorMessageBox(string message)
         {
-            MessageBox.Show(result, "Greška", MessageBoxButton.OK, MessageBoxImage.Error);
+            MessageBox.Show(message, "Greška", MessageBoxButton.OK, MessageBoxImage.Error);
             return false;
         }
     }

@@ -30,19 +30,16 @@ namespace HospitalInformationSystem.Windows.ManagerGUI
             InitializeComponent();
             refreshTable();
         }
-
         public void refreshTable()
         {
             equipmentList = new ObservableCollection<Equipment>(EquipmentController.getInstance().getDynamicEquipment());
             dynamicEquipmentTable.ItemsSource = null;
             dynamicEquipmentTable.ItemsSource = equipmentList;
         }
-
         public Equipment getSelectedEquipment()
         {
             return this.selectedEquipment;
         }
-
         private void dynamicEquipmentTable_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             this.selectedEquipment = (Equipment)dynamicEquipmentTable.SelectedItem;

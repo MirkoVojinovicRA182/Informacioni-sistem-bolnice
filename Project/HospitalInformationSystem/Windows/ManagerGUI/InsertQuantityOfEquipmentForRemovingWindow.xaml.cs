@@ -35,7 +35,6 @@ namespace HospitalInformationSystem.Windows.ManagerGUI
             itSubmitted = false;
             this.currentQuantity = currentQuantity;
         }
-
         private void submitButton_Click(object sender, RoutedEventArgs e)
         {
             quantity = int.TryParse(quantityTextBox.Text, out quantity) ? quantity : 0;
@@ -47,12 +46,10 @@ namespace HospitalInformationSystem.Windows.ManagerGUI
             else
                 MessageBox.Show("Pogrešan unos količine!", "Greška", MessageBoxButton.OK, MessageBoxImage.Error);
         }
-
         public static int getQuantity()
         {
             return quantity;
         }
-
         private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
         {
             instance = null;

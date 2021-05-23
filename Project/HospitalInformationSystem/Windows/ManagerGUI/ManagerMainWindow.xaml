@@ -47,7 +47,7 @@
                         <local:DetailEquipmentViewUserControl x:Name="detailEquipmentTable"/>
                     </TabItem>
                     <TabItem Header="Opšti prikaz">
-                        <local:StaticEquipmentTableUserControl x:Name="equipmentTable" />
+                        <local:GeneralEquipmentViewUserControl x:Name="equipmentTable" />
                     </TabItem>
                 </TabControl>
             </TabItem>

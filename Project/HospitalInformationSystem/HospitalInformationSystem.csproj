@@ -217,14 +217,11 @@
     <Compile Include="Windows\ManagerGUI\AddEquipmentToRoomWindow.xaml.cs">
       <DependentUpon>AddEquipmentToRoomWindow.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Windows\ManagerGUI\DynamicEquipmentTable.xaml.cs">
-      <DependentUpon>DynamicEquipmentTable.xaml</DependentUpon>
-    </Compile>
     <Compile Include="Windows\ManagerGUI\EditEquipment.xaml.cs">
       <DependentUpon>EditEquipment.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Windows\ManagerGUI\StaticEquipmentTableUserControl.xaml.cs">
-      <DependentUpon>StaticEquipmentTableUserControl.xaml</DependentUpon>
+    <Compile Include="Windows\ManagerGUI\GeneralEquipmentViewUserControl.xaml.cs">
+      <DependentUpon>GeneralEquipmentViewUserControl.xaml</DependentUpon>
     </Compile>
     <Compile Include="Windows\ManagerGUI\InsertQuantityOfEquipmentForRemovingWindow.xaml.cs">
       <DependentUpon>InsertQuantityOfEquipmentForRemovingWindow.xaml</DependentUpon>
@@ -453,15 +450,11 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Windows\ManagerGUI\DynamicEquipmentTable.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
     <Page Include="Windows\ManagerGUI\EditEquipment.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Windows\ManagerGUI\StaticEquipmentTableUserControl.xaml">
+    <Page Include="Windows\ManagerGUI\GeneralEquipmentViewUserControl.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>

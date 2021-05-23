@@ -35,7 +35,6 @@ namespace HospitalInformationSystem.Windows.ManagerGUI
             medicineTable.ItemsSource = null;
             medicineTable.ItemsSource = medicineList;
         }
-
         private void medicineTable_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             e.Handled = true;

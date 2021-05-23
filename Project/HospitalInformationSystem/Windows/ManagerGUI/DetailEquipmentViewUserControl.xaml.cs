@@ -26,15 +26,12 @@ namespace HospitalInformationSystem.Windows.ManagerGUI
     public partial class DetailEquipmentViewUserControl : UserControl
     {
         private ObservableCollection<DetailEquipmentDTO> equipmentList;
-
         private ObservableCollection<Room> roomsList;
-
         public DetailEquipmentViewUserControl()
         {
             InitializeComponent();
             LoadAllUserControlComponents();
         }
-
         public void LoadAllUserControlComponents()
         {
             stateTextBox.Clear();
@@ -81,7 +78,6 @@ namespace HospitalInformationSystem.Windows.ManagerGUI
             detailEquipmentTable.ItemsSource = null;
             detailEquipmentTable.ItemsSource = equipmentList;
         }
-
         private void findButton_Click(object sender, RoutedEventArgs e)
         {
             LoadList();
@@ -117,7 +113,6 @@ namespace HospitalInformationSystem.Windows.ManagerGUI
                     equipmentList.Remove(equipmentList[i]);
             }
         }
-
         private void FindEquipmentByType()
         {
             for (int i = equipmentList.Count - 1; i > -1; i--)
@@ -126,7 +121,6 @@ namespace HospitalInformationSystem.Windows.ManagerGUI
                     equipmentList.Remove(equipmentList[i]);
             }
         }
-
         private void FindEquipmentByState()
         {
             for (int i = equipmentList.Count - 1; i > -1; i--)
@@ -135,7 +129,6 @@ namespace HospitalInformationSystem.Windows.ManagerGUI
                     equipmentList.Remove(equipmentList[i]);
             }
         }
-
         private void FindEquipmentByLocation()
         {
             Room selectedRoom = (Room)locationComboBox.SelectedItem;
@@ -145,7 +138,6 @@ namespace HospitalInformationSystem.Windows.ManagerGUI
                     equipmentList.Remove(equipmentList[i]);
             }
         }
-
         private void cancelButton_Click(object sender, RoutedEventArgs e)
         {
             LoadList();
@@ -155,12 +147,10 @@ namespace HospitalInformationSystem.Windows.ManagerGUI
             stateTextBox.Clear();
             locationComboBox.SelectedItem = null;
         }
-
         private void typeComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             e.Handled = true;
         }
-
         private void locationComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             e.Handled = true;

@@ -35,12 +35,10 @@ namespace HospitalInformationSystem.Windows.ManagerGUI
             allRoomsTable.ItemsSource = null;
             allRoomsTable.ItemsSource = roomList;
         }
-
         private void allRoomsTable_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             e.Handled = true;
         }
-
         private void allRoomsTable_SourceUpdated(object sender, DataTransferEventArgs e)
         {
             refreshTable();

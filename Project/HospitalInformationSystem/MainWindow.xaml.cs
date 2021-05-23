@@ -25,6 +25,7 @@ namespace HospitalInformationSystem.Windows
         {
             InitializeComponent();
             RoomController.GetInstance().LoadRoomsFromFile();
+            EquipmentController.getInstance().loadFromFile();
             PatientController.getInstance().LoadFromFile();
             AppointmentController.getInstance().loadFromFile();
             DoctorController.getInstance().LoadFromFile();

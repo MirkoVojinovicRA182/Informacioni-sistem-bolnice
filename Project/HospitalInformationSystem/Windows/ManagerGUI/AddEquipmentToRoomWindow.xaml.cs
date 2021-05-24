@@ -19,9 +19,6 @@ using System.Windows.Shapes;
 
 namespace HospitalInformationSystem.Windows.ManagerGUI
 {
-    /// <summary>
-    /// Interaction logic for AddEquipmentToRoomWindow.xaml
-    /// </summary>
     public partial class AddEquipmentToRoomWindow : Window
     {
         private static AddEquipmentToRoomWindow instance = null;

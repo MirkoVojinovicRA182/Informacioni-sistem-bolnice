@@ -29,6 +29,7 @@ namespace HospitalInformationSystem.Controller
         public void addNewEquipment(Equipment equipment)
         {
             _equipmentService.addNewEquipment(equipment);
+            RoomController.GetInstance().GetMagacine().EquipmentInRoom.Equipment.Add(equipment.Id, equipment.Quantity);
         }
 
         public List<Equipment> getStaticEquipment()

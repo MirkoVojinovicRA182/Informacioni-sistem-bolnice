@@ -21,9 +21,12 @@ namespace HospitalInformationSystem.Windows.ManagerGUI
     /// </summary>
     public partial class NewEquipment : Window
     {
-
         private static NewEquipment instance = null;
-
+        private string _equipmentId;
+        private string _equipmentName;
+        private TypeOfEquipment _equipmentType;
+        private int _equipmentQuantity;
+        private string _equipmentDescription;
         public static NewEquipment getInstance()
         {
             if (instance == null)
@@ -42,50 +45,69 @@ namespace HospitalInformationSystem.Windows.ManagerGUI
             typeList.Add("Dinamička");
             typeOfEquipmentComboBox.ItemsSource = typeList;
         }
-
+        private void addButton_Click(object sender, RoutedEventArgs e)
+        {
+            CreateEquipmentAtributes();
+            if(ValidateInputs())
+            {
+                CreateNewEquipment();
+                RefreshEquipmentTables();
+                this.Close();
+                MessageBox.Show("Uneta je nova oprema u sistem.", "Nova prostorija", MessageBoxButton.OK, MessageBoxImage.Information);
+            }
+        }
+        private void CreateEquipmentAtributes()
+        {
+            _equipmentId = idTextBox.Text;
+            _equipmentName = nameTextBox.Text;
+            _equipmentQuantity = int.TryParse(quanitityTextBox.Text, out _equipmentQuantity) ? _equipmentQuantity : 0;
+            _equipmentDescription = decriptionTextBox.Text;
+            if (typeOfEquipmentComboBox.SelectedIndex == 0)
+                _equipmentType = TypeOfEquipment.Static;
+            else
+                _equipmentType = TypeOfEquipment.Dynamic;
+        }
+        private bool ValidateInputs()
+        {
+            if (string.Compare(_equipmentId, "") == 0)
+            {
+                MessageBox.Show("Polje za unos šifre ne može biti prazno!", "Greška", MessageBoxButton.OK, MessageBoxImage.Error);
+                return false;
+            }
+            else if (EquipmentController.getInstance().findEquipmentById(_equipmentId) != null)
+            {
+                MessageBox.Show("U sistemu postoji oprema sa ovom šifrom!", "Greška", MessageBoxButton.OK, MessageBoxImage.Error);
+                return false;
+            }
+            else if (string.Compare(nameTextBox.Text, "") == 0)
+            {
+                MessageBox.Show("Polje za unos naziva ne može biti prazno!", "Greška", MessageBoxButton.OK, MessageBoxImage.Error);
+                return false;
+            }
+            else if (typeOfEquipmentComboBox.SelectedItem == null)
+            {
+                MessageBox.Show("Niste odabrali tip opreme!", "Greška", MessageBoxButton.OK, MessageBoxImage.Error);
+                return false;
+            }
+            else if (_equipmentQuantity == 0)
+            {
+                MessageBox.Show("Pogrešan unos količine!", "Greška", MessageBoxButton.OK, MessageBoxImage.Error);
+                return false;
+            }
+            return true;
+        }
+        private void CreateNewEquipment()
+        {
+            EquipmentController.getInstance().addNewEquipment(new Equipment(_equipmentId, _equipmentName, _equipmentType, _equipmentQuantity, _equipmentDescription));
+        }
+        private void RefreshEquipmentTables()
+        {
+            ManagerMainWindow.getInstance().equipmentTable.refreshTable();
+            ManagerMainWindow.getInstance().detailEquipmentTable.LoadAllUserControlComponents();
+        }
         private void newEquipmentWindow_Closing(object sender, System.ComponentModel.CancelEventArgs e)
         {
             instance = null;
-        }
-
-        private void addButton_Click(object sender, RoutedEventArgs e)
-        {
-            string id = idTextBox.Text;
-            string name = nameTextBox.Text;
-            int quantity = int.TryParse(quanitityTextBox.Text, out quantity) ? quantity : 0;
-            string description = decriptionTextBox.Text;
-
-            TypeOfEquipment typeOfEquipment;
-            if(typeOfEquipmentComboBox.SelectedIndex == 0)
-                typeOfEquipment = TypeOfEquipment.Static;
-            else
-                typeOfEquipment = TypeOfEquipment.Dynamic;
-
-            if (string.Compare(id, "") == 0)
-                MessageBox.Show("Polje za unos šifre ne može biti prazno!", "Greška", MessageBoxButton.OK, MessageBoxImage.Error);
-            else if(EquipmentController.getInstance().findEquipmentById(id) != null)
-                MessageBox.Show("U sistemu postoji oprema sa ovom šifrom!", "Greška", MessageBoxButton.OK, MessageBoxImage.Error);
-            else if (string.Compare(nameTextBox.Text, "") == 0)
-                MessageBox.Show("Polje za unos naziva ne može biti prazno!", "Greška", MessageBoxButton.OK, MessageBoxImage.Error);
-            else if(typeOfEquipmentComboBox.SelectedItem == null)
-                MessageBox.Show("Niste odabrali tip opreme!", "Greška", MessageBoxButton.OK, MessageBoxImage.Error);
-            else if (quantity == 0)
-                MessageBox.Show("Pogrešan unos količine!", "Greška", MessageBoxButton.OK, MessageBoxImage.Error);
-            else
-            {
-                Equipment equipment = new Equipment(id, name, typeOfEquipment, quantity, description);
-                EquipmentController.getInstance().addNewEquipment(equipment);
-                ManagerMainWindow.getInstance().equipmentTable.refreshTable();
-                RoomController.GetInstance().GetMagacine().EquipmentInRoom.Equipment.Add(equipment.Id, equipment.Quantity);
-                ManagerMainWindow.getInstance().detailEquipmentTable.LoadAllUserControlComponents();
-                //obavestavanje korisnika o uspesno unetoj opremi
-                this.Close();
-                MessageBox.Show("Uneta je nova oprema u sistem.", "Nova prostorija", MessageBoxButton.OK, MessageBoxImage.Information);
-                //brisanje polja nakon uspesnog unosa
-                idTextBox.Clear();
-                nameTextBox.Clear();
-                quanitityTextBox.Clear();
-            }
         }
     }
 }

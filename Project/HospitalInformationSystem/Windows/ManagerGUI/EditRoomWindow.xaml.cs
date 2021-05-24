@@ -176,7 +176,6 @@ namespace HospitalInformationSystem.Windows.ManagerGUI
                 this.Close();
             }
         }
-
         private void equipmentApplyButton_Click(object sender, RoutedEventArgs e)
         {
             //RoomController.GetInstance().SetRoomEquipment(selectedRoom, equipment);
@@ -193,7 +192,6 @@ namespace HospitalInformationSystem.Windows.ManagerGUI
         {
             instance = null;
         }
-
         private TypeOfRoom getType(int selectedValue)
         {
             TypeOfRoom type = 0;
@@ -213,7 +211,6 @@ namespace HospitalInformationSystem.Windows.ManagerGUI
             return type;
 
         }
-
         private void loadTypeComboBox()
         {
             var list = new List<String>();
@@ -227,7 +224,6 @@ namespace HospitalInformationSystem.Windows.ManagerGUI
 
             typeComboBox.ItemsSource = list;
         }
-
         private void fiilTypeComboBox(TypeOfRoom type)
         {
             if (type == TypeOfRoom.ExaminationRoom)
@@ -243,7 +239,6 @@ namespace HospitalInformationSystem.Windows.ManagerGUI
             else if (type == TypeOfRoom.RoomWithBeds)
                 typeComboBox.SelectedIndex = 2;
         }
-
         public void loadRoom()
         {
             idTextBox.Text = selectedRoom.Id.ToString();
@@ -260,19 +255,16 @@ namespace HospitalInformationSystem.Windows.ManagerGUI
             foreach (DictionaryEntry de in selectedRoom.EquipmentInRoom.Equipment)
                 roomEquipment.Add(de.Key, de.Value);
         }
-
         public void refreshDynamicEquipmentListBox()
         {
             dynamicEquipmentListBox.ItemsSource = null;
             dynamicEquipmentListBox.ItemsSource = loadDynamicEquimpentInListBox();
         }
-
         public void refreshStaticEquipmentListBox()
         {
             staticEquipmentListBox.ItemsSource = null;
             staticEquipmentListBox.ItemsSource = loadStaticEquimpentInListBox();
         }
-
         private void changeQuantityInMagacineOfEquipment()
         {
             foreach (DictionaryEntry de in newEquipment)
@@ -280,7 +272,6 @@ namespace HospitalInformationSystem.Windows.ManagerGUI
                 RoomController.GetInstance().GetMagacine().EquipmentInRoom.ReduceEquipmentQuantity(de.Key.ToString(), (int)de.Value);
             }
         }
-
         private void changeQuantityOfEquipment()
         {
             foreach (DictionaryEntry de in allDistinctions)
@@ -288,7 +279,6 @@ namespace HospitalInformationSystem.Windows.ManagerGUI
                 EquipmentController.getInstance().findEquipmentById(de.Key.ToString()).ReduceQuantity((int)de.Value);
             }
         }
-
         private List<String> loadDynamicEquimpentInListBox()
         {
             List<String> list = new List<String>();
@@ -301,7 +291,6 @@ namespace HospitalInformationSystem.Windows.ManagerGUI
 
             return list;
         }
-
         private List<String> loadStaticEquimpentInListBox()
         {
             List<String> list = new List<String>();
@@ -314,7 +303,6 @@ namespace HospitalInformationSystem.Windows.ManagerGUI
 
             return list;
         }
-
         public void checkControls()
         {
             int id = int.TryParse(idTextBox.Text, out id) ? id : 0;

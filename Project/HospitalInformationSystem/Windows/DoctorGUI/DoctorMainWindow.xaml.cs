@@ -11,19 +11,18 @@ namespace HospitalInformationSystem.Windows.DoctorGUI
     public partial class DoctorMainWindow : Window
     {
         private static DoctorMainWindow instance = null;
-        private Doctor doctor;
-        public static DoctorMainWindow GetInstance(Doctor doctor)
+        private Doctor _loggedDoctor;
+        public static DoctorMainWindow GetInstance(Doctor loggedDoctor)
         {
             if (instance == null)
-                instance = new DoctorMainWindow(doctor);
+                instance = new DoctorMainWindow(loggedDoctor);
             return instance;
         }
-
-        private DoctorMainWindow(Doctor doctor)
+        private DoctorMainWindow(Doctor loggedDoctor)
         {
             InitializeComponent();
             LoadDataFromFiles();
-            this.doctor = doctor;
+            this._loggedDoctor = loggedDoctor;
             InitData();
         }
         private void LoadDataFromFiles()
@@ -35,50 +34,52 @@ namespace HospitalInformationSystem.Windows.DoctorGUI
         }
         private void InitData()
         {
-            nameLabel.Content = doctor.Name + " " + doctor.Surname;
-            if (doctor.Specialization == Specialization.Family_Physician)
-                specializationLabel.Content = "Doktor opste prakse";
-            else if (doctor.Specialization == Specialization.Gynecologist)
-                specializationLabel.Content = "Ginekolog";
-            else if (doctor.Specialization == Specialization.Neurologist)
-                specializationLabel.Content = "Neurolog";
-            else if (doctor.Specialization == Specialization.Pediatrician)
-                specializationLabel.Content = "Pediatar";
-            else if (doctor.Specialization == Specialization.Surgeon)
-                specializationLabel.Content = "Hirurg";
-            else
-                specializationLabel.Content = "Urolog";
-
+            nameLabel.Content = _loggedDoctor.Name + " " + _loggedDoctor.Surname;
+            switch(_loggedDoctor.Specialization)
+            {
+                case Specialization.Family_Physician:
+                    specializationLabel.Content = "Doktor opste prakse";
+                    break;
+                case Specialization.Gynecologist:
+                    specializationLabel.Content = "Ginekolog";
+                    break;
+                case Specialization.Neurologist:
+                    specializationLabel.Content = "Neurolog";
+                    break;
+                case Specialization.Pediatrician:
+                    specializationLabel.Content = "Periatar";
+                    break;
+                case Specialization.Surgeon:
+                    specializationLabel.Content = "Hirurg";
+                    break;
+                default:
+                    specializationLabel.Content = "Urolog";
+                    break;
+            }
         }
-
         private void CheckKeyPress()
         {
             if ((Keyboard.IsKeyDown(Key.LeftCtrl) || Keyboard.IsKeyDown(Key.RightCtrl)) && Keyboard.IsKeyDown(Key.P))
             {
-                PatientPreviewWindow window = PatientPreviewWindow.GetInstance(doctor);
-                window.Show();
+                PatientPreviewWindow.GetInstance(_loggedDoctor).Show();
             }
             else if((Keyboard.IsKeyDown(Key.LeftCtrl) || Keyboard.IsKeyDown(Key.RightCtrl)) && Keyboard.IsKeyDown(Key.K))
             {
-                DoctorAppointmentsManagementWindow.GetInstance(doctor).Show();
+                DoctorAppointmentsManagementWindow.GetInstance(_loggedDoctor).Show();
             }
             else if ((Keyboard.IsKeyDown(Key.LeftCtrl) || Keyboard.IsKeyDown(Key.RightCtrl)) && Keyboard.IsKeyDown(Key.M))
             {
-                MedicinePreviewWindow window = MedicinePreviewWindow.GetInstance();
-                window.Show();
+                MedicinePreviewWindow.GetInstance().Show();
             }
             else if ((Keyboard.IsKeyDown(Key.LeftCtrl) || Keyboard.IsKeyDown(Key.RightCtrl)) && Keyboard.IsKeyDown(Key.Q))
             {
                 this.Close();
-                instance = null;
             }
         }
-
         private void Window_KeyDown(object sender, KeyEventArgs e)
         {
             CheckKeyPress();
         }
-
         private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
         {
             DoctorController.getInstance().SaveInFlie();

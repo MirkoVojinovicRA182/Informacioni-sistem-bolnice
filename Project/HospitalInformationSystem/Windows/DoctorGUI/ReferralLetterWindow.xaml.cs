@@ -193,7 +193,7 @@ namespace HospitalInformationSystem.Windows.DoctorGUI
                     dateApperence, System.Globalization.CultureInfo.InvariantCulture),
                     (TypeOfAppointment)typeOfAppointmentComboBox.SelectedItem,
                     (Room)roomsListBox.SelectedItem, _patientForReferralLetter, doctor);
-                AppointmentController.getInstance().addAppointment(appointment);
+                AppointmentController.getInstance().AddAppointmentToAppointmentList(appointment);
                 doctor.AddAppointment(appointment);
                 _patientForReferralLetter.AddAppointment(appointment);
 

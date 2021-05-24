@@ -33,7 +33,7 @@ namespace HospitalInformationSystem.Windows.DoctorGUI
         private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
         {
             DoctorController.getInstance().SaveInFlie();
-            AppointmentController.getInstance().saveInFile();
+            AppointmentController.getInstance().SaveAppointmentsInFile();
             instance = null;
         }
         private void OpenNewAppointmentWindow()
@@ -55,7 +55,7 @@ namespace HospitalInformationSystem.Windows.DoctorGUI
             if ((Appointment)appointmentsTable.SelectedItem != null)
             {
                 appointment = (Appointment)appointmentsTable.SelectedItem;
-                AppointmentController.getInstance().removeAppointment(appointment);
+                AppointmentController.getInstance().DeleteAppointment(appointment);
                 RefreshTable();
             }
         }

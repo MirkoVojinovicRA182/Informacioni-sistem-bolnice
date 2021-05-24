@@ -65,7 +65,7 @@ namespace HospitalInformationSystem.Windows.DoctorGUI
             DateTime date = DateTime.ParseExact(dateTextBox.Text + " " + timeTextBox.Text, dateTemplate, System.Globalization.CultureInfo.InvariantCulture);
             Appointment appointment = new Appointment(date, typeOfAppointment, _selectedRoomForAppointment, 
                 (Patient)patientListBox.SelectedItem, _loggedDoctor);
-            AppointmentController.getInstance().addAppointment(appointment);
+            AppointmentController.getInstance().AddAppointmentToAppointmentList(appointment);
         }
         private void appointmentComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {

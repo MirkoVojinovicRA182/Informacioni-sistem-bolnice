@@ -30,7 +30,7 @@ namespace HospitalInformationSystem.Windows.DoctorGUI
             RoomController.GetInstance().LoadRoomsFromFile();
             DoctorController.getInstance().LoadFromFile();
             PatientController.getInstance().LoadFromFile();
-            AppointmentController.getInstance().loadFromFile();
+            AppointmentController.getInstance().LoadAppointmentsFromFile();
         }
         private void InitData()
         {
@@ -81,7 +81,7 @@ namespace HospitalInformationSystem.Windows.DoctorGUI
         {
             DoctorController.getInstance().SaveInFlie();
             RoomController.GetInstance().SaveRoomsInFile();
-            AppointmentController.getInstance().saveInFile();
+            AppointmentController.getInstance().SaveAppointmentsInFile();
             PatientController.getInstance().SaveInFile();
             instance = null;
         }

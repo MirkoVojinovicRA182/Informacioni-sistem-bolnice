@@ -7,93 +7,72 @@ namespace HospitalInformationSystem.Controller
 {
     class AppointmentController
     {
-        AppointmentService appointmentService;
-
-        private static AppointmentController instance = null;
+        private AppointmentService _appointmentService;
+        private static AppointmentController _instance = null;
 
         public static AppointmentController getInstance()
         {
-            if (instance == null)
-                instance = new AppointmentController();
-            return instance;
+            if (_instance == null)
+                _instance = new AppointmentController();
+            return _instance;
         }
 
         private AppointmentController()
         {
-            appointmentService = new AppointmentService();
+            _appointmentService = new AppointmentService();
         }
 
-        public List<Appointment> getAppointment()
+        public List<Appointment> GetAppointments()
         {
-            return appointmentService.getAppointment();
+            return _appointmentService.GetAppointments();
         }
 
-        public void setAppointment(List<Appointment> newAppointment)
+        public void SetAppointments(List<Appointment> newAppointment)
         {
-            appointmentService.setAppointment(newAppointment);
+            _appointmentService.SetAppointments(newAppointment);
         }
 
-        public void addAppointment(Appointment newAppointment)
+        public void AddAppointmentToAppointmentList(Appointment newAppointment)
         {
-            appointmentService.addAppointment(newAppointment);
+            _appointmentService.AddAppointmentToAppointmentList(newAppointment);
         }
 
-        public void removeAppointment(Appointment oldAppointment)
+        public void DeleteAppointment(Appointment oldAppointment)
         {
-            appointmentService.removeAppointment(oldAppointment);
+            _appointmentService.DeleteAppointment(oldAppointment);
         }
 
-        public void removeAllAppointment()
+        public void ChangeAppointment(Appointment appointment, System.DateTime startTime, TypeOfAppointment typeOfAppointment, Room room, Patient patient, Doctor doctor)
         {
-            appointmentService.removeAllAppointment();
+            _appointmentService.ChangeAppointment(appointment, startTime, typeOfAppointment, room, patient, doctor);
         }
 
-        public void changeAppointment(Appointment appointment, System.DateTime startTime, TypeOfAppointment typeOfAppointment, Room room, Patient patient, Doctor doctor)
+        public List<Appointment> FindAppointmentByRoom(Room room)
         {
-            appointmentService.changeAppointment(appointment, startTime, typeOfAppointment, room, patient, doctor);
+            return _appointmentService.FindAppointmentByRoom(room);
         }
 
-        public List<Appointment> findAppointmentByRoom(Room room)
+        public void SaveAppointmentsInFile()
         {
-            return appointmentService.findAppointmentByRoom(room);
+            _appointmentService.SaveAppointmentsInFile();
         }
 
-        public void ChangeStartTime(Appointment appointmentForChange, DateTime newStartTime)
+        public void LoadAppointmentsFromFile()
         {
-            appointmentService.ChangeStartTime(appointmentForChange, newStartTime);
-        }
-
-        public DateTime GetStartTime(Appointment appointment)
-        {
-            return appointmentService.GetStartTime(appointment);
-        }
-
-        public Doctor GetDoctor(Appointment appointment)
-        {
-            return appointmentService.GetDoctor(appointment);
-        }
-
-        public void saveInFile()
-        {
-            appointmentService.saveInFile();
-        }
-
-        public void loadFromFile()
-        {
-            appointmentService.loadFromFile();
+            _appointmentService.LoadAppointmentsFromFile();
         }
 
         public List<Appointment> GetAppointmentsByPatient(Patient patient)
         {
-            return appointmentService.GetAppointmentsByPatient(patient);
+            return _appointmentService.GetAppointmentsByPatient(patient);
         }
         public List<Appointment> GetAppointmentsByDoctor(Doctor doctor)
         {
-            return appointmentService.GetAppointmentsByDoctor(doctor);
+            return _appointmentService.GetAppointmentsByDoctor(doctor);
         }
         public void DeleteAllAppointmentsFromRoom(Room room)
         {
-            appointmentService.DeleteAllAppointmentsFromRoom(room);
+            _appointmentService.DeleteAllAppointmentsFromRoom(room);
         }
     }
 }

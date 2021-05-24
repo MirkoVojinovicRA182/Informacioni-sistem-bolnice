@@ -14,77 +14,36 @@ namespace HospitalInformationSystem.Service
 {
     public class AppointmentService
     {
-
-        private List<Appointment> appointments;
-        AppointmentsRepository appointmentsFile;
+        private AppointmentsRepository _repository;
 
         public AppointmentService()
         {
-            // TODO: implement
-            appointments = new List<Appointment>();
-            appointmentsFile = new AppointmentsRepository();
+            _repository = new AppointmentsRepository();
         }
 
-        ~AppointmentService()
+        public void AddAppointmentToAppointmentList(Appointment newAppointment)
         {
-            // TODO: implement
+            _repository.AddAppointmentToAppointmentList(newAppointment);
         }
 
-        /// <pdGenerated>default getter</pdGenerated>
-        public List<Appointment> getAppointment()
+        public List<Appointment> GetAppointments()
         {
-            if (appointments == null)
-                appointments = new List<Appointment>();
-            return appointments;
+            return _repository.GetAppointments();
         }
 
         /// <pdGenerated>default setter</pdGenerated>
-        public void setAppointment(List<Appointment> newAppointment)
+        public void SetAppointments(List<Appointment> appointments)
         {
-            removeAllAppointment();
-            foreach (Appointment oAppointment in newAppointment)
-                addAppointment(oAppointment);
+            _repository.SetAppointments(appointments);
         }
 
-        /// <pdGenerated>default Add</pdGenerated>
-        public void addAppointment(Appointment newAppointment)
+        public void DeleteAppointment(Appointment appointment)
         {
-            if (newAppointment == null)
-                return;
-            if (this.appointments == null)
-                this.appointments = new List<Appointment>();
-            if (!this.appointments.Contains(newAppointment))
-            {
-                this.appointments.Add(newAppointment);
-                newAppointment.doctor.AddAppointment(newAppointment);
-                newAppointment.patient.AddAppointment(newAppointment);
-            }
+            _repository.DeleteAppointment(appointment);
         }
 
-        /// <pdGenerated>default Remove</pdGenerated>
-        public void removeAppointment(Appointment oldAppointment)
+        public void ChangeAppointment(Appointment appointment, System.DateTime startTime, TypeOfAppointment typeOfAppointment, Room room, Patient patient, Doctor doctor)
         {
-            if (oldAppointment == null)
-                return;
-            if (this.appointments != null)
-                if (this.appointments.Contains(oldAppointment))
-                {
-                    oldAppointment.doctor.RemoveAppointment(oldAppointment);
-                    oldAppointment.patient.RemoveAppointment(oldAppointment);
-                    this.appointments.Remove(oldAppointment);
-                }
-        }
-
-        /// <pdGenerated>default removeAll</pdGenerated>
-        public void removeAllAppointment()
-        {
-            if (appointments != null)
-                appointments.Clear();
-        }
-
-        public void changeAppointment(Appointment appointment, System.DateTime startTime, TypeOfAppointment typeOfAppointment, Room room, Patient patient, Doctor doctor)
-        {
-            // TODO: implement
             appointment.StartTime = startTime;
             appointment.Type = typeOfAppointment;
             appointment.room = room;
@@ -92,74 +51,35 @@ namespace HospitalInformationSystem.Service
             appointment.doctor = doctor;
         }
 
-        public List<Appointment> findAppointmentByRoom(Room room)
+        public List<Appointment> FindAppointmentByRoom(Room room)
         {
-            List<Appointment> list = new List<Appointment>();
-
-            foreach (Appointment appointment in appointments)
-            {
-                if (Object.Equals(appointment.room, room))
-                    list.Add(appointment);
-            }
-
-            return list;
+            return _repository.FindAppointmentByRoom(room);
         }
 
         public List<Appointment> GetAppointmentsByPatient(Patient patient)
         {
-            List<Appointment> list = new List<Appointment>();
-
-            foreach (var appointment in appointments)
-            {
-                if (appointment.patient.Jmbg == patient.Jmbg)
-                    list.Add(appointment);
-            }
-
-            return list;
+            return _repository.GetAppointmentsByPatient(patient);
         }
 
         public List<Appointment> GetAppointmentsByDoctor(Doctor doctor)
         {
-            List<Appointment> list = new List<Appointment>();
-
-            foreach (var appointment in appointments)
-            {
-                if (appointment.doctor.Name == doctor.Name)
-                    list.Add(appointment);
-            }
-
-            return list;
+            return _repository.GetAppointmentsByDoctor(doctor);
         }
 
-        public void ChangeStartTime(Appointment appointmentForChange, DateTime newStartTime)
+        public void SaveAppointmentsInFile()
         {
-            appointmentForChange.StartTime = newStartTime;
+            _repository.saveInFile();
         }
 
-        public DateTime GetStartTime(Appointment appointment)
+        public void LoadAppointmentsFromFile()
         {
-            return appointment.StartTime;
-        }
-
-        public Doctor GetDoctor(Appointment appointment)
-        {
-            return appointment.doctor;
-        }
-
-        public void saveInFile()
-        {
-            appointmentsFile.saveInFile();
-        }
-
-        public void loadFromFile()
-        {
-            appointmentsFile.loadFromFile();
+            _repository.loadFromFile();
         }
         public void DeleteAllAppointmentsFromRoom(Room room)
         {
-            foreach (Appointment appointmentForRemove in findAppointmentByRoom(room))
+            foreach (Appointment appointmentForRemove in FindAppointmentByRoom(room))
             {
-                removeAppointment(appointmentForRemove);
+                DeleteAppointment(appointmentForRemove);
             }
         }
     }

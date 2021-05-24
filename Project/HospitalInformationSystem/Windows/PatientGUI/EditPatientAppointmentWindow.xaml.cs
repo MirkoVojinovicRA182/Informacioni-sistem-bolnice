@@ -42,7 +42,7 @@ namespace HospitalInformationSystem.Windows.PatientGUI
 
         private void AttemptToEditAppointment()
         {
-            DateTime originalTime = AppointmentController.getInstance().GetStartTime(appointmentForEditing);
+            DateTime originalTime = appointmentForEditing.StartTime;
             DateTime lastTimeToMoveAppointment = originalTime.AddDays(-1);
 
             if (IsValidDate(lastTimeToMoveAppointment))
@@ -74,7 +74,7 @@ namespace HospitalInformationSystem.Windows.PatientGUI
 
         private void MoveAppointment()
         {
-            AppointmentController.getInstance().ChangeStartTime(appointmentForEditing, ParseDateTime());
+            appointmentForEditing.StartTime = ParseDateTime();
             appointmentForEditing.HasBeenMoved = true;
             appointmentForEditing.MovingTime = DateTime.Now;
             MessageBox.Show("Termin je izmenjen.", "Menjanje termina", MessageBoxButton.OK, MessageBoxImage.Information);
@@ -90,8 +90,8 @@ namespace HospitalInformationSystem.Windows.PatientGUI
         private bool AppointmentIsTaken(Appointment appointment)
         {
             bool isTaken = false;
-            for (int i = 0; i < AppointmentController.getInstance().getAppointment().Count; i++) {
-                if (StartTimesAndDoctorsAreEqual(appointment, AppointmentController.getInstance().getAppointment()[i]))
+            for (int i = 0; i < AppointmentController.getInstance().GetAppointments().Count; i++) {
+                if (StartTimesAndDoctorsAreEqual(appointment, AppointmentController.getInstance().GetAppointments()[i]))
                 {
                     isTaken = true;
                 }
@@ -101,8 +101,8 @@ namespace HospitalInformationSystem.Windows.PatientGUI
 
         private bool StartTimesAndDoctorsAreEqual(Appointment appointment1, Appointment appointment2)
         {
-            return AppointmentController.getInstance().GetStartTime(appointment1) == AppointmentController.getInstance().GetStartTime(appointment2)
-                    && AppointmentController.getInstance().GetDoctor(appointment1) == AppointmentController.getInstance().GetDoctor(appointment2);
+            return appointment1.StartTime == appointment2.StartTime &&
+                    appointment1.doctor == appointment2.doctor;
         }
 
         private DateTime ParseDateTime()

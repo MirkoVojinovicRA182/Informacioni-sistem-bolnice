@@ -2,9 +2,7 @@
 using Model;
 using System.Windows;
 using System.Windows.Controls;
-using System.Collections;
 using HospitalInformationSystem.Model;
-
 namespace HospitalInformationSystem.Windows.ManagerGUI
 {
     /// <summary>

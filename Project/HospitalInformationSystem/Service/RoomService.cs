@@ -1,13 +1,8 @@
 using Model;
-using HospitalInformationSystem.Windows;
-using HospitalInformationSystem.Service;
 using System.Collections.Generic;
 using System.Collections;
 using HospitalInformationSystem.Controller;
 using HospitalInformationSystem.Repository;
-using HospitalInformationSystem.Model;
-using System;
-
 namespace HospitalInformationSystem.Service
 {
     public class RoomService

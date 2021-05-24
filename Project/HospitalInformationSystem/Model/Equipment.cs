@@ -1,6 +1,5 @@
 ﻿using HospitalInformationSystem.DTO;
 using System;
-
 namespace Model
 {
     [Serializable]

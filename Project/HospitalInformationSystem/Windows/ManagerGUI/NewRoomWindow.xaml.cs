@@ -1,15 +1,11 @@
-﻿using HospitalInformationSystem.Service;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Windows;
 using Model;
-using HospitalInformationSystem.Windows.ManagerGUI;
-using System.Collections.ObjectModel;
 using HospitalInformationSystem.Controller;
 using System.Collections;
 using System.Windows.Controls;
 using HospitalInformationSystem.Utility;
-
 namespace HospitalInformationSystem.Windows.ManagerGUI
 {
     public partial class NewRoomWindow : Window
@@ -26,7 +22,6 @@ namespace HospitalInformationSystem.Windows.ManagerGUI
             loadComboBox();
             roomEquipment = new Hashtable();
         }
-
         public static NewRoomWindow getInstance()
         {
             if (instance == null)

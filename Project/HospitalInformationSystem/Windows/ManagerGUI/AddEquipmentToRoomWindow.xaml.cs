@@ -1,22 +1,8 @@
 ﻿using HospitalInformationSystem.Controller;
 using HospitalInformationSystem.Utility;
 using Model;
-using System;
 using System.Collections;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
-
 namespace HospitalInformationSystem.Windows.ManagerGUI
 {
     public partial class AddEquipmentToRoomWindow : Window
@@ -48,7 +34,6 @@ namespace HospitalInformationSystem.Windows.ManagerGUI
             else
                 MessageBox.Show("Niste odabrali opremu!", Constants.WARNING_MESSAGE_BOX_CAPTION, MessageBoxButton.OK, MessageBoxImage.Warning);
         }
-
         private void TryAddEquipmentToRoom()
         {
             if (QuantityInputIsOk())

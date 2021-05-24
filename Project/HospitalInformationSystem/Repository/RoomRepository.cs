@@ -1,18 +1,10 @@
-/***********************************************************************
- * Module:  RoomRepository.cs
- * Author:  Mirko
- * Purpose: Definition of the Class Repository.RoomRepository
- ***********************************************************************/
-
 using HospitalInformationSystem.Controller;
 using Model;
-using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.IO;
 using System.Runtime.Serialization;
 using System.Runtime.Serialization.Formatters.Binary;
-
 namespace HospitalInformationSystem.Repository
 {
     public class RoomRepository : IRepository

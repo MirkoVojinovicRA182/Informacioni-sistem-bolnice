@@ -2,8 +2,6 @@ using HospitalInformationSystem.DTO;
 using HospitalInformationSystem.Model;
 using System;
 using System.Collections;
-using System.Collections.Generic;
-
 namespace Model
 {
     [Serializable]

@@ -3,16 +3,11 @@ using HospitalInformationSystem.Model;
 using Model;
 using System;
 using System.Collections;
-using System.Collections.Generic;
 using System.Threading;
 using System.Windows;
 using System.Windows.Controls;
-
 namespace HospitalInformationSystem.Windows.ManagerGUI
 {
-    /// <summary>
-    /// Interaction logic for RoomRenovationWindow.xaml
-    /// </summary>
     public partial class RoomRenovationWindow : Window
     {
         private Room roomSelectedFromTable;
@@ -106,7 +101,6 @@ namespace HospitalInformationSystem.Windows.ManagerGUI
         }
         private void StartRoomDuplicate()
         {
-            //RoomController.GetInstance().SetRenovationStateToRoom(roomSelectedFromTable, NewRoomRenovationState());
             roomSelectedFromTable.RoomRenovationState = NewRoomRenovationState();
             CreateThreadForChangeRoomActivityStatus(roomSelectedFromTable);
             CreateThreadForDuplicatingRoom();
@@ -199,7 +193,6 @@ namespace HospitalInformationSystem.Windows.ManagerGUI
         {
             CheckIfTheTermIsSelected();
         }
-
         private void DatePickerControlsLayoutUpdated(object sender, EventArgs e)
         {
             CheckIfTheTermIsSelected();
@@ -213,12 +206,10 @@ namespace HospitalInformationSystem.Windows.ManagerGUI
             roomForMergeComboBox.IsEnabled = !(bool)duplicateRoomCheckBox.IsChecked;
             newMergedRoomTextBox.IsEnabled = !(bool)duplicateRoomCheckBox.IsChecked;
         }
-
         private void roomForMergeComboBox_LayoutUpdated(object sender, EventArgs e)
         {
             duplicateRoomCheckBox.IsEnabled = roomForMergeComboBox.SelectedItem == null;
-         }
-
+        }
         private void cancelSelectionButton_Click(object sender, RoutedEventArgs e)
         {
             roomForMergeComboBox.SelectedIndex = -1;

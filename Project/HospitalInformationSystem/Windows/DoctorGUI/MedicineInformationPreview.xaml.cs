@@ -118,7 +118,7 @@ namespace HospitalInformationSystem.Windows.DoctorGUI
 
         private void addIngredientButton_Click(object sender, RoutedEventArgs e)
         {
-            DoctorAddNewIngredientWindow doctorAddNewIngredientWindow = new DoctorAddNewIngredientWindow(medicine);
+            DoctorAddNewIngredientWindow doctorAddNewIngredientWindow = DoctorAddNewIngredientWindow.GetInstance(medicine);
             doctorAddNewIngredientWindow.ShowDialog();
             RefreshTable();
         }

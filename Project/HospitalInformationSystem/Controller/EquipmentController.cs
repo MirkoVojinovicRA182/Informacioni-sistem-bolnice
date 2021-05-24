@@ -3,6 +3,7 @@ using Model;
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -72,10 +73,13 @@ namespace HospitalInformationSystem.Controller
         {
             return _equipmentService.getEquipmentTypeById(id);
         }
-
         public Equipment findEquipmentById(string id)
         {
             return _equipmentService.findEquipmentById(id);
+        }
+        public ObservableCollection<Equipment> MakeEquipmentForRoom(string equipmentType, Hashtable currentRoomEquipment)
+        {
+            return _equipmentService.MakeEquipmentForRoom(equipmentType, currentRoomEquipment);
         }
     }
 }

@@ -1,4 +1,5 @@
 ﻿using HospitalInformationSystem.Controller;
+using HospitalInformationSystem.Utility;
 using Model;
 using System;
 using System.Collections;
@@ -24,91 +25,73 @@ namespace HospitalInformationSystem.Windows.ManagerGUI
     public partial class AddEquipmentToRoomWindow : Window
     {
         private static AddEquipmentToRoomWindow instance = null;
-        private ObservableCollection<Equipment> equipmentList;
         private Equipment selectedEquipment;
         private int quantity;
         private string window;
-        public static AddEquipmentToRoomWindow getInstance(Hashtable roomEq, string equipmentType, string window)
+        public static AddEquipmentToRoomWindow getInstance(Hashtable currentRoomEquipment, string equipmentType, string window)
         {
             if (instance == null)
-                instance = new AddEquipmentToRoomWindow(roomEq, equipmentType, window);
+                instance = new AddEquipmentToRoomWindow(currentRoomEquipment, equipmentType, window);
             return instance;
         }
-        private AddEquipmentToRoomWindow(Hashtable roomEq, string equipmentType, string window)
+        private AddEquipmentToRoomWindow(Hashtable currentRoomEquipment, string equipmentType, string window)
         {
             InitializeComponent();
-            loadEquipment(equipmentType, roomEq);
-            this.window = window;
-        }
-        private void loadEquipment(string equipmentType, Hashtable roomEq)
-        {
-            if (string.Equals(equipmentType, "dinamicka"))
-            {
-                List<Equipment> list = EquipmentController.getInstance().getDynamicEquipment();
-                //ako u sistemu nema dinamicke opreme nema smisla bilo sta prikazivati, ovde se funkcija zaustavlja
-                if (list.Count == 0)
-                    return;
-                foreach(Equipment eq in list)
-                {
-                    if (/*eq.QuantityInMagacine == 0*/(int)RoomController.GetInstance().GetMagacine().EquipmentInRoom.Equipment[eq.Id] == 0)
-                        list.Remove(eq);
-                    if (list.Count == 0)
-                        break;
-                }
-                equipmentList = new ObservableCollection<Equipment>(list);
-                foreach (DictionaryEntry de in roomEq)
-                {
-                    equipmentList.Remove(EquipmentController.getInstance().findEquipmentById(de.Key.ToString()));
-                }
-            }
-            else
-            {
-                List<Equipment> list = EquipmentController.getInstance().getStaticEquipment();
-                //ako u sistemu nema staticke opreme nema smisla bilo sta prikazivati, ovde se funkcija zaustavlja
-                if (list.Count == 0)
-                    return;
-                foreach (Equipment eq in list)
-                {
-                    if (/*eq.QuantityInMagacine == 0*/(int)RoomController.GetInstance().GetMagacine().EquipmentInRoom.Equipment[eq.Id] == 0)
-                        list.Remove(eq);
-                    if (list.Count == 0)
-                        break;
-                }
-                equipmentList = new ObservableCollection<Equipment>(list);
-                foreach (DictionaryEntry de in roomEq)
-                {
-                    equipmentList.Remove(EquipmentController.getInstance().findEquipmentById(de.Key.ToString()));
-                }
-            }
             equipmentListBox.ItemsSource = null;
-            equipmentListBox.ItemsSource = equipmentList;
-        }
-        private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
-        {
-            instance = null;
+            equipmentListBox.ItemsSource = EquipmentController.getInstance().MakeEquipmentForRoom(equipmentType, currentRoomEquipment);
+            this.window = window;
         }
         private void confirmButton_Click(object sender, RoutedEventArgs e)
         {
             if (equipmentListBox.SelectedItem != null)
             {
-                selectedEquipment = (Equipment)equipmentListBox.SelectedItem;
-                quantity = int.TryParse(quantityTextBox.Text, out quantity) ? quantity : 0;
-                if (quantity != 0 && quantity > 0 && quantity <= /*eq.QuantityInMagacine == 0*/(int)RoomController.GetInstance().GetMagacine().EquipmentInRoom.Equipment[selectedEquipment.Id])
-                {
-                    if (string.Equals(window, "newRoom"))
-                        NewRoomWindow.getInstance().addEquipmentToRoom(selectedEquipment.Id, quantity);
-                    else
-                        EditRoomWindow.getInstance((Room)ManagerMainWindow.getInstance().roomsUserControl.allRoomsTable.SelectedItem).addEquipment(selectedEquipment.Id, quantity);
-                    NewRoomWindow.getInstance().refreshDynamicEquipmentListBox();
-                    NewRoomWindow.getInstance().refreshStaticEquipmentListBox();
-                    this.Close();
-
-                }
-                else
-                    MessageBox.Show("Pogrešan unos količine!", "Greška", MessageBoxButton.OK, MessageBoxImage.Error);
+                TryAddEquipmentToRoom();
+                RefreshListBoxes();
             }
             else
-                MessageBox.Show("Niste odabrali opremu!", "Upozorenje", MessageBoxButton.OK, MessageBoxImage.Warning);
+                MessageBox.Show("Niste odabrali opremu!", Constants.WARNING_MESSAGE_BOX_CAPTION, MessageBoxButton.OK, MessageBoxImage.Warning);
+        }
+
+        private void TryAddEquipmentToRoom()
+        {
+            if (QuantityInputIsOk())
+            {
+                AddEquipment();
+                this.Close();
+            }
+            else
+                MessageBox.Show("Pogrešan unos količine!", Constants.ERROR_MESSAGE_BOX_CAPTION, MessageBoxButton.OK, MessageBoxImage.Error);
+        }
+        private bool QuantityInputIsOk()
+        {
+            selectedEquipment = (Equipment)equipmentListBox.SelectedItem;
+            quantity = int.TryParse(quantityTextBox.Text, out quantity) ? quantity : 0;
+            return quantity > 0 && quantity <= (int)RoomController.GetInstance().GetMagacine().EquipmentInRoom.Equipment[selectedEquipment.Id];
+        }
+        private void AddEquipment()
+        {
+            if (window.Equals(Constants.NEW_ROOM_WINDOW))
+            {
+                NewRoomWindow.getInstance().addEquipmentToRoom(selectedEquipment.Id, quantity);
+            }
+            else
+                EditRoomWindow.getInstance((Room)ManagerMainWindow.getInstance().roomsUserControl.allRoomsTable.SelectedItem).addEquipment(selectedEquipment.Id, quantity);
+        }
+        private void RefreshListBoxes()
+        {
+            if (window.Equals(Constants.NEW_ROOM_WINDOW))
+            {
+                NewRoomWindow.getInstance().refreshDynamicEquipmentListBox();
+                NewRoomWindow.getInstance().refreshStaticEquipmentListBox();
+            }
+            else
+            {
+                EditRoomWindow.getInstance((Room)ManagerMainWindow.getInstance().roomsUserControl.allRoomsTable.SelectedItem).refreshDynamicEquipmentListBox();
+                EditRoomWindow.getInstance((Room)ManagerMainWindow.getInstance().roomsUserControl.allRoomsTable.SelectedItem).refreshStaticEquipmentListBox();
+            }
+        }
+        private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
+        {
             instance = null;
         }
     }

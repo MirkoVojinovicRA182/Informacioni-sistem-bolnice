@@ -24,13 +24,8 @@ namespace HospitalInformationSystem.Windows
         public MainWindow()
         {
             InitializeComponent();
-            RoomController.GetInstance().LoadRoomsFromFile();
-            EquipmentController.getInstance().loadFromFile();
-            PatientController.getInstance().LoadFromFile();
-            AppointmentController.getInstance().loadFromFile();
-            DoctorController.getInstance().LoadFromFile();
             
-            /*Room room1 = new Room(1, "Magacin", -1, TypeOfRoom.Magacine, new Hashtable());
+            Room room1 = new Room(1, "Magacin", -1, TypeOfRoom.Magacine, new Hashtable());
             Room room2 = new Room(2, "Prostorija dr Marka", 1, TypeOfRoom.ExaminationRoom, new Hashtable());
             Room room3 = new Room(3, "Prostorija dr Jovana", 1, TypeOfRoom.ExaminationRoom, new Hashtable());
             Room room4 = new Room(4, "Prostorija dr Stevana", 1, TypeOfRoom.ExaminationRoom, new Hashtable());
@@ -39,9 +34,9 @@ namespace HospitalInformationSystem.Windows
             RoomController.GetInstance().AddRoomToRoomList(room2);
             RoomController.GetInstance().AddRoomToRoomList(room3);
             RoomController.GetInstance().AddRoomToRoomList(room4);
-            RoomController.GetInstance().AddRoomToRoomList(room5);*/
+            RoomController.GetInstance().AddRoomToRoomList(room5);
 
-            /*var doctor = new Doctor("Marko", "Markovic", Specialization.Family_Physician, RoomController.GetInstance().GetRooms()[0]);
+            var doctor = new Doctor("Marko", "Markovic", Specialization.Family_Physician, RoomController.GetInstance().GetRooms()[0]);
             var doctor2 = new Doctor("Jovan", "Jovanovic", Specialization.Family_Physician, RoomController.GetInstance().GetRooms()[1]);
             var doctor3 = new Doctor("Stevan", "Stojanovic", Specialization.Family_Physician, RoomController.GetInstance().GetRooms()[2]);
             DoctorController.getInstance().AddDoctor(doctor);
@@ -71,7 +66,13 @@ namespace HospitalInformationSystem.Windows
 
             PatientController.getInstance().getPatient().Add(first);
             PatientController.getInstance().getPatient().Add(second);
-            PatientController.getInstance().getPatient().Add(third);*/
+            PatientController.getInstance().getPatient().Add(third);
+
+            RoomController.GetInstance().LoadRoomsFromFile();
+            EquipmentController.getInstance().loadFromFile();
+            PatientController.getInstance().LoadFromFile();
+            AppointmentController.getInstance().loadFromFile();
+            DoctorController.getInstance().LoadFromFile();
 
             Secretary secretary = new Secretary();
             secretary.Name = "Petar";

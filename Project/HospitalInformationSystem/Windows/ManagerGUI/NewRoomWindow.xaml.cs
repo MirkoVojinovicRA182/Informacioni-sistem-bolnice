@@ -8,6 +8,7 @@ using System.Collections.ObjectModel;
 using HospitalInformationSystem.Controller;
 using System.Collections;
 using System.Windows.Controls;
+using HospitalInformationSystem.Utility;
 
 namespace HospitalInformationSystem.Windows.ManagerGUI
 {
@@ -65,27 +66,27 @@ namespace HospitalInformationSystem.Windows.ManagerGUI
         {
             if (idOfNewRoom == 0)
             {
-                MessageBox.Show("Pogrešan unos šifre!", "Greška", MessageBoxButton.OK, MessageBoxImage.Error);
+                MessageBox.Show("Pogrešan unos šifre!", Constants.ERROR_MESSAGE_BOX_CAPTION, MessageBoxButton.OK, MessageBoxImage.Error);
                 return false;
             }
             else if (RoomController.GetInstance().RoomExists(idOfNewRoom))
             {
-                MessageBox.Show("U sistemu postoji prostorija sa ovom šifrom!", "Greška", MessageBoxButton.OK, MessageBoxImage.Error);
+                MessageBox.Show("U sistemu postoji prostorija sa ovom šifrom!", Constants.ERROR_MESSAGE_BOX_CAPTION, MessageBoxButton.OK, MessageBoxImage.Error);
                 return false;
             }
             else if (string.Compare(nameOfNewRoom, "") == 0)
             {
-                MessageBox.Show("Polje za unos naziva ne može biti prazno!", "Greška", MessageBoxButton.OK, MessageBoxImage.Error);
+                MessageBox.Show("Polje za unos naziva ne može biti prazno!", Constants.ERROR_MESSAGE_BOX_CAPTION, MessageBoxButton.OK, MessageBoxImage.Error);
                 return false;
             }
             else if (typeOfRoomComboBox.SelectedItem == null)
             {
-                MessageBox.Show("Niste odabrali tip prostorije!", "Greška", MessageBoxButton.OK, MessageBoxImage.Error);
+                MessageBox.Show("Niste odabrali tip prostorije!", Constants.ERROR_MESSAGE_BOX_CAPTION, MessageBoxButton.OK, MessageBoxImage.Error);
                 return false;
             }
             else if (floorOfNewRoom == 0)
             {
-                MessageBox.Show("Pogrešan unos sprata!", "Greška", MessageBoxButton.OK, MessageBoxImage.Error);
+                MessageBox.Show("Pogrešan unos sprata!", Constants.ERROR_MESSAGE_BOX_CAPTION, MessageBoxButton.OK, MessageBoxImage.Error);
                 return false;
             }
             return true;
@@ -129,18 +130,18 @@ namespace HospitalInformationSystem.Windows.ManagerGUI
             }
             catch(Exception e)
             {
-                MessageBox.Show("Već ste uneli ovu opremu! Ako ste pogrešili sa prvobitnim unosom, prvo uklonite, pa zatim ponovo unesite opremu.", "Greška", MessageBoxButton.OK, MessageBoxImage.Error);
+                MessageBox.Show("Već ste uneli ovu opremu! Ako ste pogrešili sa prvobitnim unosom, prvo uklonite, pa zatim ponovo unesite opremu.", Constants.ERROR_MESSAGE_BOX_CAPTION, MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
 
         private void addDynamicButton_Click(object sender, RoutedEventArgs e)
         {
-            AddEquipmentToRoomWindow.getInstance(roomEquipment, "dinamicka", "newRoom").Show();
+            AddEquipmentToRoomWindow.getInstance(roomEquipment, Constants.DYNAMIC_EQUIPMENT, Constants.NEW_ROOM_WINDOW).Show();
         }
 
         private void addStaticButton_Click(object sender, RoutedEventArgs e)
         {
-            AddEquipmentToRoomWindow.getInstance(roomEquipment, "staticka", "newRoom").Show();
+            AddEquipmentToRoomWindow.getInstance(roomEquipment, Constants.STATIC_EQUIPMENT, Constants.NEW_ROOM_WINDOW).Show();
         }
 
         private void removeDynamicButton_Click(object sender, RoutedEventArgs e)
@@ -162,7 +163,7 @@ namespace HospitalInformationSystem.Windows.ManagerGUI
                 refreshStaticEquipmentListBox();
             }
             else
-                MessageBox.Show("Niste odabrali opremu!", "Greška", MessageBoxButton.OK, MessageBoxImage.Error);
+                MessageBox.Show("Niste odabrali opremu!", Constants.ERROR_MESSAGE_BOX_CAPTION, MessageBoxButton.OK, MessageBoxImage.Error);
         }
         public void refreshDynamicEquipmentListBox()
         {

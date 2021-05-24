@@ -108,6 +108,7 @@
     <Compile Include="Model\TypeOfRoom.cs" />
     <Compile Include="Repository\EquipmentRepository.cs" />
     <Compile Include="Service\EquipmentService.cs" />
+    <Compile Include="Utility\Constants.cs" />
     <Compile Include="Windows\DoctorGUI\AddCommentOnMedicineWindow.xaml.cs">
       <DependentUpon>AddCommentOnMedicineWindow.xaml</DependentUpon>
     </Compile>

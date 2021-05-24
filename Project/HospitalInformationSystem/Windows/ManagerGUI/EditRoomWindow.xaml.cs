@@ -1,5 +1,6 @@
 ﻿using HospitalInformationSystem.Controller;
 using HospitalInformationSystem.DTO;
+using HospitalInformationSystem.Utility;
 using Model;
 using System;
 using System.Collections;
@@ -56,12 +57,12 @@ namespace HospitalInformationSystem.Windows.ManagerGUI
 
         private void addDynamicButton_Click(object sender, RoutedEventArgs e)
         {
-            AddEquipmentToRoomWindow.getInstance(roomEquipment, "dinamicka", "editRoom").Show();
+            AddEquipmentToRoomWindow.getInstance(roomEquipment, Constants.DYNAMIC_EQUIPMENT, Constants.EDIT_ROOM_WINDOW).Show();
         }
 
         private void addStaticButton_Click(object sender, RoutedEventArgs e)
         {
-            AddEquipmentToRoomWindow.getInstance(roomEquipment, "staticka", "editRoom").Show();
+            AddEquipmentToRoomWindow.getInstance(roomEquipment, Constants.STATIC_EQUIPMENT, Constants.EDIT_ROOM_WINDOW).Show();
         }
 
 
@@ -266,7 +267,7 @@ namespace HospitalInformationSystem.Windows.ManagerGUI
             dynamicEquipmentListBox.ItemsSource = loadDynamicEquimpentInListBox();
         }
 
-        private void refreshStaticEquipmentListBox()
+        public void refreshStaticEquipmentListBox()
         {
             staticEquipmentListBox.ItemsSource = null;
             staticEquipmentListBox.ItemsSource = loadStaticEquimpentInListBox();

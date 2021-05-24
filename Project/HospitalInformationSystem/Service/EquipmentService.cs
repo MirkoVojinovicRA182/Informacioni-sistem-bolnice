@@ -1,9 +1,11 @@
 ﻿using HospitalInformationSystem.Controller;
 using HospitalInformationSystem.Repository;
+using HospitalInformationSystem.Utility;
 using Model;
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -12,7 +14,8 @@ namespace HospitalInformationSystem.Service
 {
     class EquipmentService
     {
-        EquipmentRepository _equipmentRepository;
+        private EquipmentRepository _equipmentRepository;
+        private ObservableCollection<Equipment> _roomEquipment;
         public EquipmentService()
         {
             _equipmentRepository = new EquipmentRepository();
@@ -60,6 +63,26 @@ namespace HospitalInformationSystem.Service
         public Equipment findEquipmentById(string id)
         {
             return _equipmentRepository.findEquipmentById(id);
+        }
+        public ObservableCollection<Equipment> MakeEquipmentForRoom(string equipmentType, Hashtable currentRoomEquipment)
+        {
+            LoadAllEquipment(equipmentType);
+            LoadJustMissingEquipment(currentRoomEquipment);
+            return _roomEquipment;
+        }
+        private void LoadAllEquipment(string equipmentType)
+        {
+            if (equipmentType.Equals(Constants.DYNAMIC_EQUIPMENT))
+                _roomEquipment = new ObservableCollection<Equipment>(getDynamicEquipment());
+            else
+                _roomEquipment = new ObservableCollection<Equipment>(getStaticEquipment());
+        }
+        private void LoadJustMissingEquipment(Hashtable currentRoomEquipment)
+        {
+            foreach (DictionaryEntry de in currentRoomEquipment)
+            {
+                _roomEquipment.Remove(findEquipmentById(de.Key.ToString()));
+            }
         }
     }
 }

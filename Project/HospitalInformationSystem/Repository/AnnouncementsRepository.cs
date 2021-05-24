@@ -8,12 +8,12 @@ namespace HospitalInformationSystem.Repository
 {
     class AnnouncementsRepository : IRepository
     {
-        public void LoadFromFile()
+        public void loadFromFile()
         {
             throw new NotImplementedException();
         }
 
-        public void SaveInFile()
+        public void saveInFile()
         {
             throw new NotImplementedException();
         }

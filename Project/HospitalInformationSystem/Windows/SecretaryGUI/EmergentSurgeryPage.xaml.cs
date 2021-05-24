@@ -66,7 +66,7 @@ namespace HospitalInformationSystem.Windows.SecretaryGUI
                 bool found = false;
                 if (found == true)
                     break;
-                foreach (Doctor doctor in DoctorController.getInstance().getDoctors())
+                foreach (Doctor doctor in DoctorController.getInstance().GetDoctors())
                 {
                     if (doctor.Specialization != (Specialization)specilizationCmb.SelectedItem) 
                         continue;
@@ -109,13 +109,13 @@ namespace HospitalInformationSystem.Windows.SecretaryGUI
 
         private Room FindFreeRoom(DateTime time)
         {
-            foreach (Room room in RoomController.getInstance().getRooms())
+            foreach (Room room in RoomController.GetInstance().GetRooms())
             {
                 if (room.Type != TypeOfRoom.OperationRoom)
                     continue;
 
                 bool free = true;
-                foreach (Doctor doctor in DoctorController.getInstance().getDoctors())
+                foreach (Doctor doctor in DoctorController.getInstance().GetDoctors())
                 {
                     
                     foreach (Appointment appointment in doctor.GetAppointment())

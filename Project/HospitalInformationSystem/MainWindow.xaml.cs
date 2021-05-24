@@ -119,8 +119,7 @@ namespace HospitalInformationSystem.Windows
                     else if (accounts[i].Person.GetType() == secretary.GetType())
                     {
                         loggedIn = true;
-                        MainPatientManagement window = new MainPatientManagement();
-                        window.Show();
+                        MainPatientManagement.Instance.Show();
                         //this.Hide();
                     }
                     else if (accounts[i].Person.GetType() == DoctorController.getInstance().GetDoctors().First().GetType())

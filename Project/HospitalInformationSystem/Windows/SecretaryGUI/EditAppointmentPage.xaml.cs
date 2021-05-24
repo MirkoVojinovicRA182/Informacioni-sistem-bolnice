@@ -82,9 +82,9 @@ namespace HospitalInformationSystem.Windows.SecretaryGUI
         private void EditButton_Click(object sender, RoutedEventArgs e)
         {
             Appointment selectedRow = (Appointment)AppointmentDataGrid.SelectedItem;
-            EditPatientAppointmentWindow window = new EditPatientAppointmentWindow(selectedRow);
+            //EditPatientAppointmentWindow window = new EditPatientAppointmentWindow(selectedRow);
 
-            window.ShowDialog();
+            //window.ShowDialog();
 
             RefreshTable();
         }

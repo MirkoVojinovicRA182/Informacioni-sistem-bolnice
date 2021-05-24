@@ -16,7 +16,7 @@ namespace HospitalInformationSystem.Repository
 {
     public class PatientsRepository : IRepository
     {
-        public void SaveInFile()
+        public void saveInFile()
         {
             FileStream fs = new FileStream("Accounts.dat", FileMode.Create);
             FileStream fs2 = new FileStream("Allergens.dat", FileMode.Create);
@@ -39,7 +39,7 @@ namespace HospitalInformationSystem.Repository
 
         }
 
-        public void LoadFromFile()
+        public void loadFromFile()
         {
             if (File.Exists("Allergens.dat"))
             {

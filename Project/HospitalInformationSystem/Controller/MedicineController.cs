@@ -1,5 +1,6 @@
 ﻿    using HospitalInformationSystem.Model;
 using HospitalInformationSystem.Service;
+using Model;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -26,6 +27,9 @@ namespace HospitalInformationSystem.Controller
         public void AddMedicine(Medicine newMedicine)
         {
             medicineService.AddMedicine(newMedicine);
+            PatientController.getInstance().addAllergen(new Allergen(newMedicine.Name));
+            foreach(MedicineIngredient me in newMedicine.Ingredients)
+                PatientController.getInstance().addAllergen(new Allergen(me.Name));
         }
         public List<Medicine> GetAllMedicines()
         {

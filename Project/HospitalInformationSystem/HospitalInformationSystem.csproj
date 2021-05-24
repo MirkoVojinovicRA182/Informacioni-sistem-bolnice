@@ -273,8 +273,6 @@
     <Compile Include="Windows\PatientGUI\ReviewHospitalWindow.xaml.cs">
       <DependentUpon>ReviewHospitalWindow.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Windows\SecretaryGUI\AddAccount.xaml.cs">
-      <DependentUpon>AddAccount.xaml</DependentUpon>
     <Compile Include="Windows\SecretaryGUI\AccountsPage.xaml.cs">
       <DependentUpon>AccountsPage.xaml</DependentUpon>
     </Compile>
@@ -546,7 +544,6 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Windows\SecretaryGUI\AddAccount.xaml">
     <Page Include="Windows\SecretaryGUI\AccountsPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>

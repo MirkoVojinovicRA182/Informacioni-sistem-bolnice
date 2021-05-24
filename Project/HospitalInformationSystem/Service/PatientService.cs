@@ -10,6 +10,7 @@ using HospitalInformationSystem.Repository;
 using Model;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using static Model.Patient;
 
 namespace HospitalInformationSystem.Service
@@ -17,12 +18,12 @@ namespace HospitalInformationSystem.Service
     public class PatientService
     {
         PatientsRepository patientsFile;
-        public List<Patient> patients;
-        public List<Allergen> allergens;
+        public ObservableCollection<Patient> patients;
+        public ObservableCollection<Allergen> allergens;
 
         public PatientService()
         {
-            patients = new List<Patient>();
+            patients = new ObservableCollection<Patient>();
             patientsFile = new PatientsRepository();
         }
 
@@ -38,14 +39,14 @@ namespace HospitalInformationSystem.Service
             
         }
 
-        public List<Allergen> getAllergens()
+        public ObservableCollection<Allergen> getAllergens()
         {
             if (allergens == null)
-                allergens = new List<Allergen>();
+                allergens = new ObservableCollection<Allergen>();
             return allergens;
         }
 
-        public void setAllergens(List<Allergen> allergenList)
+        public void setAllergens(ObservableCollection<Allergen> allergenList)
         {
             allergens = allergenList;
         }
@@ -55,7 +56,7 @@ namespace HospitalInformationSystem.Service
             if (newAllergen == null)
                 return;
             if (this.allergens == null)
-                this.allergens = new List<Allergen>();
+                this.allergens = new ObservableCollection<Allergen>();
 
             foreach (Allergen a in this.allergens)
             {
@@ -66,15 +67,15 @@ namespace HospitalInformationSystem.Service
         }
 
         /// <pdGenerated>default getter</pdGenerated>
-        public List<Patient> getPatient()
+        public ObservableCollection<Patient> getPatient()
         {
             if (patients == null)
-                patients = new List<Patient>();
+                patients = new ObservableCollection<Patient>();
             return patients;
         }
 
         /// <pdGenerated>default setter</pdGenerated>
-        public void setPatient(List<Patient> newPatient)
+        public void setPatient(ObservableCollection<Patient> newPatient)
         {
             RemoveAllPatient();
             foreach (Patient oPatient in newPatient)
@@ -87,7 +88,7 @@ namespace HospitalInformationSystem.Service
             if (newPatient == null)
                 return;
             if (this.patients == null)
-                this.patients = new List<Patient>();
+                this.patients = new ObservableCollection<Patient>();
             if (!this.patients.Contains(newPatient))
                 this.patients.Add(newPatient);
 
@@ -113,7 +114,7 @@ namespace HospitalInformationSystem.Service
 
         public void AddPrescription(Patient patient, Prescription prescription)
         {
-            patient.GetMedicalRecord().addPrescription(prescription);
+            patient.MedicalRecord.addPrescription(prescription);
         }
 
         public void AddHospitalTreatment(Patient patientToSendOnHospitalTreatmant, HospitalTreatment hospitalTreatment)

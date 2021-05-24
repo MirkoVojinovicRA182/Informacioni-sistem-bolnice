@@ -26,7 +26,7 @@ namespace HospitalInformationSystem.Windows.SecretaryGUI
         {
             InitializeComponent();
             this.patient = patient;
-            allergensDataGrid.ItemsSource = this.patient.GetMedicalRecord().AllergensList;
+            allergensDataGrid.ItemsSource = this.patient.MedicalRecord.AllergensList;
         }
 
         private void allergensDataGrid_Unloaded(object sender, RoutedEventArgs e)

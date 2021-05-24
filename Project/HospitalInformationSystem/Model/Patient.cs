@@ -31,7 +31,7 @@ namespace Model
             get; set;
         }
 
-        private MedicalRecord medicalRecord;
+        public MedicalRecord MedicalRecord { get; set; }
 
         public Patient()
         {
@@ -77,7 +77,7 @@ namespace Model
             Blood = blood;
             LBO = lbo;
             this.Allergens = new List<string>();
-            this.medicalRecord = new MedicalRecord();
+            this.MedicalRecord = new MedicalRecord();
         }
 
         public Patient(string name, string surname, PatientActivity activity)
@@ -151,12 +151,7 @@ namespace Model
 
         public void setMedicalRecord(MedicalRecord medicalRecord)
         {
-            this.medicalRecord = medicalRecord;
-        }
-
-        public MedicalRecord GetMedicalRecord()
-        {
-            return medicalRecord;
+            this.MedicalRecord = medicalRecord;
         }
 
         public List<Therapy> GetTherapy()
@@ -211,7 +206,7 @@ namespace Model
 
         public int GetMedicalRecordId
         {
-            get { return medicalRecord.getId(); }
+            get { return MedicalRecord.getId(); }
             set { }
         }
 

@@ -108,12 +108,12 @@ namespace HospitalInformationSystem.Controller
         {
             return patientService.GetPatientsOnHospitalTretment();
         }
-        public void SaveInFile()
+        public void saveInFile()
         {
             patientService.SaveInFile();
         }
 
-        public void LoadFromFile()
+        public void loadFromFile()
         {
             patientService.LoadFromFile();
         }

@@ -25,7 +25,7 @@ namespace HospitalInformationSystem.Windows.DoctorGUI
         }
         private void FillBoxesWithSelectedAnamnesisInfo()
         {
-            anamnesisComboBox.ItemsSource = _patientToPreviewAnamnesis.GetMedicalRecord().getAnamneses();
+            anamnesisComboBox.ItemsSource = _patientToPreviewAnamnesis.MedicalRecord.getAnamneses();
             patientNameLabel.Content = _patientToPreviewAnamnesis.Name + " " + _patientToPreviewAnamnesis.Surname;
         }
         private void anamnesisComboBox_DataContextChanged(object sender, DependencyPropertyChangedEventArgs e)

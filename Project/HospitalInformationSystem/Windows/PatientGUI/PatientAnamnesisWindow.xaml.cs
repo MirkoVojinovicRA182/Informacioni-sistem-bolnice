@@ -32,7 +32,7 @@ namespace HospitalInformationSystem.Windows.PatientGUI
 
         private void LoadComboBox()
         {
-            anamnesisComboBox.ItemsSource = loggedInPatient.GetMedicalRecord().getAnamneses();
+            anamnesisComboBox.ItemsSource = loggedInPatient.MedicalRecord.getAnamneses();
         }
 
         private void AnamnesisComboBox_DataContextChanged(object sender, DependencyPropertyChangedEventArgs e)
@@ -51,7 +51,7 @@ namespace HospitalInformationSystem.Windows.PatientGUI
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            foreach (var anamnesis in loggedInPatient.GetMedicalRecord().getAnamneses())
+            foreach (var anamnesis in loggedInPatient.MedicalRecord.getAnamneses())
             {
                 if (anamnesis == (Anamnesis)anamnesisComboBox.SelectedItem)
                 {

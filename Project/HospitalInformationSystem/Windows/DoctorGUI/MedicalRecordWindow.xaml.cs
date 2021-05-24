@@ -33,13 +33,13 @@ namespace HospitalInformationSystem.Windows.DoctorGUI
             emailLabel.Content = _patientToShowMedicalRecord.Email;
         }
         private void addAnamnesisButton_Click(object sender, RoutedEventArgs e) => 
-            AnamnesisWindow.GetInstance(_patientToShowMedicalRecord.GetMedicalRecord()).ShowDialog();
+            AnamnesisWindow.GetInstance(_patientToShowMedicalRecord.MedicalRecord).ShowDialog();
         private void anamnesisPreviewButton_Click(object sender, RoutedEventArgs e) => 
             AmnesisPreviewWindow.GetInstance(_patientToShowMedicalRecord).ShowDialog();
         private void addPrescriptionButton_Click(object sender, RoutedEventArgs e) => 
             AddPrescriptionWindow.GetInstance(_patientToShowMedicalRecord).ShowDialog();
         private void showPrescriptionButton_Click(object sender, RoutedEventArgs e) => 
-            DoctorShowPrescription.GetInstance(_patientToShowMedicalRecord.GetMedicalRecord()).ShowDialog();
+            DoctorShowPrescription.GetInstance(_patientToShowMedicalRecord.MedicalRecord).ShowDialog();
         private void allergensButton_Click(object sender, RoutedEventArgs e) => 
             DoctorAllergensPreviewWindow.GetInstance(_patientToShowMedicalRecord).ShowDialog();
         private void referralLetterButton_Click(object sender, RoutedEventArgs e) => 

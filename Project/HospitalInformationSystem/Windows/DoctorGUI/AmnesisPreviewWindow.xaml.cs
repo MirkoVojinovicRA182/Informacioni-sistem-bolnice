@@ -1,17 +1,6 @@
 ﻿using Model;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
 
 namespace HospitalInformationSystem.Windows.DoctorGUI
 {
@@ -20,27 +9,23 @@ namespace HospitalInformationSystem.Windows.DoctorGUI
     /// </summary>
     public partial class AmnesisPreviewWindow : Window
     {
-        private Patient patient;
-        public AmnesisPreviewWindow(Patient patient)
+        private Patient _patientToPreviewAnamnesis;
+        public AmnesisPreviewWindow(Patient patientToPreviewAnamnesis)
         {
             InitializeComponent();
-            this.patient = patient;
-            initData();
+            this._patientToPreviewAnamnesis = patientToPreviewAnamnesis;
+            FillBoxesWithSelectedAnamnesisInfo();
         }
-
-        private void initData()
+        private void FillBoxesWithSelectedAnamnesisInfo()
         {
-            anamnesisComboBox.ItemsSource = patient.GetMedicalRecord().getAnamneses();
-            patientNameLabel.Content = patient.Name + " " + patient.Surname;
-            //anamnesisTextBlock.Text = patient.GetMedicalRecord().getAnamneses()[0].getAnamnesis();
+            anamnesisComboBox.ItemsSource = _patientToPreviewAnamnesis.GetMedicalRecord().getAnamneses();
+            patientNameLabel.Content = _patientToPreviewAnamnesis.Name + " " + _patientToPreviewAnamnesis.Surname;
         }
-
         private void anamnesisComboBox_DataContextChanged(object sender, DependencyPropertyChangedEventArgs e)
         {
-            Anamnesis anamnesis = (Anamnesis)anamnesisComboBox.SelectedItem;
-            anamnesisTextBlock.Text = anamnesis.anamnesis;
+            Anamnesis selectedAnamnesisForPreview = (Anamnesis)anamnesisComboBox.SelectedItem;
+            anamnesisTextBlock.Text = selectedAnamnesisForPreview.anamnesis;
         }
-
         private void anamnesisComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             Anamnesis anamnesis = (Anamnesis)anamnesisComboBox.SelectedItem;

@@ -1,5 +1,6 @@
 ﻿using HospitalInformationSystem.Controller;
 using HospitalInformationSystem.DTO;
+using HospitalInformationSystem.Utility;
 using Model;
 using System;
 using System.Collections.Generic;
@@ -53,8 +54,8 @@ namespace HospitalInformationSystem.Windows.ManagerGUI
         private void loadTypeComboBox()
         {
             List<String> list = new List<String>();
-            list.Add("Statička");
-            list.Add("Dinamička");
+            list.Add(Constants.STATIC_EQUIPMENT);
+            list.Add(Constants.DYNAMIC_EQUIPMENT);
             typeComboBox.ItemsSource = list;
             if (_selectedEquipment.Type == TypeOfEquipment.Static)
                 typeComboBox.SelectedIndex = 0;

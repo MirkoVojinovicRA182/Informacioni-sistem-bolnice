@@ -1,5 +1,6 @@
 ﻿using HospitalInformationSystem.Controller;
 using HospitalInformationSystem.DTO;
+using HospitalInformationSystem.Utility;
 using Model;
 using System;
 using System.Collections;
@@ -17,6 +18,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using static HospitalInformationSystem.Utility.Constants;
 
 namespace HospitalInformationSystem.Windows.ManagerGUI
 {
@@ -40,38 +42,36 @@ namespace HospitalInformationSystem.Windows.ManagerGUI
             LoadList();
             RefreshTable();
         }
-        public void LoadList()
-        {
-            equipmentList = new ObservableCollection<DetailEquipmentDTO>();
-
-            //prolazak kroz sve prostorije
-            foreach (Room room in RoomController.GetInstance().GetRooms())
-            {
-                foreach (DictionaryEntry de in room.EquipmentInRoom.Equipment)
-                {
-                    Equipment eq = EquipmentController.getInstance().findEquipmentById(de.Key.ToString());
-                    equipmentList.Add(new DetailEquipmentDTO(eq.Name, eq.GetStringType, (int)de.Value, room.Name));
-                }
-            }
-
-            //prolazak kroz magacin
-            /*foreach (Equipment eq in EquipmentController.getInstance().getEquipment())
-            {
-                if (eq.QuantityInMagacine > 0)
-                    equipmentList.Add(new DetailEquipmentDTO(eq.Name, eq.GetStringType, eq.QuantityInMagacine, "Magacin"));
-            }*/
-        }
         private void LoadComboBoxes()
+        {
+            LoadRoomComboBox();
+            LoadTypeOfEquipmentListBox();
+        }
+        private void LoadRoomComboBox()
         {
             roomsList = new ObservableCollection<Room>(RoomController.GetInstance().GetRooms());
             locationComboBox.ItemsSource = null;
             locationComboBox.ItemsSource = roomsList;
-
+        }
+        private void LoadTypeOfEquipmentListBox()
+        {
             List<String> typeOfEquipmentList = new List<String>();
-            typeOfEquipmentList.Add("Statička");
-            typeOfEquipmentList.Add("Dinamička");
+            typeOfEquipmentList.Add(Constants.STATIC_EQUIPMENT);
+            typeOfEquipmentList.Add(Constants.DYNAMIC_EQUIPMENT);
             typeComboBox.ItemsSource = null;
             typeComboBox.ItemsSource = typeOfEquipmentList;
+        }
+        public void LoadList()
+        {
+            equipmentList = new ObservableCollection<DetailEquipmentDTO>();
+            foreach (Room room in RoomController.GetInstance().GetRooms())
+            {
+                foreach (DictionaryEntry de in room.EquipmentInRoom.Equipment)
+                {
+                    Equipment equipment = EquipmentController.getInstance().findEquipmentById(de.Key.ToString());
+                    equipmentList.Add(new DetailEquipmentDTO(equipment.Name, equipment.GetStringType, (int)de.Value, room.Name));
+                }
+            }
         }
         public void RefreshTable()
         {
@@ -82,66 +82,41 @@ namespace HospitalInformationSystem.Windows.ManagerGUI
         {
             LoadList();
             RefreshTable();
-            if(nameTextBox.Text != "")
-                FindEquipmentByName();
-            if(typeComboBox.SelectedItem != null)
-                FindEquipmentByType();
-            if (stateTextBox.Text != "")
-            {
-                if (CheckQuantityEntry() == 0)
-                {
-                    MessageBox.Show("Pogrešan unos stanja!", "Greška", MessageBoxButton.OK, MessageBoxImage.Error);
-                    return;
-                }
-                FindEquipmentByState();
-            }
-            if (locationComboBox.SelectedItem != null)
-                FindEquipmentByLocation();
-            detailEquipmentTable.ItemsSource = null;
-            detailEquipmentTable.ItemsSource = equipmentList;
+            if (nameTextBox.Text != "") FindEquipmentByParameter(EquipmentSearchParameters.NAME);
+            if (typeComboBox.SelectedItem != null) FindEquipmentByParameter(EquipmentSearchParameters.TYPE);
+            if (locationComboBox.SelectedItem != null) FindEquipmentByParameter(EquipmentSearchParameters.LOCATION);
+            if (stateTextBox.Text != "" && GetQuantityParseResult() != 0) FindEquipmentByParameter(EquipmentSearchParameters.MIN_STATE);
+            else return;
+            RefreshTable();
         }
-        private int CheckQuantityEntry()
+        private void FindEquipmentByParameter(EquipmentSearchParameters filterParameter)
+        {
+            for (int i = equipmentList.Count - 1; i > -1; i--)
+            {
+                if (GenerateCondition(filterParameter, equipmentList[i]))
+                    equipmentList.Remove(equipmentList[i]);
+            }
+        }
+        private bool GenerateCondition(EquipmentSearchParameters filterParameter, DetailEquipmentDTO equipment)
+        {
+            if (filterParameter.Equals(EquipmentSearchParameters.NAME)) return !string.Equals(equipment.Name, nameTextBox.Text);
+            else if (filterParameter.Equals(EquipmentSearchParameters.TYPE)) return !string.Equals(equipment.Type, (string)typeComboBox.SelectedItem);
+            else if (filterParameter.Equals(EquipmentSearchParameters.MIN_STATE)) return equipment.State < int.Parse(stateTextBox.Text);
+            else return !string.Equals(equipment.Location, ((Room)locationComboBox.SelectedItem).Name);
+        }
+        private int GetQuantityParseResult()
         {
             int quantity = int.TryParse(stateTextBox.Text, out quantity) ? quantity : 0;
             return quantity;
-        }
-        private void FindEquipmentByName()
-        {
-            for(int i = equipmentList.Count - 1; i > -1; i--)
-            {
-                if (!string.Equals(equipmentList[i].Name, nameTextBox.Text))
-                    equipmentList.Remove(equipmentList[i]);
-            }
-        }
-        private void FindEquipmentByType()
-        {
-            for (int i = equipmentList.Count - 1; i > -1; i--)
-            {
-                if (!string.Equals(equipmentList[i].Type, (string)typeComboBox.SelectedItem))
-                    equipmentList.Remove(equipmentList[i]);
-            }
-        }
-        private void FindEquipmentByState()
-        {
-            for (int i = equipmentList.Count - 1; i > -1; i--)
-            {
-                if (equipmentList[i].State < int.Parse(stateTextBox.Text))
-                    equipmentList.Remove(equipmentList[i]);
-            }
-        }
-        private void FindEquipmentByLocation()
-        {
-            Room selectedRoom = (Room)locationComboBox.SelectedItem;
-            for (int i = equipmentList.Count - 1; i > -1; i--)
-            {
-                if (!string.Equals(equipmentList[i].Location, selectedRoom.Name))
-                    equipmentList.Remove(equipmentList[i]);
-            }
         }
         private void cancelButton_Click(object sender, RoutedEventArgs e)
         {
             LoadList();
             RefreshTable();
+            ClearControlsInput();
+        }
+        private void ClearControlsInput()
+        {
             nameTextBox.Clear();
             typeComboBox.SelectedItem = null;
             stateTextBox.Clear();

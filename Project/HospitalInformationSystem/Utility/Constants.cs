@@ -14,5 +14,12 @@ namespace HospitalInformationSystem.Utility
         public const string EDIT_ROOM_WINDOW = "EditRoomWindow";
         public const string ERROR_MESSAGE_BOX_CAPTION = "Greška";
         public const string WARNING_MESSAGE_BOX_CAPTION = "Upozorenje";
+        public enum EquipmentSearchParameters
+        {
+            NAME,
+            TYPE,
+            MIN_STATE,
+            LOCATION
+        }
     }
 }

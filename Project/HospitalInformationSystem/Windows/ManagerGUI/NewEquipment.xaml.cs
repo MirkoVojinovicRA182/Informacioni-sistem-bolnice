@@ -1,4 +1,5 @@
 ﻿using HospitalInformationSystem.Controller;
+using HospitalInformationSystem.Utility;
 using Model;
 using System;
 using System.Collections.Generic;
@@ -41,8 +42,8 @@ namespace HospitalInformationSystem.Windows.ManagerGUI
         private void LoadTypeOfEquipmentComboBox()
         {
             List<String> typeList = new List<String>();
-            typeList.Add("Statička");
-            typeList.Add("Dinamička");
+            typeList.Add(Constants.STATIC_EQUIPMENT);
+            typeList.Add(Constants.DYNAMIC_EQUIPMENT);
             typeOfEquipmentComboBox.ItemsSource = typeList;
         }
         private void addButton_Click(object sender, RoutedEventArgs e)

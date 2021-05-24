@@ -8,33 +8,36 @@ using System.Windows.Input;
 
 namespace HospitalInformationSystem.Windows.DoctorGUI
 {
-    public partial class Window2 : Window
+    public partial class DoctorAddNewAppointmentWindow : Window
     {
         private const string dateTemplate = "dd.MM.yyyy. HH:mm";
-        Doctor loggedDoctor;
-        private Room selectedRoomForAppointment;
+        Doctor _loggedDoctor;
+        private Room _selectedRoomForAppointment;
         private TypeOfAppointment typeOfAppointment;
-
-        public Window2(Doctor loggedDoctor)
+        private static DoctorAddNewAppointmentWindow instance = null;
+        public static DoctorAddNewAppointmentWindow GetInstance(Doctor loggedDoctor)
+        {
+            if (instance == null)
+                instance = new DoctorAddNewAppointmentWindow(loggedDoctor);
+            return instance;
+        }
+        private DoctorAddNewAppointmentWindow(Doctor loggedDoctor)
         {
             InitializeComponent();
-            this.loggedDoctor = loggedDoctor;
+            this._loggedDoctor = loggedDoctor;
             InitDoctorsNameLabel();
             InitPatientsListBox();
             InitRooms();
             InitTypeOfAppointment();
         }
-
         private void InitDoctorsNameLabel()
         {
-            doctorTextBox.Text = loggedDoctor.Name + " " + loggedDoctor.Surname;
+            doctorTextBox.Text = _loggedDoctor.Name + " " + _loggedDoctor.Surname;
         }
-
         private void InitPatientsListBox()
         {
             patientListBox.ItemsSource = PatientController.getInstance().getPatient();
         }
-
         private void InitRooms()
         {
             List<Room> roomsList = new List<Room>();
@@ -45,35 +48,28 @@ namespace HospitalInformationSystem.Windows.DoctorGUI
             }
             operationRoomsListBox.ItemsSource = roomsList;
         }
-
         private void InitTypeOfAppointment()
         {
-            if (loggedDoctor.Specialization != Specialization.Family_Physician)
+            if (_loggedDoctor.Specialization != Specialization.Family_Physician)
                 appointmentComboBox.Items.Add("Operacija");
             appointmentComboBox.Items.Add("Pregled");
         }
-
         private bool CheckRoomState(Room room)
         {
             DateTime dateOfAppointment = DateTime.ParseExact(dateTextBox.Text + " " + timeTextBox.Text, 
                 dateTemplate, System.Globalization.CultureInfo.InvariantCulture);
             return dateOfAppointment.AddMinutes(30) < room.RoomRenovationState.StartDate || dateOfAppointment > room.RoomRenovationState.EndDate;
         }
-
         private void createAppointment()
         {
             DateTime date = DateTime.ParseExact(dateTextBox.Text + " " + timeTextBox.Text, dateTemplate, System.Globalization.CultureInfo.InvariantCulture);
-            Appointment appointment = new Appointment(date, typeOfAppointment, selectedRoomForAppointment, 
-                (Patient)patientListBox.SelectedItem, loggedDoctor);
+            Appointment appointment = new Appointment(date, typeOfAppointment, _selectedRoomForAppointment, 
+                (Patient)patientListBox.SelectedItem, _loggedDoctor);
             AppointmentController.getInstance().addAppointment(appointment);
-            loggedDoctor.AddAppointment(appointment);
-            Patient patient = (Patient)patientListBox.SelectedItem;
-            patient.AddAppointment(appointment);
         }
-
         private void appointmentComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            if (String.Compare((string)appointmentComboBox.SelectedItem, "Operacija") == 0)
+            if (((string)appointmentComboBox.SelectedItem).Equals("Operacija"))
             {
                 roomLabel.Visibility = Visibility.Visible;
                 operationRoomsListBox.Visibility = Visibility.Visible;
@@ -85,12 +81,10 @@ namespace HospitalInformationSystem.Windows.DoctorGUI
                 roomLabel.Visibility = Visibility.Hidden;
                 operationRoomsListBox.Visibility = Visibility.Hidden;
                 operationRoomsListBox.IsEnabled = false;
-                selectedRoomForAppointment = loggedDoctor.room;
+                _selectedRoomForAppointment = _loggedDoctor.room;
                 typeOfAppointment = TypeOfAppointment.Pregled;
             }
-
         }
-
         private bool CheckSelectedPatient()
         {
             if (patientListBox.SelectedIndex == -1)
@@ -100,7 +94,6 @@ namespace HospitalInformationSystem.Windows.DoctorGUI
             }
             return true;
         }
-
         private bool CheckDateInput()
         {
             try
@@ -115,7 +108,6 @@ namespace HospitalInformationSystem.Windows.DoctorGUI
             }
             return true;
         }
-
         private bool CheckAppointmentComboBox()
         {
             if (appointmentComboBox.SelectedIndex == -1)
@@ -125,7 +117,6 @@ namespace HospitalInformationSystem.Windows.DoctorGUI
             }
             return true;
         }
-
         private bool CheckSelectedRoom()
         {
             if (appointmentComboBox.SelectedItem.Equals("Operacija") && operationRoomsListBox.SelectedIndex < 0)
@@ -135,12 +126,11 @@ namespace HospitalInformationSystem.Windows.DoctorGUI
             }
             return true;
         }
-
-        private bool IsDoctorFreeInSelectedTime()
+        private bool CheckIsDoctorFreeInSelectedTime()
         {
             DateTime appointmentTime = DateTime.ParseExact(dateTextBox.Text + " " + timeTextBox.Text, 
                 dateTemplate, System.Globalization.CultureInfo.InvariantCulture);
-            foreach (Appointment appointment in loggedDoctor.GetAppointment())
+            foreach (Appointment appointment in _loggedDoctor.GetAppointment())
             {
                 if (appointmentTime.Ticks > appointment.StartTime.AddMinutes(-30).Ticks && appointmentTime.Ticks < appointment.StartTime.AddMinutes(30).Ticks)
                 {
@@ -150,15 +140,13 @@ namespace HospitalInformationSystem.Windows.DoctorGUI
             }
             return true;
         }
-
-        private bool IsPatientFreeInSelectedTime()
+        private bool CheckIsPatientFreeInSelectedTime()
         {
             DateTime appointmentTime = DateTime.ParseExact(dateTextBox.Text + " " + timeTextBox.Text,
                 dateTemplate, System.Globalization.CultureInfo.InvariantCulture);
-            Patient patient = (Patient)patientListBox.SelectedItem;
-            foreach (Appointment appointment in patient.GetAppointment())
+            foreach (Appointment appointment in ((Patient)patientListBox.SelectedItem).GetAppointment())
             {
-                if (appointmentTime.Ticks > appointment.StartTime.AddMinutes(-30).Ticks && appointmentTime.Ticks < appointment.StartTime.AddMinutes(30).Ticks)
+                if (appointmentTime > appointment.StartTime.AddMinutes(-30) && appointmentTime < appointment.StartTime.AddMinutes(30))
                 {
                     MessageBox.Show("Pacijent vec ima zakazan termin u odabranom vremenu!", "Termin", MessageBoxButton.OK, MessageBoxImage.Error);
                     return false;
@@ -166,14 +154,12 @@ namespace HospitalInformationSystem.Windows.DoctorGUI
             }
             return true;
         }
-
         private bool CheckAllInputs()
         {
-            return (CheckSelectedPatient() && CheckDateInput() && CheckAppointmentComboBox() && CheckSelectedRoom() && 
-                IsDoctorFreeInSelectedTime() && IsPatientFreeInSelectedTime());
+            return CheckSelectedPatient() && CheckDateInput() && CheckAppointmentComboBox() && CheckSelectedRoom() && 
+                CheckIsDoctorFreeInSelectedTime() && CheckIsPatientFreeInSelectedTime();
         }
-
-        private bool IsSelectedAppointmentOperation()
+        private bool CheckIsSelectedAppointmentOperation()
         {
             return (String.Compare((string)appointmentComboBox.SelectedItem, "Operacija") == 0);
         }
@@ -182,20 +168,20 @@ namespace HospitalInformationSystem.Windows.DoctorGUI
         {
             if ((Keyboard.IsKeyDown(Key.LeftCtrl) || Keyboard.IsKeyDown(Key.RightCtrl)) && Keyboard.IsKeyDown(Key.A))
             {
-                if (CheckAllInputs() && IsSelectedAppointmentOperation())
+                if (CheckAllInputs() && CheckIsSelectedAppointmentOperation())
                 {
-                        selectedRoomForAppointment = (Room)operationRoomsListBox.SelectedItem;
-                        if (!CheckRoomState(selectedRoomForAppointment))
-                        {
-                            MessageBox.Show("Prostorija je zauzeta u datom terminu!", "Greska", MessageBoxButton.OK, MessageBoxImage.Warning);
-                            return;
-                        }
+                    _selectedRoomForAppointment = (Room)operationRoomsListBox.SelectedItem;
+                    if (!CheckRoomState(_selectedRoomForAppointment))
+                    {
+                        MessageBox.Show("Prostorija je zauzeta u datom terminu!", "Greska", MessageBoxButton.OK, MessageBoxImage.Warning);
+                        return;
+                    }
                     createAppointment();
                     MessageBox.Show("Termin je uspesno zakazan", "Novi Termin", MessageBoxButton.OK, MessageBoxImage.Information);
                 }
                 else if (CheckAllInputs())
                 {
-                    selectedRoomForAppointment = loggedDoctor.room;
+                    _selectedRoomForAppointment = _loggedDoctor.room;
                     createAppointment();
                     MessageBox.Show("Termin je uspesno zakazan", "Novi Termin", MessageBoxButton.OK, MessageBoxImage.Information);
                 }
@@ -205,22 +191,18 @@ namespace HospitalInformationSystem.Windows.DoctorGUI
                 this.Close();
             }
         }
-
         private void Window_KeyDown(object sender, KeyEventArgs e)
         {
             CheckKeyPress();
         }
-
         private void patientListBox_PreviewKeyDown(object sender, KeyEventArgs e)
         {
             CheckKeyPress();
         }
-
         private void operationRoomsListBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            selectedRoomForAppointment = (Room)operationRoomsListBox.SelectedItem;
+            _selectedRoomForAppointment = (Room)operationRoomsListBox.SelectedItem;
         }
-
         private void operationRoomsListBox_PreviewKeyDown(object sender, KeyEventArgs e)
         {
             CheckKeyPress();

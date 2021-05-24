@@ -171,14 +171,8 @@
     <Compile Include="Windows\SecretaryGUI\AccountsPage.xaml.cs">
       <DependentUpon>AccountsPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Windows\SecretaryGUI\AddAccount.xaml.cs">
-      <DependentUpon>AddAccount.xaml</DependentUpon>
-    </Compile>
     <Compile Include="Windows\SecretaryGUI\AddAccountPage.xaml.cs">
       <DependentUpon>AddAccountPage.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Windows\SecretaryGUI\AddAllergen.xaml.cs">
-      <DependentUpon>AddAllergen.xaml</DependentUpon>
     </Compile>
     <Compile Include="Windows\SecretaryGUI\AddAllergenPage.xaml.cs">
       <DependentUpon>AddAllergenPage.xaml</DependentUpon>
@@ -192,14 +186,8 @@
     <Compile Include="Windows\SecretaryGUI\AnnouncementsPage.xaml.cs">
       <DependentUpon>AnnouncementsPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Windows\SecretaryGUI\EditAccount.xaml.cs">
-      <DependentUpon>EditAccount.xaml</DependentUpon>
-    </Compile>
     <Compile Include="Windows\SecretaryGUI\EditAccountPage.xaml.cs">
       <DependentUpon>EditAccountPage.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Windows\SecretaryGUI\EditAllergens.xaml.cs">
-      <DependentUpon>EditAllergens.xaml</DependentUpon>
     </Compile>
     <Compile Include="Windows\SecretaryGUI\EditAllergensPage.xaml.cs">
       <DependentUpon>EditAllergensPage.xaml</DependentUpon>
@@ -230,12 +218,6 @@
     <Compile Include="Repository\IRepository.cs" />
     <Compile Include="Repository\PatientsRepository.cs" />
     <Compile Include="Repository\RoomRepository.cs" />
-    <Compile Include="Windows\SecretaryGUI\NewAnnouncement.xaml.cs">
-      <DependentUpon>NewAnnouncement.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Windows\SecretaryGUI\NewsPage.xaml.cs">
-      <DependentUpon>NewsPage.xaml</DependentUpon>
-    </Compile>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -352,17 +334,9 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Windows\SecretaryGUI\AddAccount.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
     <Page Include="Windows\SecretaryGUI\AddAccountPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Windows\SecretaryGUI\AddAllergen.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
     </Page>
     <Page Include="Windows\SecretaryGUI\AddAllergenPage.xaml">
       <SubType>Designer</SubType>
@@ -380,15 +354,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Windows\SecretaryGUI\EditAccount.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
     <Page Include="Windows\SecretaryGUI\EditAccountPage.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Windows\SecretaryGUI\EditAllergens.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -421,14 +387,6 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Windows\DoctorGUI\ShowPatientInformationWindow.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Windows\SecretaryGUI\NewAnnouncement.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Windows\SecretaryGUI\NewsPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

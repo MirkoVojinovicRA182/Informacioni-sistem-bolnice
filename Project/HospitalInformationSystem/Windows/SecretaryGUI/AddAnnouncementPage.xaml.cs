@@ -22,19 +22,19 @@ namespace HospitalInformationSystem.Windows.SecretaryGUI
     /// </summary>
     public partial class AddAnnouncementPage : Page
     {
-        NewsPage ParentWindow { get; set; }
+        //NewsPage ParentWindow { get; set; }
         public Announcement Announcement { get; set; }
         public AddAnnouncementPage()
         {
             InitializeComponent();
         }
 
-        public AddAnnouncementPage(Announcement announcement, NewsPage parent)
+        public AddAnnouncementPage(Announcement announcement/*,NewsPage parent*/)
         {
             InitializeComponent();
             Announcement = announcement;
             announcementsTxt.Text = announcement.Text;
-            ParentWindow = parent;
+            //ParentWindow = parent;
         }
 
         private void otkaziBtn_Click(object sender, RoutedEventArgs e)
@@ -47,7 +47,7 @@ namespace HospitalInformationSystem.Windows.SecretaryGUI
             if (AnnouncementsController.getInstance().getAnnouncements().Contains(Announcement))
             {
                 Announcement.Text = announcementsTxt.Text;
-                ParentWindow.announcementsList.Items.Refresh();
+                //ParentWindow.announcementsList.Items.Refresh();
                 return;
             }
             Announcement announcement = new Announcement(announcementsTxt.Text);

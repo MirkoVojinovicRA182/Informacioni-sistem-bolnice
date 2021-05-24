@@ -63,7 +63,7 @@ namespace HospitalInformationSystem.Windows.PatientGUI
             Appointment app = new Appointment(appointment.StartTime, appointment.Type, appointment.room, appointment.patient, appointment.doctor);
             app.SchedulingTime = DateTime.Now;
 
-            AppointmentController.getInstance().addAppointment(app);
+            AppointmentController.getInstance().AddAppointmentToAppointmentList(app);
 
             app.doctor.AddAppointment(app);
             app.patient.AddAppointment(app);
@@ -102,7 +102,7 @@ namespace HospitalInformationSystem.Windows.PatientGUI
                 }
             }*/
 
-            existingAppointments = AppointmentController.getInstance().getAppointment();
+            existingAppointments = AppointmentController.getInstance().GetAppointments();
 
             for (var date = startDateTime; date <= endDateTime; date = date.AddDays(1))
             {

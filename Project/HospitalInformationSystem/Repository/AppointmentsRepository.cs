@@ -6,6 +6,7 @@
 
 using HospitalInformationSystem.Controller;
 using Model;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Runtime.Serialization;
@@ -15,6 +16,11 @@ namespace HospitalInformationSystem.Repository
 {
     public class AppointmentsRepository : IRepository
     {
+        private List<Appointment> _allAppointments;
+        public AppointmentsRepository()
+        {
+            _allAppointments = new List<Appointment>();
+        }
         public void saveInFile()
         {
             // TODO: implement
@@ -23,7 +29,7 @@ namespace HospitalInformationSystem.Repository
             BinaryFormatter formatter = new BinaryFormatter();
             try
             {
-                formatter.Serialize(fs, AppointmentController.getInstance().getAppointment());
+                formatter.Serialize(fs, _allAppointments);
             }
             catch (SerializationException e)
             {
@@ -44,7 +50,7 @@ namespace HospitalInformationSystem.Repository
                 try
                 {
                     BinaryFormatter formatter = new BinaryFormatter();
-                    AppointmentController.getInstance().setAppointment((List<Appointment>)formatter.Deserialize(fs));
+                    AppointmentController.getInstance().SetAppointments((List<Appointment>)formatter.Deserialize(fs));
                 }
                 catch (SerializationException e)
                 {
@@ -56,5 +62,73 @@ namespace HospitalInformationSystem.Repository
                 }
             }
         }
+        public void AddAppointmentToAppointmentList(Appointment newAppointment)
+        {
+            _allAppointments.Add(newAppointment);
+        }
+        public List<Appointment> GetAppointments()
+        {
+            if (_allAppointments == null)
+                _allAppointments = new List<Appointment>(); 
+            return _allAppointments;
+        }
+        public void SetAppointments(List<Appointment> newAppointments)
+        {
+            _allAppointments.Clear();
+            foreach (Appointment appointment in newAppointments)
+                _allAppointments.Add(appointment);
+        }
+
+        public void DeleteAppointment(Appointment oldAppointment)
+        {
+            if (oldAppointment == null)
+                return;
+            if (_allAppointments != null)
+                if (_allAppointments.Contains(oldAppointment))
+                {
+                    oldAppointment.doctor.RemoveAppointment(oldAppointment);
+                    oldAppointment.patient.RemoveAppointment(oldAppointment);
+                    this._allAppointments.Remove(oldAppointment);
+                }
+        }
+        public List<Appointment> GetAppointmentsByPatient(Patient patient)
+        {
+            List<Appointment> list = new List<Appointment>();
+
+            foreach (var appointment in _allAppointments)
+            {
+                if (appointment.patient.Jmbg == patient.Jmbg)
+                    list.Add(appointment);
+            }
+
+            return list;
+        }
+
+        public List<Appointment> GetAppointmentsByDoctor(Doctor doctor)
+        {
+            List<Appointment> list = new List<Appointment>();
+
+            foreach (var appointment in _allAppointments)
+            {
+                if (appointment.doctor.Name == doctor.Name)
+                    list.Add(appointment);
+            }
+
+            return list;
+        }
+
+        public List<Appointment> FindAppointmentByRoom(Room room)
+        {
+            List<Appointment> list = new List<Appointment>();
+
+            foreach (Appointment appointment in _allAppointments)
+            {
+                if (Object.Equals(appointment.room, room))
+                    list.Add(appointment);
+            }
+
+            return list;
+        }
+
     }
 }

@@ -126,17 +126,7 @@ namespace HospitalInformationSystem.Windows.PatientGUI
         {
             Appointment selectedRow = (Appointment)AppointmentDataGrid.SelectedItem;
 
-            AppointmentController.getInstance().removeAppointment(selectedRow);
-
-            RefreshTable();
-        }
-
-        private void DeleteAllAppointmentsButton_Click(object sender, RoutedEventArgs e)
-        {
-
-            AppointmentController.getInstance().removeAllAppointment();
-
-            MessageBox.Show("Sve termini su izbrisani", "Brisanje termina", MessageBoxButton.OK, MessageBoxImage.Information);
+            AppointmentController.getInstance().DeleteAppointment(selectedRow);
 
             RefreshTable();
         }
@@ -231,7 +221,7 @@ namespace HospitalInformationSystem.Windows.PatientGUI
 
         private bool AppointmentIsFinished()
         {
-            return DateTime.Now.CompareTo(AppointmentController.getInstance().GetStartTime((Appointment)AppointmentDataGrid.SelectedItem).AddMinutes(30)) > 0;
+            return DateTime.Now.CompareTo(((Appointment)AppointmentDataGrid.SelectedItem).StartTime.AddMinutes(30)) > 0;
         }
 
         private void ShowDoctorReviewWindow()
@@ -243,7 +233,7 @@ namespace HospitalInformationSystem.Windows.PatientGUI
         private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
         {
             CheckIfPatientIsTroll();
-            AppointmentController.getInstance().saveInFile();
+            AppointmentController.getInstance().SaveAppointmentsInFile();
             DoctorController.getInstance().SaveInFlie();
             PatientController.getInstance().SaveInFile();
             instance = null;

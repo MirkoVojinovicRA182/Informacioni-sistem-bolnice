@@ -71,7 +71,7 @@ namespace HospitalInformationSystem.Windows
             RoomController.GetInstance().LoadRoomsFromFile();
             EquipmentController.getInstance().loadFromFile();
             PatientController.getInstance().LoadFromFile();
-            AppointmentController.getInstance().loadFromFile();
+            AppointmentController.getInstance().LoadAppointmentsFromFile();
             DoctorController.getInstance().LoadFromFile();
 
             Secretary secretary = new Secretary();

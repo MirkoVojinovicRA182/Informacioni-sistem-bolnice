@@ -45,7 +45,7 @@ namespace HospitalInformationSystem.Windows.PatientGUI
         {
             DoctorController.getInstance().LoadFromFile();
             PatientController.getInstance().LoadFromFile();
-            AppointmentController.getInstance().loadFromFile();
+            AppointmentController.getInstance().LoadAppointmentsFromFile();
         }
 
         private void AppointmentsButton_Click(object sender, RoutedEventArgs e)
@@ -156,7 +156,7 @@ namespace HospitalInformationSystem.Windows.PatientGUI
         private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
         {
             DoctorController.getInstance().SaveInFlie();
-            AppointmentController.getInstance().saveInFile();
+            AppointmentController.getInstance().SaveAppointmentsInFile();
             PatientController.getInstance().SaveInFile();
             instance = null;
         }

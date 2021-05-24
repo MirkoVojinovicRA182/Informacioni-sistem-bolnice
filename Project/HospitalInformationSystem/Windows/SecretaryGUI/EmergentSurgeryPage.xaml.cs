@@ -81,7 +81,7 @@ namespace HospitalInformationSystem.Windows.SecretaryGUI
 
                     if (free == true)
                     {
-                        appointmentsList.Add(new Appointment(timeToFind, TypeOfAppointment.Operacija, FindFreeRoom(timeToFind), null, doctor));
+                        appointmentsList.Add(new Appointment(timeToFind, TypeOfAppointment.Operacija, FindFreeRoom(timeToFind), new Patient(), doctor));
                         found = true;
                     }
                         

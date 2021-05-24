@@ -25,7 +25,7 @@ namespace HospitalInformationSystem.Windows
         {
             InitializeComponent();
             
-            Room room1 = new Room(1, "Magacin", -1, TypeOfRoom.Magacine, new Hashtable());
+            /*Room room1 = new Room(1, "Magacin", -1, TypeOfRoom.Magacine, new Hashtable());
             Room room2 = new Room(2, "Prostorija dr Marka", 1, TypeOfRoom.ExaminationRoom, new Hashtable());
             Room room3 = new Room(3, "Prostorija dr Jovana", 1, TypeOfRoom.ExaminationRoom, new Hashtable());
             Room room4 = new Room(4, "Prostorija dr Stevana", 1, TypeOfRoom.ExaminationRoom, new Hashtable());
@@ -66,7 +66,7 @@ namespace HospitalInformationSystem.Windows
 
             PatientController.getInstance().getPatient().Add(first);
             PatientController.getInstance().getPatient().Add(second);
-            PatientController.getInstance().getPatient().Add(third);
+            PatientController.getInstance().getPatient().Add(third);*/
 
             RoomController.GetInstance().LoadRoomsFromFile();
             EquipmentController.getInstance().loadFromFile();

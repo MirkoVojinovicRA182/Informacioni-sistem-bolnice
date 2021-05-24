@@ -82,5 +82,10 @@ namespace HospitalInformationSystem.Service
                 DeleteAppointment(appointmentForRemove);
             }
         }
+        public void RemoveAllAppointments()
+        {
+            if (GetAppointments() != null)
+                GetAppointments().Clear();
+        }
     }
 }

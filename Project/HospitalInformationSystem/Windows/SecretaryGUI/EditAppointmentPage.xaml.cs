@@ -31,7 +31,7 @@ namespace HospitalInformationSystem.Windows.SecretaryGUI
         public EditAppointmentPage(Patient patient)
         {
             InitializeComponent();
-            AppointmentDataGrid.ItemsSource = AppointmentController.getInstance().getAppointment();
+            AppointmentDataGrid.ItemsSource = AppointmentController.getInstance().GetAppointments();
             var therapy = new List<Therapy>();
             var days = new List<DayOfWeek>();
             days.Add(DayOfWeek.Monday);
@@ -64,7 +64,7 @@ namespace HospitalInformationSystem.Windows.SecretaryGUI
         {
             Appointment selectedRow = (Appointment)AppointmentDataGrid.SelectedItem;
 
-            AppointmentController.getInstance().removeAppointment(selectedRow);
+            AppointmentController.getInstance().DeleteAppointment(selectedRow);
 
             RefreshTable();
         }
@@ -72,7 +72,7 @@ namespace HospitalInformationSystem.Windows.SecretaryGUI
         private void DeleteAllAppointmentsButton_Click(object sender, RoutedEventArgs e)
         {
 
-            AppointmentController.getInstance().removeAllAppointment();
+            AppointmentController.getInstance().RemoveAllAppointments();
 
             MessageBox.Show("Sve termini su izbrisani", "Brisanje termina", MessageBoxButton.OK, MessageBoxImage.Information);
 
@@ -99,7 +99,7 @@ namespace HospitalInformationSystem.Windows.SecretaryGUI
         }
         public void RefreshTable()
         {
-            appointmentList = new ObservableCollection<Appointment>(AppointmentController.getInstance().getAppointment());
+            appointmentList = new ObservableCollection<Appointment>(AppointmentController.getInstance().GetAppointments());
             AppointmentDataGrid.ItemsSource = null;
             AppointmentDataGrid.ItemsSource = appointmentList;
         }

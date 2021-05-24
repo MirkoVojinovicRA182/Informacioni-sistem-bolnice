@@ -74,5 +74,9 @@ namespace HospitalInformationSystem.Controller
         {
             _appointmentService.DeleteAllAppointmentsFromRoom(room);
         }
+        public void RemoveAllAppointments()
+        {
+            _appointmentService.RemoveAllAppointments();
+        }
     }
 }

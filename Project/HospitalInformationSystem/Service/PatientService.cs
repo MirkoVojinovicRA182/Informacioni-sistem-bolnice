@@ -34,9 +34,10 @@ namespace HospitalInformationSystem.Service
             Patient patient = new Patient(username, name, surname,
             dateOfBirth, phoneNumber, email, parentsName,
             gender, jmbg, isGuest, blood, lbo);
-            System.Console.WriteLine("NAPRAVLJEN PACIJENT :" + patient);
             patients.Add(patient);
             
+            AccountDataBase.getInstance().AddAccount(new Account(username, "pass", patient));
+
         }
 
         public ObservableCollection<Allergen> getAllergens()

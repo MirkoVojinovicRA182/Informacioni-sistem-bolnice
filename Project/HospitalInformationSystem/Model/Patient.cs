@@ -78,6 +78,7 @@ namespace Model
             LBO = lbo;
             this.Allergens = new List<string>();
             this.MedicalRecord = new MedicalRecord();
+            this.Activity = new PatientActivity();
         }
 
         public Patient(string name, string surname, PatientActivity activity)

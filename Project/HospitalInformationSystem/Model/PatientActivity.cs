@@ -10,6 +10,10 @@ namespace HospitalInformationSystem.Model
     [Serializable]
     public class PatientActivity
     {
+        public PatientActivity()
+        {
+
+        }
         public PatientActivity(int finishedAppointments, int numberOfMovedAppointmentsInMonth, int numberOfScheduledAppointmentsInDay, bool isTroll)
         {
             NumberOfFinishedAppointmentsSinceReview = finishedAppointments;

@@ -11,19 +11,19 @@
             <Image Source="..\..\Images\Secretary\user.png" Height="100"/>
         </StackPanel>
 
-        <Button x:Name="naloziBtn" Background="{x:Null}" Click="naloziBtn_Click" Margin="15,219,811.4,474.4" BorderThickness="0" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" >
+        <Button x:Name="naloziBtn" Background="{x:Null}" Click="NaloziBtn_Click" Margin="15,219,811.4,474.4" BorderThickness="0" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" >
             <StackPanel Width="184" Height="45" Orientation="Horizontal" Margin="0,-9,0,0">
                 <Image Source="..\..\Images\Secretary\accounts.png" Height="42" Width="42" HorizontalAlignment="Left"/>
                 <Label Content="Nalozi" VerticalAlignment="Center" Width="132" FontSize="25" HorizontalContentAlignment="Center" Height="45"/>
             </StackPanel>
         </Button>
-        <Button x:Name="allergensBtn" Background="{x:Null}" Click="allergensBtn_Click" Margin="15,271,811.4,422.4" BorderThickness="0" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}">
+        <Button x:Name="allergensBtn" Background="{x:Null}" Click="AllergensBtn_Click" Margin="15,271,811.4,422.4" BorderThickness="0" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}">
             <StackPanel Width="184" Height="45" Orientation="Horizontal" Margin="0,-9,0,0">
                 <Image Source="/HospitalInformationSystem;component/Images/Secretary/allergens.png" Height="42" Width="42" HorizontalAlignment="Left"/>
                 <Label Content="Alergeni" VerticalAlignment="Center" Width="132" FontSize="25" HorizontalContentAlignment="Center" Height="45"/>
             </StackPanel>
         </Button>
-        <Button x:Name="vestiBtn" Background="{x:Null}" Click="vestiBtn_Click" Margin="15,321,811.4,372.4" BorderThickness="0" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}">
+        <Button x:Name="vestiBtn" Background="{x:Null}" Click="VestiBtn_Click" Margin="15,321,811.4,372.4" BorderThickness="0" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}">
             <StackPanel Width="184" Height="45" Orientation="Horizontal" Margin="0,-9,0,0">
                 <Image Source="/HospitalInformationSystem;component/Images/Secretary/announcements.png" Height="42" Width="42" HorizontalAlignment="Left"/>
                 <Label Content="Vesti" VerticalAlignment="Center" Width="132" FontSize="25" HorizontalContentAlignment="Center" Height="45"/>
@@ -33,5 +33,6 @@
         <Frame x:Name="MainFrame" HorizontalAlignment="Left" Height="740" Margin="217,0,0,0" VerticalAlignment="Top" Width="797" NavigationUIVisibility="Hidden"/>
         <Label Content="Label" HorizontalAlignment="Left" Margin="-34,318,0,0" VerticalAlignment="Top"/>
         <Label Content="Pozdrav, Sekretar!" Margin="6,140,0,0" VerticalAlignment="Top" Width="197" HorizontalAlignment="Left" HorizontalContentAlignment="Center" FontSize="20" FontStyle="Oblique" FontWeight="ExtraBlack"/>
+        <Button x:Name="emergentSurgeryBtn" Content="Hitna operacija" HorizontalAlignment="Left" Margin="15,379,0,0" VerticalAlignment="Top" Width="188" Click="emergentSurgeryBtn_Click"/>
     </Grid>
 </Window>

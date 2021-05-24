@@ -22,11 +22,11 @@ namespace HospitalInformationSystem.Windows.SecretaryGUI
     public partial class EditAccountPage : Page
     {
         public AccountsPage ParentPage { get; set; }
-        private Patient tempPatient = null;
+        private Patient _tempPatient = null;
         public EditAccountPage(Patient p, AccountsPage parent)
         {
             InitializeComponent();
-            tempPatient = p;
+            _tempPatient = p;
             usernameTxt.Text = p.Username;
             nameTxt.Text = p.Name;
             surnameTxt.Text = p.Surname;
@@ -42,26 +42,26 @@ namespace HospitalInformationSystem.Windows.SecretaryGUI
             ParentPage = parent;
         }
 
-        private void otkaziBtn_Click(object sender, RoutedEventArgs e)
+        private void OtkaziBtn_Click(object sender, RoutedEventArgs e)
         {
-            
+            MainPatientManagement.Instance.MainFrame.Content = new AccountsPage();
         }
 
 
         private void izmeniBtn_Click(object sender, RoutedEventArgs e)
         {
-            tempPatient.Username = usernameTxt.Text;
-            tempPatient.Name = nameTxt.Text;
-            tempPatient.Surname = surnameTxt.Text;
-            tempPatient.DateOfBirth = (DateTime)date.SelectedDate;
-            tempPatient.PhoneNumber = numberTxt.Text;
-            tempPatient.ParentsName = parentsNameTxt.Text;
-            tempPatient.Email = emailTxt.Text;
-            tempPatient.Gender = genderTxt.Text;
-            tempPatient.Jmbg = jmbgTxt.Text;
-            tempPatient.Blood = (Patient.BloodType)bloodCmb.SelectedItem;
-            tempPatient.LBO = lboTxt.Text;
-            tempPatient.IsGuest = (bool)isGuestCheckbox.IsChecked;
+            _tempPatient.Username = usernameTxt.Text;
+            _tempPatient.Name = nameTxt.Text;
+            _tempPatient.Surname = surnameTxt.Text;
+            _tempPatient.DateOfBirth = (DateTime)date.SelectedDate;
+            _tempPatient.PhoneNumber = numberTxt.Text;
+            _tempPatient.ParentsName = parentsNameTxt.Text;
+            _tempPatient.Email = emailTxt.Text;
+            _tempPatient.Gender = genderTxt.Text;
+            _tempPatient.Jmbg = jmbgTxt.Text;
+            _tempPatient.Blood = (Patient.BloodType)bloodCmb.SelectedItem;
+            _tempPatient.LBO = lboTxt.Text;
+            _tempPatient.IsGuest = (bool)isGuestCheckbox.IsChecked;
 
             ParentPage.RefreshList();
 
@@ -74,14 +74,12 @@ namespace HospitalInformationSystem.Windows.SecretaryGUI
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            EditAllergens editAllergens = new EditAllergens(tempPatient);
-            editAllergens.Show();
+            MainPatientManagement.Instance.MainFrame.Content = new EditAllergensPage(_tempPatient);
         }
 
         private void editAppointmentButton_Click(object sender, RoutedEventArgs e)
         {
-            //PatientAppointmentCRUDOperationsWindow window = new PatientAppointmentCRUDOperationsWindow(tempPatient);
-            //window.Show();
+            MainPatientManagement.Instance.MainFrame.Content = new EditAppointmentPage(_tempPatient);
         }
     }
 }

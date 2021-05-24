@@ -22,7 +22,8 @@ namespace HospitalInformationSystem.Windows.SecretaryGUI
     /// </summary>
     public partial class MainPatientManagement : Window
     {
-        public MainPatientManagement()
+        private static MainPatientManagement instance = null;
+        private MainPatientManagement()
         {
             InitializeComponent();
             //string imgPath = Path.Combine(Environment.CurrentDirectory, "..", "..", "Images", "Secretary", "accounts.png");
@@ -30,23 +31,40 @@ namespace HospitalInformationSystem.Windows.SecretaryGUI
             //img.Source = new BitmapImage(new Uri(imgPath));
             //naloziBtn.Content = img;
         }
-        private void naloziBtn_Click(object sender, RoutedEventArgs e)
+        public static MainPatientManagement Instance
         {
-            MainFrame.Content = new AccountsPage(this);
+            get {
+                if (instance == null)
+                {
+                    instance = new MainPatientManagement();
+                }
+                return instance;
+            }
+        }
+
+        private void NaloziBtn_Click(object sender, RoutedEventArgs e)
+        {
+            MainFrame.Content = new AccountsPage();
         }
         private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
         {
             PatientController.getInstance().SaveInFile();
+            instance = null;
         }
 
-        private void vestiBtn_Click(object sender, RoutedEventArgs e)
+        private void VestiBtn_Click(object sender, RoutedEventArgs e)
         {
             MainFrame.Content = new AnnouncementsPage();
         }
 
-        private void allergensBtn_Click(object sender, RoutedEventArgs e)
+        private void AllergensBtn_Click(object sender, RoutedEventArgs e)
         {
             MainFrame.Content = new AllergensPage();
+        }
+
+        private void emergentSurgeryBtn_Click(object sender, RoutedEventArgs e)
+        {
+            MainFrame.Content = new EmergentSurgeryPage();
         }
     }
 }

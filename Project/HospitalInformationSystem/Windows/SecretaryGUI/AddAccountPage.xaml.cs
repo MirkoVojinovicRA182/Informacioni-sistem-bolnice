@@ -42,7 +42,7 @@ namespace HospitalInformationSystem.Windows.SecretaryGUI
 
         private void OtkaziBtn_Click(object sender, RoutedEventArgs e)
         {
-            NavigationService.Navigate(new AccountsPage(ParentPage.MainWindow));
+            NavigationService.Navigate(new AccountsPage());
         }
 
         private void BloodCmb_Loaded(object sender, RoutedEventArgs e)

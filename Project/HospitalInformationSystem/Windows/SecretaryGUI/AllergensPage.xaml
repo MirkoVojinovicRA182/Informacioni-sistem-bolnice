@@ -9,16 +9,19 @@
       Title="AllergensPage">
 
     <Grid>
-        <Button x:Name="addBtn" Content="Dodaj" HorizontalAlignment="Left" Margin="168,679,0,0" VerticalAlignment="Top" Width="78" Height="32"/>
-        <Button x:Name="editBtn" Content="Izmeni" HorizontalAlignment="Left" VerticalAlignment="Top" Width="87" Margin="381,679,0,0" Height="32"/>
-        <Button x:Name="deleteBtn" Content="Obrisi" HorizontalAlignment="Left" VerticalAlignment="Top" Width="89" Margin="569,679,0,0" Height="32"/>
-        <ListView x:Name="allergensList" Height="568" VerticalAlignment="Top" Margin="64,63,64,0">
-            <ListView.View>
-                <GridView>
-                    <GridViewColumn/>
-                </GridView>
-            </ListView.View>
+        <Button x:Name="addBtn" Content="Dodaj" HorizontalAlignment="Left" Margin="104,679,0,0" VerticalAlignment="Top" Width="78" Height="32" Click="AddBtn_Click"/>
+        <Button x:Name="renameBtn" Content="Preimenuj" HorizontalAlignment="Left" VerticalAlignment="Top" Width="87" Margin="646,679,0,0" Height="32" Click="RenameBtn_Click"/>
+        <Button x:Name="deleteBtn" Content="Obrisi" HorizontalAlignment="Left" VerticalAlignment="Top" Width="89" Margin="267,679,0,0" Height="32" Click="DeleteBtn_Click"/>
+        <ListView x:Name="allergensList" Height="568" VerticalAlignment="Top" Margin="64,63,64,0" SelectionChanged="AllergensList_SelectionChanged">
+            <ListBox.ItemTemplate>
+                <DataTemplate>
+                    <StackPanel>
+                        <TextBlock Text="{Binding Path=Name}" />
+                    </StackPanel>
+                </DataTemplate>
+            </ListBox.ItemTemplate>
         </ListView>
+        <TextBox x:Name="allergenNameTxt" HorizontalAlignment="Left" Height="32" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" Margin="505,679,0,0"/>
 
     </Grid>
 </Page>

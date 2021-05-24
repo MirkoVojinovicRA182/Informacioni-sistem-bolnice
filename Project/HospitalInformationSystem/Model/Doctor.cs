@@ -148,7 +148,7 @@ namespace Model
             get; set;
         }
 
-        private Specialization Specialization
+        public Specialization Specialization
         {
             get; set;
         }

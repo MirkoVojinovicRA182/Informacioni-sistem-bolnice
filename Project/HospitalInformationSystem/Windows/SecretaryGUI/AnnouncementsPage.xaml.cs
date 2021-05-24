@@ -31,18 +31,17 @@ namespace HospitalInformationSystem.Windows.SecretaryGUI
         private void DeleteBtn_Click(object sender, RoutedEventArgs e)
         {
             AnnouncementsController.getInstance().getAnnouncements().Remove((Announcement)announcementsList.SelectedItem);
+            announcementsList.Items.Refresh();
         }
 
         private void AddBtn_Click(object sender, RoutedEventArgs e)
         {
-            //NewAnnouncement newAnnouncement = new NewAnnouncement();
-            //newAnnouncement.ShowDialog();
+            MainPatientManagement.Instance.MainFrame.Content = new AddAnnouncementPage();
         }
 
         private void EditBtn_Click(object sender, RoutedEventArgs e)
         {
-            //NewAnnouncement newAnnouncement = new NewAnnouncement((Announcement)announcementsList.SelectedItem, this);
-            //newAnnouncement.ShowDialog();
+            MainPatientManagement.Instance.MainFrame.Content = new EditAnnouncementPage((Announcement)announcementsList.SelectedItem);
         }
 
     }

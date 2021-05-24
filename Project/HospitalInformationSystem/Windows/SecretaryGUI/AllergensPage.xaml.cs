@@ -1,4 +1,6 @@
-﻿using System;
+﻿using HospitalInformationSystem.Controller;
+using Model;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -23,6 +25,28 @@ namespace HospitalInformationSystem.Windows.SecretaryGUI
         public AllergensPage()
         {
             InitializeComponent();
+            allergensList.ItemsSource = PatientController.getInstance().getAllergens();
+        }
+
+        private void AddBtn_Click(object sender, RoutedEventArgs e)
+        {
+            MainPatientManagement.Instance.MainFrame.Content = new AddAllergenPage();
+        }
+
+        private void DeleteBtn_Click(object sender, RoutedEventArgs e)
+        {
+            PatientController.getInstance().getAllergens().Remove((Allergen)allergensList.SelectedItem);
+        }
+
+        private void AllergensList_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+           allergenNameTxt.Text = ((Allergen)allergensList.SelectedItem).Name;
+        }
+
+        private void RenameBtn_Click(object sender, RoutedEventArgs e)
+        {
+            ((Allergen)allergensList.SelectedItem).Name = allergenNameTxt.Text;
+            allergensList.Items.Refresh();
         }
     }
 }

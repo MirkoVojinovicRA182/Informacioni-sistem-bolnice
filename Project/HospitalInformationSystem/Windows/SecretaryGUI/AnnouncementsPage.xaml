@@ -9,9 +9,9 @@
       Title="AnnouncementsPage">
 
     <Grid>
-        <Button x:Name="addBtn" Content="Dodaj" HorizontalAlignment="Left" Margin="168,679,0,0" VerticalAlignment="Top" Width="78" Height="32"/>
-        <Button x:Name="editBtn" Content="Izmeni" HorizontalAlignment="Left" VerticalAlignment="Top" Width="87" Margin="381,679,0,0" Height="32"/>
-        <Button x:Name="deleteBtn" Content="Obrisi" HorizontalAlignment="Left" VerticalAlignment="Top" Width="89" Margin="569,679,0,0" Height="32"/>
+        <Button x:Name="addBtn" Content="Dodaj" HorizontalAlignment="Left" Margin="168,679,0,0" VerticalAlignment="Top" Width="78" Height="32" Click="AddBtn_Click"/>
+        <Button x:Name="editBtn" Content="Izmeni" HorizontalAlignment="Left" VerticalAlignment="Top" Width="87" Margin="381,679,0,0" Height="32" Click="EditBtn_Click"/>
+        <Button x:Name="deleteBtn" Content="Obrisi" HorizontalAlignment="Left" VerticalAlignment="Top" Width="89" Margin="569,679,0,0" Height="32" Click="DeleteBtn_Click"/>
         <ListView x:Name="announcementsList" HorizontalAlignment="Left" Height="605" Margin="42,25,0,0" VerticalAlignment="Top" Width="723">
             <ListView.ItemTemplate>
                 <DataTemplate>

@@ -11,7 +11,7 @@
     <Grid>
         <Grid Margin="-231,-9,10,10">
             <Button x:Name="izmeniBtn" Content="Izmeni" HorizontalAlignment="Left" Margin="631,655,0,0" VerticalAlignment="Top" Width="75" Click="izmeniBtn_Click" RenderTransformOrigin="1.252,0.977"/>
-            <Button x:Name="otkaziBtn" Content="Otkazi" HorizontalAlignment="Left" Margin="753,655,0,0" VerticalAlignment="Top" Width="75" Click="otkaziBtn_Click" RenderTransformOrigin="6.857,19.382"/>
+            <Button x:Name="otkaziBtn" Content="Otkazi" HorizontalAlignment="Left" Margin="753,655,0,0" VerticalAlignment="Top" Width="75" Click="OtkaziBtn_Click" RenderTransformOrigin="6.857,19.382"/>
             <TextBox x:Name="usernameTxt" HorizontalAlignment="Left" Height="23" TextWrapping="Wrap" VerticalAlignment="Top" Width="148" Margin="711,56,-156,0"/>
             <TextBox x:Name="nameTxt" HorizontalAlignment="Left" Height="23" TextWrapping="Wrap" VerticalAlignment="Top" Width="148" Margin="711,101,-156,0"/>
             <TextBox x:Name="surnameTxt" HorizontalAlignment="Left" Height="23" TextWrapping="Wrap" VerticalAlignment="Top" Width="148" Margin="711,146,-156,0"/>

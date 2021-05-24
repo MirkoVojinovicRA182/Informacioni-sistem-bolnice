@@ -85,7 +85,7 @@ namespace HospitalInformationSystem.Windows
                     else if (accounts[i].Person.GetType() == secretary.GetType())
                     {
                         loggedIn = true;
-                        MainPatientManagement window = new MainPatientManagement();
+                        MainPatientManagement window = MainPatientManagement.Instance;
                         PatientController.getInstance().LoadFromFile();
                         window.Show();
                         //this.Hide();

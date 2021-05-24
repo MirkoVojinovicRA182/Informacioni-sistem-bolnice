@@ -22,11 +22,9 @@ namespace HospitalInformationSystem.Windows.SecretaryGUI
     /// </summary>
     public partial class AccountsPage : Page
     {
-        public MainPatientManagement MainWindow { get; set; }
-        public AccountsPage(MainPatientManagement mainWindow)
+        public AccountsPage()
         {
             InitializeComponent();
-            MainWindow = mainWindow;
             accountsList.ItemsSource = PatientController.getInstance().getPatient();
             //izmeniBtn.IsEnabled = false;
             //obrisiBtn.IsEnabled = false;
@@ -46,7 +44,7 @@ namespace HospitalInformationSystem.Windows.SecretaryGUI
 
         private void DodajButton_Click(object sender, RoutedEventArgs e)
         {
-            MainWindow.MainFrame.Content = new AddAccountPage(this);
+            MainPatientManagement.Instance.MainFrame.Content = new AddAccountPage(this);
         }
 
         private void ObrisiButton_Click(object sender, RoutedEventArgs e)
@@ -59,7 +57,7 @@ namespace HospitalInformationSystem.Windows.SecretaryGUI
         {
             if (accountsList.SelectedValue != null)
             {
-                MainWindow.MainFrame.Content = new EditAccountPage((Patient)accountsList.SelectedItem, this);
+                MainPatientManagement.Instance.MainFrame.Content = new EditAccountPage((Patient)accountsList.SelectedItem, this);
             }
         }
     }

@@ -11,25 +11,22 @@ namespace HospitalInformationSystem.Windows.DoctorGUI
     /// </summary>
     public partial class AddPrescriptionWindow : Window
     {
-
-        private Patient patient;
-        public AddPrescriptionWindow(Patient patient)
+        private Patient _patientToAddPrescription;
+        public AddPrescriptionWindow(Patient patientToAddPrescription)
         {
             InitializeComponent();
-            this.patient = patient;
+            this._patientToAddPrescription = patientToAddPrescription;
             medicineComboBox.ItemsSource = MedicineController.GetInstance().GetAllMedicines();
         }
-
         private void addPrescriptionButton_Click(object sender, RoutedEventArgs e)
         {
             if(AllInputsCheck())
             {
                 Prescription newPrescription = new Prescription((Medicine)medicineComboBox.SelectedItem, DateTime.ParseExact(startDateTextBox.Text, "dd.MM.yyyy.", System.Globalization.CultureInfo.InvariantCulture), DateTime.ParseExact(endDateTextBox.Text, "dd.MM.yyyy.", System.Globalization.CultureInfo.InvariantCulture), infoTextBox.Text);
-                PatientController.getInstance().AddPrescription(patient, newPrescription);
+                PatientController.getInstance().AddPrescription(_patientToAddPrescription, newPrescription);
                 MessageBox.Show("Recept je uspešno izdat.", "Prescription", MessageBoxButton.OK, MessageBoxImage.Information);
             }
         }
-
         public bool CheckInputOfMedicineTextBox()
         {
             if (medicineComboBox.SelectedIndex < 0)
@@ -37,10 +34,8 @@ namespace HospitalInformationSystem.Windows.DoctorGUI
                 MessageBox.Show("Morate uneti lek!", "Medicine", MessageBoxButton.OK, MessageBoxImage.Error);
                 return false;
             }
-
             return true;
         }
-
         public bool CheckInputOfInfoTextBox()
         {
             if (infoTextBox.Text.Length < 1)
@@ -48,10 +43,8 @@ namespace HospitalInformationSystem.Windows.DoctorGUI
                 MessageBox.Show("Morate uneti potrebne informacije o dozi leka!", "Medicine", MessageBoxButton.OK, MessageBoxImage.Error);
                 return false;
             }
-
             return true;
         }
-
         public bool CheckInputOfStartDateTextBox()
         {
             try
@@ -63,10 +56,8 @@ namespace HospitalInformationSystem.Windows.DoctorGUI
                 MessageBox.Show("Nevalidan format za datum", "Datum", MessageBoxButton.OK, MessageBoxImage.Error);
                 return false;
             }
-
             return true;
         }
-
         public bool CheckInputOfEndDateTextBox()
         {
             try
@@ -78,15 +69,13 @@ namespace HospitalInformationSystem.Windows.DoctorGUI
                 MessageBox.Show("Nevalidan format za datum", "Date", MessageBoxButton.OK, MessageBoxImage.Error);
                 return false;
             }
-
             return true;
         }
-
         private bool CheckPatientsAllergens()
         {
             foreach(MedicineIngredient medicineIngredients in ((Medicine)medicineComboBox.SelectedItem).Ingredients)
             {
-                if (patient.Allergens.Contains(medicineIngredients.Name) || patient.Allergens.Contains(((Medicine)medicineComboBox.SelectedItem).Name))
+                if (_patientToAddPrescription.Allergens.Contains(medicineIngredients.Name) || _patientToAddPrescription.Allergens.Contains(((Medicine)medicineComboBox.SelectedItem).Name))
                 {
                     MessageBox.Show("Pacijent je alergican na sastojke leka!", "Alergeni", MessageBoxButton.OK, MessageBoxImage.Error);
                     return false;
@@ -94,13 +83,10 @@ namespace HospitalInformationSystem.Windows.DoctorGUI
             }
             return true;
         }
-
         public bool AllInputsCheck()
         {
-            if (CheckInputOfMedicineTextBox() && CheckInputOfInfoTextBox() && CheckInputOfStartDateTextBox()
-                && CheckInputOfEndDateTextBox() && CheckPatientsAllergens())
-                return true;
-            return false;
+            return (CheckInputOfMedicineTextBox() && CheckInputOfInfoTextBox() && CheckInputOfStartDateTextBox()
+                && CheckInputOfEndDateTextBox() && CheckPatientsAllergens());
         }
     }
 }

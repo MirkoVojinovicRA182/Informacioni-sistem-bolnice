@@ -87,7 +87,6 @@ namespace HospitalInformationSystem.Windows.ManagerGUI
             if (locationComboBox.SelectedItem != null) FindEquipmentByParameter(EquipmentSearchParameters.LOCATION);
             if (stateTextBox.Text != "" && GetQuantityParseResult() != 0) FindEquipmentByParameter(EquipmentSearchParameters.MIN_STATE);
             else return;
-            RefreshTable();
         }
         private void FindEquipmentByParameter(EquipmentSearchParameters filterParameter)
         {

@@ -12,7 +12,14 @@ namespace HospitalInformationSystem.Windows.DoctorGUI
     public partial class AddPrescriptionWindow : Window
     {
         private Patient _patientToAddPrescription;
-        public AddPrescriptionWindow(Patient patientToAddPrescription)
+        private static AddPrescriptionWindow instance = null;
+        public static AddPrescriptionWindow GetInstance(Patient patientToAddPrescription)
+        {
+            if (instance == null)
+                instance = new AddPrescriptionWindow(patientToAddPrescription);
+            return instance;
+        }
+        private AddPrescriptionWindow(Patient patientToAddPrescription)
         {
             InitializeComponent();
             this._patientToAddPrescription = patientToAddPrescription;

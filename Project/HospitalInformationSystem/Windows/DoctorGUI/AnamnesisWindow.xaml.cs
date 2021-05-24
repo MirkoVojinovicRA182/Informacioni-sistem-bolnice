@@ -10,7 +10,14 @@ namespace HospitalInformationSystem.Windows.DoctorGUI
     public partial class AnamnesisWindow : Window
     {
         MedicalRecord _patientsMedicalRecord;
-        public AnamnesisWindow(MedicalRecord patientsMedicalRecord)
+        private static AnamnesisWindow instance = null;
+        public static AnamnesisWindow GetInstance(MedicalRecord patientsMedicalRecord)
+        {
+            if (instance == null)
+                instance = new AnamnesisWindow(patientsMedicalRecord);
+            return instance;
+        }
+        private AnamnesisWindow(MedicalRecord patientsMedicalRecord)
         {
             InitializeComponent();
             this._patientsMedicalRecord = patientsMedicalRecord;

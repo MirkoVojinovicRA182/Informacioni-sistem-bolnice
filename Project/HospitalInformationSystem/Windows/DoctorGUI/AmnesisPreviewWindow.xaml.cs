@@ -10,7 +10,14 @@ namespace HospitalInformationSystem.Windows.DoctorGUI
     public partial class AmnesisPreviewWindow : Window
     {
         private Patient _patientToPreviewAnamnesis;
-        public AmnesisPreviewWindow(Patient patientToPreviewAnamnesis)
+        private static AmnesisPreviewWindow instance = null;
+        public static AmnesisPreviewWindow GetInstance(Patient patientToPreviewAnamnesis)
+        {
+            if (instance == null)
+                instance = new AmnesisPreviewWindow(patientToPreviewAnamnesis);
+            return instance;
+        }
+        private AmnesisPreviewWindow(Patient patientToPreviewAnamnesis)
         {
             InitializeComponent();
             this._patientToPreviewAnamnesis = patientToPreviewAnamnesis;

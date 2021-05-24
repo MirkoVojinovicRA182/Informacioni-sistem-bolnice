@@ -8,49 +8,34 @@ namespace HospitalInformationSystem.Windows.DoctorGUI
     /// </summary>
     public partial class MedicalRecordWindow : Window
     {
-
-        Patient patient;
-        public MedicalRecordWindow(Patient patient)
+        Patient _patientToShowMedicalRecord;
+        public MedicalRecordWindow(Patient patientToShowMedicalRecord)
         {
             InitializeComponent();
-            this.patient = patient;
-            initInfo();
+            this._patientToShowMedicalRecord = patientToShowMedicalRecord;
+            initPatientsInfo();
         }
-
-        private void initInfo()
+        private void initPatientsInfo()
         {
-            nameLabel.Content = patient.Name + " " + patient.Surname;
-            bloodTypeLabel.Content = patient.Blood.ToString();
-            dateOfBirthLabel.Content = patient.DateOfBirth.ToString("dd.MM.yyyy.");
-            jmbgLeabel.Content = patient.Jmbg;
-            genderLabel.Content = patient.Gender;
-            phoneNumberLabel.Content = patient.PhoneNumber;
-            emailLabel.Content = patient.Email;
+            nameLabel.Content = _patientToShowMedicalRecord.Name + " " + _patientToShowMedicalRecord.Surname;
+            bloodTypeLabel.Content = _patientToShowMedicalRecord.Blood.ToString();
+            dateOfBirthLabel.Content = _patientToShowMedicalRecord.DateOfBirth.ToString("dd.MM.yyyy.");
+            jmbgLeabel.Content = _patientToShowMedicalRecord.Jmbg;
+            genderLabel.Content = _patientToShowMedicalRecord.Gender;
+            phoneNumberLabel.Content = _patientToShowMedicalRecord.PhoneNumber;
+            emailLabel.Content = _patientToShowMedicalRecord.Email;
         }
-
-        private void addAnamnesisButton_Click(object sender, RoutedEventArgs e)
-        {
-            AnamnesisWindow anamnesisWindow = new AnamnesisWindow(patient.GetMedicalRecord());
-
-            anamnesisWindow.ShowDialog();
-        }
-
-        private void anamnesisPreviewButton_Click(object sender, RoutedEventArgs e)
-        {
-            AmnesisPreviewWindow amnesisPreviewWindow = new AmnesisPreviewWindow(patient);
-
-            amnesisPreviewWindow.ShowDialog();
-        }
-
-        private void addPrescriptionButton_Click(object sender, RoutedEventArgs e)
-        {
-            AddPrescriptionWindow addPrescriptionWindow = new AddPrescriptionWindow(patient);
-
-            addPrescriptionWindow.ShowDialog();
-        }
+        private void addAnamnesisButton_Click(object sender, RoutedEventArgs e) => 
+            AnamnesisWindow.GetInstance(_patientToShowMedicalRecord.GetMedicalRecord()).ShowDialog();
+        private void anamnesisPreviewButton_Click(object sender, RoutedEventArgs e) => 
+            AmnesisPreviewWindow.GetInstance(_patientToShowMedicalRecord).ShowDialog();
+        private void addPrescriptionButton_Click(object sender, RoutedEventArgs e) => 
+            AddPrescriptionWindow.GetInstance(_patientToShowMedicalRecord).ShowDialog();
         private void showPrescriptionButton_Click(object sender, RoutedEventArgs e) => 
-            DoctorShowPrescription.GetInstance(patient.GetMedicalRecord()).ShowDialog();
-        private void allergensButton_Click(object sender, RoutedEventArgs e) => DoctorAllergensPreviewWindow.GetInstance(patient).ShowDialog();
-        private void referralLetterButton_Click(object sender, RoutedEventArgs e) => ReferralLetterWindow.GetInstance(patient).ShowDialog();
+            DoctorShowPrescription.GetInstance(_patientToShowMedicalRecord.GetMedicalRecord()).ShowDialog();
+        private void allergensButton_Click(object sender, RoutedEventArgs e) => 
+            DoctorAllergensPreviewWindow.GetInstance(_patientToShowMedicalRecord).ShowDialog();
+        private void referralLetterButton_Click(object sender, RoutedEventArgs e) => 
+            ReferralLetterWindow.GetInstance(_patientToShowMedicalRecord).ShowDialog();
     }
 }

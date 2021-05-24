@@ -1,5 +1,6 @@
 ﻿using HospitalInformationSystem.Controller;
 using HospitalInformationSystem.Model;
+using HospitalInformationSystem.Utility;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -22,7 +23,6 @@ namespace HospitalInformationSystem.Windows.ManagerGUI
     /// </summary>
     public partial class EditMedicineWindow : Window
     {
-        private const string ERROR = "Greška";
         private Medicine medicineForEdit;
         private List<MedicineIngredient> medicineIngredientList = new List<MedicineIngredient>(); 
         private static EditMedicineWindow instance = null;
@@ -38,22 +38,30 @@ namespace HospitalInformationSystem.Windows.ManagerGUI
             this.medicineForEdit = medicineForEdit;
             LoadComboBoxes();
             LoadIngredientsListBox();
-            FillWpfControls();
+            LoadSelectedMedicineAttributes();
         }
         private void LoadComboBoxes()
         {
-            List<String> typeOfMedicineList = new List<String>();
-            typeOfMedicineList.Add("Rastvor");
-            typeOfMedicineList.Add("Sirup");
-            typeOfMedicineList.Add("Tableta");
-            typeOfMedicineList.Add("Pilula");
-            typeComboBox.ItemsSource = typeOfMedicineList;
-
-
+            LoadTypeOfMedicineComboBox();
+            LoadReplacementMedicinesComboBox();
+        }
+        private void LoadTypeOfMedicineComboBox()
+        {
+            string[] typeOfMedicineList = { Constants.DILUTION, Constants.SYRUP, Constants.PILL, Constants.TABLET };
+            typeComboBox.ItemsSource = new List<string>(typeOfMedicineList);
+        }
+        private void LoadReplacementMedicinesComboBox()
+        {
+            replacementMedicineComboBox.ItemsSource = null;
+            replacementMedicineComboBox.ItemsSource = CreateReplacementMedicineList();
+        }
+        private ObservableCollection<Medicine> CreateReplacementMedicineList()
+        {
             ObservableCollection<Medicine> replacementMedicinesList = new ObservableCollection<Medicine>(MedicineController.GetInstance().GetAllMedicines());
             replacementMedicinesList.Remove(medicineForEdit);
-            replacementMedicineComboBox.ItemsSource = null;
-            replacementMedicineComboBox.ItemsSource = replacementMedicinesList;
+            if (medicineForEdit.ReplacementMedicine != null)
+                replacementMedicinesList.Remove(medicineForEdit.ReplacementMedicine);
+            return replacementMedicinesList;
         }
         private void LoadIngredientsListBox()
         {
@@ -65,7 +73,7 @@ namespace HospitalInformationSystem.Windows.ManagerGUI
             ingredientsListBox.ItemsSource = null;
             ingredientsListBox.ItemsSource =  medicineIngredientList;
         }
-        private void FillWpfControls()
+        private void LoadSelectedMedicineAttributes()
         {
             idTextBox.Text = medicineForEdit.Id.ToString();
             nameTextBox.Text = medicineForEdit.Name;
@@ -86,47 +94,43 @@ namespace HospitalInformationSystem.Windows.ManagerGUI
             else
                 typeComboBox.SelectedIndex = 3;
         }
-        private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
-        {
-            instance = null;
-        }
         private void addNewIngredientButton_Click(object sender, RoutedEventArgs e)
         {
             NewIngredientWindow.GetInstance(medicineIngredientList).ShowDialog();
             RefreshIngredientsListBox();
         }
-
         private void deleteIngredientButton_Click(object sender, RoutedEventArgs e)
         {
             medicineIngredientList.Remove((MedicineIngredient)ingredientsListBox.SelectedItem);
             RefreshIngredientsListBox();
         }
-
         private void confirmButton_Click(object sender, RoutedEventArgs e)
         {
-            TypeOfMedicine typeOfMedicine = TypeOfMedicine.Dilution;
-            if (string.Equals((string)typeComboBox.SelectedItem, "Rastvor"))
-                typeOfMedicine = TypeOfMedicine.Dilution;
-            else if (string.Equals((string)typeComboBox.SelectedItem, "Sirup"))
-                typeOfMedicine = TypeOfMedicine.Syrup;
-            else if (string.Equals((string)typeComboBox.SelectedItem, "Tableta"))
-                typeOfMedicine = TypeOfMedicine.Tablet;
-            else if (string.Equals((string)typeComboBox.SelectedItem, "Pilula"))
-                typeOfMedicine = TypeOfMedicine.Pill;
-            Medicine replacementMedicine;
-            if (replacementMedicineComboBox.SelectedItem != null)
-                replacementMedicine = (Medicine)replacementMedicineComboBox.SelectedItem;
-            else
-                replacementMedicine = medicineForEdit.ReplacementMedicine;
             if (CheckControlsInputCorrection())
             {
                 medicineForEdit.UpdateMedicine(new Medicine(
-                    int.Parse(idTextBox.Text), nameTextBox.Text, typeOfMedicine,
-                    purposeTextBoxt.Text, useTextBox.Text, replacementMedicine, medicineIngredientList));
+                    int.Parse(idTextBox.Text), nameTextBox.Text, LoadMedicineType(),
+                    purposeTextBoxt.Text, useTextBox.Text, LoadReplacementMedicine(), medicineIngredientList));
                 this.Close();
             }
         }
-
+        private TypeOfMedicine LoadMedicineType()
+        {
+            if (((string)typeComboBox.SelectedItem).CompareTo(Constants.DILUTION) == 0)
+                return TypeOfMedicine.Dilution;
+            else if (((string)typeComboBox.SelectedItem).CompareTo(Constants.SYRUP) == 0)
+                return TypeOfMedicine.Syrup;
+            else if (((string)typeComboBox.SelectedItem).CompareTo(Constants.TABLET) == 0)
+                return TypeOfMedicine.Tablet;
+            else
+                return TypeOfMedicine.Pill;
+        }
+        private Medicine LoadReplacementMedicine()
+        {
+            if (replacementMedicineComboBox.SelectedItem != null)
+                return (Medicine)replacementMedicineComboBox.SelectedItem;
+            return medicineForEdit.ReplacementMedicine;
+        }
         private bool CheckControlsInputCorrection()
         {
             if (!IdTextBoxCorrection())
@@ -168,10 +172,14 @@ namespace HospitalInformationSystem.Windows.ManagerGUI
         {
             return ingredientsListBox.Items.Count;
         }
-        private bool CreateErrorMessageBox(string result)
+        private bool CreateErrorMessageBox(string errorMessage)
         {
-            MessageBox.Show(result, ERROR, MessageBoxButton.OK, MessageBoxImage.Error);
+            MessageBox.Show(errorMessage, Constants.ERROR_MESSAGE_BOX_CAPTION, MessageBoxButton.OK, MessageBoxImage.Error);
             return false;
+        }
+        private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            instance = null;
         }
     }
 }

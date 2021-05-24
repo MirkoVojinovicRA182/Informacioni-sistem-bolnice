@@ -76,10 +76,7 @@ namespace HospitalInformationSystem.Windows.DoctorGUI
                 this.Close();
             }
         }
-        private void Window_KeyDown(object sender, KeyEventArgs e)
-        {
-            CheckKeyPress();
-        }
+        private void Window_KeyDown(object sender, KeyEventArgs e) => CheckKeyPress();
         private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
         {
             DoctorController.getInstance().SaveInFlie();

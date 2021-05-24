@@ -9,7 +9,7 @@ namespace HospitalInformationSystem.Windows.DoctorGUI
     /// </summary>
     public partial class AddCommentOnMedicineWindow : Window
     {
-        private Medicine medicine;
+        private Medicine _medicineToAddComment;
         private static AddCommentOnMedicineWindow instance = null;
 
         public static AddCommentOnMedicineWindow GetInstance(Medicine medicine)
@@ -18,17 +18,17 @@ namespace HospitalInformationSystem.Windows.DoctorGUI
                 instance = new AddCommentOnMedicineWindow(medicine);
             return instance;
         }
-        private AddCommentOnMedicineWindow(Medicine medicine)
+        private AddCommentOnMedicineWindow(Medicine medicineToAddComment)
         {
             InitializeComponent();
-            this.medicine = medicine;
+            this._medicineToAddComment = medicineToAddComment;
         }
 
         private void addCommentButton_Click(object sender, RoutedEventArgs e)
         {
             if (commentTextBox.Text.Length > 0)
             {
-                medicine.Comment = commentTextBox.Text;
+                _medicineToAddComment.Comment = commentTextBox.Text;
                 MessageBox.Show("Uspesno ste dodali komentar na lek.", "Komentar", MessageBoxButton.OK, MessageBoxImage.Information);
             }
         }

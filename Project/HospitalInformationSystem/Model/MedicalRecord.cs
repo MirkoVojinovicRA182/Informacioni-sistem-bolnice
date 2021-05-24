@@ -2,6 +2,7 @@
 using Model;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -16,7 +17,7 @@ namespace Model
         private int id;
         private List<Anamnesis> anamnesisList;
         private List<Prescription> prescriptionList;
-        public List<Allergen> AllergensList { get; set; }
+        public ObservableCollection<Allergen> AllergensList { get; set; }
 
         public MedicalRecord()
         {

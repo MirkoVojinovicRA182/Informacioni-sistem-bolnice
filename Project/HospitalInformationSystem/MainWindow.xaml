@@ -10,8 +10,8 @@
         <Label Content="Prijava" HorizontalAlignment="Left" Margin="145,45,0,0" VerticalAlignment="Top" Width="103" FontSize="30"/>
         <Label Content="Korisničko ime:" HorizontalAlignment="Left" Margin="14,148,0,0" VerticalAlignment="Top" FontSize="20"/>
         <Label Content="Lozinka:" HorizontalAlignment="Left" Margin="14,186,0,0" VerticalAlignment="Top" FontSize="20"/>
-        <TextBox x:Name="usernameTextBox" HorizontalAlignment="Left" Height="30" Margin="162,150,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="204" FontSize="15" Text="&#xD;&#xA;"/>
+        <TextBox x:Name="usernameTextBox" HorizontalAlignment="Left" Height="30" Margin="162,150,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="204" FontSize="15" Text="s"/>
         <Button Content="Prijava" Click ="Button_Click" HorizontalAlignment="Left" Margin="145,339,0,0" VerticalAlignment="Top" Width="105" Height="45"/>
-        <PasswordBox x:Name="passwordTextBox" HorizontalAlignment="Left" Margin="162,191,0,0" VerticalAlignment="Top" Width="204" Height="30"/>
+        <PasswordBox x:Name="passwordTextBox" HorizontalAlignment="Left" Margin="162,191,0,0" VerticalAlignment="Top" Width="204" Height="30" Password="s"/>
     </Grid>
 </Window>

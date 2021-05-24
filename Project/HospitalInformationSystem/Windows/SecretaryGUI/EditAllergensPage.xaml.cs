@@ -11,22 +11,22 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
+using System.Windows.Navigation;
 using System.Windows.Shapes;
 
 namespace HospitalInformationSystem.Windows.SecretaryGUI
 {
     /// <summary>
-    /// Interaction logic for EditAllergens.xaml
+    /// Interaction logic for EditAllergensPage.xaml
     /// </summary>
-    public partial class EditAllergens : Window
+    public partial class EditAllergensPage : Page
     {
         Patient patient = null;
-        public EditAllergens(Patient p)
+        public EditAllergensPage(Patient patient)
         {
             InitializeComponent();
-            patient = p;
-            allergensDataGrid.ItemsSource = p.GetMedicalRecord().AllergensList;
-            
+            this.patient = patient;
+            allergensDataGrid.ItemsSource = this.patient.GetMedicalRecord().AllergensList;
         }
 
         private void allergensDataGrid_Unloaded(object sender, RoutedEventArgs e)

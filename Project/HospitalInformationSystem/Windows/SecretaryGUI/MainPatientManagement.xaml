@@ -5,19 +5,34 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:HospitalInformationSystem.Windows"
         mc:Ignorable="d"
-        Title="Upravljanje nalozima pacijenata" Height="517.641" Width="792.385" Closing="Window_Closing">
+        Title="Upravljanje nalozima pacijenata" Height="768" Width="1024" Closing="Window_Closing">
     <Grid Margin="0,0,3.6,-1.4">
-        <Button x:Name="dodajBtn" Content="Dodaj" HorizontalAlignment="Left" Margin="579,439,0,0" VerticalAlignment="Top" Width="75" FontSize="16" Click="dodajButton_Click" RenderTransformOrigin="0.45,3.562"/>
-        <Button x:Name="izmeniBtn" Content="Izmeni" HorizontalAlignment="Left" Margin="271,439,0,0" VerticalAlignment="Top" Width="75" FontSize="16" Click="izmeniButton_Click" RenderTransformOrigin="0.45,3.562"/>
-        <Button x:Name="obrisiBtn" Content="Obrisi" HorizontalAlignment="Left" Margin="379,439,0,0" VerticalAlignment="Top" Width="75" FontSize="16" Click="obrisiButton_Click" RenderTransformOrigin="0.45,3.562"/>
-        <ListView x:Name="accountsList" HorizontalAlignment="Left" Height="395" Margin="214,18,0,0" VerticalAlignment="Top" Width="526" SelectionMode="Single" ForceCursor="True" SelectionChanged="accountsList_SelectionChanged_1">
-            <ListView.View>
-                <GridView AllowsColumnReorder="False">
-                    <GridViewColumn/>
-                </GridView>
-            </ListView.View>
-        </ListView>
-        <Button Content="Dodaj alergen" HorizontalAlignment="Left" Margin="56,439,0,0" VerticalAlignment="Top" Width="80" Click="Button_Click"/>
+        <StackPanel HorizontalAlignment="Left" Height="100" Margin="56,35,0,0" VerticalAlignment="Top" Width="100">
+            <Image Source="..\..\Images\Secretary\user.png" Height="100"/>
+        </StackPanel>
 
+        <Button x:Name="naloziBtn" Background="{x:Null}" Click="NaloziBtn_Click" Margin="15,219,811.4,474.4" BorderThickness="0" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" >
+            <StackPanel Width="184" Height="45" Orientation="Horizontal" Margin="0,-9,0,0">
+                <Image Source="..\..\Images\Secretary\accounts.png" Height="42" Width="42" HorizontalAlignment="Left"/>
+                <Label Content="Nalozi" VerticalAlignment="Center" Width="132" FontSize="25" HorizontalContentAlignment="Center" Height="45"/>
+            </StackPanel>
+        </Button>
+        <Button x:Name="allergensBtn" Background="{x:Null}" Click="AllergensBtn_Click" Margin="15,271,811.4,422.4" BorderThickness="0" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}">
+            <StackPanel Width="184" Height="45" Orientation="Horizontal" Margin="0,-9,0,0">
+                <Image Source="/HospitalInformationSystem;component/Images/Secretary/allergens.png" Height="42" Width="42" HorizontalAlignment="Left"/>
+                <Label Content="Alergeni" VerticalAlignment="Center" Width="132" FontSize="25" HorizontalContentAlignment="Center" Height="45"/>
+            </StackPanel>
+        </Button>
+        <Button x:Name="vestiBtn" Background="{x:Null}" Click="VestiBtn_Click" Margin="15,321,811.4,372.4" BorderThickness="0" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}">
+            <StackPanel Width="184" Height="45" Orientation="Horizontal" Margin="0,-9,0,0">
+                <Image Source="/HospitalInformationSystem;component/Images/Secretary/announcements.png" Height="42" Width="42" HorizontalAlignment="Left"/>
+                <Label Content="Vesti" VerticalAlignment="Center" Width="132" FontSize="25" HorizontalContentAlignment="Center" Height="45"/>
+            </StackPanel>
+        </Button>
+
+        <Frame x:Name="MainFrame" HorizontalAlignment="Left" Height="740" Margin="217,0,0,0" VerticalAlignment="Top" Width="797" NavigationUIVisibility="Hidden"/>
+        <Label Content="Label" HorizontalAlignment="Left" Margin="-34,318,0,0" VerticalAlignment="Top"/>
+        <Label Content="Pozdrav, Sekretar!" Margin="6,140,0,0" VerticalAlignment="Top" Width="197" HorizontalAlignment="Left" HorizontalContentAlignment="Center" FontSize="20" FontStyle="Oblique" FontWeight="ExtraBlack"/>
+        <Button x:Name="emergentSurgeryBtn" Content="Hitna operacija" HorizontalAlignment="Left" Margin="15,379,0,0" VerticalAlignment="Top" Width="188" Click="emergentSurgeryBtn_Click"/>
     </Grid>
 </Window>

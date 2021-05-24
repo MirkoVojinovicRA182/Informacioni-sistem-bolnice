@@ -1,7 +1,19 @@
 ﻿using HospitalInformationSystem.Controller;
+using HospitalInformationSystem.Windows.SecretaryGUI;
 using Model;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Data;
+using System.Windows.Documents;
+using System.Windows.Input;
+using System.Windows.Media;
+using System.Windows.Media.Imaging;
+using System.IO;
 
 namespace HospitalInformationSystem.Windows.SecretaryGUI
 {
@@ -10,64 +22,49 @@ namespace HospitalInformationSystem.Windows.SecretaryGUI
     /// </summary>
     public partial class MainPatientManagement : Window
     {
-        public MainPatientManagement()
+        private static MainPatientManagement instance = null;
+        private MainPatientManagement()
         {
             InitializeComponent();
-            accountsList.ItemsSource = PatientController.getInstance().getPatient();
-            izmeniBtn.IsEnabled = false;
-            obrisiBtn.IsEnabled = false;   
+            //string imgPath = Path.Combine(Environment.CurrentDirectory, "..", "..", "Images", "Secretary", "accounts.png");
+            //Image img = new Image();
+            //img.Source = new BitmapImage(new Uri(imgPath));
+            //naloziBtn.Content = img;
         }
-
-        public void RefreshList()
+        public static MainPatientManagement Instance
         {
-            accountsList.Items.Refresh();
-        }
-
-        private void accountsList_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-
-        }
-
-        private void dodajButton_Click(object sender, RoutedEventArgs e)
-        {
-            AddAccount addAccount = new AddAccount();
-            addAccount.ParentWindow = this;
-            addAccount.ShowDialog();
-        }
-
-        private void obrisiButton_Click(object sender, RoutedEventArgs e)
-        {
-            PatientController.getInstance().RemovePatient((Patient)accountsList.SelectedItem);
-            RefreshList();
-        }
-
-        private void izmeniButton_Click(object sender, RoutedEventArgs e)
-        {
-            if(accountsList.SelectedValue != null) { 
-                EditAccount editAccount = new EditAccount((Patient)accountsList.SelectedItem);
-                editAccount.ParentWindow = this;
-                editAccount.ShowDialog();
+            get {
+                if (instance == null)
+                {
+                    instance = new MainPatientManagement();
+                }
+                return instance;
             }
         }
 
-        private void accountsList_SelectionChanged_1(object sender, SelectionChangedEventArgs e)
+        private void NaloziBtn_Click(object sender, RoutedEventArgs e)
         {
-            izmeniBtn.IsEnabled = true;
-            obrisiBtn.IsEnabled = true;
+            MainFrame.Content = new AccountsPage();
         }
-
-        private void Button_Click(object sender, RoutedEventArgs e)
-        {
-            if (accountsList.SelectedIndex >= 0)
-            {
-                AddAllergen addAllergen = new AddAllergen((Patient)accountsList.SelectedItem);
-                addAllergen.ShowDialog();
-            }
-        }
-
         private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
         {
             PatientController.getInstance().SaveInFile();
+            instance = null;
+        }
+
+        private void VestiBtn_Click(object sender, RoutedEventArgs e)
+        {
+            MainFrame.Content = new AnnouncementsPage();
+        }
+
+        private void AllergensBtn_Click(object sender, RoutedEventArgs e)
+        {
+            MainFrame.Content = new AllergensPage();
+        }
+
+        private void emergentSurgeryBtn_Click(object sender, RoutedEventArgs e)
+        {
+            MainFrame.Content = new EmergentSurgeryPage();
         }
     }
 }

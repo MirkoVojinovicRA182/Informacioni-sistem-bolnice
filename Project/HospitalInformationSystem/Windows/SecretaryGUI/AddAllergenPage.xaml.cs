@@ -12,28 +12,28 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
+using System.Windows.Navigation;
 using System.Windows.Shapes;
 
 namespace HospitalInformationSystem.Windows.SecretaryGUI
 {
     /// <summary>
-    /// Interaction logic for AddAllergen.xaml
+    /// Interaction logic for AddAllergenPage.xaml
     /// </summary>
-    public partial class AddAllergen : Window
+    public partial class AddAllergenPage : Page
     {
-        Patient patientToAddAllergen;
-        public AddAllergen(Patient patientToAddAllergen)
+        public AddAllergenPage()
         {
             InitializeComponent();
-            this.patientToAddAllergen = patientToAddAllergen;
         }
-
         private void addAllergenBtn_Click(object sender, RoutedEventArgs e)
         {
             Allergen newAllergen = new Allergen(allergenNameTxt.Text);
-            newAllergen.isAllergic = false;
             PatientController.getInstance().addAllergen(newAllergen);
-            PatientController.getInstance().AddAllergenToPatient(patientToAddAllergen, allergenNameTxt.Text);
+            foreach (Patient patient in PatientController.getInstance().getPatient())
+            {
+                patient.MedicalRecord.AllergensList.Add(newAllergen);
+            }
         }
     }
 }

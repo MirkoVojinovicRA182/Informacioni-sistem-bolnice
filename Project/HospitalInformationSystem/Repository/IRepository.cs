@@ -8,7 +8,7 @@ namespace HospitalInformationSystem.Repository
 {
     public interface IRepository
     {
-        void saveInFile();
-        void loadFromFile();
+        void SaveInFile();
+        void LoadFromFile();
     }
 }

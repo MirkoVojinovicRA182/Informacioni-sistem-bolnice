@@ -59,6 +59,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Controller\AnnouncementsController.cs" />
     <Compile Include="Controller\AppointmentController.cs" />
     <Compile Include="Controller\DoctorController.cs" />
     <Compile Include="Controller\MedicineController.cs" />
@@ -79,6 +80,9 @@
     <Compile Include="Model\HospitalReview.cs" />
     <Compile Include="Model\PatientActivity.cs" />
     <Compile Include="Repository\NotificationRepository.cs" />
+    <Compile Include="Model\Announcement.cs" />
+    <Compile Include="Repository\AnnouncementsRepository.cs" />
+    <Compile Include="Service\AnnouncementsService.cs" />
     <Compile Include="Service\AppointmentService.cs" />
     <Compile Include="Service\DoctorService.cs" />
     <Compile Include="Service\MedicineService.cs" />
@@ -271,15 +275,38 @@
     </Compile>
     <Compile Include="Windows\SecretaryGUI\AddAccount.xaml.cs">
       <DependentUpon>AddAccount.xaml</DependentUpon>
+    <Compile Include="Windows\SecretaryGUI\AccountsPage.xaml.cs">
+      <DependentUpon>AccountsPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Windows\SecretaryGUI\AddAllergen.xaml.cs">
-      <DependentUpon>AddAllergen.xaml</DependentUpon>
+    <Compile Include="Windows\SecretaryGUI\AddAccountPage.xaml.cs">
+      <DependentUpon>AddAccountPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Windows\SecretaryGUI\EditAccount.xaml.cs">
-      <DependentUpon>EditAccount.xaml</DependentUpon>
+    <Compile Include="Windows\SecretaryGUI\AddAllergenPage.xaml.cs">
+      <DependentUpon>AddAllergenPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Windows\SecretaryGUI\EditAllergens.xaml.cs">
-      <DependentUpon>EditAllergens.xaml</DependentUpon>
+    <Compile Include="Windows\SecretaryGUI\AddAnnouncementPage.xaml.cs">
+      <DependentUpon>AddAnnouncementPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Windows\SecretaryGUI\AllergensPage.xaml.cs">
+      <DependentUpon>AllergensPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Windows\SecretaryGUI\AnnouncementsPage.xaml.cs">
+      <DependentUpon>AnnouncementsPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Windows\SecretaryGUI\EditAccountPage.xaml.cs">
+      <DependentUpon>EditAccountPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Windows\SecretaryGUI\EditAllergensPage.xaml.cs">
+      <DependentUpon>EditAllergensPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Windows\SecretaryGUI\EditAnnouncementPage.xaml.cs">
+      <DependentUpon>EditAnnouncementPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Windows\SecretaryGUI\EditAppointmentPage.xaml.cs">
+      <DependentUpon>EditAppointmentPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Windows\SecretaryGUI\EmergentSurgeryPage.xaml.cs">
+      <DependentUpon>EmergentSurgeryPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Windows\SecretaryGUI\MainPatientManagement.xaml.cs">
       <DependentUpon>MainPatientManagement.xaml</DependentUpon>
@@ -520,18 +547,47 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Windows\SecretaryGUI\AddAccount.xaml">
-      <Generator>MSBuild:Compile</Generator>
+    <Page Include="Windows\SecretaryGUI\AccountsPage.xaml">
       <SubType>Designer</SubType>
-    </Page>
-    <Page Include="Windows\SecretaryGUI\AddAllergen.xaml">
       <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
     </Page>
-    <Page Include="Windows\SecretaryGUI\EditAccount.xaml">
+    <Page Include="Windows\SecretaryGUI\AddAccountPage.xaml">
+      <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
     </Page>
-    <Page Include="Windows\SecretaryGUI\EditAllergens.xaml">
+    <Page Include="Windows\SecretaryGUI\AddAllergenPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Windows\SecretaryGUI\AddAnnouncementPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Windows\SecretaryGUI\AllergensPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Windows\SecretaryGUI\AnnouncementsPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Windows\SecretaryGUI\EditAccountPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Windows\SecretaryGUI\EditAllergensPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Windows\SecretaryGUI\EditAnnouncementPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Windows\SecretaryGUI\EditAppointmentPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Windows\SecretaryGUI\EmergentSurgeryPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -549,9 +605,11 @@
     </Page>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Properties\AssemblyInfo.cs">
+    <Resource Include="Images\Secretary\accounts.png" />
+    <Resource Include="Images\Secretary\user.png" />
+    <Resource Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
-    </Compile>
+    </Resource>
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -562,10 +620,10 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
-    <EmbeddedResource Include="Properties\Resources.resx">
+    <Resource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
-    </EmbeddedResource>
+    </Resource>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -591,6 +649,14 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Windows\DoctorGUI\hospitalTreatmentIcon.png" />
+    <Resource Include="Images\Secretary\allergens.png" />
+    <Resource Include="Images\Secretary\announcements.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Image1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Image2.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

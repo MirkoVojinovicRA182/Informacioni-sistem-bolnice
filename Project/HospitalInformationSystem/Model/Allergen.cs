@@ -1,4 +1,5 @@
-﻿using System;
+﻿using HospitalInformationSystem.Controller;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
@@ -10,6 +11,8 @@ namespace Model
     [Serializable]
     public class Allergen
     {
+        public int ID 
+        { get; set; }
         public string Name
         { get; set; }
       
@@ -20,7 +23,6 @@ namespace Model
         {
             Name = name;
             isAllergic = false;
-
         }
     }
 }

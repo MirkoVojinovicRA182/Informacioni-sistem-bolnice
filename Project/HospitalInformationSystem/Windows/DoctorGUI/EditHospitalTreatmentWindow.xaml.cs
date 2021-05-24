@@ -13,8 +13,8 @@ namespace HospitalInformationSystem.Windows.DoctorGUI
     public partial class EditHospitalTreatmentWindow : Window
     {
         private const string dateTemplate = "dd.MM.yyyy.";
+        private Patient _patientForEdit;
         private static EditHospitalTreatmentWindow instance = null;
-        private Patient patientForEdit;
         public static EditHospitalTreatmentWindow GetInstance(Patient parientForEdit)
         {
             if (instance == null)
@@ -24,14 +24,14 @@ namespace HospitalInformationSystem.Windows.DoctorGUI
         private EditHospitalTreatmentWindow(Patient patientForEdit)
         {
             InitializeComponent();
-            this.patientForEdit = patientForEdit;
-            InitData();
+            this._patientForEdit = patientForEdit;
+            InitInputs();
         }
-        private void InitData()
+        private void InitInputs()
         {
-            patientNameLabel.Content = patientForEdit.Name + " " + patientForEdit.Surname;
-            startDateTextBox.Text = patientForEdit.hospitalTreatment.treatmentStartDate.ToString(dateTemplate);
-            endDateTextBox.Text = patientForEdit.hospitalTreatment.treatmentEndDate.ToString(dateTemplate);
+            patientNameLabel.Content = _patientForEdit.Name + " " + _patientForEdit.Surname;
+            startDateTextBox.Text = _patientForEdit.hospitalTreatment.treatmentStartDate.ToString(dateTemplate);
+            endDateTextBox.Text = _patientForEdit.hospitalTreatment.treatmentEndDate.ToString(dateTemplate);
             InitRoomsForHospitalTreatment();
         }
         private void InitRoomsForHospitalTreatment()
@@ -40,13 +40,13 @@ namespace HospitalInformationSystem.Windows.DoctorGUI
             foreach (Room roomWithBed in RoomController.GetInstance().GetRooms())
                 if (roomWithBed.Type == TypeOfRoom.RoomWithBeds) roomsForHospitalTreatment.Add(roomWithBed);
             roomsListBox.ItemsSource = roomsForHospitalTreatment;
-            currentRoom.Content = patientForEdit.hospitalTreatment.treatmentRoom.Name;
+            currentRoom.Content = _patientForEdit.hospitalTreatment.treatmentRoom.Name;
         }
         private void CheckKeyPress()
         {
             if ((Keyboard.IsKeyDown(Key.LeftCtrl) || Keyboard.IsKeyDown(Key.RightCtrl)) && Keyboard.IsKeyDown(Key.E) && CheckAllInputs())
             {
-                PatientController.getInstance().EditHospitalTreatment(patientForEdit,
+                PatientController.getInstance().EditHospitalTreatment(_patientForEdit,
                             DateTime.ParseExact(startDateTextBox.Text,
                         dateTemplate, System.Globalization.CultureInfo.InvariantCulture),
                             DateTime.ParseExact(endDateTextBox.Text,
@@ -87,28 +87,10 @@ namespace HospitalInformationSystem.Windows.DoctorGUI
             }
             return true;
         }
-        private bool CheckSelectedRoom()
-        {
-            return (roomsListBox.SelectedIndex >= 0);
-        }
-        private bool CheckAllInputs()
-        {
-            return (CheckSelectedRoom() && CheckEndDateInput() && CheckStartDateInput());
-        }
-
-        private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
-        {
-            instance = null;
-        }
-
-        private void Window_KeyDown(object sender, KeyEventArgs e)
-        {
-            CheckKeyPress();
-        }
-
-        private void roomsListBox_PreviewKeyDown(object sender, KeyEventArgs e)
-        {
-            CheckKeyPress();
-        }
+        private bool CheckSelectedRoom() => roomsListBox.SelectedIndex >= 0;
+        private bool CheckAllInputs() => CheckSelectedRoom() && CheckEndDateInput() && CheckStartDateInput();
+        private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e) => instance = null;
+        private void Window_KeyDown(object sender, KeyEventArgs e) => CheckKeyPress();
+        private void roomsListBox_PreviewKeyDown(object sender, KeyEventArgs e) => CheckKeyPress();
     }
 }

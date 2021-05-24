@@ -8,8 +8,15 @@ namespace HospitalInformationSystem.Windows.DoctorGUI
     /// </summary>
     public partial class MedicalRecordWindow : Window
     {
-        Patient _patientToShowMedicalRecord;
-        public MedicalRecordWindow(Patient patientToShowMedicalRecord)
+        private Patient _patientToShowMedicalRecord;
+        private static MedicalRecordWindow instance = null;
+        public static MedicalRecordWindow GetInstance(Patient patientToShowMedicalRecord)
+        {
+            if (instance == null)
+                instance = new MedicalRecordWindow(patientToShowMedicalRecord);
+            return instance;
+        }
+        private MedicalRecordWindow(Patient patientToShowMedicalRecord)
         {
             InitializeComponent();
             this._patientToShowMedicalRecord = patientToShowMedicalRecord;

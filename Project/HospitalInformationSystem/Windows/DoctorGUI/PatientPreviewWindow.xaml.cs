@@ -37,7 +37,7 @@ namespace HospitalInformationSystem.Windows.DoctorGUI
         private void CheckKeyPress()
         {
             if (Keyboard.IsKeyDown(Key.Enter))
-                ShowPatientInformationWindow.GetInstance((Patient)patientsTable.SelectedItem, _loggedDoctor).Show();
+                ShowPatientInformationWindow.GetInstance((Patient)patientsTable.SelectedItem).Show();
             else if ((Keyboard.IsKeyDown(Key.LeftCtrl) || Keyboard.IsKeyDown(Key.RightCtrl)) && Keyboard.IsKeyDown(Key.T))
                 if (((Patient)patientsTable.SelectedItem).hospitalTreatment != null)
                     EditHospitalTreatmentWindow.GetInstance((Patient)patientsTable.SelectedItem).Show();

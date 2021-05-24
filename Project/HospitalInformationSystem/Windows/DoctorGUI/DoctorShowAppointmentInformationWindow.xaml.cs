@@ -43,7 +43,7 @@ namespace HospitalInformationSystem.Windows.DoctorGUI
         {
             if (Keyboard.IsKeyDown(Key.Enter))
             {
-                ShowPatientInformationWindow.GetInstance(_appointmentToShow.patient, _loggedDoctor).ShowDialog();
+                ShowPatientInformationWindow.GetInstance(_appointmentToShow.patient).ShowDialog();
             }
             else if (Keyboard.IsKeyDown(Key.Escape))
             {

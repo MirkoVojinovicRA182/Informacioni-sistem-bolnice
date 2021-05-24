@@ -35,7 +35,7 @@ namespace HospitalInformationSystem.Windows.ManagerGUI
         }
         private void confirmButton_Click(object sender, RoutedEventArgs e)
         {
-            CreateRoomAttributes();
+            MakeRoomAttributes();
             while (TryCreateRoom())
             {
                 ManagerMainWindow.getInstance().roomsUserControl.refreshTable();
@@ -44,7 +44,7 @@ namespace HospitalInformationSystem.Windows.ManagerGUI
                 break;
             }
         }
-        private void CreateRoomAttributes()
+        private void MakeRoomAttributes()
         {
             idOfNewRoom = int.TryParse(idTextBox.Text, out idOfNewRoom) ? idOfNewRoom : 0;
             nameOfNewRoom = nameTextBox.Text;
@@ -93,30 +93,24 @@ namespace HospitalInformationSystem.Windows.ManagerGUI
         }
         private void loadComboBox()
         {
-            List<String> list = new List<String>();
-            list.Add("Operaciona sala");
-            list.Add("Prostorija za odmor");
-            list.Add("Soba sa krevetima");
-            list.Add("Sala za hospitalizaciju");
-            list.Add("Kancelarija");
-            list.Add("Prostorija za preglede");
-            list.Add("Magacin");
-            typeOfRoomComboBox.ItemsSource = list;
+            string[] typesOfRoom = { Constants.OPERATION_ROOM , Constants.REST_ROOM, Constants.ROOM_WITH_BEDS, Constants.HOSPITALIZATION_ROOM,
+            Constants.OFFICE, Constants.EXAMINATION_ROOM, Constants.MAGACINE};
+            typeOfRoomComboBox.ItemsSource = new List<String>(typesOfRoom);
         }
         private TypeOfRoom loadTypeOfRoomFromComboBox(string selectedValue)
         {
             TypeOfRoom type;
-            if (String.Compare(selectedValue, "Operaciona sala") == 0)
+            if (selectedValue.CompareTo(Constants.OPERATION_ROOM) == 0)
                 type = TypeOfRoom.OperationRoom;
-            else if (String.Compare(selectedValue, "Prostorija za odmor") == 0)
+            else if (selectedValue.CompareTo(Constants.REST_ROOM) == 0)
                 type = TypeOfRoom.RestRoom;
-            else if (String.Compare(selectedValue, "Soba sa krevetima") == 0)
+            else if (selectedValue.CompareTo(Constants.ROOM_WITH_BEDS) == 0)
                 type = TypeOfRoom.RoomWithBeds;
-            else if (String.Compare(selectedValue, "Sala za hospitalizaciju") == 0)
+            else if (selectedValue.CompareTo(Constants.HOSPITALIZATION_ROOM) == 0)
                 type = TypeOfRoom.HospitalizationRoom;
-            else if (String.Compare(selectedValue, "Kancelarija") == 0)
+            else if (selectedValue.CompareTo(Constants.OFFICE) == 0)
                 type = TypeOfRoom.Office;
-            else if (String.Compare(selectedValue, "Prostorija za preglede") == 0)
+            else if (selectedValue.CompareTo(Constants.EXAMINATION_ROOM) == 0)
                 type = TypeOfRoom.ExaminationRoom;
             else
                 type = TypeOfRoom.Magacine;

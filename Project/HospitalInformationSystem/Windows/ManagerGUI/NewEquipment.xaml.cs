@@ -41,14 +41,12 @@ namespace HospitalInformationSystem.Windows.ManagerGUI
         }
         private void LoadTypeOfEquipmentComboBox()
         {
-            List<String> typeList = new List<String>();
-            typeList.Add(Constants.STATIC_EQUIPMENT);
-            typeList.Add(Constants.DYNAMIC_EQUIPMENT);
-            typeOfEquipmentComboBox.ItemsSource = typeList;
+            string[] typesOfEquipment = { Constants.STATIC_EQUIPMENT, Constants.DYNAMIC_EQUIPMENT };
+            typeOfEquipmentComboBox.ItemsSource = new List<String>(typesOfEquipment);
         }
         private void addButton_Click(object sender, RoutedEventArgs e)
         {
-            CreateEquipmentAtributes();
+            MakeEquipmentAttributes();
             if(ValidateInputs())
             {
                 CreateNewEquipment();
@@ -57,7 +55,7 @@ namespace HospitalInformationSystem.Windows.ManagerGUI
                 MessageBox.Show("Uneta je nova oprema u sistem.", "Nova prostorija", MessageBoxButton.OK, MessageBoxImage.Information);
             }
         }
-        private void CreateEquipmentAtributes()
+        private void MakeEquipmentAttributes()
         {
             _equipmentId = idTextBox.Text;
             _equipmentName = nameTextBox.Text;

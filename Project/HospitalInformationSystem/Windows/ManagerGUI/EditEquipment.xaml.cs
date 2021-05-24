@@ -53,10 +53,8 @@ namespace HospitalInformationSystem.Windows.ManagerGUI
         }
         private void loadTypeComboBox()
         {
-            List<String> list = new List<String>();
-            list.Add(Constants.STATIC_EQUIPMENT);
-            list.Add(Constants.DYNAMIC_EQUIPMENT);
-            typeComboBox.ItemsSource = list;
+            string[] typesOfEquipment = { Constants.STATIC_EQUIPMENT, Constants.DYNAMIC_EQUIPMENT };
+            typeComboBox.ItemsSource = new List<String>(typesOfEquipment);
             if (_selectedEquipment.Type == TypeOfEquipment.Static)
                 typeComboBox.SelectedIndex = 0;
             else
@@ -64,7 +62,7 @@ namespace HospitalInformationSystem.Windows.ManagerGUI
         }
         private void changeButton_Click(object sender, RoutedEventArgs e)
         {
-            CreateEquipmentAtributes();
+            MakeEquipmentAttributes();
             if(ValidateInputs())
             {
                 UpdateEquipment();
@@ -73,7 +71,7 @@ namespace HospitalInformationSystem.Windows.ManagerGUI
                 MessageBox.Show("Informacije o opremi su sada izmenjene.", "Izmena prostorije", MessageBoxButton.OK, MessageBoxImage.Information);
             }
         }
-        private void CreateEquipmentAtributes()
+        private void MakeEquipmentAttributes()
         {
             _equipmentName = nameTextBox.Text;
             _newEquipmentQuantity = int.TryParse(quanitityTextBox.Text, out _newEquipmentQuantity) ? _newEquipmentQuantity : 0;

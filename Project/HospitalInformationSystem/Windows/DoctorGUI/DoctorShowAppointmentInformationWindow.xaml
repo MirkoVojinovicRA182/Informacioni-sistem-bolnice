@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:HospitalInformationSystem.Windows"
         mc:Ignorable="d"
-        Title="DoctorShowAppointmentInformationWindow" Height="420" Width="300" KeyDown="Window_KeyDown">
+        Title="DoctorShowAppointmentInformationWindow" Height="420" Width="300" KeyDown="Window_KeyDown" Closing="Window_Closing">
     <Grid>
         <Label Content="Datum:" HorizontalAlignment="Left" Margin="32,35,0,0" VerticalAlignment="Top" FontSize="18"/>
         <Label Content="Vreme:" HorizontalAlignment="Left" Margin="32,91,0,0" VerticalAlignment="Top" FontSize="18"/>

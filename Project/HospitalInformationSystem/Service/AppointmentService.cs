@@ -54,7 +54,11 @@ namespace HospitalInformationSystem.Service
             if (this.appointments == null)
                 this.appointments = new List<Appointment>();
             if (!this.appointments.Contains(newAppointment))
+            {
                 this.appointments.Add(newAppointment);
+                newAppointment.doctor.AddAppointment(newAppointment);
+                newAppointment.patient.AddAppointment(newAppointment);
+            }
         }
 
         /// <pdGenerated>default Remove</pdGenerated>
@@ -64,7 +68,11 @@ namespace HospitalInformationSystem.Service
                 return;
             if (this.appointments != null)
                 if (this.appointments.Contains(oldAppointment))
+                {
+                    oldAppointment.doctor.RemoveAppointment(oldAppointment);
+                    oldAppointment.patient.RemoveAppointment(oldAppointment);
                     this.appointments.Remove(oldAppointment);
+                }
         }
 
         /// <pdGenerated>default removeAll</pdGenerated>

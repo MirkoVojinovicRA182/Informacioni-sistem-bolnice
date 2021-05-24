@@ -9,26 +9,28 @@ namespace HospitalInformationSystem.Windows.DoctorGUI
     /// </summary>
     public partial class DoctorShowPrescription : Window
     {
-
-        private MedicalRecord medicalRecord;
-        public DoctorShowPrescription(MedicalRecord medicalRecord)
+        private static DoctorShowPrescription instance = null;
+        public static DoctorShowPrescription GetInstance(MedicalRecord patientsMedicalRecord)
+        {
+            if (instance == null)
+                instance = new DoctorShowPrescription(patientsMedicalRecord);
+            return instance;
+        }
+        private DoctorShowPrescription(MedicalRecord patientsMedicalRecord)
         {
             InitializeComponent();
-            this.medicalRecord = medicalRecord;
-            initData();
+            InitMedicineComboBox(patientsMedicalRecord);
         }
-
-        public void initData()
+        public void InitMedicineComboBox(MedicalRecord patientsMedicalRecord)
         {
-            medicineComboBox.ItemsSource = medicalRecord.getPrescriptions();
+            medicineComboBox.ItemsSource = patientsMedicalRecord.getPrescriptions();
         }
 
         private void medicineComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            Prescription prescription = (Prescription)medicineComboBox.SelectedItem;
-            startDateTextBox.Text = prescription.startTime.ToString("dd.MM.yyyy.");
-            endDateTextBox.Text = prescription.endTime.ToString("dd.MM.yyyy.");
-            infoTextBox.Text = prescription.info;
+            startDateTextBox.Text = ((Prescription)medicineComboBox.SelectedItem).startTime.ToString("dd.MM.yyyy.");
+            endDateTextBox.Text = ((Prescription)medicineComboBox.SelectedItem).endTime.ToString("dd.MM.yyyy.");
+            infoTextBox.Text = ((Prescription)medicineComboBox.SelectedItem).info;
         }
     }
 }

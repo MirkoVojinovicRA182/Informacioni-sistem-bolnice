@@ -48,22 +48,9 @@ namespace HospitalInformationSystem.Windows.DoctorGUI
 
             addPrescriptionWindow.ShowDialog();
         }
-
-        private void showPrescriptionButton_Click(object sender, RoutedEventArgs e)
-        {
-            DoctorShowPrescription doctorShowPrescription = new DoctorShowPrescription(patient.GetMedicalRecord());
-
-            doctorShowPrescription.ShowDialog();
-        }
-
-        private void allergensButton_Click(object sender, RoutedEventArgs e)
-        {
-            DoctorAllergensPreviewWindow.GetInstance(patient).ShowDialog();
-        }
-
-        private void referralLetterButton_Click(object sender, RoutedEventArgs e)
-        {
-            ReferralLetterWindow.GetInstance(patient).ShowDialog();
-        }
+        private void showPrescriptionButton_Click(object sender, RoutedEventArgs e) => 
+            DoctorShowPrescription.GetInstance(patient.GetMedicalRecord()).ShowDialog();
+        private void allergensButton_Click(object sender, RoutedEventArgs e) => DoctorAllergensPreviewWindow.GetInstance(patient).ShowDialog();
+        private void referralLetterButton_Click(object sender, RoutedEventArgs e) => ReferralLetterWindow.GetInstance(patient).ShowDialog();
     }
 }

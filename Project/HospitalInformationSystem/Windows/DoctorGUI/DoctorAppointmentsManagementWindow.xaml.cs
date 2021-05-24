@@ -64,9 +64,7 @@ namespace HospitalInformationSystem.Windows.DoctorGUI
             if ((Appointment)appointmentsTable.SelectedItem != null)
             {
                 appointment = (Appointment)appointmentsTable.SelectedItem;
-                DoctorShowAppointmentInformationWindow doctorShowAppointmentInformationWindow = new DoctorShowAppointmentInformationWindow(
-                    appointment, _loggedDoctor);
-                doctorShowAppointmentInformationWindow.ShowDialog();
+                DoctorShowAppointmentInformationWindow.GetInstance(appointment, _loggedDoctor).ShowDialog();
                 RefreshTable();
             }
         }

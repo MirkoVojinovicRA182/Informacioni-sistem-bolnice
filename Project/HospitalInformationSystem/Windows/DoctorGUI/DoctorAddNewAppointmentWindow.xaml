@@ -4,7 +4,7 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:HospitalInformationSystem.Windows"
-        xmlns:Model="clr-namespace:Model" x:Class="HospitalInformationSystem.Windows.DoctorGUI.Window2"
+        xmlns:Model="clr-namespace:Model" x:Class="HospitalInformationSystem.Windows.DoctorGUI.DoctorAddNewAppointmentWindow"
         mc:Ignorable="d"
         Title="Dodavanje novog termina" Height="585.484" Width="350" ResizeMode="NoResize" KeyDown="Window_KeyDown">
     <Grid>

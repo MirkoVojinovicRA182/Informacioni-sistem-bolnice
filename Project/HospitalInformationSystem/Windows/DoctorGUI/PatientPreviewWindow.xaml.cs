@@ -12,20 +12,19 @@ namespace HospitalInformationSystem.Windows.DoctorGUI
     public partial class PatientPreviewWindow : Window
     {
         private static PatientPreviewWindow instance = null;
-        private Doctor loggedInDoctor;
-        public static PatientPreviewWindow GetInstance(Doctor loggedInDoctor)
+        private Doctor _loggedDoctor;
+        public static PatientPreviewWindow GetInstance(Doctor loggedDoctor)
         {
             if (instance == null)
-                instance = new PatientPreviewWindow(loggedInDoctor);
+                instance = new PatientPreviewWindow(loggedDoctor);
             return instance;
         }
-        private PatientPreviewWindow(Doctor loggedInDoctor)
+        private PatientPreviewWindow(Doctor loggedDoctor)
         {
             InitializeComponent();
-            this.loggedInDoctor = loggedInDoctor;
+            this._loggedDoctor = loggedDoctor;
             initPatientsTable();
         }
-
         private void initPatientsTable()
         {
             ObservableCollection<Patient> patients = new ObservableCollection<Patient>();
@@ -35,36 +34,18 @@ namespace HospitalInformationSystem.Windows.DoctorGUI
             }
             patientsTable.ItemsSource = patients;
         }
-
         private void CheckKeyPress()
         {
             if (Keyboard.IsKeyDown(Key.Enter))
-            {
-                ShowPatientInformationWindow window = ShowPatientInformationWindow.GetInstance((Patient)patientsTable.SelectedItem, loggedInDoctor);
-                window.Show();
-            }
+                ShowPatientInformationWindow.GetInstance((Patient)patientsTable.SelectedItem).Show();
             else if ((Keyboard.IsKeyDown(Key.LeftCtrl) || Keyboard.IsKeyDown(Key.RightCtrl)) && Keyboard.IsKeyDown(Key.T))
-            {
                 if (((Patient)patientsTable.SelectedItem).hospitalTreatment != null)
-                {
-                    EditHospitalTreatmentWindow window = EditHospitalTreatmentWindow.GetInstance((Patient)patientsTable.SelectedItem);
-                    window.Show();
-                }
-            }
+                    EditHospitalTreatmentWindow.GetInstance((Patient)patientsTable.SelectedItem).Show();
             else if (Keyboard.IsKeyDown(Key.Escape))
-            {
                 this.Close();
-            }
         }
+        private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e) => instance = null;
 
-        private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
-        {
-            instance = null;
-        }
-
-        private void patientsTable_PreviewKeyDown(object sender, KeyEventArgs e)
-        {
-            CheckKeyPress();
-        }
+        private void patientsTable_PreviewKeyDown(object sender, KeyEventArgs e) => CheckKeyPress();
     }
 }

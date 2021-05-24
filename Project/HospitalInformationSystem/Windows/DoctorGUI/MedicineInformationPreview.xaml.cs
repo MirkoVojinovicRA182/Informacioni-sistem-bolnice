@@ -12,43 +12,41 @@ namespace HospitalInformationSystem.Windows.DoctorGUI
     /// </summary>
     public partial class MedicineInformationPreview : Window
     {
-        private Medicine medicine;
+        private Medicine _medicineToPreview;
         private static MedicineInformationPreview instance = null;
-
-        public static MedicineInformationPreview GetInstance(Medicine medicine)
+        public static MedicineInformationPreview GetInstance(Medicine medicineToPreview)
         {
             if (instance == null)
-                instance = new MedicineInformationPreview(medicine);
+                instance = new MedicineInformationPreview(medicineToPreview);
             return instance;
         }
-        private MedicineInformationPreview(Medicine medicine)
+        private MedicineInformationPreview(Medicine medicineToPreview)
         {
             InitializeComponent();
-            this.medicine = medicine;
-            medicineIngredientsTable.DataContext = medicine.Ingredients;
-            initData();
+            this._medicineToPreview = medicineToPreview;
+            medicineIngredientsTable.DataContext = _medicineToPreview.Ingredients;
+            InitData();
+            InitMedicineTypeComboBox();
         }
-
-        private void initData()
+        private void InitMedicineTypeComboBox()
         {
-            medicineIdLabel.Content = medicine.Id;
-            medicineNameTextBox.Text = medicine.Name;
-            medicineReplacmentComboBox.ItemsSource = MedicineController.GetInstance().GetAllMedicines();
-            if (medicine.ReplacementMedicine != null)
-                medicineReplacmentComboBox.SelectedItem = medicine.ReplacementMedicine;
             List<String> medicineTypeList = new List<String>();
-            String[] typeOfMedicines = { "Rastvor", "Pilula", "Sirup", "Tableta"};
+            String[] typeOfMedicines = { "Rastvor", "Pilula", "Sirup", "Tableta" };
             medicineTypeList.AddRange(typeOfMedicines);
             medicineTypeComboBox.ItemsSource = medicineTypeList;
-            if(medicine.Type == TypeOfMedicine.Dilution)
+            InitSelectedItemInMedicineTypeComboBox();
+        }
+        private void InitSelectedItemInMedicineTypeComboBox()
+        {
+            if (_medicineToPreview.Type == TypeOfMedicine.Dilution)
             {
                 medicineTypeComboBox.SelectedItem = "Rastvor";
             }
-            else if(medicine.Type == TypeOfMedicine.Tablet)
+            else if (_medicineToPreview.Type == TypeOfMedicine.Tablet)
             {
                 medicineTypeComboBox.SelectedItem = "Tableta";
             }
-            else if (medicine.Type == TypeOfMedicine.Syrup)
+            else if (_medicineToPreview.Type == TypeOfMedicine.Syrup)
             {
                 medicineTypeComboBox.SelectedItem = "Sirup";
             }
@@ -56,53 +54,51 @@ namespace HospitalInformationSystem.Windows.DoctorGUI
             {
                 medicineTypeComboBox.SelectedItem = "Pilula";
             }
-
-            medicinePurposeTextBox.Text = medicine.Purpose;
-            wayOfUseTextBox.Text = medicine.WayOfUse;
+        }
+        private void InitData()
+        {
+            medicineIdLabel.Content = _medicineToPreview.Id;
+            medicineNameTextBox.Text = _medicineToPreview.Name;
+            medicineReplacmentComboBox.ItemsSource = MedicineController.GetInstance().GetAllMedicines();
+            if (_medicineToPreview.ReplacementMedicine != null)
+                medicineReplacmentComboBox.SelectedItem = _medicineToPreview.ReplacementMedicine;
+            medicinePurposeTextBox.Text = _medicineToPreview.Purpose;
+            wayOfUseTextBox.Text = _medicineToPreview.WayOfUse;
             RefreshTable();
         }
-
         private void RefreshTable()
         {
             medicineIngredientsTable.ItemsSource = null;
-            medicineIngredientsTable.ItemsSource = new ObservableCollection<MedicineIngredient>(medicine.Ingredients);
+            medicineIngredientsTable.ItemsSource = new ObservableCollection<MedicineIngredient>(_medicineToPreview.Ingredients);
         }
-
         private void editMedicine_Click(object sender, RoutedEventArgs e)
         {
             if (string.Equals(editMedicine.Content, "IZMENI"))
             {
-                medicineNameTextBox.IsEnabled = true;
-                medicinePurposeTextBox.IsEnabled = true;
-                wayOfUseTextBox.IsEnabled = true;
-                medicineReplacmentComboBox.IsEnabled = true;
-                medicineTypeComboBox.IsEnabled = true;
-                addIngredientButton.IsEnabled = true;
-                deleteIngredientButton.IsEnabled = true;
-                editMedicine.Content = "ZAVRSI";
+                EnableMedicineEditing();
             }
             else
             {
-                medicine.Name = medicineNameTextBox.Text;
-                medicine.ReplacementMedicine = (Medicine)medicineReplacmentComboBox.SelectedItem;
+                _medicineToPreview.Name = medicineNameTextBox.Text;
+                _medicineToPreview.ReplacementMedicine = (Medicine)medicineReplacmentComboBox.SelectedItem;
                 if(String.Equals(medicineTypeComboBox.SelectedItem.ToString(), "Rastvor"))
                 {
-                    medicine.Type = TypeOfMedicine.Dilution;
+                    _medicineToPreview.Type = TypeOfMedicine.Dilution;
                 }
                 else if(String.Equals(medicineTypeComboBox.SelectedItem.ToString(), "Tableta"))
                 {
-                    medicine.Type = TypeOfMedicine.Tablet;
+                    _medicineToPreview.Type = TypeOfMedicine.Tablet;
                 }
                 else if (String.Equals(medicineTypeComboBox.SelectedItem.ToString(), "Sirup"))
                 {
-                    medicine.Type = TypeOfMedicine.Syrup;
+                    _medicineToPreview.Type = TypeOfMedicine.Syrup;
                 }
                 else
                 {
-                    medicine.Type = TypeOfMedicine.Pill;
+                    _medicineToPreview.Type = TypeOfMedicine.Pill;
                 }
-                medicine.Purpose = medicinePurposeTextBox.Text;
-                medicine.WayOfUse = wayOfUseTextBox.Text;
+                _medicineToPreview.Purpose = medicinePurposeTextBox.Text;
+                _medicineToPreview.WayOfUse = wayOfUseTextBox.Text;
                 medicineNameTextBox.IsEnabled = false;
                 medicinePurposeTextBox.IsEnabled = false;
                 wayOfUseTextBox.IsEnabled = false;
@@ -111,34 +107,33 @@ namespace HospitalInformationSystem.Windows.DoctorGUI
                 medicineReplacmentComboBox.IsEnabled = false;
                 medicineTypeComboBox.IsEnabled = false;
                 editMedicine.Content = "IZMENI";
-                //MedicineController.GetInstance().ChangeMedicine(oldMedicine, newMedicine);
             }
-            
         }
-
-        private void addIngredientButton_Click(object sender, RoutedEventArgs e)
+        private void EnableMedicineEditing()
         {
-            DoctorAddNewIngredientWindow doctorAddNewIngredientWindow = new DoctorAddNewIngredientWindow(medicine);
-            doctorAddNewIngredientWindow.ShowDialog();
-            RefreshTable();
+            medicineNameTextBox.IsEnabled = true;
+            medicinePurposeTextBox.IsEnabled = true;
+            wayOfUseTextBox.IsEnabled = true;
+            medicineReplacmentComboBox.IsEnabled = true;
+            medicineTypeComboBox.IsEnabled = true;
+            addIngredientButton.IsEnabled = true;
+            deleteIngredientButton.IsEnabled = true;
+            editMedicine.Content = "ZAVRSI";
         }
-
+        private void addIngredientButton_Click(object sender, RoutedEventArgs e) => 
+            DoctorAddNewIngredientWindow.GetInstance(_medicineToPreview).ShowDialog();
         private void deleteIngredientButton_Click(object sender, RoutedEventArgs e)
         {
             if((MedicineIngredient)medicineIngredientsTable.SelectedItem != null)
-                medicine.Ingredients.Remove((MedicineIngredient)medicineIngredientsTable.SelectedItem);
+                _medicineToPreview.Ingredients.Remove((MedicineIngredient)medicineIngredientsTable.SelectedItem);
             RefreshTable();
         }
-
         private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
         {
             MedicinePreviewWindow.GetInstance().RefreshTable();
             instance = null;
         }
-
-        private void addCommentButton_Click(object sender, RoutedEventArgs e)
-        {
-            AddCommentOnMedicineWindow.GetInstance(medicine).ShowDialog();
-        }
+        private void addCommentButton_Click(object sender, RoutedEventArgs e) => 
+            AddCommentOnMedicineWindow.GetInstance(_medicineToPreview).ShowDialog();
     }
 }

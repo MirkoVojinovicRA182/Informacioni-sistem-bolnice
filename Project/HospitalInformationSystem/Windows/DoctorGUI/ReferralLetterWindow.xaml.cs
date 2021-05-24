@@ -12,23 +12,23 @@ namespace HospitalInformationSystem.Windows.DoctorGUI
     public partial class ReferralLetterWindow : Window
     {
         private const string dateApperence = "dd.MM.yyyy. HH:mm";
-        private Patient patientForReferralLetter;
+        private Patient _patientForReferralLetter;
         private static ReferralLetterWindow instance = null;
-        public static ReferralLetterWindow GetInstance(Patient patient)
+        public static ReferralLetterWindow GetInstance(Patient patientForReferralLetter)
         {
             if (instance == null)
-                instance = new ReferralLetterWindow(patient);
+                instance = new ReferralLetterWindow(patientForReferralLetter);
             return instance;
         }
         private ReferralLetterWindow(Patient patientForReferralLetter)
         {
             InitializeComponent();
-            this.patientForReferralLetter = patientForReferralLetter;
+            this._patientForReferralLetter = patientForReferralLetter;
             initReferralLetterData();
         }
         private void initReferralLetterData()
         {
-            patientNameLabel.Content = patientForReferralLetter.Name + " " + patientForReferralLetter.Surname;
+            patientNameLabel.Content = _patientForReferralLetter.Name + " " + _patientForReferralLetter.Surname;
             InitSpecializationComboBox();
             InitDoctorComboBox();
             InitAppointmentTypeComboBox();
@@ -192,10 +192,10 @@ namespace HospitalInformationSystem.Windows.DoctorGUI
                 Appointment appointment = new Appointment(DateTime.ParseExact(dateTextBox.Text + " " + timeTextBox.Text,
                     dateApperence, System.Globalization.CultureInfo.InvariantCulture),
                     (TypeOfAppointment)typeOfAppointmentComboBox.SelectedItem,
-                    (Room)roomsListBox.SelectedItem, patientForReferralLetter, doctor);
+                    (Room)roomsListBox.SelectedItem, _patientForReferralLetter, doctor);
                 AppointmentController.getInstance().addAppointment(appointment);
                 doctor.AddAppointment(appointment);
-                patientForReferralLetter.AddAppointment(appointment);
+                _patientForReferralLetter.AddAppointment(appointment);
 
             }
             else if(CheckInputs())
@@ -204,9 +204,9 @@ namespace HospitalInformationSystem.Windows.DoctorGUI
                 Appointment appointment = new Appointment(DateTime.ParseExact(dateTextBox.Text + " " + timeTextBox.Text,
                     dateApperence, System.Globalization.CultureInfo.InvariantCulture),
                     (TypeOfAppointment)typeOfAppointmentComboBox.SelectedItem,
-                    doctor.room, patientForReferralLetter, doctor);
+                    doctor.room, _patientForReferralLetter, doctor);
                 doctor.AddAppointment(appointment);
-                patientForReferralLetter.AddAppointment(appointment);
+                _patientForReferralLetter.AddAppointment(appointment);
             }
         }
     }

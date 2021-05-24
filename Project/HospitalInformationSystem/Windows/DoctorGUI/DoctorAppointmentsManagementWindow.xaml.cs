@@ -8,12 +8,9 @@ namespace HospitalInformationSystem.Windows.DoctorGUI
 {
     public partial class DoctorAppointmentsManagementWindow : Window
     {
-        Doctor loggedDoctor;
+        Doctor _loggedDoctor;
         Appointment appointment;
-        private ObservableCollection<Appointment> loggedDoctorAppointmentsList;
-
         private static DoctorAppointmentsManagementWindow instance = null;
-
         public static DoctorAppointmentsManagementWindow GetInstance(Doctor loggedDoctor)
         {
             if (instance == null)
@@ -23,74 +20,58 @@ namespace HospitalInformationSystem.Windows.DoctorGUI
         private DoctorAppointmentsManagementWindow(Doctor loggedDoctor)
         {
             InitializeComponent();
-            this.loggedDoctor = loggedDoctor;
-            //appointmentsTable.DataContext = loggedDoctor.GetAppointment();
+            this._loggedDoctor = loggedDoctor;
             RefreshTable();
         }
-
         public void RefreshTable()
         {
-            loggedDoctorAppointmentsList = new ObservableCollection<Appointment>(AppointmentController.getInstance().GetAppointmentsByDoctor(loggedDoctor));
+            ObservableCollection<Appointment> loggedDoctorAppointmentsList = new ObservableCollection<Appointment>(
+                AppointmentController.getInstance().GetAppointmentsByDoctor(_loggedDoctor));
             appointmentsTable.ItemsSource = null;
             appointmentsTable.ItemsSource = loggedDoctorAppointmentsList;
         }
-
         private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
         {
             DoctorController.getInstance().SaveInFlie();
             AppointmentController.getInstance().saveInFile();
             instance = null;
         }
-
         private void OpenNewAppointmentWindow()
         {
-            Window2 doctorAddNewAppointmentWindow = new Window2(loggedDoctor);
-            doctorAddNewAppointmentWindow.ShowDialog();
+            DoctorAddNewAppointmentWindow.GetInstance(_loggedDoctor).ShowDialog();
             RefreshTable();
         }
-
         private void OpenEditAppointmentWindow()
         {
             if ((Appointment)appointmentsTable.SelectedItem != null)
             {
                 appointment = (Appointment)appointmentsTable.SelectedItem;
-                DoctorEditAppointmentWindow doctorEditAppointmentWindow = new DoctorEditAppointmentWindow(appointment);
-                doctorEditAppointmentWindow.ShowDialog();
+                DoctorEditAppointmentWindow.GetInstance(appointment).ShowDialog();
                 RefreshTable();
             }
         }
-
         private void DeleteAppointment()
         {
             if ((Appointment)appointmentsTable.SelectedItem != null)
             {
                 appointment = (Appointment)appointmentsTable.SelectedItem;
                 AppointmentController.getInstance().removeAppointment(appointment);
-                loggedDoctor.RemoveAppointment(appointment);
-                appointment.GetPatient().RemoveAppointment(appointment);
                 RefreshTable();
             }
         }
-
         private void OpenAppointmentPreviewWindow()
         {
             if ((Appointment)appointmentsTable.SelectedItem != null)
             {
                 appointment = (Appointment)appointmentsTable.SelectedItem;
-                DoctorShowAppointmentInformationWindow doctorShowAppointmentInformationWindow = new DoctorShowAppointmentInformationWindow(appointment, loggedDoctor);
-                doctorShowAppointmentInformationWindow.ShowDialog();
+                DoctorShowAppointmentInformationWindow.GetInstance(appointment, _loggedDoctor).ShowDialog();
                 RefreshTable();
             }
         }
-
         private void ClosingWindow()
         {
-            DoctorController.getInstance().SaveInFlie();
-            AppointmentController.getInstance().saveInFile();
             this.Close();
-            instance = null;
         }
-
         private void CheckKeyPress()
         {
             if ((Keyboard.IsKeyDown(Key.LeftCtrl) || Keyboard.IsKeyDown(Key.RightCtrl)) && Keyboard.IsKeyDown(Key.A))
@@ -114,12 +95,10 @@ namespace HospitalInformationSystem.Windows.DoctorGUI
                 ClosingWindow();
             }
         }
-
         private void Window_KeyDown(object sender, KeyEventArgs e)
         {
             CheckKeyPress();
         }
-
         private void appointmentsTable_PreviewKeyDown(object sender, KeyEventArgs e)
         {
             CheckKeyPress();

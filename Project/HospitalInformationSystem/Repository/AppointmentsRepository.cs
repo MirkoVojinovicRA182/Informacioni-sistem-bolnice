@@ -39,9 +39,7 @@ namespace HospitalInformationSystem.Repository
             {
                 fs.Close();
             }
-
         }
-
         public void loadFromFile()
         {
             if (File.Exists("Appointments.dat"))
@@ -80,7 +78,6 @@ namespace HospitalInformationSystem.Repository
             foreach (Appointment appointment in newAppointments)
                 _allAppointments.Add(appointment);
         }
-
         public void DeleteAppointment(Appointment oldAppointment)
         {
             if (oldAppointment == null)
@@ -105,7 +102,6 @@ namespace HospitalInformationSystem.Repository
 
             return list;
         }
-
         public List<Appointment> GetAppointmentsByDoctor(Doctor doctor)
         {
             List<Appointment> list = new List<Appointment>();
@@ -131,6 +127,5 @@ namespace HospitalInformationSystem.Repository
 
             return list;
         }
-
     }
 }

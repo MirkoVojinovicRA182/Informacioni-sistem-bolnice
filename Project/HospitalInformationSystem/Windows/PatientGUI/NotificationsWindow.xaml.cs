@@ -24,65 +24,70 @@ namespace HospitalInformationSystem.Windows.PatientGUI
     /// </summary>
     public partial class NotificationsWindow : Window
     {
-        private Patient loggedInPatient;
+        private Patient _loggedInPatient;
         public NotificationsWindow(Patient patient)
         {
             InitializeComponent();
-            loggedInPatient= patient;
+            _loggedInPatient= patient;
             LoadHourComboBox();
             LoadMinuteComboBox();
             RefreshTable();
         }
-
         private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            Notification prescriptionNotification = CreateNotification();
+            AddCreatedNotification(prescriptionNotification);
+            PatientMainWindow.GetInstance(_loggedInPatient).Notify();
+        }
+        private Notification CreateNotification()
         {
             Prescription prescription = (Prescription)PrescriptionsDataGrid.SelectedItem;
             Notification prescriptionNotification = new Notification(prescription.medicine.Name + " " + prescription.info, GetTimeFromComboBoxes(), prescription.startTime, prescription.endTime, true);
-            prescriptionNotification.Patient = loggedInPatient;
-            if(!NotificationController.GetInstance().GetNotifications().Contains(prescriptionNotification))
+            prescriptionNotification.Patient = _loggedInPatient;
+            return prescriptionNotification;
+        }
+        private static void AddCreatedNotification(Notification prescriptionNotification)
+        {
+            if (!NotificationExists(prescriptionNotification))
             {
                 NotificationController.GetInstance().AddNotification(prescriptionNotification);
             }
-            PatientMainWindow.GetInstance(loggedInPatient).Notify();
         }
-
+        private static bool NotificationExists(Notification prescriptionNotification)
+        {
+            return NotificationController.GetInstance().GetNotifications().Contains(prescriptionNotification);
+        }
         private DateTime GetTimeFromComboBoxes()
         {
             return DateTime.Parse(hourComboBox.SelectedItem + ":" + minuteComboBox.SelectedItem);
         }
-
         private void LoadHourComboBox()
         {
             hourComboBox.ItemsSource = Enumerable.Range(0, 24);
         }
-
         private void LoadMinuteComboBox()
         {
             minuteComboBox.ItemsSource = Enumerable.Range(0, 60).ToList<int>();
         }
-
         public void RefreshTable()
         {
-            var prescriptionList = new ObservableCollection<Prescription>(loggedInPatient.MedicalRecord.getPrescriptions());
+            var prescriptionList = new ObservableCollection<Prescription>(_loggedInPatient.MedicalRecord.getPrescriptions());
             PrescriptionsDataGrid.ItemsSource = null;
             PrescriptionsDataGrid.ItemsSource = prescriptionList;
         }
-
         private void HomeButton_Click(object sender, RoutedEventArgs e)
         {
             this.Close();
-            PatientMainWindow.GetInstance(loggedInPatient).Show();
+            PatientMainWindow.GetInstance(_loggedInPatient).Show();
         }
-
         private void BackButton_Click(object sender, RoutedEventArgs e)
         {
             this.Close();
-            PatientMainWindow.GetInstance(loggedInPatient).Show();
+            PatientMainWindow.GetInstance(_loggedInPatient).Show();
         }
-
         private void CustomNotificationButton_Click(object sender, RoutedEventArgs e)
         {
-            CustomNotificationsWindow window = new CustomNotificationsWindow(loggedInPatient);
+            CustomNotificationsWindow window = new CustomNotificationsWindow(_loggedInPatient);
             window.Show();
         }
     }

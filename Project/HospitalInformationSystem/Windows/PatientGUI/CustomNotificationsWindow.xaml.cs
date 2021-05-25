@@ -22,31 +22,28 @@ namespace HospitalInformationSystem.Windows.PatientGUI
     /// </summary>
     public partial class CustomNotificationsWindow : Window
     {
-        public Patient loggedInPatient;
+        public Patient _loggedInPatient;
         public CustomNotificationsWindow(Patient patient)
         {
             InitializeComponent();
             LoadHourComboBox();
             LoadMinuteComboBox();
             LoadNotificationComboBox();
-            loggedInPatient = patient;
+            _loggedInPatient = patient;
         }
-
         private void NewNotificationButton_Click(object sender, RoutedEventArgs e)
         {
             Notification newNotification = new Notification(notificationTextBox.Text, GetTimeFromComboBoxes(), (DateTime)startDatePicker.SelectedDate, (DateTime)endDatePicker.SelectedDate, (bool)notificationCheckBox.IsChecked);
-            newNotification.Patient = loggedInPatient;
+            newNotification.Patient = _loggedInPatient;
             NotificationController.GetInstance().AddNotification(newNotification);
             LoadNotificationComboBox();
-            PatientMainWindow.GetInstance(loggedInPatient).Notify();
+            PatientMainWindow.GetInstance(_loggedInPatient).Notify();
         }
-
         private void NotificationComboBox_DataContextChanged(object sender, DependencyPropertyChangedEventArgs e)
         {
             Notification notification = (Notification)notificationComboBox.SelectedItem;
             SetSelectedValues(notification);
         }
-
         private void SetSelectedValues(Notification notification)
         {
             if (notificationComboBox.SelectedItem != null)
@@ -57,13 +54,11 @@ namespace HospitalInformationSystem.Windows.PatientGUI
                 notificationCheckBox.IsChecked = notification.IsEnabled;
             }
         }
-
         private void SetDates(Notification notification)
         {
             startDatePicker.SelectedDate = notification.StartDate;
             endDatePicker.SelectedDate = notification.EndDate;
         }
-
         private void SetTimeComboBoxes(Notification notification)
         {
             string time = notification.Time.ToString();
@@ -72,55 +67,46 @@ namespace HospitalInformationSystem.Windows.PatientGUI
             hourComboBox.SelectedItem = Int32.Parse(hourArray[1]);
             minuteComboBox.SelectedItem = Int32.Parse(timeArray[1]);
         }
-
         private void NotificationComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             Notification notification = (Notification)notificationComboBox.SelectedItem;
             SetSelectedValues(notification);
         }
-
         private void LoadNotificationComboBox()
         {
             notificationComboBox.ItemsSource = NotificationController.GetInstance().GetNotifications();
         }
-
         private void LoadHourComboBox()
         {
             hourComboBox.ItemsSource = Enumerable.Range(0, 24);
         }
-
         private void LoadMinuteComboBox()
         {
             minuteComboBox.ItemsSource = Enumerable.Range(0, 60).ToList<int>();
         }
-
         private DateTime GetTimeFromComboBoxes()
         {
             return DateTime.Parse(hourComboBox.SelectedItem + ":" + minuteComboBox.SelectedItem);
         }
-
         private void BackButton_Click(object sender, RoutedEventArgs e)
         {
             this.Close();
         }
-
         private void HomeButton_Click(object sender, RoutedEventArgs e)
         {
             this.Close();
-            PatientMainWindow.GetInstance(loggedInPatient).Show();
+            PatientMainWindow.GetInstance(_loggedInPatient).Show();
         }
-
         private void DeleteNotificationButton_Click(object sender, RoutedEventArgs e)
         {
             NotificationController.GetInstance().RemoveNotification((Notification)notificationComboBox.SelectedItem);
-            PatientMainWindow.GetInstance(loggedInPatient).Notify();
+            PatientMainWindow.GetInstance(_loggedInPatient).Notify();
         }
-
         private void ChangeButton_Click(object sender, RoutedEventArgs e)
         {
             Notification newNotification = new Notification(notificationTextBox.Text, GetTimeFromComboBoxes(), (DateTime)startDatePicker.SelectedDate, (DateTime)endDatePicker.SelectedDate, (bool)notificationCheckBox.IsChecked);
             NotificationController.GetInstance().ChangeNotification((Notification)notificationComboBox.SelectedItem, newNotification);
-            PatientMainWindow.GetInstance(loggedInPatient).Notify();
+            PatientMainWindow.GetInstance(_loggedInPatient).Notify();
         }
     }
 }

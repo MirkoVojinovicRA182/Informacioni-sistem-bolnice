@@ -214,5 +214,8 @@ namespace Model
         public HospitalTreatment hospitalTreatment { get; set; }
 
         public List<string> Allergens { get; set; }
+
+        public List<DoctorReview> DoctorReviews { get; set; }
+        public List<HospitalReview> HospitalReviews { get; set; }
     }
 }

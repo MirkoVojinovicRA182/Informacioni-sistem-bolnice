@@ -38,21 +38,20 @@ namespace HospitalInformationSystem.Windows.DoctorGUI
         }
         private void InitSelectedItemInMedicineTypeComboBox()
         {
-            if (_medicineToPreview.Type == TypeOfMedicine.Dilution)
+            switch(_medicineToPreview.Type)
             {
-                medicineTypeComboBox.SelectedItem = "Rastvor";
-            }
-            else if (_medicineToPreview.Type == TypeOfMedicine.Tablet)
-            {
-                medicineTypeComboBox.SelectedItem = "Tableta";
-            }
-            else if (_medicineToPreview.Type == TypeOfMedicine.Syrup)
-            {
-                medicineTypeComboBox.SelectedItem = "Sirup";
-            }
-            else
-            {
-                medicineTypeComboBox.SelectedItem = "Pilula";
+                case TypeOfMedicine.Dilution:
+                    medicineTypeComboBox.SelectedItem = "Rastvor";
+                    break;
+                case TypeOfMedicine.Tablet:
+                    medicineTypeComboBox.SelectedItem = "Tableta";
+                    break;
+                case TypeOfMedicine.Syrup:
+                    medicineTypeComboBox.SelectedItem = "Sirup";
+                    break;
+                default:
+                    medicineTypeComboBox.SelectedItem = "Pilula";
+                    break;
             }
         }
         private void InitData()
@@ -74,40 +73,9 @@ namespace HospitalInformationSystem.Windows.DoctorGUI
         private void editMedicine_Click(object sender, RoutedEventArgs e)
         {
             if (string.Equals(editMedicine.Content, "IZMENI"))
-            {
                 EnableMedicineEditing();
-            }
             else
-            {
-                _medicineToPreview.Name = medicineNameTextBox.Text;
-                _medicineToPreview.ReplacementMedicine = (Medicine)medicineReplacmentComboBox.SelectedItem;
-                if(String.Equals(medicineTypeComboBox.SelectedItem.ToString(), "Rastvor"))
-                {
-                    _medicineToPreview.Type = TypeOfMedicine.Dilution;
-                }
-                else if(String.Equals(medicineTypeComboBox.SelectedItem.ToString(), "Tableta"))
-                {
-                    _medicineToPreview.Type = TypeOfMedicine.Tablet;
-                }
-                else if (String.Equals(medicineTypeComboBox.SelectedItem.ToString(), "Sirup"))
-                {
-                    _medicineToPreview.Type = TypeOfMedicine.Syrup;
-                }
-                else
-                {
-                    _medicineToPreview.Type = TypeOfMedicine.Pill;
-                }
-                _medicineToPreview.Purpose = medicinePurposeTextBox.Text;
-                _medicineToPreview.WayOfUse = wayOfUseTextBox.Text;
-                medicineNameTextBox.IsEnabled = false;
-                medicinePurposeTextBox.IsEnabled = false;
-                wayOfUseTextBox.IsEnabled = false;
-                addIngredientButton.IsEnabled = false;
-                deleteIngredientButton.IsEnabled = false;
-                medicineReplacmentComboBox.IsEnabled = false;
-                medicineTypeComboBox.IsEnabled = false;
-                editMedicine.Content = "IZMENI";
-            }
+                FinishEditingMedicine();
         }
         private void EnableMedicineEditing()
         {
@@ -119,6 +87,44 @@ namespace HospitalInformationSystem.Windows.DoctorGUI
             addIngredientButton.IsEnabled = true;
             deleteIngredientButton.IsEnabled = true;
             editMedicine.Content = "ZAVRSI";
+        }
+        private void FinishEditingMedicine()
+        {
+            _medicineToPreview.Name = medicineNameTextBox.Text;
+            _medicineToPreview.ReplacementMedicine = (Medicine)medicineReplacmentComboBox.SelectedItem;
+            ChangeMedicineType();
+            _medicineToPreview.Purpose = medicinePurposeTextBox.Text;
+            _medicineToPreview.WayOfUse = wayOfUseTextBox.Text;
+            DisableEditing();
+        }
+        private void ChangeMedicineType()
+        {
+            switch(medicineTypeComboBox.SelectedItem.ToString())
+            {
+                case "Rastvor":
+                    _medicineToPreview.Type = TypeOfMedicine.Dilution;
+                    break;
+                case "Tableta":
+                    _medicineToPreview.Type = TypeOfMedicine.Tablet;
+                    break;
+                case "Sirup":
+                    _medicineToPreview.Type = TypeOfMedicine.Syrup;
+                    break;
+                default:
+                    _medicineToPreview.Type = TypeOfMedicine.Pill;
+                    break;
+            }
+        }
+        private void DisableEditing()
+        {
+            medicineNameTextBox.IsEnabled = false;
+            medicinePurposeTextBox.IsEnabled = false;
+            wayOfUseTextBox.IsEnabled = false;
+            addIngredientButton.IsEnabled = false;
+            deleteIngredientButton.IsEnabled = false;
+            medicineReplacmentComboBox.IsEnabled = false;
+            medicineTypeComboBox.IsEnabled = false;
+            editMedicine.Content = "IZMENI";
         }
         private void addIngredientButton_Click(object sender, RoutedEventArgs e) => 
             DoctorAddNewIngredientWindow.GetInstance(_medicineToPreview).ShowDialog();

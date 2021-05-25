@@ -42,7 +42,7 @@ namespace HospitalInformationSystem.Windows.SecretaryGUI
         private void FindNearestAppointments()
         {
             DateTime currentTime = DateTime.Now;
-            DateTime timeToFind = currentTime;
+            DateTime timeToFind;
             if (currentTime.Minute < 30)
             {
                 timeToFind = currentTime.Date + new TimeSpan(currentTime.Hour, 30, 0);
@@ -54,13 +54,16 @@ namespace HospitalInformationSystem.Windows.SecretaryGUI
 
             for (int i = 0; i < 6; i++) 
             {
-                if (timeToFind.Minute == 0)
+                if (i > 0)
                 {
-                    timeToFind = currentTime.Date + new TimeSpan(currentTime.Hour, 30, 0);
-                }
-                else
-                {
-                    timeToFind = currentTime.Date + new TimeSpan(currentTime.Hour + 1, 0, 0);
+                    if (timeToFind.Minute == 0)
+                    {
+                        timeToFind = currentTime.Date + new TimeSpan(currentTime.Hour, 30, 0);
+                    }
+                    else
+                    {
+                        timeToFind = currentTime.Date + new TimeSpan(currentTime.Hour + 1, 0, 0);
+                    }
                 }
 
                 bool found = false;
@@ -81,8 +84,14 @@ namespace HospitalInformationSystem.Windows.SecretaryGUI
 
                     if (free == true)
                     {
-                        appointmentsList.Add(new Appointment(timeToFind, TypeOfAppointment.Operacija, FindFreeRoom(timeToFind), new Patient(), doctor));
-                        found = true;
+                        Room room = FindFreeRoom(timeToFind);
+                        if (room != null)
+                        { 
+                            appointmentsList.Add(new Appointment(timeToFind, TypeOfAppointment.Operacija, room, new Patient(), doctor));
+                            found = true;
+                            return;
+                        }
+                        
                     }
                         
                 }
@@ -97,12 +106,14 @@ namespace HospitalInformationSystem.Windows.SecretaryGUI
 
         private void SpecilizationCmb_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
+            appointmentsList.Clear();
             if (patientCmb.SelectedIndex != -1)
                 FindNearestAppointments();
         }
 
         private void PatientCmb_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
+            appointmentsList.Clear();
             if (specilizationCmb.SelectedIndex != -1)
                 FindNearestAppointments();
         }
@@ -137,7 +148,7 @@ namespace HospitalInformationSystem.Windows.SecretaryGUI
                                           "Obavestenje",
                                           MessageBoxButton.OK,
                                           MessageBoxImage.Warning);
-            return new Room();
+            return null;
         }
     }
 }

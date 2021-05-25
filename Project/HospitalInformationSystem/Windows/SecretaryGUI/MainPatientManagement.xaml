@@ -34,5 +34,6 @@
         <Label Content="Label" HorizontalAlignment="Left" Margin="-34,318,0,0" VerticalAlignment="Top"/>
         <Label Content="Pozdrav, Sekretar!" Margin="6,140,0,0" VerticalAlignment="Top" Width="197" HorizontalAlignment="Left" HorizontalContentAlignment="Center" FontSize="20" FontStyle="Oblique" FontWeight="ExtraBlack"/>
         <Button x:Name="emergentSurgeryBtn" Content="Hitna operacija" HorizontalAlignment="Left" Margin="15,379,0,0" VerticalAlignment="Top" Width="188" Click="emergentSurgeryBtn_Click"/>
+        <Button x:Name="doctorsBtn" Content="Lekari" HorizontalAlignment="Left" Margin="15,418,0,0" VerticalAlignment="Top" Width="188" Click="doctorsBtn_Click"/>
     </Grid>
 </Window>

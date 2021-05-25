@@ -12,6 +12,16 @@ namespace Model
     [Serializable]
     public class Doctor : Person
     {
+        public Room room
+        {
+            get; set;
+        }
+
+        public Specialization Specialization
+        {
+            get; set;
+        }
+
         public Doctor()
         {
         }
@@ -31,6 +41,22 @@ namespace Model
             this.Surname = surname;
             this.Specialization = specialization;
             this.room = room;
+        }
+
+        public Doctor(string username, string name, string surname, DateTime dateOfBirth, string phoneNumber, string email, 
+                    string parentsname, string gender, string jmbg, Room room, Specialization specialization)
+        {
+            Username = username;
+            Name = name;
+            Surname = surname;
+            DateOfBirth = dateOfBirth;
+            PhoneNumber = phoneNumber;
+            Email = email;
+            ParentsName = parentsname;
+            Gender = gender;
+            Jmbg = jmbg;
+            this.room = room;
+            Specialization = specialization;
         }
 
         public List<Appointment> appointments;
@@ -87,16 +113,6 @@ namespace Model
                 tmpAppointment.Clear();
             }
         }
-        public Room room
-        {
-            get; set;
-        }
-
-        public Specialization Specialization
-        {
-            get; set;
-        }
-
 
     }
 }

@@ -85,15 +85,16 @@ namespace HospitalInformationSystem.Windows
             //manager.Id = "52";
 
 
-            AccountDataBase.getInstance().AddAccount(new Account("pera", "pass", PatientController.getInstance().getPatient()[0]));
-            AccountDataBase.getInstance().AddAccount(new Account("jova", "pass", PatientController.getInstance().getPatient()[1]));
-            AccountDataBase.getInstance().AddAccount(new Account("mika", "pass", PatientController.getInstance().getPatient()[2]));
-            AccountDataBase.getInstance().AddAccount(new Account("marko", "pass", DoctorController.getInstance().GetDoctors()[0]));
-            AccountDataBase.getInstance().AddAccount(new Account("jovan", "pass", DoctorController.getInstance().GetDoctors()[1]));
-            AccountDataBase.getInstance().AddAccount(new Account("stevan", "pass", DoctorController.getInstance().GetDoctors()[2]));
-            AccountDataBase.getInstance().AddAccount(new Account("darko", "pass", DoctorController.getInstance().GetDoctors()[3]));
+            //AccountDataBase.getInstance().AddAccount(new Account("pera", "pass", PatientController.getInstance().getPatient()[0]));
+            //AccountDataBase.getInstance().AddAccount(new Account("jova", "pass", PatientController.getInstance().getPatient()[1]));
+            //AccountDataBase.getInstance().AddAccount(new Account("mika", "pass", PatientController.getInstance().getPatient()[2]));
+            //AccountDataBase.getInstance().AddAccount(new Account("marko", "pass", DoctorController.getInstance().GetDoctors()[0]));
+            //AccountDataBase.getInstance().AddAccount(new Account("jovan", "pass", DoctorController.getInstance().GetDoctors()[1]));
+            //AccountDataBase.getInstance().AddAccount(new Account("stevan", "pass", DoctorController.getInstance().GetDoctors()[2]));
+            //AccountDataBase.getInstance().AddAccount(new Account("darko", "pass", DoctorController.getInstance().GetDoctors()[3]));
             AccountDataBase.getInstance().AddAccount(new Account("petar", "pass", secretary));
             AccountDataBase.getInstance().AddAccount(new Account("u", "pass", manager));
+            AccountDataBase.getInstance().AddAccount(new Account("s", "s", secretary));
 
             //ManagerMainWindow.getInstance().Show();
 

@@ -21,7 +21,11 @@ namespace Model
 
         public MedicalRecord()
         {
-            AllergensList = PatientController.getInstance().getAllergens();    
+            AllergensList = new ObservableCollection<Allergen>();
+            foreach (Allergen allergen in PatientController.getInstance().getAllergens())
+            {
+                AllergensList.Add(new Allergen(allergen));
+            }  
         }
 
         public MedicalRecord(int id)
@@ -29,7 +33,11 @@ namespace Model
             this.id = id;
             anamnesisList = new List<Anamnesis>();
             prescriptionList = new List<Prescription>();
-            AllergensList = PatientController.getInstance().getAllergens();
+            AllergensList = new ObservableCollection<Allergen>();
+            foreach (Allergen allergen in PatientController.getInstance().getAllergens())
+            {
+                AllergensList.Add(new Allergen(allergen));
+            }
         }
 
         public int getId()

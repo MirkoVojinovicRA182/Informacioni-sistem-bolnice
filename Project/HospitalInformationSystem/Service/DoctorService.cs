@@ -8,6 +8,7 @@ using Model;
 using HospitalInformationSystem.Repository;
 using System.Collections.Generic;
 using System.IO;
+using System.Collections.ObjectModel;
 
 namespace HospitalInformationSystem.Service
 {
@@ -15,12 +16,12 @@ namespace HospitalInformationSystem.Service
     public class DoctorService
     {
 
-        private List<Doctor> doctorsList;
+        private ObservableCollection<Doctor> doctorsList;
         private DoctorRepository doctorsFile;
 
         public DoctorService()
         {
-            doctorsList = new List<Doctor>();
+            doctorsList = new ObservableCollection<Doctor>();
             doctorsFile = new DoctorRepository();
         }
 
@@ -28,15 +29,15 @@ namespace HospitalInformationSystem.Service
         {
         }
 
-        public List<Doctor> getDoctors()
+        public ObservableCollection<Doctor> getDoctors()
         {
             if (doctorsList == null)
-                doctorsList = new List<Doctor>();
+                doctorsList = new ObservableCollection<Doctor>();
             return doctorsList;
         }
 
 
-        public void SetDoctors(List<Doctor> newDoctorsList)
+        public void SetDoctors(ObservableCollection<Doctor> newDoctorsList)
         {
             RemoveAllDoctors();
             foreach (Doctor oDoctor in newDoctorsList)
@@ -48,7 +49,7 @@ namespace HospitalInformationSystem.Service
             if (newDoctor == null)
                 return;
             if (this.doctorsList == null)
-                this.doctorsList = new List<Doctor>();
+                this.doctorsList = new ObservableCollection<Doctor>();
             if (!this.doctorsList.Contains(newDoctor))
                 this.doctorsList.Add(newDoctor);
         }

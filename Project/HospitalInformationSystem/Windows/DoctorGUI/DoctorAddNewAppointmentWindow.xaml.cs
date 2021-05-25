@@ -207,6 +207,11 @@ namespace HospitalInformationSystem.Windows.DoctorGUI
         {
             CheckKeyPress();
         }
+
+        private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            instance = null;
+        }
     }
 
 }

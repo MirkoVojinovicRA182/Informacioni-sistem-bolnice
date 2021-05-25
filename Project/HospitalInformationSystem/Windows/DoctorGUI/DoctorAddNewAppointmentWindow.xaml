@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:HospitalInformationSystem.Windows"
         xmlns:Model="clr-namespace:Model" x:Class="HospitalInformationSystem.Windows.DoctorGUI.DoctorAddNewAppointmentWindow"
         mc:Ignorable="d"
-        Title="Dodavanje novog termina" Height="585.484" Width="350" ResizeMode="NoResize" KeyDown="Window_KeyDown">
+        Title="Dodavanje novog termina" Height="585.484" Width="350" ResizeMode="NoResize" KeyDown="Window_KeyDown" Closing="Window_Closing">
     <Grid>
         <Label Content="Datum:" HorizontalAlignment="Left" Height="30" Margin="39,30,0,0" VerticalAlignment="Top" Width="99" FontSize="14"/>
         <TextBox x:Name="dateTextBox" HorizontalAlignment="Left" Height="30" Margin="176,30,0,0" TextWrapping="Wrap" Text="01.01.2021." VerticalAlignment="Top" Width="139" FontSize="14"/>

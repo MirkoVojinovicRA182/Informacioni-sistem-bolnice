@@ -65,6 +65,8 @@ namespace HospitalInformationSystem.Repository
         public void AddAppointmentToAppointmentList(Appointment newAppointment)
         {
             _allAppointments.Add(newAppointment);
+            newAppointment.doctor.AddAppointment(newAppointment);
+            newAppointment.patient.AddAppointment(newAppointment);
         }
         public List<Appointment> GetAppointments()
         {

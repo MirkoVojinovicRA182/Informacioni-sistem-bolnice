@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 
 namespace HospitalInformationSystem.Model
 {
+    [Serializable]
     public class Notification
     {
         public Notification(string contents, DateTime time, DateTime startDate, DateTime endDate, bool isEnabled)

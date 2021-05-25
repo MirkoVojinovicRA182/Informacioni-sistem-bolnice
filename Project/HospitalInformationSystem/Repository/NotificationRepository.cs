@@ -14,23 +14,29 @@ namespace HospitalInformationSystem.Repository
     public class NotificationRepository
     {
         private List<Notification> _allNotifications;
+        public NotificationRepository()
+        {
+            _allNotifications = new List<Notification>();
+        }
         public void saveInFile()
         {
-            FileStream fs = new FileStream("Notifications.dat", FileMode.Create);
+            if (_allNotifications.Count != 0)
+            {
+                FileStream fs = new FileStream("Notifications.dat", FileMode.Create);
+                BinaryFormatter formatter = new BinaryFormatter();
+                try
+                {
+                    formatter.Serialize(fs, _allNotifications);
+                }
+                catch (SerializationException e)
+                {
 
-            BinaryFormatter formatter = new BinaryFormatter();
-            try
-            {
-                formatter.Serialize(fs, NotificationController.GetInstance().GetNotifications());
-            }
-            catch (SerializationException e)
-            {
-
-                throw;
-            }
-            finally
-            {
-                fs.Close();
+                    throw;
+                }
+                finally
+                {
+                    fs.Close();
+                }
             }
         }
         public void loadFromFile()

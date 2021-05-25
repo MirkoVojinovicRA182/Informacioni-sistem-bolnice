@@ -21,16 +21,8 @@ namespace HospitalInformationSystem.Windows.DoctorGUI
         private DoctorMainWindow(Doctor loggedDoctor)
         {
             InitializeComponent();
-            LoadDataFromFiles();
             this._loggedDoctor = loggedDoctor;
             InitData();
-        }
-        private void LoadDataFromFiles()
-        {
-            RoomController.GetInstance().LoadRoomsFromFile();
-            DoctorController.getInstance().LoadFromFile();
-            PatientController.getInstance().LoadFromFile();
-            AppointmentController.getInstance().LoadAppointmentsFromFile();
         }
         private void InitData()
         {

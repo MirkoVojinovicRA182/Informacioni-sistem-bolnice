@@ -37,7 +37,7 @@ namespace HospitalInformationSystem.Windows.PatientGUI
         }
         private void LoadDoctorComboBox()
         {
-            List<Doctor> allDoctors = DoctorController.getInstance().GetDoctors();
+            ObservableCollection<Doctor> allDoctors = DoctorController.getInstance().GetDoctors();
             DoctorComboBox.ItemsSource = allDoctors;
         }
         private void Button_Click(object sender, RoutedEventArgs e)
@@ -96,16 +96,16 @@ namespace HospitalInformationSystem.Windows.PatientGUI
         private List<Appointment> GenerateAppointmentsForDoctorsOfSameSpecialization(Doctor selectedDoctor, DateTime startDateTime, DateTime endDateTime)
         {
             List<Appointment> possibleAppointments = new List<Appointment>();
-            List<Doctor> possibleDoctors = GetDoctorsWithSameSpecialization(selectedDoctor);
+            ObservableCollection<Doctor> possibleDoctors = GetDoctorsWithSameSpecialization(selectedDoctor);
             foreach (var doctor in possibleDoctors)
             {
                 possibleAppointments.AddRange(GenerateFreeAppointments(doctor, startDateTime, endDateTime));
             }
             return possibleAppointments;
         }
-        private List<Doctor> GetDoctorsWithSameSpecialization(Doctor selectedDoctor)
+        private ObservableCollection<Doctor> GetDoctorsWithSameSpecialization(Doctor selectedDoctor)
         {
-            List<Doctor> doctors = DoctorController.getInstance().GetDoctors();
+            ObservableCollection<Doctor> doctors = DoctorController.getInstance().GetDoctors();
             for (int i = 0; i < doctors.Count; i++)
             {
                 if (DoctorsAreNotOfSameSpecialization(selectedDoctor, doctors[i]))

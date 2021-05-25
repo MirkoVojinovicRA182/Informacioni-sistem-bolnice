@@ -4,6 +4,7 @@ using HospitalInformationSystem.Service;
 using Model;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Globalization;
 using System.Linq;
 using System.Text;
@@ -34,7 +35,7 @@ namespace HospitalInformationSystem.Windows.PatientGUI
         }
         private void LoadDoctorComboBox()
         {
-            List<Doctor> allDoctors = DoctorController.getInstance().GetDoctors();
+            ObservableCollection<Doctor> allDoctors = DoctorController.getInstance().GetDoctors();
             DoctorComboBox.ItemsSource = allDoctors;
         }
         private void Button_Click(object sender, RoutedEventArgs e)

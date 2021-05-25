@@ -32,5 +32,10 @@ namespace HospitalInformationSystem.Windows.DoctorGUI
             endDateTextBox.Text = ((Prescription)medicineComboBox.SelectedItem).endTime.ToString("dd.MM.yyyy.");
             infoTextBox.Text = ((Prescription)medicineComboBox.SelectedItem).info;
         }
+
+        private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            instance = null;
+        }
     }
 }

@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:HospitalInformationSystem.Windows"
         mc:Ignorable="d"
-        Title="Izmena termina" Height="420" Width="300" KeyDown="Window_KeyDown">
+        Title="Izmena termina" Height="420" Width="300" KeyDown="Window_KeyDown" Closing="Window_Closing">
     <Grid>
         <Label Content="Datum:" HorizontalAlignment="Left" Height="37" Margin="28,40,0,0" VerticalAlignment="Top" Width="107" FontSize="14"/>
         <TextBox x:Name="dateTextBox" HorizontalAlignment="Left" Height="37" Margin="135,40,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="128" FontSize="14"/>

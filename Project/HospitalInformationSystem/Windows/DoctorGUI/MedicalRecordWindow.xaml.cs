@@ -44,5 +44,6 @@ namespace HospitalInformationSystem.Windows.DoctorGUI
             DoctorAllergensPreviewWindow.GetInstance(_patientToShowMedicalRecord).ShowDialog();
         private void referralLetterButton_Click(object sender, RoutedEventArgs e) => 
             ReferralLetterWindow.GetInstance(_patientToShowMedicalRecord).ShowDialog();
+        private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e) => instance = null;
     }
 }

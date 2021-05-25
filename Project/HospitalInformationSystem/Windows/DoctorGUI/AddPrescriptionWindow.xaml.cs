@@ -95,5 +95,10 @@ namespace HospitalInformationSystem.Windows.DoctorGUI
             return (CheckInputOfMedicineTextBox() && CheckInputOfInfoTextBox() && CheckInputOfStartDateTextBox()
                 && CheckInputOfEndDateTextBox() && CheckPatientsAllergens());
         }
+
+        private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            instance = null;
+        }
     }
 }

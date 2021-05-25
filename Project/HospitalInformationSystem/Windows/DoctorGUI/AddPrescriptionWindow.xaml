@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:HospitalInformationSystem.Windows"
         mc:Ignorable="d"
-        Title="Izdavanje recepta" Height="450" Width="350">
+        Title="Izdavanje recepta" Height="450" Width="350" Closing="Window_Closing">
     <Grid>
         <Label Content="Lek:" HorizontalAlignment="Left" Margin="28,33,0,0" VerticalAlignment="Top" FontSize="18"/>
         <Label Content="Datum početka:" HorizontalAlignment="Left" Margin="28,72,0,0" VerticalAlignment="Top" FontSize="18"/>

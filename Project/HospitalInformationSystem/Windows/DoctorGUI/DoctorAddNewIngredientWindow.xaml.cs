@@ -60,5 +60,10 @@ namespace HospitalInformationSystem.Windows.DoctorGUI
         {
             return CheckIngredientNameInput() && CheckQuantityInput() && CheckRdiInput();
         }
+
+        private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            instance = null;
+        }
     }
 }

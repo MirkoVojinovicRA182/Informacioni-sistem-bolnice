@@ -157,10 +157,7 @@ namespace HospitalInformationSystem.Windows.DoctorGUI
             }
             return true;
         }
-        private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
-        {
-            instance = null;
-        }
+        private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e) => instance = null;
         private void specializationComboBox_SelectionChanged(object sender, System.Windows.Controls.SelectionChangedEventArgs e)
         {
             InitDoctorComboBox();

@@ -110,19 +110,8 @@ namespace HospitalInformationSystem.Windows.DoctorGUI
         {
             return (CheckSelectedRoom() && CheckEndDateInput() && CheckStartDateInput() && CheckIfRoomHaveBeds());
         }
-        private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
-        {
-            instance = null;
-        }
-
-        private void roomsListBox_PreviewKeyDown(object sender, KeyEventArgs e)
-        {
-            CheckKeyPress();
-        }
-
-        private void Window_KeyDown(object sender, KeyEventArgs e)
-        {
-            CheckKeyPress();
-        }
+        private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e) => instance = null;
+        private void roomsListBox_PreviewKeyDown(object sender, KeyEventArgs e) => CheckKeyPress();
+        private void Window_KeyDown(object sender, KeyEventArgs e) => CheckKeyPress();
     }
 }

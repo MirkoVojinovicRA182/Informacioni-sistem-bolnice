@@ -20,5 +20,15 @@ namespace HospitalInformationSystem.Windows.DoctorGUI
             InitializeComponent();
             allergensListBox.ItemsSource = patientToViewAllergens.Allergens;
         }
+
+        private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+
+        }
+
+        private void Window_Closing_1(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            instance = null;
+        }
     }
 }

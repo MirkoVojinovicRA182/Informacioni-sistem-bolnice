@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:HospitalInformationSystem.Windows.DoctorGUI"
         mc:Ignorable="d"
-        Title="Unos novog sastojka" Height="300" Width="400">
+        Title="Unos novog sastojka" Height="300" Width="400" Closing="Window_Closing">
     <Grid>
         <Label Content="Naziv:" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="24,21,0,0" FontSize="15"/>
         <Label Content="Količina u 100g:" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="24,75,0,0" FontSize="15"/>

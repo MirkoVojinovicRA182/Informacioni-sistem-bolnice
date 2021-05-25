@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:HospitalInformationSystem.Windows"
         mc:Ignorable="d"
-        Title="MedicalRecordWindow" Height="450" Width="800">
+        Title="MedicalRecordWindow" Height="450" Width="800" Closing="Window_Closing">
     <Grid>
         <Label Content="Broj kartona:" HorizontalAlignment="Left" Margin="264,10,0,0" VerticalAlignment="Top" FontSize="16"/>
         <Label x:Name="medicalRecordId" Content="Label" HorizontalAlignment="Left" Margin="368,10,0,0" VerticalAlignment="Top" FontSize="16"/>

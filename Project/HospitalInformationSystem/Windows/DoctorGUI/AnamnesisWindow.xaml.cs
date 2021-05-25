@@ -65,5 +65,10 @@ namespace HospitalInformationSystem.Windows.DoctorGUI
         {
             return CheckBasicDescriptionInput() && CheckBasicDescriptionOfAnamnesisInput() && CheckDateInput();
         }
+
+        private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            instance = null;
+        }
     }
 }

@@ -38,5 +38,10 @@ namespace HospitalInformationSystem.Windows.DoctorGUI
             Anamnesis anamnesis = (Anamnesis)anamnesisComboBox.SelectedItem;
             anamnesisTextBlock.Text = anamnesis.anamnesis;
         }
+
+        private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            instance = null;
+        }
     }
 }

@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:HospitalInformationSystem.Windows"
         mc:Ignorable="d"
-        Title="AnamnesisWindow" Height="350" Width="600">
+        Title="AnamnesisWindow" Height="350" Width="600" Closing="Window_Closing">
     <Grid>
         <Label Content="Datum:" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" FontSize="16"/>
         <TextBox x:Name="dateTextBox" HorizontalAlignment="Left" Height="32" Margin="76,10,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" FontSize="16"/>

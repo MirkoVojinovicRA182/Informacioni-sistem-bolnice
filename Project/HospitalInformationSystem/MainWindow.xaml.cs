@@ -44,10 +44,10 @@ namespace HospitalInformationSystem.Windows
             DoctorController.getInstance().AddDoctor(doctor3);
             var doctor4 = new Doctor("Darko", "Ilic", Specialization.Surgeon, RoomController.GetInstance().GetRooms()[3]);
             DoctorController.getInstance().AddDoctor(doctor4);
-            DoctorController.getInstance().GetDoctors()[0].room = RoomController.GetInstance().GetRooms()[0];
-            DoctorController.getInstance().GetDoctors()[1].room = RoomController.GetInstance().GetRooms()[1];
-            DoctorController.getInstance().GetDoctors()[2].room = RoomController.GetInstance().GetRooms()[2];
-            DoctorController.getInstance().GetDoctors()[3].room = RoomController.GetInstance().GetRooms()[3];
+            DoctorController.getInstance().GetDoctors()[0].room = RoomController.GetInstance().GetRooms()[1];
+            DoctorController.getInstance().GetDoctors()[1].room = RoomController.GetInstance().GetRooms()[2];
+            DoctorController.getInstance().GetDoctors()[2].room = RoomController.GetInstance().GetRooms()[3];
+            DoctorController.getInstance().GetDoctors()[3].room = RoomController.GetInstance().GetRooms()[4];
 
             Patient first = new Patient("Pera", "Pacijent", new PatientActivity(0, 0, 0, false));
             first.Jmbg = "001";

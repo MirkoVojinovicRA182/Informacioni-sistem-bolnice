@@ -37,7 +37,6 @@ namespace HospitalInformationSystem.Windows.ManagerGUI
         }
         private void confirmButton_Click(object sender, RoutedEventArgs e)
         {
-
             MakeStartAndEndTermDate();
             if (CheckTheCorrectnessOfTheTerm())
             {

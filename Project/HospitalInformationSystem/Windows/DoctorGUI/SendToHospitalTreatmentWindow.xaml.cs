@@ -96,19 +96,36 @@ namespace HospitalInformationSystem.Windows.DoctorGUI
         {
             return (roomsListBox.SelectedIndex >= 0);
         }
-        private bool CheckIfRoomHaveBeds()
+        private int GetNumberOfBedsInRoom()
         {
-            foreach(DictionaryEntry de in ((Room)roomsListBox.SelectedItem).EquipmentInRoom.Equipment)
+            foreach(DictionaryEntry equipment in ((Room)roomsListBox.SelectedItem).EquipmentInRoom.Equipment)
             {
-                string str = EquipmentController.getInstance().getEquipmentName(de.Key.ToString());
+                string str = EquipmentController.getInstance().getEquipmentName(equipment.Key.ToString());
                 if (str.Equals("Krevet"))
-                    return true;
+                    return (int)equipment.Value;
             }
-            return false;
+            return 0;
+        }
+        private bool CheckIfRoomHaveFreeBeds()
+        {
+            int freeBedsInRoom = GetNumberOfBedsInRoom();
+            DateTime startDate = DateTime.ParseExact(endDateTextBox.Text,
+                    dateTemplate, System.Globalization.CultureInfo.InvariantCulture);
+            DateTime endDate = DateTime.ParseExact(startDateTextBox.Text,
+                    dateTemplate, System.Globalization.CultureInfo.InvariantCulture);
+            foreach (Patient patient in PatientController.getInstance().GetPatientsOnHospitalTretment())
+            {
+                if ((patient.hospitalTreatment.treatmentEndDate < startDate) ||
+                    (patient.hospitalTreatment.treatmentStartDate > endDate))
+                { }
+                else
+                    freeBedsInRoom--;
+            }
+            return freeBedsInRoom > 0;
         }
         private bool CheckAllInputs()
         {
-            return (CheckSelectedRoom() && CheckEndDateInput() && CheckStartDateInput() && CheckIfRoomHaveBeds());
+            return CheckSelectedRoom() && CheckEndDateInput() && CheckStartDateInput() && CheckIfRoomHaveFreeBeds();
         }
         private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e) => instance = null;
         private void roomsListBox_PreviewKeyDown(object sender, KeyEventArgs e) => CheckKeyPress();

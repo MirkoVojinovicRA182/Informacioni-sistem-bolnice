@@ -60,9 +60,9 @@ namespace HospitalInformationSystem.Controller
         {
             _roomService.RemoveEquipmentFromRooms(equipment);
         }
-        public bool EquipmentExistInRoom(string id, Hashtable roomEq)
+        public bool EquipmentExistInRoom(string equipmentId, Hashtable roomEquipment)
         {
-            return _roomService.EquipmentExistInRoom(id, roomEq);
+            return _roomService.EquipmentExistInRoom(equipmentId, roomEquipment);
         }
     }
 }

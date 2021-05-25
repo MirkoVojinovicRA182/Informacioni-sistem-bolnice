@@ -68,8 +68,8 @@ namespace HospitalInformationSystem.Windows.ManagerGUI
             }
             else
             {
-                EditRoomWindow.getInstance((Room)ManagerMainWindow.getInstance().roomsUserControl.allRoomsTable.SelectedItem).refreshDynamicEquipmentListBox();
-                EditRoomWindow.getInstance((Room)ManagerMainWindow.getInstance().roomsUserControl.allRoomsTable.SelectedItem).refreshStaticEquipmentListBox();
+                EditRoomWindow.getInstance((Room)ManagerMainWindow.getInstance().roomsUserControl.allRoomsTable.SelectedItem).RefreshDynamicEquipmentListBox();
+                EditRoomWindow.getInstance((Room)ManagerMainWindow.getInstance().roomsUserControl.allRoomsTable.SelectedItem).RefreshStaticEquipmentListBox();
             }
         }
         private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)

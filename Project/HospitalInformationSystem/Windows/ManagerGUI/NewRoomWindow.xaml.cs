@@ -148,7 +148,7 @@ namespace HospitalInformationSystem.Windows.ManagerGUI
                 string nameOfSelectedEquipment = (string)equipmentListBox.SelectedItem;
                 string[] separator = { " " };
                 string[] atributesOfSelectedEquipment = nameOfSelectedEquipment.Split(separator, StringSplitOptions.None);
-                roomEquipment.Remove(EquipmentController.getInstance().getEquipmentId(atributesOfSelectedEquipment[0]));
+                roomEquipment.Remove(EquipmentController.getInstance().getEquipmentIdByName(atributesOfSelectedEquipment[0]));
                 refreshStaticEquipmentListBox();
             }
             else

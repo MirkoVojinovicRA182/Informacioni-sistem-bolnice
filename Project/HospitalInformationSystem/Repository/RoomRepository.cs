@@ -80,11 +80,11 @@ namespace HospitalInformationSystem.Repository
         {
             return _allRooms[0];
         }
-        public bool EquipmentExistInRoom(string id, Hashtable roomEq)
+        public bool EquipmentExistInRoom(string equipmentId, Hashtable roomEquipment)
         {
-            foreach (DictionaryEntry de in roomEq)
+            foreach (DictionaryEntry de in roomEquipment)
             {
-                if (string.Compare(id, de.Key.ToString()) == 0)
+                if (string.Compare(equipmentId, de.Key.ToString()) == 0)
                     return true;
             }
             return false;

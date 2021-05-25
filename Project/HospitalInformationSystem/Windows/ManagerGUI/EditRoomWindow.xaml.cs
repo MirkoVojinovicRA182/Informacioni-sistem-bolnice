@@ -9,219 +9,51 @@ using System.Windows;
 using System.Windows.Controls;
 namespace HospitalInformationSystem.Windows.ManagerGUI
 {
-    /// <summary>
-    /// Interaction logic for EditRoomWindow.xaml
-    /// </summary>
     public partial class EditRoomWindow : Window
     {
         Room selectedRoom;
         private static EditRoomWindow instance = null;
-        int distinction;
-        //pamti svu opremu koja cija je kolicina u nekom momentu bila umanjena
-        private Hashtable allDistinctions;
-
         private Hashtable roomEquipment;
-        //pamti svu opremu koja je u trenutnoj sesiji dodata prostoriji
+        private Hashtable reducedEquipment;
         private Hashtable newEquipment;
-
-
-        private EditRoomWindow(Room selectedRoom)
-        {
-            InitializeComponent();
-            this.selectedRoom = selectedRoom;
-            roomEquipment = new Hashtable();
-            allDistinctions = new Hashtable();
-            newEquipment = new Hashtable();
-            //checkEquipment();
-            loadTypeComboBox();
-            loadRoom();
-            equipmentApplyButton.IsEnabled = false;
-
-            if(string.Equals(selectedRoom.Name, "Magacin"))
-            {
-                addDynamicButton.IsEnabled = false;
-                removeDynamicButton.IsEnabled = false;
-                addStaticButton.IsEnabled = false;
-                additionOfDynamicEquipmentButton.IsEnabled = false;
-                typeComboBox.IsEnabled = false;
-            }
-        }
-
+        string selectedEquipmentName;
+        string selectedEquipmentQuantity;
         public static EditRoomWindow getInstance(Room selectedRoom)
         {
             if (instance == null)
                 instance = new EditRoomWindow(selectedRoom);
             return instance;
         }
-
-        private void addDynamicButton_Click(object sender, RoutedEventArgs e)
+        private EditRoomWindow(Room selectedRoom)
         {
-            AddEquipmentToRoomWindow.getInstance(roomEquipment, Constants.DYNAMIC_EQUIPMENT, Constants.EDIT_ROOM_WINDOW).Show();
+            InitializeComponent();
+            InitializeFields(selectedRoom);
+            LoadTypeComboBox();
+            FillComponents();
+            LoadRoomEquipment();
+            RefreshDynamicEquipmentListBox();
+            RefreshStaticEquipmentListBox();
+            ManipulateComponents();
         }
-
-        private void addStaticButton_Click(object sender, RoutedEventArgs e)
+        private void InitializeFields(Room selectedRoom)
         {
-            AddEquipmentToRoomWindow.getInstance(roomEquipment, Constants.STATIC_EQUIPMENT, Constants.EDIT_ROOM_WINDOW).Show();
+            this.selectedRoom = selectedRoom;
+            roomEquipment = new Hashtable();
+            reducedEquipment = new Hashtable();
+            newEquipment = new Hashtable();
         }
-
-
-        public void addEquipment(string id, int quantity)
+        private void LoadTypeComboBox()
         {
-            try
-            {
-                newEquipment.Add(id, quantity);
-                roomEquipment.Add(id, quantity);
-            }
-            catch (Exception e)
-            {
-                MessageBox.Show("Već ste uneli ovu opremu!Ako ste pogrešili sa prvobitnim unosom, prvo uklonite, pa zatim ponovo unesite opremu.", "Greška", MessageBoxButton.OK, MessageBoxImage.Error);
-            }
-
-            refreshDynamicEquipmentListBox();
-            refreshStaticEquipmentListBox();
+            string[] typesOfRoom = { Constants.OPERATION_ROOM , Constants.REST_ROOM, Constants.ROOM_WITH_BEDS, Constants.HOSPITALIZATION_ROOM,
+            Constants.OFFICE, Constants.EXAMINATION_ROOM, Constants.MAGACINE};
+            typeComboBox.ItemsSource = new List<String>(typesOfRoom);
         }
-
-
-        private void moveStaticEquipmentButton_Click(object sender, RoutedEventArgs e)
+        public void FillComponents()
         {
-            if (staticEquipmentListBox.SelectedItem != null)
-            {
-             
-                string nameOfSelectedEquipment = (string)staticEquipmentListBox.SelectedItem;
-
-                string[] separator = { " x", };
-
-                string[] atributesOfSelectedEquipment = nameOfSelectedEquipment.Split(separator, StringSplitOptions.None);
-
-                string key = EquipmentController.getInstance().getEquipmentId(atributesOfSelectedEquipment[0]);
-
-                int value = int.Parse(atributesOfSelectedEquipment[1]);
-
-                if (RoomController.GetInstance().EquipmentExistInRoom(key, selectedRoom.EquipmentInRoom.Equipment))
-                    StaticEquipmentDeploymentWindow.getInstance(selectedRoom, key).Show();
-                else
-                    MessageBox.Show("Prvo dodajte opremu, zatim zakažite njeno premeštanje!", "Upozorenje", MessageBoxButton.OK, MessageBoxImage.Warning);
-            }
-            else
-                MessageBox.Show("Niste odabrali opremu!", "Upozorenje", MessageBoxButton.OK, MessageBoxImage.Warning);
-
-        }
-        private void removeDynamicButton_Click(object sender, RoutedEventArgs e)
-        {
-            if (dynamicEquipmentListBox.SelectedItem != null)
-            {
-                //DictionaryEntry de = (DictionaryEntry)dynamicEquipmentListBox.SelectedItem;
-
-                string nameOfSelectedEquipment = (string)dynamicEquipmentListBox.SelectedItem;
-
-                string[] separator = { " x",};
-
-                string[] atributesOfSelectedEquipment = nameOfSelectedEquipment.Split(separator, StringSplitOptions.None);
-
-                string key = EquipmentController.getInstance().getEquipmentId(atributesOfSelectedEquipment[0]);
-                int value = int.Parse(atributesOfSelectedEquipment[1]);
-
-
-                InsertQuantityOfEquipmentForRemovingWindow.getInstance(value).ShowDialog();
-
-                if (InsertQuantityOfEquipmentForRemovingWindow.itSubmitted)
-                {
-                    int currentQuantity = value;
-                    int removedQuantity = InsertQuantityOfEquipmentForRemovingWindow.getQuantity();
-                    distinction = currentQuantity - removedQuantity;
-                    if (distinction == 0)
-                    {
-                        this.roomEquipment.Remove(key);
-                        this.newEquipment.Remove(key);
-                    }
-                    else
-                        roomEquipment[key] = distinction;
-
-                    if (allDistinctions.Contains(key))
-                    {
-                        allDistinctions.Remove(key);
-                    }
-
-                    if(selectedRoom.EquipmentInRoom.Equipment.Contains(key))
-                        allDistinctions.Add(key, removedQuantity);
-
-                    refreshDynamicEquipmentListBox();
-                    
-                }
-
-            }
-            else
-                MessageBox.Show("Niste odabrali opremu!", "Greška", MessageBoxButton.OK, MessageBoxImage.Error);
-        }
-        private void changeRoomButton_Click(object sender, RoutedEventArgs e)
-        {
-            int id = int.TryParse(idTextBox.Text, out id) ? id : 0;
-            int floor = int.TryParse(floorTextBox.Text, out floor) ? floor : 0;
-
-            if (id == 0)
-                MessageBox.Show("Pogrešan unos šifre!", "Greška", MessageBoxButton.OK, MessageBoxImage.Error);
-            else if (RoomController.GetInstance().RoomExists(id) && id != selectedRoom.Id)
-                MessageBox.Show("U sistemu postoji prostorija sa ovom šifrom!", "Greška", MessageBoxButton.OK, MessageBoxImage.Error);
-            else if (string.Compare(nameTextBox.Text, "") == 0)
-                MessageBox.Show("Polje za unos naziva ne može biti prazno!", "Greška", MessageBoxButton.OK, MessageBoxImage.Error);
-            else if (floor == 0)
-                MessageBox.Show("Pogrešan unos sprata!", "Greška", MessageBoxButton.OK, MessageBoxImage.Error);
-            else
-            {
-                selectedRoom.UpdateProperties(new RoomDTO(int.Parse(idTextBox.Text), nameTextBox.Text, int.Parse(floorTextBox.Text), getType(typeComboBox.SelectedIndex)));
-                ManagerMainWindow.getInstance().roomsUserControl.refreshTable();
-                MessageBox.Show("Informacije o prostoriji su sada izmenjene.", "Izmena informacija", MessageBoxButton.OK, MessageBoxImage.Information);
-                changeRoomButton.IsEnabled = false;
-                this.Close();
-            }
-        }
-        private void equipmentApplyButton_Click(object sender, RoutedEventArgs e)
-        {
-            //RoomController.GetInstance().SetRoomEquipment(selectedRoom, equipment);
-            selectedRoom.EquipmentInRoom.Equipment = roomEquipment;
-            //promena usled dodavanja neke nove opreme
-            changeQuantityInMagacineOfEquipment();
-            //promena usled eventualnog brisanja opreme
-            changeQuantityOfEquipment();
-            //ManagerMainWindow.getInstance().roomsUserControl.refreshTable();
-            MessageBox.Show("Informacije o opremi prostorije su sada izmenjene.", "Izmena informacija", MessageBoxButton.OK, MessageBoxImage.Information);
-            equipmentApplyButton.IsEnabled = false;
-        }
-        private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
-        {
-            instance = null;
-        }
-        private TypeOfRoom getType(int selectedValue)
-        {
-            TypeOfRoom type = 0;
-            if (selectedValue == 0)
-                type = TypeOfRoom.OperationRoom;
-            else if (selectedValue == 1)
-                type = TypeOfRoom.RestRoom;
-            else if (selectedValue == 2)
-                type = TypeOfRoom.RoomWithBeds;
-            else if (selectedValue == 3)
-                type = TypeOfRoom.HospitalizationRoom;
-            else if (selectedValue == 4)
-                type = TypeOfRoom.Office;
-            else if (selectedValue == 5)
-                type = TypeOfRoom.ExaminationRoom;
-
-            return type;
-
-        }
-        private void loadTypeComboBox()
-        {
-            var list = new List<String>();
-
-            list.Add("Operaciona sala");
-            list.Add("Prostorija za odmor");
-            list.Add("Soba sa krevetima");
-            list.Add("Sala za hospitalizaciju");
-            list.Add("Kancelarija");
-            list.Add("Prostorija za preglede");
-
-            typeComboBox.ItemsSource = list;
+            idTextBox.Text = selectedRoom.Id.ToString();
+            nameTextBox.Text = selectedRoom.Name;
+            floorTextBox.Text = selectedRoom.Floor.ToString();
+            fiilTypeComboBox(selectedRoom.Type);
         }
         private void fiilTypeComboBox(TypeOfRoom type)
         {
@@ -238,130 +70,226 @@ namespace HospitalInformationSystem.Windows.ManagerGUI
             else if (type == TypeOfRoom.RoomWithBeds)
                 typeComboBox.SelectedIndex = 2;
         }
-        public void loadRoom()
-        {
-            idTextBox.Text = selectedRoom.Id.ToString();
-            nameTextBox.Text = selectedRoom.Name;
-            floorTextBox.Text = selectedRoom.Floor.ToString();
-            fiilTypeComboBox(selectedRoom.Type);
-            RefreshEquipmentList();
-            refreshDynamicEquipmentListBox();
-            refreshStaticEquipmentListBox();
-        }
-        public void RefreshEquipmentList()
+        public void LoadRoomEquipment()
         {
             roomEquipment.Clear();
             foreach (DictionaryEntry de in selectedRoom.EquipmentInRoom.Equipment)
                 roomEquipment.Add(de.Key, de.Value);
         }
-        public void refreshDynamicEquipmentListBox()
+        public void RefreshDynamicEquipmentListBox()
         {
             dynamicEquipmentListBox.ItemsSource = null;
-            dynamicEquipmentListBox.ItemsSource = loadDynamicEquimpentInListBox();
+            dynamicEquipmentListBox.ItemsSource = getRoomEquipment(TypeOfEquipment.Dynamic);
         }
-        public void refreshStaticEquipmentListBox()
+        public void RefreshStaticEquipmentListBox()
         {
             staticEquipmentListBox.ItemsSource = null;
-            staticEquipmentListBox.ItemsSource = loadStaticEquimpentInListBox();
+            staticEquipmentListBox.ItemsSource = getRoomEquipment(TypeOfEquipment.Static);
         }
-        private void changeQuantityInMagacineOfEquipment()
+        private List<String> getRoomEquipment(TypeOfEquipment typeOfEquipment)
+        {
+            List<String> equipmentList = new List<String>();
+            foreach (DictionaryEntry de in roomEquipment)
+            {
+                string id = EquipmentController.getInstance().getEquipmentName(de.Key.ToString());
+                if (EquipmentController.getInstance().getEquipmentType(de.Key.ToString()).Equals(typeOfEquipment))
+                    equipmentList.Add(id + " x" + de.Value.ToString());
+            }
+            return equipmentList;
+        }
+        private void ManipulateComponents()
+        {
+            if (selectedRoom.Name.Equals("Magacin"))
+            {
+                addDynamicButton.IsEnabled = false;
+                removeDynamicButton.IsEnabled = false;
+                addStaticButton.IsEnabled = false;
+                additionOfDynamicEquipmentButton.IsEnabled = false;
+                typeComboBox.IsEnabled = false;
+            }
+        }
+        private void changeRoomButton_Click(object sender, RoutedEventArgs e)
+        {
+            if(TryUpdateRoom())
+            {
+                ManagerMainWindow.getInstance().roomsUserControl.refreshTable();
+                MessageBox.Show("Informacije o prostoriji su sada izmenjene.", "Izmena informacija", MessageBoxButton.OK, MessageBoxImage.Information);
+                changeRoomButton.IsEnabled = false;
+                this.Close();
+            }
+        }
+        private bool TryUpdateRoom()
+        {
+            if (CheckInputControls())
+            {
+                selectedRoom.UpdateProperties(new RoomDTO(int.Parse(idTextBox.Text), nameTextBox.Text, int.Parse(floorTextBox.Text), LoadTypeOfRoomFromComboBox((string)typeComboBox.SelectedValue)));
+                return true;
+            }
+            return false;
+        }
+        private bool CheckInputControls()
+        {
+            int id = int.TryParse(idTextBox.Text, out id) ? id : 0;
+            int floor = int.TryParse(floorTextBox.Text, out floor) ? floor : 0;
+            if (id == 0)
+            {
+                MessageBox.Show("Pogrešan unos šifre!", "Greška", MessageBoxButton.OK, MessageBoxImage.Error);
+                return false;
+            }
+            else if (RoomController.GetInstance().RoomExists(id) && id != selectedRoom.Id)
+            {
+                MessageBox.Show("U sistemu postoji prostorija sa ovom šifrom!", "Greška", MessageBoxButton.OK, MessageBoxImage.Error);
+                return false;
+            }
+            else if (string.Compare(nameTextBox.Text, "") == 0)
+            {
+                MessageBox.Show("Polje za unos naziva ne može biti prazno!", "Greška", MessageBoxButton.OK, MessageBoxImage.Error);
+                return false;
+            }
+            else if (floor == 0)
+            {
+                MessageBox.Show("Pogrešan unos sprata!", "Greška", MessageBoxButton.OK, MessageBoxImage.Error);
+                return false;
+            }
+            return true;
+        }
+        private TypeOfRoom LoadTypeOfRoomFromComboBox(string selectedValue)
+        {
+            TypeOfRoom type;
+            if (selectedValue.CompareTo(Constants.OPERATION_ROOM) == 0)
+                type = TypeOfRoom.OperationRoom;
+            else if (selectedValue.CompareTo(Constants.REST_ROOM) == 0)
+                type = TypeOfRoom.RestRoom;
+            else if (selectedValue.CompareTo(Constants.ROOM_WITH_BEDS) == 0)
+                type = TypeOfRoom.RoomWithBeds;
+            else if (selectedValue.CompareTo(Constants.HOSPITALIZATION_ROOM) == 0)
+                type = TypeOfRoom.HospitalizationRoom;
+            else if (selectedValue.CompareTo(Constants.OFFICE) == 0)
+                type = TypeOfRoom.Office;
+            else if (selectedValue.CompareTo(Constants.EXAMINATION_ROOM) == 0)
+                type = TypeOfRoom.ExaminationRoom;
+            else
+                type = TypeOfRoom.Magacine;
+            return type;
+        }
+        private void addStaticButton_Click(object sender, RoutedEventArgs e)
+        {
+            AddEquipmentToRoomWindow.getInstance(roomEquipment, Constants.STATIC_EQUIPMENT, Constants.EDIT_ROOM_WINDOW).Show();
+        }
+        private void moveStaticEquipmentButton_Click(object sender, RoutedEventArgs e)
+        {
+            if (staticEquipmentListBox.SelectedItem != null)
+            {
+                TryOpenEquipmentDeploymentWindow();
+            }
+            else
+                MessageBox.Show("Niste odabrali opremu!", "Upozorenje", MessageBoxButton.OK, MessageBoxImage.Warning);
+        }
+        private void TryOpenEquipmentDeploymentWindow()
+        {
+            if (RoomController.GetInstance().EquipmentExistInRoom(EquipmentController.getInstance().getEquipmentIdByName(SplitListBoxSelectedValue(staticEquipmentListBox)[0]), selectedRoom.EquipmentInRoom.Equipment))
+                StaticEquipmentDeploymentWindow.getInstance(selectedRoom, EquipmentController.getInstance().getEquipmentIdByName(SplitListBoxSelectedValue(staticEquipmentListBox)[0])).Show();
+            else
+                MessageBox.Show("Prvo dodajte opremu, zatim zakažite njeno premeštanje!", "Upozorenje", MessageBoxButton.OK, MessageBoxImage.Warning);
+        }
+        private string[] SplitListBoxSelectedValue(ListBox relevantListBox)
+        {
+            string nameOfSelectedEquipment = (string)relevantListBox.SelectedItem;
+            string[] separator = { " x", };
+            string[] atributesOfSelectedEquipment = nameOfSelectedEquipment.Split(separator, StringSplitOptions.None);
+            string[] keyValueStructure = { atributesOfSelectedEquipment[0], atributesOfSelectedEquipment[1] };
+            return keyValueStructure;
+        }
+        private void addDynamicButton_Click(object sender, RoutedEventArgs e)
+        {
+            AddEquipmentToRoomWindow.getInstance(roomEquipment, Constants.DYNAMIC_EQUIPMENT, Constants.EDIT_ROOM_WINDOW).Show();
+        }
+        public void addEquipment(string id, int quantity)
+        {
+            try
+            {
+                newEquipment.Add(id, quantity);
+                roomEquipment.Add(id, quantity);
+            }
+            catch (Exception e)
+            {
+                MessageBox.Show("Već ste uneli ovu opremu!Ako ste pogrešili sa prvobitnim unosom, prvo uklonite, pa zatim ponovo unesite opremu.", "Greška", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+            RefreshDynamicEquipmentListBox();
+            RefreshStaticEquipmentListBox();
+        }
+        private void additionOfDynamicEquipmentButton_Click(object sender, RoutedEventArgs e)
+        {
+            if (dynamicEquipmentListBox.SelectedItem != null)
+            {
+                SupplementingDynamicEquipmentWindow.GetInstance(selectedRoom, EquipmentController.getInstance().getEquipmentIdByName(SplitListBoxSelectedValue(dynamicEquipmentListBox)[0])).ShowDialog();
+            }
+            else
+                MessageBox.Show("Niste odabrali opremu!", "Greška", MessageBoxButton.OK, MessageBoxImage.Error);
+        }
+        private void removeDynamicButton_Click(object sender, RoutedEventArgs e)
+        {
+            if (dynamicEquipmentListBox.SelectedItem != null)
+            {
+                LoadSelectedEquipmentAttributes();
+                TryReduceDynamicEquipment();
+                RefreshDynamicEquipmentListBox();
+            }
+            else
+                MessageBox.Show("Niste odabrali opremu!", "Greška", MessageBoxButton.OK, MessageBoxImage.Error);
+        }
+        private void LoadSelectedEquipmentAttributes()
+        {
+            selectedEquipmentName = SplitListBoxSelectedValue(dynamicEquipmentListBox)[0];
+            selectedEquipmentQuantity = SplitListBoxSelectedValue(dynamicEquipmentListBox)[1];
+        }
+        private void TryReduceDynamicEquipment()
+        {
+            InsertQuantityOfEquipmentForRemovingWindow.getInstance(int.Parse(selectedEquipmentQuantity)).ShowDialog();
+            if (InsertQuantityOfEquipmentForRemovingWindow.itSubmitted)
+            {
+                ReduceQuantity();
+            }
+        }
+        private void ReduceQuantity()
+        {
+            int currentQuantity = int.Parse(selectedEquipmentQuantity);
+            int removedQuantity = InsertQuantityOfEquipmentForRemovingWindow.getQuantity();
+            if ((currentQuantity - removedQuantity) == 0)
+            {
+                this.roomEquipment.Remove(selectedEquipmentName);
+                this.newEquipment.Remove(selectedEquipmentName);
+            }
+            else roomEquipment[EquipmentController.getInstance().getEquipmentIdByName(selectedEquipmentName)] = currentQuantity - removedQuantity;
+            if (reducedEquipment.Contains(selectedEquipmentName)) reducedEquipment.Remove(selectedEquipmentName);
+            if (selectedRoom.EquipmentInRoom.Equipment.Contains(selectedEquipmentName)) reducedEquipment.Add(selectedEquipmentName, removedQuantity);
+        }
+        private void equipmentApplyButton_Click(object sender, RoutedEventArgs e)
+        {
+            selectedRoom.EquipmentInRoom.Equipment = roomEquipment;
+            ReduceMagacineEquipmentQuantity();
+            if(reducedEquipment.Count != 0)
+                ReduceRoomEquipmentQuantity();
+            MessageBox.Show("Informacije o opremi prostorije su sada izmenjene.", "Izmena informacija", MessageBoxButton.OK, MessageBoxImage.Information);
+            this.Close();
+        }
+        private void ReduceMagacineEquipmentQuantity()
         {
             foreach (DictionaryEntry de in newEquipment)
             {
                 RoomController.GetInstance().GetMagacine().EquipmentInRoom.ReduceEquipmentQuantity(de.Key.ToString(), (int)de.Value);
             }
         }
-        private void changeQuantityOfEquipment()
+        private void ReduceRoomEquipmentQuantity()
         {
-            foreach (DictionaryEntry de in allDistinctions)
+            foreach (DictionaryEntry de in reducedEquipment)
             {
                 EquipmentController.getInstance().findEquipmentById(de.Key.ToString()).ReduceQuantity((int)de.Value);
             }
         }
-        private List<String> loadDynamicEquimpentInListBox()
+        private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
         {
-            List<String> list = new List<String>();
-            foreach (DictionaryEntry de in roomEquipment)
-            {
-                string id = EquipmentController.getInstance().getEquipmentName(de.Key.ToString());
-                if (EquipmentController.getInstance().getEquipmentType(de.Key.ToString()) == TypeOfEquipment.Dynamic)
-                    list.Add(id + " x" + de.Value.ToString());
-            }
-
-            return list;
-        }
-        private List<String> loadStaticEquimpentInListBox()
-        {
-            List<String> list = new List<String>();
-            foreach (DictionaryEntry de in roomEquipment)
-            {
-                string id = EquipmentController.getInstance().getEquipmentName(de.Key.ToString());
-                if (EquipmentController.getInstance().getEquipmentType(de.Key.ToString()) == TypeOfEquipment.Static)
-                    list.Add(id + " x" + de.Value.ToString());
-            }
-
-            return list;
-        }
-        public void checkControls()
-        {
-            int id = int.TryParse(idTextBox.Text, out id) ? id : 0;
-            int floor = int.TryParse(floorTextBox.Text, out floor) ? floor : 0;
-
-            if (selectedRoom.Id != id || selectedRoom.Name != nameTextBox.Text || selectedRoom.StringValueOfEnumType != typeComboBox.SelectedItem || selectedRoom.Floor != floor)
-                changeRoomButton.IsEnabled = true;
-            else
-                changeRoomButton.IsEnabled = false;
-        }
-
-        private void typeComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            checkControls();
-        }
-
-        private void idTextBox_SelectionChanged(object sender, RoutedEventArgs e)
-        {
-            checkControls();
-        }
-
-        private void nameTextBox_SelectionChanged(object sender, RoutedEventArgs e)
-        {
-            checkControls();
-        }
-
-        private void floorTextBox_SelectionChanged(object sender, RoutedEventArgs e)
-        {
-            checkControls();
-        }
-        private void checkEquipment()
-        {
-            if (newEquipment.Count == 0 && allDistinctions.Count == 0)
-                equipmentApplyButton.IsEnabled = false;
-            else
-                equipmentApplyButton.IsEnabled = true;
-        }
-
-        private void dynamicEquipmentListBox_LayoutUpdated(object sender, EventArgs e)
-        {
-            checkEquipment();
-        }
-
-        private void staticEquipmentListBox_LayoutUpdated(object sender, EventArgs e)
-        {
-            checkEquipment();
-        }
-
-        private void additionOfDynamicEquipmentButton_Click(object sender, RoutedEventArgs e)
-        {
-            if (dynamicEquipmentListBox.SelectedItem != null)
-            {
-                string nameOfSelectedEquipment = (string)dynamicEquipmentListBox.SelectedItem;
-                string[] separator = { " x", };
-                string[] atributesOfSelectedEquipment = nameOfSelectedEquipment.Split(separator, StringSplitOptions.None);
-                string idOfSelectedEquipment = EquipmentController.getInstance().getEquipmentId(atributesOfSelectedEquipment[0]);
-                SupplementingDynamicEquipmentWindow.GetInstance(selectedRoom, idOfSelectedEquipment).ShowDialog();
-            }
-            else
-                MessageBox.Show("Niste odabrali opremu!", "Greška", MessageBoxButton.OK, MessageBoxImage.Error);
+            instance = null;
         }
     }
 }

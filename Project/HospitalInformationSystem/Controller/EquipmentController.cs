@@ -62,7 +62,7 @@ namespace HospitalInformationSystem.Controller
             return _equipmentService.getEquipmentNameById(id);
         }
 
-        public string getEquipmentId(string name)
+        public string getEquipmentIdByName(string name)
         {
             return _equipmentService.getEquipmentIdByName(name);
         }

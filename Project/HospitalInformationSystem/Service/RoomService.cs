@@ -59,9 +59,9 @@ namespace HospitalInformationSystem.Service
                 GetMagacine().EquipmentInRoom.Equipment[(string)roomEquipment.Key] = (int)GetMagacine().EquipmentInRoom.Equipment[roomEquipment.Key] + (int)roomEquipment.Value;
             }
         }
-        public bool EquipmentExistInRoom(string id, Hashtable roomEq)
+        public bool EquipmentExistInRoom(string equipmentId, Hashtable roomEquipment)
         {
-            return _repository.EquipmentExistInRoom(id, roomEq);
+            return _repository.EquipmentExistInRoom(equipmentId, roomEquipment);
         }
     }
 }

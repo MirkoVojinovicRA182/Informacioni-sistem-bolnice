@@ -35,7 +35,6 @@ namespace HospitalInformationSystem.Windows.DoctorGUI
         }
         private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
         {
-            MedicineController.GetInstance().SaveInFile();
             instance = null;
         }
     }

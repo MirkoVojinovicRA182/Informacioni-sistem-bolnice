@@ -32,8 +32,6 @@ namespace HospitalInformationSystem.Windows.DoctorGUI
         }
         private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
         {
-            DoctorController.getInstance().SaveInFlie();
-            AppointmentController.getInstance().SaveAppointmentsInFile();
             instance = null;
         }
         private void OpenNewAppointmentWindow()

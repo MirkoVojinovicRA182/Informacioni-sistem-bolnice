@@ -21,17 +21,10 @@ namespace HospitalInformationSystem.Windows.ManagerGUI
         private ManagerMainWindow()
         {
             InitializeComponent();
-            Deserialize();
             RefreshTables();
             if (MedicineCommentsExists())
                 MedicineCommentNotificationWindow.GetInstance().ShowDialog();
 
-        }
-        private void Deserialize()
-        {
-            RoomController.GetInstance().LoadRoomsFromFile();
-            EquipmentController.getInstance().loadFromFile();
-            MedicineController.GetInstance().LoadFromFile();
         }
         private void RefreshTables()
         {
@@ -166,13 +159,7 @@ namespace HospitalInformationSystem.Windows.ManagerGUI
         private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
         {
             instance = null;
-            Serialize();
-        }
-        private void Serialize()
-        {
-            EquipmentController.getInstance().saveInFile();
-            RoomController.GetInstance().SaveRoomsInFile();
-            MedicineController.GetInstance().SaveInFile();
+            MainWindow.Serialize();
         }
     }
 }

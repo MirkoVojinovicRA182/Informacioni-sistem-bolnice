@@ -48,7 +48,7 @@ namespace HospitalInformationSystem.Windows.SecretaryGUI
         }
         private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
         {
-            PatientController.getInstance().SaveInFile();
+            MainWindow.Serialize();
             instance = null;
         }
 

@@ -71,11 +71,7 @@ namespace HospitalInformationSystem.Windows
 
             ///
 
-            RoomController.GetInstance().LoadRoomsFromFile();
-            EquipmentController.getInstance().loadFromFile();
-            PatientController.getInstance().LoadFromFile();
-            AppointmentController.getInstance().LoadAppointmentsFromFile();
-            DoctorController.getInstance().LoadFromFile();
+            Deserialize();
 
             Secretary secretary = new Secretary();
             secretary.Name = "Petar";
@@ -162,7 +158,7 @@ namespace HospitalInformationSystem.Windows
 
         private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
         {
-            PatientController.getInstance().SaveInFile();
+            
         }
 
         public static List<String> GetTimeList()
@@ -208,6 +204,26 @@ namespace HospitalInformationSystem.Windows
                 return "0" + currentMinute.ToString();
             else
                 return currentMinute.ToString();
+        }
+        private void Deserialize()
+        {
+            EquipmentController.getInstance().loadFromFile();
+            RoomController.GetInstance().LoadRoomsFromFile();
+            MedicineController.GetInstance().LoadFromFile();
+            DoctorController.getInstance().LoadFromFile();
+            NotificationController.GetInstance().LoadFromFile();
+            PatientController.getInstance().loadFromFile();
+            AppointmentController.getInstance().LoadAppointmentsFromFile();
+        }
+        public static void Serialize()
+        {
+            EquipmentController.getInstance().saveInFile();
+            RoomController.GetInstance().SaveRoomsInFile();
+            MedicineController.GetInstance().SaveInFile();
+            DoctorController.getInstance().SaveInFlie();
+            NotificationController.GetInstance().SaveInFile();
+            PatientController.getInstance().SaveInFile();
+            AppointmentController.getInstance().SaveAppointmentsInFile();
         }
     }
 }

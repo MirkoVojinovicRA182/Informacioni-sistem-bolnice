@@ -213,9 +213,6 @@ namespace HospitalInformationSystem.Windows.PatientGUI
         private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
         {
             CheckIfPatientIsTroll();
-            AppointmentController.getInstance().SaveAppointmentsInFile();
-            DoctorController.getInstance().SaveInFlie();
-            PatientController.getInstance().SaveInFile();
             _instance = null;
         }
         private void HomeButton_Click(object sender, RoutedEventArgs e)

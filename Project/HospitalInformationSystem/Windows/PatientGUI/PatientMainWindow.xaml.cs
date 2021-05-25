@@ -29,7 +29,6 @@ namespace HospitalInformationSystem.Windows.PatientGUI
         public PatientMainWindow(Patient patient)
         {
             InitializeComponent();
-            LoadDataFromFiles();
             _loggedInPatient = patient;
             Notify();
         }
@@ -38,13 +37,6 @@ namespace HospitalInformationSystem.Windows.PatientGUI
             if (_instance == null)
                 _instance = new PatientMainWindow(patient);
             return _instance;
-        }
-        private void LoadDataFromFiles()
-        {
-            DoctorController.getInstance().LoadFromFile();
-            PatientController.getInstance().LoadFromFile();
-            AppointmentController.getInstance().LoadAppointmentsFromFile();
-            NotificationController.GetInstance().LoadFromFile();
         }
         private void AppointmentsButton_Click(object sender, RoutedEventArgs e)
         {
@@ -158,10 +150,7 @@ namespace HospitalInformationSystem.Windows.PatientGUI
         }
         private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
         {
-            DoctorController.getInstance().SaveInFlie();
-            AppointmentController.getInstance().SaveAppointmentsInFile();
-            PatientController.getInstance().SaveInFile();
-            NotificationController.GetInstance().SaveInFile();
+            MainWindow.Serialize();
             _instance = null;
         }
     }

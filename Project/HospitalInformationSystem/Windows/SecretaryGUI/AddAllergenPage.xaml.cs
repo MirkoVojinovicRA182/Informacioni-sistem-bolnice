@@ -26,14 +26,28 @@ namespace HospitalInformationSystem.Windows.SecretaryGUI
         {
             InitializeComponent();
         }
-        private void addAllergenBtn_Click(object sender, RoutedEventArgs e)
+        private void AddAllergenBtn_Click(object sender, RoutedEventArgs e)
         {
             Allergen newAllergen = new Allergen(allergenNameTxt.Text);
             PatientController.getInstance().addAllergen(newAllergen);
             foreach (Patient patient in PatientController.getInstance().getPatient())
             {
-                patient.MedicalRecord.AllergensList.Add(newAllergen);
+                Console.WriteLine(patient);
+                //foreach (Allergen a in patient.MedicalRecord.AllergensList)
+                //{
+                //    if (a.Name == newAllergen.Name)
+                //        return;
+                //}
+                patient.MedicalRecord.AllergensList.Add(new Allergen(newAllergen));
+                //Console.WriteLine("DODAO SAM!!!!!!!!    " + patient);
+                //Console.WriteLine("Pred foreach alergena od" + patient);
+                //foreach (Allergen a in patient.MedicalRecord.AllergensList)
+                //{     
+                //    Console.WriteLine(a.Name + patient);
+                //}
+
             }
+
         }
     }
 }

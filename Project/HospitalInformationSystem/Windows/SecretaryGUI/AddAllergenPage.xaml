@@ -10,7 +10,7 @@
 
     <Grid>
         <TextBox x:Name="allergenNameTxt" HorizontalAlignment="Left" Height="35" TextWrapping="Wrap" VerticalAlignment="Top" Width="203" Margin="302,139,0,0"/>
-        <Button x:Name="addAllergenBtn" Content="Dodaj" HorizontalAlignment="Left" VerticalAlignment="Top" Width="127" Margin="344,286,0,0" Click="addAllergenBtn_Click" RenderTransformOrigin="1.517,1.766" Height="29"/>
+        <Button x:Name="addAllergenBtn" Content="Dodaj" HorizontalAlignment="Left" VerticalAlignment="Top" Width="127" Margin="344,286,0,0" Click="AddAllergenBtn_Click" RenderTransformOrigin="1.517,1.766" Height="29"/>
 
     </Grid>
 </Page>

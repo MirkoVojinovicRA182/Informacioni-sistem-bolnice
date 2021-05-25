@@ -9,6 +9,11 @@ namespace Model
     {
         private string stringValueOfEnumType;
         private RoomEquipment _equipmentInRoom;
+
+        public Room()
+        {
+        }
+
         public Room(int id, string name, int floor, TypeOfRoom type, Hashtable equipment)
         {
             this.Id = id;

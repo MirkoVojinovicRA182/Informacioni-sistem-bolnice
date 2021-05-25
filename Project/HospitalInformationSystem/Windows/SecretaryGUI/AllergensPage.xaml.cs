@@ -35,12 +35,19 @@ namespace HospitalInformationSystem.Windows.SecretaryGUI
 
         private void DeleteBtn_Click(object sender, RoutedEventArgs e)
         {
-            PatientController.getInstance().getAllergens().Remove((Allergen)allergensList.SelectedItem);
+            Allergen allergenToRemove = (Allergen)allergensList.SelectedItem;
+            PatientController.getInstance().getAllergens().Remove(allergenToRemove);
+            allergenNameTxt.Text = "";
+            foreach(Patient patient in PatientController.getInstance().getPatient())
+            {
+                patient.MedicalRecord.AllergensList.Remove(allergenToRemove);
+            }
         }
 
         private void AllergensList_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-           allergenNameTxt.Text = ((Allergen)allergensList.SelectedItem).Name;
+            if ((Allergen)allergensList.SelectedItem != null)
+                allergenNameTxt.Text = ((Allergen)allergensList.SelectedItem).Name;
         }
 
         private void RenameBtn_Click(object sender, RoutedEventArgs e)

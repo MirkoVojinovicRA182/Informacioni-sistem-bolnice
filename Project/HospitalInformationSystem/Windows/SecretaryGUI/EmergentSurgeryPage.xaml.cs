@@ -137,7 +137,7 @@ namespace HospitalInformationSystem.Windows.SecretaryGUI
                                           "Obavestenje",
                                           MessageBoxButton.OK,
                                           MessageBoxImage.Warning);
-            return null;
+            return new Room();
         }
     }
 }

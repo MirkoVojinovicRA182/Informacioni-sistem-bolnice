@@ -2,6 +2,7 @@
 using Model;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Windows;
 
 namespace HospitalInformationSystem.Windows.DoctorGUI
@@ -64,7 +65,7 @@ namespace HospitalInformationSystem.Windows.DoctorGUI
         }
         private void InitDoctorComboBox()
         {
-            List<Doctor> doctorList = new List<Doctor>();
+            ObservableCollection<Doctor> doctorList = new ObservableCollection<Doctor>();
             foreach(Doctor doctor in DoctorController.getInstance().GetDoctors())
             {
                 if(doctor.Specialization == specializationComboBoxTransform())

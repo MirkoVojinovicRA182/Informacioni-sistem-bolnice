@@ -24,5 +24,12 @@ namespace Model
             Name = name;
             isAllergic = false;
         }
+
+        public Allergen(Allergen allergen)
+        {
+            ID = allergen.ID;
+            Name = allergen.Name;
+            isAllergic = allergen.isAllergic;
+        }
     }
 }

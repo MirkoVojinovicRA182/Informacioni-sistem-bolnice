@@ -1,6 +1,7 @@
 ﻿using Model;
 using HospitalInformationSystem.Service;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 
 namespace HospitalInformationSystem.Controller
 {
@@ -23,12 +24,12 @@ namespace HospitalInformationSystem.Controller
             doctorService = new DoctorService();
         }
 
-        public List<Doctor> GetDoctors()
+        public ObservableCollection<Doctor> GetDoctors()
         {
             return doctorService.getDoctors();
         }
 
-        public void SetDoctors(List<Doctor> newDoctorsList)
+        public void SetDoctors(ObservableCollection<Doctor> newDoctorsList)
         {
             doctorService.SetDoctors(newDoctorsList);
         }

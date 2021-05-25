@@ -21,20 +21,18 @@ namespace HospitalInformationSystem.Windows.PatientGUI
     /// </summary>
     public partial class ReviewDoctorWindow : Window
     {
-        private Appointment appointmentForReviewing;
+        private Appointment _appointmentForReviewing;
         public ReviewDoctorWindow(Appointment appointment)
         {
             InitializeComponent();
-            appointmentForReviewing = appointment;
+            _appointmentForReviewing = appointment;
             LoadQuestionsComboBoxes();
             LoadRatingComboBox();
         }
-
         private void LoadRatingComboBox()
         {
             comboBoxRating.ItemsSource = new List<int>() { 1, 2, 3, 4, 5 };
         }
-
         private void LoadQuestionsComboBoxes()
         {
             List<AnswersDoctorSurvey> answers = new List<AnswersDoctorSurvey>();
@@ -44,34 +42,30 @@ namespace HospitalInformationSystem.Windows.PatientGUI
             comboBoxQuestion3.ItemsSource = answers;
             comboBoxQuestion4.ItemsSource = answers;
         }
-
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             CollectAnswers();
             this.Close();
         }
-
         private void CollectAnswers()
         {
-            DoctorReview review = new DoctorReview(GetAnswers(), (int)comboBoxRating.SelectedItem, appointmentForReviewing.doctor);
+            DoctorReview review = new DoctorReview(GetAnswers(), (int)comboBoxRating.SelectedItem, _appointmentForReviewing.doctor);
+            _appointmentForReviewing.patient.DoctorReviews.Add(review);
         }
-
         public List<AnswersDoctorSurvey> GetAnswers()
         {
             return new List<AnswersDoctorSurvey> { (AnswersDoctorSurvey)comboBoxQuestion1.SelectedItem, (AnswersDoctorSurvey)comboBoxQuestion2.SelectedItem,
                                                     (AnswersDoctorSurvey)comboBoxQuestion3.SelectedItem, (AnswersDoctorSurvey)comboBoxQuestion4.SelectedItem };
         }
-
         private void HomeButton_Click(object sender, RoutedEventArgs e)
         {
             this.Close();
-            PatientMainWindow.GetInstance(appointmentForReviewing.patient).Show();
+            PatientMainWindow.GetInstance(_appointmentForReviewing.patient).Show();
         }
-
         private void BackButton_Click(object sender, RoutedEventArgs e)
         {
             this.Close();
-            PatientAppointmentCRUDOperationsWindow.getInstance(appointmentForReviewing.patient).Show();
+            PatientAppointmentCRUDOperationsWindow.getInstance(_appointmentForReviewing.patient).Show();
         }
     }
 }

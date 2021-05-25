@@ -21,28 +21,26 @@ namespace HospitalInformationSystem.Windows.PatientGUI
     /// </summary>
     public partial class ReviewHospitalWindow : Window
     {
-        private Patient patient;
+        private Patient _loggedInPatient;
         public ReviewHospitalWindow(Patient patient)
         {
             InitializeComponent();
             LoadQuestionsComboBoxes();
             LoadRatingComboBox();
-            this.patient = patient;
+            this._loggedInPatient = patient;
         }
-
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             ResetNumberOfFinishedAppointments();
-            patient.Activity.HospitalReviewTime = DateTime.Now;
+            _loggedInPatient.Activity.HospitalReviewTime = DateTime.Now;
             this.Close();
-            PatientMainWindow.GetInstance(patient).Show();
+            PatientMainWindow.GetInstance(_loggedInPatient).Show();
         }
-
         private void CollectAnswers()
         {
             HospitalReview review = new HospitalReview(GetAnswers(), (int)comboBoxRating.SelectedItem);
+            _loggedInPatient.HospitalReviews.Add(review);
         }
-
         private void LoadQuestionsComboBoxes()
         {
             List<AnswersHospitalSurvey> answers = new List<AnswersHospitalSurvey>();
@@ -59,7 +57,6 @@ namespace HospitalInformationSystem.Windows.PatientGUI
         {
             comboBoxRating.ItemsSource = new List<int>() { 1, 2, 3, 4, 5 };
         }
-
         public List<AnswersHospitalSurvey> GetAnswers()
         {
             return new List<AnswersHospitalSurvey> { (AnswersHospitalSurvey)comboBoxQuestion1.SelectedItem, (AnswersHospitalSurvey)comboBoxQuestion2.SelectedItem,
@@ -67,22 +64,19 @@ namespace HospitalInformationSystem.Windows.PatientGUI
                                                     (AnswersHospitalSurvey)comboBoxQuestion5.SelectedItem, (AnswersHospitalSurvey)comboBoxQuestion6.SelectedItem,
                                                     (AnswersHospitalSurvey)comboBoxQuestion3.SelectedItem };
         }
-
         private void ResetNumberOfFinishedAppointments()
         {
-            patient.Activity.NumberOfFinishedAppointmentsSinceReview = 0;
+            _loggedInPatient.Activity.NumberOfFinishedAppointmentsSinceReview = 0;
         }
-
         private void HomeButton_Click(object sender, RoutedEventArgs e)
         {
             this.Close();
-            PatientMainWindow.GetInstance(patient).Show();
+            PatientMainWindow.GetInstance(_loggedInPatient).Show();
         }
-
         private void BackButton_Click(object sender, RoutedEventArgs e)
         {
             this.Close();
-            PatientMainWindow.GetInstance(patient).Show();
+            PatientMainWindow.GetInstance(_loggedInPatient).Show();
         }
     }
 }

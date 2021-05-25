@@ -24,37 +24,40 @@ namespace HospitalInformationSystem.Windows.PatientGUI
     /// </summary>
     public partial class NewPatientAppointmentWindow : Window
     {
-        private Patient patient;
+        private Patient _patient;
         public NewPatientAppointmentWindow(Patient patient)
         {
             InitializeComponent();
-
-            this.patient = patient;
-            var list = DoctorController.getInstance().GetDoctors();
-
-            DoctorComboBox.ItemsSource = list;
-            LoadTimeComboBox(); 
-
-           // initPatients();
+            this._patient = patient;
+            LoadDoctorComboBox();
+            LoadTimeComboBox();
+        }
+        private void LoadDoctorComboBox()
+        {
+            List<Doctor> allDoctors = DoctorController.getInstance().GetDoctors();
+            DoctorComboBox.ItemsSource = allDoctors;
         }
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            CreateNewAppointment();
+            ScheduleNewAppointment();
        
-            PatientAppointmentCRUDOperationsWindow.getInstance(patient).RefreshTable();
+            PatientAppointmentCRUDOperationsWindow.getInstance(_patient).RefreshTable();
 
             MessageBox.Show("Kreiran je novi termin.", "Novi termin", MessageBoxButton.OK, MessageBoxImage.Information);
-
         }
-
         private void New_Button_Click(object sender, RoutedEventArgs e)
         {
-            NewPatientAppointmentSystemWindow window = new NewPatientAppointmentSystemWindow(patient, this);
+            NewPatientAppointmentSystemWindow window = new NewPatientAppointmentSystemWindow(_patient, this);
             this.Hide();
             window.ShowDialog();
         }
+        private void ScheduleNewAppointment()
+        {
+            Appointment app = CreateAppointment();
 
-        private void CreateNewAppointment()
+            AppointmentController.getInstance().AddAppointmentToAppointmentList(app);
+        }
+        private Appointment CreateAppointment()
         {
             DateTime startDate = (DateTime)datePicker.SelectedDate;
             string startTime = (string)timeComboBox.SelectedItem;
@@ -62,12 +65,10 @@ namespace HospitalInformationSystem.Windows.PatientGUI
             DateTime startDateTime = new DateTime(startDate.Year, startDate.Month, startDate.Day, Int32.Parse(hoursAndMinutes[0]), Int32.Parse(hoursAndMinutes[1]), 0);
             Doctor doctor = (Doctor)DoctorComboBox.SelectedItem;
 
-            Appointment app = new Appointment(startDateTime, TypeOfAppointment.Pregled, doctor.room, patient, doctor);
+            Appointment app = new Appointment(startDateTime, TypeOfAppointment.Pregled, doctor.room, _patient, doctor);
             app.SchedulingTime = DateTime.Now;
-
-            AppointmentController.getInstance().AddAppointmentToAppointmentList(app);
+            return app;
         }
-
         private void LoadTimeComboBox()
         {
             var timesStringList = new List<string>();
@@ -76,7 +77,6 @@ namespace HospitalInformationSystem.Windows.PatientGUI
                                                   });
             timeComboBox.ItemsSource = timesStringList;
         }
-
         private void CloseButton_Click(object sender, RoutedEventArgs e)
         {
             this.Close();
@@ -84,30 +84,12 @@ namespace HospitalInformationSystem.Windows.PatientGUI
         private void HomeButton_Click(object sender, RoutedEventArgs e)
         {
             this.Close();
-            PatientMainWindow.GetInstance(patient).Show();
+            PatientMainWindow.GetInstance(_patient).Show();
         }
-
         private void BackButton_Click(object sender, RoutedEventArgs e)
         {
             this.Close();
-            PatientAppointmentCRUDOperationsWindow.getInstance(patient).Show();
+            PatientAppointmentCRUDOperationsWindow.getInstance(_patient).Show();
         }
-
-        /*private void initPatients()
-        {
-            initialPatients = new ObservableCollection<Patient>();
-
-            Patient first = new Patient("Pera", "Pacijent 1", "1");
-            Patient second = new Patient("Jova", "Pacijent 2", "2");
-            Patient third = new Patient("Mika", "Pacijent 3", "3");
-
-            initialPatients.Add(first);
-            initialPatients.Add(second);
-            initialPatients.Add(third);
-
-
-            patientComboBox.ItemsSource = initialPatients;
-        }*/
-
     }
 }

@@ -13,9 +13,9 @@ namespace HospitalInformationSystem.Repository
 {
     public class NotificationRepository
     {
+        private List<Notification> _allNotifications;
         public void saveInFile()
         {
-            // TODO: implement
             FileStream fs = new FileStream("Notifications.dat", FileMode.Create);
 
             BinaryFormatter formatter = new BinaryFormatter();
@@ -32,9 +32,7 @@ namespace HospitalInformationSystem.Repository
             {
                 fs.Close();
             }
-
         }
-
         public void loadFromFile()
         {
             if (File.Exists("Notifications.dat"))
@@ -54,6 +52,33 @@ namespace HospitalInformationSystem.Repository
                     fs.Close();
                 }
             }
+        }
+        public List<Notification> GetNotifications()
+        {
+            return _allNotifications;
+        }
+        public void SetNotifications(List<Notification> newNotificationList)
+        {
+            RemoveAllNotifications();
+            foreach (Notification newNotification in newNotificationList)
+                AddNotification(newNotification);
+        }
+        public void AddNotification(Notification notification)
+        {
+            _allNotifications.Add(notification);
+        }
+        public void RemoveAllNotifications()
+        {
+            if (_allNotifications != null)
+                _allNotifications.Clear();
+        }
+        public void RemoveNotification(Notification notificationForRemoval)
+        {
+            if (notificationForRemoval == null)
+                return;
+            if (notificationForRemoval != null)
+                if (this._allNotifications.Contains(notificationForRemoval))
+                    this._allNotifications.Remove(notificationForRemoval);
         }
     }
 }

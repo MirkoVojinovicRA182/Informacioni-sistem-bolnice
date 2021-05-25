@@ -21,37 +21,32 @@ namespace HospitalInformationSystem.Windows.PatientGUI
     /// </summary>
     public partial class PatientAnamnesisWindow : Window
     {
-        private Patient loggedInPatient;
+        private Patient _loggedInPatient;
         public PatientAnamnesisWindow(Patient patient)
         {
             InitializeComponent();
-            loggedInPatient = patient;
+            _loggedInPatient = patient;
             LoadComboBox();
         }
-
-
         private void LoadComboBox()
         {
-            anamnesisComboBox.ItemsSource = loggedInPatient.MedicalRecord.getAnamneses();
+            anamnesisComboBox.ItemsSource = _loggedInPatient.MedicalRecord.getAnamneses();
         }
-
         private void AnamnesisComboBox_DataContextChanged(object sender, DependencyPropertyChangedEventArgs e)
         {
             Anamnesis anamnesis = (Anamnesis)anamnesisComboBox.SelectedItem;
             anamnesisTextBlock.Text = anamnesis.anamnesis;
             noteTextBox.Text = anamnesis.Note;
         }
-
         private void AnamnesisComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             Anamnesis anamnesis = (Anamnesis)anamnesisComboBox.SelectedItem;
             anamnesisTextBlock.Text = anamnesis.anamnesis;
             noteTextBox.Text = anamnesis.Note;
         }
-
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            foreach (var anamnesis in loggedInPatient.MedicalRecord.getAnamneses())
+            foreach (var anamnesis in _loggedInPatient.MedicalRecord.getAnamneses())
             {
                 if (anamnesis == (Anamnesis)anamnesisComboBox.SelectedItem)
                 {
@@ -60,17 +55,15 @@ namespace HospitalInformationSystem.Windows.PatientGUI
             }
             LoadComboBox();
         }
-
         private void HomeButton_Click(object sender, RoutedEventArgs e)
         {
             this.Close();
-            PatientMainWindow.GetInstance(loggedInPatient).Show();
+            PatientMainWindow.GetInstance(_loggedInPatient).Show();
         }
-
         private void BackButton_Click(object sender, RoutedEventArgs e)
         {
             this.Close();
-            PatientMainWindow.GetInstance(loggedInPatient).Show();
+            PatientMainWindow.GetInstance(_loggedInPatient).Show();
         }
     }
 }

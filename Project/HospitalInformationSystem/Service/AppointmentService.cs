@@ -15,33 +15,26 @@ namespace HospitalInformationSystem.Service
     public class AppointmentService
     {
         private AppointmentsRepository _repository;
-
         public AppointmentService()
         {
             _repository = new AppointmentsRepository();
         }
-
         public void AddAppointmentToAppointmentList(Appointment newAppointment)
         {
             _repository.AddAppointmentToAppointmentList(newAppointment);
         }
-
         public List<Appointment> GetAppointments()
         {
             return _repository.GetAppointments();
         }
-
-        /// <pdGenerated>default setter</pdGenerated>
         public void SetAppointments(List<Appointment> appointments)
         {
             _repository.SetAppointments(appointments);
         }
-
         public void DeleteAppointment(Appointment appointment)
         {
             _repository.DeleteAppointment(appointment);
         }
-
         public void ChangeAppointment(Appointment appointment, System.DateTime startTime, TypeOfAppointment typeOfAppointment, Room room, Patient patient, Doctor doctor)
         {
             appointment.StartTime = startTime;
@@ -50,27 +43,22 @@ namespace HospitalInformationSystem.Service
             appointment.patient = patient;
             appointment.doctor = doctor;
         }
-
         public List<Appointment> FindAppointmentByRoom(Room room)
         {
             return _repository.FindAppointmentByRoom(room);
         }
-
         public List<Appointment> GetAppointmentsByPatient(Patient patient)
         {
             return _repository.GetAppointmentsByPatient(patient);
         }
-
         public List<Appointment> GetAppointmentsByDoctor(Doctor doctor)
         {
             return _repository.GetAppointmentsByDoctor(doctor);
         }
-
         public void SaveAppointmentsInFile()
         {
             _repository.saveInFile();
         }
-
         public void LoadAppointmentsFromFile()
         {
             _repository.loadFromFile();

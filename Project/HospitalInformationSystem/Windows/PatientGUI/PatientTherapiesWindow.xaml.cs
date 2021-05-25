@@ -21,31 +21,28 @@ namespace HospitalInformationSystem.Windows.PatientGUI
     /// </summary>
     public partial class PatientTherapiesWindow : Window
     {
-        private Patient loggedInPatient;
+        private Patient _loggedInPatient;
         public PatientTherapiesWindow(Patient patient)
         {
             InitializeComponent();
-            loggedInPatient = patient;
+            _loggedInPatient = patient;
             RefreshTable();
         }
-
         private void HomeButton_Click(object sender, RoutedEventArgs e)
         {
             this.Close();
-            PatientMainWindow.GetInstance(loggedInPatient).Show();
+            PatientMainWindow.GetInstance(_loggedInPatient).Show();
         }
-
         private void BackButton_Click(object sender, RoutedEventArgs e)
         {
             this.Close();
-            PatientMainWindow.GetInstance(loggedInPatient).Show();
+            PatientMainWindow.GetInstance(_loggedInPatient).Show();
         }
         public void RefreshTable()
         {
-            var therapyList = new ObservableCollection<Therapy>(loggedInPatient.GetTherapy());
+            var therapyList = new ObservableCollection<Therapy>(_loggedInPatient.GetTherapy());
             TherapiesDataGrid.ItemsSource = null;
             TherapiesDataGrid.ItemsSource = therapyList;
         }
-
     }
 }

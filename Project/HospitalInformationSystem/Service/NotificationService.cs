@@ -13,31 +13,23 @@ namespace HospitalInformationSystem.Service
 {
     public class NotificationService
     {
-        private List<Notification> _notifications;
         private NotificationRepository _repository;
-
         public NotificationService()
         {
-            _notifications = new List<Notification>();
             _repository = new NotificationRepository();
         }
-
         public List<Notification> GetNotifications()
         {
-            return _notifications;
+            return _repository.GetNotifications();
         }
         public void SetNotifications(List<Notification> newNotificationList)
         {
-            RemoveAllNotifications();
-            foreach (Notification newNotification in newNotificationList)
-                AddNotification(newNotification);
+            _repository.SetNotifications(newNotificationList);
         }
-
         public void AddNotification(Notification notification)
         {
-            _notifications.Add(notification);
+            _repository.AddNotification(notification);
         }
-
         public List<Notification> GetNotificationsByPatient(Patient patient)
         {
             List<Notification> notificationsByPatient = new List<Notification>();
@@ -50,22 +42,14 @@ namespace HospitalInformationSystem.Service
 
             return notificationsByPatient;
         }
-
         public void RemoveAllNotifications()
         {
-            if (_notifications != null)
-                _notifications.Clear();
+            _repository.RemoveAllNotifications();
         }
-
         public void RemoveNotification(Notification notificationForRemoval)
         {
-            if (notificationForRemoval == null)
-                return;
-            if (notificationForRemoval != null)
-                if (this._notifications.Contains(notificationForRemoval))
-                    this._notifications.Remove(notificationForRemoval);
+            _repository.RemoveNotification(notificationForRemoval);
         }
-
         public void ChangeNotification(Notification oldNotification, Notification newNotification)
         {
             oldNotification.Contents = newNotification.Contents;
@@ -74,16 +58,13 @@ namespace HospitalInformationSystem.Service
             oldNotification.StartDate = newNotification.StartDate;
             oldNotification.Time = newNotification.Time;
         }
-
         public void SaveInFile()
         {
             _repository.saveInFile();
         }
-
         public void LoadFromFile()
         {
             _repository.loadFromFile();
         }
-
     }
 }

@@ -11,62 +11,53 @@ namespace HospitalInformationSystem.Controller
 {
     public class NotificationController
     {
-        private NotificationService notificationService;
-        private static NotificationController instance = null;
+        private NotificationService _notificationService;
+        private static NotificationController _instance = null;
         public static NotificationController GetInstance()
         {
-            if (instance == null)
-                instance = new NotificationController();
-            return instance;
+            if (_instance == null)
+                _instance = new NotificationController();
+            return _instance;
         }
         private NotificationController()
         {
-            notificationService = new NotificationService();
+            _notificationService = new NotificationService();
         }
-
         public List<Notification> GetNotifications()
         {
-            return notificationService.GetNotifications();
+            return _notificationService.GetNotifications();
         }
-
         public void SetNotifications(List<Notification> newNotificationList)
         {
-            notificationService.SetNotifications(newNotificationList);
+            _notificationService.SetNotifications(newNotificationList);
         }
-
         public void AddNotification(Notification notification)
         {
-            notificationService.AddNotification(notification);
+            _notificationService.AddNotification(notification);
         }
-
         public void RemoveAllNotifications()
         {
-            notificationService.RemoveAllNotifications();
+            _notificationService.RemoveAllNotifications();
         }
-
         public void RemoveNotification(Notification notificationForRemoval)
         {
-            notificationService.RemoveNotification(notificationForRemoval);
+            _notificationService.RemoveNotification(notificationForRemoval);
         }
-
         public void ChangeNotification(Notification oldNotification, Notification newNotification)
         {
-            notificationService.ChangeNotification(oldNotification, newNotification);
+            _notificationService.ChangeNotification(oldNotification, newNotification);
         }
         public List<Notification> GetNotificationsByPatient(Patient patient)
         {
-            return notificationService.GetNotificationsByPatient(patient);
+            return _notificationService.GetNotificationsByPatient(patient);
         }
-
         public void SaveInFile()
         {
-            notificationService.SaveInFile();
+            _notificationService.SaveInFile();
         }
-
         public void LoadFromFile()
         {
-            notificationService.LoadFromFile();
+            _notificationService.LoadFromFile();
         }
-
     }
 }

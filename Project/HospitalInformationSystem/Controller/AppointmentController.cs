@@ -9,59 +9,48 @@ namespace HospitalInformationSystem.Controller
     {
         private AppointmentService _appointmentService;
         private static AppointmentController _instance = null;
-
         public static AppointmentController getInstance()
         {
             if (_instance == null)
                 _instance = new AppointmentController();
             return _instance;
         }
-
         private AppointmentController()
         {
             _appointmentService = new AppointmentService();
         }
-
         public List<Appointment> GetAppointments()
         {
             return _appointmentService.GetAppointments();
         }
-
         public void SetAppointments(List<Appointment> newAppointment)
         {
             _appointmentService.SetAppointments(newAppointment);
         }
-
         public void AddAppointmentToAppointmentList(Appointment newAppointment)
         {
             _appointmentService.AddAppointmentToAppointmentList(newAppointment);
         }
-
         public void DeleteAppointment(Appointment oldAppointment)
         {
             _appointmentService.DeleteAppointment(oldAppointment);
         }
-
         public void ChangeAppointment(Appointment appointment, System.DateTime startTime, TypeOfAppointment typeOfAppointment, Room room, Patient patient, Doctor doctor)
         {
             _appointmentService.ChangeAppointment(appointment, startTime, typeOfAppointment, room, patient, doctor);
         }
-
         public List<Appointment> FindAppointmentByRoom(Room room)
         {
             return _appointmentService.FindAppointmentByRoom(room);
         }
-
         public void SaveAppointmentsInFile()
         {
             _appointmentService.SaveAppointmentsInFile();
         }
-
         public void LoadAppointmentsFromFile()
         {
             _appointmentService.LoadAppointmentsFromFile();
         }
-
         public List<Appointment> GetAppointmentsByPatient(Patient patient)
         {
             return _appointmentService.GetAppointmentsByPatient(patient);

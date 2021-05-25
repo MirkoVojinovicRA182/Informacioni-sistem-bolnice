@@ -29,26 +29,24 @@ namespace HospitalInformationSystem.Windows.PatientGUI
     /// </summary>
     public partial class PatientAppointmentCRUDOperationsWindow : Window
     {
-        private ObservableCollection<Appointment> appointmentList;
-        private Patient patient;
-        private static PatientAppointmentCRUDOperationsWindow instance = null;
+        private ObservableCollection<Appointment> _appointmentList;
+        private Patient _loggedInPatient;
+        private static PatientAppointmentCRUDOperationsWindow _instance = null;
         public PatientAppointmentCRUDOperationsWindow(Patient patient)
         {
             InitializeComponent();
-            this.patient = patient;
+            this._loggedInPatient = patient;
             RefreshTable();
         }
-
         public static PatientAppointmentCRUDOperationsWindow getInstance(Patient patient)
         {
-            if (instance == null)
-                instance = new PatientAppointmentCRUDOperationsWindow(patient);
-            return instance;
+            if (_instance == null)
+                _instance = new PatientAppointmentCRUDOperationsWindow(patient);
+            return _instance;
         }
-
         private void NewAppointmentButton_Click(object sender, RoutedEventArgs e)
         {
-            if (patient.Activity.IsTroll == false)
+            if (_loggedInPatient.Activity.IsTroll == false)
             {
                 ShowNewAppointmentWindow();
             }
@@ -58,27 +56,24 @@ namespace HospitalInformationSystem.Windows.PatientGUI
             }
             CheckIfPatientIsTroll();
         }
-
         private void CheckIfPatientIsTroll()
         {
             SetPatientActivity();
 
-            if (patient.Activity.NumberOfMovedAppointmentsInMonth > 3 || patient.Activity.NumberOfScheduledAppointmentsInDay > 5)
+            if (_loggedInPatient.Activity.NumberOfMovedAppointmentsInMonth > 3 || _loggedInPatient.Activity.NumberOfScheduledAppointmentsInDay > 5)
             {
-                patient.Activity.IsTroll = true;
+                _loggedInPatient.Activity.IsTroll = true;
             }
         }
-
         private void SetPatientActivity()
         {
-            patient.Activity.NumberOfMovedAppointmentsInMonth = GetNumberOfMovedAppointmentsInThePastMonth();
-            patient.Activity.NumberOfScheduledAppointmentsInDay = GetNumberOfAppointmentsScheduledInPastDay();
+            _loggedInPatient.Activity.NumberOfMovedAppointmentsInMonth = GetNumberOfMovedAppointmentsInThePastMonth();
+            _loggedInPatient.Activity.NumberOfScheduledAppointmentsInDay = GetNumberOfAppointmentsScheduledInPastDay();
         }
-
         private int GetNumberOfAppointmentsScheduledInPastDay()
         {
             int numberOfAppointments = 0;
-            foreach (var appointment in AppointmentController.getInstance().GetAppointmentsByPatient(patient))
+            foreach (var appointment in AppointmentController.getInstance().GetAppointmentsByPatient(_loggedInPatient))
             {
                 if (AppointmentWasScheduledInThePastDay(appointment))
                 {
@@ -87,20 +82,18 @@ namespace HospitalInformationSystem.Windows.PatientGUI
             }
             return numberOfAppointments;
         }
-
-        private static bool AppointmentWasScheduledInThePastDay(Appointment appointment)
+        private bool AppointmentWasScheduledInThePastDay(Appointment appointment)
         {
             return appointment.SchedulingTime.CompareTo(DateTime.Now.AddDays(-1)) > 0 && appointment.SchedulingTime.CompareTo(DateTime.Now) < 0;
         }
-
         private int GetNumberOfMovedAppointmentsInThePastMonth()
         {
             int numberOfAppointments = 0;
-            foreach (var appointment in AppointmentController.getInstance().GetAppointmentsByPatient(patient))
+            foreach (var appointment in AppointmentController.getInstance().GetAppointmentsByPatient(_loggedInPatient))
             {
                 if (appointment.HasBeenMoved)
                 {
-                    if (AppointmentWasMovedInThePastMonth(appointment))
+                    if (AppointmentHasBeenMovedInThePastMonth(appointment))
                     {
                         numberOfAppointments++;
                     }
@@ -108,20 +101,17 @@ namespace HospitalInformationSystem.Windows.PatientGUI
             }
             return numberOfAppointments;
         }
-
-        private static bool AppointmentWasMovedInThePastMonth(Appointment appointment)
+        private bool AppointmentHasBeenMovedInThePastMonth(Appointment appointment)
         {
             return appointment.SchedulingTime.CompareTo(DateTime.Now.AddMonths(-1)) > 0 && appointment.SchedulingTime.CompareTo(DateTime.Now) < 0;
         }
-
         private void ShowNewAppointmentWindow()
         {
-            NewPatientAppointmentWindow window = new NewPatientAppointmentWindow(patient);
+            NewPatientAppointmentWindow window = new NewPatientAppointmentWindow(_loggedInPatient);
             this.Hide();
             window.ShowDialog();
             RefreshTable();
         }
-
         private void DeleteAppointmentButton_Click(object sender, RoutedEventArgs e)
         {
             Appointment selectedRow = (Appointment)AppointmentDataGrid.SelectedItem;
@@ -130,7 +120,6 @@ namespace HospitalInformationSystem.Windows.PatientGUI
 
             RefreshTable();
         }
-
         private void EditButton_Click(object sender, RoutedEventArgs e)
         {
             Appointment selectedRow = (Appointment)AppointmentDataGrid.SelectedItem;
@@ -144,7 +133,7 @@ namespace HospitalInformationSystem.Windows.PatientGUI
 
         private void NotificationButton_Click(object sender, RoutedEventArgs e)
         {
-            NotificationsWindow window = new NotificationsWindow(patient);
+            NotificationsWindow window = new NotificationsWindow(_loggedInPatient);
 
             window.ShowDialog();
 
@@ -152,9 +141,9 @@ namespace HospitalInformationSystem.Windows.PatientGUI
         }
         public void RefreshTable()
         {
-            appointmentList = new ObservableCollection<Appointment>(AppointmentController.getInstance().GetAppointmentsByPatient(patient));
+            _appointmentList = new ObservableCollection<Appointment>(AppointmentController.getInstance().GetAppointmentsByPatient(_loggedInPatient));
             AppointmentDataGrid.ItemsSource = null;
-            AppointmentDataGrid.ItemsSource = appointmentList;
+            AppointmentDataGrid.ItemsSource = _appointmentList;
         }
 
         private void RateDoctorButton_Click(object sender, RoutedEventArgs e)
@@ -180,76 +169,65 @@ namespace HospitalInformationSystem.Windows.PatientGUI
                 MessageBox.Show("Niste imali dovoljno pregleda da bi ste ocenjivali bolnicu.", "Ocenjivanje bolnice", MessageBoxButton.OK, MessageBoxImage.Information);
             }
         }
-
         private bool HospitalReviewValidation()
         {
             CalculateFinishedAppointments();
-            return patient.Activity.NumberOfFinishedAppointmentsSinceReview >= 5;
+            return _loggedInPatient.Activity.NumberOfFinishedAppointmentsSinceReview >= 5;
         }
-
         private void CalculateFinishedAppointments()
         {
-            foreach (var appointment in AppointmentController.getInstance().GetAppointmentsByPatient(patient))
+            foreach (var appointment in AppointmentController.getInstance().GetAppointmentsByPatient(_loggedInPatient))
             {
                 if (AppointmentIsFinished(appointment))
                 {
-                    patient.Activity.NumberOfFinishedAppointmentsSinceReview++;
+                    _loggedInPatient.Activity.NumberOfFinishedAppointmentsSinceReview++;
                 }
             }
         }
-
         private static bool AppointmentIsFinished(Appointment appointment)
         {
             return DateTime.Now.CompareTo(appointment.StartTime.AddMinutes(30)) > 0;
         }
-
         private void ShowHospitalReviewWindow()
         {
-            ReviewHospitalWindow window = new ReviewHospitalWindow(this.patient);
+            ReviewHospitalWindow window = new ReviewHospitalWindow(this._loggedInPatient);
             window.ShowDialog();
         }
-
         private bool AppointmentReviewValidation()
         {
             return AppointmentIsSelected() && AppointmentIsFinished();
         }
-
         private bool AppointmentIsSelected()
         {
             return AppointmentDataGrid.SelectedItem != null;
         }
-
         private bool AppointmentIsFinished()
         {
             return DateTime.Now.CompareTo(((Appointment)AppointmentDataGrid.SelectedItem).StartTime.AddMinutes(30)) > 0;
         }
-
         private void ShowDoctorReviewWindow()
         {
             ReviewDoctorWindow window = new ReviewDoctorWindow((Appointment)AppointmentDataGrid.SelectedItem);
             window.ShowDialog();
         }
-
         private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
         {
             CheckIfPatientIsTroll();
             AppointmentController.getInstance().SaveAppointmentsInFile();
             DoctorController.getInstance().SaveInFlie();
             PatientController.getInstance().SaveInFile();
-            instance = null;
+            _instance = null;
         }
-
         private void HomeButton_Click(object sender, RoutedEventArgs e)
         {
             CheckIfPatientIsTroll();
-            PatientMainWindow.GetInstance(patient).Show();
+            PatientMainWindow.GetInstance(_loggedInPatient).Show();
             this.Close();
         }
-
         private void BackButton_Click(object sender, RoutedEventArgs e)
         {
             CheckIfPatientIsTroll();
-            PatientMainWindow.GetInstance(patient).Show();
+            PatientMainWindow.GetInstance(_loggedInPatient).Show();
             this.Close();
         }
     }

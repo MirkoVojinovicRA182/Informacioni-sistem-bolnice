@@ -7,6 +7,7 @@
 using Model;
 using HospitalInformationSystem.Repository;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 
 namespace HospitalInformationSystem.Service
 {
@@ -17,8 +18,8 @@ namespace HospitalInformationSystem.Service
         ~DoctorService()
         {
         }
-        public List<Doctor> getDoctors() => _doctorsFile.GetAllDoctors();
-        public void SetDoctors(List<Doctor> newDoctorsList) => _doctorsFile.SetAllDoctors(newDoctorsList);
+        public ObservableCollection<Doctor> getDoctors() => _doctorsFile.GetAllDoctors();
+        public void SetDoctors(ObservableCollection<Doctor> newDoctorsList) => _doctorsFile.SetAllDoctors(newDoctorsList);
         public void AddDoctor(Doctor newDoctor)
         {
             if (newDoctor == null)

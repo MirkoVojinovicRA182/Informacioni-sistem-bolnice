@@ -6,6 +6,7 @@
 
 using Model;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.IO;
 using System.Runtime.Serialization;
 using System.Runtime.Serialization.Formatters.Binary;
@@ -14,10 +15,10 @@ namespace HospitalInformationSystem.Repository
 {
     public class DoctorRepository : IRepository
     {
-        private List<Doctor> _allDoctorsInSystem;
+        private ObservableCollection<Doctor> _allDoctorsInSystem;
         public DoctorRepository()
         {
-            _allDoctorsInSystem = new List<Doctor>();
+            _allDoctorsInSystem = new ObservableCollection<Doctor>();
         }
         public void saveInFile()
         {
@@ -45,7 +46,7 @@ namespace HospitalInformationSystem.Repository
                 try
                 {
                     BinaryFormatter formatter = new BinaryFormatter();
-                    SetAllDoctors((List<Doctor>)formatter.Deserialize(fs));
+                    SetAllDoctors((ObservableCollection<Doctor>)formatter.Deserialize(fs));
                 }
                 catch (SerializationException e)
                 {
@@ -58,13 +59,13 @@ namespace HospitalInformationSystem.Repository
 
             }
         }
-        public List<Doctor> GetAllDoctors()
+        public ObservableCollection<Doctor> GetAllDoctors()
         {
             if (_allDoctorsInSystem == null)
-                _allDoctorsInSystem = new List<Doctor>();
+                _allDoctorsInSystem = new ObservableCollection<Doctor>();
             return _allDoctorsInSystem;
         }
-        public void SetAllDoctors(List<Doctor> allDoctors)
+        public void SetAllDoctors(ObservableCollection<Doctor> allDoctors)
         {
             _allDoctorsInSystem.Clear();
             foreach (Doctor doctor in allDoctors)

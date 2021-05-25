@@ -56,7 +56,6 @@ namespace HospitalInformationSystem.Repository
                 {
                     fs.Close();
                 }
-
             }
         }
         public ObservableCollection<Doctor> GetAllDoctors()

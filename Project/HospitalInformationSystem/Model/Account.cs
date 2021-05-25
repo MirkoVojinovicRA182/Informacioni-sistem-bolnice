@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 
 namespace Model
 {
+    [Serializable]
     public class Account
     {
         public Account(string username, string password, Person person)

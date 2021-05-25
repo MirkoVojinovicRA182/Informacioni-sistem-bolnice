@@ -4,8 +4,11 @@
  * Purpose: Definition of the Class Model.Manager
  ***********************************************************************/
 
+using System;
+
 namespace Model
 {
+    [Serializable]
     public class Manager : Person
     {
         public Manager()

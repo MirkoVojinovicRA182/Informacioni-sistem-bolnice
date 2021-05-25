@@ -35,9 +35,7 @@ namespace HospitalInformationSystem.Service
             dateOfBirth, phoneNumber, email, parentsName,
             gender, jmbg, isGuest, blood, lbo);
             patients.Add(patient);
-            
-            AccountDataBase.getInstance().AddAccount(new Account(username, "pass", patient));
-
+            AccountController.GetInstance().AddNewAccount(new Account(username, "pass", patient));
         }
 
         public ObservableCollection<Allergen> getAllergens()

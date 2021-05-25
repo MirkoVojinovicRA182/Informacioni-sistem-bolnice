@@ -8,6 +8,7 @@ using Model;
 using HospitalInformationSystem.Repository;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using HospitalInformationSystem.Controller;
 
 namespace HospitalInformationSystem.Service
 {
@@ -26,6 +27,7 @@ namespace HospitalInformationSystem.Service
                 return;
             if (!_doctorsFile.GetAllDoctors().Contains(newDoctor))
                 _doctorsFile.GetAllDoctors().Add(newDoctor);
+            AccountController.GetInstance().AddNewAccount(new Account(newDoctor.Username, "pass", newDoctor));
         }
         public void RemoveDoctor(Doctor oldDoctor) => _doctorsFile.DeleteDoctor(oldDoctor);
         public void RemoveAllDoctors() => _doctorsFile.DeleteAllDoctors();

@@ -18,7 +18,7 @@ namespace HospitalInformationSystem.Repository
     {
         public void saveInFile()
         {
-            FileStream fs = new FileStream("Accounts.dat", FileMode.Create);
+            FileStream fs = new FileStream("Patients.dat", FileMode.Create);
             FileStream fs2 = new FileStream("Allergens.dat", FileMode.Create);
 
             BinaryFormatter formatter = new BinaryFormatter();
@@ -60,9 +60,9 @@ namespace HospitalInformationSystem.Repository
 
             }
 
-            if (File.Exists("Accounts.dat"))
+            if (File.Exists("Patients.dat"))
             {
-                FileStream fs = new FileStream("Accounts.dat", FileMode.Open);
+                FileStream fs = new FileStream("Patients.dat", FileMode.Open);
                 try
                 {
                     BinaryFormatter formatter = new BinaryFormatter();

@@ -59,6 +59,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Controller\AccountController.cs" />
     <Compile Include="Controller\AnnouncementsController.cs" />
     <Compile Include="Controller\AppointmentController.cs" />
     <Compile Include="Controller\DoctorController.cs" />
@@ -75,6 +76,7 @@
     <Compile Include="Model\RoomEquipment.cs" />
     <Compile Include="Model\RoomRenovationState.cs" />
     <Compile Include="Model\TypeOfMedicine.cs" />
+    <Compile Include="Repository\AccountRepository.cs" />
     <Compile Include="Repository\MedicineRepository.cs" />
     <Compile Include="Model\DoctorReview.cs" />
     <Compile Include="Model\HospitalReview.cs" />
@@ -82,6 +84,7 @@
     <Compile Include="Repository\NotificationRepository.cs" />
     <Compile Include="Model\Announcement.cs" />
     <Compile Include="Repository\AnnouncementsRepository.cs" />
+    <Compile Include="Service\AccountService.cs" />
     <Compile Include="Service\AnnouncementsService.cs" />
     <Compile Include="Service\AppointmentService.cs" />
     <Compile Include="Service\DoctorService.cs" />
@@ -91,7 +94,6 @@
     <Compile Include="Service\RoomService.cs" />
     <Compile Include="Controller\EquipmentController.cs" />
     <Compile Include="Model\Account.cs" />
-    <Compile Include="Model\AccountDataBase.cs" />
     <Compile Include="Model\Allergen.cs" />
     <Compile Include="Model\Anamnesis.cs" />
     <Compile Include="Model\Appointment.cs" />

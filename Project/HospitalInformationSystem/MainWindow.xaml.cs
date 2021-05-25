@@ -11,6 +11,7 @@ using HospitalInformationSystem.Model;
 using System;
 using System.Collections.Generic;
 using System.Collections;
+using System.Collections.ObjectModel;
 
 namespace HospitalInformationSystem.Windows
 {
@@ -26,7 +27,7 @@ namespace HospitalInformationSystem.Windows
             InitializeComponent();
             
             //
-            Room room1 = new Room(1, "Magacin", -1, TypeOfRoom.Magacine, new Hashtable());
+            /*Room room1 = new Room(1, "Magacin", -1, TypeOfRoom.Magacine, new Hashtable());
             Room room2 = new Room(2, "Prostorija dr Marka", 1, TypeOfRoom.ExaminationRoom, new Hashtable());
             Room room3 = new Room(3, "Prostorija dr Jovana", 1, TypeOfRoom.ExaminationRoom, new Hashtable());
             Room room4 = new Room(4, "Prostorija dr Stevana", 1, TypeOfRoom.ExaminationRoom, new Hashtable());
@@ -67,33 +68,11 @@ namespace HospitalInformationSystem.Windows
 
             PatientController.getInstance().getPatient().Add(first);
             PatientController.getInstance().getPatient().Add(second);
-            PatientController.getInstance().getPatient().Add(third);
+            PatientController.getInstance().getPatient().Add(third);*/
 
             ///
 
             Deserialize();
-
-            Secretary secretary = new Secretary();
-            secretary.Name = "Petar";
-            secretary.Surname = "Petrovic";
-            //secretary.Id = "12";
-
-            Manager manager = new Manager();
-            manager.Name = "Stefan";
-            manager.Surname = "Jovanovic";
-            //manager.Id = "52";
-
-
-            AccountDataBase.getInstance().AddAccount(new Account("pera", "pass", PatientController.getInstance().getPatient()[0]));
-            AccountDataBase.getInstance().AddAccount(new Account("jova", "pass", PatientController.getInstance().getPatient()[1]));
-            AccountDataBase.getInstance().AddAccount(new Account("mika", "pass", PatientController.getInstance().getPatient()[2]));
-            AccountDataBase.getInstance().AddAccount(new Account("marko", "pass", DoctorController.getInstance().GetDoctors()[0]));
-            AccountDataBase.getInstance().AddAccount(new Account("jovan", "pass", DoctorController.getInstance().GetDoctors()[1]));
-            AccountDataBase.getInstance().AddAccount(new Account("stevan", "pass", DoctorController.getInstance().GetDoctors()[2]));
-            AccountDataBase.getInstance().AddAccount(new Account("darko", "pass", DoctorController.getInstance().GetDoctors()[3]));
-            AccountDataBase.getInstance().AddAccount(new Account("petar", "pass", secretary));
-            AccountDataBase.getInstance().AddAccount(new Account("u", "pass", manager));
-            AccountDataBase.getInstance().AddAccount(new Account("s", "s", secretary));
 
             //ManagerMainWindow.getInstance().Show();
 
@@ -104,7 +83,7 @@ namespace HospitalInformationSystem.Windows
             Manager manager = new Manager();
             Secretary secretary = new Secretary();
             bool loggedIn = false;
-            var accounts = AccountDataBase.getInstance().GetAccount();
+            ObservableCollection<Account> accounts = AccountController.GetInstance().GetAllAccounts();
             for (int i = 0; i < accounts.Count; i++)
             {
                 if (usernameTextBox.Text.TrimEnd() == accounts[i].Username & passwordTextBox.Password.TrimEnd() == accounts[i].Password)
@@ -214,6 +193,7 @@ namespace HospitalInformationSystem.Windows
             NotificationController.GetInstance().LoadFromFile();
             PatientController.getInstance().loadFromFile();
             AppointmentController.getInstance().LoadAppointmentsFromFile();
+            AccountController.GetInstance().LoadFromFile();
         }
         public static void Serialize()
         {
@@ -224,6 +204,7 @@ namespace HospitalInformationSystem.Windows
             NotificationController.GetInstance().SaveInFile();
             PatientController.getInstance().SaveInFile();
             AppointmentController.getInstance().SaveAppointmentsInFile();
+            AccountController.GetInstance().SaveInFile();
         }
     }
 }

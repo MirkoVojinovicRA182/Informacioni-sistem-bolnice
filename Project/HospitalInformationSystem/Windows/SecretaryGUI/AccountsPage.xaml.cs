@@ -37,7 +37,6 @@ namespace HospitalInformationSystem.Windows.SecretaryGUI
 
         private void accountsList_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            Console.WriteLine("LALALA");
             izmeniBtn.IsEnabled = false;
             obrisiBtn.IsEnabled = false;
         }

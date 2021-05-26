@@ -26,10 +26,6 @@ namespace HospitalInformationSystem.Windows.SecretaryGUI
         private MainPatientManagement()
         {
             InitializeComponent();
-            //string imgPath = Path.Combine(Environment.CurrentDirectory, "..", "..", "Images", "Secretary", "accounts.png");
-            //Image img = new Image();
-            //img.Source = new BitmapImage(new Uri(imgPath));
-            //naloziBtn.Content = img;
         }
         public static MainPatientManagement Instance
         {

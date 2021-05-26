@@ -35,8 +35,6 @@ namespace HospitalInformationSystem.Windows.SecretaryGUI
             PatientController.getInstance().CreatePatient(usernameTxt.Text, nameTxt.Text, surnameTxt.Text, (DateTime)date.SelectedDate, numberTxt.Text,
                 emailTxt.Text, parentsNameTxt.Text, genderTxt.Text, jmbgTxt.Text, (bool)isGuestCheckbox.IsChecked, (BloodType)bloodCmb.SelectedItem, lboTxt.Text);
 
-            //Console.WriteLine(nameTxt.Text + surnameTxt.Text + idTxt.Text);
-            //Console.WriteLine(Model.PatientDataBase.getInstance().GetPatient());
             ParentPage.RefreshList();
         }
 

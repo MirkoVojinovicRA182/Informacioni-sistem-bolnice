@@ -57,15 +57,34 @@ namespace HospitalInformationSystem.Windows.PatientGUI
         }
         private void CreateNewAppointment()
         {
-            Appointment appointment = (Appointment)AppointmentDataGrid.SelectedItem;
-
+            Appointment selectedAppointment = (Appointment)AppointmentDataGrid.SelectedItem;
+            if (AppointmentController.getInstance().AppointmentIsTaken(selectedAppointment))
+            {
+                MessageBox.Show("Termin je zauzet.", "Notifikacija", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+            else if (AppointmentStartTimeHasPassed(selectedAppointment))
+            {
+                MessageBox.Show("Termin nije validan.", "Notifikacija", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+            else
+            {
+                ScheduleAppointment(selectedAppointment);
+            }
+        }
+        private bool AppointmentStartTimeHasPassed(Appointment newAppointment)
+        {
+            return newAppointment.StartTime.CompareTo(DateTime.Now) <= 0;
+        }
+        private void ScheduleAppointment(Appointment appointment)
+        {
+            Appointment app = FormAppointment(appointment);
+            AppointmentController.getInstance().AddAppointmentToAppointmentList(app);
+        }
+        private Appointment FormAppointment(Appointment appointment)
+        {
             Appointment app = new Appointment(appointment.StartTime, appointment.Type, appointment.room, appointment.patient, appointment.doctor);
             app.SchedulingTime = DateTime.Now;
-
-            AppointmentController.getInstance().AddAppointmentToAppointmentList(app);
-
-            app.doctor.AddAppointment(app);
-            app.patient.AddAppointment(app);
+            return app;
         }
         private List<Appointment> RecommendAppointments()
         {

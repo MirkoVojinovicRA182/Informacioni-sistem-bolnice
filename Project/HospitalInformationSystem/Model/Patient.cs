@@ -49,6 +49,8 @@ namespace Model
             this.Surname = surname;
             this.Username = username;
             this.Allergens = new List<string>();
+            DoctorReviews = new List<DoctorReview>();
+            HospitalReviews = new List<HospitalReview>();
         }
 
         public Patient(string name, string surname, string username, List<Therapy> therapy)
@@ -58,6 +60,8 @@ namespace Model
             this.Username = username;
             this.therapy = therapy;
             this.Allergens = new List<string>();
+            DoctorReviews = new List<DoctorReview>();
+            HospitalReviews = new List<HospitalReview>();
         }
 
         public Patient(string username, string name, string surname,
@@ -79,6 +83,8 @@ namespace Model
             this.Allergens = new List<string>();
             this.MedicalRecord = new MedicalRecord();
             this.Activity = new PatientActivity();
+            DoctorReviews = new List<DoctorReview>();
+            HospitalReviews = new List<HospitalReview>();
         }
 
         public Patient(string name, string surname, PatientActivity activity)
@@ -87,6 +93,8 @@ namespace Model
             Surname = surname;
             Activity = activity;
             this.Allergens = new List<string>();
+            DoctorReviews = new List<DoctorReview>();
+            HospitalReviews = new List<HospitalReview>();
         }
 
         public List<Appointment> appointment;

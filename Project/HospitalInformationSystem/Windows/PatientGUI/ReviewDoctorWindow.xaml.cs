@@ -1,4 +1,5 @@
-﻿using HospitalInformationSystem.Model;
+﻿using HospitalInformationSystem.Controller;
+using HospitalInformationSystem.Model;
 using Model;
 using System;
 using System.Collections.Generic;
@@ -22,10 +23,12 @@ namespace HospitalInformationSystem.Windows.PatientGUI
     public partial class ReviewDoctorWindow : Window
     {
         private Appointment _appointmentForReviewing;
-        public ReviewDoctorWindow(Appointment appointment)
+        private Patient _loggedInPatient;
+        public ReviewDoctorWindow(Appointment appointment, Patient patient)
         {
             InitializeComponent();
             _appointmentForReviewing = appointment;
+            _loggedInPatient = patient;
             LoadQuestionsComboBoxes();
             LoadRatingComboBox();
         }
@@ -50,7 +53,7 @@ namespace HospitalInformationSystem.Windows.PatientGUI
         private void CollectAnswers()
         {
             DoctorReview review = new DoctorReview(GetAnswers(), (int)comboBoxRating.SelectedItem, _appointmentForReviewing.doctor);
-            _appointmentForReviewing.patient.DoctorReviews.Add(review);
+            _loggedInPatient.DoctorReviews.Add(review);
         }
         public List<AnswersDoctorSurvey> GetAnswers()
         {

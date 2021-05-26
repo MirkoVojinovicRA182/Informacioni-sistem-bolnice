@@ -13,6 +13,7 @@ namespace HospitalInformationSystem.Model
         Ne,
         Nijedno
     }
+    [Serializable]
     public class DoctorReview
     {
         public DoctorReview(List<AnswersDoctorSurvey> answers, int rating, Doctor doctor)

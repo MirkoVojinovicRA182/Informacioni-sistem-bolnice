@@ -43,8 +43,6 @@ namespace HospitalInformationSystem.Windows.PatientGUI
             ScheduleNewAppointment();
        
             PatientAppointmentCRUDOperationsWindow.getInstance(_patient).RefreshTable();
-
-            MessageBox.Show("Kreiran je novi termin.", "Novi termin", MessageBoxButton.OK, MessageBoxImage.Information);
         }
         private void New_Button_Click(object sender, RoutedEventArgs e)
         {
@@ -54,9 +52,25 @@ namespace HospitalInformationSystem.Windows.PatientGUI
         }
         private void ScheduleNewAppointment()
         {
-            Appointment app = CreateAppointment();
+            Appointment newAppointment = CreateAppointment();
 
-            AppointmentController.getInstance().AddAppointmentToAppointmentList(app);
+            if (AppointmentController.getInstance().AppointmentIsTaken(newAppointment))
+            {
+                MessageBox.Show("Termin je zauzet.", "Notifikacija", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+            else if (AppointmentStartTimeHasPassed(newAppointment))
+            {
+                MessageBox.Show("Termin nije validan.", "Notifikacija", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+            else
+            {
+                AppointmentController.getInstance().AddAppointmentToAppointmentList(newAppointment);
+                MessageBox.Show("Kreiran je novi termin.", "Novi termin", MessageBoxButton.OK, MessageBoxImage.Information);
+            }
+        }
+        private bool AppointmentStartTimeHasPassed(Appointment newAppointment)
+        {
+            return newAppointment.StartTime.CompareTo(DateTime.Now) <= 0;
         }
         private Appointment CreateAppointment()
         {

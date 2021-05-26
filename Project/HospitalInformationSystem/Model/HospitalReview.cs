@@ -15,6 +15,7 @@ namespace HospitalInformationSystem.Model
         Nezadovoljni
         
     }
+    [Serializable]
     public class HospitalReview
     {
         public HospitalReview(List<AnswersHospitalSurvey> answers, int rating)

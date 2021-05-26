@@ -52,12 +52,6 @@ namespace HospitalInformationSystem.Windows.PatientGUI
             window.Show();
             this.Hide();
         }
-        private void TherapiesButton_Click(object sender, RoutedEventArgs e)
-        {
-            PatientTherapiesWindow window = new PatientTherapiesWindow(_loggedInPatient);
-            window.Show();
-            this.Hide();
-        }
         private void NotificationsButton_Click(object sender, RoutedEventArgs e)
         {
             NotificationsWindow window = new NotificationsWindow(_loggedInPatient);

@@ -53,17 +53,6 @@ namespace Model
             HospitalReviews = new List<HospitalReview>();
         }
 
-        public Patient(string name, string surname, string username, List<Therapy> therapy)
-        {
-            this.Name = name;
-            this.Surname = surname;
-            this.Username = username;
-            this.therapy = therapy;
-            this.Allergens = new List<string>();
-            DoctorReviews = new List<DoctorReview>();
-            HospitalReviews = new List<HospitalReview>();
-        }
-
         public Patient(string username, string name, string surname,
     DateTime dateOfBirth, string phoneNumber, string email, string parentsName,
     string gender, string jmbg, bool isGuest, BloodType blood, string lbo)
@@ -98,7 +87,6 @@ namespace Model
         }
 
         public List<Appointment> appointment;
-        private List<Therapy> therapy;
 
         /// <pdGenerated>default getter</pdGenerated>
         public List<Appointment> GetAppointment()
@@ -161,45 +149,6 @@ namespace Model
         public void setMedicalRecord(MedicalRecord medicalRecord)
         {
             this.MedicalRecord = medicalRecord;
-        }
-
-        public List<Therapy> GetTherapy()
-        {
-            if (therapy == null)
-                therapy = new List<Therapy>();
-            return therapy;
-        }
-
-        /// <pdGenerated>default setter</pdGenerated>
-        public void SetTherapy(List<Therapy> newTherapy)
-        {
-            RemoveAllTherapy();
-            foreach (Therapy oTherapy in newTherapy)
-                AddTherapy(oTherapy);
-        }
-
-        public void AddTherapy(Therapy newTherapy)
-        {
-            if (newTherapy == null)
-                return;
-            if (this.therapy == null)
-                this.therapy = new List<Therapy>();
-            if (!this.therapy.Contains(newTherapy))
-            {
-                this.therapy.Add(newTherapy);
-            }
-        }
-
-        public void RemoveAllTherapy()
-        {
-            if (therapy != null)
-            {
-                List<Therapy> tmpTherapy = new List<Therapy>();
-                foreach (Therapy oldTherapy in therapy)
-                    tmpTherapy.Add(oldTherapy);
-                therapy.Clear();
-                tmpTherapy.Clear();
-            }
         }
 
         public override string ToString()

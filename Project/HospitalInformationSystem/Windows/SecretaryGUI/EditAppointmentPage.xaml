@@ -18,10 +18,9 @@
                 <DataGridTextColumn Header="Vrsta termina" Width="*" Binding="{Binding Type}"></DataGridTextColumn>
             </DataGrid.Columns>
         </DataGrid>
-        <Button x:Name="NewAppointmentButton" Content="Novi termin" Click="NewAppointmentButton_Click" HorizontalAlignment="Left" Margin="22,680,0,0" VerticalAlignment="Top" Width="125" Height="20"/>
-        <Button x:Name="DeleteAppointmentButton" Content="Brisanje izabranog termina" Click="DeleteAppointmentButton_Click" HorizontalAlignment="Left" Margin="170,679,0,0" VerticalAlignment="Top" Width="125" Height="20"/>
-        <Button x:Name="DeleteAllAppointmentsButton" Content="Brisanje svih termina" Click="DeleteAllAppointmentsButton_Click" HorizontalAlignment="Left" Margin="328,680,0,0" VerticalAlignment="Top" Width="125" Height="19"/>
-        <Button x:Name="EditButton" Content="Pomeranje termina" Click="EditButton_Click" HorizontalAlignment="Left" Margin="480,679,0,0" VerticalAlignment="Top" Width="125" Height="20"/>
-        <Button Content="Notifikacije" Click="NotificationButton_Click" HorizontalAlignment="Left" Margin="629,679,0,0" VerticalAlignment="Top" Width="125" Height="20"/>
+        <Button x:Name="NewAppointmentButton" Content="Novi termin" Click="NewAppointmentButton_Click" HorizontalAlignment="Left" Margin="111,680,0,0" VerticalAlignment="Top" Width="125" Height="20"/>
+        <Button x:Name="DeleteAppointmentButton" Content="Brisanje izabranog termina" Click="DeleteAppointmentButton_Click" HorizontalAlignment="Left" Margin="259,679,0,0" VerticalAlignment="Top" Width="125" Height="20"/>
+        <Button x:Name="DeleteAllAppointmentsButton" Content="Brisanje svih termina" Click="DeleteAllAppointmentsButton_Click" HorizontalAlignment="Left" Margin="417,680,0,0" VerticalAlignment="Top" Width="125" Height="19"/>
+        <Button x:Name="EditButton" Content="Pomeranje termina" Click="EditButton_Click" HorizontalAlignment="Left" Margin="569,679,0,0" VerticalAlignment="Top" Width="125" Height="20"/>
     </Grid>
 </Page>

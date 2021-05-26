@@ -78,10 +78,5 @@ namespace Model
             Type = dto.Type;
             Floor = dto.Floor;
         }
-
-        public override string ToString()
-        {
-            return Name;
-        }
     }
 }

@@ -97,22 +97,7 @@ namespace HospitalInformationSystem.Repository
         }
         public void DeleteMedicine(Medicine medicineForDeleting)
         {
-            if (medicineForDeleting == null)
-                return;
-            if (_medicineList != null)
-                if (this._medicineList.Contains(medicineForDeleting))
-                    this._medicineList.Remove(medicineForDeleting);
-        }
-        public void DeleteReplacementMedicine(Medicine replacementMedicine)
-        {
-            foreach (Medicine medicine in GetAllMedicines())
-            {
-                if (medicine.ReplacementMedicine.Equals(replacementMedicine))
-                {
-                    medicine.ReplacementMedicine = null;
-                    break;
-                }
-            }
+            _medicineList.Remove(medicineForDeleting);
         }
     }
 }

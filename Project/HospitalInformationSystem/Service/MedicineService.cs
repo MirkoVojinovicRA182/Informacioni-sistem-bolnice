@@ -40,7 +40,14 @@ namespace HospitalInformationSystem.Service
         }
         public void DeleteReplacementMedicine(Medicine replacementMedicine)
         {
-            _medicineRepository.DeleteReplacementMedicine(replacementMedicine);
+            foreach (Medicine medicine in GetAllMedicines())
+            {
+                if (medicine.ReplacementMedicine.Equals(replacementMedicine))
+                {
+                    medicine.ReplacementMedicine = null;
+                    break;
+                }
+            }
         }
         public bool MedicineCommentExists()
         {

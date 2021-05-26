@@ -16,6 +16,15 @@ namespace HospitalInformationSystem.Repository
 {
     public class PatientsRepository : IRepository
     {
+        public ObservableCollection<Patient> patients;
+        public ObservableCollection<Allergen> allergens;
+
+        public PatientsRepository()
+        {
+            patients = new ObservableCollection<Patient>();
+            allergens = new ObservableCollection<Allergen>();
+        }
+
         public void saveInFile()
         {
             FileStream fs = new FileStream("Patients.dat", FileMode.Create);

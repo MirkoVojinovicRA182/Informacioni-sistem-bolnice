@@ -15,6 +15,8 @@ namespace HospitalInformationSystem.Controller
     {
         private static PatientController instance = null;
         private PatientService patientService;
+        //private DoctorService doctorService;
+        //private RoomService roomService;
 
         public static PatientController getInstance()
         {
@@ -25,6 +27,8 @@ namespace HospitalInformationSystem.Controller
         private PatientController()
         {
             patientService = new PatientService();
+            //doctorService = new DoctorService();
+            //roomService = new RoomService();
         }
 
         public void SaveInFile()
@@ -116,6 +120,31 @@ namespace HospitalInformationSystem.Controller
         public void loadFromFile()
         {
             patientService.LoadFromFile();
+        }
+
+        public DateTime NextValidTime(ref DateTime time)
+        {
+            return patientService.NextValidTime(ref time);
+        }
+
+        public void AddAppointment(ObservableCollection<Appointment> appointmentsList, ref DateTime time, Doctor doctor, Patient patient)
+        {
+            patientService.AddAppointment(appointmentsList, ref time, doctor, patient, RoomController.GetInstance().GetRooms(), DoctorController.getInstance().GetDoctors());
+        }
+
+        public bool IsDoctorFreeInTime(Doctor doctor, DateTime time)
+        {
+            return patientService.IsDoctorFreeInTime(doctor, time);
+        }
+
+        public bool CheckDoctorsAppointmentsInRoom(Room room, DateTime time)
+        {
+            return patientService.IsRoomFree(room, time, DoctorController.getInstance().GetDoctors());
+        }
+
+        public void FindNearestAppointments(ObservableCollection<Appointment> appointmentsList, Specialization specialization, Patient patient)
+        {
+            patientService.FindNearestAppointments(appointmentsList, specialization, patient, DoctorController.getInstance().GetDoctors(), RoomController.GetInstance().GetRooms());
         }
     }
 }

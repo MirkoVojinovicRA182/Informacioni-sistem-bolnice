@@ -11,20 +11,18 @@ using Model;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Windows;
 using static Model.Patient;
 
 namespace HospitalInformationSystem.Service
 {
     public class PatientService
     {
-        PatientsRepository patientsFile;
-        public ObservableCollection<Patient> patients;
-        public ObservableCollection<Allergen> allergens;
+        private PatientsRepository _patientsFile;
 
         public PatientService()
         {
-            patients = new ObservableCollection<Patient>();
-            patientsFile = new PatientsRepository();
+            _patientsFile = new PatientsRepository();
         }
 
         public void CreatePatient(string username, string name, string surname,
@@ -34,43 +32,43 @@ namespace HospitalInformationSystem.Service
             Patient patient = new Patient(username, name, surname,
             dateOfBirth, phoneNumber, email, parentsName,
             gender, jmbg, isGuest, blood, lbo);
-            patients.Add(patient);
+            _patientsFile.patients.Add(patient);
             AccountController.GetInstance().AddNewAccount(new Account(username, "pass", patient));
         }
 
         public ObservableCollection<Allergen> getAllergens()
         {
-            if (allergens == null)
-                allergens = new ObservableCollection<Allergen>();
-            return allergens;
+            if (_patientsFile.allergens == null)
+                _patientsFile.allergens = new ObservableCollection<Allergen>();
+            return _patientsFile.allergens;
         }
 
         public void setAllergens(ObservableCollection<Allergen> allergenList)
         {
-            allergens = allergenList;
+            _patientsFile.allergens = allergenList;
         }
 
         public void addAllergen(Allergen newAllergen)
         {
             if (newAllergen == null)
                 return;
-            if (this.allergens == null)
-                this.allergens = new ObservableCollection<Allergen>();
+            if (_patientsFile.allergens == null)
+                _patientsFile.allergens = new ObservableCollection<Allergen>();
 
-            foreach (Allergen a in this.allergens)
+            foreach (Allergen allergen in _patientsFile.allergens)
             {
-                if (a.Name == newAllergen.Name)
+                if (allergen.Name == newAllergen.Name)
                     return;
             }
-            this.allergens.Add(newAllergen);
+            _patientsFile.allergens.Add(newAllergen);
         }
 
         /// <pdGenerated>default getter</pdGenerated>
         public ObservableCollection<Patient> getPatient()
         {
-            if (patients == null)
-                patients = new ObservableCollection<Patient>();
-            return patients;
+            if (_patientsFile.patients == null)
+                _patientsFile.patients = new ObservableCollection<Patient>();
+            return _patientsFile.patients;
         }
 
         /// <pdGenerated>default setter</pdGenerated>
@@ -86,10 +84,10 @@ namespace HospitalInformationSystem.Service
         {
             if (newPatient == null)
                 return;
-            if (this.patients == null)
-                this.patients = new ObservableCollection<Patient>();
-            if (!this.patients.Contains(newPatient))
-                this.patients.Add(newPatient);
+            if (_patientsFile.patients == null)
+                _patientsFile.patients = new ObservableCollection<Patient>();
+            if (!_patientsFile.patients.Contains(newPatient))
+                _patientsFile.patients.Add(newPatient);
 
 
         }
@@ -99,16 +97,16 @@ namespace HospitalInformationSystem.Service
         {
             if (oldPatient == null)
                 return;
-            if (this.patients != null)
-                if (this.patients.Contains(oldPatient))
-                    this.patients.Remove(oldPatient);
+            if (_patientsFile.patients != null)
+                if (_patientsFile.patients.Contains(oldPatient))
+                    _patientsFile.patients.Remove(oldPatient);
         }
 
         /// <pdGenerated>default removeAll</pdGenerated>
         public void RemoveAllPatient()
         {
-            if (patients != null)
-                patients.Clear();
+            if (_patientsFile.patients != null)
+                _patientsFile.patients.Clear();
         }
 
         public void AddPrescription(Patient patient, Prescription prescription)
@@ -138,7 +136,7 @@ namespace HospitalInformationSystem.Service
         public List<Patient> GetPatientsOnHospitalTretment()
         {
             List<Patient> patientsOnHospitalTretment = new List<Patient>();
-            foreach(Patient patient in PatientController.getInstance().getPatient())
+            foreach(Patient patient in getPatient())
             {
                 if (patient.hospitalTreatment != null) patientsOnHospitalTretment.Add(patient);
             }
@@ -146,12 +144,100 @@ namespace HospitalInformationSystem.Service
         }
         public void SaveInFile()
         {
-            patientsFile.saveInFile();
+            _patientsFile.saveInFile();
         }
 
         public void LoadFromFile()
         {
-            patientsFile.loadFromFile();
+            _patientsFile.loadFromFile();
+        }
+
+        public DateTime NextValidTime(ref DateTime time)
+        {
+            if (time.Minute < 30)
+            {
+                time = time.Date + new TimeSpan(time.Hour, 30, 0);
+            }
+            else
+            {
+                time = time.Date + new TimeSpan(time.Hour + 1, 0, 0);
+            }
+
+            return time;
+        }
+
+        public void AddAppointment(ObservableCollection<Appointment> appointmentsList, ref DateTime time, Doctor doctor, Patient patient, List<Room> roomsList, ObservableCollection<Doctor> doctorsList)
+        {
+            Room room = FindFreeRoom(time, roomsList, doctorsList);
+
+            if (room == null)
+            {
+                MessageBox.Show("NEMA SLOBODNIH SOBA ZA OPERACIJU!",
+                              "Obavestenje",
+                              MessageBoxButton.OK,
+                              MessageBoxImage.Warning);
+                return;
+            }
+            appointmentsList.Add(new Appointment(time, TypeOfAppointment.Operacija, room, patient, doctor));
+        }
+
+
+        public bool IsDoctorFreeInTime(Doctor doctor, DateTime time)
+        {
+            foreach (Appointment appointment in doctor.GetAppointment())
+            {
+                if (appointment.StartTime == time)
+                    return false;
+            }
+            return true;
+        }
+
+        public Room FindFreeRoom(DateTime time, List<Room> roomsList, ObservableCollection<Doctor> doctorsList)
+        {
+            foreach (Room room in roomsList)
+            {
+                if (room.Type != TypeOfRoom.OperationRoom)
+                    continue;
+                if (IsRoomFree(room, time, doctorsList))
+                    return room;
+            }
+            return null;
+        }
+
+        public bool IsRoomFree(Room room, DateTime time, ObservableCollection<Doctor> doctorsList)
+        {
+            foreach (Doctor doctor in doctorsList)
+            {
+                foreach (Appointment appointment in doctor.GetAppointment())
+                {
+                    if (appointment.StartTime == time && appointment.room == room)
+                    {
+                        return false;
+                    }
+                }
+            }
+            return true;
+        }
+
+        public void FindNearestAppointments(ObservableCollection<Appointment> appointmentsList, Specialization specialization, Patient patient, ObservableCollection<Doctor> doctorsList, List<Room> roomsList)
+        {
+            DateTime timeToFind = DateTime.Now;
+
+            for (int halfHour = 0; halfHour < 6; halfHour++)
+            {
+                NextValidTime(ref timeToFind);
+                foreach (Doctor doctor in doctorsList)
+                {
+                    if (doctor.Specialization != specialization)
+                        continue;
+
+                    if (IsDoctorFreeInTime(doctor, timeToFind))
+                    {
+                        AddAppointment(appointmentsList, ref timeToFind, doctor, patient, roomsList, doctorsList);
+                        return;
+                    }
+                }
+            }
         }
     }
 }

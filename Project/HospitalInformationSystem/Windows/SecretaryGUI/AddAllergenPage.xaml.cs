@@ -32,22 +32,8 @@ namespace HospitalInformationSystem.Windows.SecretaryGUI
             PatientController.getInstance().addAllergen(newAllergen);
             foreach (Patient patient in PatientController.getInstance().getPatient())
             {
-                Console.WriteLine(patient);
-                //foreach (Allergen a in patient.MedicalRecord.AllergensList)
-                //{
-                //    if (a.Name == newAllergen.Name)
-                //        return;
-                //}
                 patient.MedicalRecord.AllergensList.Add(new Allergen(newAllergen));
-                //Console.WriteLine("DODAO SAM!!!!!!!!    " + patient);
-                //Console.WriteLine("Pred foreach alergena od" + patient);
-                //foreach (Allergen a in patient.MedicalRecord.AllergensList)
-                //{     
-                //    Console.WriteLine(a.Name + patient);
-                //}
-
             }
-
         }
     }
 }

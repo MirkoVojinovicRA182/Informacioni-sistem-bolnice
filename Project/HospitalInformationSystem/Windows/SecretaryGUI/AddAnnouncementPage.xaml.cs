@@ -34,7 +34,6 @@ namespace HospitalInformationSystem.Windows.SecretaryGUI
             InitializeComponent();
             Announcement = announcement;
             announcementsTxt.Text = announcement.Text;
-            //ParentWindow = parent;
         }
 
         private void otkaziBtn_Click(object sender, RoutedEventArgs e)

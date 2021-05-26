@@ -25,63 +25,8 @@ namespace HospitalInformationSystem.Windows
         public MainWindow()
         {
             InitializeComponent();
-
-            //
-            /*Room room1 = new Room(1, "Magacin", -1, TypeOfRoom.Magacine, new Hashtable());
-            Room room2 = new Room(2, "Prostorija dr Marka", 1, TypeOfRoom.ExaminationRoom, new Hashtable());
-            Room room3 = new Room(3, "Prostorija dr Jovana", 1, TypeOfRoom.ExaminationRoom, new Hashtable());
-            Room room4 = new Room(4, "Prostorija dr Stevana", 1, TypeOfRoom.ExaminationRoom, new Hashtable());
-            Room room5 = new Room(5, "Prostorija dr Darka", 1, TypeOfRoom.ExaminationRoom, new Hashtable());
-            RoomController.GetInstance().AddRoomToRoomList(room1);
-            RoomController.GetInstance().AddRoomToRoomList(room2);
-            RoomController.GetInstance().AddRoomToRoomList(room3);
-            RoomController.GetInstance().AddRoomToRoomList(room4);
-            RoomController.GetInstance().AddRoomToRoomList(room5);
-
-            var doctor = new Doctor("Marko", "Markovic", Specialization.Family_Physician, RoomController.GetInstance().GetRooms()[0]);
-            var doctor2 = new Doctor("Jovan", "Jovanovic", Specialization.Family_Physician, RoomController.GetInstance().GetRooms()[1]);
-            var doctor3 = new Doctor("Stevan", "Stojanovic", Specialization.Family_Physician, RoomController.GetInstance().GetRooms()[2]);
-            DoctorController.getInstance().AddDoctor(doctor);
-            DoctorController.getInstance().AddDoctor(doctor2);
-            DoctorController.getInstance().AddDoctor(doctor3);
-            var doctor4 = new Doctor("Darko", "Ilic", Specialization.Surgeon, RoomController.GetInstance().GetRooms()[3]);
-            DoctorController.getInstance().AddDoctor(doctor4);
-            DoctorController.getInstance().GetDoctors()[0].room = RoomController.GetInstance().GetRooms()[1];
-            DoctorController.getInstance().GetDoctors()[1].room = RoomController.GetInstance().GetRooms()[2];
-            DoctorController.getInstance().GetDoctors()[2].room = RoomController.GetInstance().GetRooms()[3];
-            DoctorController.getInstance().GetDoctors()[3].room = RoomController.GetInstance().GetRooms()[4];
-
-            Patient first = new Patient("Pera", "Pacijent", new PatientActivity(0, 0, 0, false));
-            first.Jmbg = "001";
-            Patient second = new Patient("Jova", "Pacijent", new PatientActivity(0, 0, 0, false));
-            second.Jmbg = "002";
-            Patient third = new Patient("Mika", "Pacijent", new PatientActivity(0, 0, 0, false));
-            third.Jmbg = "003";
-
-            MedicalRecord firstMedicalRecord = new MedicalRecord(1);
-            MedicalRecord secondMedicalRecord = new MedicalRecord(2);
-            MedicalRecord thirdMedicalRecord = new MedicalRecord(3);
-
-            first.setMedicalRecord(firstMedicalRecord);
-            second.setMedicalRecord(secondMedicalRecord);
-            third.setMedicalRecord(thirdMedicalRecord);
-
-            PatientController.getInstance().getPatient().Add(first);
-            PatientController.getInstance().getPatient().Add(second);
-            PatientController.getInstance().getPatient().Add(third);*/
-
-            /// 
             Deserialize();
-
-            //ManagerMainWindow.getInstance().Show();
-            //AccountController.GetInstance().AddNewAccount(new Account("pera", "pass", PatientController.getInstance().getPatient()[0]));
-            AccountController.GetInstance().AddNewAccount(new Account("jova", "pass", PatientController.getInstance().getPatient()[1]));
-            AccountController.GetInstance().AddNewAccount(new Account("mika", "pass", PatientController.getInstance().getPatient()[2]));
-            AccountController.GetInstance().AddNewAccount(new Account("m", "m", new Manager()));
-            AccountController.GetInstance().AddNewAccount(new Account("s", "s", new Secretary()));
-
         }
-
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             Manager manager = new Manager();

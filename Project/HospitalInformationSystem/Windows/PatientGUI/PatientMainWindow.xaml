@@ -14,7 +14,7 @@
         <Button Content="Pregledi" HorizontalAlignment="Left" VerticalAlignment="Top" Width="128" Margin="3,59,0,0" Height="104" Click="AppointmentsButton_Click" Grid.ColumnSpan="2"/>
         <Button Content="Notifikacije" HorizontalAlignment="Left" VerticalAlignment="Top" Width="128" Margin="3,165,0,0" Height="104" Click="NotificationsButton_Click" Grid.ColumnSpan="2"/>
         <Button x:Name="anamnesisButton" Content="Anamneze" HorizontalAlignment="Left" VerticalAlignment="Top" Width="128" Margin="3,165,0,0" Height="104" Grid.Column="1" Click="AnamnesisButton_Click"/>
-        <Button Content="Ocenjivanje bolnice" HorizontalAlignment="Left" VerticalAlignment="Top" Width="128" Margin="2.6,59,0,0" Height="103" Click="HospitalReviewButton_Click" Grid.Column="1"/>
+        <Button Content="Ocenjivanje bolnice" HorizontalAlignment="Left" VerticalAlignment="Top" Width="128" Margin="3,59,0,0" Height="104" Click="HospitalReviewButton_Click" Grid.Column="1"/>
         <Button Content="Odjava" HorizontalAlignment="Left" VerticalAlignment="Top" Width="162" Margin="50,404,0,0" Height="45" Background="#FFE84242" Click="LogOffButton_Click" Grid.ColumnSpan="2"/>
         <ToolBar HorizontalAlignment="Left" Height="44" VerticalAlignment="Top" Width="263" Margin="0,0,-2,0" Grid.ColumnSpan="2">
             <Label Content="" Height="45" VerticalAlignment="Top" Width="89"/>

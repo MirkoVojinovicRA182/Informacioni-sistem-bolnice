@@ -123,9 +123,18 @@ namespace HospitalInformationSystem.Windows.DoctorGUI
             }
             return freeBedsInRoom > 0;
         }
+        private bool CheckRoomState(Room room)
+        {
+            DateTime startDateOfTreatment = DateTime.ParseExact(startDateTextBox.Text,
+                DATE_TIME_TEMPLATE, System.Globalization.CultureInfo.InvariantCulture);
+            DateTime endDateOfTreatment = DateTime.ParseExact(endDateTextBox.Text,
+                DATE_TIME_TEMPLATE, System.Globalization.CultureInfo.InvariantCulture);
+            return endDateOfTreatment < room.RoomRenovationState.StartDate || startDateOfTreatment > room.RoomRenovationState.EndDate;
+        }
         private bool CheckAllInputs()
         {
-            return CheckSelectedRoom() && CheckEndDateInput() && CheckStartDateInput() && CheckIfRoomHaveFreeBeds();
+            return CheckSelectedRoom() && CheckEndDateInput() && CheckStartDateInput() && 
+                CheckIfRoomHaveFreeBeds() && CheckRoomState((Room)roomsListBox.SelectedItem);
         }
         private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e) => instance = null;
         private void roomsListBox_PreviewKeyDown(object sender, KeyEventArgs e) => CheckKeyPress();

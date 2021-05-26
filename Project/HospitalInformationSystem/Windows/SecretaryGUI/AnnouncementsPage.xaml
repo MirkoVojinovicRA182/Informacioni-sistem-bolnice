@@ -15,7 +15,10 @@
         <ListView x:Name="announcementsList" HorizontalAlignment="Left" Height="605" Margin="42,25,0,0" VerticalAlignment="Top" Width="723">
             <ListView.ItemTemplate>
                 <DataTemplate>
-                    <TextBlock Text="{Binding Text}" />
+                    <StackPanel>
+                        <TextBlock Text="{Binding Text}" />
+                        <TextBlock Text="{Binding Time}" />
+                    </StackPanel>
                 </DataTemplate>
             </ListView.ItemTemplate>
         </ListView>

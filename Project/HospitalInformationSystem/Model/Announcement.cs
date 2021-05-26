@@ -9,10 +9,12 @@ namespace HospitalInformationSystem.Model
     public class Announcement
     {
         public string Text { get; set; }
+        public DateTime Time { get; set; }
         
         public Announcement(string text)
         {
             Text = text;
+            Time = DateTime.Now;
         }
     }
 }

@@ -95,7 +95,7 @@ namespace HospitalInformationSystem.Windows.DoctorGUI
         {
             foreach (Allergen allergen in _patientToAddPrescription.MedicalRecord.AllergensList)
             {
-                if (allergen.Name.Equals(ingredient.Name))
+                if (allergen.Name.Equals(ingredient.Name) && allergen.isAllergic)
                     return false;
             }
             return true;
@@ -104,7 +104,7 @@ namespace HospitalInformationSystem.Windows.DoctorGUI
         {
             foreach (Allergen allergen in _patientToAddPrescription.MedicalRecord.AllergensList)
             {
-                if (allergen.Name.Equals(((Medicine)medicineComboBox.SelectedItem).Name))
+                if (allergen.Name.Equals(((Medicine)medicineComboBox.SelectedItem).Name) && allergen.isAllergic)
                     return false;
             }
             return true;

@@ -74,7 +74,9 @@ namespace HospitalInformationSystem.Windows
             Deserialize();
 
             //ManagerMainWindow.getInstance().Show();
-            AccountController.GetInstance().AddNewAccount(new Account("pera", "pass", PatientController.getInstance().getPatient()[0]));
+            //AccountController.GetInstance().AddNewAccount(new Account("pera", "pass", PatientController.getInstance().getPatient()[0]));
+            AccountController.GetInstance().AddNewAccount(new Account("jova", "pass", PatientController.getInstance().getPatient()[1]));
+            AccountController.GetInstance().AddNewAccount(new Account("mika", "pass", PatientController.getInstance().getPatient()[2]));
             AccountController.GetInstance().AddNewAccount(new Account("m", "m", new Manager()));
             AccountController.GetInstance().AddNewAccount(new Account("s", "s", new Secretary()));
 

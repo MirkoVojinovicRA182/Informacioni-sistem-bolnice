@@ -1,6 +1,7 @@
 ﻿using Model;
 using System;
 using System.Windows;
+using static HospitalInformationSystem.Utility.Constants;
 
 namespace HospitalInformationSystem.Windows.DoctorGUI
 {
@@ -26,7 +27,7 @@ namespace HospitalInformationSystem.Windows.DoctorGUI
         {
             if(CheckAllInputs())
             {
-                _patientsMedicalRecord.addAnamnesis(new Anamnesis(DateTime.ParseExact(dateTextBox.Text, "dd.MM.yyyy.", System.Globalization.CultureInfo.InvariantCulture), basicDescriptionTextBox.Text, anamnesisTextBox.Text));
+                _patientsMedicalRecord.addAnamnesis(new Anamnesis(DateTime.ParseExact(dateTextBox.Text, DATE_TEMPLATE, System.Globalization.CultureInfo.InvariantCulture), basicDescriptionTextBox.Text, anamnesisTextBox.Text));
                 MessageBox.Show("Anamneza je uspesno dodata!", "Dodavanje anamneze", MessageBoxButton.OK, MessageBoxImage.Information);
             }
         }
@@ -34,7 +35,7 @@ namespace HospitalInformationSystem.Windows.DoctorGUI
         {
             try
             {
-                DateTime date = DateTime.ParseExact(dateTextBox.Text, "dd.MM.yyyy.", System.Globalization.CultureInfo.InvariantCulture);
+                DateTime date = DateTime.ParseExact(dateTextBox.Text, DATE_TEMPLATE, System.Globalization.CultureInfo.InvariantCulture);
             }
             catch (Exception e)
             {

@@ -26,6 +26,7 @@
         public const string SYRUP = "Sirup";
         public const string PILL = "Pilula";
         public const string TABLET = "Tableta";
-
+        public const string DATE_TIME_TEMPLATE = "dd.MM.yyyy. HH:mm";
+        public const string DATE_TEMPLATE = "dd.MM.yyyy.";
     }
 }

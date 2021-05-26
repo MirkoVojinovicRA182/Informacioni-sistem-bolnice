@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Windows;
 using System.Windows.Input;
+using static HospitalInformationSystem.Utility.Constants;
 
 namespace HospitalInformationSystem.Windows.DoctorGUI
 {
@@ -12,7 +13,6 @@ namespace HospitalInformationSystem.Windows.DoctorGUI
     /// </summary>
     public partial class EditHospitalTreatmentWindow : Window
     {
-        private const string dateTemplate = "dd.MM.yyyy.";
         private Patient _patientForEdit;
         private static EditHospitalTreatmentWindow instance = null;
         public static EditHospitalTreatmentWindow GetInstance(Patient parientForEdit)
@@ -30,8 +30,8 @@ namespace HospitalInformationSystem.Windows.DoctorGUI
         private void InitInputs()
         {
             patientNameLabel.Content = _patientForEdit.Name + " " + _patientForEdit.Surname;
-            startDateTextBox.Text = _patientForEdit.hospitalTreatment.treatmentStartDate.ToString(dateTemplate);
-            endDateTextBox.Text = _patientForEdit.hospitalTreatment.treatmentEndDate.ToString(dateTemplate);
+            startDateTextBox.Text = _patientForEdit.hospitalTreatment.treatmentStartDate.ToString(DATE_TEMPLATE);
+            endDateTextBox.Text = _patientForEdit.hospitalTreatment.treatmentEndDate.ToString(DATE_TEMPLATE);
             InitRoomsForHospitalTreatment();
         }
         private void InitRoomsForHospitalTreatment()
@@ -48,9 +48,9 @@ namespace HospitalInformationSystem.Windows.DoctorGUI
             {
                 PatientController.getInstance().EditHospitalTreatment(_patientForEdit,
                             DateTime.ParseExact(startDateTextBox.Text,
-                        dateTemplate, System.Globalization.CultureInfo.InvariantCulture),
+                        DATE_TEMPLATE, System.Globalization.CultureInfo.InvariantCulture),
                             DateTime.ParseExact(endDateTextBox.Text,
-                        dateTemplate, System.Globalization.CultureInfo.InvariantCulture),
+                        DATE_TEMPLATE, System.Globalization.CultureInfo.InvariantCulture),
                             (Room)roomsListBox.SelectedItem);
                 MessageBox.Show("Informacije o bolnickom lecenju su uspesno promjenjene!", "Lecenje", MessageBoxButton.OK, MessageBoxImage.Information);
             }
@@ -64,7 +64,7 @@ namespace HospitalInformationSystem.Windows.DoctorGUI
             try
             {
                 DateTime startDate = DateTime.ParseExact(startDateTextBox.Text,
-                    dateTemplate, System.Globalization.CultureInfo.InvariantCulture);
+                    DATE_TEMPLATE, System.Globalization.CultureInfo.InvariantCulture);
             }
             catch (Exception e)
             {
@@ -78,7 +78,7 @@ namespace HospitalInformationSystem.Windows.DoctorGUI
             try
             {
                 DateTime endDate = DateTime.ParseExact(startDateTextBox.Text,
-                    dateTemplate, System.Globalization.CultureInfo.InvariantCulture);
+                    DATE_TEMPLATE, System.Globalization.CultureInfo.InvariantCulture);
             }
             catch (Exception e)
             {

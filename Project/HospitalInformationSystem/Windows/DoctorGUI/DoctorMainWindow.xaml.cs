@@ -1,5 +1,4 @@
-﻿using HospitalInformationSystem.Controller;
-using Model;
+﻿using Model;
 using System.Windows;
 using System.Windows.Input;
 
@@ -39,7 +38,7 @@ namespace HospitalInformationSystem.Windows.DoctorGUI
                     specializationLabel.Content = "Neurolog";
                     break;
                 case Specialization.Pediatrician:
-                    specializationLabel.Content = "Periatar";
+                    specializationLabel.Content = "Pediatar";
                     break;
                 case Specialization.Surgeon:
                     specializationLabel.Content = "Hirurg";

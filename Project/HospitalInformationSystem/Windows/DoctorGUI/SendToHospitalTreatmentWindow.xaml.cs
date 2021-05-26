@@ -125,9 +125,9 @@ namespace HospitalInformationSystem.Windows.DoctorGUI
         }
         private bool CheckRoomState(Room room)
         {
-            DateTime startDateOfTreatment = DateTime.ParseExact(startDateTextBox.Text,
+            DateTime startDateOfTreatment = DateTime.ParseExact(startDateTextBox.Text + " 00:00",
                 DATE_TIME_TEMPLATE, System.Globalization.CultureInfo.InvariantCulture);
-            DateTime endDateOfTreatment = DateTime.ParseExact(endDateTextBox.Text,
+            DateTime endDateOfTreatment = DateTime.ParseExact(endDateTextBox.Text + " 23:59",
                 DATE_TIME_TEMPLATE, System.Globalization.CultureInfo.InvariantCulture);
             return endDateOfTreatment < room.RoomRenovationState.StartDate || startDateOfTreatment > room.RoomRenovationState.EndDate;
         }

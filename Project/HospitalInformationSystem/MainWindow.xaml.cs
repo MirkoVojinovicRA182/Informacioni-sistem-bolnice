@@ -25,7 +25,7 @@ namespace HospitalInformationSystem.Windows
         public MainWindow()
         {
             InitializeComponent();
-            
+
             //
             /*Room room1 = new Room(1, "Magacin", -1, TypeOfRoom.Magacine, new Hashtable());
             Room room2 = new Room(2, "Prostorija dr Marka", 1, TypeOfRoom.ExaminationRoom, new Hashtable());
@@ -70,8 +70,7 @@ namespace HospitalInformationSystem.Windows
             PatientController.getInstance().getPatient().Add(second);
             PatientController.getInstance().getPatient().Add(third);*/
 
-            ///
-
+            /// 
             Deserialize();
 
             //ManagerMainWindow.getInstance().Show();

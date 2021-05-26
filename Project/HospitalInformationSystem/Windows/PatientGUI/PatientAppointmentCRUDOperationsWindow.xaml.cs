@@ -207,12 +207,15 @@ namespace HospitalInformationSystem.Windows.PatientGUI
         }
         private void ShowDoctorReviewWindow()
         {
-            ReviewDoctorWindow window = new ReviewDoctorWindow((Appointment)AppointmentDataGrid.SelectedItem);
+            ReviewDoctorWindow window = new ReviewDoctorWindow((Appointment)AppointmentDataGrid.SelectedItem, _loggedInPatient);
             window.ShowDialog();
         }
         private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
         {
             CheckIfPatientIsTroll();
+            AppointmentController.getInstance().SaveAppointmentsInFile();
+            DoctorController.getInstance().SaveInFlie();
+            PatientController.getInstance().SaveInFile();
             _instance = null;
         }
         private void HomeButton_Click(object sender, RoutedEventArgs e)

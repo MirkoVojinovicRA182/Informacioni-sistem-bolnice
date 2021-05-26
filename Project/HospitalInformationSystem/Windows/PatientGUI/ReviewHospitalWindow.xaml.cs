@@ -18,7 +18,7 @@ namespace HospitalInformationSystem.Windows.PatientGUI
 {
     /// <summary>
     /// Interaction logic for ReviewHospitalWindow.xaml
-    /// </summary>
+    /// </summary>  
     public partial class ReviewHospitalWindow : Window
     {
         private Patient _loggedInPatient;

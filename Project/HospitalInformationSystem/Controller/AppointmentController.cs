@@ -67,5 +67,9 @@ namespace HospitalInformationSystem.Controller
         {
             _appointmentService.RemoveAllAppointments();
         }
+        public bool AppointmentIsTaken(Appointment appointment)
+        {
+            return _appointmentService.AppointmentIsTaken(appointment);
+        }
     }
 }

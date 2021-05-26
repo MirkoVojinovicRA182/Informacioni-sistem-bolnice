@@ -33,12 +33,47 @@ namespace HospitalInformationSystem.Windows.PatientGUI
         }
         private void NewNotificationButton_Click(object sender, RoutedEventArgs e)
         {
-            Notification newNotification = new Notification(notificationTextBox.Text, GetTimeFromComboBoxes(), (DateTime)startDatePicker.SelectedDate, (DateTime)endDatePicker.SelectedDate, (bool)notificationCheckBox.IsChecked);
-            newNotification.Patient = _loggedInPatient;
+            if (ValidateInput())
+            {
+                CreateNotification();
+                MessageBox.Show("Kreirana je nova notifikacija.", "Notifikacija", MessageBoxButton.OK, MessageBoxImage.Information);
+            }
+            else
+            {
+                MessageBox.Show("Niste uneli validne podatke.", "Notifikacija", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+        }
+
+        private void CreateNotification()
+        {
+            Notification newNotification = FormNotification();
             NotificationController.GetInstance().AddNotification(newNotification);
             LoadNotificationComboBox();
             PatientMainWindow.GetInstance(_loggedInPatient).Notify();
         }
+
+        private Notification FormNotification()
+        {
+            Notification newNotification = new Notification(notificationTextBox.Text, GetTimeFromComboBoxes(), (DateTime)startDatePicker.SelectedDate, (DateTime)endDatePicker.SelectedDate, (bool)notificationCheckBox.IsChecked);
+            newNotification.Patient = _loggedInPatient;
+            return newNotification;
+        }
+
+        private bool ValidateInput()
+        {
+            return ValidateDates() || ValidateNotificationText();
+        }
+
+        private bool ValidateNotificationText()
+        {
+            return !(notificationTextBox.Text == null);
+        }
+
+        private bool ValidateDates()
+        {
+            return !(((DateTime)startDatePicker.SelectedDate).CompareTo((DateTime)endDatePicker.SelectedDate) >= 0);
+        }
+
         private void NotificationComboBox_DataContextChanged(object sender, DependencyPropertyChangedEventArgs e)
         {
             Notification notification = (Notification)notificationComboBox.SelectedItem;

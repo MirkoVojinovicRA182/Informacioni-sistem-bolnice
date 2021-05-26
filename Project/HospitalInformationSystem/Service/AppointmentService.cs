@@ -75,5 +75,16 @@ namespace HospitalInformationSystem.Service
             if (GetAppointments() != null)
                 GetAppointments().Clear();
         }
+
+        public bool AppointmentIsTaken(Appointment appointment)
+        {
+            bool isTaken = false;
+            foreach (var currentAppointment in _repository.GetAppointments())
+            {
+                if (currentAppointment.doctor == appointment.doctor && currentAppointment.StartTime == appointment.StartTime)
+                    return true;
+            }
+            return isTaken;
+        }
     }
 }

@@ -35,13 +35,26 @@ namespace HospitalInformationSystem.Windows.PatientGUI
         }
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            Notification prescriptionNotification = CreateNotification();
-            AddCreatedNotification(prescriptionNotification);
-            PatientMainWindow.GetInstance(_loggedInPatient).Notify();
+            if (PrescriptionIsNotSelected())
+            {
+                Notification prescriptionNotification = CreateNotification();
+                AddCreatedNotification(prescriptionNotification);
+                PatientMainWindow.GetInstance(_loggedInPatient).Notify();
+            }
+            else
+            {
+                MessageBox.Show("Niste selektovali terapiju.", "Notifikacija", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
         }
+
+        private bool PrescriptionIsNotSelected()
+        {
+            return prescriptionsDataGrid.SelectedItem != null;
+        }
+
         private Notification CreateNotification()
         {
-            Prescription prescription = (Prescription)PrescriptionsDataGrid.SelectedItem;
+            Prescription prescription = (Prescription)prescriptionsDataGrid.SelectedItem;
             Notification prescriptionNotification = new Notification(prescription.medicine.Name + " " + prescription.info, GetTimeFromComboBoxes(), prescription.startTime, prescription.endTime, true);
             prescriptionNotification.Patient = _loggedInPatient;
             return prescriptionNotification;
@@ -72,8 +85,8 @@ namespace HospitalInformationSystem.Windows.PatientGUI
         public void RefreshTable()
         {
             var prescriptionList = new ObservableCollection<Prescription>(_loggedInPatient.MedicalRecord.getPrescriptions());
-            PrescriptionsDataGrid.ItemsSource = null;
-            PrescriptionsDataGrid.ItemsSource = prescriptionList;
+            prescriptionsDataGrid.ItemsSource = null;
+            prescriptionsDataGrid.ItemsSource = prescriptionList;
         }
         private void HomeButton_Click(object sender, RoutedEventArgs e)
         {

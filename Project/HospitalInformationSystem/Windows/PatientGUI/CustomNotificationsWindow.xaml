@@ -29,9 +29,9 @@
         <Label Content=":" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="176,98,0,0"/>
         <TextBox x:Name="notificationTextBox" HorizontalAlignment="Left" Height="168" Margin="10,230,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="243" FontSize="15"/>
         <Label Content="Notifikacija: " HorizontalAlignment="Left" Margin="5,202,0,0" VerticalAlignment="Top" FontSize="15"/>
-        <Button x:Name="newNotificationButton" Content="Nova notifikacija" HorizontalAlignment="Left" VerticalAlignment="Top" Width="99" Margin="74,405,0,0" Height="35" Click="NewNotificationButton_Click"/>
-        <Button x:Name="deleteNotificationButton" Content="Obriši notifikaciju" HorizontalAlignment="Left" VerticalAlignment="Top" Width="99" Margin="74,444,0,0" Height="35" Click="DeleteNotificationButton_Click"/>
-        <Button x:Name="changeNotification" Content="Sačuvaj " HorizontalAlignment="Left" VerticalAlignment="Top" Width="55" Margin="193,427,0,0" Height="35" Click="ChangeButton_Click"/>
+        <Button x:Name="newNotificationButton" Content="Nova notifikacija" HorizontalAlignment="Left" VerticalAlignment="Top" Width="99" Margin="44,405,0,0" Height="35" Click="NewNotificationButton_Click"/>
+        <Button x:Name="deleteNotificationButton" Content="Obriši notifikaciju" HorizontalAlignment="Left" VerticalAlignment="Top" Width="99" Margin="44,444,0,0" Height="35" Click="DeleteNotificationButton_Click"/>
+        <Button x:Name="changeNotification" Content="Promeni notifikaciju" HorizontalAlignment="Left" VerticalAlignment="Top" Width="114" Margin="147,427,0,0" Height="35" Click="ChangeButton_Click"/>
         <CheckBox x:Name="notificationCheckBox" Content="Uključi/isključi" HorizontalAlignment="Left" Margin="106,208,0,0" VerticalAlignment="Top" FontSize="15"/>
         <Label Content="Od:" HorizontalAlignment="Left" Margin="10,133,0,0" VerticalAlignment="Top" FontSize="15" Width="94"/>
         <Label Content="Do:" HorizontalAlignment="Left" Margin="10,165,0,0" VerticalAlignment="Top" FontSize="15" Width="94"/>

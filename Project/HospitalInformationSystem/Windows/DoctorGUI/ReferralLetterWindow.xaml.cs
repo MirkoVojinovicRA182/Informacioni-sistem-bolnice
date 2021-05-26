@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Windows;
+using static HospitalInformationSystem.Utility.Constants;
 
 namespace HospitalInformationSystem.Windows.DoctorGUI
 {
@@ -12,7 +13,6 @@ namespace HospitalInformationSystem.Windows.DoctorGUI
     /// </summary>
     public partial class ReferralLetterWindow : Window
     {
-        private const string dateApperence = "dd.MM.yyyy. HH:mm";
         private Patient _patientForReferralLetter;
         private static ReferralLetterWindow instance = null;
         public static ReferralLetterWindow GetInstance(Patient patientForReferralLetter)
@@ -118,7 +118,7 @@ namespace HospitalInformationSystem.Windows.DoctorGUI
             try
             {
                 DateTime date = DateTime.ParseExact(dateTextBox.Text + " " + timeTextBox.Text,
-                    dateApperence, System.Globalization.CultureInfo.InvariantCulture);
+                    DATE_TIME_TEMPLATE, System.Globalization.CultureInfo.InvariantCulture);
             }
             catch (Exception e)
             {
@@ -130,7 +130,7 @@ namespace HospitalInformationSystem.Windows.DoctorGUI
         private bool CheckDoctorAppointments()
         {
             DateTime inputDate = DateTime.ParseExact(dateTextBox.Text + " " + timeTextBox.Text,
-                                                    dateApperence, System.Globalization.CultureInfo.InvariantCulture);
+                                                    DATE_TIME_TEMPLATE, System.Globalization.CultureInfo.InvariantCulture);
             Doctor doctor = (Doctor)doctorComboBox.SelectedItem;
             foreach (Appointment appointment in doctor.GetAppointment())
             {
@@ -149,7 +149,7 @@ namespace HospitalInformationSystem.Windows.DoctorGUI
             {
                 Room room = (Room)roomsListBox.SelectedItem;
                 DateTime dateOfAppointment = DateTime.ParseExact(dateTextBox.Text + " " + timeTextBox.Text,
-                                                                dateApperence, System.Globalization.CultureInfo.InvariantCulture);
+                                                                DATE_TIME_TEMPLATE, System.Globalization.CultureInfo.InvariantCulture);
                 if (!(dateOfAppointment.AddMinutes(30) < room.RoomRenovationState.StartDate || dateOfAppointment > room.RoomRenovationState.EndDate))
                 {
                     MessageBox.Show("Prostorija je zauzeta u odabranom terminu!", "Termin", MessageBoxButton.OK, MessageBoxImage.Error);
@@ -182,7 +182,7 @@ namespace HospitalInformationSystem.Windows.DoctorGUI
             if(CheckInputs() && CheckSelectedRoom())
             {
                 Appointment appointment = new Appointment(DateTime.ParseExact(dateTextBox.Text + " " + timeTextBox.Text,
-                    dateApperence, System.Globalization.CultureInfo.InvariantCulture),
+                    DATE_TIME_TEMPLATE, System.Globalization.CultureInfo.InvariantCulture),
                     (TypeOfAppointment)typeOfAppointmentComboBox.SelectedItem,
                     (Room)roomsListBox.SelectedItem, _patientForReferralLetter, (Doctor)doctorComboBox.SelectedItem);
                 AppointmentController.getInstance().AddAppointmentToAppointmentList(appointment);
@@ -190,7 +190,7 @@ namespace HospitalInformationSystem.Windows.DoctorGUI
             else if(CheckInputs())
             {
                 Appointment appointment = new Appointment(DateTime.ParseExact(dateTextBox.Text + " " + timeTextBox.Text,
-                    dateApperence, System.Globalization.CultureInfo.InvariantCulture),
+                    DATE_TIME_TEMPLATE, System.Globalization.CultureInfo.InvariantCulture),
                     (TypeOfAppointment)typeOfAppointmentComboBox.SelectedItem,
                     ((Doctor)doctorComboBox.SelectedItem).room, _patientForReferralLetter, (Doctor)doctorComboBox.SelectedItem);
                 AppointmentController.getInstance().AddAppointmentToAppointmentList(appointment);

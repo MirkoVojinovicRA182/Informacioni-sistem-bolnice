@@ -1,5 +1,6 @@
 ﻿using System.Windows;
 using Model;
+using static HospitalInformationSystem.Utility.Constants;
 
 namespace HospitalInformationSystem.Windows.DoctorGUI
 {
@@ -26,7 +27,7 @@ namespace HospitalInformationSystem.Windows.DoctorGUI
         {
             nameLabel.Content = _patientToShowMedicalRecord.Name + " " + _patientToShowMedicalRecord.Surname;
             bloodTypeLabel.Content = _patientToShowMedicalRecord.Blood.ToString();
-            dateOfBirthLabel.Content = _patientToShowMedicalRecord.DateOfBirth.ToString("dd.MM.yyyy.");
+            dateOfBirthLabel.Content = _patientToShowMedicalRecord.DateOfBirth.ToString(DATE_TEMPLATE);
             jmbgLeabel.Content = _patientToShowMedicalRecord.Jmbg;
             genderLabel.Content = _patientToShowMedicalRecord.Gender;
             phoneNumberLabel.Content = _patientToShowMedicalRecord.PhoneNumber;

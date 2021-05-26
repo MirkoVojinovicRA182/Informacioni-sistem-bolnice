@@ -3,6 +3,7 @@ using Model;
 using System;
 using System.Windows;
 using System.Windows.Input;
+using static HospitalInformationSystem.Utility.Constants;
 
 namespace HospitalInformationSystem.Windows.DoctorGUI
 {
@@ -28,7 +29,7 @@ namespace HospitalInformationSystem.Windows.DoctorGUI
         }
         private void LoadPatient()
         {
-            dateTextBox.Text = _appointmentToEdit.StartTime.ToString("dd.MM.yyyy.");
+            dateTextBox.Text = _appointmentToEdit.StartTime.ToString(DATE_TEMPLATE);
             timeTextBox.Text = _appointmentToEdit.StartTime.ToString("HH:mm");
         }
         private void LoadPatientComboBox()
@@ -41,7 +42,7 @@ namespace HospitalInformationSystem.Windows.DoctorGUI
         {
             try
             {
-                DateTime date = DateTime.ParseExact(dateTextBox.Text + " " + timeTextBox.Text, "dd.MM.yyyy. HH:mm", System.Globalization.CultureInfo.InvariantCulture);
+                DateTime date = DateTime.ParseExact(dateTextBox.Text + " " + timeTextBox.Text, DATE_TIME_TEMPLATE, System.Globalization.CultureInfo.InvariantCulture);
             }
             catch (Exception e)
             {
@@ -53,7 +54,7 @@ namespace HospitalInformationSystem.Windows.DoctorGUI
         }
         private bool CheckRoomState(Room room)
         {
-            DateTime dateOfAppointment = DateTime.ParseExact(dateTextBox.Text + " " + timeTextBox.Text, "dd.MM.yyyy. HH:mm", System.Globalization.CultureInfo.InvariantCulture);
+            DateTime dateOfAppointment = DateTime.ParseExact(dateTextBox.Text + " " + timeTextBox.Text, DATE_TIME_TEMPLATE, System.Globalization.CultureInfo.InvariantCulture);
             return dateOfAppointment.AddMinutes(30) < room.RoomRenovationState.StartDate || dateOfAppointment > room.RoomRenovationState.EndDate;
         }
         private void CheckKeyPress()
@@ -62,7 +63,7 @@ namespace HospitalInformationSystem.Windows.DoctorGUI
             {
                 if (CheckData() && CheckRoomState(_appointmentToEdit.room))
                 {
-                    DateTime date = DateTime.ParseExact(dateTextBox.Text + " " + timeTextBox.Text, "dd.MM.yyyy. HH:mm", System.Globalization.CultureInfo.InvariantCulture);
+                    DateTime date = DateTime.ParseExact(dateTextBox.Text + " " + timeTextBox.Text, DATE_TIME_TEMPLATE, System.Globalization.CultureInfo.InvariantCulture);
                     if(patientListBox.SelectedIndex < 0)
                         AppointmentController.getInstance().ChangeAppointment(
                             _appointmentToEdit, date, _appointmentToEdit.Type, _appointmentToEdit.room, 
@@ -81,10 +82,6 @@ namespace HospitalInformationSystem.Windows.DoctorGUI
         }
         private void patientListBox_PreviewKeyDown(object sender, KeyEventArgs e) => CheckKeyPress();
         private void Window_KeyDown(object sender, KeyEventArgs e) => CheckKeyPress();
-
-        private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
-        {
-            instance = null;
-        }
+        private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e) => instance = null;
     }
 }

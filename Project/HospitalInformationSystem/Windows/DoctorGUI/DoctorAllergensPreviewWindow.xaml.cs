@@ -18,7 +18,7 @@ namespace HospitalInformationSystem.Windows.DoctorGUI
         private DoctorAllergensPreviewWindow(Patient patientToViewAllergens)
         {
             InitializeComponent();
-            allergensListBox.ItemsSource = patientToViewAllergens.Allergens;
+            allergensListBox.ItemsSource = patientToViewAllergens.MedicalRecord.AllergensList;
         }
 
         private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)

@@ -3,6 +3,7 @@ using HospitalInformationSystem.Model;
 using Model;
 using System;
 using System.Windows;
+using static HospitalInformationSystem.Utility.Constants;
 
 namespace HospitalInformationSystem.Windows.DoctorGUI
 {
@@ -56,7 +57,7 @@ namespace HospitalInformationSystem.Windows.DoctorGUI
         {
             try
             {
-                DateTime startDate = DateTime.ParseExact(startDateTextBox.Text, "dd.MM.yyyy.", System.Globalization.CultureInfo.InvariantCulture);
+                DateTime startDate = DateTime.ParseExact(startDateTextBox.Text, DATE_TEMPLATE, System.Globalization.CultureInfo.InvariantCulture);
             }
             catch (Exception e)
             {
@@ -69,7 +70,7 @@ namespace HospitalInformationSystem.Windows.DoctorGUI
         {
             try
             {
-                DateTime endDate = DateTime.ParseExact(endDateTextBox.Text, "dd.MM.yyyy.", System.Globalization.CultureInfo.InvariantCulture);
+                DateTime endDate = DateTime.ParseExact(endDateTextBox.Text, DATE_TEMPLATE, System.Globalization.CultureInfo.InvariantCulture);
             }
             catch (Exception e)
             {
@@ -82,11 +83,29 @@ namespace HospitalInformationSystem.Windows.DoctorGUI
         {
             foreach(MedicineIngredient medicineIngredients in ((Medicine)medicineComboBox.SelectedItem).Ingredients)
             {
-                if (_patientToAddPrescription.Allergens.Contains(medicineIngredients.Name) || _patientToAddPrescription.Allergens.Contains(((Medicine)medicineComboBox.SelectedItem).Name))
+                if (!CheckPatientsIngredientsAllergens(medicineIngredients))
                 {
                     MessageBox.Show("Pacijent je alergican na sastojke leka!", "Alergeni", MessageBoxButton.OK, MessageBoxImage.Error);
                     return false;
                 }
+            }
+            return CheckPatientsMedicineAllergens();
+        }
+        private bool CheckPatientsIngredientsAllergens(MedicineIngredient ingredient)
+        {
+            foreach (Allergen allergen in _patientToAddPrescription.MedicalRecord.AllergensList)
+            {
+                if (allergen.Name.Equals(ingredient.Name))
+                    return false;
+            }
+            return true;
+        }
+        private bool CheckPatientsMedicineAllergens()
+        {
+            foreach (Allergen allergen in _patientToAddPrescription.MedicalRecord.AllergensList)
+            {
+                if (allergen.Name.Equals(((Medicine)medicineComboBox.SelectedItem).Name))
+                    return false;
             }
             return true;
         }

@@ -5,12 +5,12 @@ using System.Windows.Controls;
 using HospitalInformationSystem.Controller;
 using System.Collections.Generic;
 using System.Windows.Input;
+using static HospitalInformationSystem.Utility.Constants;
 
 namespace HospitalInformationSystem.Windows.DoctorGUI
 {
     public partial class DoctorAddNewAppointmentWindow : Window
     {
-        private const string dateTemplate = "dd.MM.yyyy. HH:mm";
         Doctor _loggedDoctor;
         private Room _selectedRoomForAppointment;
         private TypeOfAppointment typeOfAppointment;
@@ -56,13 +56,13 @@ namespace HospitalInformationSystem.Windows.DoctorGUI
         }
         private bool CheckRoomState(Room room)
         {
-            DateTime dateOfAppointment = DateTime.ParseExact(dateTextBox.Text + " " + timeTextBox.Text, 
-                dateTemplate, System.Globalization.CultureInfo.InvariantCulture);
+            DateTime dateOfAppointment = DateTime.ParseExact(dateTextBox.Text + " " + timeTextBox.Text,
+                DATE_TIME_TEMPLATE, System.Globalization.CultureInfo.InvariantCulture);
             return dateOfAppointment.AddMinutes(30) < room.RoomRenovationState.StartDate || dateOfAppointment > room.RoomRenovationState.EndDate;
         }
         private void createAppointment()
         {
-            DateTime date = DateTime.ParseExact(dateTextBox.Text + " " + timeTextBox.Text, dateTemplate, System.Globalization.CultureInfo.InvariantCulture);
+            DateTime date = DateTime.ParseExact(dateTextBox.Text + " " + timeTextBox.Text, DATE_TIME_TEMPLATE, System.Globalization.CultureInfo.InvariantCulture);
             Appointment appointment = new Appointment(date, typeOfAppointment, _selectedRoomForAppointment, 
                 (Patient)patientListBox.SelectedItem, _loggedDoctor);
             AppointmentController.getInstance().AddAppointmentToAppointmentList(appointment);
@@ -98,8 +98,8 @@ namespace HospitalInformationSystem.Windows.DoctorGUI
         {
             try
             {
-                DateTime date = DateTime.ParseExact(dateTextBox.Text + " " + timeTextBox.Text, 
-                    dateTemplate, System.Globalization.CultureInfo.InvariantCulture);
+                DateTime date = DateTime.ParseExact(dateTextBox.Text + " " + timeTextBox.Text,
+                    DATE_TIME_TEMPLATE, System.Globalization.CultureInfo.InvariantCulture);
             }
             catch (Exception e)
             {
@@ -128,8 +128,8 @@ namespace HospitalInformationSystem.Windows.DoctorGUI
         }
         private bool CheckIsDoctorFreeInSelectedTime()
         {
-            DateTime appointmentTime = DateTime.ParseExact(dateTextBox.Text + " " + timeTextBox.Text, 
-                dateTemplate, System.Globalization.CultureInfo.InvariantCulture);
+            DateTime appointmentTime = DateTime.ParseExact(dateTextBox.Text + " " + timeTextBox.Text,
+                DATE_TIME_TEMPLATE, System.Globalization.CultureInfo.InvariantCulture);
             foreach (Appointment appointment in _loggedDoctor.GetAppointment())
             {
                 if (appointmentTime.Ticks > appointment.StartTime.AddMinutes(-30).Ticks && appointmentTime.Ticks < appointment.StartTime.AddMinutes(30).Ticks)
@@ -143,7 +143,7 @@ namespace HospitalInformationSystem.Windows.DoctorGUI
         private bool CheckIsPatientFreeInSelectedTime()
         {
             DateTime appointmentTime = DateTime.ParseExact(dateTextBox.Text + " " + timeTextBox.Text,
-                dateTemplate, System.Globalization.CultureInfo.InvariantCulture);
+                DATE_TIME_TEMPLATE, System.Globalization.CultureInfo.InvariantCulture);
             foreach (Appointment appointment in ((Patient)patientListBox.SelectedItem).GetAppointment())
             {
                 if (appointmentTime > appointment.StartTime.AddMinutes(-30) && appointmentTime < appointment.StartTime.AddMinutes(30))

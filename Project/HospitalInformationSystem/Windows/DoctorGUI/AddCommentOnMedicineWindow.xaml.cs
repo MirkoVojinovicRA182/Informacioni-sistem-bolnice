@@ -26,11 +26,13 @@ namespace HospitalInformationSystem.Windows.DoctorGUI
 
         private void addCommentButton_Click(object sender, RoutedEventArgs e)
         {
-            if (commentTextBox.Text.Length > 0)
+            if (commentTextBox.Text.Length > 0 && _medicineToAddComment.Comment != null)
             {
                 _medicineToAddComment.Comment = commentTextBox.Text;
                 MessageBox.Show("Uspesno ste dodali komentar na lek.", "Komentar", MessageBoxButton.OK, MessageBoxImage.Information);
             }
+            else
+                MessageBox.Show("Greska prilikom dodavanja komentara na lek!", "Komentar", MessageBoxButton.OK, MessageBoxImage.Error);
         }
 
         private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)

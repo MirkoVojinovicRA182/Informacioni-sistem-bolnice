@@ -2,6 +2,7 @@
 using System;
 using System.Windows;
 using System.Windows.Input;
+using static HospitalInformationSystem.Utility.Constants;
 
 namespace HospitalInformationSystem.Windows.DoctorGUI
 {
@@ -28,7 +29,7 @@ namespace HospitalInformationSystem.Windows.DoctorGUI
         }
         private void InitTextBoxes()
         {
-            dateTextBox.Text = _appointmentToShow.StartTime.ToString("dd.MM.yyyy.");
+            dateTextBox.Text = _appointmentToShow.StartTime.ToString(DATE_TEMPLATE);
             timeTextBox.Text = _appointmentToShow.StartTime.ToString("HH:mm");
             appointmentTypeTextBox.Text = _appointmentToShow.Type.ToString();
             patientTextBox.Text = _appointmentToShow.patient.Name + " " + _appointmentToShow.patient.Surname;

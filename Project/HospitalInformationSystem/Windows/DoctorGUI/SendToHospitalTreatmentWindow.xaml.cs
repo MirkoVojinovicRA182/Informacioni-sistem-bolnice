@@ -6,6 +6,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Windows;
 using System.Windows.Input;
+using static HospitalInformationSystem.Utility.Constants;
 
 namespace HospitalInformationSystem.Windows.DoctorGUI
 {
@@ -14,7 +15,6 @@ namespace HospitalInformationSystem.Windows.DoctorGUI
     /// </summary>
     public partial class SendToHospitalTreatmentWindow : Window
     {
-        private const string dateTemplate = "dd.MM.yyyy.";
         private Patient patientToSend;
         private static SendToHospitalTreatmentWindow instance = null;
         public static SendToHospitalTreatmentWindow GetInstance(Patient patientToSend)
@@ -50,9 +50,9 @@ namespace HospitalInformationSystem.Windows.DoctorGUI
                     PatientController.getInstance().AddHospitalTreatment(patientToSend,
                         new HospitalTreatment(
                             DateTime.ParseExact(startDateTextBox.Text,
-                        dateTemplate, System.Globalization.CultureInfo.InvariantCulture),
+                        DATE_TEMPLATE, System.Globalization.CultureInfo.InvariantCulture),
                             DateTime.ParseExact(endDateTextBox.Text,
-                        dateTemplate, System.Globalization.CultureInfo.InvariantCulture),
+                        DATE_TEMPLATE, System.Globalization.CultureInfo.InvariantCulture),
                             (Room)roomsListBox.SelectedItem));
                     MessageBox.Show("Pacijent je poslat na bolnicko lijecenje!", "Lecenje", MessageBoxButton.OK, MessageBoxImage.Information);
                 }
@@ -69,7 +69,7 @@ namespace HospitalInformationSystem.Windows.DoctorGUI
             try
             {
                 DateTime startDate = DateTime.ParseExact(startDateTextBox.Text,
-                    dateTemplate, System.Globalization.CultureInfo.InvariantCulture);
+                    DATE_TEMPLATE, System.Globalization.CultureInfo.InvariantCulture);
             }
             catch (Exception e)
             {
@@ -83,7 +83,7 @@ namespace HospitalInformationSystem.Windows.DoctorGUI
             try
             {
                 DateTime endDate = DateTime.ParseExact(startDateTextBox.Text,
-                    dateTemplate, System.Globalization.CultureInfo.InvariantCulture);
+                    DATE_TEMPLATE, System.Globalization.CultureInfo.InvariantCulture);
             }
             catch (Exception e)
             {
@@ -110,9 +110,9 @@ namespace HospitalInformationSystem.Windows.DoctorGUI
         {
             int freeBedsInRoom = GetNumberOfBedsInRoom();
             DateTime startDate = DateTime.ParseExact(endDateTextBox.Text,
-                    dateTemplate, System.Globalization.CultureInfo.InvariantCulture);
+                    DATE_TEMPLATE, System.Globalization.CultureInfo.InvariantCulture);
             DateTime endDate = DateTime.ParseExact(startDateTextBox.Text,
-                    dateTemplate, System.Globalization.CultureInfo.InvariantCulture);
+                    DATE_TEMPLATE, System.Globalization.CultureInfo.InvariantCulture);
             foreach (Patient patient in PatientController.getInstance().GetPatientsOnHospitalTretment())
             {
                 if ((patient.hospitalTreatment.treatmentEndDate < startDate) ||
@@ -123,9 +123,18 @@ namespace HospitalInformationSystem.Windows.DoctorGUI
             }
             return freeBedsInRoom > 0;
         }
+        private bool CheckRoomState(Room room)
+        {
+            DateTime startDateOfTreatment = DateTime.ParseExact(startDateTextBox.Text,
+                DATE_TIME_TEMPLATE, System.Globalization.CultureInfo.InvariantCulture);
+            DateTime endDateOfTreatment = DateTime.ParseExact(endDateTextBox.Text,
+                DATE_TIME_TEMPLATE, System.Globalization.CultureInfo.InvariantCulture);
+            return endDateOfTreatment < room.RoomRenovationState.StartDate || startDateOfTreatment > room.RoomRenovationState.EndDate;
+        }
         private bool CheckAllInputs()
         {
-            return CheckSelectedRoom() && CheckEndDateInput() && CheckStartDateInput() && CheckIfRoomHaveFreeBeds();
+            return CheckSelectedRoom() && CheckEndDateInput() && CheckStartDateInput() && 
+                CheckIfRoomHaveFreeBeds() && CheckRoomState((Room)roomsListBox.SelectedItem);
         }
         private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e) => instance = null;
         private void roomsListBox_PreviewKeyDown(object sender, KeyEventArgs e) => CheckKeyPress();

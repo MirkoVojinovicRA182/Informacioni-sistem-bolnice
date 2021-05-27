@@ -33,7 +33,6 @@ namespace HospitalInformationSystem.Service
             dateOfBirth, phoneNumber, email, parentsName,
             gender, jmbg, isGuest, blood, lbo);
             _patientsFile.patients.Add(patient);
-            AccountController.GetInstance().AddNewAccount(new Account(username, "pass", patient));
         }
 
         public ObservableCollection<Allergen> getAllergens()

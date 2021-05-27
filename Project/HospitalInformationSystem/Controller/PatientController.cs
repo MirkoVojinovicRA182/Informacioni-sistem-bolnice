@@ -48,6 +48,9 @@ namespace HospitalInformationSystem.Controller
             patientService.CreatePatient(username,  name,  surname,
               dateOfBirth,  phoneNumber,  email,  parentsName,
               gender,  jmbg, isGuest,  blood,  lbo);
+            AccountController.GetInstance().AddNewAccount(new Account(username, "pass", new Patient(username, name, surname,
+              dateOfBirth, phoneNumber, email, parentsName,
+              gender, jmbg, isGuest, blood, lbo)));
         }
         public ObservableCollection<Allergen> getAllergens()
         {

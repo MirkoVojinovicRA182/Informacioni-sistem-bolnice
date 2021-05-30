@@ -1,4 +1,5 @@
-﻿<Window x:Class="HospitalInformationSystem.Windows.ManagerGUI.EditMedicineWindow"
+﻿<mah:MetroWindow x:Class="HospitalInformationSystem.Windows.ManagerGUI.EditMedicineWindow"
+        xmlns:mah="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
@@ -28,7 +29,7 @@
             </ComboBox.ItemTemplate>
         </ComboBox>
         <Label Content="Sastojci:" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="29,403,0,0" FontSize="15"/>
-        <ListBox x:Name="ingredientsListBox" HorizontalAlignment="Left" Height="76" VerticalAlignment="Top" Width="143" Margin="152,381,0,0">
+        <ListBox x:Name="ingredientsListBox" BorderThickness="1" BorderBrush="Gray" HorizontalAlignment="Left" Height="76" VerticalAlignment="Top" Width="143" Margin="152,381,0,0">
             <ListBox.ItemTemplate>
                 <DataTemplate>
                     <TextBlock Text="{Binding Name}" />
@@ -38,8 +39,8 @@
         <Button x:Name="confirmButton" Content="Potvrdi" HorizontalAlignment="Left" VerticalAlignment="Top" Width="100" Height="30" Margin="152,500,0,0" FontSize="15" Click="confirmButton_Click"/>
         <Button x:Name="addNewIngredientButton" Content="+" HorizontalAlignment="Left" VerticalAlignment="Top" Width="30" Height="30" Margin="300,381,0,0" FontSize="15" Click="addNewIngredientButton_Click"/>
         <Button x:Name="deleteIngredientButton" Content="-" HorizontalAlignment="Left" VerticalAlignment="Top" Width="30" Height="30" Margin="300,427,0,0" FontSize="15" Click="deleteIngredientButton_Click"/>
-        <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" Text="trenutni zamenski: " VerticalAlignment="Top" Margin="152,331,0,0" FontStyle="Italic" Foreground="Black"/>
-        <TextBlock x:Name="nameOfReplacementMedicineTextBlock" HorizontalAlignment="Left" TextWrapping="Wrap" VerticalAlignment="Top" Margin="256,331,0,0" FontStyle="Italic" Foreground="Black" FontWeight="Bold"/>
+        <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" Text="trenutni zamenski: " VerticalAlignment="Top" Margin="152,331,0,0" FontStyle="Italic"/>
+        <TextBlock x:Name="nameOfReplacementMedicineTextBlock" HorizontalAlignment="Left" TextWrapping="Wrap" VerticalAlignment="Top" Margin="256,331,0,0" FontStyle="Italic" FontWeight="Bold"/>
 
     </Grid>
-</Window>
+</mah:MetroWindow>

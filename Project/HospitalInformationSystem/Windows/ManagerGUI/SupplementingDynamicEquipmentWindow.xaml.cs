@@ -1,10 +1,11 @@
 ﻿using HospitalInformationSystem.Controller;
+using MahApps.Metro.Controls;
 using Model;
 using System;
 using System.Windows;
 namespace HospitalInformationSystem.Windows.ManagerGUI
 {
-    public partial class SupplementingDynamicEquipmentWindow : Window
+    public partial class SupplementingDynamicEquipmentWindow : MetroWindow
     {
         Room selectedRoom;
         string idOfSelectedEquipment;

@@ -1,7 +1,8 @@
-﻿using System.Windows;
+﻿using MahApps.Metro.Controls;
+using System.Windows;
 namespace HospitalInformationSystem.Windows.ManagerGUI
 {
-    public partial class SuccessMovingWindow : Window
+    public partial class SuccessMovingWindow : MetroWindow
     {
         private static SuccessMovingWindow instance = null;
         public static SuccessMovingWindow getInstance(int currentQuantity, int finalQuantity)

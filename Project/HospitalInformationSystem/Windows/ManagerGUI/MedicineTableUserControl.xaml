@@ -1,4 +1,5 @@
-﻿<UserControl x:Class="HospitalInformationSystem.Windows.ManagerGUI.MedicineTableUserControl"
+﻿<mah:MetroContentControl x:Class="HospitalInformationSystem.Windows.ManagerGUI.MedicineTableUserControl"
+             xmlns:mah="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
@@ -17,8 +18,7 @@
 				Height="500" 
 				Margin="10,10,0,0" 
 				VerticalAlignment="Top" 
-				Width="950" 
-				Background="CadetBlue" SelectionChanged="medicineTable_SelectionChanged">
+				Width="950"  SelectionChanged="medicineTable_SelectionChanged">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="ID" Width="*" Binding="{Binding Id}"></DataGridTextColumn>
                 <DataGridTextColumn Header="Naziv" Width="*" Binding="{Binding Name}"></DataGridTextColumn>
@@ -27,4 +27,4 @@
             </DataGrid.Columns>
         </DataGrid>
     </Grid>
-</UserControl>
+</mah:MetroContentControl>

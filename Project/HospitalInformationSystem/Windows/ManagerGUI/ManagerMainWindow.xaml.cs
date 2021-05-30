@@ -3,12 +3,16 @@ using Model;
 using System.Windows;
 using System.Windows.Controls;
 using HospitalInformationSystem.Model;
+using MahApps.Metro.Controls;
+using ControlzEx.Theming;
+using MahApps.Metro.Controls.Dialogs;
+
 namespace HospitalInformationSystem.Windows.ManagerGUI
 {
     /// <summary>
     /// Interaction logic for ManagerMainWindow.xaml
     /// </summary>
-    public partial class ManagerMainWindow : Window
+    public partial class ManagerMainWindow : MetroWindow
     {
         Room room;
         private static ManagerMainWindow instance;
@@ -25,6 +29,12 @@ namespace HospitalInformationSystem.Windows.ManagerGUI
             RefreshTables();
             if (MedicineCommentsExists())
                 MedicineCommentNotificationWindow.GetInstance().ShowDialog();
+
+        }
+        private void SetTheme()
+        {
+            ThemeManager.Current.ChangeTheme(this, "Light.Green");
+            lightTheme.IsChecked = true;
 
         }
         private void RefreshTables()
@@ -57,8 +67,6 @@ namespace HospitalInformationSystem.Windows.ManagerGUI
                 else
                     EditRoomWindow.getInstance(room).Show();
             }
-            else
-                MessageBox.Show("Niste odabrali prostoriju!", "Upozorenje", MessageBoxButton.OK, MessageBoxImage.Warning);
         }
         private void deleteRoomMenuItem_Click(object sender, RoutedEventArgs e)
         {
@@ -101,8 +109,6 @@ namespace HospitalInformationSystem.Windows.ManagerGUI
         {
             if (equipmentTable.equipmentTable.SelectedItem != null)
                 EditEquipment.getInstance((Equipment)this.equipmentTable.equipmentTable.SelectedItem).Show();
-            else
-                MessageBox.Show("Odaberite opremu iz opšteg prikaza opreme!", "Upozorenje", MessageBoxButton.OK, MessageBoxImage.Warning);
         }
         private void deleteEquipmentMenuItem_Click(object sender, RoutedEventArgs e)
         {
@@ -112,7 +118,6 @@ namespace HospitalInformationSystem.Windows.ManagerGUI
                 selectedEquipment = (Equipment)this.equipmentTable.equipmentTable.SelectedItem;
             else
             {
-                MessageBox.Show("Odaberite opremu iz opšteg prikaza opreme!", "Upozorenje", MessageBoxButton.OK, MessageBoxImage.Warning);
                 return;
             }
             EquipmentController.getInstance().deleteEquipment(selectedEquipment);
@@ -130,8 +135,6 @@ namespace HospitalInformationSystem.Windows.ManagerGUI
                 EditMedicineWindow.GetInstance((Medicine)medicineTableUserControl.medicineTable.SelectedItem).ShowDialog();
                 medicineTableUserControl.RefreshTable();
             }
-            else
-                MessageBox.Show("Izaberite lek iz tabele!", "Upozorenje", MessageBoxButton.OK, MessageBoxImage.Warning);
         }
         private void removeMedicineMenuItem_Click(object sender, RoutedEventArgs e)
         {
@@ -142,8 +145,6 @@ namespace HospitalInformationSystem.Windows.ManagerGUI
                 medicineTableUserControl.RefreshTable();
                 MessageBox.Show("Izabrani lek je sada obrisan iz sistema.", "Brisanje leka", MessageBoxButton.OK, MessageBoxImage.Information);
             }
-            else
-                MessageBox.Show("Izaberite lek iz tabele!", "Upozorenje", MessageBoxButton.OK, MessageBoxImage.Warning);
         }
         private void medicineComments_Click(object sender, RoutedEventArgs e)
         {
@@ -164,6 +165,16 @@ namespace HospitalInformationSystem.Windows.ManagerGUI
             
         }
 
-        
+        private void lightTheme_Checked(object sender, RoutedEventArgs e)
+        {
+            ThemeManager.Current.ChangeTheme(Application.Current, "Light.Green");
+            darkTheme.IsChecked = false;
+        }
+
+        private void darkTheme_Checked(object sender, RoutedEventArgs e)
+        {
+            ThemeManager.Current.ChangeTheme(Application.Current, "Dark.Green");
+            lightTheme.IsChecked = false;
+        }
     }
 }

@@ -1,11 +1,12 @@
 ﻿using HospitalInformationSystem.Controller;
 using HospitalInformationSystem.Utility;
+using MahApps.Metro.Controls;
 using Model;
 using System.Collections;
 using System.Windows;
 namespace HospitalInformationSystem.Windows.ManagerGUI
 {
-    public partial class AddEquipmentToRoomWindow : Window
+    public partial class AddEquipmentToRoomWindow : MetroWindow
     {
         private static AddEquipmentToRoomWindow instance = null;
         private Equipment selectedEquipment;

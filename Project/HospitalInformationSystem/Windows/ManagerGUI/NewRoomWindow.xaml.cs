@@ -6,9 +6,11 @@ using HospitalInformationSystem.Controller;
 using System.Collections;
 using System.Windows.Controls;
 using HospitalInformationSystem.Utility;
+using MahApps.Metro.Controls;
+
 namespace HospitalInformationSystem.Windows.ManagerGUI
 {
-    public partial class NewRoomWindow : Window
+    public partial class NewRoomWindow : MetroWindow
     {
         private static NewRoomWindow instance = null;
         private Hashtable roomEquipment;
@@ -151,8 +153,6 @@ namespace HospitalInformationSystem.Windows.ManagerGUI
                 roomEquipment.Remove(EquipmentController.getInstance().getEquipmentIdByName(atributesOfSelectedEquipment[0]));
                 refreshStaticEquipmentListBox();
             }
-            else
-                MessageBox.Show("Niste odabrali opremu!", Constants.ERROR_MESSAGE_BOX_CAPTION, MessageBoxButton.OK, MessageBoxImage.Error);
         }
         public void refreshDynamicEquipmentListBox()
         {

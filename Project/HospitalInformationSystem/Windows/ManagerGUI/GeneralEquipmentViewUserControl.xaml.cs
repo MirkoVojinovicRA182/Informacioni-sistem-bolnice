@@ -1,4 +1,5 @@
 ﻿using HospitalInformationSystem.Controller;
+using MahApps.Metro.Controls;
 using Model;
 using System.Collections.ObjectModel;
 using System.Windows.Controls;
@@ -7,7 +8,7 @@ namespace HospitalInformationSystem.Windows.ManagerGUI
     /// <summary>
     /// Interaction logic for EquipmentTable.xaml
     /// </summary>
-    public partial class GeneralEquipmentViewUserControl : UserControl
+    public partial class GeneralEquipmentViewUserControl : MetroContentControl
     {
         private Equipment selectedEquipment = null;
         private ObservableCollection<Equipment> equipmentList;

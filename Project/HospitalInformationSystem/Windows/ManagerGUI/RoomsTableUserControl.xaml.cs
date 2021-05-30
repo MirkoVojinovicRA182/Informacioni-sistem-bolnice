@@ -2,13 +2,14 @@
 using System.Windows.Controls;
 using System.Windows.Data;
 using HospitalInformationSystem.Controller;
+using MahApps.Metro.Controls;
 using Model;
 namespace HospitalInformationSystem.Windows.ManagerGUI
 {
     /// <summary>
     /// Interaction logic for RoomsTableUserControl.xaml
     /// </summary>
-    public partial class RoomsTableUserControl : UserControl
+    public partial class RoomsTableUserControl : MetroContentControl
     {
         private ObservableCollection<Room> roomList;
         public RoomsTableUserControl()

@@ -1,11 +1,12 @@
 ﻿using HospitalInformationSystem.Controller;
 using HospitalInformationSystem.Model;
+using MahApps.Metro.Controls;
 using System.Collections.ObjectModel;
 using System.Windows;
 using System.Windows.Controls;
 namespace HospitalInformationSystem.Windows.ManagerGUI
 {
-    public partial class MedicineWithCommentPreview : Window
+    public partial class MedicineWithCommentPreview : MetroWindow
     {
         private static MedicineWithCommentPreview _instance;
         private ObservableCollection<Medicine> _medicinesWithComment;

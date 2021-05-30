@@ -1,6 +1,7 @@
 ﻿using HospitalInformationSystem.Controller;
 using HospitalInformationSystem.Model;
 using HospitalInformationSystem.Utility;
+using MahApps.Metro.Controls;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Windows;
@@ -9,7 +10,7 @@ namespace HospitalInformationSystem.Windows.ManagerGUI
     /// <summary>
     /// Interaction logic for EditMedicineWindow.xaml
     /// </summary>
-    public partial class EditMedicineWindow : Window
+    public partial class EditMedicineWindow : MetroWindow
     {
         private Medicine medicineForEdit;
         private List<MedicineIngredient> medicineIngredientList = new List<MedicineIngredient>(); 

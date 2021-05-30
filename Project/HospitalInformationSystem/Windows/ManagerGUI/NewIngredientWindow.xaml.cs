@@ -1,4 +1,5 @@
 ﻿using HospitalInformationSystem.Model;
+using MahApps.Metro.Controls;
 using System.Collections.Generic;
 using System.Windows;
 namespace HospitalInformationSystem.Windows.ManagerGUI
@@ -6,7 +7,7 @@ namespace HospitalInformationSystem.Windows.ManagerGUI
     /// <summary>
     /// Interaction logic for NewIngredientWindow.xaml
     /// </summary>
-    public partial class NewIngredientWindow : Window
+    public partial class NewIngredientWindow : MetroWindow
     {
         List<MedicineIngredient> medicineIngredientList;
         private static NewIngredientWindow instance = null;

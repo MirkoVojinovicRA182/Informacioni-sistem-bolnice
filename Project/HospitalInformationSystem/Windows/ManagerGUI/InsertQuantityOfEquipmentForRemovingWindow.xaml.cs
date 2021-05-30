@@ -1,10 +1,11 @@
-﻿using System.Windows;
+﻿using MahApps.Metro.Controls;
+using System.Windows;
 namespace HospitalInformationSystem.Windows.ManagerGUI
 {
     /// <summary>
     /// Interaction logic for InsertQuantityOfEquipmentForRemovingWindow.xaml
     /// </summary>
-    public partial class InsertQuantityOfEquipmentForRemovingWindow : Window
+    public partial class InsertQuantityOfEquipmentForRemovingWindow : MetroWindow
     {
         private static InsertQuantityOfEquipmentForRemovingWindow instance = null;
         public static bool itSubmitted;

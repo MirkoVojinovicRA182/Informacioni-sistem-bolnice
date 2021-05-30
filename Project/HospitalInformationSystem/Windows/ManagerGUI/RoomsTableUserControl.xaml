@@ -1,4 +1,5 @@
-﻿<UserControl  x:Class="HospitalInformationSystem.Windows.ManagerGUI.RoomsTableUserControl"
+﻿<mah:MetroContentControl  x:Class="HospitalInformationSystem.Windows.ManagerGUI.RoomsTableUserControl"
+        xmlns:mah="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
@@ -17,7 +18,6 @@
 				  Height="500" 
 				  Margin="10,10,4.9,0" 
 				  VerticalAlignment="Top" 
-				  Background="CadetBlue"
                   SelectionUnit="FullRow" RenderTransformOrigin="0.5,0.5" SelectionChanged="allRoomsTable_SelectionChanged" SourceUpdated="allRoomsTable_SourceUpdated">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="ID" Width="*" Binding="{Binding Id}"></DataGridTextColumn>
@@ -28,4 +28,4 @@
             </DataGrid.Columns>
         </DataGrid>
     </Grid>
-</UserControl>
+</mah:MetroContentControl>

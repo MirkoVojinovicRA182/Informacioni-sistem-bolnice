@@ -1,4 +1,5 @@
-﻿<Window x:Class="HospitalInformationSystem.Windows.ManagerGUI.RoomRenovationWindow"
+﻿<mah:MetroWindow x:Class="HospitalInformationSystem.Windows.ManagerGUI.RoomRenovationWindow"
+        xmlns:mah="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
@@ -6,7 +7,7 @@
         xmlns:local="clr-namespace:HospitalInformationSystem.Windows.ManagerGUI"
         mc:Ignorable="d"
         Title="Renoviranje prostorije" Height="350" Width="550" Closing="Window_Closing" ResizeMode="NoResize">
-    <Grid Background="#FFFDFDFD">
+    <Grid>
         <Label Content="Vreme početka:" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="13,24,0,0" FontSize="15"/>
         <Label Content="Datum početka:" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10,75,0,0" FontSize="15"/>
         <Label Content="Vreme kraja:" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10,168,0,0" FontSize="15"/>
@@ -37,4 +38,4 @@
         </GroupBox>
 
     </Grid>
-</Window>
+</mah:MetroWindow>

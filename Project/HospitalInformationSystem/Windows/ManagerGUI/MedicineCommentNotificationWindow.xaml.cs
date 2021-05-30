@@ -1,7 +1,8 @@
-﻿using System.Windows;
+﻿using MahApps.Metro.Controls;
+using System.Windows;
 namespace HospitalInformationSystem.Windows.ManagerGUI
 {
-    public partial class MedicineCommentNotificationWindow : Window
+    public partial class MedicineCommentNotificationWindow : MetroWindow
     {
         private static MedicineCommentNotificationWindow _instance;
         public static MedicineCommentNotificationWindow GetInstance()

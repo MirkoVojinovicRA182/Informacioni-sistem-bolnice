@@ -1,10 +1,11 @@
 ﻿using HospitalInformationSystem.Controller;
 using HospitalInformationSystem.Model;
+using MahApps.Metro.Controls;
 using System.Collections.ObjectModel;
 using System.Windows.Controls;
 namespace HospitalInformationSystem.Windows.ManagerGUI
 {
-    public partial class MedicineTableUserControl : UserControl
+    public partial class MedicineTableUserControl : MetroContentControl
     {
         ObservableCollection<Medicine> medicineList;
         public MedicineTableUserControl()

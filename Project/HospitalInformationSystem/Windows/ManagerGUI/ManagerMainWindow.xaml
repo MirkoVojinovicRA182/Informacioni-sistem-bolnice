@@ -1,4 +1,5 @@
-﻿<Window x:Name="mainFrame" x:Class="HospitalInformationSystem.Windows.ManagerGUI.ManagerMainWindow"
+﻿<mah:MetroWindow x:Name="mainFrame" x:Class="HospitalInformationSystem.Windows.ManagerGUI.ManagerMainWindow"
+        xmlns:mah="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
@@ -41,14 +42,13 @@
                     <MenuItem x:Name="english" Header="Engleski" IsCheckable="True"/>
                 </MenuItem>
                 <MenuItem x:Name="themeMenuItem" Header="Tema">
-                    <MenuItem x:Name="lightTheme" Header="Svetla" IsCheckable="True"/>
-                    <MenuItem x:Name="darkTheme" Header="Tamna" IsCheckable="True"/>
+                    <MenuItem x:Name="lightTheme" Header="Svetla" IsCheckable="True" Checked="lightTheme_Checked"/>
+                    <MenuItem x:Name="darkTheme" Header="Tamna" IsCheckable="True" Checked="darkTheme_Checked"/>
                 </MenuItem>
             </MenuItem>
         </Menu>
-        <TextBox AcceptsReturn="True" />
         <TabControl x:Name="mainTabs" SelectionChanged="mainTabs_SelectionChanged">
-            <TabItem x:Name="roomTab" Header="Prostorije">
+            <TabItem x:Name="roomTab" Header="Prostorije" FontSize="15">
                 <ucRooms:RoomsTableUserControl x:Name="roomsUserControl"/>
             </TabItem>
             <TabItem x:Name="equipmentTab" Header="Oprema">
@@ -66,4 +66,4 @@
             </TabItem>
         </TabControl>
     </DockPanel>
-</Window>
+</mah:MetroWindow>

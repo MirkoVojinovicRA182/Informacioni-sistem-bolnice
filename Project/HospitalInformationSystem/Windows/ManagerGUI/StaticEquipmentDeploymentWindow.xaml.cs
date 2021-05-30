@@ -1,4 +1,5 @@
 ﻿using HospitalInformationSystem.Controller;
+using MahApps.Metro.Controls;
 using Model;
 using System;
 using System.Collections.ObjectModel;
@@ -6,7 +7,7 @@ using System.Threading;
 using System.Windows;
 namespace HospitalInformationSystem.Windows.ManagerGUI
 {
-    public partial class StaticEquipmentDeploymentWindow : Window
+    public partial class StaticEquipmentDeploymentWindow : MetroWindow
     {
         private static StaticEquipmentDeploymentWindow instance = null;
         private Room currentRoom;

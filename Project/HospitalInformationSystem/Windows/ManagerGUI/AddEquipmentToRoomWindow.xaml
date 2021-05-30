@@ -1,13 +1,14 @@
-﻿<Window x:Class="HospitalInformationSystem.Windows.ManagerGUI.AddEquipmentToRoomWindow"
+﻿<mah:MetroWindow x:Class="HospitalInformationSystem.Windows.ManagerGUI.AddEquipmentToRoomWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:HospitalInformationSystem.Windows.ManagerGUI"
+        xmlns:mah="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
         mc:Ignorable="d"
         Title="Oprema" Height="270" Width="250" Closing="Window_Closing">
     <Grid>
-        <ListBox x:Name="equipmentListBox" HorizontalAlignment="Left" Height="80" VerticalAlignment="Top" Width="220" Margin="10,49,0,0">
+        <ListBox x:Name="equipmentListBox" HorizontalAlignment="Left" BorderThickness="1" Height="80" VerticalAlignment="Top" Width="220" Margin="10,49,0,0">
             <ListBox.ItemTemplate>
                 <DataTemplate>
                     <TextBlock Text="{Binding Name}" />
@@ -20,4 +21,4 @@
         <Button x:Name="confirmButton" Content="POTVRDI" HorizontalAlignment="Left" VerticalAlignment="Top" Width="100" Height="30" Margin="81,191,0,0" FontSize="15" Click="confirmButton_Click"/>
 
     </Grid>
-</Window>
+</mah:MetroWindow>

@@ -1,5 +1,6 @@
 ﻿using HospitalInformationSystem.Controller;
 using HospitalInformationSystem.Model;
+using MahApps.Metro.Controls;
 using Model;
 using System;
 using System.Collections;
@@ -8,7 +9,7 @@ using System.Windows;
 using System.Windows.Controls;
 namespace HospitalInformationSystem.Windows.ManagerGUI
 {
-    public partial class RoomRenovationWindow : Window
+    public partial class RoomRenovationWindow : MetroWindow
     {
         private Room roomSelectedFromTable;
         private Room roomSelectedFromComboBox;

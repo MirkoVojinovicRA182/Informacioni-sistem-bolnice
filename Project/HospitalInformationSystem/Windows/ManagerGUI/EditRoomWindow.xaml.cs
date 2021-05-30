@@ -1,6 +1,8 @@
-﻿using HospitalInformationSystem.Controller;
+﻿using ControlzEx.Theming;
+using HospitalInformationSystem.Controller;
 using HospitalInformationSystem.DTO;
 using HospitalInformationSystem.Utility;
+using MahApps.Metro.Controls;
 using Model;
 using System;
 using System.Collections;
@@ -9,7 +11,7 @@ using System.Windows;
 using System.Windows.Controls;
 namespace HospitalInformationSystem.Windows.ManagerGUI
 {
-    public partial class EditRoomWindow : Window
+    public partial class EditRoomWindow : MetroWindow
     {
         Room selectedRoom;
         private static EditRoomWindow instance = null;
@@ -18,6 +20,7 @@ namespace HospitalInformationSystem.Windows.ManagerGUI
         private Hashtable newEquipment;
         string selectedEquipmentName;
         string selectedEquipmentQuantity;
+        public EditRoomWindow() { }
         public static EditRoomWindow getInstance(Room selectedRoom)
         {
             if (instance == null)
@@ -224,8 +227,6 @@ namespace HospitalInformationSystem.Windows.ManagerGUI
             {
                 SupplementingDynamicEquipmentWindow.GetInstance(selectedRoom, EquipmentController.getInstance().getEquipmentIdByName(SplitListBoxSelectedValue(dynamicEquipmentListBox)[0])).ShowDialog();
             }
-            else
-                MessageBox.Show("Niste odabrali opremu!", "Greška", MessageBoxButton.OK, MessageBoxImage.Error);
         }
         private void removeDynamicButton_Click(object sender, RoutedEventArgs e)
         {
@@ -235,8 +236,6 @@ namespace HospitalInformationSystem.Windows.ManagerGUI
                 TryReduceDynamicEquipment();
                 RefreshDynamicEquipmentListBox();
             }
-            else
-                MessageBox.Show("Niste odabrali opremu!", "Greška", MessageBoxButton.OK, MessageBoxImage.Error);
         }
         private void LoadSelectedEquipmentAttributes()
         {
@@ -287,7 +286,8 @@ namespace HospitalInformationSystem.Windows.ManagerGUI
                 EquipmentController.getInstance().findEquipmentById(de.Key.ToString()).ReduceQuantity((int)de.Value);
             }
         }
-        private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
+
+        private void window_Closing_1(object sender, System.ComponentModel.CancelEventArgs e)
         {
             instance = null;
         }

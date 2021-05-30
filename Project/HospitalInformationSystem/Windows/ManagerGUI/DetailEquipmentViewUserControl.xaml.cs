@@ -1,6 +1,7 @@
 ﻿using HospitalInformationSystem.Controller;
 using HospitalInformationSystem.DTO;
 using HospitalInformationSystem.Utility;
+using MahApps.Metro.Controls;
 using Model;
 using System;
 using System.Collections;
@@ -14,7 +15,7 @@ namespace HospitalInformationSystem.Windows.ManagerGUI
     /// <summary>
     /// Interaction logic for DetailEquipmentViewUserControl.xaml
     /// </summary>
-    public partial class DetailEquipmentViewUserControl : UserControl
+    public partial class DetailEquipmentViewUserControl : MetroContentControl
     {
         private ObservableCollection<DetailEquipmentDTO> equipmentList;
         private ObservableCollection<Room> roomsList;

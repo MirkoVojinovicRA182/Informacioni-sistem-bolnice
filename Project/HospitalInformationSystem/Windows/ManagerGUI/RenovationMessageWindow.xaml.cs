@@ -1,7 +1,8 @@
-﻿using System.Windows;
+﻿using MahApps.Metro.Controls;
+using System.Windows;
 namespace HospitalInformationSystem.Windows.ManagerGUI
 {
-    public partial class RenovationMessageWindow : Window
+    public partial class RenovationMessageWindow : MetroWindow
     {
         private static RenovationMessageWindow instance = null;
         public static RenovationMessageWindow GetInstance()

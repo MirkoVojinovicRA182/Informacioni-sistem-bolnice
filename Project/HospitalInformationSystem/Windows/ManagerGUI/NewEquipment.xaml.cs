@@ -1,12 +1,13 @@
 ﻿using HospitalInformationSystem.Controller;
 using HospitalInformationSystem.Utility;
+using MahApps.Metro.Controls;
 using Model;
 using System;
 using System.Collections.Generic;
 using System.Windows;
 namespace HospitalInformationSystem.Windows.ManagerGUI
 {
-    public partial class NewEquipment : Window
+    public partial class NewEquipment : MetroWindow
     {
         private static NewEquipment instance = null;
         private string _equipmentId;

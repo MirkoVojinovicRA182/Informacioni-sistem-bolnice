@@ -1,4 +1,5 @@
-﻿<Window x:Class="HospitalInformationSystem.Windows.ManagerGUI.MedicineCommentNotificationWindow"
+﻿<mah:MetroWindow x:Class="HospitalInformationSystem.Windows.ManagerGUI.MedicineCommentNotificationWindow"
+        xmlns:mah="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
@@ -12,4 +13,4 @@
         <Button x:Name="closeButton" Content="Izađi" HorizontalAlignment="Left" VerticalAlignment="Top" Width="100" Height="30" Margin="187,115,0,0" Click="closeButton_Click"/>
 
     </Grid>
-</Window>
+</mah:MetroWindow>

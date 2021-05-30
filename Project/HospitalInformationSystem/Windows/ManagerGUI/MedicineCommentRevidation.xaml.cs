@@ -1,9 +1,10 @@
 ﻿using HospitalInformationSystem.Model;
+using MahApps.Metro.Controls;
 using System.Windows;
 using System.Windows.Documents;
 namespace HospitalInformationSystem.Windows.ManagerGUI
 {
-    public partial class MedicineCommentRevidation : Window
+    public partial class MedicineCommentRevidation : MetroWindow
     {
         private Medicine _commentedMedicine;
         private static MedicineCommentRevidation _instance;

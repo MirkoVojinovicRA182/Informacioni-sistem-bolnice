@@ -1,12 +1,13 @@
 ﻿using HospitalInformationSystem.Controller;
 using HospitalInformationSystem.Model;
 using HospitalInformationSystem.Utility;
+using MahApps.Metro.Controls;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Windows;
 namespace HospitalInformationSystem.Windows.ManagerGUI
 {
-    public partial class NewMedicineWindow : Window
+    public partial class NewMedicineWindow : MetroWindow
     {
         private static NewMedicineWindow instance = null;
         private List<MedicineIngredient> medicineIngredientList = new List<MedicineIngredient>();

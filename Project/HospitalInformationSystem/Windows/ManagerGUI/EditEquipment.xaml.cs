@@ -1,6 +1,7 @@
 ﻿using HospitalInformationSystem.Controller;
 using HospitalInformationSystem.DTO;
 using HospitalInformationSystem.Utility;
+using MahApps.Metro.Controls;
 using Model;
 using System;
 using System.Collections.Generic;
@@ -11,7 +12,7 @@ namespace HospitalInformationSystem.Windows.ManagerGUI
     /// <summary>
     /// Interaction logic for EditEquipment.xaml
     /// </summary>
-    public partial class EditEquipment : Window
+    public partial class EditEquipment : MetroWindow
     {
         private static EditEquipment instance = null;
         private Equipment _selectedEquipment;

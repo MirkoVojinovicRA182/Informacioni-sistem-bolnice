@@ -12,6 +12,7 @@ namespace HospitalInformationSystem.Windows.ManagerGUI
     {
         Room room;
         private static ManagerMainWindow instance;
+
         public static ManagerMainWindow getInstance()
         {
             if (instance == null)
@@ -160,6 +161,9 @@ namespace HospitalInformationSystem.Windows.ManagerGUI
         {
             instance = null;
             MainWindow.Serialize();
+            
         }
+
+        
     }
 }

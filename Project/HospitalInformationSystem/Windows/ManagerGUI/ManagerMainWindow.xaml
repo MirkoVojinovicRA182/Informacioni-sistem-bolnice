@@ -1,4 +1,4 @@
-﻿<Window x:Class="HospitalInformationSystem.Windows.ManagerGUI.ManagerMainWindow"
+﻿<Window x:Name="mainFrame" x:Class="HospitalInformationSystem.Windows.ManagerGUI.ManagerMainWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
@@ -34,6 +34,16 @@
                 <MenuItem x:Name="removeMedicineMenuItem" Header="_Brisanje postojećeg" Click="removeMedicineMenuItem_Click"/>
                 <Separator />
                 <MenuItem x:Name="medicineComments" Header="_Komentari lekara" Click="medicineComments_Click" />
+            </MenuItem>
+            <MenuItem Header="Personalizacija">
+                <MenuItem x:Name="languageMenuItem" Header="Jezik">
+                    <MenuItem x:Name="serbian" Header="Srpski" IsCheckable="True"/>
+                    <MenuItem x:Name="english" Header="Engleski" IsCheckable="True"/>
+                </MenuItem>
+                <MenuItem x:Name="themeMenuItem" Header="Tema">
+                    <MenuItem x:Name="lightTheme" Header="Svetla" IsCheckable="True"/>
+                    <MenuItem x:Name="darkTheme" Header="Tamna" IsCheckable="True"/>
+                </MenuItem>
             </MenuItem>
         </Menu>
         <TextBox AcceptsReturn="True" />

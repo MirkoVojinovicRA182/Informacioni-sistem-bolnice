@@ -14,6 +14,7 @@ namespace HospitalInformationSystem.Model
             WayOfUse = wayOfUse;
             ReplacementMedicine = replacementMedicine;
             Ingredients = medicineIngredients;
+            Comment = "";
         }
         public Medicine(int id, string name, TypeOfMedicine type, string purpose, string wayOfUse, List<MedicineIngredient> medicineIngredients)
         {

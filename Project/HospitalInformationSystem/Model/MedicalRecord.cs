@@ -22,6 +22,7 @@ namespace Model
         public MedicalRecord()
         {
             AllergensList = new ObservableCollection<Allergen>();
+            prescriptionList = new List<Prescription>();
             foreach (Allergen allergen in PatientController.getInstance().getAllergens())
             {
                 AllergensList.Add(new Allergen(allergen));

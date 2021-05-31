@@ -6,6 +6,10 @@ using HospitalInformationSystem.Model;
 using MahApps.Metro.Controls;
 using ControlzEx.Theming;
 using MahApps.Metro.Controls.Dialogs;
+using Syncfusion.Pdf;
+using System.Drawing;
+using Syncfusion.Pdf.Tables;
+using System.Data;
 
 namespace HospitalInformationSystem.Windows.ManagerGUI
 {
@@ -175,6 +179,29 @@ namespace HospitalInformationSystem.Windows.ManagerGUI
         {
             ThemeManager.Current.ChangeTheme(Application.Current, "Dark.Green");
             lightTheme.IsChecked = false;
+        }
+
+        private void reportMenuItem_Click(object sender, RoutedEventArgs e)
+        {
+            using (PdfDocument doc = new PdfDocument())
+            {
+                PdfPage page = doc.Pages.Add();
+                PdfLightTable pdfLightTable = new PdfLightTable();
+                DataTable table = new DataTable();
+                table.Columns.Add("Ime");
+                table.Columns.Add("Prezime");
+                table.Columns.Add("Datum rođenja");
+                table.Rows.Add(new string[] { "Ime", "Prezime", "Datum rođenja" });
+                foreach (Doctor doctor in DoctorController.getInstance().GetDoctors())
+                {
+                    table.Rows.Add(new string[] { doctor.Name, doctor.Surname, doctor.DateOfBirth.ToLongDateString() });
+                }
+                pdfLightTable.DataSource = table;
+                pdfLightTable.Draw(page, new PointF(0, 0));
+                doc.Save("C:\\Users\\Mirko\\Desktop\\Izvestaj.pdf");
+                doc.Close(true);
+            }
+            this.ShowMessageAsync("", "Uspešno ste kreirali izveštaj o zauzetosti lekara");
         }
     }
 }

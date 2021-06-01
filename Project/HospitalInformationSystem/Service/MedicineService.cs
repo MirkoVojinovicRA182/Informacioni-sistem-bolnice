@@ -42,7 +42,7 @@ namespace HospitalInformationSystem.Service
         {
             foreach (Medicine medicine in GetAllMedicines())
             {
-                if (medicine.ReplacementMedicine.Equals(replacementMedicine))
+                if (medicine.ReplacementMedicine!= null && medicine.ReplacementMedicine.Equals(replacementMedicine))
                 {
                     medicine.ReplacementMedicine = null;
                     break;

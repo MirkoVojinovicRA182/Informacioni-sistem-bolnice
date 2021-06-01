@@ -136,8 +136,8 @@ namespace HospitalInformationSystem.Windows.ManagerGUI
         {
             if (medicineTableUserControl.medicineTable.SelectedItem != null)
             {
-                MedicineController.GetInstance().DeleteMedicine((Medicine)medicineTableUserControl.medicineTable.SelectedItem);
                 MedicineController.GetInstance().DeleteReplacementMedicine((Medicine)medicineTableUserControl.medicineTable.SelectedItem);
+                MedicineController.GetInstance().DeleteMedicine((Medicine)medicineTableUserControl.medicineTable.SelectedItem);
                 medicineTableUserControl.RefreshTable();
                 MessageBox.Show("Izabrani lek je sada obrisan iz sistema.", "Brisanje leka", MessageBoxButton.OK, MessageBoxImage.Information);
                 return;

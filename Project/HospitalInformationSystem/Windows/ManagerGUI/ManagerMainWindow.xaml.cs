@@ -178,6 +178,7 @@ namespace HospitalInformationSystem.Windows.ManagerGUI
             else if (Keyboard.IsKeyDown(Key.LeftCtrl) && Keyboard.IsKeyDown(Key.M) && Keyboard.IsKeyDown(Key.N)) OpenNewMedicineWindow();
             else if (Keyboard.IsKeyDown(Key.LeftCtrl) && Keyboard.IsKeyDown(Key.M) && Keyboard.IsKeyDown(Key.E)) OpenEditMedicineWindow();
             else if (Keyboard.IsKeyDown(Key.LeftCtrl) && Keyboard.IsKeyDown(Key.M) && Keyboard.IsKeyDown(Key.D)) DeleteMedicine();
+            else if (Keyboard.IsKeyDown(Key.LeftCtrl) && Keyboard.IsKeyDown(Key.M) && Keyboard.IsKeyDown(Key.K)) MedicineWithCommentPreview.GetInstance().Show();
             else if (Keyboard.IsKeyDown(Key.LeftCtrl) && Keyboard.IsKeyDown(Key.I)) CreateReport();
             else if (Keyboard.IsKeyDown(Key.LeftCtrl) && Keyboard.IsKeyDown(Key.O)) this.Close();
             else if (Keyboard.IsKeyDown(Key.LeftCtrl) && Keyboard.IsKeyDown(Key.C)) Application.Current.Shutdown();

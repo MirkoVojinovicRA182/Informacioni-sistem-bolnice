@@ -36,7 +36,7 @@ namespace HospitalInformationSystem.Windows.ManagerGUI
         }
         private void SetCommentToNullAndCloseWindow()
         {
-            _commentedMedicine.Comment = null;
+            _commentedMedicine.Comment = "";
             MedicineWithCommentPreview.GetInstance().LoadListBox();
             this.Close();
         }

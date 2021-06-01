@@ -76,7 +76,7 @@ namespace HospitalInformationSystem.Repository
         {
             foreach (Medicine medicine in _medicineList)
             {
-                if (medicine.Comment != null)
+                if (!string.Equals(medicine.Comment, "") && medicine.Comment != null)
                     return true;
             }
             return false;
@@ -86,7 +86,7 @@ namespace HospitalInformationSystem.Repository
             List<Medicine> medicinesWithComment = new List<Medicine>();
             foreach (Medicine medicine in _medicineList)
             {
-                if (medicine.Comment != null)
+                if (!string.Equals(medicine.Comment, "") && medicine.Comment != null)
                     medicinesWithComment.Add(medicine);
             }
             return medicinesWithComment;

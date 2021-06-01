@@ -9,43 +9,43 @@
         xmlns:ucDynamicEquipment="clr-namespace:HospitalInformationSystem.Windows.ManagerGUI"
         xmlns:local="clr-namespace:HospitalInformationSystem.Windows.ManagerGUI"
         mc:Ignorable="d"
-        Title="Glavni prozor" Height="600" Width="1000" Closing="Window_Closing">
+        Title="Glavni prozor" Height="600" Width="1000" Closing="Window_Closing" PreviewKeyDown="mainFrame_PreviewKeyDown">
     <DockPanel>
         <Menu DockPanel.Dock="Top">
             <MenuItem Header="_Fajl">
                 <MenuItem x:Name="reportMenuItem" Header="Generiši izveštaj" InputGestureText="CTRL+I" Click="reportMenuItem_Click"/>
                 <Separator />
-                <MenuItem Header="_Odjavi se" InputGestureText="CTRL+O"/>
+                <MenuItem Header="_Odjavi se" InputGestureText="CTRL+O" Click="MenuItem_Click" />
                 <MenuItem x:Name="exitMenuItem" Header="_Izađi" Click="exitMenuItem_Click" InputGestureText="CTRL+C"/>
             </MenuItem>
             <MenuItem Header="_Prostorije">
-                <MenuItem x:Name="newRoomMenuItem" Header="_Unos nove" Click="newRoomMenuItem_Click"/>
-                <MenuItem x:Name="editRoomMenuItem" Header="_Izmena postojeće" Click="editRoomMenuItem_Click"/>
-                <MenuItem x:Name="deleteRoomMenuItem" Header="_Brisanje postojeće" Click="deleteRoomMenuItem_Click"/>
+                <MenuItem x:Name="newRoomMenuItem" Header="_Unos nove" Click="newRoomMenuItem_Click" InputGestureText="CTRL+R+N"/>
+                <MenuItem x:Name="editRoomMenuItem" Header="_Izmena postojeće" Click="editRoomMenuItem_Click" InputGestureText="CTRL+R+E"/>
+                <MenuItem x:Name="deleteRoomMenuItem" Header="_Brisanje postojeće" Click="deleteRoomMenuItem_Click" InputGestureText="CTRL+R+D"/>
                 <Separator />
-                <MenuItem x:Name="renovationMenuItem" Header="_Renoviranje" Click="renovationMenuItem_Click"/>
+                <MenuItem x:Name="renovationMenuItem" Header="_Renoviranje" Click="renovationMenuItem_Click" InputGestureText="CTRL+R+M"/>
                 <Separator />
             </MenuItem>
             <MenuItem Header="Oprema">
-                <MenuItem x:Name="newEquipmentMenuItem" Header="_Unos nove" Click="newEquipmentMenuItem_Click"/>
-                <MenuItem x:Name="editEquipmentMenuItem" Header="_Izmena postojeće" Click="editEquipmentMenuItem_Click"/>
-                <MenuItem x:Name="deleteEquipentMenuItem" Header="_Brisanje postojeće" Click="deleteEquipmentMenuItem_Click"/>
+                <MenuItem x:Name="newEquipmentMenuItem" Header="_Unos nove" Click="newEquipmentMenuItem_Click" InputGestureText="CTRL+E+N"/>
+                <MenuItem x:Name="editEquipmentMenuItem" Header="_Izmena postojeće" Click="editEquipmentMenuItem_Click" InputGestureText="CTRL+E+I"/>
+                <MenuItem x:Name="deleteEquipentMenuItem" Header="_Brisanje postojeće" Click="deleteEquipmentMenuItem_Click" InputGestureText="CTRL+E+D"/>
             </MenuItem>
             <MenuItem Header="Lekovi">
-                <MenuItem x:Name="newMedicineMenuItem" Header="_Unos novog" Click="newMedicineMenuItem_Click"/>
-                <MenuItem x:Name="editMedicineMenuItem" Header="_Izmena postojećeg" Click="editMedicineMenuItem_Click"/>
-                <MenuItem x:Name="removeMedicineMenuItem" Header="_Brisanje postojećeg" Click="removeMedicineMenuItem_Click"/>
+                <MenuItem x:Name="newMedicineMenuItem" Header="_Unos novog" Click="newMedicineMenuItem_Click" InputGestureText="CTRL+M+N"/>
+                <MenuItem x:Name="editMedicineMenuItem" Header="_Izmena postojećeg" Click="editMedicineMenuItem_Click" InputGestureText="CTRL+M+E"/>
+                <MenuItem x:Name="removeMedicineMenuItem" Header="_Brisanje postojećeg" Click="removeMedicineMenuItem_Click" InputGestureText="CTRL+M+D"/>
                 <Separator />
-                <MenuItem x:Name="medicineComments" Header="_Komentari lekara" Click="medicineComments_Click" />
+                <MenuItem x:Name="medicineComments" Header="_Komentari lekara" Click="medicineComments_Click" InputGestureText="CTRL+E+K"/>
             </MenuItem>
             <MenuItem Header="Personalizacija">
                 <MenuItem x:Name="languageMenuItem" Header="Jezik">
-                    <MenuItem x:Name="serbian" Header="Srpski" IsCheckable="True"/>
-                    <MenuItem x:Name="english" Header="Engleski" IsCheckable="True"/>
+                    <MenuItem x:Name="serbian" Header="Srpski" IsCheckable="True" InputGestureText="CTRL+L+S"/>
+                    <MenuItem x:Name="english" Header="Engleski" IsCheckable="True" InputGestureText="CTRL+L+E"/>
                 </MenuItem>
                 <MenuItem x:Name="themeMenuItem" Header="Tema">
-                    <MenuItem x:Name="lightTheme" Header="Svetla" IsCheckable="True" Checked="lightTheme_Checked"/>
-                    <MenuItem x:Name="darkTheme" Header="Tamna" IsCheckable="True" Checked="darkTheme_Checked"/>
+                    <MenuItem x:Name="lightTheme" Header="Svetla" IsCheckable="True" Checked="lightTheme_Checked" InputGestureText="CTRL+T+L"/>
+                    <MenuItem x:Name="darkTheme" Header="Tamna" IsCheckable="True" Checked="darkTheme_Checked" InputGestureText="CTRL+T+D"/>
                 </MenuItem>
             </MenuItem>
         </Menu>

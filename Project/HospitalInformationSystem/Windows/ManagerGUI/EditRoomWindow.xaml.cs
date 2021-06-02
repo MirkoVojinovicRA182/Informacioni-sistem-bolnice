@@ -286,7 +286,6 @@ namespace HospitalInformationSystem.Windows.ManagerGUI
                 EquipmentController.getInstance().findEquipmentById(de.Key.ToString()).ReduceQuantity((int)de.Value);
             }
         }
-
         private void window_Closing_1(object sender, System.ComponentModel.CancelEventArgs e)
         {
             instance = null;

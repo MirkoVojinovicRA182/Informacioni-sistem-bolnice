@@ -5,7 +5,8 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:HospitalInformationSystem.Windows.ManagerGUI"
-             mc:Ignorable="d" 
+             mc:Ignorable="d"
+             xmlns:ns="clr-namespace:HospitalInformationSystem"
              d:DesignHeight="500" d:DesignWidth="1000">
     <Grid>
 
@@ -21,10 +22,10 @@
 				VerticalAlignment="Top" 
 				Width="950"  SelectionChanged="equipmentTable_SelectionChanged">
             <DataGrid.Columns>
-                <DataGridTextColumn Header="ID" Width="*" Binding="{Binding Id}"></DataGridTextColumn>
-                <DataGridTextColumn Header="Naziv" Width="*" Binding="{Binding Name}"></DataGridTextColumn>
-                <DataGridTextColumn Header="Tip" Width="*" Binding="{Binding GetStringType}"></DataGridTextColumn>
-                <DataGridTextColumn Header="Ukupna količina" Width="*" Binding="{Binding Quantity}"></DataGridTextColumn>
+                <DataGridTextColumn Header="{ns:Loc IdInTable}" Width="*" Binding="{Binding Id}"></DataGridTextColumn>
+                <DataGridTextColumn Header="{ns:Loc NameInTable}" Width="*" Binding="{Binding Name}"></DataGridTextColumn>
+                <DataGridTextColumn Header="{ns:Loc TypeInTable}" Width="*" Binding="{Binding GetStringType}"></DataGridTextColumn>
+                <DataGridTextColumn Header="{ns:Loc TotalAmount}" Width="*" Binding="{Binding Quantity}"></DataGridTextColumn>
             </DataGrid.Columns>
         </DataGrid>
 

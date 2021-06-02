@@ -2,6 +2,7 @@
         xmlns:mah="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:ns="clr-namespace:HospitalInformationSystem"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:ucRooms="clr-namespace:HospitalInformationSystem.Windows.ManagerGUI"
@@ -9,61 +10,61 @@
         xmlns:ucDynamicEquipment="clr-namespace:HospitalInformationSystem.Windows.ManagerGUI"
         xmlns:local="clr-namespace:HospitalInformationSystem.Windows.ManagerGUI"
         mc:Ignorable="d"
-        Title="Glavni prozor" Height="600" Width="1000" Closing="Window_Closing" PreviewKeyDown="mainFrame_PreviewKeyDown">
+        Title="{ns:Loc MainWindow}" Height="600" Width="1000" Closing="Window_Closing" PreviewKeyDown="mainFrame_PreviewKeyDown">
     <DockPanel>
         <Menu DockPanel.Dock="Top">
-            <MenuItem Header="_Fajl">
-                <MenuItem x:Name="reportMenuItem" Header="Generiši izveštaj" InputGestureText="CTRL+I" Click="reportMenuItem_Click"/>
+            <MenuItem Header="{ns:Loc File}">
+                <MenuItem x:Name="reportMenuItem" Header="{ns:Loc Report}" InputGestureText="CTRL+I" Click="reportMenuItem_Click"/>
                 <Separator />
-                <MenuItem Header="_Odjavi se" InputGestureText="CTRL+O" Click="MenuItem_Click" />
-                <MenuItem x:Name="exitMenuItem" Header="_Izađi" Click="exitMenuItem_Click" InputGestureText="CTRL+C"/>
+                <MenuItem Header="{ns:Loc LogOut}" InputGestureText="CTRL+O" Click="MenuItem_Click" />
+                <MenuItem x:Name="exitMenuItem" Header="{ns:Loc CloseApp}" Click="exitMenuItem_Click" InputGestureText="CTRL+C"/>
             </MenuItem>
-            <MenuItem Header="_Prostorije">
-                <MenuItem x:Name="newRoomMenuItem" Header="_Unos nove" Click="newRoomMenuItem_Click" InputGestureText="CTRL+R+N"/>
-                <MenuItem x:Name="editRoomMenuItem" Header="_Izmena postojeće" Click="editRoomMenuItem_Click" InputGestureText="CTRL+R+E"/>
-                <MenuItem x:Name="deleteRoomMenuItem" Header="_Brisanje postojeće" Click="deleteRoomMenuItem_Click" InputGestureText="CTRL+R+D"/>
+            <MenuItem Header="{ns:Loc Rooms}">
+                <MenuItem x:Name="newRoomMenuItem" Header="{ns:Loc AddRoom}" Click="newRoomMenuItem_Click" InputGestureText="CTRL+R+N"/>
+                <MenuItem x:Name="editRoomMenuItem" Header="{ns:Loc EditRoom}" Click="editRoomMenuItem_Click" InputGestureText="CTRL+R+E"/>
+                <MenuItem x:Name="deleteRoomMenuItem" Header="{ns:Loc DeleteRoom}" Click="deleteRoomMenuItem_Click" InputGestureText="CTRL+R+D"/>
                 <Separator />
-                <MenuItem x:Name="renovationMenuItem" Header="_Renoviranje" Click="renovationMenuItem_Click" InputGestureText="CTRL+R+M"/>
+                <MenuItem x:Name="renovationMenuItem" Header="{ns:Loc Renovation}" Click="renovationMenuItem_Click" InputGestureText="CTRL+R+M"/>
                 <Separator />
             </MenuItem>
-            <MenuItem Header="Oprema">
-                <MenuItem x:Name="newEquipmentMenuItem" Header="_Unos nove" Click="newEquipmentMenuItem_Click" InputGestureText="CTRL+E+N"/>
-                <MenuItem x:Name="editEquipmentMenuItem" Header="_Izmena postojeće" Click="editEquipmentMenuItem_Click" InputGestureText="CTRL+E+I"/>
-                <MenuItem x:Name="deleteEquipentMenuItem" Header="_Brisanje postojeće" Click="deleteEquipmentMenuItem_Click" InputGestureText="CTRL+E+D"/>
+            <MenuItem Header="{ns:Loc Equipment}">
+                <MenuItem x:Name="newEquipmentMenuItem" Header="{ns:Loc AddEquipment}" Click="newEquipmentMenuItem_Click" InputGestureText="CTRL+E+N"/>
+                <MenuItem x:Name="editEquipmentMenuItem" Header="{ns:Loc EditEquipment}" Click="editEquipmentMenuItem_Click" InputGestureText="CTRL+E+I"/>
+                <MenuItem x:Name="deleteEquipentMenuItem" Header="{ns:Loc DeleteEquipment}" Click="deleteEquipmentMenuItem_Click" InputGestureText="CTRL+E+D"/>
             </MenuItem>
-            <MenuItem Header="Lekovi">
-                <MenuItem x:Name="newMedicineMenuItem" Header="_Unos novog" Click="newMedicineMenuItem_Click" InputGestureText="CTRL+M+N"/>
-                <MenuItem x:Name="editMedicineMenuItem" Header="_Izmena postojećeg" Click="editMedicineMenuItem_Click" InputGestureText="CTRL+M+E"/>
-                <MenuItem x:Name="removeMedicineMenuItem" Header="_Brisanje postojećeg" Click="removeMedicineMenuItem_Click" InputGestureText="CTRL+M+D"/>
+            <MenuItem Header="{ns:Loc Medicines}">
+                <MenuItem x:Name="newMedicineMenuItem" Header="{ns:Loc AddMedicine}" Click="newMedicineMenuItem_Click" InputGestureText="CTRL+M+N"/>
+                <MenuItem x:Name="editMedicineMenuItem" Header="{ns:Loc EditMedicine}" Click="editMedicineMenuItem_Click" InputGestureText="CTRL+M+E"/>
+                <MenuItem x:Name="removeMedicineMenuItem" Header="{ns:Loc DeleteMedicine}" Click="removeMedicineMenuItem_Click" InputGestureText="CTRL+M+D"/>
                 <Separator />
-                <MenuItem x:Name="medicineComments" Header="_Komentari lekara" Click="medicineComments_Click" InputGestureText="CTRL+E+K"/>
+                <MenuItem x:Name="medicineComments" Header="{ns:Loc MedicineComments}" Click="medicineComments_Click" InputGestureText="CTRL+M+K"/>
             </MenuItem>
-            <MenuItem Header="Personalizacija">
-                <MenuItem x:Name="languageMenuItem" Header="Jezik">
-                    <MenuItem x:Name="serbian" Header="Srpski" IsCheckable="True" InputGestureText="CTRL+L+S"/>
-                    <MenuItem x:Name="english" Header="Engleski" IsCheckable="True" InputGestureText="CTRL+L+E"/>
+            <MenuItem Header="{ns:Loc Personalization}">
+                <MenuItem x:Name="languageMenuItem" Header="{ns:Loc Language}">
+                    <MenuItem x:Name="serbian" Header="{ns:Loc Serbian}" IsCheckable="True" InputGestureText="CTRL+L+S" Click="serbian_Click"/>
+                    <MenuItem x:Name="english" Header="{ns:Loc English}" IsCheckable="True" InputGestureText="CTRL+L+E" Click="english_Click"/>
                 </MenuItem>
-                <MenuItem x:Name="themeMenuItem" Header="Tema">
-                    <MenuItem x:Name="lightTheme" Header="Svetla" IsCheckable="True" Checked="lightTheme_Checked" InputGestureText="CTRL+T+L"/>
-                    <MenuItem x:Name="darkTheme" Header="Tamna" IsCheckable="True" Checked="darkTheme_Checked" InputGestureText="CTRL+T+D"/>
+                <MenuItem x:Name="themeMenuItem" Header="{ns:Loc Theme}">
+                    <MenuItem x:Name="lightTheme" Header="{ns:Loc Light}" IsCheckable="True" Checked="lightTheme_Checked" InputGestureText="CTRL+T+L"/>
+                    <MenuItem x:Name="darkTheme" Header="{ns:Loc Dark}" IsCheckable="True" Checked="darkTheme_Checked" InputGestureText="CTRL+T+D"/>
                 </MenuItem>
             </MenuItem>
         </Menu>
         <TabControl x:Name="mainTabs" SelectionChanged="mainTabs_SelectionChanged">
-            <TabItem x:Name="roomTab" Header="Prostorije" FontSize="15">
+            <TabItem x:Name="roomTab" Header="{ns:Loc Rooms}" FontSize="15">
                 <ucRooms:RoomsTableUserControl x:Name="roomsUserControl"/>
             </TabItem>
-            <TabItem x:Name="equipmentTab" Header="Oprema">
+            <TabItem x:Name="equipmentTab" Header="{ns:Loc Equipment}">
                 <TabControl x:Name="staticDynamicTab" SelectionChanged="staticDynamicTab_SelectionChanged">
-                    <TabItem Header="Detaljan prikaz">
+                    <TabItem Header="{ns:Loc DetailView}">
                         <local:DetailEquipmentViewUserControl x:Name="detailEquipmentTable"/>
                     </TabItem>
-                    <TabItem Header="Opšti prikaz">
+                    <TabItem Header="{ns:Loc GeneralView}">
                         <local:GeneralEquipmentViewUserControl x:Name="equipmentTable" />
                     </TabItem>
                 </TabControl>
             </TabItem>
-            <TabItem Header="Lekovi">
+            <TabItem Header="{ns:Loc Medicines}">
                 <local:MedicineTableUserControl x:Name="medicineTableUserControl"/>
             </TabItem>
         </TabControl>

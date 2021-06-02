@@ -6,7 +6,8 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:HospitalInformationSystem.Windows.ManagerGUI"
              mc:Ignorable="d" 
-             d:DesignHeight="450" d:DesignWidth="960">
+             d:DesignHeight="450" d:DesignWidth="960"
+             xmlns:ns="clr-namespace:HospitalInformationSystem">
     <Grid>
         <DataGrid x:Name="medicineTable" 
 				HorizontalAlignment="Left" 
@@ -20,10 +21,10 @@
 				VerticalAlignment="Top" 
 				Width="950"  SelectionChanged="medicineTable_SelectionChanged">
             <DataGrid.Columns>
-                <DataGridTextColumn Header="ID" Width="*" Binding="{Binding Id}"></DataGridTextColumn>
-                <DataGridTextColumn Header="Naziv" Width="*" Binding="{Binding Name}"></DataGridTextColumn>
-                <DataGridTextColumn Header="Tip" Width="*" Binding="{Binding StringValueOfType}"></DataGridTextColumn>
-                <DataGridTextColumn Header="Naziv zamenskog leka" Width="*" Binding="{Binding NameOfReplacementMedicine}"></DataGridTextColumn>
+                <DataGridTextColumn Header="{ns:Loc IdInTable}" Width="*" Binding="{Binding Id}"></DataGridTextColumn>
+                <DataGridTextColumn Header="{ns:Loc NameInTable}" Width="*" Binding="{Binding Name}"></DataGridTextColumn>
+                <DataGridTextColumn Header="{ns:Loc QuantityInTable}" Width="*" Binding="{Binding StringValueOfType}"></DataGridTextColumn>
+                <DataGridTextColumn Header="{ns:Loc NameOfReplacementInTable}" Width="*" Binding="{Binding NameOfReplacementMedicine}"></DataGridTextColumn>
             </DataGrid.Columns>
         </DataGrid>
     </Grid>

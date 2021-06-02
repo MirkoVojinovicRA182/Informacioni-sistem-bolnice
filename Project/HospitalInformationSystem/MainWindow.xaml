@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:HospitalInformationSystem.Windows"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="400">
+        Title="MainWindow" Height="450" Width="400" Closing="Window_Closing_1">
     <Grid Margin="0,0,2,0">
         <Label Content="Prijava" HorizontalAlignment="Left" Margin="145,45,0,0" VerticalAlignment="Top" Width="103" FontSize="30"/>
         <Label Content="Korisničko ime:" HorizontalAlignment="Left" Margin="14,148,0,0" VerticalAlignment="Top" FontSize="20"/>

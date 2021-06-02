@@ -21,7 +21,13 @@ namespace HospitalInformationSystem.Windows
     public partial class MainWindow : Window
     {
         private static Person person;
- 
+        private static MainWindow instance = null;
+        public static MainWindow GetInstance()
+        {
+            if (instance == null)
+                instance = new MainWindow();
+            return instance;
+        }
         public MainWindow()
         {
             InitializeComponent();
@@ -70,6 +76,7 @@ namespace HospitalInformationSystem.Windows
                         person = accounts[i].Person;
                         PatientMainWindow.GetInstance(rightPatient).Show();
                     }
+                    this.Hide();
                 }
             }
             if (!loggedIn)
@@ -154,6 +161,12 @@ namespace HospitalInformationSystem.Windows
             PatientController.getInstance().SaveInFile();
             AppointmentController.getInstance().SaveAppointmentsInFile();
             AccountController.GetInstance().SaveInFile();
+        }
+
+        private void Window_Closing_1(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            Serialize();
+            Application.Current.Shutdown();
         }
     }
 }

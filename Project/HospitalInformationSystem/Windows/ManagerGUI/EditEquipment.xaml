@@ -1,5 +1,6 @@
 ﻿<mah:MetroWindow x:Class="HospitalInformationSystem.Windows.ManagerGUI.EditEquipment"
         xmlns:mah="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
+        xmlns:ns="clr-namespace:HospitalInformationSystem"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
@@ -7,7 +8,7 @@
         xmlns:local="clr-
         :HospitalInformationSystem.Windows.Manager"
         mc:Ignorable="d"
-        Title="Izmena opreme" Height="400" Width="350" Closing="Window_Closing">
+        Title="{ns:Loc EditEquipmentTitle}" Height="400" Width="350" Closing="Window_Closing">
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="6*"/>
@@ -16,17 +17,17 @@
             <ColumnDefinition Width="44*"/>
             <ColumnDefinition Width="159*"/>
         </Grid.ColumnDefinitions>
-        <Label Content="Naziv:" Grid.Column="1" HorizontalAlignment="Left" Margin="22.6,33,0,0" VerticalAlignment="Top" FontSize="15" Grid.ColumnSpan="2"/>
-        <Label Content="Količina:" Grid.Column="1" HorizontalAlignment="Left" Margin="22.6,136,0,0" VerticalAlignment="Top" FontSize="15" Grid.ColumnSpan="2"/>
-        <Label Content="Opis namene:" Grid.Column="1" HorizontalAlignment="Left" Margin="22.6,222,0,0" VerticalAlignment="Top" FontSize="15" Grid.ColumnSpan="2"/>
+        <Label Content="{ns:Loc Name}" Grid.Column="1" HorizontalAlignment="Left" Margin="22.6,33,0,0" VerticalAlignment="Top" FontSize="15" Grid.ColumnSpan="2"/>
+        <Label Content="{ns:Loc Quantity}" Grid.Column="1" HorizontalAlignment="Left" Margin="22.6,136,0,0" VerticalAlignment="Top" FontSize="15" Grid.ColumnSpan="2"/>
+        <Label Content="{ns:Loc Description}" Grid.Column="1" HorizontalAlignment="Left" Margin="22.6,222,0,0" VerticalAlignment="Top" FontSize="15" Grid.ColumnSpan="2"/>
         <TextBox x:Name="nameTextBox" Grid.Column="2" HorizontalAlignment="Left" Height="23" Margin="109.4,33,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="193" FontSize="15" Grid.ColumnSpan="3" SelectionChanged="nameTextBox_SelectionChanged"/>
         <TextBox x:Name="quanitityTextBox" Grid.Column="2" HorizontalAlignment="Left" Height="23" Margin="109.4,136,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="100" FontSize="15" Grid.ColumnSpan="3" SelectionChanged="quanitityTextBox_SelectionChanged"/>
-        <Button x:Name="changeButton" Grid.ColumnSpan="3" Content="IZMENI" Grid.Column="2" HorizontalAlignment="Left" Margin="110.4,314,0,0" VerticalAlignment="Top" Width="100" Height="30" FontSize="15" Click="changeButton_Click"/>
+        <Button x:Name="changeButton" Grid.ColumnSpan="3" Content="{ns:Loc Change}" Grid.Column="2" HorizontalAlignment="Left" Margin="110.4,314,0,0" VerticalAlignment="Top" Width="100" Height="30" FontSize="15" Click="changeButton_Click"/>
         <TextBox x:Name="descriptionTextBox" BorderThickness="1" Grid.Column="2" HorizontalAlignment="Left" Height="79" Margin="109.4,201,0,0" VerticalAlignment="Top" Width="180" Grid.ColumnSpan="3" SelectionChanged="descriptionTextBox_SelectionChanged">
         </TextBox>
-        <Label Content="Tip:" Grid.Column="1" HorizontalAlignment="Left" Margin="22.6,82,0,0" VerticalAlignment="Top" FontSize="15" RenderTransformOrigin="0.423,0.836" Grid.ColumnSpan="2"/>
+        <Label Content="{ns:Loc Type}" Grid.Column="1" HorizontalAlignment="Left" Margin="22.6,82,0,0" VerticalAlignment="Top" FontSize="15" RenderTransformOrigin="0.423,0.836" Grid.ColumnSpan="2"/>
         <ComboBox x:Name="typeComboBox" Grid.ColumnSpan="3" HorizontalAlignment="Left" VerticalAlignment="Top" Width="100" Grid.Column="2" Margin="110.4,82,0,0" SelectionChanged="typeComboBox_SelectionChanged" FontSize="15">
         </ComboBox>
-        <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" Text="(u magacinu)" VerticalAlignment="Top" Grid.Column="2" Margin="0.4,166,0,0" Width="100" FontStyle="Italic"/>
+        <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" Text="{ns:Loc InMagacine}" VerticalAlignment="Top" Grid.Column="2" Margin="0.4,166,0,0" Width="100" FontStyle="Italic"/>
     </Grid>
 </mah:MetroWindow>

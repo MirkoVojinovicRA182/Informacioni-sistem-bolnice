@@ -11,6 +11,8 @@ using System.Drawing;
 using Syncfusion.Pdf.Tables;
 using System.Data;
 using System.Windows.Input;
+using MaterialDesignThemes.Wpf;
+using System.Windows.Controls.Primitives;
 
 namespace HospitalInformationSystem.Windows.ManagerGUI
 {
@@ -32,6 +34,7 @@ namespace HospitalInformationSystem.Windows.ManagerGUI
         {
             InitializeComponent();
             lightTheme.IsChecked = true;
+            english.IsChecked = true;
             RefreshTables();
             if (MedicineCommentsExists())
                 MedicineCommentNotificationWindow.GetInstance().ShowDialog();
@@ -67,7 +70,11 @@ namespace HospitalInformationSystem.Windows.ManagerGUI
         private void ShowMedicineErrorMessage() => MessageBox.Show("Izaberite lek!", "Upozorenje", MessageBoxButton.OK, MessageBoxImage.Warning);
         private void OpenNewEquipmentWindow() => NewEquipment.getInstance().Show();
         private void ShowEquipmentErrorMessage() => MessageBox.Show("Izaberite opremu!", "Upozorenje", MessageBoxButton.OK, MessageBoxImage.Warning);
-        private void MenuItem_Click(object sender, RoutedEventArgs e) => this.Close();
+        private void MenuItem_Click(object sender, RoutedEventArgs e)
+        {
+            MainWindow.GetInstance().Show();
+            this.Close();
+        }
         private void lightTheme_Checked(object sender, RoutedEventArgs e)
         {
             ThemeManager.Current.ChangeTheme(Application.Current, "Light.Green");
@@ -129,6 +136,7 @@ namespace HospitalInformationSystem.Windows.ManagerGUI
             {
                 EditMedicineWindow.GetInstance((Medicine)medicineTableUserControl.medicineTable.SelectedItem).ShowDialog();
                 medicineTableUserControl.RefreshTable();
+                return;
             }
             ShowMedicineErrorMessage();
         }
@@ -209,6 +217,19 @@ namespace HospitalInformationSystem.Windows.ManagerGUI
         {
             instance = null;
             MainWindow.Serialize();
+            MainWindow.GetInstance().Show();
+        }
+
+        private void serbian_Click(object sender, RoutedEventArgs e)
+        {
+            TranslationSource.Instance.CurrentCulture = new System.Globalization.CultureInfo("sr-RS");
+            english.IsChecked = false;
+        }
+
+        private void english_Click(object sender, RoutedEventArgs e)
+        {
+            TranslationSource.Instance.CurrentCulture = new System.Globalization.CultureInfo("en-US");
+            serbian.IsChecked = false;
         }
     }
 }

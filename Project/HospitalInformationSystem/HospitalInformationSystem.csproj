@@ -692,5 +692,29 @@
   <ItemGroup>
     <Resource Include="Windows\DoctorGUI\bg1.png" />
   </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Windows\DoctorGUI\anamnesisIcon.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Windows\DoctorGUI\anamnesisIcon.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Windows\DoctorGUI\anamnesisPreviewIcon.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Windows\DoctorGUI\prescriptionIcon.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Windows\DoctorGUI\addPrescritptionIcon.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Windows\DoctorGUI\prescriptionPreviewIcon.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Windows\DoctorGUI\allergensIcon.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Windows\DoctorGUI\referralLetterIcon.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -7,9 +7,9 @@
         xmlns:local="clr-namespace:HospitalInformationSystem.Windows.DoctorGUI"
         mc:Ignorable="d"
         Title="Pocetni ekran" Height="450" Width="800" KeyDown="Window_KeyDown" Closing="Window_Closing">
-    <Grid x:Name="mainGrid" Height="{Binding ActualHeight, ElementName=window}" Width="{Binding ActualWidth, ElementName=window}">
+    <Grid x:Name="mainGrid" Width="{Binding ActualWidth, ElementName=window}" Margin="0,0,-6.4,2">
         <Grid.Background>
-            <ImageBrush/>
+            <ImageBrush Stretch="UniformToFill" ImageSource="bg1.png"/>
         </Grid.Background>
         <Image HorizontalAlignment="Left" Height="50" VerticalAlignment="Top" Width="50" Margin="10,10,0,0" Source="patientsIcon.jpg"/>
         <Label Content="CTRL+P" HorizontalAlignment="Left" Margin="10,55,0,0" VerticalAlignment="Top" Height="26" Width="51"/>

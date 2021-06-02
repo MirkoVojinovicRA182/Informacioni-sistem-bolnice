@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:HospitalInformationSystem.Windows"
         mc:Ignorable="d"
-        Title="MedicalRecordWindow" Height="450" Width="800" Closing="Window_Closing">
+        Title="MedicalRecordWindow" Height="450" Width="800" Closing="Window_Closing" KeyDown="Window_KeyDown">
     <Grid>
         <Label Content="Broj kartona:" HorizontalAlignment="Left" Margin="264,10,0,0" VerticalAlignment="Top" FontSize="16"/>
         <Label x:Name="medicalRecordId" Content="Label" HorizontalAlignment="Left" Margin="368,10,0,0" VerticalAlignment="Top" FontSize="16"/>
@@ -14,11 +14,6 @@
         <Label x:Name="nameLabel" Content="ime prezime" HorizontalAlignment="Left" Margin="143,84,0,0" VerticalAlignment="Top" FontSize="16"/>
         <Label Content="Krvna grupa:" HorizontalAlignment="Left" Margin="29,116,0,0" VerticalAlignment="Top" FontSize="16"/>
         <Label x:Name="bloodTypeLabel" Content="A+" HorizontalAlignment="Left" Margin="143,116,0,0" VerticalAlignment="Top" FontSize="16"/>
-        <Button Content="Prikaz istorije bolesti" HorizontalAlignment="Left" Margin="448,52,0,0" VerticalAlignment="Top" Width="306" FontSize="20" Height="45"/>
-        <Button x:Name="addAnamnesisButton" Content="Pisanje anamneze" HorizontalAlignment="Left" Margin="448,102,0,0" VerticalAlignment="Top" Width="306" FontSize="20" Height="46" Click="addAnamnesisButton_Click"/>
-        <Button x:Name="anamnesisPreviewButton" Content="Pregled anamneza" HorizontalAlignment="Left" Margin="448,153,0,0" VerticalAlignment="Top" Width="306" FontSize="20" Height="46" Click="anamnesisPreviewButton_Click"/>
-        <Button x:Name="addPrescriptionButton" Content="Izdavanje recepta" HorizontalAlignment="Left" Margin="448,204,0,0" VerticalAlignment="Top" Width="306" FontSize="20" Height="46" Click="addPrescriptionButton_Click"/>
-        <Button x:Name="showPrescriptionButton" Content="Pregled recepata" HorizontalAlignment="Left" Margin="448,255,0,0" VerticalAlignment="Top" Width="306" FontSize="20" Height="46" Click="showPrescriptionButton_Click"/>
         <Label Content="Datum rodjenja:" HorizontalAlignment="Left" Margin="29,148,0,0" VerticalAlignment="Top" FontSize="16"/>
         <Label x:Name="dateOfBirthLabel" Content="datum" HorizontalAlignment="Left" Margin="143,148,0,0" VerticalAlignment="Top" FontSize="16"/>
         <Label Content="JMBG:" HorizontalAlignment="Left" Margin="29,185,0,0" VerticalAlignment="Top" FontSize="16"/>
@@ -29,8 +24,26 @@
         <Label x:Name="phoneNumberLabel" Content="Br. telefona" HorizontalAlignment="Left" Margin="143,259,0,0" VerticalAlignment="Top" FontSize="16"/>
         <Label Content="E-mail:" HorizontalAlignment="Left" Margin="29,296,0,0" VerticalAlignment="Top" FontSize="16"/>
         <Label x:Name="emailLabel" Content="e-mail" HorizontalAlignment="Left" Margin="145,296,0,0" VerticalAlignment="Top" FontSize="16"/>
-        <Button x:Name="allergensButton" Content="Alergeni" HorizontalAlignment="Left" Height="45" Margin="448,306,0,0" VerticalAlignment="Top" Width="306" FontSize="20" Click="allergensButton_Click"/>
-        <Button x:Name="referralLetterButton" Content="Izdavanje upute" HorizontalAlignment="Left" Height="46" Margin="448,356,0,0" VerticalAlignment="Top" Width="306" FontSize="20" Click="referralLetterButton_Click"/>
+        <Image HorizontalAlignment="Left" Height="50" Margin="448,53,0,0" VerticalAlignment="Top" Width="50" Source="anamnesisIcon.png"/>
+        <Label Content="Pisanje anamneze" HorizontalAlignment="Left" Margin="498,51,0,0" VerticalAlignment="Top" FontSize="20"/>
+        <Label Content="CTRL+A" HorizontalAlignment="Left" Margin="503,81,0,0" VerticalAlignment="Top"/>
+        <Image HorizontalAlignment="Left" Height="50" Margin="448,109,0,0" VerticalAlignment="Top" Width="50" Source="anamnesisPreviewIcon.png"/>
+        <Label Content="Pregled anamneza" HorizontalAlignment="Left" Margin="503,106,0,0" VerticalAlignment="Top" FontSize="20"/>
+        <Label Content="CTRL+P" HorizontalAlignment="Left" Margin="503,136,0,0" VerticalAlignment="Top"/>
+        <Image HorizontalAlignment="Left" Height="50" Margin="448,164,0,0" VerticalAlignment="Top" Width="50" Source="addPrescritptionIcon.png"/>
+        <Label Content="Izdavanje recepta" HorizontalAlignment="Left" Margin="503,164,0,0" VerticalAlignment="Top" FontSize="20"/>
+        <Label Content="CTRL+R" HorizontalAlignment="Left" Margin="505,194,0,0" VerticalAlignment="Top"/>
+        <Image HorizontalAlignment="Left" Height="50" Margin="448,217,0,0" VerticalAlignment="Top" Width="50" Source="prescriptionPreviewIcon.png"/>
+        <Label Content="Pregled recepata" HorizontalAlignment="Left" Margin="503,217,0,0" VerticalAlignment="Top" FontSize="20"/>
+        <Label Content="CTRL+W" HorizontalAlignment="Left" Margin="505,247,0,0" VerticalAlignment="Top"/>
+        <Image HorizontalAlignment="Left" Height="50" Margin="448,277,0,0" VerticalAlignment="Top" Width="50" Source="allergensIcon.png"/>
+        <Label Content="Alergeni pacjenta" HorizontalAlignment="Left" Margin="503,277,0,0" VerticalAlignment="Top" FontSize="20"/>
+        <Label Content="CTRL+T" HorizontalAlignment="Left" Margin="505,307,0,0" VerticalAlignment="Top"/>
+        <Image HorizontalAlignment="Left" Height="50" Margin="448,337,0,0" VerticalAlignment="Top" Width="50" Source="referralLetterIcon.png"/>
+        <Label Content="Izdavanje upute" HorizontalAlignment="Left" Margin="503,337,0,0" VerticalAlignment="Top" FontSize="20"/>
+        <Label Content="CTRL+U" HorizontalAlignment="Left" Margin="505,367,0,0" VerticalAlignment="Top"/>
+        <Image HorizontalAlignment="Left" Height="50" Margin="734,10,0,0" VerticalAlignment="Top" Width="50" Source="quitIcon.png"/>
+        <Label Content="CTRL+Q" HorizontalAlignment="Left" Margin="731,60,0,0" VerticalAlignment="Top"/>
 
     </Grid>
 </Window>

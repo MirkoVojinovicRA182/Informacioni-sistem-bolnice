@@ -1,5 +1,6 @@
 ﻿using Model;
 using System.Windows;
+using System.Windows.Input;
 
 namespace HospitalInformationSystem.Windows.DoctorGUI
 {
@@ -20,15 +21,24 @@ namespace HospitalInformationSystem.Windows.DoctorGUI
             InitializeComponent();
             allergensListBox.ItemsSource = patientToViewAllergens.MedicalRecord.AllergensList;
         }
-
-        private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
+        private void CheckKeyPress()
         {
-
+            if (Keyboard.IsKeyDown(Key.Escape))
+                this.Close();
         }
-
         private void Window_Closing_1(object sender, System.ComponentModel.CancelEventArgs e)
         {
             instance = null;
+        }
+
+        private void Window_KeyDown(object sender, KeyEventArgs e)
+        {
+            CheckKeyPress();
+        }
+
+        private void allergensListBox_PreviewKeyDown(object sender, KeyEventArgs e)
+        {
+            CheckKeyPress();
         }
     }
 }

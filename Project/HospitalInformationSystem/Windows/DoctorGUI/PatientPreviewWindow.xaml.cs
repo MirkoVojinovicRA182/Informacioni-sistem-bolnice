@@ -39,8 +39,10 @@ namespace HospitalInformationSystem.Windows.DoctorGUI
             if (Keyboard.IsKeyDown(Key.Enter))
                 ShowPatientInformationWindow.GetInstance((Patient)patientsTable.SelectedItem).Show();
             else if ((Keyboard.IsKeyDown(Key.LeftCtrl) || Keyboard.IsKeyDown(Key.RightCtrl)) && Keyboard.IsKeyDown(Key.T))
+            {
                 if (((Patient)patientsTable.SelectedItem).hospitalTreatment != null)
                     EditHospitalTreatmentWindow.GetInstance((Patient)patientsTable.SelectedItem).Show();
+            }
             else if (Keyboard.IsKeyDown(Key.Escape))
                 this.Close();
         }

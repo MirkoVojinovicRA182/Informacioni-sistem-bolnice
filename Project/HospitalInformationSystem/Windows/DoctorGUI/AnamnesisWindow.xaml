@@ -8,12 +8,14 @@
         Title="AnamnesisWindow" Height="350" Width="600" Closing="Window_Closing">
     <Grid>
         <Label Content="Datum:" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" FontSize="16"/>
-        <TextBox x:Name="dateTextBox" HorizontalAlignment="Left" Height="32" Margin="76,10,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" FontSize="16"/>
+        <TextBox x:Name="dateTextBox" HorizontalAlignment="Left" Height="32" Margin="76,10,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" FontSize="16" PreviewKeyDown="dateTextBox_PreviewKeyDown"/>
         <Label Content="Osnovni opis anamneze:" HorizontalAlignment="Left" Margin="201,10,0,0" VerticalAlignment="Top" FontSize="16"/>
-        <TextBox x:Name="basicDescriptionTextBox" HorizontalAlignment="Left" Height="32" Margin="383,10,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="201" FontSize="16"/>
-        <Label Content="Tekst anamneze:" HorizontalAlignment="Left" Margin="10,63,0,0" VerticalAlignment="Top" FontSize="16"/>
-        <Button x:Name="addAnamnesis" Content="Dodaj anamnezu" HorizontalAlignment="Left" Margin="415,63,0,0" VerticalAlignment="Top" Width="169" FontSize="16" Height="28" Click="addAnamnesis_Click"/>
-        <TextBox x:Name="anamnesisTextBox" HorizontalAlignment="Left" Height="211" Margin="10,100,0,0" TextWrapping="Wrap" Text="Ovdje ide tekst anamneze" VerticalAlignment="Top" Width="574" FontSize="16"/>
-
+        <TextBox x:Name="basicDescriptionTextBox" HorizontalAlignment="Left" Height="32" Margin="383,10,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="201" FontSize="16" PreviewKeyDown="basicDescriptionTextBox_PreviewKeyDown"/>
+        <Label Content="Tekst anamneze:" HorizontalAlignment="Left" Margin="10,47,0,0" VerticalAlignment="Top" FontSize="16"/>
+        <TextBox x:Name="anamnesisTextBox" HorizontalAlignment="Left" Height="166" Margin="10,84,0,0" TextWrapping="Wrap" Text="Ovdje ide tekst anamneze" VerticalAlignment="Top" Width="574" FontSize="16" PreviewKeyDown="anamnesisTextBox_PreviewKeyDown"/>
+        <Image HorizontalAlignment="Left" Height="50" Margin="13,250,0,0" VerticalAlignment="Top" Width="50" Source="addIcon.png"/>
+        <Label Content="ENTER" HorizontalAlignment="Left" Margin="19,290,0,-0.2" VerticalAlignment="Top" FontSize="10"/>
+        <Image HorizontalAlignment="Left" Height="50" Margin="531,250,0,0" VerticalAlignment="Top" Width="50" Source="quitIcon.png"/>
+        <Label Content="ESC" HorizontalAlignment="Left" Margin="543,290,0,-0.2" VerticalAlignment="Top" FontSize="10"/>
     </Grid>
 </Window>

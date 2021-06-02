@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:HospitalInformationSystem.Windows"
         mc:Ignorable="d"
-        Title="AmnesisPreviewWindow" Height="350" Width="600" Closing="Window_Closing">
+        Title="AmnesisPreviewWindow" Height="350" Width="600" Closing="Window_Closing" KeyDown="Window_KeyDown">
     <Grid>
         <Label Content="Anamneza:" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" FontSize="16"/>
         <ComboBox x:Name="anamnesisComboBox" HorizontalAlignment="Left" Margin="103,10,0,0" VerticalAlignment="Top" Width="120" FontSize="16" DataContextChanged="anamnesisComboBox_DataContextChanged" SelectionChanged="anamnesisComboBox_SelectionChanged">
@@ -21,7 +21,9 @@
         <Label Content="Tekst anamneze:" HorizontalAlignment="Left" Margin="10,47,0,0" VerticalAlignment="Top" FontSize="16"/>
         <Label Content="Pacijent:" HorizontalAlignment="Left" Margin="326,10,0,0" VerticalAlignment="Top" FontSize="16"/>
         <Label x:Name="patientNameLabel" Content="Pacijent:" HorizontalAlignment="Left" Margin="400,10,0,0" VerticalAlignment="Top" FontSize="16"/>
-        <TextBlock x:Name="anamnesisTextBlock" HorizontalAlignment="Left" Height="227" Margin="10,84,0,0" TextWrapping="Wrap" Text="Ovdje ide tekst anamneze..." VerticalAlignment="Top" Width="574" FontSize="16"/>
+        <TextBlock x:Name="anamnesisTextBlock" HorizontalAlignment="Left" Height="153" Margin="10,84,0,0" TextWrapping="Wrap" Text="Ovdje ide tekst anamneze..." VerticalAlignment="Top" Width="574" FontSize="16"/>
+        <Image HorizontalAlignment="Left" Height="50" Margin="534,242,0,0" VerticalAlignment="Top" Width="50" Source="quitIcon.png"/>
+        <Label Content="ESC" HorizontalAlignment="Left" Margin="547,287,0,0" VerticalAlignment="Top" FontSize="10"/>
 
     </Grid>
 </Window>

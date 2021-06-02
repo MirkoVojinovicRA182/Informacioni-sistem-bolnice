@@ -49,6 +49,8 @@ namespace Model
 
         public void addAnamnesis(Anamnesis anamnesis)
         {
+            if (anamnesisList == null)
+                anamnesisList = new List<Anamnesis>();
             anamnesisList.Add(anamnesis);
         }
 

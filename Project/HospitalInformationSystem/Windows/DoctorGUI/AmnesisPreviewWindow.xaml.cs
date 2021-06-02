@@ -1,6 +1,7 @@
 ﻿using Model;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Input;
 
 namespace HospitalInformationSystem.Windows.DoctorGUI
 {
@@ -38,10 +39,19 @@ namespace HospitalInformationSystem.Windows.DoctorGUI
             Anamnesis anamnesis = (Anamnesis)anamnesisComboBox.SelectedItem;
             anamnesisTextBlock.Text = anamnesis.anamnesis;
         }
-
+        private void CheckKeyPress()
+        {
+            if (Keyboard.IsKeyDown(Key.Escape))
+                this.Close();
+        }
         private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
         {
             instance = null;
+        }
+
+        private void Window_KeyDown(object sender, KeyEventArgs e)
+        {
+            CheckKeyPress();
         }
     }
 }

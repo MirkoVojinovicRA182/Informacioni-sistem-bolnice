@@ -46,13 +46,12 @@ namespace HospitalInformationSystem.Windows.ManagerGUI
             idOfNewRoom = int.TryParse(idTextBox.Text, out idOfNewRoom) ? idOfNewRoom : 0;
             nameOfNewRoom = nameTextBox.Text;
             floorOfNewRoom = int.TryParse(floorTextBox.Text, out floorOfNewRoom) ? floorOfNewRoom : 0;
-            typeOfNewRoom = loadTypeOfRoomFromComboBox((string)typeOfRoomComboBox.SelectedItem);
         }
         private bool TryCreateRoom()
         {
             if (CheckInputControls())
             {
-                RoomController.GetInstance().AddRoomToRoomList(new Room(idOfNewRoom, nameOfNewRoom, floorOfNewRoom, typeOfNewRoom, roomEquipment));
+                RoomController.GetInstance().AddRoomToRoomList(new Room(idOfNewRoom, nameOfNewRoom, floorOfNewRoom, loadTypeOfRoomFromComboBox((string)typeOfRoomComboBox.SelectedItem), roomEquipment));
                 if(roomEquipment.Count != 0)
                     reduceMagacineEquipmentQuantity();
                 return true;

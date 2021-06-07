@@ -77,12 +77,12 @@ namespace HospitalInformationSystem.Windows.ManagerGUI
         }
         private void lightTheme_Checked(object sender, RoutedEventArgs e)
         {
-            ThemeManager.Current.ChangeTheme(Application.Current, "Light.Green");
+            ThemeManager.Current.ChangeTheme(Application.Current, "Light.Amber");
             darkTheme.IsChecked = false;
         }
         private void darkTheme_Checked(object sender, RoutedEventArgs e)
         {
-            ThemeManager.Current.ChangeTheme(Application.Current, "Dark.Green");
+            ThemeManager.Current.ChangeTheme(Application.Current, "Dark.Amber");
             lightTheme.IsChecked = false;
         }
         private void OpenEditRoomWindow()

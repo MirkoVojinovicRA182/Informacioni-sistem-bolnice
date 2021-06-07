@@ -6,9 +6,11 @@ namespace HospitalInformationSystem.Service
     class MedicineService
     {
         MedicineRepository _medicineRepository;
+        RepositoryFactory rep;
         public MedicineService()
         {
             _medicineRepository = new MedicineRepository();
+            rep = new MedicineRepositoryFactory();
         }
         public void AddMedicine(Medicine newMedicine)
         {

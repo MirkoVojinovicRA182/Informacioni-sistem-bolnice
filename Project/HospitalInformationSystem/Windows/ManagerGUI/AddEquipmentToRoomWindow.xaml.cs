@@ -23,6 +23,7 @@ namespace HospitalInformationSystem.Windows.ManagerGUI
             equipmentListBox.ItemsSource = null;
             equipmentListBox.ItemsSource = EquipmentController.getInstance().MakeEquipmentForRoom(equipmentType, currentRoomEquipment);
             this.window = window;
+            WindowStartupLocation = System.Windows.WindowStartupLocation.CenterScreen;
         }
         private void confirmButton_Click(object sender, RoutedEventArgs e)
         {

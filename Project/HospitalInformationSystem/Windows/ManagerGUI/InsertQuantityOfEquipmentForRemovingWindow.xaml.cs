@@ -20,6 +20,7 @@ namespace HospitalInformationSystem.Windows.ManagerGUI
         {
             InitializeComponent();
             itSubmitted = false;
+            WindowStartupLocation = System.Windows.WindowStartupLocation.CenterScreen;
             this.currentQuantity = currentQuantity;
         }
         private void submitButton_Click(object sender, RoutedEventArgs e)

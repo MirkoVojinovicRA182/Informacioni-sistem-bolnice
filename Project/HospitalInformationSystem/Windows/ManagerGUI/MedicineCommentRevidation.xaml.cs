@@ -16,6 +16,7 @@ namespace HospitalInformationSystem.Windows.ManagerGUI
         private MedicineCommentRevidation(Medicine commentedMedicine)
         {
             InitializeComponent();
+            WindowStartupLocation = System.Windows.WindowStartupLocation.CenterScreen;
             _commentedMedicine = commentedMedicine;
             commentRichTextBox.Document.Blocks.Add(new Paragraph(new Run(_commentedMedicine.Comment)));
         }

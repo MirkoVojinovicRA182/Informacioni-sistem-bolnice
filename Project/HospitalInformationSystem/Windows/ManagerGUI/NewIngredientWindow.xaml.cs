@@ -19,6 +19,7 @@ namespace HospitalInformationSystem.Windows.ManagerGUI
         private NewIngredientWindow(List<MedicineIngredient> medicineIngredientList)
         {
             InitializeComponent();
+            WindowStartupLocation = System.Windows.WindowStartupLocation.CenterScreen;
             this.medicineIngredientList = medicineIngredientList;
         }
 

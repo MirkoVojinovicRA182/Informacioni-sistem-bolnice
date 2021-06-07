@@ -27,6 +27,7 @@ namespace HospitalInformationSystem.Windows
             InitializeComponent();
             Deserialize();
             ManagerMainWindow.getInstance().Show();
+            WindowStartupLocation = System.Windows.WindowStartupLocation.CenterScreen;
         }
         private void Button_Click(object sender, RoutedEventArgs e)
         {

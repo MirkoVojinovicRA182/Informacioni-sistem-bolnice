@@ -27,6 +27,7 @@ namespace HospitalInformationSystem.Windows.ManagerGUI
         private EditRoomWindow(Room selectedRoom)
         {
             InitializeComponent();
+            WindowStartupLocation = System.Windows.WindowStartupLocation.CenterScreen;
             InitializeFields(selectedRoom);
             LoadTypeComboBox();
             FillComponents();

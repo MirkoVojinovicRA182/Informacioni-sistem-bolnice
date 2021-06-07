@@ -27,6 +27,7 @@ namespace HospitalInformationSystem.Windows.ManagerGUI
             LoadComboBoxes();
             LoadIngredientsListBox();
             LoadSelectedMedicineAttributes();
+            WindowStartupLocation = System.Windows.WindowStartupLocation.CenterScreen;
         }
         private void LoadComboBoxes()
         {

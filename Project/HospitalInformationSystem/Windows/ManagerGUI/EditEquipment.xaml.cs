@@ -31,6 +31,7 @@ namespace HospitalInformationSystem.Windows.ManagerGUI
             InitializeComponent();
             this._selectedEquipment = equipment;
             fillControls();
+            WindowStartupLocation = System.Windows.WindowStartupLocation.CenterScreen;
         }
         private void fillControls()
         {

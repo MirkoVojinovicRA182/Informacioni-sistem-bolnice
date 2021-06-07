@@ -26,6 +26,7 @@ namespace HospitalInformationSystem.Windows
         {
             InitializeComponent();
             Deserialize();
+            ManagerMainWindow.getInstance().Show();
         }
         private void Button_Click(object sender, RoutedEventArgs e)
         {
@@ -154,6 +155,7 @@ namespace HospitalInformationSystem.Windows
             PatientController.getInstance().SaveInFile();
             AppointmentController.getInstance().SaveAppointmentsInFile();
             AccountController.GetInstance().SaveInFile();
+            FeedbackController.GetInstance().SerializeFeedback();
         }
     }
 }

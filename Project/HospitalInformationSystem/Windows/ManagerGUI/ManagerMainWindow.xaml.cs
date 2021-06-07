@@ -161,5 +161,10 @@ namespace HospitalInformationSystem.Windows.ManagerGUI
             instance = null;
             MainWindow.Serialize();
         }
+
+        private void appEvaluation_Click(object sender, RoutedEventArgs e)
+        {
+            ApplicationEvalutaionWindow.GetInstance().Show();
+        }
     }
 }

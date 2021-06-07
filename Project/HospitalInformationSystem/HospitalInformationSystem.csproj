@@ -63,12 +63,14 @@
     <Compile Include="Controller\AnnouncementsController.cs" />
     <Compile Include="Controller\AppointmentController.cs" />
     <Compile Include="Controller\DoctorController.cs" />
+    <Compile Include="Controller\FeedbackController.cs" />
     <Compile Include="Controller\MedicineController.cs" />
     <Compile Include="Controller\NotificationController.cs" />
     <Compile Include="Controller\PatientController.cs" />
     <Compile Include="Controller\RoomController.cs" />
     <Compile Include="DTO\EquipmentDTO.cs" />
     <Compile Include="DTO\RoomDTO.cs" />
+    <Compile Include="Model\Feedback.cs" />
     <Compile Include="Model\HospitalTreatment.cs" />
     <Compile Include="Model\Medicine.cs" />
     <Compile Include="Model\MedicineIngredient.cs" />
@@ -77,6 +79,7 @@
     <Compile Include="Model\RoomRenovationState.cs" />
     <Compile Include="Model\TypeOfMedicine.cs" />
     <Compile Include="Repository\AccountRepository.cs" />
+    <Compile Include="Repository\FeedbackRepository.cs" />
     <Compile Include="Repository\MedicineRepository.cs" />
     <Compile Include="Model\DoctorReview.cs" />
     <Compile Include="Model\HospitalReview.cs" />
@@ -87,6 +90,7 @@
     <Compile Include="Service\AnnouncementsService.cs" />
     <Compile Include="Service\AppointmentService.cs" />
     <Compile Include="Service\DoctorService.cs" />
+    <Compile Include="Service\FeedbackService.cs" />
     <Compile Include="Service\MedicineService.cs" />
     <Compile Include="Service\NotificationService.cs" />
     <Compile Include="Service\PatientService.cs" />
@@ -173,6 +177,9 @@
       <DependentUpon>ShowPatientInformationWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="DTO\DetailEquipmentDTO.cs" />
+    <Compile Include="Windows\ManagerGUI\ApplicationEvalutaionWindow.xaml.cs">
+      <DependentUpon>ApplicationEvalutaionWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Windows\ManagerGUI\DetailEquipmentViewUserControl.xaml.cs">
       <DependentUpon>DetailEquipmentViewUserControl.xaml</DependentUpon>
     </Compile>
@@ -416,6 +423,10 @@
     <Page Include="Windows\DoctorGUI\ShowPatientInformationWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Windows\ManagerGUI\ApplicationEvalutaionWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Windows\ManagerGUI\DetailEquipmentViewUserControl.xaml">
       <SubType>Designer</SubType>

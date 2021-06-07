@@ -12,16 +12,17 @@
     <DockPanel>
         <Menu DockPanel.Dock="Top">
             <MenuItem Header="_Fajl">
-                <MenuItem Header="_Odjavi se" InputGestureText="CTRL+O"/>
+                <MenuItem Name="appEvaluation"  Header="Ocenjivanje aplikacije" InputGestureText="CTRL+O" Click="appEvaluation_Click"/>
+                <Separator/>
+                <MenuItem Header="_Odjavi se" InputGestureText="CTRL+L"/>
                 <MenuItem x:Name="exitMenuItem" Header="_Izađi" Click="exitMenuItem_Click" InputGestureText="CTRL+C"/>
             </MenuItem>
             <MenuItem Header="_Prostorije">
                 <MenuItem x:Name="newRoomMenuItem" Header="_Unos nove" Click="newRoomMenuItem_Click"/>
                 <MenuItem x:Name="editRoomMenuItem" Header="_Izmena postojeće" Click="editRoomMenuItem_Click"/>
                 <MenuItem x:Name="deleteRoomMenuItem" Header="_Brisanje postojeće" Click="deleteRoomMenuItem_Click"/>
-                <Separator />
+                <Separator/>
                 <MenuItem x:Name="renovationMenuItem" Header="_Renoviranje" Click="renovationMenuItem_Click"/>
-                <Separator />
             </MenuItem>
             <MenuItem Header="Oprema">
                 <MenuItem x:Name="newEquipmentMenuItem" Header="_Unos nove" Click="newEquipmentMenuItem_Click"/>

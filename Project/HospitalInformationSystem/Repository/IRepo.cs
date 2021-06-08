@@ -8,7 +8,10 @@ namespace HospitalInformationSystem.Repository
 {
     public interface IRepo
     {
-        void GetAll();
-        void DeleteOne();
+        void AddNew(Object element);
+        void DeleteOne(Object element);
+        bool Exists(int id);
+        void Serialize();
+        void Deserialize();
     }
 }

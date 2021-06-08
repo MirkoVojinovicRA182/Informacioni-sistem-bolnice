@@ -35,9 +35,9 @@ namespace HospitalInformationSystem.Controller
         {
             _appointmentService.DeleteAppointment(oldAppointment);
         }
-        public void ChangeAppointment(Appointment appointment, System.DateTime startTime, TypeOfAppointment typeOfAppointment, Room room, Patient patient, Doctor doctor)
+        public void ChangeAppointment(Appointment appointment, Appointment newAppointment)
         {
-            _appointmentService.ChangeAppointment(appointment, startTime, typeOfAppointment, room, patient, doctor);
+            _appointmentService.ChangeAppointment(appointment, newAppointment);
         }
         public List<Appointment> FindAppointmentByRoom(Room room)
         {

@@ -32,19 +32,19 @@ namespace HospitalInformationSystem.Windows.DoctorGUI
             dateTextBox.Text = _appointmentToShow.StartTime.ToString(DATE_TEMPLATE);
             timeTextBox.Text = _appointmentToShow.StartTime.ToString("HH:mm");
             appointmentTypeTextBox.Text = _appointmentToShow.Type.ToString();
-            patientTextBox.Text = _appointmentToShow.patient.Name + " " + _appointmentToShow.patient.Surname;
+            patientTextBox.Text = _appointmentToShow.Patient.Name + " " + _appointmentToShow.Patient.Surname;
             if(Object.Equals(_appointmentToShow.Type.ToString(), "Operacija"))
             {
                 roomLabel.Visibility = Visibility.Visible;
                 roomTextBox.Visibility = Visibility.Visible;
-                roomTextBox.Text = _appointmentToShow.room.Name;
+                roomTextBox.Text = _appointmentToShow.Room.Name;
             }
         }
         private void CheckKeyPress()
         {
             if (Keyboard.IsKeyDown(Key.Enter))
             {
-                ShowPatientInformationWindow.GetInstance(_appointmentToShow.patient).ShowDialog();
+                ShowPatientInformationWindow.GetInstance(_appointmentToShow.Patient).ShowDialog();
             }
             else if (Keyboard.IsKeyDown(Key.Escape))
             {

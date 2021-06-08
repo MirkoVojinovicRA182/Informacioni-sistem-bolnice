@@ -94,6 +94,7 @@
     <Compile Include="DTO\EquipmentDTO.cs" />
     <Compile Include="DTO\RoomDTO.cs" />
     <Compile Include="Model\HospitalTreatment.cs" />
+    <Compile Include="Model\IHospitalResidence.cs" />
     <Compile Include="Model\Medicine.cs" />
     <Compile Include="Model\MedicineIngredient.cs" />
     <Compile Include="Model\Notification.cs" />

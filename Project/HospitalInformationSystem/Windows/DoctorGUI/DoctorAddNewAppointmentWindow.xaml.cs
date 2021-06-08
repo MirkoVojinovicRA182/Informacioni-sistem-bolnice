@@ -6,6 +6,7 @@ using HospitalInformationSystem.Controller;
 using System.Collections.Generic;
 using System.Windows.Input;
 using static HospitalInformationSystem.Utility.Constants;
+using System.Threading;
 
 namespace HospitalInformationSystem.Windows.DoctorGUI
 {

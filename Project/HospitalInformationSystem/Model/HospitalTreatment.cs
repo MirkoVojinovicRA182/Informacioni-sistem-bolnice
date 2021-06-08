@@ -4,16 +4,28 @@ using System;
 namespace HospitalInformationSystem.Model
 {
     [Serializable]
-    public class HospitalTreatment
+    public class HospitalTreatment : IHospitalResidence
     {
         public HospitalTreatment(DateTime treatmentStartDate, DateTime treatmentEndDate, Room treatmentRoom)
         {
-            this.treatmentStartDate = treatmentStartDate;
-            this.treatmentEndDate = treatmentEndDate;
-            this.treatmentRoom = treatmentRoom;
+            this.TreatmentStartDate = treatmentStartDate;
+            this.TreatmentEndDate = treatmentEndDate;
+            this.TreatmentRoom = treatmentRoom;
         }
-        public DateTime treatmentStartDate { get; set; }
-        public DateTime treatmentEndDate { get; set; }
-        public Room treatmentRoom { get; set; }
+        public DateTime TreatmentStartDate { get; set; }
+        public DateTime TreatmentEndDate { get; set; }
+        public Room TreatmentRoom { get; set; }
+        public void ChangeResidenceDate(DateTime treatmentStartDate, DateTime treatmentEndDate)
+        {
+            this.TreatmentStartDate = treatmentStartDate;
+            this.TreatmentEndDate = treatmentEndDate;
+        }
+
+        public void ChangeResidence(IHospitalResidence newResidence)
+        {
+            this.TreatmentStartDate = ((HospitalTreatment)newResidence).TreatmentStartDate;
+            this.TreatmentEndDate = ((HospitalTreatment)newResidence).TreatmentEndDate;
+            this.TreatmentRoom = ((HospitalTreatment)newResidence).TreatmentRoom;
+        }
     }
 }

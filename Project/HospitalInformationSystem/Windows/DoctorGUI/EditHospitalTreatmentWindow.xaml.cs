@@ -30,8 +30,8 @@ namespace HospitalInformationSystem.Windows.DoctorGUI
         private void InitInputs()
         {
             patientNameLabel.Content = _patientForEdit.Name + " " + _patientForEdit.Surname;
-            startDateTextBox.Text = _patientForEdit.hospitalTreatment.treatmentStartDate.ToString(DATE_TEMPLATE);
-            endDateTextBox.Text = _patientForEdit.hospitalTreatment.treatmentEndDate.ToString(DATE_TEMPLATE);
+            startDateTextBox.Text = _patientForEdit.hospitalTreatment.TreatmentStartDate.ToString(DATE_TEMPLATE);
+            endDateTextBox.Text = _patientForEdit.hospitalTreatment.TreatmentEndDate.ToString(DATE_TEMPLATE);
             InitRoomsForHospitalTreatment();
         }
         private void InitRoomsForHospitalTreatment()
@@ -40,7 +40,7 @@ namespace HospitalInformationSystem.Windows.DoctorGUI
             foreach (Room roomWithBed in RoomController.GetInstance().GetRooms())
                 if (roomWithBed.Type == TypeOfRoom.RoomWithBeds) roomsForHospitalTreatment.Add(roomWithBed);
             roomsListBox.ItemsSource = roomsForHospitalTreatment;
-            currentRoom.Content = _patientForEdit.hospitalTreatment.treatmentRoom.Name;
+            currentRoom.Content = _patientForEdit.hospitalTreatment.TreatmentRoom.Name;
         }
         private void CheckKeyPress()
         {

@@ -95,7 +95,7 @@ namespace HospitalInformationSystem.Repository
             List<Appointment> appointmentsInRoom = new List<Appointment>();
             foreach (Appointment app in AppointmentController.getInstance().GetAppointments())
             {
-                if (string.Equals(app.room.Name, nameOfRoom))
+                if (string.Equals(app.Room.Name, nameOfRoom))
                     appointmentsInRoom.Add(app);
             }
             return appointmentsInRoom;

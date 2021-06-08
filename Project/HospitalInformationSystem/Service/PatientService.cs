@@ -121,9 +121,9 @@ namespace HospitalInformationSystem.Service
 
         public void EditHospitalTreatment(Patient patientToEditHospitalTreatment, DateTime startTime, DateTime endTime, Room roomForTreatment)
         {
-            patientToEditHospitalTreatment.hospitalTreatment.treatmentStartDate = startTime;
-            patientToEditHospitalTreatment.hospitalTreatment.treatmentEndDate = endTime;
-            patientToEditHospitalTreatment.hospitalTreatment.treatmentRoom = roomForTreatment;
+            patientToEditHospitalTreatment.hospitalTreatment.TreatmentStartDate = startTime;
+            patientToEditHospitalTreatment.hospitalTreatment.TreatmentEndDate = endTime;
+            patientToEditHospitalTreatment.hospitalTreatment.TreatmentRoom = roomForTreatment;
         }
 
         public void AddAllergenToPatient(Patient patientToAddAllergen, string allergen)
@@ -210,7 +210,7 @@ namespace HospitalInformationSystem.Service
             {
                 foreach (Appointment appointment in doctor.GetAppointment())
                 {
-                    if (appointment.StartTime == time && appointment.room == room)
+                    if (appointment.StartTime == time && appointment.Room == room)
                     {
                         return false;
                     }

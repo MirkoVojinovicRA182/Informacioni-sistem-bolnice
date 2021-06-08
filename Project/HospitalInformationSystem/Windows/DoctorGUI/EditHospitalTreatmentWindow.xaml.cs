@@ -1,4 +1,5 @@
 ﻿using HospitalInformationSystem.Controller;
+using HospitalInformationSystem.Model;
 using Model;
 using System;
 using System.Collections.Generic;
@@ -46,12 +47,12 @@ namespace HospitalInformationSystem.Windows.DoctorGUI
         {
             if ((Keyboard.IsKeyDown(Key.LeftCtrl) || Keyboard.IsKeyDown(Key.RightCtrl)) && Keyboard.IsKeyDown(Key.E) && CheckAllInputs())
             {
-                PatientController.getInstance().EditHospitalTreatment(_patientForEdit,
-                            DateTime.ParseExact(startDateTextBox.Text,
+                AppointmentController.getInstance().ChangeHospitalResidence(_patientForEdit.hospitalTreatment, new HospitalTreatment(
+                    DateTime.ParseExact(startDateTextBox.Text,
                         DATE_TEMPLATE, System.Globalization.CultureInfo.InvariantCulture),
                             DateTime.ParseExact(endDateTextBox.Text,
                         DATE_TEMPLATE, System.Globalization.CultureInfo.InvariantCulture),
-                            (Room)roomsListBox.SelectedItem);
+                            (Room)roomsListBox.SelectedItem));
                 MessageBox.Show("Informacije o bolnickom lecenju su uspesno promjenjene!", "Lecenje", MessageBoxButton.OK, MessageBoxImage.Information);
             }
             else if (Keyboard.IsKeyDown(Key.Escape))

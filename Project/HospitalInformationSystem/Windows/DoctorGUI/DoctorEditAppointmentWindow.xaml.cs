@@ -65,11 +65,11 @@ namespace HospitalInformationSystem.Windows.DoctorGUI
                 {
                     DateTime date = DateTime.ParseExact(dateTextBox.Text + " " + timeTextBox.Text, DATE_TIME_TEMPLATE, System.Globalization.CultureInfo.InvariantCulture);
                     if(patientListBox.SelectedIndex < 0)
-                        AppointmentController.getInstance().ChangeAppointment(
+                        AppointmentController.getInstance().ChangeHospitalResidence(
                             _appointmentToEdit, new Appointment(date, _appointmentToEdit.Type, _appointmentToEdit.Room, 
                             _appointmentToEdit.Patient, _appointmentToEdit.Doctor));
                     else
-                        AppointmentController.getInstance().ChangeAppointment(
+                        AppointmentController.getInstance().ChangeHospitalResidence(
                             _appointmentToEdit, new Appointment(date, _appointmentToEdit.Type, _appointmentToEdit.Room, 
                             (Patient)patientListBox.SelectedItem, _appointmentToEdit.Doctor));
                     MessageBox.Show("Informacije o terminu su sada izmenjene.", "Izmena informacija", MessageBoxButton.OK, MessageBoxImage.Information);

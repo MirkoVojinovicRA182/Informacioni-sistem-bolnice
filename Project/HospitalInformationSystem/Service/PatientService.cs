@@ -118,14 +118,6 @@ namespace HospitalInformationSystem.Service
         {
             patientToSendOnHospitalTreatmant.hospitalTreatment = hospitalTreatment;
         }
-
-        public void EditHospitalTreatment(Patient patientToEditHospitalTreatment, DateTime startTime, DateTime endTime, Room roomForTreatment)
-        {
-            patientToEditHospitalTreatment.hospitalTreatment.TreatmentStartDate = startTime;
-            patientToEditHospitalTreatment.hospitalTreatment.TreatmentEndDate = endTime;
-            patientToEditHospitalTreatment.hospitalTreatment.TreatmentRoom = roomForTreatment;
-        }
-
         public void AddAllergenToPatient(Patient patientToAddAllergen, string allergen)
         {
             if (patientToAddAllergen.Allergens == null)

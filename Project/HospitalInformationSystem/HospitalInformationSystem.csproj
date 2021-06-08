@@ -38,8 +38,24 @@
     <Reference Include="ASquare.WindowsTaskScheduler, Version=1.6.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>packages\ASquare.WindowsTaskScheduler.1.6.0.0\lib\Net45\ASquare.WindowsTaskScheduler.dll</HintPath>
     </Reference>
+    <Reference Include="LiveCharts, Version=0.9.7.0, Culture=neutral, PublicKeyToken=0bc1f845d1ebb8df, processorArchitecture=MSIL">
+      <HintPath>packages\LiveCharts.0.9.7\lib\net45\LiveCharts.dll</HintPath>
+    </Reference>
+    <Reference Include="LiveCharts.Wpf, Version=0.9.7.0, Culture=neutral, PublicKeyToken=0bc1f845d1ebb8df, processorArchitecture=MSIL">
+      <HintPath>packages\LiveCharts.Wpf.0.9.7\lib\net45\LiveCharts.Wpf.dll</HintPath>
+    </Reference>
+    <Reference Include="Syncfusion.Compression.Base, Version=19.1460.0.67, Culture=neutral, PublicKeyToken=3d67ed1f87d44c89, processorArchitecture=MSIL">
+      <HintPath>packages\Syncfusion.Compression.Base.19.1.0.67\lib\net46\Syncfusion.Compression.Base.dll</HintPath>
+    </Reference>
+    <Reference Include="Syncfusion.Licensing, Version=19.1460.0.67, Culture=neutral, PublicKeyToken=632609b4d040f6b4, processorArchitecture=MSIL">
+      <HintPath>packages\Syncfusion.Licensing.19.1.0.67\lib\net46\Syncfusion.Licensing.dll</HintPath>
+    </Reference>
+    <Reference Include="Syncfusion.Pdf.Base, Version=19.1460.0.67, Culture=neutral, PublicKeyToken=3d67ed1f87d44c89, processorArchitecture=MSIL">
+      <HintPath>packages\Syncfusion.Pdf.Wpf.19.1.0.67\lib\net46\Syncfusion.Pdf.Base.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
     <Reference Include="Microsoft.CSharp" />
@@ -69,6 +85,7 @@
     <Compile Include="Controller\RoomController.cs" />
     <Compile Include="DTO\EquipmentDTO.cs" />
     <Compile Include="DTO\RoomDTO.cs" />
+    <Compile Include="Model\DoctorRatingPair.cs" />
     <Compile Include="Model\HospitalTreatment.cs" />
     <Compile Include="Model\Medicine.cs" />
     <Compile Include="Model\MedicineIngredient.cs" />
@@ -211,6 +228,9 @@
     </Compile>
     <Compile Include="Windows\PatientGUI\CustomNotificationWindow.xaml.cs">
       <DependentUpon>CustomNotificationWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Windows\PatientGUI\DoctorChartWindow.xaml.cs">
+      <DependentUpon>DoctorChartWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="Windows\PatientGUI\EditPatientAppointmentWindow.xaml.cs">
       <DependentUpon>EditPatientAppointmentWindow.xaml</DependentUpon>
@@ -469,6 +489,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Windows\PatientGUI\DoctorChartWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Windows\PatientGUI\EditPatientAppointmentWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -661,6 +685,24 @@
     <Resource Include="Windows\DoctorGUI\hospitalTreatmentIcon.png" />
     <Resource Include="Images\Secretary\allergens.png" />
     <Resource Include="Images\Secretary\announcements.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Patient\a.png" />
+    <Resource Include="Images\Patient\addIcon.png" />
+    <Resource Include="Images\Patient\appointmentIcon.png" />
+    <Resource Include="Images\Patient\deleteIcon.png" />
+    <Resource Include="Images\Patient\demoIcon.png" />
+    <Resource Include="Images\Patient\doctorIcon.png" />
+    <Resource Include="Images\Patient\editIcon.png" />
+    <Resource Include="Images\Patient\hospitalIcon.png" />
+    <Resource Include="Images\Patient\hospitalTreatmentIcon.png" />
+    <Resource Include="Images\Patient\medicalRecordIcon.png" />
+    <Resource Include="Images\Patient\medicineIcon.png" />
+    <Resource Include="Images\Patient\not.png" />
+    <Resource Include="Images\Patient\patientIcon.png" />
+    <Resource Include="Images\Patient\patientsIcon.png" />
+    <Resource Include="Images\Patient\quitIcon.png" />
+    <Resource Include="Images\Patient\reportIcon.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

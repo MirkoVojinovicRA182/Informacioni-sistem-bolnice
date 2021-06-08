@@ -52,7 +52,6 @@ namespace HospitalInformationSystem.Windows.PatientGUI
             else
             {
                 MessageBox.Show("Prekasno je da se termin pomera", "Greška", MessageBoxButton.OK, MessageBoxImage.Information);
-                this.Close();
             }
         }
 

@@ -25,7 +25,7 @@ namespace HospitalInformationSystem.Windows.PatientGUI
     public partial class NewPatientAppointmentSystemWindow : Window
     {
 
-        private ObservableCollection<Appointment> appointmentList;
+        private ObservableCollection<Appointment> _appointmentList;
         private Patient _patient;
         private NewPatientAppointmentWindow _previousWindow;
         public NewPatientAppointmentSystemWindow(Patient patient, NewPatientAppointmentWindow window)
@@ -223,9 +223,9 @@ namespace HospitalInformationSystem.Windows.PatientGUI
         }
         public void RefreshTable()
         {
-            appointmentList = new ObservableCollection<Appointment>(RecommendAppointments());
+            _appointmentList = new ObservableCollection<Appointment>(RecommendAppointments());
             AppointmentDataGrid.ItemsSource = null;
-            AppointmentDataGrid.ItemsSource = appointmentList;
+            AppointmentDataGrid.ItemsSource = _appointmentList;
         }
         private void HomeButton_Click(object sender, RoutedEventArgs e)
         {
@@ -236,6 +236,44 @@ namespace HospitalInformationSystem.Windows.PatientGUI
         {
             this.Close();
             _previousWindow.Show();
+        }
+
+        private void Filter()
+        {
+            foreach (var appointment in _appointmentList.ToList())
+            {
+                if (doctorTextBox.Text != null)
+                {
+                    if (!doctorTextBox.Text.Contains(appointment.doctor.Name) && !doctorTextBox.Text.Contains(appointment.doctor.Surname))
+                        _appointmentList.Remove(appointment);
+                }
+                if (datePicker.SelectedDate != null)
+                {
+                    if (!(((DateTime)datePicker.SelectedDate).Date == (DateTime)appointment.StartTime.Date))
+                        _appointmentList.Remove(appointment);
+                }
+                if (roomTextBox.Text != null)
+                {
+                    if (!(Int32.Parse(roomTextBox.Text) == appointment.room.Id))
+                        _appointmentList.Remove(appointment);
+                }
+                AppointmentDataGrid.ItemsSource = null;
+                AppointmentDataGrid.ItemsSource = _appointmentList;
+            }
+        }
+        private void SearchButton_Click(object sender, RoutedEventArgs e)
+        {
+            searchGroup.Visibility = Visibility.Visible;
+        }
+
+        private void FinButton_Click(object sender, RoutedEventArgs e)
+        {
+            Filter();
+        }
+
+        private void ExitSearchButton_Click(object sender, RoutedEventArgs e)
+        {
+            searchGroup.Visibility = Visibility.Hidden;
         }
     }
 }

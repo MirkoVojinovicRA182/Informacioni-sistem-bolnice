@@ -5,36 +5,55 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:HospitalInformationSystem.Windows.PatientGUI"
         mc:Ignorable="d"
-        Title="Novi termin" Height="516" Width="271">
-    <Grid Margin="0,0,2,0">
-        <Label Content="Od:" HorizontalAlignment="Left" Margin="15,49,0,0" VerticalAlignment="Top" FontSize="15"/>
-        <Label Content="Do:" HorizontalAlignment="Left" Margin="15,89,0,0" VerticalAlignment="Top" FontSize="15"/>
-        <Label Content="Lekar:" HorizontalAlignment="Left" Margin="8,128,0,0" VerticalAlignment="Top" FontSize="15"/>
-        <ComboBox x:Name="DoctorComboBox" HorizontalAlignment="Left" VerticalAlignment="Top" Width="170" Margin="68,130,0,0" FontSize="15">
-            <ComboBox.ItemTemplate>
-                <DataTemplate>
-                    <TextBlock><Run Text="{Binding Name}" /><Run Text=" "/><Run Text="{Binding Surname}" /></TextBlock>
-                </DataTemplate>
-            </ComboBox.ItemTemplate>
-        </ComboBox>
-        <DataGrid x:Name="AppointmentDataGrid" Background="Silver" CanUserAddRows="False" AutoGenerateColumns="False" CanUserResizeColumns="False" IsReadOnly="True" HorizontalAlignment="Left" Height="209" VerticalAlignment="Top" Width="263" Margin="0,276,-2,0">
-            <DataGrid.Columns>
-                <DataGridTextColumn Header="Datum" Width="*" Binding="{Binding StartTime}"/>
-                <DataGridTextColumn Header="Lekar" Width="*" Binding="{Binding GetDoctorNameSurname}"/>
-                <DataGridTextColumn Header="Prostorija" Width="*" Binding="{Binding GetRoomID}"/>
-                <DataGridTextColumn Header="Vrsta" Width="*" Binding="{Binding Type}"/>
-            </DataGrid.Columns>
-        </DataGrid>
-        <RadioButton x:Name="DoctorPriorityRadioButton" Content="Prioritet mi je lekar" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="5,165,0,0" IsChecked ="True" FontSize="15"/>
-        <RadioButton x:Name="TimePriorityRadioButton" Content="Prioritet mi je vreme pregleda" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="5,194,0,0" FontSize="15"/>
-        <Button Content="Preporuka" Click="RecommendButton_Click" HorizontalAlignment="Left" Margin="15,229,0,0" VerticalAlignment="Top" Width="105" FontSize="15" Height="34"/>
-        <DatePicker x:Name="startDatePicker" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="68,53,0,0"/>
-        <DatePicker x:Name="endDatePicker" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="68,92,0,0"/>
-        <ToolBar HorizontalAlignment="Left" Height="44" VerticalAlignment="Top" Width="263" Margin="0,0,-2,0">
-            <Button Content="Back" VerticalAlignment="Stretch" Width="75" Click="BackButton_Click"/>
-            <Label Content="" Height="45" VerticalAlignment="Top" Width="89"/>
-            <Button Content="Home" Height="45" VerticalAlignment="Top" Width="75" Click="HomeButton_Click" Margin="0,-2,0,-4"/>
-        </ToolBar>
-        <Button Content="Zakaži" Click="Button_Click" HorizontalAlignment="Left" Margin="138,229,0,0" VerticalAlignment="Top" Width="105" FontSize="15" Height="34"/>
-    </Grid>
+        Title="Novi termin" Height="516" Width="271" WindowStartupLocation="CenterScreen">
+    <Viewbox Margin="0,-4,0,4" MaxHeight="512.6" MaxWidth="289.3">
+        <ScrollViewer HorizontalAlignment="Left" Height="487" VerticalAlignment="Top" Width="263" Margin="0,0,-2,-2" VerticalScrollBarVisibility="Hidden">
+            <Grid Margin="0,0,2,0">
+                <Label Content="Od:" HorizontalAlignment="Left" Margin="15,49,0,0" VerticalAlignment="Top" FontSize="15"/>
+                <Label Content="Do:" HorizontalAlignment="Left" Margin="15,89,0,0" VerticalAlignment="Top" FontSize="15"/>
+                <Label Content="Lekar:" HorizontalAlignment="Left" Margin="8,128,0,0" VerticalAlignment="Top" FontSize="15"/>
+                <ComboBox x:Name="DoctorComboBox" HorizontalAlignment="Left" VerticalAlignment="Top" Width="170" Margin="68,130,0,0" FontSize="15">
+                    <ComboBox.ItemTemplate>
+                        <DataTemplate>
+                            <TextBlock><Run Text="{Binding Name}" /><Run Text=" "/><Run Text="{Binding Surname}" /></TextBlock>
+                        </DataTemplate>
+                    </ComboBox.ItemTemplate>
+                </ComboBox>
+                <DataGrid x:Name="AppointmentDataGrid" Background="#FF6593E4" CanUserAddRows="False" HorizontalScrollBarVisibility="Visible" AutoGenerateColumns="False" CanUserResizeColumns="False" IsReadOnly="True" HorizontalAlignment="Left" Height="219" VerticalAlignment="Top" Width="263" Margin="0,268,-2,-2">
+                    <DataGrid.Columns>
+                        <DataGridTextColumn Header="Datum" Width="Auto" Binding="{Binding StartTime}"/>
+                        <DataGridTextColumn Header="Lekar" Width="Auto" Binding="{Binding GetDoctorNameSurname}"/>
+                        <DataGridTextColumn Header="Prostorija" Width="Auto" Binding="{Binding GetRoomID}"/>
+                        <DataGridTextColumn Header="Vrsta" Width="Auto" Binding="{Binding Type}"/>
+                    </DataGrid.Columns>
+                </DataGrid>
+                <RadioButton x:Name="DoctorPriorityRadioButton" Content="Prioritet mi je lekar" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="5,165,0,0" IsChecked ="True" FontSize="15"/>
+                <RadioButton x:Name="TimePriorityRadioButton" Content="Prioritet mi je vreme pregleda" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="5,194,0,0" FontSize="15"/>
+                <Button Content="Preporuka" Click="RecommendButton_Click" HorizontalAlignment="Left" Margin="15,229,0,0" VerticalAlignment="Top" Width="105" FontSize="15" Height="34"/>
+                <DatePicker x:Name="startDatePicker" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="68,53,0,0"/>
+                <DatePicker x:Name="endDatePicker" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="68,92,0,0"/>
+                <Button Content="Zakaži" Click="Button_Click" HorizontalAlignment="Left" Margin="138,229,0,0" VerticalAlignment="Top" Width="105" FontSize="15" Height="34"/>
+                <Rectangle Fill="White" HorizontalAlignment="Left" Height="45" Stroke="Black" VerticalAlignment="Top" Width="263" Margin="-1,2,-1,0" OpacityMask="White"/>
+                <Button BorderThickness="0" Background="Transparent" Margin="3,3,198,440" Click="BackButton_Click" OpacityMask="White">
+                    <Image Source="/HospitalInformationSystem;component/Images/Patient/a.png" Height="35" Width="42" RenderOptions.BitmapScalingMode="Fant" Stretch="Fill" Opacity="1" OpacityMask="White"/>
+                </Button>
+                <Button BorderThickness="0" Background ="Transparent" Height="45" VerticalAlignment="Top" Margin="202,0,-1,0" Click="HomeButton_Click" OpacityMask="White">
+                    <Image Source="/HospitalInformationSystem;component/Images/Patient/hospitalIcon.png" Height="39" Width="41" Stretch="Fill" RenderOptions.BitmapScalingMode="Fant" OpacityMask="White"/>
+                </Button>
+                <Button Content="Pretraga" HorizontalAlignment="Left" Margin="185,60,0,0" VerticalAlignment="Top" Width="58" Height="49" Click="SearchButton_Click"/>
+                <GroupBox Header="" Name ="searchGroup"  HorizontalAlignment="Left" Height="229" Margin="-1,39,0,0" VerticalAlignment="Top" Width="262" Background="White" Visibility="Hidden">
+                    <Grid>
+                        <Label Content="Datum: " HorizontalAlignment="Left" Margin="9,10,0,0" VerticalAlignment="Top" FontSize="15"/>
+                        <Label Content="Lekar: " HorizontalAlignment="Left" Width="54" Margin="10,44,0,134" FontSize="15"/>
+                        <TextBox x:Name="doctorTextBox" HorizontalAlignment="Left" Height="23" Margin="72,46,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="152"/>
+                        <Label Content="Soba:" HorizontalAlignment="Left" Width="54" Margin="10,75,0,103" FontSize="15"/>
+                        <TextBox x:Name="roomTextBox" HorizontalAlignment="Left" Height="23" Margin="72,78,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="152"/>
+                        <DatePicker x:Name="datePicker" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="72,14,0,0"/>
+                        <Button x:Name="searchFinButton" Margin="91,123,87,56" FontSize="15" Content="Pretraga" Click="FinButton_Click"></Button>
+                        <Button x:Name="exitSearchButton" Margin="91,161,87,18" FontSize="15" Content="Odustani" Click="ExitSearchButton_Click"></Button>
+                    </Grid>
+                </GroupBox>
+            </Grid>
+        </ScrollViewer>
+    </Viewbox>
 </Window>

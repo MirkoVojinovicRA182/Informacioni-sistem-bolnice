@@ -36,7 +36,7 @@ namespace HospitalInformationSystem.Windows.PatientGUI
         private void LoadDoctorComboBox()
         {
             ObservableCollection<Doctor> allDoctors = DoctorController.getInstance().GetDoctors();
-            DoctorComboBox.ItemsSource = allDoctors;
+            doctorComboBox.ItemsSource = allDoctors;
         }
         private void Button_Click(object sender, RoutedEventArgs e)
         {
@@ -44,6 +44,7 @@ namespace HospitalInformationSystem.Windows.PatientGUI
        
             PatientAppointmentCRUDOperationsWindow.getInstance(_patient).RefreshTable();
         }
+        
         private void New_Button_Click(object sender, RoutedEventArgs e)
         {
             NewPatientAppointmentSystemWindow window = new NewPatientAppointmentSystemWindow(_patient, this);
@@ -60,7 +61,7 @@ namespace HospitalInformationSystem.Windows.PatientGUI
             }
             else if (AppointmentStartTimeHasPassed(newAppointment))
             {
-                MessageBox.Show("Termin nije validan.", "Notifikacija", MessageBoxButton.OK, MessageBoxImage.Error);
+               MessageBox.Show("Termin nije validan.", "Notifikacija", MessageBoxButton.OK, MessageBoxImage.Error);
             }
             else
             {
@@ -78,7 +79,7 @@ namespace HospitalInformationSystem.Windows.PatientGUI
             string startTime = (string)timeComboBox.SelectedItem;
             var hoursAndMinutes = startTime.Split(':');
             DateTime startDateTime = new DateTime(startDate.Year, startDate.Month, startDate.Day, Int32.Parse(hoursAndMinutes[0]), Int32.Parse(hoursAndMinutes[1]), 0);
-            Doctor doctor = (Doctor)DoctorComboBox.SelectedItem;
+            Doctor doctor = (Doctor)doctorComboBox.SelectedItem;
 
             Appointment app = new Appointment(startDateTime, TypeOfAppointment.Pregled, doctor.room, _patient, doctor);
             app.SchedulingTime = DateTime.Now;
@@ -105,6 +106,11 @@ namespace HospitalInformationSystem.Windows.PatientGUI
         {
             this.Close();
             PatientAppointmentCRUDOperationsWindow.getInstance(_patient).Show();
+        }
+        private void DoctorChart_Click(object sender, RoutedEventArgs e)
+        {
+            DoctorChartWindow window = new DoctorChartWindow((Doctor)doctorComboBox.SelectedItem);
+            window.Show();
         }
     }
 }

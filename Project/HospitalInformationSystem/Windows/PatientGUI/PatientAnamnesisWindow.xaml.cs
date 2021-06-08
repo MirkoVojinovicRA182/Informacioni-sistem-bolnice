@@ -53,6 +53,7 @@ namespace HospitalInformationSystem.Windows.PatientGUI
                     anamnesis.Note = noteTextBox.Text;
                 }
             }
+            MessageBox.Show("Beleške su promenjene.", "", MessageBoxButton.OK, MessageBoxImage.Information);
             LoadComboBox();
         }
         private void HomeButton_Click(object sender, RoutedEventArgs e)

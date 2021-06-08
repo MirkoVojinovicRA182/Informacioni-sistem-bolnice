@@ -13,6 +13,8 @@ using System.Data;
 using System.Windows.Input;
 using MaterialDesignThemes.Wpf;
 using System.Windows.Controls.Primitives;
+using Syncfusion.Pdf.Grid;
+using System.Drawing.Drawing2D;
 
 namespace HospitalInformationSystem.Windows.ManagerGUI
 {
@@ -197,6 +199,10 @@ namespace HospitalInformationSystem.Windows.ManagerGUI
             {
                 PdfPage page = doc.Pages.Add();
                 PdfLightTable pdfLightTable = new PdfLightTable();
+                pdfLightTable.Style.BorderPen.DashStyle = (Syncfusion.Pdf.Graphics.PdfDashStyle)DashStyle.Solid;
+                
+                
+
                 DataTable table = new DataTable();
                 table.Columns.Add("Ime");
                 table.Columns.Add("Prezime");

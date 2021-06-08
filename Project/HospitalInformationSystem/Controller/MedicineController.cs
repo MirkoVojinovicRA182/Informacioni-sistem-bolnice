@@ -46,9 +46,9 @@ namespace HospitalInformationSystem.Controller
         {
             medicineService.LoadFromFile();
         }
-        public Medicine FindMedicineById(int id)
+        public Medicine FindById(int id)
         {
-            return  medicineService.FindMedicineById(id);
+            return  medicineService.FindById(id);
         }
         public void DeleteReplacementMedicine(Medicine replacementMedicine)
         {

@@ -6,11 +6,11 @@ namespace HospitalInformationSystem.Service
     class MedicineService
     {
         MedicineRepository _medicineRepository;
-        RepositoryFactory rep;
+        IFind findRepository;
         public MedicineService()
         {
             _medicineRepository = new MedicineRepository();
-            rep = new MedicineRepositoryFactory();
+            findRepository = new MedicineRepository();
         }
         public void AddMedicine(Medicine newMedicine)
         {
@@ -36,9 +36,9 @@ namespace HospitalInformationSystem.Service
         {
             _medicineRepository.loadFromFile();
         }
-        public Medicine FindMedicineById(int id)
+        public Medicine FindById(int id)
         {
-            return _medicineRepository.FindMedicineById(id);
+            return findRepository.FindById(id) as Medicine;
         }
         public void DeleteReplacementMedicine(Medicine replacementMedicine)
         {

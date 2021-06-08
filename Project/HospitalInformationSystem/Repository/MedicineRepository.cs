@@ -6,9 +6,9 @@ using System.Runtime.Serialization;
 using System.Runtime.Serialization.Formatters.Binary;
 namespace HospitalInformationSystem.Repository
 {
-    public class MedicineRepository : IRepository
+    public class MedicineRepository : IRepository, IFind
     {
-        List<Medicine> _medicineList;
+        private static List<Medicine> _medicineList;
         public MedicineRepository()
         {
             _medicineList = new List<Medicine>();
@@ -63,7 +63,7 @@ namespace HospitalInformationSystem.Repository
             foreach (Medicine newMedicine in newMedicineList)
                 _medicineList.Add(newMedicine);
         }
-        public Medicine FindMedicineById(int id)
+        /*public Medicine FindMedicineById(int id)
         {
             foreach (Medicine med in _medicineList)
             {
@@ -71,7 +71,7 @@ namespace HospitalInformationSystem.Repository
                     return med;
             }
             return null;
-        }
+        }*/
         public bool MedicineCommentExists()
         {
             foreach (Medicine medicine in _medicineList)
@@ -98,6 +98,16 @@ namespace HospitalInformationSystem.Repository
         public void DeleteMedicine(Medicine medicineForDeleting)
         {
             _medicineList.Remove(medicineForDeleting);
+        }
+
+        public object FindById(int id)
+        {
+            foreach (Medicine med in _medicineList)
+            {
+                if (med.Id == id)
+                    return med;
+            }
+            return null;
         }
     }
 }

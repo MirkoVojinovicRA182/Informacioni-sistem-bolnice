@@ -147,7 +147,7 @@ namespace HospitalInformationSystem.Windows.ManagerGUI
         }
         private bool CheckTheExistenceOfId()
         {
-            return !(MedicineController.GetInstance().FindMedicineById(int.Parse(idTextBox.Text)) == null);
+            return !(MedicineController.GetInstance().FindById(int.Parse(idTextBox.Text)) == null);
         }
         private bool PurposeTextBoxCorrection()
         {

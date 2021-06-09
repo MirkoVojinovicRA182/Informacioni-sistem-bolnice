@@ -77,7 +77,7 @@ namespace HospitalInformationSystem.Windows.PatientGUI
         {
             EquipmentController.getInstance().saveInFile();
             RoomController.GetInstance().SaveRoomsInFile();
-            MedicineController.GetInstance().SaveInFile();
+            MedicineController.GetInstance().Serialization();
             DoctorController.getInstance().SaveInFlie();
             NotificationController.GetInstance().SaveInFile();
             PatientController.getInstance().SaveInFile();
@@ -141,58 +141,21 @@ namespace HospitalInformationSystem.Windows.PatientGUI
 
         private void Filter()
         {
-            return !(doctor1.Specialization == doctor2.Specialization);
-        }
-        private bool DoctorIsPrioritized()
-        {
-            return (bool)DoctorPriorityRadioButton.IsChecked;
-        }
-        private static bool NoAvailableAppointmentsExist(List<Appointment> recommendedAppointments)
-        {
-            return !recommendedAppointments.Any();
-        }
-        private List<Appointment> GenerateFreeAppointments(Doctor doctor, DateTime startDateTime, DateTime endDateTime)
-        {
-            List<Appointment> existingAppointments = AppointmentController.getInstance().GetAppointments();
-
-            List<DateTime> dateTimes = GetPossibleDatesAndTimes(startDateTime, endDateTime);
-            List<Appointment> freeAppointments = GenerateAllPossibleAppointments(doctor, dateTimes);
-            RemoveExistingAppointments(existingAppointments, freeAppointments);
-
-            return freeAppointments;
-        }
-        private List<Appointment> GenerateAllPossibleAppointments(Doctor doctor, List<DateTime> dateTimes)
-        {
-            List<Appointment> freeAppointments = new List<Appointment>();
-            for (int i = 0; i < dateTimes.Count; i++)
+            foreach (var appointment in _appointmentList.ToList())
             {
-                freeAppointments.Add(new Appointment(dateTimes[i], TypeOfAppointment.Pregled, doctor.room, _patient, doctor));
-            }
-            return freeAppointments;
-        }
-        private static void RemoveExistingAppointments(List<Appointment> existingAppointments, List<Appointment> recommendedAppointments)
-        {
-            for (int i = 0; i < recommendedAppointments.Count; i++)
-            {
-                for (int j = 0; j < existingAppointments.Count; j++)
+                if (doctorTextBox.Text != null)
                 {
-                    if (existingAppointments[j].doctor == recommendedAppointments[i].doctor & existingAppointments[j].StartTime == recommendedAppointments[i].StartTime)
-                    {
-                        recommendedAppointments.RemoveAt(i);
-                    }
+                    if (!doctorTextBox.Text.Contains(appointment.Doctor.Name) && !doctorTextBox.Text.Contains(appointment.Doctor.Surname))
+                        _appointmentList.Remove(appointment);
                 }
-            }
-        }
-        private List<DateTime> GetPossibleDatesAndTimes(DateTime startDateTime, DateTime endDateTime)
-        {
-            List<DateTime> dateTimes = new List<DateTime>();
-            List<string> timesString = GetPossibleTimes();
-            List<string> datesString = GetPossibleDates(startDateTime, endDateTime);
-            for (int i = 0; i < datesString.Count; i++)
-            {
-                for (int j = 0; j < timesString.Count; j++)
+                if (datePicker.SelectedDate != null)
                 {
-                    if (!(Int32.Parse(roomTextBox.Text) == appointment.room.Id))
+                    if (!(((DateTime)datePicker.SelectedDate).Date == (DateTime)appointment.StartTime.Date))
+                        _appointmentList.Remove(appointment);
+                }
+                if (roomTextBox.Text != null)
+                {
+                    if (!(Int32.Parse(roomTextBox.Text) == appointment.Room.Id))
                         _appointmentList.Remove(appointment);
                 }
                 AppointmentDataGrid.ItemsSource = null;

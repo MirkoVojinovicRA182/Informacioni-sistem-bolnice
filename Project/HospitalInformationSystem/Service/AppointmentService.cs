@@ -136,7 +136,7 @@ namespace HospitalInformationSystem.Service
             {
                 for (int j = 0; j < existingAppointments.Count; j++)
                 {
-                    if (existingAppointments[j].doctor == recommendedAppointments[i].doctor & existingAppointments[j].StartTime == recommendedAppointments[i].StartTime)
+                    if (existingAppointments[j].Doctor == recommendedAppointments[i].Doctor & existingAppointments[j].StartTime == recommendedAppointments[i].StartTime)
                     {
                         recommendedAppointments.RemoveAt(i);
                     }

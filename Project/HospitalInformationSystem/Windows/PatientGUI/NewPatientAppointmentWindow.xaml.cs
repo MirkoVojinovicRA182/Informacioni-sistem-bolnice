@@ -116,7 +116,7 @@ namespace HospitalInformationSystem.Windows.PatientGUI
         {
             EquipmentController.getInstance().saveInFile();
             RoomController.GetInstance().SaveRoomsInFile();
-            MedicineController.GetInstance().SaveInFile();
+            MedicineController.GetInstance().Serialization();
             DoctorController.getInstance().SaveInFlie();
             NotificationController.GetInstance().SaveInFile();
             PatientController.getInstance().SaveInFile();

@@ -223,7 +223,7 @@ namespace HospitalInformationSystem.Windows.PatientGUI
             {
                 if (doctorTextBox.Text != "")
                 {
-                    if (!doctorTextBox.Text.Contains(appointment.doctor.Name) && !doctorTextBox.Text.Contains(appointment.doctor.Surname))
+                    if (!doctorTextBox.Text.Contains(appointment.Doctor.Name) && !doctorTextBox.Text.Contains(appointment.Doctor.Surname))
                         _appointmentList.Remove(appointment);
                 }
                 if (datePicker.SelectedDate != null)
@@ -233,7 +233,7 @@ namespace HospitalInformationSystem.Windows.PatientGUI
                 }
                 if (roomTextBox.Text != "")
                 {
-                    if (!(Int32.Parse(roomTextBox.Text) == appointment.room.Id))
+                    if (!(Int32.Parse(roomTextBox.Text) == appointment.Room.Id))
                         _appointmentList.Remove(appointment);
                 }
                 AppointmentDataGrid.ItemsSource = null;

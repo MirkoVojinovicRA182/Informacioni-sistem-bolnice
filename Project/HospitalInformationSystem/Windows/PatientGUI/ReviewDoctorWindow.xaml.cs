@@ -54,7 +54,7 @@ namespace HospitalInformationSystem.Windows.PatientGUI
         {
             DoctorReview review = CreateReview();
             _appointmentForReviewing.HasBeenReviewed = true;
-            _appointmentForReviewing.doctor.Ratings.Add((int)comboBoxRating.SelectedItem);
+            _appointmentForReviewing.Doctor.Ratings.Add((int)comboBoxRating.SelectedItem);
             _loggedInPatient.DoctorReviews.Add(review);
         }
         private DoctorReview CreateReview()
@@ -62,7 +62,7 @@ namespace HospitalInformationSystem.Windows.PatientGUI
             DoctorReview review = new DoctorReview();
             review.Answers = GetAnswers();
             review.Rating = (int)comboBoxRating.SelectedItem;
-            review.Doctor = _appointmentForReviewing.doctor;
+            review.Doctor = _appointmentForReviewing.Doctor;
             return review;
         }
         public List<AnswersHospitalSurvey> GetAnswers()

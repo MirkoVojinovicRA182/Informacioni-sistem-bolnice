@@ -49,6 +49,7 @@
     </Reference>
     <Reference Include="Syncfusion.DocToPdfConverter.Base, Version=19.1460.0.67, Culture=neutral, PublicKeyToken=3d67ed1f87d44c89, processorArchitecture=MSIL">
       <HintPath>packages\Syncfusion.DocToPDFConverter.Wpf.19.1.0.67\lib\net46\Syncfusion.DocToPdfConverter.Base.dll</HintPath>
+	</Reference>
     <Reference Include="BouncyCastle.Crypto, Version=1.8.6.0, Culture=neutral, PublicKeyToken=0e99375e54769942">
       <HintPath>packages\BouncyCastle.1.8.6.1\lib\BouncyCastle.Crypto.dll</HintPath>
     </Reference>

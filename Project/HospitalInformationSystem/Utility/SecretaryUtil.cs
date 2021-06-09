@@ -70,7 +70,7 @@ namespace HospitalInformationSystem.Service
             {
                 foreach (Appointment appointment in doctor.GetAppointment())
                 {
-                    if (appointment.StartTime == time && appointment.room.Id == room.Id)
+                    if (appointment.StartTime == time && appointment.Room.Id == room.Id)
                     {
                         return false;
                     }

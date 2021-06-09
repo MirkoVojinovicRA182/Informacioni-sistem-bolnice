@@ -16,7 +16,7 @@ namespace HospitalInformationSystem.Service
     {
         protected override void SpecificReport(ref Document document, DateTime startTime, DateTime endTime,ref PdfPTable table)
         {
-            string name = "Izvestaj.pdf";
+            string name = "Izvestaj - " + DateTime.Today.ToString("yyyy-MM-dd") + ".pdf";
             PdfWriter writer = PdfWriter.GetInstance(document, new FileStream(name, FileMode.Create));
             table = CreateTable();
             table.AddCell("");

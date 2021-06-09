@@ -27,8 +27,8 @@ namespace HospitalInformationSystem.Windows.ManagerGUI
         {
             InitializeComponent();
             RefreshTables();
-            if (MedicineCommentsExists())
-                MedicineCommentNotificationWindow.GetInstance().ShowDialog();
+            /*if (MedicineCommentsExists())
+                MedicineCommentNotificationWindow.GetInstance().ShowDialog();*/
             WindowStartupLocation = System.Windows.WindowStartupLocation.CenterScreen;
 
         }

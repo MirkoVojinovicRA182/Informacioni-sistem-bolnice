@@ -58,5 +58,9 @@ namespace HospitalInformationSystem.Controller
         {
             doctorService.LoadFromFile();
         }
+        public ObservableCollection<Doctor> GetDoctorsWithSameSpecialization(Doctor selectedDoctor)
+        {
+            return doctorService.GetDoctorsWithSameSpecialization(selectedDoctor);
+        }
     }
 }

@@ -25,13 +25,15 @@ namespace HospitalInformationSystem.Windows.PatientGUI
     public partial class DoctorChartWindow : Window
     {
         private Doctor _selectedDoctor;
+        public SeriesCollection SeriesCollection { get; set; }
+        public string[] Labels { get; set; }
+        public Func<double, string> Formatter { get; set; }
         public DoctorChartWindow(Doctor doctor)
         {
             InitializeComponent();
             _selectedDoctor = doctor;
             LoadBarChart();
         }
-
         private void LoadBarChart()
         {
             DoctorRatingPair pair1 = new DoctorRatingPair(1, 0);
@@ -39,6 +41,57 @@ namespace HospitalInformationSystem.Windows.PatientGUI
             DoctorRatingPair pair3 = new DoctorRatingPair(3, 0);
             DoctorRatingPair pair4 = new DoctorRatingPair(4, 0);
             DoctorRatingPair pair5 = new DoctorRatingPair(5, 0);
+
+            GetDoctorRatings(pair1, pair2, pair3, pair4, pair5);
+
+            CreateChartColumns(pair1, pair2, pair3, pair4, pair5);
+
+            Labels = new[] { "", "", "", "", "" };
+            Formatter = value => value.ToString("N");
+
+            DataContext = this;
+        }
+        private void CreateChartColumns(DoctorRatingPair pair1, DoctorRatingPair pair2, DoctorRatingPair pair3, DoctorRatingPair pair4, DoctorRatingPair pair5)
+        {
+            SeriesCollection = new SeriesCollection(new ColumnSeries
+            {
+                Title = pair1.Rating.ToString(),
+                Values = new ChartValues<int> { pair1.NumberOfRatings }
+            })
+            {
+                new ColumnSeries
+                {
+                    Title = pair1.Rating.ToString(),
+                    Values = new ChartValues<int> { pair1.NumberOfRatings }
+                },
+
+                new ColumnSeries
+                {
+                    Title = pair2.Rating.ToString(),
+                    Values = new ChartValues<int> { pair2.NumberOfRatings }
+                },
+
+                new ColumnSeries
+                {
+                    Title = pair3.Rating.ToString(),
+                    Values = new ChartValues<int> { pair3.NumberOfRatings }
+                },
+
+                new ColumnSeries
+                {
+                    Title = pair4.Rating.ToString(),
+                    Values = new ChartValues<int> { pair4.NumberOfRatings }
+                },
+
+                new ColumnSeries
+                {
+                    Title = pair5.Rating.ToString(),
+                    Values = new ChartValues<int> { pair5.NumberOfRatings }
+                }
+            };
+        }
+        private void GetDoctorRatings(DoctorRatingPair pair1, DoctorRatingPair pair2, DoctorRatingPair pair3, DoctorRatingPair pair4, DoctorRatingPair pair5)
+        {
             foreach (var rating in _selectedDoctor.Ratings)
             {
                 switch (rating)
@@ -58,54 +111,8 @@ namespace HospitalInformationSystem.Windows.PatientGUI
                     case 5:
                         pair5.NumberOfRatings++;
                         break;
-                    default:
-                        break;
                 }
             }
-
-            SeriesCollection = new SeriesCollection(new ColumnSeries
-            {
-                Title = pair1.Rating.ToString(),
-                Values = new ChartValues<int> { pair1.NumberOfRatings }
-            });
-
-            SeriesCollection.Add(new ColumnSeries
-            {
-                Title = pair1.Rating.ToString(),
-                Values = new ChartValues<int> { pair1.NumberOfRatings }
-            });
-
-            SeriesCollection.Add(new ColumnSeries
-            {
-                Title = pair2.Rating.ToString(),
-                Values = new ChartValues<int> { pair2.NumberOfRatings }
-            });
-
-            SeriesCollection.Add(new ColumnSeries
-            {
-                Title = pair3.Rating.ToString(),
-                Values = new ChartValues<int> { pair3.NumberOfRatings }
-            });
-
-            SeriesCollection.Add(new ColumnSeries
-            {
-                Title = pair4.Rating.ToString(),
-                Values = new ChartValues<int> { pair4.NumberOfRatings }
-            });
-
-            SeriesCollection.Add(new ColumnSeries
-            {
-                Title = pair5.Rating.ToString(),
-                Values = new ChartValues<int> { pair5.NumberOfRatings }
-            });
-
-            Labels = new[] { "", "", "", "", "" };
-            Formatter = value => value.ToString("N");
-
-            DataContext = this;
         }
-        public SeriesCollection SeriesCollection { get; set; }
-        public string[] Labels { get; set; }
-        public Func<double, string> Formatter { get; set; }
     }
 }

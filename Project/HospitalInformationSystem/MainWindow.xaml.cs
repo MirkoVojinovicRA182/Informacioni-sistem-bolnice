@@ -26,10 +26,6 @@ namespace HospitalInformationSystem.Windows
         {
             InitializeComponent();
             Deserialize();
-            DoctorMainWindow window = DoctorMainWindow.GetInstance(DoctorController.getInstance().GetDoctors()[0]);
-            window.Show();
-            ManagerMainWindow window1 = ManagerMainWindow.getInstance();
-            window1.Show();
         }
         private void Button_Click(object sender, RoutedEventArgs e)
         {

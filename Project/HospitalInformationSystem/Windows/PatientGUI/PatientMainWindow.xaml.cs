@@ -77,22 +77,8 @@ namespace HospitalInformationSystem.Windows.PatientGUI
         }
         private bool HospitalReviewValidation()
         {
-            CalculateFinishedAppointments();
+            AppointmentController.getInstance().CalculateFinishedAppointments(_loggedInPatient);
             return _loggedInPatient.Activity.NumberOfFinishedAppointmentsSinceReview >= 5;
-        }
-        private void CalculateFinishedAppointments()
-        {
-            foreach (var appointment in AppointmentController.getInstance().GetAppointmentsByPatient(_loggedInPatient))
-            {
-                if (AppointmentIsFinished(appointment) && appointment.StartTime.AddMinutes(30).CompareTo(_loggedInPatient.Activity.HospitalReviewTime) > 0)
-                {
-                    _loggedInPatient.Activity.NumberOfFinishedAppointmentsSinceReview++;
-                }
-            }
-        }
-        private static bool AppointmentIsFinished(Appointment appointment)
-        {
-            return DateTime.Now.CompareTo(appointment.StartTime.AddMinutes(30)) > 0;
         }
         private void LogOffButton_Click(object sender, RoutedEventArgs e)
         {
@@ -106,55 +92,7 @@ namespace HospitalInformationSystem.Windows.PatientGUI
         }
         public void Notify()
         {
-            TimeSpan dayTime = new TimeSpan(24, 00, 00);
-            TimeSpan currentTime = TimeSpan.Parse(DateTime.Now.ToString("HH:mm:ss"));
-            List<TimeSpan> notificationTime = new List<TimeSpan>();
-            List<Notification> notifications = NotificationController.GetInstance().GetNotifications();
-
-            GetEnabledNotificationTimes(notificationTime, notifications);
-
-            CreateNotificationTimers(dayTime, currentTime, notificationTime);
-        }
-        private void CreateNotificationTimers(TimeSpan dayTime, TimeSpan currentTime, List<TimeSpan> notificationTime)
-        {
-            for (int i = 0; i < notificationTime.Count; i++)
-            {
-                TimeSpan timeToNotification = ((dayTime - currentTime) + notificationTime[i]);
-                if (timeToNotification.TotalHours > 24)
-                    timeToNotification -= new TimeSpan(24, 0, 0);
-                _notificationTimers.Add(new System.Windows.Threading.DispatcherTimer());
-                _notificationTimers[i].Tick += new EventHandler(DispatcherTimer_Tick);
-                _notificationTimers[i].Interval = timeToNotification;
-                _notificationTimers[i].Start();
-            }
-        }
-        private static void GetEnabledNotificationTimes(List<TimeSpan> notificationTime, List<Notification> notifications)
-        {
-            for (int i = 0; i < notifications.Count; i++)
-            {
-                if (NotificationIsEnabled(notifications[i]))
-                {
-                    notificationTime.Add(notifications[i].Time.TimeOfDay);
-                }
-            }
-        }
-        private static bool NotificationIsEnabled(Notification notification)
-        {
-            return notification.StartDate.CompareTo(DateTime.Now) < 0 && notification.EndDate.CompareTo(DateTime.Now) > 0 && notification.IsEnabled == true;
-        }
-        public void DispatcherTimer_Tick(object sender, EventArgs e)
-        {
-            List<Notification> notifications = NotificationController.GetInstance().GetNotificationsByPatient(_loggedInPatient);
-            CustomNotificationWindow window = new CustomNotificationWindow();
-            for (int i = 0; i < notifications.Count; i++)
-            {
-                CreateAndShowNotification(notifications[i], window);
-            }
-        }
-        private static void CreateAndShowNotification(Notification notification, CustomNotificationWindow window)
-        {
-            window.notificationTextBlock.Text = notification.Contents;
-            window.ShowDialog();
+            NotificationController.GetInstance().Notify(_loggedInPatient);
         }
         private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
         {

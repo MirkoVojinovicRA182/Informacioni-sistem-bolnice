@@ -41,7 +41,7 @@ namespace HospitalInformationSystem.Windows.PatientGUI
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             ScheduleNewAppointment();
-       
+            Serialize();
             PatientAppointmentCRUDOperationsWindow.getInstance(_patient).RefreshTable();
         }
         
@@ -111,6 +111,17 @@ namespace HospitalInformationSystem.Windows.PatientGUI
         {
             DoctorChartWindow window = new DoctorChartWindow((Doctor)doctorComboBox.SelectedItem);
             window.Show();
+        }
+        private static void Serialize()
+        {
+            EquipmentController.getInstance().saveInFile();
+            RoomController.GetInstance().SaveRoomsInFile();
+            MedicineController.GetInstance().SaveInFile();
+            DoctorController.getInstance().SaveInFlie();
+            NotificationController.GetInstance().SaveInFile();
+            PatientController.getInstance().SaveInFile();
+            AppointmentController.getInstance().SaveAppointmentsInFile();
+            AccountController.GetInstance().SaveInFile();
         }
     }
 }

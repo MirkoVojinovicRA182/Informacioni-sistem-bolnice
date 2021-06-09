@@ -85,8 +85,14 @@
     <Compile Include="Controller\RoomController.cs" />
     <Compile Include="DTO\EquipmentDTO.cs" />
     <Compile Include="DTO\RoomDTO.cs" />
+    <Compile Include="Model\AppointmentGenerationContext.cs" />
+    <Compile Include="Model\AppointmentGenerationDoctorPriority.cs" />
+    <Compile Include="Model\AppointmentGenerationTimePriority.cs" />
+    <Compile Include="Model\IAppointmentGeneration.cs" />
     <Compile Include="Model\DoctorRatingPair.cs" />
     <Compile Include="Model\HospitalTreatment.cs" />
+    <Compile Include="Model\IDoctorInformation.cs" />
+    <Compile Include="Model\IReview.cs" />
     <Compile Include="Model\Medicine.cs" />
     <Compile Include="Model\MedicineIngredient.cs" />
     <Compile Include="Model\Notification.cs" />

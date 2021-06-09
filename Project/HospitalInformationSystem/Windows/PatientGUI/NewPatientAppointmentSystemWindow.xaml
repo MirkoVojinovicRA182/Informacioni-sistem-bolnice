@@ -27,8 +27,8 @@
                         <DataGridTextColumn Header="Vrsta" Width="Auto" Binding="{Binding Type}"/>
                     </DataGrid.Columns>
                 </DataGrid>
-                <RadioButton x:Name="DoctorPriorityRadioButton" Content="Prioritet mi je lekar" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="5,165,0,0" IsChecked ="True" FontSize="15"/>
-                <RadioButton x:Name="TimePriorityRadioButton" Content="Prioritet mi je vreme pregleda" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="5,194,0,0" FontSize="15"/>
+                <RadioButton x:Name="doctorPriorityRadioButton" Content="Prioritet mi je lekar" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="5,165,0,0" IsChecked ="True" FontSize="15"/>
+                <RadioButton x:Name="timePriorityRadioButton" Content="Prioritet mi je vreme pregleda" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="5,194,0,0" FontSize="15"/>
                 <Button Content="Preporuka" Click="RecommendButton_Click" HorizontalAlignment="Left" Margin="15,229,0,0" VerticalAlignment="Top" Width="105" FontSize="15" Height="34"/>
                 <DatePicker x:Name="startDatePicker" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="68,53,0,0"/>
                 <DatePicker x:Name="endDatePicker" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="68,92,0,0"/>

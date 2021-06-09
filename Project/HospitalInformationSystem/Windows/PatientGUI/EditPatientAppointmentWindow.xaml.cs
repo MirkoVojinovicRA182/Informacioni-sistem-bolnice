@@ -38,6 +38,7 @@ namespace HospitalInformationSystem.Windows.PatientGUI
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             AttemptToEditAppointment();
+            Serialize();
         }
 
         private void AttemptToEditAppointment()
@@ -130,6 +131,17 @@ namespace HospitalInformationSystem.Windows.PatientGUI
         {
             this.Close();
             previousWindow.Show();
+        }
+        private static void Serialize()
+        {
+            EquipmentController.getInstance().saveInFile();
+            RoomController.GetInstance().SaveRoomsInFile();
+            MedicineController.GetInstance().SaveInFile();
+            DoctorController.getInstance().SaveInFlie();
+            NotificationController.GetInstance().SaveInFile();
+            PatientController.getInstance().SaveInFile();
+            AppointmentController.getInstance().SaveAppointmentsInFile();
+            AccountController.GetInstance().SaveInFile();
         }
     }
 }

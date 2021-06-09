@@ -44,9 +44,6 @@
     <Reference Include="Syncfusion.DocIO.Base, Version=19.1460.0.66, Culture=neutral, PublicKeyToken=3d67ed1f87d44c89, processorArchitecture=MSIL">
       <HintPath>packages\Syncfusion.DocIO.Wpf.19.1.0.66\lib\net46\Syncfusion.DocIO.Base.dll</HintPath>
     </Reference>
-    <Reference Include="Syncfusion.DocToPdfConverter.Base, Version=19.1460.0.66, Culture=neutral, PublicKeyToken=3d67ed1f87d44c89, processorArchitecture=MSIL">
-      <HintPath>packages\Syncfusion.DocToPDFConverter.Wpf.19.1.0.66\lib\net46\Syncfusion.DocToPdfConverter.Base.dll</HintPath>
-    </Reference>
     <Reference Include="Syncfusion.Licensing, Version=19.1460.0.66, Culture=neutral, PublicKeyToken=632609b4d040f6b4, processorArchitecture=MSIL">
       <HintPath>packages\Syncfusion.Licensing.19.1.0.66\lib\net46\Syncfusion.Licensing.dll</HintPath>
     </Reference>
@@ -93,6 +90,7 @@
     <Compile Include="Controller\RoomController.cs" />
     <Compile Include="DTO\EquipmentDTO.cs" />
     <Compile Include="DTO\RoomDTO.cs" />
+    <Compile Include="Model\HospitalResidenceParticipants.cs" />
     <Compile Include="Model\HospitalTreatment.cs" />
     <Compile Include="Model\IHospitalResidence.cs" />
     <Compile Include="Model\Medicine.cs" />

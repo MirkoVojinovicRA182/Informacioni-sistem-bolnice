@@ -115,8 +115,8 @@ namespace HospitalInformationSystem.Windows.DoctorGUI
                     DATE_TEMPLATE, System.Globalization.CultureInfo.InvariantCulture);
             foreach (Patient patient in PatientController.getInstance().GetPatientsOnHospitalTretment())
             {
-                if ((patient.hospitalTreatment.treatmentEndDate < startDate) ||
-                    (patient.hospitalTreatment.treatmentStartDate > endDate))
+                if ((patient.hospitalTreatment.TreatmentEndDate < startDate) ||
+                    (patient.hospitalTreatment.TreatmentStartDate > endDate))
                 { }
                 else
                     freeBedsInRoom--;

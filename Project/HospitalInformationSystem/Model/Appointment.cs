@@ -4,113 +4,58 @@
  * Purpose: Definition of the Class Model.Appointment
  ***********************************************************************/
 
+using HospitalInformationSystem.Model;
 using System;
 
 namespace Model
 {
     [Serializable]
-    public class Appointment
+    public class Appointment : IHospitalResidence
     {
         public Appointment()
         {
             // TODO: implement
         }
 
-        public Appointment(System.DateTime date, TypeOfAppointment type, Room room, Patient patient, Doctor doctor)
+        public Appointment(DateTime date, TypeOfAppointment type, Room room, Patient patient, Doctor doctor)
         {
             this.StartTime = date;
             this.Type = type;
-            this.room = room;
-            this.patient = patient;
-            this.doctor = doctor;
+            this.Room = room;
+            this.Patient = patient;
+            this.Doctor = doctor;
         }
 
-        public Appointment(System.DateTime date, TypeOfAppointment type, Room room, Patient patient)
+        public Appointment(DateTime date, TypeOfAppointment type, Room room, Patient patient)
         {
             this.StartTime = date;
             this.Type = type;
-            this.room = room;
-            this.patient = patient;
+            this.Room = room;
+            this.Patient = patient;
         }
 
-        public Appointment(System.DateTime startTime, Doctor doctor, TypeOfAppointment type)
+        public Appointment(DateTime startTime, Doctor doctor, TypeOfAppointment type)
         {
             StartTime = startTime;
-            this.doctor = doctor;
+            this.Doctor = doctor;
             this.Type = type;
         }
 
-        public Patient patient;
+        public Patient Patient { get; set; }
 
-        /// <pdGenerated>default parent getter</pdGenerated>
-        public Patient GetPatient()
-        {
-            return patient;
-        }
+        public Doctor Doctor { get; set; }
 
-        /// <pdGenerated>default parent setter</pdGenerated>
-        /// <param>newPatient</param>
-        public void SetPatient(Patient newPatient)
-        {
-            if (this.patient != newPatient)
-            {
-                if (this.patient != null)
-                {
-                    Patient oldPatient = this.patient;
-                    this.patient = null;
-                    oldPatient.RemoveAppointment(this);
-                }
-                if (newPatient != null)
-                {
-                    this.patient = newPatient;
-                    this.patient.AddAppointment(this);
-                }
-            }
-        }
-        public Doctor doctor;
+        public Room Room { get; set; }
 
-        /// <pdGenerated>default parent getter</pdGenerated>
-        public Doctor GetDoctor()
-        {
-            return doctor;
-        }
+        public DateTime StartTime { get; set; }
 
-        /// <pdGenerated>default parent setter</pdGenerated>
-        /// <param>newDoctor</param>
-        public void SetDoctor(Doctor newDoctor)
-        {
-            if (this.doctor != newDoctor)
-            {
-                if (this.doctor != null)
-                {
-                    Doctor oldDoctor = this.doctor;
-                    this.doctor = null;
-                    oldDoctor.RemoveAppointment(this);
-                }
-                if (newDoctor != null)
-                {
-                    this.doctor = newDoctor;
-                    this.doctor.AddAppointment(this);
-                }
-            }
-        }
-        public Room room;
-
-        public System.DateTime StartTime
-        {
-            get; set;
-        }
-
-        public TypeOfAppointment Type
-        {
-            get; set;
-        }
+        public TypeOfAppointment Type { get; set; }
 
         public int GetRoomID
         {
             get
             {
-                return room.Id;
+                return Room.Id;
             }
             set { }
         }
@@ -119,7 +64,7 @@ namespace Model
         {
             get
             {
-                return patient.Name + " " + patient.Surname;
+                return Patient.Name + " " + Patient.Surname;
             }
             set { }
         }
@@ -128,7 +73,7 @@ namespace Model
         {
             get
             {
-                return doctor.Name + " " + doctor.Surname;
+                return Doctor.Name + " " + Doctor.Surname;
             }
             set { }
         }
@@ -148,6 +93,15 @@ namespace Model
         public bool HasBeenReviewed
         {
             get; set;
+        }
+
+        public void ChangeResidence(IHospitalResidence newResidence)
+        {
+            this.Doctor = ((Appointment)newResidence).Doctor;
+            this.Patient = ((Appointment)newResidence).Patient;
+            this.Room = ((Appointment)newResidence).Room;
+            this.StartTime = ((Appointment)newResidence).StartTime;
+            this.Type = ((Appointment)newResidence).Type;
         }
     }
 }

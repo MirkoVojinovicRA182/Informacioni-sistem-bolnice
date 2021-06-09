@@ -1,6 +1,7 @@
 ﻿using Model;
 using System;
 using System.Windows;
+using System.Windows.Input;
 using static HospitalInformationSystem.Utility.Constants;
 
 namespace HospitalInformationSystem.Windows.DoctorGUI
@@ -22,14 +23,6 @@ namespace HospitalInformationSystem.Windows.DoctorGUI
         {
             InitializeComponent();
             this._patientsMedicalRecord = patientsMedicalRecord;
-        }
-        private void addAnamnesis_Click(object sender, RoutedEventArgs e)
-        {
-            if(CheckAllInputs())
-            {
-                _patientsMedicalRecord.addAnamnesis(new Anamnesis(DateTime.ParseExact(dateTextBox.Text, DATE_TEMPLATE, System.Globalization.CultureInfo.InvariantCulture), basicDescriptionTextBox.Text, anamnesisTextBox.Text));
-                MessageBox.Show("Anamneza je uspesno dodata!", "Dodavanje anamneze", MessageBoxButton.OK, MessageBoxImage.Information);
-            }
         }
         private bool CheckDateInput()
         {
@@ -66,10 +59,36 @@ namespace HospitalInformationSystem.Windows.DoctorGUI
         {
             return CheckBasicDescriptionInput() && CheckBasicDescriptionOfAnamnesisInput() && CheckDateInput();
         }
-
+        private void CheckKeyPress()
+        {
+            if (Keyboard.IsKeyDown(Key.Enter))
+            {
+                if (CheckAllInputs())
+                {
+                    _patientsMedicalRecord.addAnamnesis(new Anamnesis(DateTime.ParseExact(dateTextBox.Text, DATE_TEMPLATE, System.Globalization.CultureInfo.InvariantCulture), basicDescriptionTextBox.Text, anamnesisTextBox.Text));
+                    MessageBox.Show("Anamneza je uspesno dodata!", "Dodavanje anamneze", MessageBoxButton.OK, MessageBoxImage.Information);
+                }
+            }
+            else if (Keyboard.IsKeyDown(Key.Escape))
+                this.Close();
+        }
         private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
         {
             instance = null;
+        }
+        private void anamnesisTextBox_PreviewKeyDown(object sender, KeyEventArgs e)
+        {
+            CheckKeyPress();
+        }
+
+        private void basicDescriptionTextBox_PreviewKeyDown(object sender, KeyEventArgs e)
+        {
+            CheckKeyPress();
+        }
+
+        private void dateTextBox_PreviewKeyDown(object sender, KeyEventArgs e)
+        {
+            CheckKeyPress();
         }
     }
 }

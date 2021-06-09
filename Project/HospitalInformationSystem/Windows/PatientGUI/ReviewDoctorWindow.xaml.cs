@@ -52,7 +52,7 @@ namespace HospitalInformationSystem.Windows.PatientGUI
         }
         private void CollectAnswers()
         {
-            DoctorReview review = new DoctorReview(GetAnswers(), (int)comboBoxRating.SelectedItem, _appointmentForReviewing.doctor);
+            DoctorReview review = new DoctorReview(GetAnswers(), (int)comboBoxRating.SelectedItem, _appointmentForReviewing.Doctor);
             _appointmentForReviewing.HasBeenReviewed = true;
             _loggedInPatient.DoctorReviews.Add(review);
         }
@@ -64,12 +64,12 @@ namespace HospitalInformationSystem.Windows.PatientGUI
         private void HomeButton_Click(object sender, RoutedEventArgs e)
         {
             this.Close();
-            PatientMainWindow.GetInstance(_appointmentForReviewing.patient).Show();
+            PatientMainWindow.GetInstance(_appointmentForReviewing.Patient).Show();
         }
         private void BackButton_Click(object sender, RoutedEventArgs e)
         {
             this.Close();
-            PatientAppointmentCRUDOperationsWindow.getInstance(_appointmentForReviewing.patient).Show();
+            PatientAppointmentCRUDOperationsWindow.getInstance(_appointmentForReviewing.Patient).Show();
         }
     }
 }

@@ -9,6 +9,7 @@ using HospitalInformationSystem.Repository;
 using System;
 using System.Collections.Generic;
 using System.IO;
+using HospitalInformationSystem.Model;
 
 namespace HospitalInformationSystem.Service
 {
@@ -35,13 +36,9 @@ namespace HospitalInformationSystem.Service
         {
             _repository.DeleteAppointment(appointment);
         }
-        public void ChangeAppointment(Appointment appointment, System.DateTime startTime, TypeOfAppointment typeOfAppointment, Room room, Patient patient, Doctor doctor)
+        public void ChangeHospitalResidence(IHospitalResidence oldHospitalResidence, IHospitalResidence newHospitalResidence)
         {
-            appointment.StartTime = startTime;
-            appointment.Type = typeOfAppointment;
-            appointment.room = room;
-            appointment.patient = patient;
-            appointment.doctor = doctor;
+            oldHospitalResidence.ChangeResidence(newHospitalResidence);
         }
         public List<Appointment> FindAppointmentByRoom(Room room)
         {
@@ -81,7 +78,7 @@ namespace HospitalInformationSystem.Service
             bool isTaken = false;
             foreach (var currentAppointment in _repository.GetAppointments())
             {
-                if (currentAppointment.doctor == appointment.doctor && currentAppointment.StartTime == appointment.StartTime)
+                if (currentAppointment.Doctor == appointment.Doctor && currentAppointment.StartTime == appointment.StartTime)
                     return true;
             }
             return isTaken;

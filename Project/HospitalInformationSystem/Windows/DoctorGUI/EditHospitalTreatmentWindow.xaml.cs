@@ -1,4 +1,5 @@
 ﻿using HospitalInformationSystem.Controller;
+using HospitalInformationSystem.Model;
 using Model;
 using System;
 using System.Collections.Generic;
@@ -30,8 +31,8 @@ namespace HospitalInformationSystem.Windows.DoctorGUI
         private void InitInputs()
         {
             patientNameLabel.Content = _patientForEdit.Name + " " + _patientForEdit.Surname;
-            startDateTextBox.Text = _patientForEdit.hospitalTreatment.treatmentStartDate.ToString(DATE_TEMPLATE);
-            endDateTextBox.Text = _patientForEdit.hospitalTreatment.treatmentEndDate.ToString(DATE_TEMPLATE);
+            startDateTextBox.Text = _patientForEdit.hospitalTreatment.TreatmentStartDate.ToString(DATE_TEMPLATE);
+            endDateTextBox.Text = _patientForEdit.hospitalTreatment.TreatmentEndDate.ToString(DATE_TEMPLATE);
             InitRoomsForHospitalTreatment();
         }
         private void InitRoomsForHospitalTreatment()
@@ -40,18 +41,18 @@ namespace HospitalInformationSystem.Windows.DoctorGUI
             foreach (Room roomWithBed in RoomController.GetInstance().GetRooms())
                 if (roomWithBed.Type == TypeOfRoom.RoomWithBeds) roomsForHospitalTreatment.Add(roomWithBed);
             roomsListBox.ItemsSource = roomsForHospitalTreatment;
-            currentRoom.Content = _patientForEdit.hospitalTreatment.treatmentRoom.Name;
+            currentRoom.Content = _patientForEdit.hospitalTreatment.TreatmentRoom.Name;
         }
         private void CheckKeyPress()
         {
             if ((Keyboard.IsKeyDown(Key.LeftCtrl) || Keyboard.IsKeyDown(Key.RightCtrl)) && Keyboard.IsKeyDown(Key.E) && CheckAllInputs())
             {
-                PatientController.getInstance().EditHospitalTreatment(_patientForEdit,
-                            DateTime.ParseExact(startDateTextBox.Text,
+                AppointmentController.getInstance().ChangeHospitalResidence(_patientForEdit.hospitalTreatment, new HospitalTreatment(
+                    DateTime.ParseExact(startDateTextBox.Text,
                         DATE_TEMPLATE, System.Globalization.CultureInfo.InvariantCulture),
                             DateTime.ParseExact(endDateTextBox.Text,
                         DATE_TEMPLATE, System.Globalization.CultureInfo.InvariantCulture),
-                            (Room)roomsListBox.SelectedItem);
+                            (Room)roomsListBox.SelectedItem));
                 MessageBox.Show("Informacije o bolnickom lecenju su uspesno promjenjene!", "Lecenje", MessageBoxButton.OK, MessageBoxImage.Information);
             }
             else if (Keyboard.IsKeyDown(Key.Escape))

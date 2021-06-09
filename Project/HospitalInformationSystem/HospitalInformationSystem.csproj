@@ -1,6 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
-  <Import Project="packages\Xamarin.Forms.4.5.0.617\build\Xamarin.Forms.props" Condition="Exists('packages\Xamarin.Forms.4.5.0.617\build\Xamarin.Forms.props')" />
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
@@ -15,8 +14,6 @@
     <WarningLevel>4</WarningLevel>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
     <Deterministic>true</Deterministic>
-    <NuGetPackageImportStamp>
-    </NuGetPackageImportStamp>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -41,39 +38,32 @@
     <Reference Include="ASquare.WindowsTaskScheduler, Version=1.6.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>packages\ASquare.WindowsTaskScheduler.1.6.0.0\lib\Net45\ASquare.WindowsTaskScheduler.dll</HintPath>
     </Reference>
-    <Reference Include="Syncfusion.Compression.Base, Version=19.1460.0.67, Culture=neutral, PublicKeyToken=3d67ed1f87d44c89, processorArchitecture=MSIL">
-      <HintPath>packages\Syncfusion.Compression.Base.19.1.0.67\lib\net46\Syncfusion.Compression.Base.dll</HintPath>
+    <Reference Include="Syncfusion.Compression.Base, Version=19.1460.0.66, Culture=neutral, PublicKeyToken=3d67ed1f87d44c89, processorArchitecture=MSIL">
+      <HintPath>packages\Syncfusion.Compression.Base.19.1.0.66\lib\net46\Syncfusion.Compression.Base.dll</HintPath>
     </Reference>
-    <Reference Include="Syncfusion.Compression.Portable, Version=19.1200.0.67, Culture=neutral, PublicKeyToken=3d67ed1f87d44c89, processorArchitecture=MSIL">
-      <HintPath>packages\Syncfusion.Compression.Net.Core.19.1.0.67\lib\netstandard2.0\Syncfusion.Compression.Portable.dll</HintPath>
+    <Reference Include="Syncfusion.DocIO.Base, Version=19.1460.0.66, Culture=neutral, PublicKeyToken=3d67ed1f87d44c89, processorArchitecture=MSIL">
+      <HintPath>packages\Syncfusion.DocIO.Wpf.19.1.0.66\lib\net46\Syncfusion.DocIO.Base.dll</HintPath>
     </Reference>
-    <Reference Include="Syncfusion.Core.XForms, Version=19.1451.0.67, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>packages\Syncfusion.Xamarin.Core.19.1.0.67\lib\netstandard2.0\Syncfusion.Core.XForms.dll</HintPath>
+    <Reference Include="Syncfusion.DocToPdfConverter.Base, Version=19.1460.0.66, Culture=neutral, PublicKeyToken=3d67ed1f87d44c89, processorArchitecture=MSIL">
+      <HintPath>packages\Syncfusion.DocToPDFConverter.Wpf.19.1.0.66\lib\net46\Syncfusion.DocToPdfConverter.Base.dll</HintPath>
     </Reference>
-    <Reference Include="Syncfusion.DocIO.Base, Version=19.1460.0.67, Culture=neutral, PublicKeyToken=3d67ed1f87d44c89, processorArchitecture=MSIL">
-      <HintPath>packages\Syncfusion.DocIO.Wpf.19.1.0.67\lib\net46\Syncfusion.DocIO.Base.dll</HintPath>
+    <Reference Include="Syncfusion.Licensing, Version=19.1460.0.66, Culture=neutral, PublicKeyToken=632609b4d040f6b4, processorArchitecture=MSIL">
+      <HintPath>packages\Syncfusion.Licensing.19.1.0.66\lib\net46\Syncfusion.Licensing.dll</HintPath>
     </Reference>
-    <Reference Include="Syncfusion.DocToPdfConverter.Base, Version=19.1460.0.67, Culture=neutral, PublicKeyToken=3d67ed1f87d44c89, processorArchitecture=MSIL">
-      <HintPath>packages\Syncfusion.DocToPDFConverter.Wpf.19.1.0.67\lib\net46\Syncfusion.DocToPdfConverter.Base.dll</HintPath>
+    <Reference Include="Syncfusion.OfficeChart.Base, Version=19.1460.0.66, Culture=neutral, PublicKeyToken=3d67ed1f87d44c89, processorArchitecture=MSIL">
+      <HintPath>packages\Syncfusion.OfficeChart.Base.19.1.0.66\lib\net46\Syncfusion.OfficeChart.Base.dll</HintPath>
     </Reference>
-    <Reference Include="Syncfusion.Licensing, Version=19.1460.0.67, Culture=neutral, PublicKeyToken=632609b4d040f6b4, processorArchitecture=MSIL">
-      <HintPath>packages\Syncfusion.Licensing.19.1.0.67\lib\net46\Syncfusion.Licensing.dll</HintPath>
-    </Reference>
-    <Reference Include="Syncfusion.OfficeChart.Base, Version=19.1460.0.67, Culture=neutral, PublicKeyToken=3d67ed1f87d44c89, processorArchitecture=MSIL">
-      <HintPath>packages\Syncfusion.OfficeChart.Base.19.1.0.67\lib\net46\Syncfusion.OfficeChart.Base.dll</HintPath>
-    </Reference>
-    <Reference Include="Syncfusion.Pdf.Base, Version=19.1460.0.67, Culture=neutral, PublicKeyToken=3d67ed1f87d44c89, processorArchitecture=MSIL">
-      <HintPath>packages\Syncfusion.Pdf.Wpf.19.1.0.67\lib\net46\Syncfusion.Pdf.Base.dll</HintPath>
-    </Reference>
-    <Reference Include="Syncfusion.Pdf.Portable, Version=19.1200.0.67, Culture=neutral, PublicKeyToken=3d67ed1f87d44c89, processorArchitecture=MSIL">
-      <HintPath>packages\Syncfusion.Pdf.Net.Core.19.1.0.67\lib\netstandard2.0\Syncfusion.Pdf.Portable.dll</HintPath>
+    <Reference Include="Syncfusion.Pdf.Base, Version=19.1460.0.66, Culture=neutral, PublicKeyToken=3d67ed1f87d44c89, processorArchitecture=MSIL">
+      <HintPath>packages\Syncfusion.Pdf.Wpf.19.1.0.66\lib\net46\Syncfusion.Pdf.Base.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
-    <Reference Include="System.Drawing" />
-    <Reference Include="System.Text.Encoding.CodePages, Version=4.1.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
-      <HintPath>packages\System.Text.Encoding.CodePages.4.4.0\lib\net461\System.Text.Encoding.CodePages.dll</HintPath>
+    <Reference Include="System.Data.Common, Version=4.1.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>packages\System.Data.Common.4.3.0\lib\net451\System.Data.Common.dll</HintPath>
+      <Private>True</Private>
+      <Private>True</Private>
     </Reference>
+    <Reference Include="System.Drawing" />
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
     <Reference Include="Microsoft.CSharp" />
@@ -87,15 +77,6 @@
     <Reference Include="WindowsBase" />
     <Reference Include="PresentationCore" />
     <Reference Include="PresentationFramework" />
-    <Reference Include="Xamarin.Forms.Core, Version=2.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>packages\Xamarin.Forms.4.5.0.617\lib\netstandard2.0\Xamarin.Forms.Core.dll</HintPath>
-    </Reference>
-    <Reference Include="Xamarin.Forms.Platform, Version=2.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>packages\Xamarin.Forms.4.5.0.617\lib\netstandard2.0\Xamarin.Forms.Platform.dll</HintPath>
-    </Reference>
-    <Reference Include="Xamarin.Forms.Xaml, Version=2.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>packages\Xamarin.Forms.4.5.0.617\lib\netstandard2.0\Xamarin.Forms.Xaml.dll</HintPath>
-    </Reference>
   </ItemGroup>
   <ItemGroup>
     <ApplicationDefinition Include="App.xaml">
@@ -106,15 +87,14 @@
     <Compile Include="Controller\AnnouncementsController.cs" />
     <Compile Include="Controller\AppointmentController.cs" />
     <Compile Include="Controller\DoctorController.cs" />
-    <Compile Include="Controller\FeedbackController.cs" />
     <Compile Include="Controller\MedicineController.cs" />
     <Compile Include="Controller\NotificationController.cs" />
     <Compile Include="Controller\PatientController.cs" />
     <Compile Include="Controller\RoomController.cs" />
     <Compile Include="DTO\EquipmentDTO.cs" />
     <Compile Include="DTO\RoomDTO.cs" />
-    <Compile Include="Model\Feedback.cs" />
     <Compile Include="Model\HospitalTreatment.cs" />
+    <Compile Include="Model\IHospitalResidence.cs" />
     <Compile Include="Model\Medicine.cs" />
     <Compile Include="Model\MedicineIngredient.cs" />
     <Compile Include="Model\Notification.cs" />
@@ -122,11 +102,6 @@
     <Compile Include="Model\RoomRenovationState.cs" />
     <Compile Include="Model\TypeOfMedicine.cs" />
     <Compile Include="Repository\AccountRepository.cs" />
-    <Compile Include="Repository\FeedbackRepository.cs" />
-    <Compile Include="Repository\IAddEntity.cs" />
-    <Compile Include="Repository\IDeleteEntity.cs" />
-    <Compile Include="Repository\IFactory.cs" />
-    <Compile Include="Repository\IFindEntities.cs" />
     <Compile Include="Repository\MedicineRepository.cs" />
     <Compile Include="Model\DoctorReview.cs" />
     <Compile Include="Model\HospitalReview.cs" />
@@ -137,7 +112,6 @@
     <Compile Include="Service\AnnouncementsService.cs" />
     <Compile Include="Service\AppointmentService.cs" />
     <Compile Include="Service\DoctorService.cs" />
-    <Compile Include="Service\FeedbackService.cs" />
     <Compile Include="Service\MedicineService.cs" />
     <Compile Include="Service\NotificationService.cs" />
     <Compile Include="Service\PatientService.cs" />
@@ -174,6 +148,9 @@
     </Compile>
     <Compile Include="Windows\DoctorGUI\AnamnesisWindow.xaml.cs">
       <DependentUpon>AnamnesisWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Windows\DoctorGUI\CreateReportWindow.xaml.cs">
+      <DependentUpon>CreateReportWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="Windows\DoctorGUI\DoctorAddNewAppointmentWindow.xaml.cs">
       <DependentUpon>DoctorAddNewAppointmentWindow.xaml</DependentUpon>
@@ -224,9 +201,6 @@
       <DependentUpon>ShowPatientInformationWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="DTO\DetailEquipmentDTO.cs" />
-    <Compile Include="Windows\ManagerGUI\ApplicationEvalutaionWindow.xaml.cs">
-      <DependentUpon>ApplicationEvalutaionWindow.xaml</DependentUpon>
-    </Compile>
     <Compile Include="Windows\ManagerGUI\DetailEquipmentViewUserControl.xaml.cs">
       <DependentUpon>DetailEquipmentViewUserControl.xaml</DependentUpon>
     </Compile>
@@ -407,6 +381,10 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
+    <Page Include="Windows\DoctorGUI\CreateReportWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Windows\DoctorGUI\DoctorAddNewAppointmentWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -470,10 +448,6 @@
     <Page Include="Windows\DoctorGUI\ShowPatientInformationWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
-    </Page>
-    <Page Include="Windows\ManagerGUI\ApplicationEvalutaionWindow.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Windows\ManagerGUI\DetailEquipmentViewUserControl.xaml">
       <SubType>Designer</SubType>
@@ -720,15 +694,59 @@
     <Resource Include="Images\Secretary\allergens.png" />
     <Resource Include="Images\Secretary\announcements.png" />
   </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Windows\DoctorGUI\medical-background.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Windows\DoctorGUI\patientsIcon.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Windows\DoctorGUI\medicinesIcon.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Windows\DoctorGUI\calendarIcon.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Windows\DoctorGUI\calendarIcon.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Windows\DoctorGUI\logoutIcon.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Windows\DoctorGUI\hospitalBackground.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Windows\DoctorGUI\hospitalBackground2.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Windows\DoctorGUI\hospitalBckg.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Windows\DoctorGUI\bg1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Windows\DoctorGUI\anamnesisIcon.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Windows\DoctorGUI\anamnesisIcon.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Windows\DoctorGUI\anamnesisPreviewIcon.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Windows\DoctorGUI\prescriptionIcon.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Windows\DoctorGUI\addPrescritptionIcon.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Windows\DoctorGUI\prescriptionPreviewIcon.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Windows\DoctorGUI\allergensIcon.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Windows\DoctorGUI\referralLetterIcon.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
-  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
-    <PropertyGroup>
-      <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
-    </PropertyGroup>
-    <Error Condition="!Exists('packages\Xamarin.Forms.4.5.0.617\build\Xamarin.Forms.props')" Text="$([System.String]::Format('$(ErrorText)', 'packages\Xamarin.Forms.4.5.0.617\build\Xamarin.Forms.props'))" />
-    <Error Condition="!Exists('packages\Xamarin.Forms.4.5.0.617\build\Xamarin.Forms.targets')" Text="$([System.String]::Format('$(ErrorText)', 'packages\Xamarin.Forms.4.5.0.617\build\Xamarin.Forms.targets'))" />
-    <Error Condition="!Exists('packages\NETStandard.Library.2.0.0\build\netstandard2.0\NETStandard.Library.targets')" Text="$([System.String]::Format('$(ErrorText)', 'packages\NETStandard.Library.2.0.0\build\netstandard2.0\NETStandard.Library.targets'))" />
-  </Target>
-  <Import Project="packages\Xamarin.Forms.4.5.0.617\build\Xamarin.Forms.targets" Condition="Exists('packages\Xamarin.Forms.4.5.0.617\build\Xamarin.Forms.targets')" />
-  <Import Project="packages\NETStandard.Library.2.0.0\build\netstandard2.0\NETStandard.Library.targets" Condition="Exists('packages\NETStandard.Library.2.0.0\build\netstandard2.0\NETStandard.Library.targets')" />
 </Project>

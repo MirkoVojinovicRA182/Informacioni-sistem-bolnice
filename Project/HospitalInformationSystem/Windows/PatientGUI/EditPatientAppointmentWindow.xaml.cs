@@ -60,7 +60,7 @@ namespace HospitalInformationSystem.Windows.PatientGUI
         {
             Appointment movedAppointment = new Appointment();
             movedAppointment.StartTime = ParseDateTime();
-            movedAppointment.doctor = appointmentForEditing.doctor;
+            movedAppointment.Doctor = appointmentForEditing.Doctor;
 
             if (AppointmentIsTaken(movedAppointment))
             {
@@ -102,7 +102,7 @@ namespace HospitalInformationSystem.Windows.PatientGUI
         private bool StartTimesAndDoctorsAreEqual(Appointment appointment1, Appointment appointment2)
         {
             return appointment1.StartTime == appointment2.StartTime &&
-                    appointment1.doctor == appointment2.doctor;
+                    appointment1.Doctor == appointment2.Doctor;
         }
 
         private DateTime ParseDateTime()
@@ -125,7 +125,7 @@ namespace HospitalInformationSystem.Windows.PatientGUI
         private void HomeButton_Click(object sender, RoutedEventArgs e)
         {
             this.Close();
-            PatientMainWindow.GetInstance(appointmentForEditing.patient).Show();
+            PatientMainWindow.GetInstance(appointmentForEditing.Patient).Show();
         }
         private void BackButton_Click(object sender, RoutedEventArgs e)
         {

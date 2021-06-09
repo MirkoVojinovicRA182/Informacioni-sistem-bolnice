@@ -3,6 +3,7 @@ using HospitalInformationSystem.Model;
 using Model;
 using System;
 using System.Windows;
+using System.Windows.Input;
 using static HospitalInformationSystem.Utility.Constants;
 
 namespace HospitalInformationSystem.Windows.DoctorGUI
@@ -25,15 +26,6 @@ namespace HospitalInformationSystem.Windows.DoctorGUI
             InitializeComponent();
             this._patientToAddPrescription = patientToAddPrescription;
             medicineComboBox.ItemsSource = MedicineController.GetInstance().GetAllMedicines();
-        }
-        private void addPrescriptionButton_Click(object sender, RoutedEventArgs e)
-        {
-            if(AllInputsCheck())
-            {
-                Prescription newPrescription = new Prescription((Medicine)medicineComboBox.SelectedItem, DateTime.ParseExact(startDateTextBox.Text, "dd.MM.yyyy.", System.Globalization.CultureInfo.InvariantCulture), DateTime.ParseExact(endDateTextBox.Text, "dd.MM.yyyy.", System.Globalization.CultureInfo.InvariantCulture), infoTextBox.Text);
-                PatientController.getInstance().AddPrescription(_patientToAddPrescription, newPrescription);
-                MessageBox.Show("Recept je uspešno izdat.", "Prescription", MessageBoxButton.OK, MessageBoxImage.Information);
-            }
         }
         public bool CheckInputOfMedicineTextBox()
         {
@@ -114,10 +106,36 @@ namespace HospitalInformationSystem.Windows.DoctorGUI
             return (CheckInputOfMedicineTextBox() && CheckInputOfInfoTextBox() && CheckInputOfStartDateTextBox()
                 && CheckInputOfEndDateTextBox() && CheckPatientsAllergens());
         }
-
+        private void CheckKeyPress()
+        {
+            if ((Keyboard.IsKeyDown(Key.LeftCtrl) || Keyboard.IsKeyDown(Key.RightCtrl)) && Keyboard.IsKeyDown(Key.I))
+            {
+                if (AllInputsCheck())
+                {
+                    Prescription newPrescription = new Prescription((Medicine)medicineComboBox.SelectedItem, DateTime.ParseExact(startDateTextBox.Text, "dd.MM.yyyy.", System.Globalization.CultureInfo.InvariantCulture), DateTime.ParseExact(endDateTextBox.Text, "dd.MM.yyyy.", System.Globalization.CultureInfo.InvariantCulture), infoTextBox.Text);
+                    PatientController.getInstance().AddPrescription(_patientToAddPrescription, newPrescription);
+                    MessageBox.Show("Recept je uspešno izdat.", "Prescription", MessageBoxButton.OK, MessageBoxImage.Information);
+                }
+            }
+            else if (Keyboard.IsKeyDown(Key.Escape))
+                this.Close();
+        }
         private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
         {
             instance = null;
+        }
+        private void startDateTextBox_PreviewKeyDown(object sender, KeyEventArgs e)
+        {
+            CheckKeyPress();
+        }
+        private void endDateTextBox_PreviewKeyDown(object sender, KeyEventArgs e)
+        {
+            CheckKeyPress();
+        }
+
+        private void infoTextBox_PreviewKeyDown(object sender, KeyEventArgs e)
+        {
+            CheckKeyPress();
         }
     }
 }

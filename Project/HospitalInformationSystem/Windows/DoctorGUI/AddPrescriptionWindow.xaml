@@ -8,13 +8,6 @@
         Title="Izdavanje recepta" Height="450" Width="350" Closing="Window_Closing">
     <Grid>
         <Label Content="Lek:" HorizontalAlignment="Left" Margin="28,33,0,0" VerticalAlignment="Top" FontSize="18"/>
-        <Label Content="Datum početka:" HorizontalAlignment="Left" Margin="28,72,0,0" VerticalAlignment="Top" FontSize="18"/>
-        <Label Content="Datum završetka:" HorizontalAlignment="Left" Margin="28,111,0,0" VerticalAlignment="Top" FontSize="18"/>
-        <Label Content="Doza i dodatne informacije:" HorizontalAlignment="Left" Margin="28,150,0,0" VerticalAlignment="Top" FontSize="18"/>
-        <TextBox x:Name="endDateTextBox" HorizontalAlignment="Left" Height="35" Margin="174,115,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="155" FontSize="18"/>
-        <TextBox x:Name="startDateTextBox" HorizontalAlignment="Left" Height="35" Margin="174,71,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="155" FontSize="18"/>
-        <TextBox x:Name="infoTextBox" HorizontalAlignment="Left" Height="161" Margin="28,189,0,0" TextWrapping="Wrap" Text="Informacije o dozi leka i sve ostale dodatne informacije o terapiji." VerticalAlignment="Top" Width="301" FontSize="18"/>
-        <Button x:Name="addPrescriptionButton" Content="Izdaj recept" HorizontalAlignment="Center" Margin="119,383,115,0" VerticalAlignment="Top" Width="110" FontSize="18" Click="addPrescriptionButton_Click"/>
         <ComboBox x:Name="medicineComboBox" HorizontalAlignment="Left" Height="34" Margin="174,33,0,0" VerticalAlignment="Top" Width="155">
             <ComboBox.ItemTemplate>
                 <DataTemplate>
@@ -24,6 +17,15 @@
                 </DataTemplate>
             </ComboBox.ItemTemplate>
         </ComboBox>
-
+        <Label Content="Datum početka:" HorizontalAlignment="Left" Margin="28,72,0,0" VerticalAlignment="Top" FontSize="18"/>
+        <Label Content="Datum završetka:" HorizontalAlignment="Left" Margin="28,111,0,0" VerticalAlignment="Top" FontSize="18"/>
+        <Label Content="Doza i dodatne informacije:" HorizontalAlignment="Left" Margin="28,150,0,0" VerticalAlignment="Top" FontSize="18"/>
+        <TextBox x:Name="startDateTextBox" HorizontalAlignment="Left" Height="35" Margin="174,71,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="155" FontSize="18" PreviewKeyDown="startDateTextBox_PreviewKeyDown"/>
+        <TextBox x:Name="endDateTextBox" HorizontalAlignment="Left" Height="35" Margin="174,115,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="155" FontSize="18" PreviewKeyDown="endDateTextBox_PreviewKeyDown"/>
+        <TextBox x:Name="infoTextBox" HorizontalAlignment="Left" Height="161" Margin="28,189,0,0" TextWrapping="Wrap" Text="Informacije o dozi leka i sve ostale dodatne informacije o terapiji." VerticalAlignment="Top" Width="301" FontSize="18" PreviewKeyDown="infoTextBox_PreviewKeyDown"/>
+        <Image HorizontalAlignment="Left" Height="40" Margin="10,355,0,0" VerticalAlignment="Top" Width="40" Source="addIcon.png"/>
+        <Label Content="CTRL+I" HorizontalAlignment="Left" Margin="8,386,0,0" VerticalAlignment="Top" FontSize="10"/>
+        <Image HorizontalAlignment="Left" Height="40" Margin="289,355,0,0" VerticalAlignment="Top" Width="40" Source="quitIcon.png"/>
+        <Label Content="ESC" HorizontalAlignment="Left" Margin="295,386,0,0" VerticalAlignment="Top" FontSize="10"/>
     </Grid>
 </Window>

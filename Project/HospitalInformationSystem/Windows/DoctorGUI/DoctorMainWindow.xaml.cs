@@ -51,21 +51,15 @@ namespace HospitalInformationSystem.Windows.DoctorGUI
         private void CheckKeyPress()
         {
             if ((Keyboard.IsKeyDown(Key.LeftCtrl) || Keyboard.IsKeyDown(Key.RightCtrl)) && Keyboard.IsKeyDown(Key.P))
-            {
                 PatientPreviewWindow.GetInstance(_loggedDoctor).Show();
-            }
             else if((Keyboard.IsKeyDown(Key.LeftCtrl) || Keyboard.IsKeyDown(Key.RightCtrl)) && Keyboard.IsKeyDown(Key.K))
-            {
                 DoctorAppointmentsManagementWindow.GetInstance(_loggedDoctor).Show();
-            }
             else if ((Keyboard.IsKeyDown(Key.LeftCtrl) || Keyboard.IsKeyDown(Key.RightCtrl)) && Keyboard.IsKeyDown(Key.M))
-            {
                 MedicinePreviewWindow.GetInstance().Show();
-            }
+            else if ((Keyboard.IsKeyDown(Key.LeftCtrl) || Keyboard.IsKeyDown(Key.RightCtrl)) && Keyboard.IsKeyDown(Key.I))
+                CreateReportWindow.GetInstance().Show();
             else if ((Keyboard.IsKeyDown(Key.LeftCtrl) || Keyboard.IsKeyDown(Key.RightCtrl)) && Keyboard.IsKeyDown(Key.Q))
-            {
                 this.Close();
-            }
         }
         private void Window_KeyDown(object sender, KeyEventArgs e) => CheckKeyPress();
         private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)

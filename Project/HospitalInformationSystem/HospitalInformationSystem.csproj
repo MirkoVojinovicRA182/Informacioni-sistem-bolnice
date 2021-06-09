@@ -38,6 +38,12 @@
     <Reference Include="ASquare.WindowsTaskScheduler, Version=1.6.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>packages\ASquare.WindowsTaskScheduler.1.6.0.0\lib\Net45\ASquare.WindowsTaskScheduler.dll</HintPath>
     </Reference>
+    <Reference Include="BouncyCastle.Crypto, Version=1.8.6.0, Culture=neutral, PublicKeyToken=0e99375e54769942">
+      <HintPath>packages\BouncyCastle.1.8.6.1\lib\BouncyCastle.Crypto.dll</HintPath>
+    </Reference>
+    <Reference Include="itextsharp, Version=5.5.13.2, Culture=neutral, PublicKeyToken=8354ae6d2174ddca, processorArchitecture=MSIL">
+      <HintPath>packages\iTextSharp.5.5.13.2\lib\itextsharp.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Windows.Forms" />
@@ -60,9 +66,11 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="Controller\AccountController.cs" />
+    <Compile Include="Controller\AllergenController.cs" />
     <Compile Include="Controller\AnnouncementsController.cs" />
     <Compile Include="Controller\AppointmentController.cs" />
     <Compile Include="Controller\DoctorController.cs" />
+    <Compile Include="Controller\EmergentSurgeryController.cs" />
     <Compile Include="Controller\MedicineController.cs" />
     <Compile Include="Controller\NotificationController.cs" />
     <Compile Include="Controller\PatientController.cs" />
@@ -77,6 +85,7 @@
     <Compile Include="Model\RoomRenovationState.cs" />
     <Compile Include="Model\TypeOfMedicine.cs" />
     <Compile Include="Repository\AccountRepository.cs" />
+    <Compile Include="Repository\AllergensRepository.cs" />
     <Compile Include="Repository\MedicineRepository.cs" />
     <Compile Include="Model\DoctorReview.cs" />
     <Compile Include="Model\HospitalReview.cs" />
@@ -84,12 +93,16 @@
     <Compile Include="Repository\NotificationRepository.cs" />
     <Compile Include="Model\Announcement.cs" />
     <Compile Include="Service\AccountService.cs" />
+    <Compile Include="Service\AllergensService.cs" />
     <Compile Include="Service\AnnouncementsService.cs" />
     <Compile Include="Service\AppointmentService.cs" />
     <Compile Include="Service\DoctorService.cs" />
+    <Compile Include="Service\PdfFreeRoomsReport.cs" />
+    <Compile Include="Utility\SecretaryUtil.cs" />
     <Compile Include="Service\MedicineService.cs" />
     <Compile Include="Service\NotificationService.cs" />
     <Compile Include="Service\PatientService.cs" />
+    <Compile Include="Service\ReportGenerator.cs" />
     <Compile Include="Service\RoomService.cs" />
     <Compile Include="Controller\EquipmentController.cs" />
     <Compile Include="Model\Account.cs" />
@@ -325,6 +338,9 @@
     <Compile Include="Repository\IRepository.cs" />
     <Compile Include="Repository\PatientsRepository.cs" />
     <Compile Include="Repository\RoomRepository.cs" />
+    <Compile Include="Windows\SecretaryGUI\ReportPage.xaml.cs">
+      <DependentUpon>ReportPage.xaml</DependentUpon>
+    </Compile>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -610,6 +626,10 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="Windows\ManagerGUI\RoomsTableUserControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Windows\SecretaryGUI\ReportPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

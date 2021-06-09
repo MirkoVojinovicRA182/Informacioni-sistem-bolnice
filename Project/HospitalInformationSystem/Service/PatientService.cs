@@ -35,33 +35,6 @@ namespace HospitalInformationSystem.Service
             _patientsFile.patients.Add(patient);
         }
 
-        public ObservableCollection<Allergen> getAllergens()
-        {
-            if (_patientsFile.allergens == null)
-                _patientsFile.allergens = new ObservableCollection<Allergen>();
-            return _patientsFile.allergens;
-        }
-
-        public void setAllergens(ObservableCollection<Allergen> allergenList)
-        {
-            _patientsFile.allergens = allergenList;
-        }
-
-        public void addAllergen(Allergen newAllergen)
-        {
-            if (newAllergen == null)
-                return;
-            if (_patientsFile.allergens == null)
-                _patientsFile.allergens = new ObservableCollection<Allergen>();
-
-            foreach (Allergen allergen in _patientsFile.allergens)
-            {
-                if (allergen.Name == newAllergen.Name)
-                    return;
-            }
-            _patientsFile.allergens.Add(newAllergen);
-        }
-
         /// <pdGenerated>default getter</pdGenerated>
         public ObservableCollection<Patient> getPatient()
         {
@@ -149,94 +122,6 @@ namespace HospitalInformationSystem.Service
         public void LoadFromFile()
         {
             _patientsFile.loadFromFile();
-        }
-
-        public DateTime NextValidTime(ref DateTime time)
-        {
-            if (time.Minute < 30)
-            {
-                time = time.Date + new TimeSpan(time.Hour, 30, 0);
-            }
-            else
-            {
-                time = time.Date + new TimeSpan(time.Hour + 1, 0, 0);
-            }
-
-            return time;
-        }
-
-        public void AddAppointment(ObservableCollection<Appointment> appointmentsList, ref DateTime time, Doctor doctor, Patient patient, List<Room> roomsList, ObservableCollection<Doctor> doctorsList)
-        {
-            Room room = FindFreeRoom(time, roomsList, doctorsList);
-
-            if (room == null)
-            {
-                MessageBox.Show("NEMA SLOBODNIH SOBA ZA OPERACIJU!",
-                              "Obavestenje",
-                              MessageBoxButton.OK,
-                              MessageBoxImage.Warning);
-                return;
-            }
-            appointmentsList.Add(new Appointment(time, TypeOfAppointment.Operacija, room, patient, doctor));
-        }
-
-
-        public bool IsDoctorFreeInTime(Doctor doctor, DateTime time)
-        {
-            foreach (Appointment appointment in doctor.GetAppointment())
-            {
-                if (appointment.StartTime == time)
-                    return false;
-            }
-            return true;
-        }
-
-        public Room FindFreeRoom(DateTime time, List<Room> roomsList, ObservableCollection<Doctor> doctorsList)
-        {
-            foreach (Room room in roomsList)
-            {
-                if (room.Type != TypeOfRoom.OperationRoom)
-                    continue;
-                if (IsRoomFree(room, time, doctorsList))
-                    return room;
-            }
-            return null;
-        }
-
-        public bool IsRoomFree(Room room, DateTime time, ObservableCollection<Doctor> doctorsList)
-        {
-            foreach (Doctor doctor in doctorsList)
-            {
-                foreach (Appointment appointment in doctor.GetAppointment())
-                {
-                    if (appointment.StartTime == time && appointment.room == room)
-                    {
-                        return false;
-                    }
-                }
-            }
-            return true;
-        }
-
-        public void FindNearestAppointments(ObservableCollection<Appointment> appointmentsList, Specialization specialization, Patient patient, ObservableCollection<Doctor> doctorsList, List<Room> roomsList)
-        {
-            DateTime timeToFind = DateTime.Now;
-
-            for (int halfHour = 0; halfHour < 6; halfHour++)
-            {
-                NextValidTime(ref timeToFind);
-                foreach (Doctor doctor in doctorsList)
-                {
-                    if (doctor.Specialization != specialization)
-                        continue;
-
-                    if (IsDoctorFreeInTime(doctor, timeToFind))
-                    {
-                        AddAppointment(appointmentsList, ref timeToFind, doctor, patient, roomsList, doctorsList);
-                        return;
-                    }
-                }
-            }
         }
     }
 }

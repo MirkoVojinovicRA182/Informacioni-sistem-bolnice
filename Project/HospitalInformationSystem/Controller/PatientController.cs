@@ -52,26 +52,10 @@ namespace HospitalInformationSystem.Controller
               dateOfBirth, phoneNumber, email, parentsName,
               gender, jmbg, isGuest, blood, lbo)));
         }
-        public ObservableCollection<Allergen> getAllergens()
-        {
-            return patientService.getAllergens();
-        }
-
-        public void setAllergens(ObservableCollection<Allergen> allergenList)
-        {
-            patientService.setAllergens(allergenList);
-        }
-
-        public void addAllergen(Allergen newAllergen)
-        {
-            patientService.addAllergen(newAllergen);
-        }
-
         public ObservableCollection<Patient> getPatient()
         {
             return patientService.getPatient();
         }
-
         public void setPatient(ObservableCollection<Patient> newPatient)
         {
             patientService.setPatient(newPatient);
@@ -114,40 +98,6 @@ namespace HospitalInformationSystem.Controller
         public List<Patient> GetPatientsOnHospitalTretment()
         {
             return patientService.GetPatientsOnHospitalTretment();
-        }
-        public void saveInFile()
-        {
-            patientService.SaveInFile();
-        }
-
-        public void loadFromFile()
-        {
-            patientService.LoadFromFile();
-        }
-
-        public DateTime NextValidTime(ref DateTime time)
-        {
-            return patientService.NextValidTime(ref time);
-        }
-
-        public void AddAppointment(ObservableCollection<Appointment> appointmentsList, ref DateTime time, Doctor doctor, Patient patient)
-        {
-            patientService.AddAppointment(appointmentsList, ref time, doctor, patient, RoomController.GetInstance().GetRooms(), DoctorController.getInstance().GetDoctors());
-        }
-
-        public bool IsDoctorFreeInTime(Doctor doctor, DateTime time)
-        {
-            return patientService.IsDoctorFreeInTime(doctor, time);
-        }
-
-        public bool CheckDoctorsAppointmentsInRoom(Room room, DateTime time)
-        {
-            return patientService.IsRoomFree(room, time, DoctorController.getInstance().GetDoctors());
-        }
-
-        public void FindNearestAppointments(ObservableCollection<Appointment> appointmentsList, Specialization specialization, Patient patient)
-        {
-            patientService.FindNearestAppointments(appointmentsList, specialization, patient, DoctorController.getInstance().GetDoctors(), RoomController.GetInstance().GetRooms());
         }
     }
 }

@@ -22,9 +22,9 @@ namespace HospitalInformationSystem.Controller
         public void AddMedicine(Medicine newMedicine)
         {
             medicineService.AddMedicine(newMedicine);
-            PatientController.getInstance().addAllergen(new Allergen(newMedicine.Name));
+            AllergenController.Instance.AddAllergen(new Allergen(newMedicine.Name));
             foreach(MedicineIngredient me in newMedicine.Ingredients)
-                PatientController.getInstance().addAllergen(new Allergen(me.Name));
+                AllergenController.Instance.AddAllergen(new Allergen(me.Name));
         }
         public List<Medicine> GetAllMedicines()
         {

@@ -67,5 +67,10 @@ namespace HospitalInformationSystem.Windows.SecretaryGUI
         {
             MainFrame.Content = new DoctorsCRUDPage();
         }
+
+        private void reportBtn_Click(object sender, RoutedEventArgs e)
+        {
+            MainFrame.Content = new ReportPage();
+        }
     }
 }

@@ -195,7 +195,7 @@ namespace HospitalInformationSystem.Windows
             MedicineController.GetInstance().LoadFromFile();
             DoctorController.getInstance().LoadFromFile();
             NotificationController.GetInstance().LoadFromFile();
-            PatientController.getInstance().loadFromFile();
+            PatientController.getInstance().LoadFromFile();
             AppointmentController.getInstance().LoadAppointmentsFromFile();
             AccountController.GetInstance().LoadFromFile();
         }

@@ -9,6 +9,8 @@ using HospitalInformationSystem.Repository;
 using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Globalization;
+using System.Collections.ObjectModel;
 using HospitalInformationSystem.Model;
 
 namespace HospitalInformationSystem.Service
@@ -82,6 +84,89 @@ namespace HospitalInformationSystem.Service
                     return true;
             }
             return isTaken;
+        }
+        public List<Appointment> GenerateFreeAppointments(Doctor doctor, Patient patient, DateTime startDateTime, DateTime endDateTime)
+        {
+            List<Appointment> existingAppointments = GetAppointments();
+
+            List<DateTime> dateTimes = new List<DateTime>();
+            List<string> timesString = new List<string>();
+            timesString.AddRange(new List<string>() { "08:00", "08:30", "09:00", "09:30", "10:00", "10:30", "11:00", "11:30" , "12:00", "12:30", "13:00", "13:30",
+                                                    "14:00", "14:30", "15:00", "15:30", "16:00", "16:30", "17:00", "17:30" , "18:00", "18:30", "19:00", "19:30"
+                                                  });
+
+            List<DateTime> dates = new List<DateTime>();
+            List<string> datesString = new List<string>();
+
+            for (var date = startDateTime; date <= endDateTime; date = date.AddDays(1))
+            {
+                dates.Add(date);
+            }
+
+            for (int i = 0; i < dates.Count; i++)
+            {
+                datesString.Add(dates[i].Date.ToString("dd.MM.yyyy"));
+            }
+
+            for (int i = 0; i < datesString.Count; i++)
+            {
+                for (int j = 0; j < timesString.Count; j++)
+                {
+                    string s = datesString[i] + "." + " " + timesString[j];
+                    dateTimes.Add(DateTime.ParseExact(s, "dd.MM.yyyy. HH:mm", CultureInfo.InvariantCulture));
+                }
+            }
+            List<Appointment> freeAppointments = GenerateAllPossibleAppointments(doctor, patient, dateTimes);
+            RemoveExistingAppointments(existingAppointments, freeAppointments);
+
+            return freeAppointments;
+        }
+        public List<Appointment> GenerateAllPossibleAppointments(Doctor doctor, Patient patient, List<DateTime> dateTimes)
+        {
+            List<Appointment> freeAppointments = new List<Appointment>();
+            for (int i = 0; i < dateTimes.Count; i++)
+            {
+                freeAppointments.Add(new Appointment(dateTimes[i], TypeOfAppointment.Pregled, doctor.room, patient, doctor));
+            }
+            return freeAppointments;
+        }
+        public void RemoveExistingAppointments(List<Appointment> existingAppointments, List<Appointment> recommendedAppointments)
+        {
+            for (int i = 0; i < recommendedAppointments.Count; i++)
+            {
+                for (int j = 0; j < existingAppointments.Count; j++)
+                {
+                    if (existingAppointments[j].doctor == recommendedAppointments[i].doctor & existingAppointments[j].StartTime == recommendedAppointments[i].StartTime)
+                    {
+                        recommendedAppointments.RemoveAt(i);
+                    }
+                }
+            }
+        }
+        public List<Appointment> GenerateAppointmentsForDoctorsOfSameSpecialization(Doctor selectedDoctor, Patient patient, DateTime startDateTime, DateTime endDateTime)
+        {
+            List<Appointment> possibleAppointments = new List<Appointment>();
+            DoctorService service = new DoctorService();
+            ObservableCollection<Doctor> possibleDoctors = service.GetDoctorsWithSameSpecialization(selectedDoctor);
+            foreach (var doctor in possibleDoctors)
+            {
+                possibleAppointments.AddRange(GenerateFreeAppointments(doctor, patient, startDateTime, endDateTime));
+            }
+            return possibleAppointments;
+        }
+        public void CalculateFinishedAppointments(Patient patient)
+        {
+            foreach (var appointment in GetAppointmentsByPatient(patient))
+            {
+                if (AppointmentIsFinished(appointment) && appointment.StartTime.AddMinutes(30).CompareTo(patient.Activity.HospitalReviewTime) > 0)
+                {
+                    patient.Activity.NumberOfFinishedAppointmentsSinceReview++;
+                }
+            }
+        }
+        public bool AppointmentIsFinished(Appointment appointment)
+        {
+            return DateTime.Now.CompareTo(appointment.StartTime.AddMinutes(30)) > 0;
         }
     }
 }

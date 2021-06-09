@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:HospitalInformationSystem.Windows.PatientGUI"
         mc:Ignorable="d"
-        Title="ReviewWindow" Height="516" Width="271">
+        Title="ReviewWindow" Height="516" Width="271" WindowStartupLocation="CenterScreen">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="200*"/>
@@ -13,17 +13,19 @@
             <RowDefinition Height="84*"/>
         </Grid.RowDefinitions>
         <Rectangle Fill="#FF4C90F1" HorizontalAlignment="Left" Height="65" Stroke="Black" VerticalAlignment="Top" Width="265" Margin="-2,19,0,0" Grid.Row="2"/>
-        <TextBlock TextWrapping="Wrap" Text="1. Da li Vas je lekar pažljivo slušao?&#xA;&#xA;2. Da li se lekar prema Vama ophodio sa ljubaznošću i poštovanjem?&#xA;&#xA;3. Da li Vam je lekar dao jasna i precizna objašnjenja?&#xA;&#xA;4. Da li Vam je lekar dao korisne savete?&#xA;&#xA;&#xA;&#xA;&#xA;Ocena:&#xA;" FontSize="15" Margin="4,59,-4,0" Grid.RowSpan="3"/>
-        <Button Content="Slanje ankete" HorizontalAlignment="Left" VerticalAlignment="Top" Width="164" Margin="49,39,0,0" Height="35" Click="Button_Click" Grid.Row="2"/>
-        <ComboBox x:Name="comboBoxQuestion1" HorizontalAlignment="Left" VerticalAlignment="Top" Width="120" Margin="30,79,0,0" Height="22"/>
-        <ComboBox x:Name="comboBoxQuestion2" HorizontalAlignment="Left" VerticalAlignment="Top" Width="120" Margin="30,139,0,0" Height="22"/>
-        <ComboBox x:Name="comboBoxQuestion3" HorizontalAlignment="Left" VerticalAlignment="Top" Width="120" Margin="30,0,0,0" Grid.Row="1" Height="22"/>
-        <ComboBox x:Name="comboBoxQuestion4" HorizontalAlignment="Left" VerticalAlignment="Top" Width="120" Margin="30,63,0,0" Grid.Row="1" Height="22"/>
-        <ComboBox x:Name="comboBoxRating" HorizontalAlignment="Left" VerticalAlignment="Top" Width="120" Margin="30,169,0,0" Grid.Row="1" Height="22"/>
-        <ToolBar HorizontalAlignment="Left" Height="44" VerticalAlignment="Top" Width="263">
-            <Button Content="Back" VerticalAlignment="Stretch" Width="75" Click="BackButton_Click"/>
-            <Label Content="" Height="45" VerticalAlignment="Top" Width="89"/>
-            <Button Content="Home" Height="45" VerticalAlignment="Top" Width="75" Click="HomeButton_Click" Margin="0,-3"/>
-        </ToolBar>
+        <TextBlock TextWrapping="Wrap" FontSize="15" Margin="4,59,-4,0" Grid.RowSpan="3"><Run Text="1. Da li zadovoljni sa ljuba"/><Run Text="znošću lekara"/><Run Text="?"/><Run Text=" &#xA;&#xA;2. Da li ste zadovoljni sa obja"/><Run Text="šnjenima lekara"/><Run Text="?&#xA;&#xA;3. Da li "/><Run Text="ste zadovoljni sa savetia koje Vam je lekar dao"/><Run Text="?&#xA;&#xA;4. "/><Run Text="Koliko ste zadovoljni sa pregledom uopšteno"/><Run Text="?&#xA;&#xA;&#xA;&#xA;&#xA;Ocena:&#xA;"/></TextBlock>
+        <Button Content="Slanje ankete" HorizontalAlignment="Left" VerticalAlignment="Top" Width="164" Margin="49,39,0,0" Height="35" Click="Button_Click" Grid.Row="2" FontSize="15"/>
+        <ComboBox x:Name="comboBoxQuestion1" HorizontalAlignment="Left" VerticalAlignment="Top" Width="120" Margin="30,97,0,0" Height="22"/>
+        <ComboBox x:Name="comboBoxQuestion2" HorizontalAlignment="Left" VerticalAlignment="Top" Width="120" Margin="30,160,0,0" Height="22"/>
+        <ComboBox x:Name="comboBoxQuestion3" HorizontalAlignment="Left" VerticalAlignment="Top" Width="120" Margin="30,20,0,0" Grid.Row="1" Height="22"/>
+        <ComboBox x:Name="comboBoxQuestion4" HorizontalAlignment="Left" VerticalAlignment="Top" Width="120" Margin="30,81,0,0" Grid.Row="1" Height="22"/>
+        <ComboBox x:Name="comboBoxRating" HorizontalAlignment="Left" VerticalAlignment="Top" Width="120" Margin="30,182,0,0" Grid.Row="1" Height="22" Grid.RowSpan="2"/>
+        <Rectangle HorizontalAlignment="Left" Height="45" Stroke="#FFB86767" VerticalAlignment="Top" Width="263" OpacityMask="#FFE46060" Fill="White"/>
+        <Button BorderThickness="0" Background="Transparent" Margin="3,3,201,156" Click="BackButton_Click">
+            <Image Source="/HospitalInformationSystem;component/Images/Patient/a.png" Height="35" Width="42" RenderOptions.BitmapScalingMode="Fant" Stretch="Fill" Opacity="1"/>
+        </Button>
+        <Button BorderThickness="0" Background ="Transparent" Height="45" VerticalAlignment="Top" Margin="201,0,2,0" Click="HomeButton_Click">
+            <Image Source="/HospitalInformationSystem;component/Images/Patient/hospitalIcon.png" Height="39" Width="41" Stretch="Fill" RenderOptions.BitmapScalingMode="Fant"/>
+        </Button>
     </Grid>
 </Window>

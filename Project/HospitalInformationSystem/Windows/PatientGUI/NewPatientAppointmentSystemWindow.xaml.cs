@@ -1,4 +1,5 @@
 ﻿using HospitalInformationSystem.Controller;
+using HospitalInformationSystem.Model;
 using HospitalInformationSystem.Service;
 using Model;
 using System;
@@ -25,7 +26,7 @@ namespace HospitalInformationSystem.Windows.PatientGUI
     public partial class NewPatientAppointmentSystemWindow : Window
     {
 
-        private ObservableCollection<Appointment> appointmentList;
+        private ObservableCollection<Appointment> _appointmentList;
         private Patient _patient;
         private NewPatientAppointmentWindow _previousWindow;
         public NewPatientAppointmentSystemWindow(Patient patient, NewPatientAppointmentWindow window)
@@ -70,6 +71,18 @@ namespace HospitalInformationSystem.Windows.PatientGUI
             {
                 ScheduleAppointment(selectedAppointment);
             }
+            Serialize();
+        }
+        private static void Serialize()
+        {
+            EquipmentController.getInstance().saveInFile();
+            RoomController.GetInstance().SaveRoomsInFile();
+            MedicineController.GetInstance().SaveInFile();
+            DoctorController.getInstance().SaveInFlie();
+            NotificationController.GetInstance().SaveInFile();
+            PatientController.getInstance().SaveInFile();
+            AppointmentController.getInstance().SaveAppointmentsInFile();
+            AccountController.GetInstance().SaveInFile();
         }
         private bool AppointmentStartTimeHasPassed(Appointment newAppointment)
         {
@@ -88,51 +101,45 @@ namespace HospitalInformationSystem.Windows.PatientGUI
         }
         private List<Appointment> RecommendAppointments()
         {
+            List<Appointment> recommendedAppointments = new List<Appointment>();
+
             Doctor selectedDoctor = (Doctor)DoctorComboBox.SelectedItem;
             DateTime startDateTime = (DateTime)startDatePicker.SelectedDate;
             DateTime endDateTime = (DateTime)endDatePicker.SelectedDate;
 
-            List<Appointment> recommendedAppointments = GenerateFreeAppointments(selectedDoctor, startDateTime, endDateTime);
+            AppointmentGenerationContext context = new AppointmentGenerationContext();
 
-            if (NoAvailableAppointmentsExist(recommendedAppointments))
+            if ((bool)doctorPriorityRadioButton.IsChecked)
             {
-                if (DoctorIsPrioritized())
-                {
-                    recommendedAppointments = GenerateAppointmentsForWiderRangeOfDates(selectedDoctor, startDateTime, endDateTime);
-                }
-                else
-                {
-                    recommendedAppointments = GenerateAppointmentsForDoctorsOfSameSpecialization(selectedDoctor, startDateTime, endDateTime);
-                }
+                context.SetStrategy(new AppointmentGenerationDoctorPriority());
             }
+            else
+            {
+                context.SetStrategy(new AppointmentGenerationTimePriority());
+            }
+
+            recommendedAppointments = context.RecommendAppointments(selectedDoctor, _patient, startDateTime, endDateTime);
 
             return recommendedAppointments;
         }
-        private List<Appointment> GenerateAppointmentsForWiderRangeOfDates(Doctor selectedDoctor, DateTime startDateTime, DateTime endDateTime)
+        public void RefreshTable()
         {
-            return GenerateFreeAppointments(selectedDoctor, startDateTime.AddDays(-3), endDateTime.AddDays(3));
+            _appointmentList = new ObservableCollection<Appointment>(RecommendAppointments());
+            AppointmentDataGrid.ItemsSource = null;
+            AppointmentDataGrid.ItemsSource = _appointmentList;
         }
-        private List<Appointment> GenerateAppointmentsForDoctorsOfSameSpecialization(Doctor selectedDoctor, DateTime startDateTime, DateTime endDateTime)
+        private void HomeButton_Click(object sender, RoutedEventArgs e)
         {
-            List<Appointment> possibleAppointments = new List<Appointment>();
-            ObservableCollection<Doctor> possibleDoctors = GetDoctorsWithSameSpecialization(selectedDoctor);
-            foreach (var doctor in possibleDoctors)
-            {
-                possibleAppointments.AddRange(GenerateFreeAppointments(doctor, startDateTime, endDateTime));
-            }
-            return possibleAppointments;
+            this.Close();
+            PatientMainWindow.GetInstance(_patient).Show();
         }
-        private ObservableCollection<Doctor> GetDoctorsWithSameSpecialization(Doctor selectedDoctor)
+        private void BackButton_Click(object sender, RoutedEventArgs e)
         {
-            ObservableCollection<Doctor> doctors = DoctorController.getInstance().GetDoctors();
-            for (int i = 0; i < doctors.Count; i++)
-            {
-                if (DoctorsAreNotOfSameSpecialization(selectedDoctor, doctors[i]))
-                    doctors.RemoveAt(i);
-            }
-            return doctors;
+            this.Close();
+            _previousWindow.Show();
         }
-        private static bool DoctorsAreNotOfSameSpecialization(Doctor doctor1, Doctor doctor2)
+
+        private void Filter()
         {
             return !(doctor1.Specialization == doctor2.Specialization);
         }
@@ -169,7 +176,7 @@ namespace HospitalInformationSystem.Windows.PatientGUI
             {
                 for (int j = 0; j < existingAppointments.Count; j++)
                 {
-                    if (existingAppointments[j].Doctor == recommendedAppointments[i].Doctor & existingAppointments[j].StartTime == recommendedAppointments[i].StartTime)
+                    if (existingAppointments[j].doctor == recommendedAppointments[i].doctor & existingAppointments[j].StartTime == recommendedAppointments[i].StartTime)
                     {
                         recommendedAppointments.RemoveAt(i);
                     }
@@ -185,57 +192,26 @@ namespace HospitalInformationSystem.Windows.PatientGUI
             {
                 for (int j = 0; j < timesString.Count; j++)
                 {
-                    string s = datesString[i] + "." + " " + timesString[j];
-                    dateTimes.Add(DateTime.ParseExact(s, "dd.MM.yyyy. HH:mm", CultureInfo.InvariantCulture));
+                    if (!(Int32.Parse(roomTextBox.Text) == appointment.room.Id))
+                        _appointmentList.Remove(appointment);
                 }
-            }
-
-            return dateTimes;
-        }
-        private List<string> GetPossibleTimes()
-        {
-            var timesString = new List<string>();
-            timesString.AddRange(new List<string>() { "08:00", "08:30", "09:00", "09:30", "10:00", "10:30", "11:00", "11:30" , "12:00", "12:30", "13:00", "13:30",
-                                                    "14:00", "14:30", "15:00", "15:30", "16:00", "16:30", "17:00", "17:30" , "18:00", "18:30", "19:00", "19:30"
-                                                  });
-            return timesString;
-        }
-        private List<string> GetPossibleDates(DateTime startDateTime, DateTime endDateTime)
-        {
-            var dates = new List<DateTime>();
-            var datesString = new List<string>();
-
-            for (var date = startDateTime; date <= endDateTime; date = date.AddDays(1))
-            {
-                dates.Add(date);
-            }
-
-            DatesListToString(dates, datesString);
-
-            return datesString;
-        }
-        private static void DatesListToString(List<DateTime> dates, List<string> datesString)
-        {
-            for (int i = 0; i < dates.Count; i++)
-            {
-                datesString.Add(dates[i].Date.ToString("dd.MM.yyyy"));
+                AppointmentDataGrid.ItemsSource = null;
+                AppointmentDataGrid.ItemsSource = _appointmentList;
             }
         }
-        public void RefreshTable()
+        private void SearchButton_Click(object sender, RoutedEventArgs e)
         {
-            appointmentList = new ObservableCollection<Appointment>(RecommendAppointments());
-            AppointmentDataGrid.ItemsSource = null;
-            AppointmentDataGrid.ItemsSource = appointmentList;
+            searchGroup.Visibility = Visibility.Visible;
         }
-        private void HomeButton_Click(object sender, RoutedEventArgs e)
+
+        private void FinButton_Click(object sender, RoutedEventArgs e)
         {
-            this.Close();
-            PatientMainWindow.GetInstance(_patient).Show();
+            Filter();
         }
-        private void BackButton_Click(object sender, RoutedEventArgs e)
+
+        private void ExitSearchButton_Click(object sender, RoutedEventArgs e)
         {
-            this.Close();
-            _previousWindow.Show();
+            searchGroup.Visibility = Visibility.Hidden;
         }
     }
 }

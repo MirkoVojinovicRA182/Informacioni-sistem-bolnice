@@ -29,7 +29,7 @@ namespace HospitalInformationSystem.Windows.SecretaryGUI
         private void AddAllergenBtn_Click(object sender, RoutedEventArgs e)
         {
             Allergen newAllergen = new Allergen(allergenNameTxt.Text);
-            PatientController.getInstance().addAllergen(newAllergen);
+            AllergenController.Instance.AddAllergen(newAllergen);
             foreach (Patient patient in PatientController.getInstance().getPatient())
             {
                 patient.MedicalRecord.AllergensList.Add(new Allergen(newAllergen));

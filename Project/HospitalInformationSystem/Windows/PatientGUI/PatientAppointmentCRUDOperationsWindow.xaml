@@ -5,24 +5,41 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:HospitalInformationSystem.Windows.PatientGUI"
         mc:Ignorable="d"
-        Title="Upravljanje terminima" Height="516" Width="271" Closing="Window_Closing">
-    <Grid Background="#FF4C90F1">
-        <DataGrid x:Name="AppointmentDataGrid" Background="Silver" CanUserAddRows="False" AutoGenerateColumns="False" CanUserResizeColumns="False" IsReadOnly="True" HorizontalAlignment="Left" Height="290" VerticalAlignment="Top" Width="263" Margin="0,44,0,0">
-            <DataGrid.Columns>
-                <DataGridTextColumn Header="Datum" Width="*" Binding="{Binding StartTime}"></DataGridTextColumn>
-                <DataGridTextColumn Header="Lekar" Width="*" Binding="{Binding GetDoctorNameSurname}"></DataGridTextColumn>
-                <DataGridTextColumn Header="Prostorija" Width="*" Binding="{Binding GetRoomID}"></DataGridTextColumn>
-                <DataGridTextColumn Header="Vrsta" Width="*" Binding="{Binding Type}"></DataGridTextColumn>
-            </DataGrid.Columns>
-        </DataGrid>
-        <Button x:Name="NewAppointmentButton" Content="Novi termin" Click="NewAppointmentButton_Click" HorizontalAlignment="Left" Margin="30,351,0,0" VerticalAlignment="Top" Width="105" Height="34" MinWidth="2" Background="#FF43C349"/>
-        <Button x:Name="DeleteAppointmentButton" Content="Brisanje termina" Click="DeleteAppointmentButton_Click" HorizontalAlignment="Left" Margin="30,390,0,0" VerticalAlignment="Top" Width="105" Height="34" MinWidth="2" Background="#FFE84242" RenderTransformOrigin="0.023,0.537"/>
-        <Button x:Name="EditButton" Content="Pomeranje termina" Click="EditButton_Click" HorizontalAlignment="Left" Margin="30,429,0,0" VerticalAlignment="Top" Width="105" Height="34" MinWidth="2" Background="#FFA69B9B"/>
-        <Button x:Name="rateDoctorButton" Content="Ocenjivanje lekara" Click="RateDoctorButton_Click" HorizontalAlignment="Left" Margin="148,390,0,0" VerticalAlignment="Top" Width="105" Height="34" MinWidth="2"/>
-        <ToolBar HorizontalAlignment="Left" Height="44" VerticalAlignment="Top" Width="263">
-            <Button Content="Back" VerticalAlignment="Stretch" Width="75" Click="BackButton_Click"/>
-            <Label Content="" Height="45" VerticalAlignment="Top" Width="89"/>
-            <Button Content="Home" Height="45" VerticalAlignment="Top" Width="75" Click="HomeButton_Click" Margin="0,-3"/>
-        </ToolBar>
-    </Grid>
+        Title="Upravljanje terminima" Height="516" Width="271" Background="#FF4C90F1" WindowStartupLocation="CenterScreen">
+    <Viewbox Margin="0,-4,0,4" MaxHeight="512.6" MaxWidth="289.3">
+        <Grid Background="#FF4C90F1">
+            <DataGrid x:Name="AppointmentDataGrid" Background="Silver" HorizontalScrollBarVisibility="Visible" CanUserAddRows="False" AutoGenerateColumns="False" CanUserResizeColumns="False" IsReadOnly="True" HorizontalAlignment="Left" Height="290" VerticalAlignment="Top" Width="263" Margin="0,44,0,0">
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="Datum" Width="Auto" Binding="{Binding StartTime}"></DataGridTextColumn>
+                    <DataGridTextColumn Header="Lekar" Width="Auto" Binding="{Binding GetDoctorNameSurname}"></DataGridTextColumn>
+                    <DataGridTextColumn Header="Prostorija" Width="Auto" Binding="{Binding GetRoomID}"></DataGridTextColumn>
+                    <DataGridTextColumn Header="Vrsta" Width="Auto" Binding="{Binding Type}"></DataGridTextColumn>
+                </DataGrid.Columns>
+            </DataGrid>
+            <Button x:Name="NewAppointmentButton" Content="Novi termin" Click="NewAppointmentButton_Click" HorizontalAlignment="Left" Margin="30,351,0,0" VerticalAlignment="Top" Width="105" Height="34" MinWidth="2" Background="#FF43C349"/>
+            <Button x:Name="DeleteAppointmentButton" Content="Brisanje termina" Click="DeleteAppointmentButton_Click" HorizontalAlignment="Left" Margin="30,390,0,0" VerticalAlignment="Top" Width="105" Height="34" MinWidth="2" Background="#FFE84242" RenderTransformOrigin="0.023,0.537"/>
+            <Button x:Name="EditButton" Content="Pomeranje termina" Click="EditButton_Click" HorizontalAlignment="Left" Margin="30,429,0,0" VerticalAlignment="Top" Width="105" Height="34" MinWidth="2" Background="#FFA69B9B"/>
+            <Button x:Name="rateDoctorButton" Content="Ocenjivanje lekara" Click="RateDoctorButton_Click" HorizontalAlignment="Left" Margin="148,351,0,0" VerticalAlignment="Top" Width="105" Height="34" MinWidth="2"/>
+            <Rectangle Fill="#FFF4F4F5" HorizontalAlignment="Left" Height="45" Stroke="Black" VerticalAlignment="Top" Width="263"/>
+            <Button BorderThickness="0" Background="Transparent" Margin="3,3,200,440" Click="BackButton_Click">
+                <Image Source="/HospitalInformationSystem;component/Images/Patient/a.png" Height="35" Width="42" RenderOptions.BitmapScalingMode="Fant" Stretch="Fill" Opacity="1"/>
+            </Button>
+            <Button BorderThickness="0" Background ="Transparent" Height="45" VerticalAlignment="Top" Margin="202,0,1,0" Click="HomeButton_Click">
+                <Image Source="/HospitalInformationSystem;component/Images/Patient/hospitalIcon.png" Height="39" Width="41" Stretch="Fill" RenderOptions.BitmapScalingMode="Fant"/>
+            </Button>
+            <Button x:Name="searchGroupButton" Content="Pretraga" HorizontalAlignment="Left" Margin="148,390,0,0" VerticalAlignment="Top" Width="105" Height="34" Click="SearchButton_Click"/>
+            <GroupBox Header="" x:Name ="searchGroup"  HorizontalAlignment="Left" Height="230" Margin="0,260,0,-10" VerticalAlignment="Top" Width="263" Background="White" Visibility="Hidden">
+                <Grid>
+                    <Label Content="Datum: " HorizontalAlignment="Left" Margin="9,10,0,0" VerticalAlignment="Top" FontSize="15"/>
+                    <Label Content="Lekar: " HorizontalAlignment="Left" Width="54" Margin="10,44,0,134" FontSize="15"/>
+                    <TextBox x:Name="doctorTextBox" HorizontalAlignment="Left" Height="23" Margin="72,46,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="152"/>
+                    <Label Content="Soba:" HorizontalAlignment="Left" Width="54" Margin="10,75,0,103" FontSize="15"/>
+                    <TextBox x:Name="roomTextBox" HorizontalAlignment="Left" Height="23" Margin="72,78,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="152"/>
+                    <DatePicker x:Name="datePicker" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="72,14,0,0"/>
+                    <Button x:Name="searchFinButton" Margin="91,123,87,56" FontSize="15" Content="Pretraga" Click="FinButton_Click"/>
+                    <Button x:Name="exitSearchButton" Margin="91,161,87,18" FontSize="15" Content="Odustani" Click="ExitSearchButton_Click"/>
+                </Grid>
+            </GroupBox>
+        </Grid>
+    </Viewbox>
 </Window>

@@ -5,31 +5,32 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:HospitalInformationSystem.Windows.PatientGUI"
         mc:Ignorable="d"
-        Title="NotificationsWindow" Height="516" Width="271" Background="#FF4C90F1">
-    <Grid Margin="0,0,2,0">
-        <Grid.RowDefinitions>
-            <RowDefinition/>
-            <RowDefinition Height="14*"/>
-        </Grid.RowDefinitions>
-        <DataGrid x:Name="prescriptionsDataGrid" Background="Silver" CanUserAddRows="False" AutoGenerateColumns="False" CanUserResizeColumns="False" IsReadOnly="True" HorizontalAlignment="Left" Height="254" VerticalAlignment="Top" Width="263" Margin="0,199,-2,0" Grid.Row="1" ScrollViewer.CanContentScroll="True" ScrollViewer.VerticalScrollBarVisibility="Auto" ScrollViewer.HorizontalScrollBarVisibility="Auto">
-            <DataGrid.Columns>
-                <DataGridTextColumn Header="Lek" Width="*" Binding="{Binding medicine.Name}"></DataGridTextColumn>
-                <DataGridTextColumn Header="Od" Width="*" Binding="{Binding startTime.Date}"></DataGridTextColumn>
-                <DataGridTextColumn Header="Do" Width="*" Binding="{Binding endTime.Date}"></DataGridTextColumn>
-            </DataGrid.Columns>
-        </DataGrid>
-        <Button Content="Napravi notifikaciju" HorizontalAlignment="Left" Margin="65,47,0,0" VerticalAlignment="Top" Width="122" Click="Button_Click" Height="36" Grid.Row="1"/>
-        <Label Content="Notifikacije za selektovanu terapiju:" HorizontalAlignment="Left" Margin="10,12,0,0" Grid.Row="1" VerticalAlignment="Top" Width="246" FontSize="15"/>
-        <Button Content="Custom notifikacije" HorizontalAlignment="Left" Margin="128,548,0,0" VerticalAlignment="Top" Width="162" Click="Button_Click" Height="45" Grid.Row="1"/>
-        <ToolBar HorizontalAlignment="Left" Height="44" VerticalAlignment="Top" Width="263" Margin="0,0,-2,0" Grid.RowSpan="2">
-            <Button Content="Back" VerticalAlignment="Stretch" Width="75" Click="BackButton_Click"/>
-            <Label Content="" Height="45" VerticalAlignment="Top" Width="89"/>
-            <Button Content="Home" Height="45" VerticalAlignment="Top" Width="75" Click="HomeButton_Click" Margin="0,-3" Background="{x:Null}"/>
-        </ToolBar>
-        <Button Content="Kreirane notifikacije" HorizontalAlignment="Left" Margin="65,149,0,0" VerticalAlignment="Top" Width="122" Click="CustomNotificationButton_Click" Height="36" Grid.Row="1"/>
-        <Label Content="Vreme: " HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10,90,0,0" Grid.Row="1" FontSize="15"/>
-        <ComboBox x:Name="hourComboBox" HorizontalAlignment="Left" VerticalAlignment="Top" Width="50" Margin="75,95,0,0" Grid.Row="1"/>
-        <ComboBox x:Name="minuteComboBox" HorizontalAlignment="Left" VerticalAlignment="Top" Width="50" Margin="145,95,0,0" Grid.Row="1"/>
-        <Label Content=":" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="128,91,0,0" Grid.Row="1"/>
-    </Grid>
+        Title="NotificationsWindow" Height="516" Width="271" WindowStartupLocation="CenterScreen">
+    <Viewbox MaxHeight="512.6" MaxWidth="289.3">
+        <Grid Margin="0,0,0,0">
+            <DataGrid x:Name="prescriptionsDataGrid" Background="#FF6593E4" CanUserAddRows="False" AutoGenerateColumns="False" CanUserResizeColumns="False" IsReadOnly="True" HorizontalAlignment="Left" Height="254" VerticalAlignment="Top" Width="261" Margin="0,228,0,0" ScrollViewer.CanContentScroll="True" ScrollViewer.VerticalScrollBarVisibility="Auto" ScrollViewer.HorizontalScrollBarVisibility="Auto">
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="Lek" Width="*" Binding="{Binding medicine.Name}"></DataGridTextColumn>
+                    <DataGridTextColumn Header="Od" Width="*" Binding="{Binding startTime.Date}"></DataGridTextColumn>
+                    <DataGridTextColumn Header="Do" Width="*" Binding="{Binding endTime.Date}"></DataGridTextColumn>
+                </DataGrid.Columns>
+            </DataGrid>
+            <Button Content="Napravi notifikaciju" HorizontalAlignment="Left" Margin="60,121,0,0" VerticalAlignment="Top" Width="140" Click="Button_Click" Height="36" FontSize="15"/>
+            <Label Content="Notifikacije za selektovanu terapiju:" HorizontalAlignment="Left" Margin="10,47,0,0" VerticalAlignment="Top" Width="246" FontSize="15"/>
+            <Button Content="Custom notifikacije" HorizontalAlignment="Left" Margin="67,186,0,0" VerticalAlignment="Top" Width="122" Click="CustomNotificationButton_Click" Height="36" Grid.Row="1"/>
+            <Label Content="Vreme: " HorizontalAlignment="Left" VerticalAlignment="Top" Margin="28,84,0,0" FontSize="15"/>
+            <ComboBox x:Name="hourComboBox" HorizontalAlignment="Left" VerticalAlignment="Top" Width="50" Margin="93,87,0,0"/>
+            <ComboBox x:Name="minuteComboBox" HorizontalAlignment="Left" VerticalAlignment="Top" Width="50" Margin="163,87,0,0"/>
+            <Label Content=":" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="146,83,0,0"/>
+            <Button BorderThickness="0" Background="Transparent" Margin="3,3,198,445" Click="BackButton_Click" Grid.RowSpan="2"/>
+            <Button BorderThickness="0" Background ="Transparent" Height="45" VerticalAlignment="Top" Margin="202,0,-1,0" Click="HomeButton_Click" Grid.RowSpan="2"/>
+            <Rectangle Fill="White" HorizontalAlignment="Left" Height="45" Stroke="Black" VerticalAlignment="Top" Width="263" Margin="0,0,-2,0" OpacityMask="White"/>
+            <Button BorderThickness="0" Background ="Transparent" Height="45" VerticalAlignment="Top" Margin="202,0,-1,0" Click="HomeButton_Click" OpacityMask="White">
+                <Image Source="/HospitalInformationSystem;component/Images/Patient/hospitalIcon.png" Height="39" Width="41" Stretch="Fill" RenderOptions.BitmapScalingMode="Fant" OpacityMask="White"/>
+            </Button>
+            <Button BorderThickness="0" Background="Transparent" Margin="3,3,198,437" Click="BackButton_Click" OpacityMask="White">
+                <Image Source="/HospitalInformationSystem;component/Images/Patient/a.png" Height="35" Width="42" RenderOptions.BitmapScalingMode="Fant" Stretch="Fill" Opacity="1" OpacityMask="White"/>
+            </Button>
+        </Grid>
+    </Viewbox>
 </Window>

@@ -15,7 +15,7 @@ namespace HospitalInformationSystem.Model
             List<Appointment> recommendedAppointments = AppointmentController.getInstance().GenerateFreeAppointments(selectedDoctor, patient, startDateTime, endDateTime);
 
             if (!recommendedAppointments.Any())
-                recommendedAppointments = AppointmentController.getInstance().GenerateAppointmentsForDoctorsOfSameSpecialization(selectedDoctor, patient, startDateTime, endDateTime);
+                recommendedAppointments = AppointmentController.getInstance().GenerateFreeAppointments(selectedDoctor, patient, startDateTime.AddDays(-3), endDateTime.AddDays(3));
 
             return recommendedAppointments;
         }

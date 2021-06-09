@@ -4,6 +4,9 @@ using System.Windows;
 using System.Windows.Controls;
 using HospitalInformationSystem.Model;
 using System.Data;
+using Syncfusion.Pdf;
+using Syncfusion.Pdf.Tables;
+using System.Drawing;
 
 namespace HospitalInformationSystem.Windows.ManagerGUI
 {
@@ -172,7 +175,25 @@ namespace HospitalInformationSystem.Windows.ManagerGUI
 
         private void reportMenuItem_Click(object sender, RoutedEventArgs e)
         {
-            
+            using (PdfDocument doc = new PdfDocument())
+            {
+                PdfPage page = doc.Pages.Add();
+                PdfLightTable pdfLightTable = new PdfLightTable();
+                DataTable table = new DataTable();
+                table.Columns.Add("Ime");
+                table.Columns.Add("Prezime");
+                table.Columns.Add("Datum rođenja");
+                table.Rows.Add(new string[] { "Ime", "Prezime", "Datum rođenja" });
+                foreach (Doctor doctor in DoctorController.getInstance().GetDoctors())
+                {
+                    table.Rows.Add(new string[] { doctor.Name, doctor.Surname, doctor.DateOfBirth.ToLongDateString() });
+                }
+                pdfLightTable.DataSource = table;
+                pdfLightTable.Draw(page, new PointF(0, 0));
+                doc.Save("C:\\Users\\Mirko\\Desktop\\Izvestaj.pdf");
+                doc.Close(true);
+            }
+            MessageBox.Show("HVALA NA POVRATNOJ INFORMACIJI!");
         }
     }
 }

@@ -38,8 +38,8 @@ namespace HospitalInformationSystem.Windows.PatientGUI
         }
         private void LoadQuestionsComboBoxes()
         {
-            List<AnswersDoctorSurvey> answers = new List<AnswersDoctorSurvey>();
-            answers.AddRange(new List<AnswersDoctorSurvey> { AnswersDoctorSurvey.Da, AnswersDoctorSurvey.Ne, AnswersDoctorSurvey.Nijedno });
+            List<AnswersHospitalSurvey> answers = new List<AnswersHospitalSurvey>();
+            answers.AddRange(new List<AnswersHospitalSurvey> { AnswersHospitalSurvey.Veoma_zadovoljni, AnswersHospitalSurvey.Zadovoljni, AnswersHospitalSurvey.Nezadovoljni });
             comboBoxQuestion1.ItemsSource = answers;
             comboBoxQuestion2.ItemsSource = answers;
             comboBoxQuestion3.ItemsSource = answers;
@@ -52,13 +52,23 @@ namespace HospitalInformationSystem.Windows.PatientGUI
         }
         private void CollectAnswers()
         {
-            DoctorReview review = new DoctorReview(GetAnswers(), (int)comboBoxRating.SelectedItem, _appointmentForReviewing.doctor);
+            DoctorReview review = CreateReview();
+            _appointmentForReviewing.HasBeenReviewed = true;
+            _appointmentForReviewing.doctor.Ratings.Add((int)comboBoxRating.SelectedItem);
             _loggedInPatient.DoctorReviews.Add(review);
         }
-        public List<AnswersDoctorSurvey> GetAnswers()
+        private DoctorReview CreateReview()
         {
-            return new List<AnswersDoctorSurvey> { (AnswersDoctorSurvey)comboBoxQuestion1.SelectedItem, (AnswersDoctorSurvey)comboBoxQuestion2.SelectedItem,
-                                                    (AnswersDoctorSurvey)comboBoxQuestion3.SelectedItem, (AnswersDoctorSurvey)comboBoxQuestion4.SelectedItem };
+            DoctorReview review = new DoctorReview();
+            review.Answers = GetAnswers();
+            review.Rating = (int)comboBoxRating.SelectedItem;
+            review.Doctor = _appointmentForReviewing.doctor;
+            return review;
+        }
+        public List<AnswersHospitalSurvey> GetAnswers()
+        {
+            return new List<AnswersHospitalSurvey> { (AnswersHospitalSurvey)comboBoxQuestion1.SelectedItem, (AnswersHospitalSurvey)comboBoxQuestion2.SelectedItem,
+                                                    (AnswersHospitalSurvey)comboBoxQuestion3.SelectedItem, (AnswersHospitalSurvey)comboBoxQuestion4.SelectedItem };
         }
         private void HomeButton_Click(object sender, RoutedEventArgs e)
         {

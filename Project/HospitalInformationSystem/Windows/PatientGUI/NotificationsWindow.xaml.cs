@@ -57,6 +57,7 @@ namespace HospitalInformationSystem.Windows.PatientGUI
             Prescription prescription = (Prescription)prescriptionsDataGrid.SelectedItem;
             Notification prescriptionNotification = new Notification(prescription.medicine.Name + " " + prescription.info, GetTimeFromComboBoxes(), prescription.startTime, prescription.endTime, true);
             prescriptionNotification.Patient = _loggedInPatient;
+            MessageBox.Show("Kreirana je notifikacija za selektovanu terapiju.", "", MessageBoxButton.OK, MessageBoxImage.Information);
             return prescriptionNotification;
         }
         private static void AddCreatedNotification(Notification prescriptionNotification)

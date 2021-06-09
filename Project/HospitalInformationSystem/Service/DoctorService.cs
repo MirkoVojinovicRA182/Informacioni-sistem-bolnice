@@ -33,5 +33,15 @@ namespace HospitalInformationSystem.Service
         public void RemoveAllDoctors() => _doctorsFile.DeleteAllDoctors();
         public void SaveInFile() => _doctorsFile.saveInFile();
         public void LoadFromFile() => _doctorsFile.loadFromFile();
+        public ObservableCollection<Doctor> GetDoctorsWithSameSpecialization(Doctor selectedDoctor)
+        {
+            ObservableCollection<Doctor> doctors = DoctorController.getInstance().GetDoctors();
+            for (int i = 0; i < doctors.Count; i++)
+            {
+                if (!(selectedDoctor.Specialization == doctors[i].Specialization))
+                    doctors.RemoveAt(i);
+            }
+            return doctors;
+        }
     }
 }

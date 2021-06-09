@@ -38,8 +38,15 @@ namespace HospitalInformationSystem.Windows.PatientGUI
         }
         private void CollectAnswers()
         {
-            HospitalReview review = new HospitalReview(GetAnswers(), (int)comboBoxRating.SelectedItem);
+            HospitalReview review = CreateReview();
             _loggedInPatient.HospitalReviews.Add(review);
+        }
+        private HospitalReview CreateReview()
+        {
+            HospitalReview review = new HospitalReview();
+            review.Answers = GetAnswers();
+            review.Rating = (int)comboBoxRating.SelectedItem;
+            return review;
         }
         private void LoadQuestionsComboBoxes()
         {

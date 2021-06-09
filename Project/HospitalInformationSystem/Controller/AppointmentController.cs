@@ -71,5 +71,29 @@ namespace HospitalInformationSystem.Controller
         {
             return _appointmentService.AppointmentIsTaken(appointment);
         }
+        public List<Appointment> GenerateFreeAppointments(Doctor doctor, Patient patient, DateTime startDateTime, DateTime endDateTime)
+        {
+            return _appointmentService.GenerateFreeAppointments(doctor, patient, startDateTime, endDateTime);
+        }
+        public List<Appointment> GenerateAllPossibleAppointments(Doctor doctor, Patient patient, List<DateTime> dateTimes)
+        {
+            return _appointmentService.GenerateAllPossibleAppointments(doctor, patient, dateTimes);
+        }
+        private void RemoveExistingAppointments(List<Appointment> existingAppointments, List<Appointment> recommendedAppointments)
+        {
+            _appointmentService.RemoveExistingAppointments(existingAppointments, recommendedAppointments);
+        }
+        public List<Appointment> GenerateAppointmentsForDoctorsOfSameSpecialization(Doctor selectedDoctor, Patient patient, DateTime startDateTime, DateTime endDateTime)
+        {
+            return _appointmentService.GenerateAppointmentsForDoctorsOfSameSpecialization(selectedDoctor, patient, startDateTime, endDateTime);
+        }
+        public void CalculateFinishedAppointments(Patient patient)
+        {
+            _appointmentService.CalculateFinishedAppointments(patient);
+        }
+        public bool AppointmentIsFinished(Appointment appointment)
+        {
+            return _appointmentService.AppointmentIsFinished(appointment);
+        }
     }
 }

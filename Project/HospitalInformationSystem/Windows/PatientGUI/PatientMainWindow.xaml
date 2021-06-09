@@ -5,19 +5,48 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:HospitalInformationSystem.Windows.PatientGUI"
         mc:Ignorable="d"
-        Title="PatientMainWindow" Height="516" Width="271" Background="#FF4C90F1" Closing="Window_Closing">
-    <Grid Margin="0,0,2,36">
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="43*"/>
-            <ColumnDefinition Width="44*"/>
-        </Grid.ColumnDefinitions>
-        <Button Content="Pregledi" HorizontalAlignment="Left" VerticalAlignment="Top" Width="128" Margin="3,59,0,0" Height="104" Click="AppointmentsButton_Click" Grid.ColumnSpan="2"/>
-        <Button Content="Notifikacije" HorizontalAlignment="Left" VerticalAlignment="Top" Width="128" Margin="3,165,0,0" Height="104" Click="NotificationsButton_Click" Grid.ColumnSpan="2"/>
-        <Button x:Name="anamnesisButton" Content="Anamneze" HorizontalAlignment="Left" VerticalAlignment="Top" Width="128" Margin="3,165,0,0" Height="104" Grid.Column="1" Click="AnamnesisButton_Click"/>
-        <Button Content="Ocenjivanje bolnice" HorizontalAlignment="Left" VerticalAlignment="Top" Width="128" Margin="2.6,59,0,0" Height="103" Click="HospitalReviewButton_Click" Grid.Column="1"/>
-        <Button Content="Odjava" HorizontalAlignment="Left" VerticalAlignment="Top" Width="162" Margin="50,404,0,0" Height="45" Background="#FFE84242" Click="LogOffButton_Click" Grid.ColumnSpan="2"/>
-        <ToolBar HorizontalAlignment="Left" Height="44" VerticalAlignment="Top" Width="263" Margin="0,0,-2,0" Grid.ColumnSpan="2">
-            <Label Content="" Height="45" VerticalAlignment="Top" Width="89"/>
-        </ToolBar>
-    </Grid>
+        Title="PatientMainWindow" SizeToContent="WidthAndHeight" Height="516" Width="271" Background="#FF4C90F1" Closing="Window_Closing" WindowStartupLocation="CenterScreen">
+    <Window.Resources>
+        <Color x:Key="Color1">#FFF4F4F5</Color>
+    </Window.Resources>
+    <Viewbox Margin="0,-4,0,4" MaxHeight="512.6" MaxWidth="289.3">
+        <Grid Margin="0,0,0,0">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="430*"/>
+                <RowDefinition Height="19*"/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="131*"/>
+                <ColumnDefinition Width="130*"/>
+            </Grid.ColumnDefinitions>
+            <Rectangle HorizontalAlignment="Left" Height="45" Stroke="#FFB86767" VerticalAlignment="Top" Width="263" Grid.ColumnSpan="2" Margin="0,0,-2,0" OpacityMask="#FFE46060" Fill="White"/>
+            <Button BorderThickness="0" Background="Transparent" Margin="3,3,69,419"/>
+            <Button Margin="3,77,0,268" Click="AppointmentsButton_Click" Grid.Column="0">
+                <StackPanel>
+                    <Image Source="/Images/Patient/appointmentIcon.png" Height="74" Width="59"/>
+                    <TextBlock Text="  Pregledi"/>
+                </StackPanel>
+            </Button>
+            <Button x:Name="anamnesisButton" HorizontalAlignment="Left" Width="128" Margin="3,199,0,146" Grid.Column="0" Click="AnamnesisButton_Click" Height="119">
+                <StackPanel>
+                    <Image Source="/Images/Patient/medicineIcon.png" Height="74" Width="59" RenderOptions.BitmapScalingMode="Fant"/>
+                    <TextBlock Text="Anamneze"/>
+                </StackPanel>
+            </Button>
+            <Button Margin="1,77,1,268" Click="NotificationsButton_Click" Grid.Column="1">
+                <StackPanel>
+                    <Image Source="/Images/Patient/not.png" Height="74" Width="59" RenderOptions.BitmapScalingMode="Fant"/>
+                    <TextBlock Text="Notifikacije"/>
+                </StackPanel>
+            </Button>
+            <Button Margin="1,199,2,146" Click="HospitalReviewButton_Click" Width="128" Height="119" Grid.Column="1">
+                <StackPanel>
+                    <Image Source="/Images/Patient/hospitalIcon.png" Height="74" Width="59"/>
+                    <TextBlock Text="Ocenjivanje bolnice"/>
+                </StackPanel>
+            </Button>
+            <Button Content="Odjava" Margin="75,405,68,13" Background="#FFE84242" Click="LogOffButton_Click" Grid.ColumnSpan="2"/>
+            <Button Name ="reportButton" Content="Izveštaj o terapijama" HorizontalAlignment="Left" VerticalAlignment="Top" Width="119" Grid.ColumnSpan="2" Margin="75,352,0,0" Height="46" Click="ReportButton_Click"/>
+        </Grid>
+    </Viewbox>
 </Window>

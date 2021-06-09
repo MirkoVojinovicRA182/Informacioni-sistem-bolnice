@@ -5,9 +5,9 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:HospitalInformationSystem.Windows.PatientGUI"
         mc:Ignorable="d"
-        Title="CustomNotificationWindow" Height="212.705" Width="422.541">
+        Title="CustomNotificationWindow" Height="212.705" Width="422.541" WindowStartupLocation="CenterScreen">
     <Grid>
-        <TextBlock x:Name="notificationTextBlock" HorizontalAlignment="Left" Margin="10,10,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="162" Width="395"/>
+        <TextBlock x:Name="notificationTextBlock" HorizontalAlignment="Left" Margin="10,10,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="162" Width="395" />
 
     </Grid>
 </Window>

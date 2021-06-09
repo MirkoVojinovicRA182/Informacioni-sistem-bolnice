@@ -5,28 +5,33 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:HospitalInformationSystem.Windows.PatientGUI"
         mc:Ignorable="d"
-        Title="Novi termin" Height="516" Width="271">
-    <Grid>
-        <Rectangle Fill="#FF4C90F1" HorizontalAlignment="Left" Height="88" Stroke="Black" VerticalAlignment="Top" Width="424" Margin="0,611,-2,0"/>
-        <Label Content="Datum:" HorizontalAlignment="Left" Margin="9,94,0,0" VerticalAlignment="Top" FontSize="15"/>
-        <Label Content="Vreme:" HorizontalAlignment="Left" Margin="9,149,0,0" VerticalAlignment="Top" FontSize="15"/>
-        <Label Content="Lekar:" HorizontalAlignment="Left" Margin="9,210,0,0" VerticalAlignment="Top" FontSize="15"/>
-        <ComboBox x:Name="DoctorComboBox" HorizontalAlignment="Left" VerticalAlignment="Top" Width="157" Margin="96,212,0,0" Height="24">
-            <ComboBox.ItemTemplate>
-                <DataTemplate>
-                    <TextBlock><Run Text="{Binding Name}" /><Run Text=" "/><Run Text="{Binding Surname}" /></TextBlock>
-                </DataTemplate>
-            </ComboBox.ItemTemplate>
-        </ComboBox>
-        <Button x:Name="newSystemButton" Content="Na osnovu preporuke" Click="New_Button_Click" HorizontalAlignment="Left" Margin="41,266,0,0" VerticalAlignment="Top" Width="179" Height="34" FontSize="15"/>
-        <DatePicker x:Name="datePicker" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="96,94,0,0"/>
-        <ComboBox x:Name="timeComboBox" HorizontalAlignment="Left" VerticalAlignment="Top" Width="157" Margin="96,153,0,0" Height="24"/>
-        <ToolBar HorizontalAlignment="Left" Height="44" VerticalAlignment="Top" Width="263">
-            <Button Content="Back" VerticalAlignment="Stretch" Width="75" Click="BackButton_Click"/>
-            <Label Content="" Height="45" VerticalAlignment="Top" Width="89"/>
-            <Button Content="Home" Height="45" VerticalAlignment="Top" Width="75" Click="HomeButton_Click" Margin="0,-3"/>
-        </ToolBar>
-        <Rectangle Fill="#FF4C90F1" HorizontalAlignment="Left" Height="135" Stroke="Black" VerticalAlignment="Top" Width="263" Margin="0,349,0,0"/>
-        <Button x:Name="confirmButton_Copy" Content="Potvrda" Margin="78,400,0,0" VerticalAlignment="Top" FontSize="16" Click="Button_Click" HorizontalAlignment="Left" Width="105" Height="34"/>
-    </Grid>
+        Title="Novi termin" Height="516" Width="271" WindowStartupLocation="CenterScreen">
+    <Viewbox Margin="0,0,0,0" MaxHeight="512.6" MaxWidth="289.3">
+        <Grid Height="487" Width="262">
+            <Label Content="Datum:" HorizontalAlignment="Left" Margin="9,94,0,0" VerticalAlignment="Top" FontSize="15"/>
+            <Label Content="Vreme:" HorizontalAlignment="Left" Margin="9,149,0,0" VerticalAlignment="Top" FontSize="15"/>
+            <Label Content="Lekar:" HorizontalAlignment="Left" Margin="9,210,0,0" VerticalAlignment="Top" FontSize="15"/>
+            <ComboBox x:Name="doctorComboBox" HorizontalAlignment="Left" VerticalAlignment="Top" Width="157" Margin="96,212,0,0" Height="24">
+                <ComboBox.ItemTemplate>
+                    <DataTemplate>
+                        <TextBlock><Run Text="{Binding Name}" /><Run Text=" "/><Run Text="{Binding Surname}" /></TextBlock>
+                    </DataTemplate>
+                </ComboBox.ItemTemplate>
+            </ComboBox>
+            <Button x:Name="newSystemButton" Content="Biranje termina od slobodnih" Click="New_Button_Click" HorizontalAlignment="Left" Margin="45,302,0,0" VerticalAlignment="Top" Width="173" Height="37"/>
+            <DatePicker x:Name="datePicker" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="96,94,0,0"/>
+            <ComboBox x:Name="timeComboBox" HorizontalAlignment="Left" VerticalAlignment="Top" Width="157" Margin="96,153,0,0" Height="24"/>
+            <Rectangle Fill="#FF4C90F1" HorizontalAlignment="Left" Height="135" Stroke="Black" VerticalAlignment="Top" Width="263" Margin="0,354,0,-5"/>
+            <Button x:Name="confirmButton_Copy" Content="Potvrda" Margin="78,385,0,0" VerticalAlignment="Top" FontSize="16" Click="Button_Click" HorizontalAlignment="Left" Width="105" Height="34"/>
+            <Rectangle HorizontalAlignment="Left" Height="45" Stroke="#FFB86767" VerticalAlignment="Top" Width="263" OpacityMask="#FFE46060" Fill="White"/>
+            <Button BorderThickness="0" Background="Transparent" Margin="3,3,201,600" Click="BackButton_Click"/>
+            <Button BorderThickness="0" Background ="Transparent" Height="45" VerticalAlignment="Top" Margin="201,0,2,0" Click="HomeButton_Click" FontSize="15">
+                <Image Source="/Images/Patient/hospitalIcon.png" Height="39" Width="41" Stretch="Fill" RenderOptions.BitmapScalingMode="Fant"/>
+            </Button>
+            <Button BorderThickness="0" Background="Transparent" Margin="3,3,200,443" Click="BackButton_Click">
+                <Image Source="/Images/Patient/a.png" Height="35" Width="42" RenderOptions.BitmapScalingMode="Fant" Stretch="Fill" Opacity="1"/>
+            </Button>
+            <Button Content="Ocene lekara" HorizontalAlignment="Left" VerticalAlignment="Top" Width="105" Margin="78,427,0,0" Height="34" FontSize="15" Click="DoctorChart_Click"/>
+        </Grid>
+    </Viewbox>
 </Window>

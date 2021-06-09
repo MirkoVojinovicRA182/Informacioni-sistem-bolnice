@@ -1,4 +1,5 @@
-﻿using Model;
+﻿using HospitalInformationSystem.Controller;
+using Model;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -53,6 +54,8 @@ namespace HospitalInformationSystem.Windows.PatientGUI
                     anamnesis.Note = noteTextBox.Text;
                 }
             }
+            MessageBox.Show("Beleške su promenjene.", "", MessageBoxButton.OK, MessageBoxImage.Information);
+            Serialize();
             LoadComboBox();
         }
         private void HomeButton_Click(object sender, RoutedEventArgs e)
@@ -64,6 +67,17 @@ namespace HospitalInformationSystem.Windows.PatientGUI
         {
             this.Close();
             PatientMainWindow.GetInstance(_loggedInPatient).Show();
+        }
+        private static void Serialize()
+        {
+            EquipmentController.getInstance().saveInFile();
+            RoomController.GetInstance().SaveRoomsInFile();
+            MedicineController.GetInstance().SaveInFile();
+            DoctorController.getInstance().SaveInFlie();
+            NotificationController.GetInstance().SaveInFile();
+            PatientController.getInstance().SaveInFile();
+            AppointmentController.getInstance().SaveAppointmentsInFile();
+            AccountController.GetInstance().SaveInFile();
         }
     }
 }

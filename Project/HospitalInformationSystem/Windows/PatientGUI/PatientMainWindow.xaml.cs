@@ -1,8 +1,13 @@
 ﻿using HospitalInformationSystem.Controller;
 using HospitalInformationSystem.Model;
 using Model;
+using Syncfusion.Pdf;
+using Syncfusion.Pdf.Graphics;
+using Syncfusion.Pdf.Tables;
 using System;
 using System.Collections.Generic;
+using System.Data;
+using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -72,22 +77,8 @@ namespace HospitalInformationSystem.Windows.PatientGUI
         }
         private bool HospitalReviewValidation()
         {
-            CalculateFinishedAppointments();
+            AppointmentController.getInstance().CalculateFinishedAppointments(_loggedInPatient);
             return _loggedInPatient.Activity.NumberOfFinishedAppointmentsSinceReview >= 5;
-        }
-        private void CalculateFinishedAppointments()
-        {
-            foreach (var appointment in AppointmentController.getInstance().GetAppointmentsByPatient(_loggedInPatient))
-            {
-                if (AppointmentIsFinished(appointment) && appointment.StartTime.AddMinutes(30).CompareTo(_loggedInPatient.Activity.HospitalReviewTime) > 0)
-                {
-                    _loggedInPatient.Activity.NumberOfFinishedAppointmentsSinceReview++;
-                }
-            }
-        }
-        private static bool AppointmentIsFinished(Appointment appointment)
-        {
-            return DateTime.Now.CompareTo(appointment.StartTime.AddMinutes(30)) > 0;
         }
         private void LogOffButton_Click(object sender, RoutedEventArgs e)
         {
@@ -96,59 +87,12 @@ namespace HospitalInformationSystem.Windows.PatientGUI
         private void AnamnesisButton_Click(object sender, RoutedEventArgs e)
         {
             PatientAnamnesisWindow window = new PatientAnamnesisWindow(_loggedInPatient);
+            this.Hide();
             window.Show();
         }
         public void Notify()
         {
-            TimeSpan dayTime = new TimeSpan(24, 00, 00);
-            TimeSpan currentTime = TimeSpan.Parse(DateTime.Now.ToString("HH:mm:ss"));
-            List<TimeSpan> notificationTime = new List<TimeSpan>();
-            List<Notification> notifications = NotificationController.GetInstance().GetNotifications();
-
-            GetEnabledNotificationTimes(notificationTime, notifications);
-
-            CreateNotificationTimers(dayTime, currentTime, notificationTime);
-        }
-        private void CreateNotificationTimers(TimeSpan dayTime, TimeSpan currentTime, List<TimeSpan> notificationTime)
-        {
-            for (int i = 0; i < notificationTime.Count; i++)
-            {
-                TimeSpan timeToNotification = ((dayTime - currentTime) + notificationTime[i]);
-                if (timeToNotification.TotalHours > 24)
-                    timeToNotification -= new TimeSpan(24, 0, 0);
-                _notificationTimers.Add(new System.Windows.Threading.DispatcherTimer());
-                _notificationTimers[i].Tick += new EventHandler(DispatcherTimer_Tick);
-                _notificationTimers[i].Interval = timeToNotification;
-                _notificationTimers[i].Start();
-            }
-        }
-        private static void GetEnabledNotificationTimes(List<TimeSpan> notificationTime, List<Notification> notifications)
-        {
-            for (int i = 0; i < notifications.Count; i++)
-            {
-                if (NotificationIsEnabled(notifications[i]))
-                {
-                    notificationTime.Add(notifications[i].Time.TimeOfDay);
-                }
-            }
-        }
-        private static bool NotificationIsEnabled(Notification notification)
-        {
-            return notification.StartDate.CompareTo(DateTime.Now) < 0 && notification.EndDate.CompareTo(DateTime.Now) > 0 && notification.IsEnabled == true;
-        }
-        public void DispatcherTimer_Tick(object sender, EventArgs e)
-        {
-            List<Notification> notifications = NotificationController.GetInstance().GetNotificationsByPatient(_loggedInPatient);
-            CustomNotificationWindow window = new CustomNotificationWindow();
-            for (int i = 0; i < notifications.Count; i++)
-            {
-                CreateAndShowNotification(notifications[i], window);
-            }
-        }
-        private static void CreateAndShowNotification(Notification notification, CustomNotificationWindow window)
-        {
-            window.notificationTextBlock.Text = notification.Contents;
-            window.ShowDialog();
+            NotificationController.GetInstance().Notify(_loggedInPatient);
         }
         private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
         {
@@ -157,6 +101,121 @@ namespace HospitalInformationSystem.Windows.PatientGUI
             PatientController.getInstance().SaveInFile();
             NotificationController.GetInstance().SaveInFile();
             _instance = null;
+        }
+
+        private void ReportButton_Click(object sender, RoutedEventArgs e)
+        {
+            PdfDocument doc = new PdfDocument();
+            PdfPage page = doc.Pages.Add();
+            PdfLightTable pdfLightTable = new PdfLightTable();
+            DataTable table = new DataTable();
+
+            pdfLightTable.Style.ShowHeader = true;
+
+            PdfCellStyle headerStyle = new PdfCellStyle(new PdfStandardFont(PdfFontFamily.Helvetica, 10), PdfBrushes.DarkBlue, PdfPens.DarkBlue);
+            pdfLightTable.Style.HeaderStyle = headerStyle;
+
+            table.Columns.Add("PONEDELJAK");
+            table.Columns.Add("UTORAK");
+            table.Columns.Add("SREDA");
+            table.Columns.Add("ČETVRTAK");
+            table.Columns.Add("PETAK");
+            table.Columns.Add("SUBOTA");
+            table.Columns.Add("NEDELJA");
+
+            DateTime startOfWeek = DateTime.Today.AddDays(-1 * (int)(DateTime.Today.DayOfWeek));
+            DateTime endOfWeek = startOfWeek.AddDays(7).AddSeconds(-1);
+            List<DateTime> datesCurrentWeek = new List<DateTime>();
+            List<String> mondayTherapyInfo = new List<String>();
+            List<String> tuesdayTherapyInfo = new List<String>();
+            List<String> wednesdayTherapyInfo = new List<String>();
+            List<String> thursdayTherapyInfo = new List<String>();
+            List<String> fridayTherapyInfo = new List<String>();
+            List<String> saturdayTherapyInfo = new List<String>();
+            List<String> sundayTherapyInfo = new List<String>();
+
+            for (var date = startOfWeek; date <= endOfWeek; date = date.AddDays(1))
+            {
+                datesCurrentWeek.Add(date);
+            }
+
+            foreach (var therapy in _loggedInPatient.MedicalRecord.getPrescriptions())
+            {
+                foreach (var currentDate in datesCurrentWeek)
+                {
+                    foreach (var therapyDate in GetTherapyDates(therapy))
+                    {
+                        if (therapyDate == currentDate)
+                        {
+                            switch (therapyDate.DayOfWeek)
+                            {
+                                case DayOfWeek.Monday:
+                                    mondayTherapyInfo.Add(therapy.medicine.Name + "-" + therapy.info);
+                                    break;
+                                case DayOfWeek.Tuesday:
+                                    tuesdayTherapyInfo.Add(therapy.medicine.Name + "-" + therapy.info);
+                                    break;
+                                case DayOfWeek.Wednesday:
+                                    wednesdayTherapyInfo.Add(therapy.medicine.Name + "-" + therapy.info);
+                                    break;
+                                case DayOfWeek.Thursday:
+                                    thursdayTherapyInfo.Add(therapy.medicine.Name + "-" + therapy.info);
+                                    break;
+                                case DayOfWeek.Friday:
+                                    fridayTherapyInfo.Add(therapy.medicine.Name + "-" + therapy.info);
+                                    break;
+                                case DayOfWeek.Saturday:
+                                    saturdayTherapyInfo.Add(therapy.medicine.Name + "-" + therapy.info);
+                                    break;
+                                case DayOfWeek.Sunday:
+                                    sundayTherapyInfo.Add(therapy.medicine.Name + "-" + therapy.info);
+                                    break;
+                            }
+                        }
+                    }
+                }
+            }
+
+            int[] numberOfTherapiesInDays = { mondayTherapyInfo.Count, tuesdayTherapyInfo.Count, wednesdayTherapyInfo.Count, thursdayTherapyInfo.Count,
+                                              fridayTherapyInfo.Count, saturdayTherapyInfo.Count, sundayTherapyInfo.Count };
+
+            fillTherapyInformation(mondayTherapyInfo, numberOfTherapiesInDays);
+            fillTherapyInformation(tuesdayTherapyInfo, numberOfTherapiesInDays);
+            fillTherapyInformation(wednesdayTherapyInfo, numberOfTherapiesInDays);
+            fillTherapyInformation(thursdayTherapyInfo, numberOfTherapiesInDays);
+            fillTherapyInformation(fridayTherapyInfo, numberOfTherapiesInDays);
+            fillTherapyInformation(saturdayTherapyInfo, numberOfTherapiesInDays);
+            fillTherapyInformation(sundayTherapyInfo, numberOfTherapiesInDays);
+
+            for (int i = 0; i <= numberOfTherapiesInDays.Max(); i++)
+            {
+                table.Rows.Add(new string[] { mondayTherapyInfo[i], tuesdayTherapyInfo[i], wednesdayTherapyInfo[i], thursdayTherapyInfo[i],
+                                              fridayTherapyInfo[i], saturdayTherapyInfo[i], sundayTherapyInfo[i] });
+            }
+
+            pdfLightTable.DataSource = table;
+            pdfLightTable.Draw(page, new PointF(0, 0));
+            doc.Save(DateTime.Now.Day + "_" + DateTime.Now.Month + "_" + DateTime.Now.Year + ".pdf");
+            doc.Close(true);
+        }
+
+        private List<DateTime> GetTherapyDates(Prescription prescription)
+        {
+            List<DateTime> allDates = new List<DateTime>();
+            for (var date = prescription.startTime; date <= prescription.endTime; date = date.AddDays(1))
+            {
+                allDates.Add(date);
+            }
+
+            return allDates;
+        }
+
+        private static void fillTherapyInformation(List<string> therapyInfo, int[] numberOfTherapiesInDays)
+        {
+            for (int i = therapyInfo.Count; i <= numberOfTherapiesInDays.Max(); i++)
+            {
+                therapyInfo.Add("");
+            }
         }
     }
 }

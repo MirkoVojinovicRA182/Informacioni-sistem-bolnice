@@ -46,6 +46,7 @@ namespace HospitalInformationSystem.Windows.PatientGUI
         }
         private void NewAppointmentButton_Click(object sender, RoutedEventArgs e)
         {
+            CheckIfPatientIsTroll();
             if (_loggedInPatient.Activity.IsTroll == false)
             {
                 ShowNewAppointmentWindow();
@@ -54,7 +55,6 @@ namespace HospitalInformationSystem.Windows.PatientGUI
             {
                 MessageBox.Show("Zakazivanje termina je onomogućeno zbog sumnjive aktivnosti na ovom nalogu.", "Zakazivanje termina", MessageBoxButton.OK, MessageBoxImage.Error);
             }
-            CheckIfPatientIsTroll();
         }
         private void CheckIfPatientIsTroll()
         {
@@ -76,9 +76,7 @@ namespace HospitalInformationSystem.Windows.PatientGUI
             foreach (var appointment in AppointmentController.getInstance().GetAppointmentsByPatient(_loggedInPatient))
             {
                 if (AppointmentWasScheduledInThePastDay(appointment))
-                {
                     numberOfAppointments++;
-                }
             }
             return numberOfAppointments;
         }
@@ -94,9 +92,7 @@ namespace HospitalInformationSystem.Windows.PatientGUI
                 if (appointment.HasBeenMoved)
                 {
                     if (AppointmentHasBeenMovedInThePastMonth(appointment))
-                    {
                         numberOfAppointments++;
-                    }
                 }
             }
             return numberOfAppointments;
@@ -130,7 +126,6 @@ namespace HospitalInformationSystem.Windows.PatientGUI
             RefreshTable();
             CheckIfPatientIsTroll();
         }
-
         private void NotificationButton_Click(object sender, RoutedEventArgs e)
         {
             NotificationsWindow window = new NotificationsWindow(_loggedInPatient);
@@ -145,7 +140,6 @@ namespace HospitalInformationSystem.Windows.PatientGUI
             AppointmentDataGrid.ItemsSource = null;
             AppointmentDataGrid.ItemsSource = _appointmentList;
         }
-
         private void RateDoctorButton_Click(object sender, RoutedEventArgs e)
         {
             if (AppointmentReviewValidation())
@@ -157,7 +151,6 @@ namespace HospitalInformationSystem.Windows.PatientGUI
                 MessageBox.Show("Niste izabrali pregled koji se završio.", "Greška", MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
-
         private void RateHospitalButton_Click(object sender, RoutedEventArgs e)
         {
             if (HospitalReviewValidation())
@@ -179,9 +172,7 @@ namespace HospitalInformationSystem.Windows.PatientGUI
             foreach (var appointment in AppointmentController.getInstance().GetAppointmentsByPatient(_loggedInPatient))
             {
                 if (AppointmentIsFinished(appointment))
-                {
                     _loggedInPatient.Activity.NumberOfFinishedAppointmentsSinceReview++;
-                }
             }
         }
         private static bool AppointmentIsFinished(Appointment appointment)
@@ -207,8 +198,15 @@ namespace HospitalInformationSystem.Windows.PatientGUI
         }
         private void ShowDoctorReviewWindow()
         {
-            ReviewDoctorWindow window = new ReviewDoctorWindow((Appointment)AppointmentDataGrid.SelectedItem, _loggedInPatient);
-            window.ShowDialog();
+            if (((Appointment)AppointmentDataGrid.SelectedItem).HasBeenReviewed == false) 
+            {
+                ReviewDoctorWindow window = new ReviewDoctorWindow((Appointment)AppointmentDataGrid.SelectedItem, _loggedInPatient);
+                window.ShowDialog();
+            }
+            else
+            {
+                MessageBox.Show("Već ste popunili anketu za ovaj pregled.", "Greška", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
         }
         private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
         {
@@ -218,15 +216,52 @@ namespace HospitalInformationSystem.Windows.PatientGUI
             PatientController.getInstance().SaveInFile();
             _instance = null;
         }
+
+        private void Filter()
+        {
+            foreach (var appointment in _appointmentList.ToList())
+            {
+                if (doctorTextBox.Text != "")
+                {
+                    if (!doctorTextBox.Text.Contains(appointment.doctor.Name) && !doctorTextBox.Text.Contains(appointment.doctor.Surname))
+                        _appointmentList.Remove(appointment);
+                }
+                if (datePicker.SelectedDate != null)
+                {
+                    if (!(((DateTime)datePicker.SelectedDate).Date == (DateTime)appointment.StartTime.Date))
+                        _appointmentList.Remove(appointment);
+                }
+                if (roomTextBox.Text != "")
+                {
+                    if (!(Int32.Parse(roomTextBox.Text) == appointment.room.Id))
+                        _appointmentList.Remove(appointment);
+                }
+                AppointmentDataGrid.ItemsSource = null;
+                AppointmentDataGrid.ItemsSource = _appointmentList;
+            }
+        }
+
+        private void SearchButton_Click(object sender, RoutedEventArgs e)
+        {
+            searchGroup.Visibility = Visibility.Visible;
+        }
+
+        private void FinButton_Click(object sender, RoutedEventArgs e)
+        {
+            Filter();
+        }
+
+        private void ExitSearchButton_Click(object sender, RoutedEventArgs e)
+        {
+            searchGroup.Visibility = Visibility.Hidden;
+        }
         private void HomeButton_Click(object sender, RoutedEventArgs e)
         {
-            CheckIfPatientIsTroll();
             PatientMainWindow.GetInstance(_loggedInPatient).Show();
             this.Close();
         }
         private void BackButton_Click(object sender, RoutedEventArgs e)
         {
-            CheckIfPatientIsTroll();
             PatientMainWindow.GetInstance(_loggedInPatient).Show();
             this.Close();
         }

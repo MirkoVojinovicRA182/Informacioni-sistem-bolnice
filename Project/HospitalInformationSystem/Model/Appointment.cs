@@ -137,16 +137,17 @@ namespace Model
         {
             get; set;
         }
-
         public DateTime SchedulingTime
         {
             get; set;
         }
-
         public DateTime MovingTime
         {
             get; set;
         }
-
+        public bool HasBeenReviewed
+        {
+            get; set;
+        }
     }
 }

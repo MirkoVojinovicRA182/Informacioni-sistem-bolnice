@@ -97,12 +97,6 @@ namespace HospitalInformationSystem.Controller
         {
             patientService.AddHospitalTreatment(patientToSendOnHospitalTreatmant, hospitalTreatment);
         }
-
-        public void EditHospitalTreatment(Patient patientToEditHospitalTreatment, DateTime startTime, DateTime endTime, Room roomForTreatment)
-        {
-            patientService.EditHospitalTreatment(patientToEditHospitalTreatment, startTime, endTime, roomForTreatment);
-        }
-
         public void AddAllergenToPatient(Patient patientToAddAllergen, string allergen)
         {
             patientService.AddAllergenToPatient(patientToAddAllergen, allergen);

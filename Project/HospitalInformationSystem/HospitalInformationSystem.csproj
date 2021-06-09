@@ -114,7 +114,9 @@
     <Compile Include="DTO\EquipmentDTO.cs" />
     <Compile Include="DTO\RoomDTO.cs" />
     <Compile Include="Model\Feedback.cs" />
+    <Compile Include="Model\HospitalResidenceParticipants.cs" />
     <Compile Include="Model\HospitalTreatment.cs" />
+    <Compile Include="Model\IHospitalResidence.cs" />
     <Compile Include="Model\Medicine.cs" />
     <Compile Include="Model\MedicineIngredient.cs" />
     <Compile Include="Model\Notification.cs" />
@@ -174,6 +176,9 @@
     </Compile>
     <Compile Include="Windows\DoctorGUI\AnamnesisWindow.xaml.cs">
       <DependentUpon>AnamnesisWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Windows\DoctorGUI\CreateReportWindow.xaml.cs">
+      <DependentUpon>CreateReportWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="Windows\DoctorGUI\DoctorAddNewAppointmentWindow.xaml.cs">
       <DependentUpon>DoctorAddNewAppointmentWindow.xaml</DependentUpon>
@@ -406,6 +411,10 @@
     <Page Include="Windows\DoctorGUI\AnamnesisWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Windows\DoctorGUI\CreateReportWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Windows\DoctorGUI\DoctorAddNewAppointmentWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
@@ -719,6 +728,60 @@
     <Resource Include="Windows\DoctorGUI\hospitalTreatmentIcon.png" />
     <Resource Include="Images\Secretary\allergens.png" />
     <Resource Include="Images\Secretary\announcements.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Windows\DoctorGUI\medical-background.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Windows\DoctorGUI\patientsIcon.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Windows\DoctorGUI\medicinesIcon.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Windows\DoctorGUI\calendarIcon.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Windows\DoctorGUI\calendarIcon.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Windows\DoctorGUI\logoutIcon.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Windows\DoctorGUI\hospitalBackground.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Windows\DoctorGUI\hospitalBackground2.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Windows\DoctorGUI\hospitalBckg.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Windows\DoctorGUI\bg1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Windows\DoctorGUI\anamnesisIcon.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Windows\DoctorGUI\anamnesisIcon.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Windows\DoctorGUI\anamnesisPreviewIcon.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Windows\DoctorGUI\prescriptionIcon.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Windows\DoctorGUI\addPrescritptionIcon.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Windows\DoctorGUI\prescriptionPreviewIcon.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Windows\DoctorGUI\allergensIcon.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Windows\DoctorGUI\referralLetterIcon.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

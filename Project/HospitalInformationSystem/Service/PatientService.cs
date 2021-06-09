@@ -118,14 +118,6 @@ namespace HospitalInformationSystem.Service
         {
             patientToSendOnHospitalTreatmant.hospitalTreatment = hospitalTreatment;
         }
-
-        public void EditHospitalTreatment(Patient patientToEditHospitalTreatment, DateTime startTime, DateTime endTime, Room roomForTreatment)
-        {
-            patientToEditHospitalTreatment.hospitalTreatment.treatmentStartDate = startTime;
-            patientToEditHospitalTreatment.hospitalTreatment.treatmentEndDate = endTime;
-            patientToEditHospitalTreatment.hospitalTreatment.treatmentRoom = roomForTreatment;
-        }
-
         public void AddAllergenToPatient(Patient patientToAddAllergen, string allergen)
         {
             if (patientToAddAllergen.Allergens == null)
@@ -210,7 +202,7 @@ namespace HospitalInformationSystem.Service
             {
                 foreach (Appointment appointment in doctor.GetAppointment())
                 {
-                    if (appointment.StartTime == time && appointment.room == room)
+                    if (appointment.StartTime == time && appointment.Room == room)
                     {
                         return false;
                     }

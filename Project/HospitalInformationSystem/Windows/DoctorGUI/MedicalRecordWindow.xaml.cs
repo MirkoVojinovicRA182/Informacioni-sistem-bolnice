@@ -1,4 +1,5 @@
 ﻿using System.Windows;
+using System.Windows.Input;
 using Model;
 using static HospitalInformationSystem.Utility.Constants;
 
@@ -33,18 +34,27 @@ namespace HospitalInformationSystem.Windows.DoctorGUI
             phoneNumberLabel.Content = _patientToShowMedicalRecord.PhoneNumber;
             emailLabel.Content = _patientToShowMedicalRecord.Email;
         }
-        private void addAnamnesisButton_Click(object sender, RoutedEventArgs e) => 
-            AnamnesisWindow.GetInstance(_patientToShowMedicalRecord.MedicalRecord).ShowDialog();
-        private void anamnesisPreviewButton_Click(object sender, RoutedEventArgs e) => 
-            AmnesisPreviewWindow.GetInstance(_patientToShowMedicalRecord).ShowDialog();
-        private void addPrescriptionButton_Click(object sender, RoutedEventArgs e) => 
-            AddPrescriptionWindow.GetInstance(_patientToShowMedicalRecord).ShowDialog();
-        private void showPrescriptionButton_Click(object sender, RoutedEventArgs e) => 
-            DoctorShowPrescription.GetInstance(_patientToShowMedicalRecord.MedicalRecord).ShowDialog();
-        private void allergensButton_Click(object sender, RoutedEventArgs e) => 
-            DoctorAllergensPreviewWindow.GetInstance(_patientToShowMedicalRecord).ShowDialog();
-        private void referralLetterButton_Click(object sender, RoutedEventArgs e) => 
-            ReferralLetterWindow.GetInstance(_patientToShowMedicalRecord).ShowDialog();
+        private void CheckKeyPress()
+        {
+            if ((Keyboard.IsKeyDown(Key.LeftCtrl) || Keyboard.IsKeyDown(Key.RightCtrl)) && Keyboard.IsKeyDown(Key.A))
+                AnamnesisWindow.GetInstance(_patientToShowMedicalRecord.MedicalRecord).ShowDialog();
+            else if ((Keyboard.IsKeyDown(Key.LeftCtrl) || Keyboard.IsKeyDown(Key.RightCtrl)) && Keyboard.IsKeyDown(Key.P))
+                AmnesisPreviewWindow.GetInstance(_patientToShowMedicalRecord).ShowDialog();
+            else if ((Keyboard.IsKeyDown(Key.LeftCtrl) || Keyboard.IsKeyDown(Key.RightCtrl)) && Keyboard.IsKeyDown(Key.R))
+                AddPrescriptionWindow.GetInstance(_patientToShowMedicalRecord).ShowDialog();
+            else if ((Keyboard.IsKeyDown(Key.LeftCtrl) || Keyboard.IsKeyDown(Key.RightCtrl)) && Keyboard.IsKeyDown(Key.W))
+                DoctorShowPrescription.GetInstance(_patientToShowMedicalRecord.MedicalRecord).ShowDialog();
+            else if ((Keyboard.IsKeyDown(Key.LeftCtrl) || Keyboard.IsKeyDown(Key.RightCtrl)) && Keyboard.IsKeyDown(Key.T))
+                DoctorAllergensPreviewWindow.GetInstance(_patientToShowMedicalRecord).ShowDialog();
+            else if ((Keyboard.IsKeyDown(Key.LeftCtrl) || Keyboard.IsKeyDown(Key.RightCtrl)) && Keyboard.IsKeyDown(Key.U))
+                ReferralLetterWindow.GetInstance(_patientToShowMedicalRecord).ShowDialog();
+            else if ((Keyboard.IsKeyDown(Key.LeftCtrl) || Keyboard.IsKeyDown(Key.RightCtrl)) && Keyboard.IsKeyDown(Key.Q))
+                this.Close();
+        }
         private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e) => instance = null;
+        private void Window_KeyDown(object sender, KeyEventArgs e)
+        {
+            CheckKeyPress();
+        }
     }
 }

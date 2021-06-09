@@ -114,7 +114,7 @@ namespace Model
             if (!this.appointment.Contains(newAppointment))
             {
                 this.appointment.Add(newAppointment);
-                newAppointment.SetPatient(this);
+                newAppointment.Patient = this;
             }
         }
 
@@ -127,7 +127,7 @@ namespace Model
                 if (this.appointment.Contains(oldAppointment))
                 {
                     this.appointment.Remove(oldAppointment);
-                    oldAppointment.SetPatient((Patient)null);
+                    oldAppointment.Patient = null;
                 }
         }
 
@@ -141,7 +141,7 @@ namespace Model
                     tmpAppointment.Add(oldAppointment);
                 appointment.Clear();
                 foreach (Appointment oldAppointment in tmpAppointment)
-                    oldAppointment.SetPatient((Patient)null);
+                    oldAppointment.Patient = null;
                 tmpAppointment.Clear();
             }
         }

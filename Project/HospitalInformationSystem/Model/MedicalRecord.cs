@@ -23,6 +23,7 @@ namespace Model
         {
             AllergensList = new ObservableCollection<Allergen>();
             prescriptionList = new List<Prescription>();
+            anamnesisList = new List<Anamnesis>();
             foreach (Allergen allergen in PatientController.getInstance().getAllergens())
             {
                 AllergensList.Add(new Allergen(allergen));
@@ -48,6 +49,8 @@ namespace Model
 
         public void addAnamnesis(Anamnesis anamnesis)
         {
+            if (anamnesisList == null)
+                anamnesisList = new List<Anamnesis>();
             anamnesisList.Add(anamnesis);
         }
 

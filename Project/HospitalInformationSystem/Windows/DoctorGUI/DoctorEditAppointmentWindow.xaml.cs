@@ -36,7 +36,7 @@ namespace HospitalInformationSystem.Windows.DoctorGUI
         {
             patientListBox.ItemsSource = PatientController.getInstance().getPatient();
             patientListBox.SelectedIndex = 10;
-            patientListBox.SelectedItem = _appointmentToEdit.GetPatient();
+            patientListBox.SelectedItem = _appointmentToEdit.Patient;
         }
         private bool CheckData()
         {
@@ -61,17 +61,17 @@ namespace HospitalInformationSystem.Windows.DoctorGUI
         {
             if ((Keyboard.IsKeyDown(Key.LeftCtrl) || Keyboard.IsKeyDown(Key.RightCtrl)) && Keyboard.IsKeyDown(Key.E))
             {
-                if (CheckData() && CheckRoomState(_appointmentToEdit.room))
+                if (CheckData() && CheckRoomState(_appointmentToEdit.Room))
                 {
                     DateTime date = DateTime.ParseExact(dateTextBox.Text + " " + timeTextBox.Text, DATE_TIME_TEMPLATE, System.Globalization.CultureInfo.InvariantCulture);
                     if(patientListBox.SelectedIndex < 0)
-                        AppointmentController.getInstance().ChangeAppointment(
-                            _appointmentToEdit, date, _appointmentToEdit.Type, _appointmentToEdit.room, 
-                            _appointmentToEdit.patient, _appointmentToEdit.doctor);
+                        AppointmentController.getInstance().ChangeHospitalResidence(
+                            _appointmentToEdit, new Appointment(date, _appointmentToEdit.Type, _appointmentToEdit.Room, 
+                            _appointmentToEdit.Patient, _appointmentToEdit.Doctor));
                     else
-                        AppointmentController.getInstance().ChangeAppointment(
-                            _appointmentToEdit, date, _appointmentToEdit.Type, _appointmentToEdit.room, 
-                            (Patient)patientListBox.SelectedItem, _appointmentToEdit.doctor);
+                        AppointmentController.getInstance().ChangeHospitalResidence(
+                            _appointmentToEdit, new Appointment(date, _appointmentToEdit.Type, _appointmentToEdit.Room, 
+                            (Patient)patientListBox.SelectedItem, _appointmentToEdit.Doctor));
                     MessageBox.Show("Informacije o terminu su sada izmenjene.", "Izmena informacija", MessageBoxButton.OK, MessageBoxImage.Information);
                 }
             }

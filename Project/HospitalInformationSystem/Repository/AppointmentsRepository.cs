@@ -63,8 +63,8 @@ namespace HospitalInformationSystem.Repository
         public void AddAppointmentToAppointmentList(Appointment newAppointment)
         {
             _allAppointments.Add(newAppointment);
-            newAppointment.doctor.AddAppointment(newAppointment);
-            newAppointment.patient.AddAppointment(newAppointment);
+            newAppointment.Doctor.AddAppointment(newAppointment);
+            newAppointment.Patient.AddAppointment(newAppointment);
         }
         public List<Appointment> GetAppointments()
         {
@@ -85,8 +85,8 @@ namespace HospitalInformationSystem.Repository
             if (_allAppointments != null)
                 if (_allAppointments.Contains(oldAppointment))
                 {
-                    oldAppointment.doctor.RemoveAppointment(oldAppointment);
-                    oldAppointment.patient.RemoveAppointment(oldAppointment);
+                    oldAppointment.Doctor.RemoveAppointment(oldAppointment);
+                    oldAppointment.Patient.RemoveAppointment(oldAppointment);
                     this._allAppointments.Remove(oldAppointment);
                 }
         }
@@ -96,7 +96,7 @@ namespace HospitalInformationSystem.Repository
 
             foreach (var appointment in _allAppointments)
             {
-                if (appointment.patient.Jmbg == patient.Jmbg)
+                if (appointment.Patient.Jmbg == patient.Jmbg)
                     list.Add(appointment);
             }
 
@@ -106,9 +106,9 @@ namespace HospitalInformationSystem.Repository
         {
             List<Appointment> list = new List<Appointment>();
 
-            foreach (var appointment in _allAppointments)
+            foreach (Appointment appointment in _allAppointments)
             {
-                if (appointment.doctor.Name == doctor.Name)
+                if (appointment.Doctor.Name == doctor.Name)
                     list.Add(appointment);
             }
 
@@ -121,7 +121,7 @@ namespace HospitalInformationSystem.Repository
 
             foreach (Appointment appointment in _allAppointments)
             {
-                if (Object.Equals(appointment.room, room))
+                if (Object.Equals(appointment.Room, room))
                     list.Add(appointment);
             }
 

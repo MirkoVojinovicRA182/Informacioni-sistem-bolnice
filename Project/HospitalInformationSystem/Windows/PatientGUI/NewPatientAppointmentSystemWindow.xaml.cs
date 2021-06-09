@@ -82,7 +82,7 @@ namespace HospitalInformationSystem.Windows.PatientGUI
         }
         private Appointment FormAppointment(Appointment appointment)
         {
-            Appointment app = new Appointment(appointment.StartTime, appointment.Type, appointment.room, appointment.patient, appointment.doctor);
+            Appointment app = new Appointment(appointment.StartTime, appointment.Type, appointment.Room, appointment.Patient, appointment.Doctor);
             app.SchedulingTime = DateTime.Now;
             return app;
         }
@@ -169,7 +169,7 @@ namespace HospitalInformationSystem.Windows.PatientGUI
             {
                 for (int j = 0; j < existingAppointments.Count; j++)
                 {
-                    if (existingAppointments[j].doctor == recommendedAppointments[i].doctor & existingAppointments[j].StartTime == recommendedAppointments[i].StartTime)
+                    if (existingAppointments[j].Doctor == recommendedAppointments[i].Doctor & existingAppointments[j].StartTime == recommendedAppointments[i].StartTime)
                     {
                         recommendedAppointments.RemoveAt(i);
                     }

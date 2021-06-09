@@ -44,12 +44,6 @@
     <Reference Include="Syncfusion.Compression.Base, Version=19.1460.0.67, Culture=neutral, PublicKeyToken=3d67ed1f87d44c89, processorArchitecture=MSIL">
       <HintPath>packages\Syncfusion.Compression.Base.19.1.0.67\lib\net46\Syncfusion.Compression.Base.dll</HintPath>
     </Reference>
-    <Reference Include="Syncfusion.Compression.Portable, Version=19.1200.0.67, Culture=neutral, PublicKeyToken=3d67ed1f87d44c89, processorArchitecture=MSIL">
-      <HintPath>packages\Syncfusion.Compression.Net.Core.19.1.0.67\lib\netstandard2.0\Syncfusion.Compression.Portable.dll</HintPath>
-    </Reference>
-    <Reference Include="Syncfusion.Core.XForms, Version=19.1451.0.67, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>packages\Syncfusion.Xamarin.Core.19.1.0.67\lib\netstandard2.0\Syncfusion.Core.XForms.dll</HintPath>
-    </Reference>
     <Reference Include="Syncfusion.DocIO.Base, Version=19.1460.0.67, Culture=neutral, PublicKeyToken=3d67ed1f87d44c89, processorArchitecture=MSIL">
       <HintPath>packages\Syncfusion.DocIO.Wpf.19.1.0.67\lib\net46\Syncfusion.DocIO.Base.dll</HintPath>
     </Reference>
@@ -64,9 +58,6 @@
     </Reference>
     <Reference Include="Syncfusion.Pdf.Base, Version=19.1460.0.67, Culture=neutral, PublicKeyToken=3d67ed1f87d44c89, processorArchitecture=MSIL">
       <HintPath>packages\Syncfusion.Pdf.Wpf.19.1.0.67\lib\net46\Syncfusion.Pdf.Base.dll</HintPath>
-    </Reference>
-    <Reference Include="Syncfusion.Pdf.Portable, Version=19.1200.0.67, Culture=neutral, PublicKeyToken=3d67ed1f87d44c89, processorArchitecture=MSIL">
-      <HintPath>packages\Syncfusion.Pdf.Net.Core.19.1.0.67\lib\netstandard2.0\Syncfusion.Pdf.Portable.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />

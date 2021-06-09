@@ -139,7 +139,7 @@ namespace HospitalInformationSystem.Windows
         {
             EquipmentController.getInstance().loadFromFile();
             RoomController.GetInstance().LoadRoomsFromFile();
-            MedicineController.GetInstance().LoadFromFile();
+            MedicineController.GetInstance().LoadAll();
             DoctorController.getInstance().LoadFromFile();
             NotificationController.GetInstance().LoadFromFile();
             PatientController.getInstance().loadFromFile();
@@ -150,7 +150,7 @@ namespace HospitalInformationSystem.Windows
         {
             EquipmentController.getInstance().saveInFile();
             RoomController.GetInstance().SaveRoomsInFile();
-            MedicineController.GetInstance().SaveInFile();
+            MedicineController.GetInstance().Serialization();
             DoctorController.getInstance().SaveInFlie();
             NotificationController.GetInstance().SaveInFile();
             PatientController.getInstance().SaveInFile();

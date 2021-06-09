@@ -19,13 +19,13 @@
         <TextBox x:Name="purposeTextBoxt" HorizontalAlignment="Left" Height="23" TextWrapping="Wrap" VerticalAlignment="Top" Width="178" Margin="152,187,0,0" FontSize="15"/>
         <TextBox x:Name="useTextBox" HorizontalAlignment="Left" Height="23" TextWrapping="Wrap" VerticalAlignment="Top" Width="178" Margin="152,244,0,0" FontSize="15"/>
         <ComboBox x:Name="replacementMedicineComboBox" HorizontalAlignment="Left" VerticalAlignment="Top" Width="178" Margin="152,300,0,0" FontSize="15">
-            <ComboBox.ItemTemplate>
+            <!--<ComboBox.ItemTemplate>
                 <DataTemplate>
                     <TextBlock>
                     <Run Text="{Binding Name}" />
                     </TextBlock>
                 </DataTemplate>
-            </ComboBox.ItemTemplate>
+            </ComboBox.ItemTemplate> -->
         </ComboBox>
         <Label Content="Sastojci:" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="29,403,0,0" FontSize="15"/>
         <ListBox x:Name="ingredientsListBox" HorizontalAlignment="Left" Height="76" VerticalAlignment="Top" Width="143" Margin="152,381,0,0">

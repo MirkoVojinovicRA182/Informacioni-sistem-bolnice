@@ -5,7 +5,7 @@ namespace HospitalInformationSystem.Model
     [Serializable]
     public class Medicine
     {
-        public Medicine(int id, string name, TypeOfMedicine type, string purpose, string wayOfUse, Medicine replacementMedicine, List<MedicineIngredient> medicineIngredients)
+        public Medicine(int id, string name, TypeOfMedicine type, string purpose, string wayOfUse, String replacementMedicine, List<MedicineIngredient> medicineIngredients)
         {
             Id = id;
             Name = name;
@@ -60,7 +60,7 @@ namespace HospitalInformationSystem.Model
         {
             get; set;
         }
-        public Medicine ReplacementMedicine
+        public String ReplacementMedicine
         {
             get; set;
         }
@@ -70,7 +70,7 @@ namespace HospitalInformationSystem.Model
             get
             {
                 if (ReplacementMedicine != null)
-                    return ReplacementMedicine.Name;
+                    return ReplacementMedicine;
                 return "nema";
             }
             set { }

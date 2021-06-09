@@ -13,6 +13,7 @@
         <Menu DockPanel.Dock="Top">
             <MenuItem Header="_Fajl">
                 <MenuItem Name="appEvaluation"  Header="Ocenjivanje aplikacije" InputGestureText="CTRL+O" Click="appEvaluation_Click"/>
+                <MenuItem Name="reportMenuItem"  Header="Kreiraj izveštaj" InputGestureText="CTRL+O" Click="reportMenuItem_Click"/>
                 <Separator/>
                 <MenuItem Header="_Odjavi se" InputGestureText="CTRL+L"/>
                 <MenuItem x:Name="exitMenuItem" Header="_Izađi" Click="exitMenuItem_Click" InputGestureText="CTRL+C"/>

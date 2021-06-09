@@ -35,7 +35,16 @@ namespace HospitalInformationSystem.Windows.ManagerGUI
         private void LoadReplacementMedicinesComboBox()
         {
             replacementMedicineComboBox.ItemsSource = null;
-            replacementMedicineComboBox.ItemsSource = new ObservableCollection<Medicine>(MedicineController.GetInstance().GetAllMedicines());
+            replacementMedicineComboBox.ItemsSource = Try();
+        }
+        private ObservableCollection<string> Try()
+        {
+            ObservableCollection<string> replacementMedicines = new ObservableCollection<string>();
+            foreach(Medicine medicine in MedicineController.GetInstance().GetAllMedicines())
+            {
+                replacementMedicines.Add(medicine.Name);
+            }
+            return replacementMedicines;
         }
         private void confirmButton_Click(object sender, RoutedEventArgs e)
         {
@@ -58,11 +67,11 @@ namespace HospitalInformationSystem.Windows.ManagerGUI
             else
                 return TypeOfMedicine.Pill;
         }
-        private Medicine LoadReplacementMedicine()
+        private string LoadReplacementMedicine()
         {
             if (replacementMedicineComboBox.SelectedItem != null)
-                return (Medicine)replacementMedicineComboBox.SelectedItem;
-            return null;
+                return (string)replacementMedicineComboBox.SelectedItem;
+            return "";
         }
         private void addNewIngredientButton_Click(object sender, RoutedEventArgs e)
         {

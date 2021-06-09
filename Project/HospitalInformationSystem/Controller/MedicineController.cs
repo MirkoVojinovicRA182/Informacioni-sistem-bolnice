@@ -2,11 +2,13 @@
 using HospitalInformationSystem.Service;
 using Model;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
+
 namespace HospitalInformationSystem.Controller
 {
     class MedicineController
     {
-        private MedicineService medicineService;
+        private MedicineService _medicineService;
         private static MedicineController instance = null;
         public static MedicineController GetInstance()
         {
@@ -16,51 +18,51 @@ namespace HospitalInformationSystem.Controller
         }
         private MedicineController()
         {
-            medicineService = new MedicineService();
+            _medicineService = new MedicineService();
         }
 
         public void AddMedicine(Medicine newMedicine)
         {
-            medicineService.AddMedicine(newMedicine);
+            _medicineService.AddMedicine(newMedicine);
             PatientController.getInstance().addAllergen(new Allergen(newMedicine.Name));
             foreach(MedicineIngredient me in newMedicine.Ingredients)
                 PatientController.getInstance().addAllergen(new Allergen(me.Name));
         }
-        public List<Medicine> GetAllMedicines()
-        {
-            return medicineService.GetAllMedicines();
-        }
         public void DeleteMedicine(Medicine medicineForDeleting)
         {
-            medicineService.DeleteMedicine(medicineForDeleting);
+            _medicineService.DeleteMedicine(medicineForDeleting);
         }
-        public void SetMedicineList(List<Medicine> newMedicineList)
+        public ObservableCollection<Medicine> GetAllMedicines()
+        {
+            return _medicineService.GetAllMedicines();
+        }
+        /*public void SetMedicineList(List<Medicine> newMedicineList)
         {
             medicineService.SetMedicineList(newMedicineList);
-        }
-        public void SaveInFile()
+        }*/
+        public void Serialization()
         {
-            medicineService.SaveInFile();
+            _medicineService.Serialization();
         }
-        public void LoadFromFile()
+        public ObservableCollection<object> LoadAll()
         {
-            medicineService.LoadFromFile();
+            return _medicineService.LoadAll();
         }
         public Medicine FindMedicineById(int id)
         {
-            return  medicineService.FindMedicineById(id);
+            return _medicineService.FindMedicineById(id);
         }
-        public void DeleteReplacementMedicine(Medicine replacementMedicine)
+        public void DeleteReplacementMedicine(string replacementMedicine)
         {
-            medicineService.DeleteReplacementMedicine(replacementMedicine);
+            _medicineService.DeleteReplacementMedicine(replacementMedicine);
         }
         public bool MedicineCommentExists()
         {
-            return medicineService.MedicineCommentExists();
+            return _medicineService.MedicineCommentExists();
         }
-        public List<Medicine> GetAllMedicinesWithComment()
+        public ObservableCollection<Medicine> GetAllMedicinesWithComment()
         {
-            return medicineService.GetAllMedicinesWithComment();
+            return _medicineService.GetAllMedicinesWithComment();
         }
     }
 }

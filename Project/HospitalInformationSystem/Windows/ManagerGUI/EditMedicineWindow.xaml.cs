@@ -42,15 +42,16 @@ namespace HospitalInformationSystem.Windows.ManagerGUI
         private void LoadReplacementMedicinesComboBox()
         {
             replacementMedicineComboBox.ItemsSource = null;
-            replacementMedicineComboBox.ItemsSource = CreateReplacementMedicineList();
+            replacementMedicineComboBox.ItemsSource = Try();
         }
-        private ObservableCollection<Medicine> CreateReplacementMedicineList()
+        private ObservableCollection<string> Try()
         {
-            ObservableCollection<Medicine> replacementMedicinesList = new ObservableCollection<Medicine>(MedicineController.GetInstance().GetAllMedicines());
-            replacementMedicinesList.Remove(medicineForEdit);
-            if (medicineForEdit.ReplacementMedicine != null)
-                replacementMedicinesList.Remove(medicineForEdit.ReplacementMedicine);
-            return replacementMedicinesList;
+            ObservableCollection<string> replacementMedicines = new ObservableCollection<string>();
+            foreach (Medicine medicine in MedicineController.GetInstance().GetAllMedicines())
+            {
+                replacementMedicines.Add(medicine.Name);
+            }
+            return replacementMedicines;
         }
         private void LoadIngredientsListBox()
         {
@@ -114,10 +115,10 @@ namespace HospitalInformationSystem.Windows.ManagerGUI
             else
                 return TypeOfMedicine.Pill;
         }
-        private Medicine LoadReplacementMedicine()
+        private string LoadReplacementMedicine()
         {
             if (replacementMedicineComboBox.SelectedItem != null)
-                return (Medicine)replacementMedicineComboBox.SelectedItem;
+                return (string)replacementMedicineComboBox.SelectedItem;
             return medicineForEdit.ReplacementMedicine;
         }
         private bool CheckControlsInputCorrection()

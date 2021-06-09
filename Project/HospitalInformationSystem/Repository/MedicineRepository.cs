@@ -1,43 +1,51 @@
 ﻿using HospitalInformationSystem.Model;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.IO;
 using System.Runtime.Serialization;
 using System.Runtime.Serialization.Formatters.Binary;
 namespace HospitalInformationSystem.Repository
 {
-    public class MedicineRepository : IRepository
+    public class MedicineRepository : IFactory, IFindEntities, IDeleteEntity, IAddEntity
     {
-        List<Medicine> _medicineList;
+        public static ObservableCollection<Medicine> _medicineList;
         public MedicineRepository()
         {
-            _medicineList = new List<Medicine>();
+            _medicineList = new ObservableCollection<Medicine>();
         }
-        public void loadFromFile()
+        public static ObservableCollection<Medicine> GetAllMedicinesWithComment()
         {
-            if (File.Exists("Medicine.dat"))
+            ObservableCollection<Medicine> medicinesWithComment = new ObservableCollection<Medicine>();
+            foreach (Medicine medicine in _medicineList)
             {
-                FileStream fs = new FileStream("Medicine.dat", FileMode.Open);
-                try
-                {
-                    BinaryFormatter formatter = new BinaryFormatter();
-                    SetMedicineList((List<Medicine>)formatter.Deserialize(fs));
-                }
-                catch (SerializationException e)
-                {
-                    throw;
-                }
-                finally
-                {
-                    fs.Close();
-                }
+                if (medicine.Comment != null)
+                    medicinesWithComment.Add(medicine);
             }
+            return medicinesWithComment;
+        }
+        public object FindById(int id)
+        {
+            foreach (Medicine med in _medicineList)
+            {
+                if (med.Id == id)
+                    return med;
+            }
+            return null;
+        }
+        public ObservableCollection<object> GetAllEntities()
+        {
+            return new ObservableCollection<object> (_medicineList);
         }
 
-        public void saveInFile()
+        public void PermanentlyDelete(object entity)
+        {
+            _medicineList.Remove((Medicine)entity);
+        }
+
+        public void Serialization()
         {
             FileStream fs = new FileStream("Medicine.dat", FileMode.Create);
-
             BinaryFormatter formatter = new BinaryFormatter();
             try
             {
@@ -53,26 +61,31 @@ namespace HospitalInformationSystem.Repository
                 fs.Close();
             }
         }
-        public List<Medicine> GetAllMedicines()
+
+        public ObservableCollection<object> LoadAll()
         {
-            return _medicineList;
-        }
-        public void SetMedicineList(List<Medicine> newMedicineList)
-        {
-            _medicineList.Clear();
-            foreach (Medicine newMedicine in newMedicineList)
-                _medicineList.Add(newMedicine);
-        }
-        public Medicine FindMedicineById(int id)
-        {
-            foreach (Medicine med in _medicineList)
+            if (File.Exists("Medicine.dat"))
             {
-                if (med.Id == id)
-                    return med;
+                FileStream fs = new FileStream("Medicine.dat", FileMode.Open);
+                try
+                {
+                    BinaryFormatter formatter = new BinaryFormatter();
+                    _medicineList.Clear();
+                    foreach (Medicine newMedicine in (ObservableCollection<Medicine>)formatter.Deserialize(fs))
+                        _medicineList.Add(newMedicine);
+                }
+                catch (SerializationException e)
+                {
+                    throw;
+                }
+                finally
+                {
+                    fs.Close();
+                }
             }
-            return null;
+            return new ObservableCollection<object>(_medicineList);
         }
-        public bool MedicineCommentExists()
+        public bool SpecificEntityAttributeExists()
         {
             foreach (Medicine medicine in _medicineList)
             {
@@ -81,23 +94,20 @@ namespace HospitalInformationSystem.Repository
             }
             return false;
         }
-        public List<Medicine> GetAllMedicinesWithComment()
+        public ObservableCollection<object> GetEntitiesByComplexCondition()
         {
-            List<Medicine> medicinesWithComment = new List<Medicine>();
+            ObservableCollection<Medicine> medicinesWithComment = new ObservableCollection<Medicine>();
             foreach (Medicine medicine in _medicineList)
             {
                 if (medicine.Comment != null)
                     medicinesWithComment.Add(medicine);
             }
-            return medicinesWithComment;
+            return new ObservableCollection<object>(medicinesWithComment);
         }
-        public void AddMedicine(Medicine newMedicine)
+
+        public void AddNew(object entity)
         {
-            _medicineList.Add(newMedicine);
-        }
-        public void DeleteMedicine(Medicine medicineForDeleting)
-        {
-            _medicineList.Remove(medicineForDeleting);
+            _medicineList.Add((Medicine)entity);
         }
     }
 }

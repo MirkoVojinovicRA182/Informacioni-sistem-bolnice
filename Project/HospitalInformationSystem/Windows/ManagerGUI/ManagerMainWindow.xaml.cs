@@ -3,6 +3,8 @@ using Model;
 using System.Windows;
 using System.Windows.Controls;
 using HospitalInformationSystem.Model;
+using System.Data;
+
 namespace HospitalInformationSystem.Windows.ManagerGUI
 {
     /// <summary>
@@ -138,7 +140,7 @@ namespace HospitalInformationSystem.Windows.ManagerGUI
             if (medicineTableUserControl.medicineTable.SelectedItem != null)
             {
                 MedicineController.GetInstance().DeleteMedicine((Medicine)medicineTableUserControl.medicineTable.SelectedItem);
-                MedicineController.GetInstance().DeleteReplacementMedicine((Medicine)medicineTableUserControl.medicineTable.SelectedItem);
+                MedicineController.GetInstance().DeleteReplacementMedicine(((Medicine)medicineTableUserControl.medicineTable.SelectedItem).ReplacementMedicine);
                 medicineTableUserControl.RefreshTable();
                 MessageBox.Show("Izabrani lek je sada obrisan iz sistema.", "Brisanje leka", MessageBoxButton.OK, MessageBoxImage.Information);
             }
@@ -166,6 +168,11 @@ namespace HospitalInformationSystem.Windows.ManagerGUI
         private void appEvaluation_Click(object sender, RoutedEventArgs e)
         {
             ApplicationEvalutaionWindow.GetInstance().Show();
+        }
+
+        private void reportMenuItem_Click(object sender, RoutedEventArgs e)
+        {
+            
         }
     }
 }

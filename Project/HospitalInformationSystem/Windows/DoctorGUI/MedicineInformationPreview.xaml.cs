@@ -91,7 +91,7 @@ namespace HospitalInformationSystem.Windows.DoctorGUI
         private void FinishEditingMedicine()
         {
             _medicineToPreview.Name = medicineNameTextBox.Text;
-            _medicineToPreview.ReplacementMedicine = (Medicine)medicineReplacmentComboBox.SelectedItem;
+            //_medicineToPreview.ReplacementMedicine = (Medicine)medicineReplacmentComboBox.SelectedItem;
             ChangeMedicineType();
             _medicineToPreview.Purpose = medicinePurposeTextBox.Text;
             _medicineToPreview.WayOfUse = wayOfUseTextBox.Text;

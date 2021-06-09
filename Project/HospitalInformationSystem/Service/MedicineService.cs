@@ -1,44 +1,52 @@
 ﻿using HospitalInformationSystem.Model;
 using HospitalInformationSystem.Repository;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
+
 namespace HospitalInformationSystem.Service
 {
     class MedicineService
     {
-        MedicineRepository _medicineRepository;
+        IFactory _medicineRepository;
+        IFindEntities _findInRepository;
+        IDeleteEntity _deleteRepository;
+        IAddEntity _addRepository;
         public MedicineService()
         {
             _medicineRepository = new MedicineRepository();
+            _findInRepository = new MedicineRepository();
+            _deleteRepository = new MedicineRepository();
+            _addRepository = new MedicineRepository();
         }
         public void AddMedicine(Medicine newMedicine)
         {
-            _medicineRepository.AddMedicine(newMedicine);
+            _addRepository.AddNew(newMedicine);
         }
-        public List<Medicine> GetAllMedicines()
+        public ObservableCollection<Medicine> GetAllMedicines()
         {
-            return _medicineRepository.GetAllMedicines();
+            return MedicineRepository._medicineList;
         }
         public void DeleteMedicine(Medicine medicineForDeleting)
         {
-            _medicineRepository.DeleteMedicine(medicineForDeleting);
+            _deleteRepository.PermanentlyDelete(medicineForDeleting);
         }
-        public void SetMedicineList(List<Medicine> newMedicineList)
+        /*public void SetMedicineList(List<Medicine> newMedicineList)
         {
             _medicineRepository.SetMedicineList(newMedicineList);
-        }
-        public void SaveInFile()
+        }*/
+        public void Serialization()
         {
-            _medicineRepository.saveInFile();
+            _medicineRepository.Serialization();
         }
-        public void LoadFromFile()
+        public ObservableCollection<object> LoadAll()
         {
-            _medicineRepository.loadFromFile();
+            return _medicineRepository.LoadAll();
         }
         public Medicine FindMedicineById(int id)
         {
-            return _medicineRepository.FindMedicineById(id);
+            return (Medicine)_findInRepository.FindById(id);
         }
-        public void DeleteReplacementMedicine(Medicine replacementMedicine)
+        public void DeleteReplacementMedicine(string replacementMedicine)
         {
             foreach (Medicine medicine in GetAllMedicines())
             {
@@ -51,11 +59,11 @@ namespace HospitalInformationSystem.Service
         }
         public bool MedicineCommentExists()
         {
-            return _medicineRepository.MedicineCommentExists();
+            return _findInRepository.SpecificEntityAttributeExists();
         }
-        public List<Medicine> GetAllMedicinesWithComment()
+        public ObservableCollection<Medicine> GetAllMedicinesWithComment()
         {
-            return _medicineRepository.GetAllMedicinesWithComment();
+            return MedicineRepository.GetAllMedicinesWithComment();
         }
     }
 }

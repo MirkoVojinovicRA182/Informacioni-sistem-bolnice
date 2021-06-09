@@ -15,6 +15,7 @@ namespace HospitalInformationSystem.Model
         public HospitalResidenceParticipants(IHospitalResidence hospitalResidence)
         {
             this._hospitalResidence = hospitalResidence;
+            this._hospitalResidenceParticipants = new List<Person>();
         }
         public void AddNewParticipant(Person newParticipant)
         {

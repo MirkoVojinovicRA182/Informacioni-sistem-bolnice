@@ -49,13 +49,13 @@
     </Reference>
     <Reference Include="Syncfusion.DocToPdfConverter.Base, Version=19.1460.0.67, Culture=neutral, PublicKeyToken=3d67ed1f87d44c89, processorArchitecture=MSIL">
       <HintPath>packages\Syncfusion.DocToPDFConverter.Wpf.19.1.0.67\lib\net46\Syncfusion.DocToPdfConverter.Base.dll</HintPath>
-	</Reference>
+    </Reference>
     <Reference Include="BouncyCastle.Crypto, Version=1.8.6.0, Culture=neutral, PublicKeyToken=0e99375e54769942">
       <HintPath>packages\BouncyCastle.1.8.6.1\lib\BouncyCastle.Crypto.dll</HintPath>
     </Reference>
     <Reference Include="itextsharp, Version=5.5.13.2, Culture=neutral, PublicKeyToken=8354ae6d2174ddca, processorArchitecture=MSIL">
       <HintPath>packages\iTextSharp.5.5.13.2\lib\itextsharp.dll</HintPath>
-	</Reference>
+    </Reference>
     <Reference Include="LiveCharts, Version=0.9.7.0, Culture=neutral, PublicKeyToken=0bc1f845d1ebb8df, processorArchitecture=MSIL">
       <HintPath>packages\LiveCharts.0.9.7\lib\net45\LiveCharts.dll</HintPath>
     </Reference>
@@ -394,6 +394,9 @@
     <Compile Include="Windows\SecretaryGUI\EmergentSurgeryPage.xaml.cs">
       <DependentUpon>EmergentSurgeryPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Windows\SecretaryGUI\FeedbackPage.xaml.cs">
+      <DependentUpon>FeedbackPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Windows\SecretaryGUI\MainPatientManagement.xaml.cs">
       <DependentUpon>MainPatientManagement.xaml</DependentUpon>
     </Compile>
@@ -696,6 +699,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Windows\SecretaryGUI\EmergentSurgeryPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Windows\SecretaryGUI\FeedbackPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

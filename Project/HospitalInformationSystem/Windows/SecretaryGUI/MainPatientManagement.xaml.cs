@@ -72,5 +72,10 @@ namespace HospitalInformationSystem.Windows.SecretaryGUI
         {
             MainFrame.Content = new ReportPage();
         }
+
+        private void feedbackBtn_Click(object sender, RoutedEventArgs e)
+        {
+            MainFrame.Content = new FeedbackPage();
+        }
     }
 }

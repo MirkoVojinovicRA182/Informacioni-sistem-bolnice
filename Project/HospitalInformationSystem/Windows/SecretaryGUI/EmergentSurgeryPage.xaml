@@ -11,7 +11,7 @@
     <Grid>
         <ComboBox x:Name="patientCmb" HorizontalAlignment="Left" VerticalAlignment="Top" Width="210" Margin="115,45,0,0" Height="37" Loaded="patientCmb_Loaded" SelectionChanged="PatientCmb_SelectionChanged"/>
         <ComboBox x:Name="specilizationCmb" HorizontalAlignment="Left" Margin="486,45,0,0" VerticalAlignment="Top" Width="210" Height="37" Loaded="specilizationCmb_Loaded" SelectionChanged="SpecilizationCmb_SelectionChanged"/>
-        <DataGrid x:Name="appointmentsGrid" HorizontalAlignment="Left" Height="470" Margin="115,130,0,0" VerticalAlignment="Top" Width="581" Loaded="AppointmentsGrid_Loaded"/>
+        <DataGrid x:Name="appointmentsGrid" HorizontalAlignment="Left" Height="470" Margin="115,130,0,0" VerticalAlignment="Top" Width="581" Loaded="AppointmentsGrid_Loaded" CanUserAddRows="False"/>
         <Button x:Name="addBtn" Content="Zakazi" HorizontalAlignment="Left" Margin="358,664,0,0" VerticalAlignment="Top" Width="137" Height="32" Click="addBtn_Click"/>
 
     </Grid>

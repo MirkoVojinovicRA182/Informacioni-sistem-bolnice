@@ -1,4 +1,5 @@
 ﻿using HospitalInformationSystem.Controller;
+using HospitalInformationSystem.Service;
 using Model;
 using System;
 using System.Collections.Generic;
@@ -48,14 +49,13 @@ namespace HospitalInformationSystem.Windows.SecretaryGUI
         {
             _appointmentsList.Clear();
             if (patientCmb.SelectedIndex != -1)
-                PatientController.getInstance().FindNearestAppointments(_appointmentsList, (Specialization)specilizationCmb.SelectedItem, (Patient)patientCmb.SelectedItem);
+                SecretaryUtil.FindNearestAppointments(_appointmentsList, (Specialization)specilizationCmb.SelectedItem, (Patient)patientCmb.SelectedItem);
         }
-
         private void PatientCmb_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             _appointmentsList.Clear();
             if (specilizationCmb.SelectedIndex != -1)
-                PatientController.getInstance().FindNearestAppointments(_appointmentsList, (Specialization)specilizationCmb.SelectedItem, (Patient)patientCmb.SelectedItem);
+                SecretaryUtil.FindNearestAppointments(_appointmentsList, (Specialization)specilizationCmb.SelectedItem, (Patient)patientCmb.SelectedItem);
         }
 
         private void addBtn_Click(object sender, RoutedEventArgs e)

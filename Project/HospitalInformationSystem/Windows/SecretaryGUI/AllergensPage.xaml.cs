@@ -25,7 +25,7 @@ namespace HospitalInformationSystem.Windows.SecretaryGUI
         public AllergensPage()
         {
             InitializeComponent();
-            allergensList.ItemsSource = PatientController.getInstance().getAllergens();
+            allergensList.ItemsSource = AllergenController.Instance.GetAllergens();
         }
 
         private void AddBtn_Click(object sender, RoutedEventArgs e)
@@ -36,7 +36,7 @@ namespace HospitalInformationSystem.Windows.SecretaryGUI
         private void DeleteBtn_Click(object sender, RoutedEventArgs e)
         {
             Allergen allergenToRemove = (Allergen)allergensList.SelectedItem;
-            PatientController.getInstance().getAllergens().Remove(allergenToRemove);
+            AllergenController.Instance.GetAllergens().Remove(allergenToRemove);
             allergenNameTxt.Text = "";
             foreach(Patient patient in PatientController.getInstance().getPatient())
             {

@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:HospitalInformationSystem.Windows.PatientGUI"
         mc:Ignorable="d"
-        Title="ReviewHospitalWindow" Height="516" Width="271">
+        Title="ReviewHospitalWindow" Height="516" Width="271" WindowStartupLocation="CenterScreen">
     <ScrollViewer VerticalScrollBarVisibility="Hidden" Margin="0,0,0,1" >
         <Grid Width="263" Height="648">
             <Rectangle Fill="#FF4C90F1" HorizontalAlignment="Left" Height="88" Stroke="Black" VerticalAlignment="Top" Width="265" Margin="-2,560,0,0"/>
@@ -19,11 +19,13 @@
             <ComboBox x:Name="comboBoxQuestion6" HorizontalAlignment="Left" VerticalAlignment="Top" Width="120" Margin="36,387,0,0"/>
             <ComboBox x:Name="comboBoxQuestion7" HorizontalAlignment="Left" VerticalAlignment="Top" Width="120" Margin="37,450,0,0"/>
             <ComboBox x:Name="comboBoxRating" HorizontalAlignment="Left" VerticalAlignment="Top" Width="120" Margin="37,492,0,0"/>
-            <ToolBar HorizontalAlignment="Left" Height="44" VerticalAlignment="Top" Width="263">
-                <Button Content="Back" VerticalAlignment="Stretch" Width="75" Click="BackButton_Click"/>
-                <Label Content="" Height="45" VerticalAlignment="Top" Width="89"/>
-                <Button Content="Home" Height="45" VerticalAlignment="Top" Width="75" Click="HomeButton_Click" Margin="0,-3"/>
-            </ToolBar>
+            <Rectangle HorizontalAlignment="Left" Height="45" Stroke="#FFB86767" VerticalAlignment="Top" Width="263" OpacityMask="#FFE46060" Fill="White"/>
+            <Button BorderThickness="0" Background="Transparent" Margin="3,3,201,604" Click="BackButton_Click">
+                <Image Source="/HospitalInformationSystem;component/Images/Patient/a.png" Height="35" Width="42" RenderOptions.BitmapScalingMode="Fant" Stretch="Fill" Opacity="1"/>
+            </Button>
+            <Button BorderThickness="0" Background ="Transparent" Height="45" VerticalAlignment="Top" Margin="201,0,2,0" Click="HomeButton_Click" FontSize="15">
+                <Image Source="/HospitalInformationSystem;component/Images/Patient/hospitalIcon.png" Height="39" Width="41" Stretch="Fill" RenderOptions.BitmapScalingMode="Fant"/>
+            </Button>
         </Grid>
     </ScrollViewer >
 </Window>

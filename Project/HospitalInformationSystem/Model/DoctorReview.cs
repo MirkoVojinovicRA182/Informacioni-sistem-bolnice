@@ -7,27 +7,13 @@ using System.Threading.Tasks;
 
 namespace HospitalInformationSystem.Model
 {
-    public enum AnswersDoctorSurvey
-    {
-        Da,
-        Ne,
-        Nijedno
-    }
     [Serializable]
-    public class DoctorReview
+    public class DoctorReview : IReview, IDoctorInformation
     {
-        public DoctorReview(List<AnswersDoctorSurvey> answers, int rating, Doctor doctor)
-        {
-            Answers = answers;
-            Rating = rating;
-            Doctor = doctor;
-        }
-
-        public List<AnswersDoctorSurvey> Answers
+        public List<AnswersHospitalSurvey> Answers
         {
             get; set;
         }
-
         public int Rating
         {
             get; set;
@@ -36,7 +22,5 @@ namespace HospitalInformationSystem.Model
         {
             get; set;
         }
-
     }
-
 }

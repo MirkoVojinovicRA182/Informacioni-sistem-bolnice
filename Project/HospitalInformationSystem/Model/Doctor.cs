@@ -114,5 +114,9 @@ namespace Model
             }
         }
 
+        public List<int> Ratings
+        {
+            get; set;
+        }
     }
 }

@@ -17,24 +17,21 @@ namespace HospitalInformationSystem.Repository
     public class PatientsRepository : IRepository
     {
         public ObservableCollection<Patient> patients;
-        public ObservableCollection<Allergen> allergens;
 
         public PatientsRepository()
         {
             patients = new ObservableCollection<Patient>();
-            allergens = new ObservableCollection<Allergen>();
         }
 
         public void saveInFile()
         {
             FileStream fs = new FileStream("Patients.dat", FileMode.Create);
-            FileStream fs2 = new FileStream("Allergens.dat", FileMode.Create);
+            
 
             BinaryFormatter formatter = new BinaryFormatter();
             try
             {
-                formatter.Serialize(fs, PatientController.getInstance().getPatient());
-                formatter.Serialize(fs2, PatientController.getInstance().getAllergens());
+                formatter.Serialize(fs, patients);
             }
             catch (SerializationException e)
             {
@@ -43,39 +40,19 @@ namespace HospitalInformationSystem.Repository
             finally
             {
                 fs.Close();
-                fs2.Close();
             }
 
         }
 
         public void loadFromFile()
         {
-            if (File.Exists("Allergens.dat"))
-            {
-                FileStream fs2 = new FileStream("Allergens.dat", FileMode.Open);
-                try
-                {
-                    BinaryFormatter formatter = new BinaryFormatter();
-                    PatientController.getInstance().setAllergens((ObservableCollection<Allergen>)formatter.Deserialize(fs2));
-                }
-                catch (SerializationException e)
-                {
-                    throw e;
-                }
-                finally
-                {
-                    fs2.Close();
-                }
-
-            }
-
             if (File.Exists("Patients.dat"))
             {
                 FileStream fs = new FileStream("Patients.dat", FileMode.Open);
                 try
                 {
                     BinaryFormatter formatter = new BinaryFormatter();
-                    PatientController.getInstance().setPatient((ObservableCollection<Patient>)formatter.Deserialize(fs));
+                    patients = (ObservableCollection<Patient>)formatter.Deserialize(fs);
                 }
                 catch (SerializationException e)
                 {
@@ -85,9 +62,7 @@ namespace HospitalInformationSystem.Repository
                 {
                     fs.Close();
                 }
-
             }
         }
-
     }
 }

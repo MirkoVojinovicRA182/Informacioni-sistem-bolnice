@@ -23,7 +23,6 @@ namespace HospitalInformationSystem.Windows.SecretaryGUI
             var days = new List<DayOfWeek>();
             days.Add(DayOfWeek.Monday);
             days.Add(DayOfWeek.Tuesday);
-            bool b = true;
             this.patient = patient;
             RefreshTable();
         }
@@ -57,7 +56,8 @@ namespace HospitalInformationSystem.Windows.SecretaryGUI
 
         private void EditButton_Click(object sender, RoutedEventArgs e)
         {
-            Appointment selectedRow = (Appointment)AppointmentDataGrid.SelectedItem;
+            EditPatientAppointmentWindow editAppointmentWindow = new EditPatientAppointmentWindow((Appointment)AppointmentDataGrid.SelectedItem, null);
+            editAppointmentWindow.ShowDialog();
             RefreshTable();
         }
 

@@ -216,6 +216,45 @@ namespace HospitalInformationSystem.Windows.PatientGUI
             PatientController.getInstance().SaveInFile();
             _instance = null;
         }
+
+        private void Filter()
+        {
+            foreach (var appointment in _appointmentList.ToList())
+            {
+                if (doctorTextBox.Text != "")
+                {
+                    if (!doctorTextBox.Text.Contains(appointment.Doctor.Name) && !doctorTextBox.Text.Contains(appointment.Doctor.Surname))
+                        _appointmentList.Remove(appointment);
+                }
+                if (datePicker.SelectedDate != null)
+                {
+                    if (!(((DateTime)datePicker.SelectedDate).Date == (DateTime)appointment.StartTime.Date))
+                        _appointmentList.Remove(appointment);
+                }
+                if (roomTextBox.Text != "")
+                {
+                    if (!(Int32.Parse(roomTextBox.Text) == appointment.Room.Id))
+                        _appointmentList.Remove(appointment);
+                }
+                AppointmentDataGrid.ItemsSource = null;
+                AppointmentDataGrid.ItemsSource = _appointmentList;
+            }
+        }
+
+        private void SearchButton_Click(object sender, RoutedEventArgs e)
+        {
+            searchGroup.Visibility = Visibility.Visible;
+        }
+
+        private void FinButton_Click(object sender, RoutedEventArgs e)
+        {
+            Filter();
+        }
+
+        private void ExitSearchButton_Click(object sender, RoutedEventArgs e)
+        {
+            searchGroup.Visibility = Visibility.Hidden;
+        }
         private void HomeButton_Click(object sender, RoutedEventArgs e)
         {
             PatientMainWindow.GetInstance(_loggedInPatient).Show();

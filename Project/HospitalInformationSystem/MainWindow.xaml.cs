@@ -33,6 +33,7 @@ namespace HospitalInformationSystem.Windows
         {
             Manager manager = new Manager();
             Secretary secretary = new Secretary();
+            Doctor doctor = new Doctor();
             bool loggedIn = false;
             ObservableCollection<Account> accounts = AccountController.GetInstance().GetAllAccounts();
             for (int i = 0; i < accounts.Count; i++)
@@ -52,7 +53,7 @@ namespace HospitalInformationSystem.Windows
                         MainPatientManagement.Instance.Show();
                         //this.Hide();
                     }
-                    else if (accounts[i].Person.GetType() == DoctorController.getInstance().GetDoctors().First().GetType())
+                    else if (accounts[i].Person.GetType() == doctor.GetType())
                     {
                         loggedIn = true;
                         person = accounts[i].Person;
@@ -142,7 +143,7 @@ namespace HospitalInformationSystem.Windows
             MedicineController.GetInstance().LoadAll();
             DoctorController.getInstance().LoadFromFile();
             NotificationController.GetInstance().LoadFromFile();
-            PatientController.getInstance().loadFromFile();
+            PatientController.getInstance().LoadFromFile();
             AppointmentController.getInstance().LoadAppointmentsFromFile();
             AccountController.GetInstance().LoadFromFile();
         }

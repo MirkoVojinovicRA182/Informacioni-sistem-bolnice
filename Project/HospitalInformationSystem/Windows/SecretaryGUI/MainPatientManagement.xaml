@@ -35,5 +35,7 @@
         <Label Content="Pozdrav, Sekretar!" Margin="6,140,0,0" VerticalAlignment="Top" Width="197" HorizontalAlignment="Left" HorizontalContentAlignment="Center" FontSize="20" FontStyle="Oblique" FontWeight="ExtraBlack"/>
         <Button x:Name="emergentSurgeryBtn" Content="Hitna operacija" HorizontalAlignment="Left" Margin="15,379,0,0" VerticalAlignment="Top" Width="188" Click="emergentSurgeryBtn_Click"/>
         <Button x:Name="doctorsBtn" Content="Lekari" HorizontalAlignment="Left" Margin="15,418,0,0" VerticalAlignment="Top" Width="188" Click="doctorsBtn_Click"/>
+        <Button x:Name="reportBtn" Content="Kreiraj izvestaj" HorizontalAlignment="Left" Margin="15,458,0,0" VerticalAlignment="Top" Width="188" Click="reportBtn_Click"/>
+        <Button x:Name="feedbackBtn" Content="Feedback" HorizontalAlignment="Left" Margin="15,496,0,0" VerticalAlignment="Top" Width="188" Click="feedbackBtn_Click"/>
     </Grid>
 </Window>

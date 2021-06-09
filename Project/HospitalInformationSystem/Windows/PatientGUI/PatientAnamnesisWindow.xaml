@@ -5,27 +5,29 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:HospitalInformationSystem.Windows.PatientGUI"
         mc:Ignorable="d"
-        Title="PatientAnamnesisWindow" Height="516" Width="271">
-    <Grid>
-        <ComboBox x:Name="anamnesisComboBox" HorizontalAlignment="Left" Margin="98,50,0,0" VerticalAlignment="Top" Width="120" DataContextChanged="AnamnesisComboBox_DataContextChanged" SelectionChanged="AnamnesisComboBox_SelectionChanged">
-            <ComboBox.ItemTemplate>
-                <DataTemplate>
-                    <TextBlock>
-                 <Run Text="{Binding basicDescription}" />
-                 <Run Text="{Binding date}" />
-                    </TextBlock>
-                </DataTemplate>
-            </ComboBox.ItemTemplate>
-        </ComboBox>
-        <Label Content="Anamneza: " HorizontalAlignment="Left" Margin="10,46,0,0" VerticalAlignment="Top"/>
-        <TextBlock x:Name="anamnesisTextBlock" HorizontalAlignment="Left" TextWrapping="Wrap" VerticalAlignment="Top" Margin="10,89,0,0" Height="230" Width="243"/>
-        <TextBox x:Name="noteTextBox" HorizontalAlignment="Left" Margin="10,345,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="87" Width="243"/>
-        <Button Content="Kreiraj belešku" HorizontalAlignment="Left" Margin="87,455,0,0" VerticalAlignment="Top" Width="84" Click="Button_Click"/>
-        <Label Content="Beleške: " HorizontalAlignment="Left" Margin="10,319,0,0" VerticalAlignment="Top"/>
-        <ToolBar HorizontalAlignment="Left" Height="44" VerticalAlignment="Top" Width="263">
-            <Button Content="Back" VerticalAlignment="Bottom" Width="75" Click="BackButton_Click" Height="39"/>
-            <Label Content="" Height="45" VerticalAlignment="Top" Width="89"/>
-            <Button Content="Home" Height="45" VerticalAlignment="Top" Width="75" Click="HomeButton_Click" Margin="0,-3"/>
-        </ToolBar>
-    </Grid>
+        Title="PatientAnamnesisWindow" Height="516" Width="271" WindowStartupLocation="CenterScreen">
+    <Viewbox Margin="0,-4,0,4" MaxHeight="512.6" MaxWidth="289.3">
+        <Grid>
+            <Rectangle Fill="#FF4C90F1" HorizontalAlignment="Left" Height="188" Stroke="Black" VerticalAlignment="Top" Width="263" Margin="0,301,0,-5"/>
+            <ComboBox x:Name="anamnesisComboBox" HorizontalAlignment="Left" Margin="100,53,0,0" VerticalAlignment="Top" Width="120" DataContextChanged="AnamnesisComboBox_DataContextChanged" SelectionChanged="AnamnesisComboBox_SelectionChanged">
+                <ComboBox.ItemTemplate>
+                    <DataTemplate>
+                        <TextBlock><Run Text="{Binding basicDescription}" /><Run Text=" "/><Run Text="{Binding date}" /></TextBlock>
+                    </DataTemplate>
+                </ComboBox.ItemTemplate>
+            </ComboBox>
+            <Label Content="Anamneza: " HorizontalAlignment="Left" Margin="10,49,0,0" VerticalAlignment="Top" FontSize="15"/>
+            <TextBlock x:Name="anamnesisTextBlock" HorizontalAlignment="Left" TextWrapping="Wrap" VerticalAlignment="Top" Margin="10,89,0,0" Height="195" Width="243"/>
+            <TextBox x:Name="noteTextBox" HorizontalAlignment="Left" Margin="10,325,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="114" Width="243"/>
+            <Button Content="Kreiraj belešku" HorizontalAlignment="Left" Margin="76,447,0,0" VerticalAlignment="Top" Width="105" Click="Button_Click" Height="34" FontSize="15"/>
+            <Label Content="Beleške: " HorizontalAlignment="Left" Margin="10,297,0,0" VerticalAlignment="Top" FontSize="15"/>
+            <Rectangle HorizontalAlignment="Left" Height="45" Stroke="#FFB86767" VerticalAlignment="Top" Width="263" OpacityMask="#FFE46060" Fill="White"/>
+            <Button BorderThickness="0" Background="Transparent" Margin="3,3,201,440" Click="BackButton_Click">
+                <Image Source="/HospitalInformationSystem;component/Images/Patient/a.png" Height="35" Width="42" RenderOptions.BitmapScalingMode="Fant" Stretch="Fill" Opacity="1"/>
+            </Button>
+            <Button BorderThickness="0" Background ="Transparent" Height="45" VerticalAlignment="Top" Margin="201,0,2,0" Click="HomeButton_Click">
+                <Image Source="/HospitalInformationSystem;component/Images/Patient/hospitalIcon.png" Height="39" Width="41" Stretch="Fill" RenderOptions.BitmapScalingMode="Fant"/>
+            </Button>
+        </Grid>
+    </Viewbox>
 </Window>

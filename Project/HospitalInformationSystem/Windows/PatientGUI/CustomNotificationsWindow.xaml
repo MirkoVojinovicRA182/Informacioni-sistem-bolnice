@@ -5,13 +5,8 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:HospitalInformationSystem.Windows.PatientGUI"
         mc:Ignorable="d"
-        Title="CustomNotificationsWindow" Height="516" Width="271" Background="#FF4C90F1">
+        Title="CustomNotificationsWindow" Height="516" Width="271" Background="#FF4C90F1" WindowStartupLocation="CenterScreen">
     <Grid Background="White">
-        <ToolBar HorizontalAlignment="Left" Height="44" VerticalAlignment="Top" Width="263">
-            <Button Content="Back" VerticalAlignment="Stretch" Width="75" Click="BackButton_Click"/>
-            <Label Content="" Height="45" VerticalAlignment="Top" Width="89"/>
-            <Button Content="Home" Height="45" VerticalAlignment="Top" Width="75" Click="HomeButton_Click" Margin="0,-3"/>
-        </ToolBar>
         <ComboBox x:Name="notificationComboBox" HorizontalAlignment="Left" VerticalAlignment="Top" Width="120" Margin="123,66,0,0" DataContextChanged="NotificationComboBox_DataContextChanged" SelectionChanged="NotificationComboBox_SelectionChanged">
             <ComboBox.ItemTemplate>
                 <DataTemplate>
@@ -27,16 +22,23 @@
         <ComboBox x:Name="hourComboBox" HorizontalAlignment="Left" VerticalAlignment="Top" Width="50" Margin="123,102,0,0"/>
         <ComboBox x:Name="minuteComboBox" HorizontalAlignment="Left" VerticalAlignment="Top" Width="50" Margin="193,102,0,0"/>
         <Label Content=":" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="176,98,0,0"/>
-        <TextBox x:Name="notificationTextBox" HorizontalAlignment="Left" Height="168" Margin="10,230,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="243" FontSize="15"/>
+        <TextBox x:Name="notificationTextBox" ScrollViewer.CanContentScroll="True" HorizontalAlignment="Left" Height="168" Margin="10,230,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="243" FontSize="15"/>
         <Label Content="Notifikacija: " HorizontalAlignment="Left" Margin="5,202,0,0" VerticalAlignment="Top" FontSize="15"/>
-        <Button x:Name="newNotificationButton" Content="Nova notifikacija" HorizontalAlignment="Left" VerticalAlignment="Top" Width="99" Margin="44,405,0,0" Height="35" Click="NewNotificationButton_Click"/>
-        <Button x:Name="deleteNotificationButton" Content="Obriši notifikaciju" HorizontalAlignment="Left" VerticalAlignment="Top" Width="99" Margin="44,444,0,0" Height="35" Click="DeleteNotificationButton_Click"/>
-        <Button x:Name="changeNotification" Content="Promeni notifikaciju" HorizontalAlignment="Left" VerticalAlignment="Top" Width="114" Margin="147,427,0,0" Height="35" Click="ChangeButton_Click"/>
+        <Button x:Name="newNotificationButton" Background="#FF43C349" Content="Nova notifikacija" HorizontalAlignment="Left" VerticalAlignment="Top" Width="105" Margin="30,405,0,0" Height="34" Click="NewNotificationButton_Click"/>
+        <Button x:Name="deleteNotificationButton" Background="#FFE84242" Content="Obriši notifikaciju" HorizontalAlignment="Left" VerticalAlignment="Top" Width="105" Margin="31,444,0,0" Height="34" Click="DeleteNotificationButton_Click"/>
+        <Button x:Name="changeNotification" Content="Promeni notifikaciju" HorizontalAlignment="Left" VerticalAlignment="Top" Width="114" Margin="144,427,0,0" Height="34" Click="ChangeButton_Click"/>
         <CheckBox x:Name="notificationCheckBox" Content="Uključi/isključi" HorizontalAlignment="Left" Margin="106,208,0,0" VerticalAlignment="Top" FontSize="15"/>
         <Label Content="Od:" HorizontalAlignment="Left" Margin="10,133,0,0" VerticalAlignment="Top" FontSize="15" Width="94"/>
         <Label Content="Do:" HorizontalAlignment="Left" Margin="10,165,0,0" VerticalAlignment="Top" FontSize="15" Width="94"/>
         <DatePicker x:Name="startDatePicker" HorizontalAlignment="Left" Margin="123,135,0,0" VerticalAlignment="Top"/>
         <DatePicker x:Name="endDatePicker" HorizontalAlignment="Left" Margin="123,168,0,0" VerticalAlignment="Top"/>
+        <Rectangle HorizontalAlignment="Left" Height="45" Stroke="#FFB86767" VerticalAlignment="Top" Width="263" OpacityMask="#FFE46060" Fill="White"/>
+        <Button BorderThickness="0" Background="Transparent" Margin="3,3,201,441" Click="BackButton_Click">
+            <Image Source="/HospitalInformationSystem;component/Images/Patient/a.png" Height="35" Width="42" RenderOptions.BitmapScalingMode="Fant" Stretch="Fill" Opacity="1"/>
+        </Button>
+        <Button BorderThickness="0" Background ="Transparent" Height="45" VerticalAlignment="Top" Margin="201,0,2,0" Click="HomeButton_Click">
+            <Image Source="/HospitalInformationSystem;component/Images/Patient/hospitalIcon.png" Height="39" Width="41" Stretch="Fill" RenderOptions.BitmapScalingMode="Fant"/>
+        </Button>
 
     </Grid>
 </Window>

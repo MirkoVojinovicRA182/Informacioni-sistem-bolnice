@@ -42,6 +42,7 @@
         <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" Text="Specijalizacija:" VerticalAlignment="Top" Margin="345,565,0,0" Width="125" FontSize="16" FontWeight="Bold" Height="25"/>
         <ComboBox x:Name="roomCmb" HorizontalAlignment="Left" VerticalAlignment="Top" Width="167" RenderTransformOrigin="2.006,6" Margin="476,513,0,0" Height="25"/>
         <ComboBox x:Name="specializationCmb" HorizontalAlignment="Left" Margin="476,565,0,0" VerticalAlignment="Top" Width="167" />
+        <Label Content="Label" HorizontalAlignment="Left" Margin="-77,565,0,0" VerticalAlignment="Top"/>
 
     </Grid>
 </Page>

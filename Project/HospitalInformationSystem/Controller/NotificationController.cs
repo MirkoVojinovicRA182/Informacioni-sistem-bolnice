@@ -59,5 +59,9 @@ namespace HospitalInformationSystem.Controller
         {
             _notificationService.LoadFromFile();
         }
+        public void Notify(Patient patient)
+        {
+            _notificationService.Notify(patient);
+        }
     }
 }

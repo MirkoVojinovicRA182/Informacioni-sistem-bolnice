@@ -217,5 +217,10 @@ namespace HospitalInformationSystem.Windows.PatientGUI
                 therapyInfo.Add("");
             }
         }
+
+        private void feedbackButton_Click(object sender, RoutedEventArgs e)
+        {
+            PatientFeedback.GetInstance(_loggedInPatient).Show();
+        }
     }
 }

@@ -45,8 +45,9 @@
                     <TextBlock Text="Ocenjivanje bolnice"/>
                 </StackPanel>
             </Button>
-            <Button Content="Odjava" Margin="75,405,68,13" Background="#FFE84242" Click="LogOffButton_Click" Grid.ColumnSpan="2"/>
-            <Button Name ="reportButton" Content="Izveštaj o terapijama" HorizontalAlignment="Left" VerticalAlignment="Top" Width="119" Grid.ColumnSpan="2" Margin="75,352,0,0" Height="46" Click="ReportButton_Click"/>
+            <Button Content="Odjava" Margin="75,418,68.4,0" Background="#FFE84242" Click="LogOffButton_Click" Grid.ColumnSpan="2"/>
+            <Button Name ="reportButton" Content="Izveštaj o terapijama" HorizontalAlignment="Left" VerticalAlignment="Top" Width="119" Grid.ColumnSpan="2" Margin="75,323,0,0" Height="46" Click="ReportButton_Click"/>
+            <Button Name="feedbackButton" Click="feedbackButton_Click" Content="IZVEŠTAJ" HorizontalAlignment="Left" VerticalAlignment="Top" Width="119" Grid.ColumnSpan="2" Margin="75,374,0,0" Height="39"/>
         </Grid>
     </Viewbox>
 </Window>

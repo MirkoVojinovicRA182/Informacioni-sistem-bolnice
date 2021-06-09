@@ -400,6 +400,9 @@
     <Compile Include="Windows\SecretaryGUI\EmergentSurgeryPage.xaml.cs">
       <DependentUpon>EmergentSurgeryPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Windows\SecretaryGUI\FeedbackPage.xaml.cs">
+      <DependentUpon>FeedbackPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Windows\SecretaryGUI\MainPatientManagement.xaml.cs">
       <DependentUpon>MainPatientManagement.xaml</DependentUpon>
     </Compile>
@@ -710,6 +713,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Windows\SecretaryGUI\EmergentSurgeryPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Windows\SecretaryGUI\FeedbackPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

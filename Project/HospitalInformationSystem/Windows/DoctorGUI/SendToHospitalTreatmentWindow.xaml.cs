@@ -30,6 +30,7 @@ namespace HospitalInformationSystem.Windows.DoctorGUI
             InitData();
             startDateTextBox.Text = DateTime.Now.AddDays(1).ToString("dd.MM.yyyy.");
             endDateTextBox.Text = DateTime.Now.AddDays(8).ToString("dd.MM.yyyy.");
+            this.WindowStartupLocation = WindowStartupLocation.CenterScreen;
         }
         private void InitData()
         {

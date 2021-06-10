@@ -26,6 +26,7 @@ namespace HospitalInformationSystem.Windows.DoctorGUI
             this._appointmentToShow = appointmentToShow;
             this._loggedDoctor = loggedDoctor;
             InitTextBoxes();
+            this.WindowStartupLocation = WindowStartupLocation.CenterScreen;
         }
         private void InitTextBoxes()
         {

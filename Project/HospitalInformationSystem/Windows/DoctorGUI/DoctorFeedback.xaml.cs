@@ -34,6 +34,7 @@ namespace HospitalInformationSystem.Windows.DoctorGUI
         {
             InitializeComponent();
             this.doctor = doctor;
+            this.WindowStartupLocation = WindowStartupLocation.CenterScreen;
         }
 
         private void confirmButton_Click(object sender, RoutedEventArgs e)

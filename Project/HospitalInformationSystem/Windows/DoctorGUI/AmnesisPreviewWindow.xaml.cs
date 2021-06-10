@@ -23,6 +23,7 @@ namespace HospitalInformationSystem.Windows.DoctorGUI
             InitializeComponent();
             this._patientToPreviewAnamnesis = patientToPreviewAnamnesis;
             FillBoxesWithSelectedAnamnesisInfo();
+            this.WindowStartupLocation = WindowStartupLocation.CenterScreen;
         }
         private void FillBoxesWithSelectedAnamnesisInfo()
         {

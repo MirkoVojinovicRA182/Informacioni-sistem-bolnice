@@ -21,6 +21,7 @@ namespace HospitalInformationSystem.Windows.DoctorGUI
         {
             InitializeComponent();
             this._medicineToAddNewIngredient = medicineToAddNewIngredient;
+            this.WindowStartupLocation = WindowStartupLocation.CenterScreen;
         }
         private void confirmButton_Click(object sender, RoutedEventArgs e)
         {

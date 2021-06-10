@@ -28,6 +28,7 @@ namespace HospitalInformationSystem.Windows.DoctorGUI
             medicineIngredientsTable.DataContext = _medicineToPreview.Ingredients;
             InitData();
             InitMedicineTypeComboBox();
+            this.WindowStartupLocation = WindowStartupLocation.CenterScreen;
         }
         private void InitMedicineTypeComboBox()
         {

@@ -23,6 +23,7 @@ namespace HospitalInformationSystem.Windows.DoctorGUI
             InitializeComponent();
             medicineTable.DataContext = MedicineController.GetInstance().GetAllMedicines();
             RefreshTable();
+            this.WindowStartupLocation = WindowStartupLocation.CenterScreen;
         }
         public void RefreshTable()
         {

@@ -29,6 +29,7 @@ namespace HospitalInformationSystem.Windows.DoctorGUI
             InitializeComponent();
             startDateTextBox.Text = DateTime.Now.AddMonths(-1).ToString("dd.MM.yyyy.");
             endDateTextBox.Text = DateTime.Now.ToString("dd.MM.yyyy.");
+            this.WindowStartupLocation = WindowStartupLocation.CenterScreen;
         }
         private void CreateReport()
         {

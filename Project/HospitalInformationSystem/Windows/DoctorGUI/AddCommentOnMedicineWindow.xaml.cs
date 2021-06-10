@@ -23,6 +23,7 @@ namespace HospitalInformationSystem.Windows.DoctorGUI
         {
             InitializeComponent();
             this._medicineToAddComment = medicineToAddComment;
+            this.WindowStartupLocation = WindowStartupLocation.CenterScreen;
         }
 
         private void addCommentButton_Click(object sender, RoutedEventArgs e)

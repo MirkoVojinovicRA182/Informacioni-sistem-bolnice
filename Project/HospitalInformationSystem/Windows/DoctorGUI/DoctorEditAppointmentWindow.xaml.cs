@@ -26,6 +26,7 @@ namespace HospitalInformationSystem.Windows.DoctorGUI
             this._appointmentToEdit = appointmentToEdit;
             LoadPatient();
             LoadPatientComboBox();
+            this.WindowStartupLocation = WindowStartupLocation.CenterScreen;
         }
         private void LoadPatient()
         {

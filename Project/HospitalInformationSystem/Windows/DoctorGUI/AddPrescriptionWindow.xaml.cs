@@ -28,6 +28,7 @@ namespace HospitalInformationSystem.Windows.DoctorGUI
             medicineListBox.ItemsSource = MedicineController.GetInstance().GetAllMedicines();
             startDateTextBox.Text = DateTime.Now.ToString("dd.MM.yyyy.");
             endDateTextBox.Text = DateTime.Now.AddDays(7).ToString("dd.MM.yyyy.");
+            this.WindowStartupLocation = WindowStartupLocation.CenterScreen;
         }
         public bool CheckInputOfMedicineTextBox()
         {

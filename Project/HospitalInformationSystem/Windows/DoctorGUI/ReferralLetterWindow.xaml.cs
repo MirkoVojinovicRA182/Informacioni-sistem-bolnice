@@ -29,6 +29,7 @@ namespace HospitalInformationSystem.Windows.DoctorGUI
             initReferralLetterData();
             dateTextBox.Text = DateTime.Now.AddDays(1).ToString("dd.MM.yyyy.");
             timeTextBox.Text = "10:00";
+            this.WindowStartupLocation = WindowStartupLocation.CenterScreen;
         }
         private void initReferralLetterData()
         {

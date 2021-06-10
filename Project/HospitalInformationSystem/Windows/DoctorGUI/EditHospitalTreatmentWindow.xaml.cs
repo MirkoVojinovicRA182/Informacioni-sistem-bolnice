@@ -27,6 +27,7 @@ namespace HospitalInformationSystem.Windows.DoctorGUI
             InitializeComponent();
             this._patientForEdit = patientForEdit;
             InitInputs();
+            this.WindowStartupLocation = WindowStartupLocation.CenterScreen;
         }
         private void InitInputs()
         {

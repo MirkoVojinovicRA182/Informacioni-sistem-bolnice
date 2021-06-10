@@ -23,6 +23,7 @@ namespace HospitalInformationSystem.Windows.DoctorGUI
             this.patient = patient;
             nameLabel.Content = patient.Name + " " + patient.Surname;
             jmbgLabel.Content = patient.Jmbg;
+            this.WindowStartupLocation = WindowStartupLocation.CenterScreen;
         }
         private void CheckKeyPress()
         {

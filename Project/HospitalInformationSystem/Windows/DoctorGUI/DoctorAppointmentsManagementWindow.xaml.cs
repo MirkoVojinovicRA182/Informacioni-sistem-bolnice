@@ -22,6 +22,7 @@ namespace HospitalInformationSystem.Windows.DoctorGUI
             InitializeComponent();
             this._loggedDoctor = loggedDoctor;
             RefreshTable();
+            this.WindowStartupLocation = WindowStartupLocation.CenterScreen;
         }
         public void RefreshTable()
         {

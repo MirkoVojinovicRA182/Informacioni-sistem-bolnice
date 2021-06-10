@@ -20,6 +20,7 @@ namespace HospitalInformationSystem.Windows.DoctorGUI
         {
             InitializeComponent();
             allergensListBox.ItemsSource = patientToViewAllergens.MedicalRecord.AllergensList;
+            this.WindowStartupLocation = WindowStartupLocation.CenterScreen;
         }
         private void CheckKeyPress()
         {

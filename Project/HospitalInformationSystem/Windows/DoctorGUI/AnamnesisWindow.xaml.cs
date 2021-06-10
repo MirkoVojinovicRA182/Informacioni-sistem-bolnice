@@ -24,6 +24,7 @@ namespace HospitalInformationSystem.Windows.DoctorGUI
             InitializeComponent();
             this._patientsMedicalRecord = patientsMedicalRecord;
             dateTextBox.Text = DateTime.Now.ToString("dd.MM.yyyy.");
+            this.WindowStartupLocation = WindowStartupLocation.CenterScreen;
         }
         private bool CheckDateInput()
         {

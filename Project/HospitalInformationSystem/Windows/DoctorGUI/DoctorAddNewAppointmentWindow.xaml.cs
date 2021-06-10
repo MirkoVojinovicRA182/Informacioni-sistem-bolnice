@@ -31,6 +31,7 @@ namespace HospitalInformationSystem.Windows.DoctorGUI
             InitRooms();
             InitTypeOfAppointment();
             dateTextBox.Text = DateTime.Now.ToString("dd.MM.yyyy.");
+            this.WindowStartupLocation = WindowStartupLocation.CenterScreen;
         }
         private void InitDoctorsNameLabel()
         {

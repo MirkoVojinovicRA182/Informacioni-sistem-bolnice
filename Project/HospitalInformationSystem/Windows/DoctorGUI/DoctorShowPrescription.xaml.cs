@@ -22,6 +22,7 @@ namespace HospitalInformationSystem.Windows.DoctorGUI
         {
             InitializeComponent();
             InitMedicineComboBox(patientsMedicalRecord);
+            this.WindowStartupLocation = WindowStartupLocation.CenterScreen;
         }
         public void InitMedicineComboBox(MedicalRecord patientsMedicalRecord)
         {

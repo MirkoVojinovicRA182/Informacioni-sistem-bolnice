@@ -23,6 +23,7 @@ namespace HospitalInformationSystem.Windows.DoctorGUI
             InitializeComponent();
             this._patientToShowMedicalRecord = patientToShowMedicalRecord;
             initPatientsInfo();
+            this.WindowStartupLocation = WindowStartupLocation.CenterScreen;
         }
         private void initPatientsInfo()
         {

@@ -11,7 +11,7 @@
             <ImageBrush Stretch="UniformToFill" ImageSource="hospitalBackground2.jpg"/>
         </Grid.Background>
         <Label Content="Lek:" HorizontalAlignment="Left" Margin="10,9,0,0" VerticalAlignment="Top" FontSize="18"/>
-        <ListBox x:Name="medicineListBox" HorizontalAlignment="Left" Height="74" Margin="10,48,0,0" VerticalAlignment="Top" Width="312" ItemsSource="{Binding}" DisplayMemberPath="Name"/>
+        <ListBox x:Name="medicineListBox" HorizontalAlignment="Left" Height="74" Margin="10,48,0,0" VerticalAlignment="Top" Width="312" ItemsSource="{Binding}" DisplayMemberPath="Name" PreviewKeyDown="medicineListBox_PreviewKeyDown"/>
         <Label Content="Datum početka:" HorizontalAlignment="Left" Margin="10,129,0,0" VerticalAlignment="Top" FontSize="18"/>
         <Label Content="Datum završetka:" HorizontalAlignment="Left" Margin="10,168,0,0" VerticalAlignment="Top" FontSize="18"/>
         <Label Content="Doza i dodatne informacije:" HorizontalAlignment="Left" Margin="10,207,0,0" VerticalAlignment="Top" FontSize="18"/>

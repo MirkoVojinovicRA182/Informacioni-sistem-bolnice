@@ -139,5 +139,10 @@ namespace HospitalInformationSystem.Windows.DoctorGUI
         {
             CheckKeyPress();
         }
+
+        private void medicineListBox_PreviewKeyDown(object sender, KeyEventArgs e)
+        {
+            CheckKeyPress();
+        }
     }
 }

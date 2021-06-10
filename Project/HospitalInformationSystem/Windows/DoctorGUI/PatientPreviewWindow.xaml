@@ -5,10 +5,12 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:HospitalInformationSystem.Windows.DoctorGUI"
         mc:Ignorable="d"
-        Title="PatientPreviewWindow" Height="450" Width="800" Closing="Window_Closing">
+        Title="PatientPreviewWindow" Height="450" Width="800" Closing="Window_Closing" ResizeMode="NoResize" KeyDown="Window_KeyDown">
     <Grid>
-        <Border BorderBrush="Black" BorderThickness="1" HorizontalAlignment="Left" Height="80" Margin="-1,-1,0,0" VerticalAlignment="Top" Width="670"/>
-        <Border BorderBrush="Black" BorderThickness="1" HorizontalAlignment="Left" Height="80" Margin="669,-1,-0.4,0" VerticalAlignment="Top" Width="125"/>
+        <Grid.Background>
+            <ImageBrush Stretch="UniformToFill" ImageSource="hospitalBackground2.jpg"/>
+        </Grid.Background>
+        <Border BorderBrush="Black" BorderThickness="1" HorizontalAlignment="Left" Height="80" Margin="0" VerticalAlignment="Top" Width="795" Background="#FF2F435B"/>
         <DataGrid x:Name="patientsTable" 
 				  HorizontalAlignment="Left" 
 				  CanUserAddRows="False" 
@@ -20,7 +22,7 @@
 				  Margin="10,91,0,0" 
 				  VerticalAlignment="Top" 
 				  Width="774" 
-				  Background="CadetBlue" PreviewKeyDown="patientsTable_PreviewKeyDown">
+				  Background="DarkCyan" PreviewKeyDown="patientsTable_PreviewKeyDown">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Ime i prezime" Width="*" Binding="{Binding GetPatientNameAndSurname}"></DataGridTextColumn>
                 <DataGridTextColumn Header="Datum rodjenja" Width="*" Binding="{Binding DateOfBirth}"></DataGridTextColumn>
@@ -29,9 +31,14 @@
             </DataGrid.Columns>
         </DataGrid>
         <Image HorizontalAlignment="Left" Height="50" Margin="10,10,0,0" VerticalAlignment="Top" Width="50" Source="patientIcon.png"/>
-        <Label Content="ENTER" HorizontalAlignment="Left" Margin="13,55,0,0" VerticalAlignment="Top"/>
-        <Image HorizontalAlignment="Left" Height="50" Margin="84,10,0,0" VerticalAlignment="Top" Width="50" Source="hospitalTreatmentIcon.png"/>
-        <Label Content="CTRL+T" HorizontalAlignment="Left" Margin="84,55,0,0" VerticalAlignment="Top"/>
+        <Label Content="ENTER" HorizontalAlignment="Left" Margin="13,55,0,0" VerticalAlignment="Top" FontWeight="Bold" Foreground="White"/>
+        <Image HorizontalAlignment="Left" Height="50" Margin="84,10,0,0" VerticalAlignment="Top" Width="50" Source="hospitalTretmentIcon.png"/>
+        <Label Content="CTRL+T" HorizontalAlignment="Left" Margin="84,55,0,0" VerticalAlignment="Top" Foreground="White" FontWeight="Bold"/>
+        <Image HorizontalAlignment="Right" Height="50" Margin="734,10,15,0" VerticalAlignment="Top" Width="50" Source="exitIcon.png" Stretch="UniformToFill"/>
+        <Label Content="ESC" Margin="734,55,23,0" VerticalAlignment="Top" FontWeight="Bold" Foreground="White" HorizontalAlignment="Right"/>
+        <TextBox x:Name="searchTextBox" HorizontalAlignment="Left" Height="26" Margin="515,30,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="151" TextChanged="TextBox_TextChanged"/>
+        <Image HorizontalAlignment="Right" Height="26" Margin="0,30,90,0" VerticalAlignment="Top" Width="30" Source="searchIcon.png" Stretch="UniformToFill"/>
+        <Label Content="CTRL+F" HorizontalAlignment="Left" Margin="560,54,0,0" VerticalAlignment="Top" Foreground="White" FontWeight="Bold"/>
 
     </Grid>
 </Window>

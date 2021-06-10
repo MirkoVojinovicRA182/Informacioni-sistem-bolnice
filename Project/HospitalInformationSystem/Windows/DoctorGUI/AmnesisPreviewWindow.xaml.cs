@@ -26,18 +26,8 @@ namespace HospitalInformationSystem.Windows.DoctorGUI
         }
         private void FillBoxesWithSelectedAnamnesisInfo()
         {
-            anamnesisComboBox.ItemsSource = _patientToPreviewAnamnesis.MedicalRecord.getAnamneses();
+            anamnesisListBox.ItemsSource = _patientToPreviewAnamnesis.MedicalRecord.getAnamneses();
             patientNameLabel.Content = _patientToPreviewAnamnesis.Name + " " + _patientToPreviewAnamnesis.Surname;
-        }
-        private void anamnesisComboBox_DataContextChanged(object sender, DependencyPropertyChangedEventArgs e)
-        {
-            Anamnesis selectedAnamnesisForPreview = (Anamnesis)anamnesisComboBox.SelectedItem;
-            anamnesisTextBlock.Text = selectedAnamnesisForPreview.anamnesis;
-        }
-        private void anamnesisComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            Anamnesis anamnesis = (Anamnesis)anamnesisComboBox.SelectedItem;
-            anamnesisTextBlock.Text = anamnesis.anamnesis;
         }
         private void CheckKeyPress()
         {
@@ -52,6 +42,12 @@ namespace HospitalInformationSystem.Windows.DoctorGUI
         private void Window_KeyDown(object sender, KeyEventArgs e)
         {
             CheckKeyPress();
+        }
+
+        private void anamnesisListBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            Anamnesis anamnesis = (Anamnesis)anamnesisListBox.SelectedItem;
+            anamnesisTextBlock.Text = anamnesis.anamnesis;
         }
     }
 }

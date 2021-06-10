@@ -12,6 +12,7 @@ using System;
 using System.Collections.Generic;
 using System.Collections;
 using System.Collections.ObjectModel;
+using System.Windows.Input;
 
 namespace HospitalInformationSystem.Windows
 {
@@ -26,7 +27,6 @@ namespace HospitalInformationSystem.Windows
         {
             InitializeComponent();
             Deserialize();
-            ManagerMainWindow.getInstance().Show();
             WindowStartupLocation = System.Windows.WindowStartupLocation.CenterScreen;
         }
         private void Button_Click(object sender, RoutedEventArgs e)
@@ -86,7 +86,63 @@ namespace HospitalInformationSystem.Windows
         {
             return person;
         }
-
+        public void CheckKeyPress()
+        {
+            if (Keyboard.IsKeyDown(Key.Enter))
+            {
+                Manager manager = new Manager();
+                Secretary secretary = new Secretary();
+                Doctor doctor = new Doctor();
+                bool loggedIn = false;
+                ObservableCollection<Account> accounts = AccountController.GetInstance().GetAllAccounts();
+                for (int i = 0; i < accounts.Count; i++)
+                {
+                    if (usernameTextBox.Text.TrimEnd() == accounts[i].Username & passwordTextBox.Password.TrimEnd() == accounts[i].Password)
+                    {
+                        if (accounts[i].Person.GetType() == manager.GetType())
+                        {
+                            loggedIn = true;
+                            ManagerMainWindow window = ManagerMainWindow.getInstance();
+                            window.Show();
+                            //this.Hide();
+                        }
+                        else if (accounts[i].Person.GetType() == secretary.GetType())
+                        {
+                            loggedIn = true;
+                            MainPatientManagement.Instance.Show();
+                            //this.Hide();
+                        }
+                        else if (accounts[i].Person.GetType() == doctor.GetType())
+                        {
+                            loggedIn = true;
+                            person = accounts[i].Person;
+                            DoctorMainWindow window = DoctorMainWindow.GetInstance((Doctor)person);
+                            window.Show();
+                            //this.Hide();
+                        }
+                        else
+                        {
+                            loggedIn = true;
+                            Patient rightPatient = null;
+                            foreach (var patient in PatientController.getInstance().getPatient())
+                            {
+                                if (((Patient)accounts[i].Person).Jmbg == patient.Jmbg)
+                                    rightPatient = patient;
+                            }
+                            person = accounts[i].Person;
+                            PatientMainWindow.GetInstance(rightPatient).Show();
+                        }
+                    }
+                }
+                if (!loggedIn)
+                {
+                    MessageBox.Show("Lozinka ili korisničko ime nisu validni.", "Greška", MessageBoxButton.OK, MessageBoxImage.Information);
+                    passwordTextBox.Clear();
+                }
+            }
+            else if (Keyboard.IsKeyDown(Key.Escape))
+                this.Close();
+        }
         private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
         {
             
@@ -158,6 +214,11 @@ namespace HospitalInformationSystem.Windows
             AppointmentController.getInstance().SaveAppointmentsInFile();
             AccountController.GetInstance().SaveInFile();
             FeedbackController.GetInstance().SerializeFeedback();
+        }
+
+        private void Window_KeyDown(object sender, KeyEventArgs e)
+        {
+            CheckKeyPress();
         }
     }
 }

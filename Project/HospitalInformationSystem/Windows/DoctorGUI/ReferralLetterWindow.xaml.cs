@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Windows;
+using System.Windows.Input;
 using static HospitalInformationSystem.Utility.Constants;
 
 namespace HospitalInformationSystem.Windows.DoctorGUI
@@ -26,6 +27,8 @@ namespace HospitalInformationSystem.Windows.DoctorGUI
             InitializeComponent();
             this._patientForReferralLetter = patientForReferralLetter;
             initReferralLetterData();
+            dateTextBox.Text = DateTime.Now.AddDays(1).ToString("dd.MM.yyyy.");
+            timeTextBox.Text = "10:00";
         }
         private void initReferralLetterData()
         {
@@ -35,7 +38,6 @@ namespace HospitalInformationSystem.Windows.DoctorGUI
             InitAppointmentTypeComboBox();
             InitRoomsListBox();
             roomsListBox.IsEnabled = false;
-            urgentlyCheckBox.IsEnabled = false;
         }
         private void InitSpecializationComboBox()
         {
@@ -71,7 +73,7 @@ namespace HospitalInformationSystem.Windows.DoctorGUI
                 if(doctor.Specialization == specializationComboBoxTransform())
                     doctorList.Add(doctor);
             }
-            doctorComboBox.ItemsSource = doctorList;
+            doctorsListBox.ItemsSource = doctorList;
         }
         private void InitAppointmentTypeComboBox()
         {
@@ -95,7 +97,7 @@ namespace HospitalInformationSystem.Windows.DoctorGUI
         private bool CheckInputs() => CheckDoctor() && CheckRoomInput() && CheckDate() && CheckDoctorAppointments() && CheckRoomState();
         private bool CheckDoctor()
         {
-            if(doctorComboBox.SelectedIndex < 0)
+            if(doctorsListBox.SelectedIndex < 0)
             {
                 MessageBox.Show("Morate odabrati lekara!", "Lekar", MessageBoxButton.OK, MessageBoxImage.Error);
                 return false;
@@ -131,7 +133,7 @@ namespace HospitalInformationSystem.Windows.DoctorGUI
         {
             DateTime inputDate = DateTime.ParseExact(dateTextBox.Text + " " + timeTextBox.Text,
                                                     DATE_TIME_TEMPLATE, System.Globalization.CultureInfo.InvariantCulture);
-            Doctor doctor = (Doctor)doctorComboBox.SelectedItem;
+            Doctor doctor = (Doctor)doctorsListBox.SelectedItem;
             foreach (Appointment appointment in doctor.GetAppointment())
             {
                 if (inputDate > appointment.StartTime.AddMinutes(-30) && 
@@ -169,12 +171,10 @@ namespace HospitalInformationSystem.Windows.DoctorGUI
             if((TypeOfAppointment)typeOfAppointmentComboBox.SelectedItem == TypeOfAppointment.Operacija)
             {
                 roomsListBox.IsEnabled = true;
-                urgentlyCheckBox.IsEnabled = true;
             }
             else
             {
                 roomsListBox.IsEnabled = false;
-                urgentlyCheckBox.IsEnabled = false;
             }
         }
         private void Button_Click(object sender, RoutedEventArgs e)
@@ -184,7 +184,7 @@ namespace HospitalInformationSystem.Windows.DoctorGUI
                 Appointment appointment = new Appointment(DateTime.ParseExact(dateTextBox.Text + " " + timeTextBox.Text,
                     DATE_TIME_TEMPLATE, System.Globalization.CultureInfo.InvariantCulture),
                     (TypeOfAppointment)typeOfAppointmentComboBox.SelectedItem,
-                    (Room)roomsListBox.SelectedItem, _patientForReferralLetter, (Doctor)doctorComboBox.SelectedItem);
+                    (Room)roomsListBox.SelectedItem, _patientForReferralLetter, (Doctor)doctorsListBox.SelectedItem);
                 AppointmentController.getInstance().AddAppointmentToAppointmentList(appointment);
             }
             else if(CheckInputs())
@@ -192,9 +192,63 @@ namespace HospitalInformationSystem.Windows.DoctorGUI
                 Appointment appointment = new Appointment(DateTime.ParseExact(dateTextBox.Text + " " + timeTextBox.Text,
                     DATE_TIME_TEMPLATE, System.Globalization.CultureInfo.InvariantCulture),
                     (TypeOfAppointment)typeOfAppointmentComboBox.SelectedItem,
-                    ((Doctor)doctorComboBox.SelectedItem).room, _patientForReferralLetter, (Doctor)doctorComboBox.SelectedItem);
+                    ((Doctor)doctorsListBox.SelectedItem).room, _patientForReferralLetter, (Doctor)doctorsListBox.SelectedItem);
                 AppointmentController.getInstance().AddAppointmentToAppointmentList(appointment);
             }
+        }
+        private void CheckKeyPress()
+        {
+            if (Keyboard.IsKeyDown(Key.Enter))
+            {
+                if (CheckInputs() && CheckSelectedRoom())
+                {
+                    if(doctorsListBox.Items.Count == 1)
+                    {
+                        doctorsListBox.SelectedItem = doctorsListBox.Items[0];
+                    }
+                    Appointment appointment = new Appointment(DateTime.ParseExact(dateTextBox.Text + " " + timeTextBox.Text,
+                        DATE_TIME_TEMPLATE, System.Globalization.CultureInfo.InvariantCulture),
+                        (TypeOfAppointment)typeOfAppointmentComboBox.SelectedItem,
+                        (Room)roomsListBox.SelectedItem, _patientForReferralLetter, (Doctor)doctorsListBox.SelectedItem);
+                    AppointmentController.getInstance().AddAppointmentToAppointmentList(appointment);
+                }
+                else if (CheckInputs())
+                {
+                    Appointment appointmetn;
+                    if (doctorsListBox.Items.Count == 1)
+                    {
+                        appointmetn = new Appointment(DateTime.ParseExact(dateTextBox.Text + " " + timeTextBox.Text,
+                            DATE_TIME_TEMPLATE, System.Globalization.CultureInfo.InvariantCulture),
+                            (TypeOfAppointment)typeOfAppointmentComboBox.SelectedItem,
+                            ((Doctor)doctorsListBox.Items[0]).room, _patientForReferralLetter, (Doctor)doctorsListBox.SelectedItem);
+                    }
+                    else
+                    {
+                        appointmetn = new Appointment(DateTime.ParseExact(dateTextBox.Text + " " + timeTextBox.Text,
+                            DATE_TIME_TEMPLATE, System.Globalization.CultureInfo.InvariantCulture),
+                            (TypeOfAppointment)typeOfAppointmentComboBox.SelectedItem,
+                            ((Doctor)doctorsListBox.SelectedItem).room, _patientForReferralLetter, (Doctor)doctorsListBox.SelectedItem);
+                    }
+                    AppointmentController.getInstance().AddAppointmentToAppointmentList(appointmetn);
+                }
+            }
+            else if (Keyboard.IsKeyDown(Key.Escape))
+                this.Close();
+        }
+
+        private void Window_KeyDown(object sender, KeyEventArgs e)
+        {
+            CheckKeyPress();
+        }
+
+        private void doctorsListBox_PreviewKeyDown(object sender, KeyEventArgs e)
+        {
+            CheckKeyPress();
+        }
+
+        private void roomsListBox_PreviewKeyDown(object sender, KeyEventArgs e)
+        {
+            CheckKeyPress();
         }
     }
 }

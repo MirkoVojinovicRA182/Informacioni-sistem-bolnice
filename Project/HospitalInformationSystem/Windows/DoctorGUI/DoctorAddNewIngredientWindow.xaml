@@ -5,7 +5,10 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:HospitalInformationSystem.Windows.DoctorGUI"
         mc:Ignorable="d"
-        Title="Unos novog sastojka" Height="300" Width="400" Closing="Window_Closing">
+        Title="Unos novog sastojka" Height="300" Width="400" Closing="Window_Closing" ResizeMode="NoResize" KeyDown="Window_KeyDown">
+    <Window.Background>
+        <ImageBrush Stretch="UniformToFill" ImageSource="hospitalBackground2.jpg"/>
+    </Window.Background>
     <Grid>
         <Label Content="Naziv:" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="24,21,0,0" FontSize="15"/>
         <Label Content="Količina u 100g:" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="24,75,0,0" FontSize="15"/>
@@ -13,7 +16,10 @@
         <TextBox x:Name="nameTextBox" HorizontalAlignment="Left" Height="23" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" Margin="257,28,0,0" FontSize="15"/>
         <TextBox x:Name="quantityInHundredGramsTextBox" HorizontalAlignment="Left" Height="23" TextWrapping="Wrap" VerticalAlignment="Top" Width="60" Margin="257,75,0,0" FontSize="15"/>
         <TextBox x:Name="dailyIntakeTextBox" HorizontalAlignment="Left" Height="23" TextWrapping="Wrap" VerticalAlignment="Top" Width="60" Margin="257,136,0,0" FontSize="15"/>
-        <Button x:Name="confirmButton" Content="DODAJ" HorizontalAlignment="Left" VerticalAlignment="Top" Width="100" Height="30" Margin="154,215,0,0" FontSize="15" Click="confirmButton_Click"/>
+        <Image HorizontalAlignment="Left" Height="45" Margin="10,195,0,0" VerticalAlignment="Top" Width="45" Source="addIcon.png"/>
+        <Label Content="ENTER" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10,238,0,0"/>
+        <Image HorizontalAlignment="Left" Height="45" Margin="332,195,0,0" VerticalAlignment="Top" Width="45" Source="exitIcon.png"/>
+        <Label Content="ESC" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="340,238,0,0"/>
 
     </Grid>
 </Window>

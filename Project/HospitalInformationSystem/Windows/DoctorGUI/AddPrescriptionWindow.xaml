@@ -5,27 +5,22 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:HospitalInformationSystem.Windows"
         mc:Ignorable="d"
-        Title="Izdavanje recepta" Height="450" Width="350" Closing="Window_Closing">
+        Title="Izdavanje recepta" Height="450" Width="350" Closing="Window_Closing" ResizeMode="NoResize">
     <Grid>
-        <Label Content="Lek:" HorizontalAlignment="Left" Margin="28,33,0,0" VerticalAlignment="Top" FontSize="18"/>
-        <ComboBox x:Name="medicineComboBox" HorizontalAlignment="Left" Height="34" Margin="174,33,0,0" VerticalAlignment="Top" Width="155">
-            <ComboBox.ItemTemplate>
-                <DataTemplate>
-                    <TextBlock>
-                 <Run Text="{Binding Name}" />
-                    </TextBlock>
-                </DataTemplate>
-            </ComboBox.ItemTemplate>
-        </ComboBox>
-        <Label Content="Datum početka:" HorizontalAlignment="Left" Margin="28,72,0,0" VerticalAlignment="Top" FontSize="18"/>
-        <Label Content="Datum završetka:" HorizontalAlignment="Left" Margin="28,111,0,0" VerticalAlignment="Top" FontSize="18"/>
-        <Label Content="Doza i dodatne informacije:" HorizontalAlignment="Left" Margin="28,150,0,0" VerticalAlignment="Top" FontSize="18"/>
-        <TextBox x:Name="startDateTextBox" HorizontalAlignment="Left" Height="35" Margin="174,71,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="155" FontSize="18" PreviewKeyDown="startDateTextBox_PreviewKeyDown"/>
-        <TextBox x:Name="endDateTextBox" HorizontalAlignment="Left" Height="35" Margin="174,115,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="155" FontSize="18" PreviewKeyDown="endDateTextBox_PreviewKeyDown"/>
-        <TextBox x:Name="infoTextBox" HorizontalAlignment="Left" Height="161" Margin="28,189,0,0" TextWrapping="Wrap" Text="Informacije o dozi leka i sve ostale dodatne informacije o terapiji." VerticalAlignment="Top" Width="301" FontSize="18" PreviewKeyDown="infoTextBox_PreviewKeyDown"/>
-        <Image HorizontalAlignment="Left" Height="40" Margin="10,355,0,0" VerticalAlignment="Top" Width="40" Source="addIcon.png"/>
-        <Label Content="CTRL+I" HorizontalAlignment="Left" Margin="8,386,0,0" VerticalAlignment="Top" FontSize="10"/>
-        <Image HorizontalAlignment="Left" Height="40" Margin="289,355,0,0" VerticalAlignment="Top" Width="40" Source="quitIcon.png"/>
+        <Grid.Background>
+            <ImageBrush Stretch="UniformToFill" ImageSource="hospitalBackground2.jpg"/>
+        </Grid.Background>
+        <Label Content="Lek:" HorizontalAlignment="Left" Margin="10,9,0,0" VerticalAlignment="Top" FontSize="18"/>
+        <ListBox x:Name="medicineListBox" HorizontalAlignment="Left" Height="74" Margin="10,48,0,0" VerticalAlignment="Top" Width="312" ItemsSource="{Binding}" DisplayMemberPath="Name"/>
+        <Label Content="Datum početka:" HorizontalAlignment="Left" Margin="10,129,0,0" VerticalAlignment="Top" FontSize="18"/>
+        <Label Content="Datum završetka:" HorizontalAlignment="Left" Margin="10,168,0,0" VerticalAlignment="Top" FontSize="18"/>
+        <Label Content="Doza i dodatne informacije:" HorizontalAlignment="Left" Margin="10,207,0,0" VerticalAlignment="Top" FontSize="18"/>
+        <TextBox x:Name="startDateTextBox" HorizontalAlignment="Left" Height="35" Margin="174,127,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="155" FontSize="18" PreviewKeyDown="startDateTextBox_PreviewKeyDown"/>
+        <TextBox x:Name="endDateTextBox" HorizontalAlignment="Left" Height="35" Margin="174,167,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="155" FontSize="18" PreviewKeyDown="endDateTextBox_PreviewKeyDown"/>
+        <TextBox x:Name="infoTextBox" HorizontalAlignment="Left" Height="88" Margin="10,246,0,0" TextWrapping="Wrap" Text="Informacije o dozi leka i sve ostale dodatne informacije o terapiji." VerticalAlignment="Top" Width="319" FontSize="18" PreviewKeyDown="infoTextBox_PreviewKeyDown"/>
+        <Image HorizontalAlignment="Left" Height="45" Margin="10,344,0,0" VerticalAlignment="Top" Width="45" Source="addIcon.png"/>
+        <Label Content="CTRL+I" HorizontalAlignment="Left" Margin="10,389,0,0" VerticalAlignment="Top" FontSize="10"/>
+        <Image HorizontalAlignment="Left" Height="50" Margin="284,339,0,0" VerticalAlignment="Top" Width="50" Source="exitIcon.png" Stretch="UniformToFill"/>
         <Label Content="ESC" HorizontalAlignment="Left" Margin="295,386,0,0" VerticalAlignment="Top" FontSize="10"/>
     </Grid>
 </Window>

@@ -22,7 +22,12 @@ namespace Model
             this.endTime = endTime;
             this.info = info;
         }
+        public String prescriptionInfo
+        {
+            get { return medicine.Name + " " + startTime.ToString("dd.MM.yyyy."); }
 
+            set { }
+        }
         public Medicine medicine
         {
             get;

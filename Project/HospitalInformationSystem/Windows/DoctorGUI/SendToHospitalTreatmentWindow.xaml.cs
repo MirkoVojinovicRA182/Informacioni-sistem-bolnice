@@ -28,6 +28,8 @@ namespace HospitalInformationSystem.Windows.DoctorGUI
             InitializeComponent();
             this.patientToSend = patientToSend;
             InitData();
+            startDateTextBox.Text = DateTime.Now.AddDays(1).ToString("dd.MM.yyyy.");
+            endDateTextBox.Text = DateTime.Now.AddDays(8).ToString("dd.MM.yyyy.");
         }
         private void InitData()
         {

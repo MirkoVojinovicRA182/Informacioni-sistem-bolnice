@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Windows;
+using System.Windows.Input;
 
 namespace HospitalInformationSystem.Windows.DoctorGUI
 {
@@ -56,42 +57,30 @@ namespace HospitalInformationSystem.Windows.DoctorGUI
         }
         private void InitData()
         {
-            medicineIdLabel.Content = _medicineToPreview.Id;
             medicineNameTextBox.Text = _medicineToPreview.Name;
-            medicineReplacmentComboBox.ItemsSource = MedicineController.GetInstance().GetAllMedicines();
+            medicineReplecmentListBox.ItemsSource = MedicineController.GetInstance().GetAllMedicines();
             if (_medicineToPreview.ReplacementMedicine != null)
-                medicineReplacmentComboBox.SelectedItem = _medicineToPreview.ReplacementMedicine;
+                medicineReplecmentListBox.SelectedItem = _medicineToPreview.ReplacementMedicine;
             medicinePurposeTextBox.Text = _medicineToPreview.Purpose;
             wayOfUseTextBox.Text = _medicineToPreview.WayOfUse;
             RefreshTable();
         }
-        private void RefreshTable()
+        public void RefreshTable()
         {
             medicineIngredientsTable.ItemsSource = null;
             medicineIngredientsTable.ItemsSource = new ObservableCollection<MedicineIngredient>(_medicineToPreview.Ingredients);
-        }
-        private void editMedicine_Click(object sender, RoutedEventArgs e)
-        {
-            if (string.Equals(editMedicine.Content, "IZMENI"))
-                EnableMedicineEditing();
-            else
-                FinishEditingMedicine();
         }
         private void EnableMedicineEditing()
         {
             medicineNameTextBox.IsEnabled = true;
             medicinePurposeTextBox.IsEnabled = true;
             wayOfUseTextBox.IsEnabled = true;
-            medicineReplacmentComboBox.IsEnabled = true;
+            medicineReplecmentListBox.IsEnabled = true;
             medicineTypeComboBox.IsEnabled = true;
-            addIngredientButton.IsEnabled = true;
-            deleteIngredientButton.IsEnabled = true;
-            editMedicine.Content = "ZAVRSI";
         }
         private void FinishEditingMedicine()
         {
             _medicineToPreview.Name = medicineNameTextBox.Text;
-            //_medicineToPreview.ReplacementMedicine = (Medicine)medicineReplacmentComboBox.SelectedItem;
             ChangeMedicineType();
             _medicineToPreview.Purpose = medicinePurposeTextBox.Text;
             _medicineToPreview.WayOfUse = wayOfUseTextBox.Text;
@@ -120,26 +109,73 @@ namespace HospitalInformationSystem.Windows.DoctorGUI
             medicineNameTextBox.IsEnabled = false;
             medicinePurposeTextBox.IsEnabled = false;
             wayOfUseTextBox.IsEnabled = false;
-            addIngredientButton.IsEnabled = false;
-            deleteIngredientButton.IsEnabled = false;
-            medicineReplacmentComboBox.IsEnabled = false;
+            medicineReplecmentListBox.IsEnabled = false;
             medicineTypeComboBox.IsEnabled = false;
-            editMedicine.Content = "IZMENI";
-        }
-        private void addIngredientButton_Click(object sender, RoutedEventArgs e) => 
-            DoctorAddNewIngredientWindow.GetInstance(_medicineToPreview).ShowDialog();
-        private void deleteIngredientButton_Click(object sender, RoutedEventArgs e)
-        {
-            if((MedicineIngredient)medicineIngredientsTable.SelectedItem != null)
-                _medicineToPreview.Ingredients.Remove((MedicineIngredient)medicineIngredientsTable.SelectedItem);
-            RefreshTable();
         }
         private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
         {
             MedicinePreviewWindow.GetInstance().RefreshTable();
             instance = null;
         }
-        private void addCommentButton_Click(object sender, RoutedEventArgs e) => 
-            AddCommentOnMedicineWindow.GetInstance(_medicineToPreview).ShowDialog();
+        private void CheckKeyPress()
+        {
+            if ((Keyboard.IsKeyDown(Key.LeftCtrl) || Keyboard.IsKeyDown(Key.RightCtrl)) && Keyboard.IsKeyDown(Key.E))
+            {
+                if (!medicineNameTextBox.IsEnabled)
+                {
+                    EnableMedicineEditing();
+                }
+                else
+                    FinishEditingMedicine();
+            }
+            else if ((Keyboard.IsKeyDown(Key.LeftCtrl) || Keyboard.IsKeyDown(Key.RightCtrl)) && Keyboard.IsKeyDown(Key.K))
+                AddCommentOnMedicineWindow.GetInstance(_medicineToPreview).ShowDialog();
+            else if (Keyboard.IsKeyDown(Key.Escape))
+                this.Close();
+            else if ((Keyboard.IsKeyDown(Key.LeftCtrl) || Keyboard.IsKeyDown(Key.RightCtrl)) && Keyboard.IsKeyDown(Key.N))
+            {
+                if (!medicineNameTextBox.IsEnabled)
+                {
+
+                }
+                else
+                {
+                    DoctorAddNewIngredientWindow.GetInstance(_medicineToPreview).ShowDialog();
+                }
+            }
+            else if ((Keyboard.IsKeyDown(Key.LeftCtrl) || Keyboard.IsKeyDown(Key.RightCtrl)) && Keyboard.IsKeyDown(Key.D))
+            {
+                if (!medicineNameTextBox.IsEnabled)
+                {
+
+                }
+                else
+                {
+                    if ((MedicineIngredient)medicineIngredientsTable.SelectedItem != null)
+                        _medicineToPreview.Ingredients.Remove((MedicineIngredient)medicineIngredientsTable.SelectedItem);
+                    RefreshTable();
+                }
+            }
+        }
+
+        private void Window_KeyDown(object sender, KeyEventArgs e)
+        {
+            CheckKeyPress();
+        }
+
+        private void medicineTypeComboBox_PreviewKeyDown(object sender, KeyEventArgs e)
+        {
+            CheckKeyPress();
+        }
+
+        private void medicineReplecmentListBox_PreviewKeyDown(object sender, KeyEventArgs e)
+        {
+            CheckKeyPress();
+        }
+
+        private void medicineIngredientsTable_PreviewKeyDown(object sender, KeyEventArgs e)
+        {
+            CheckKeyPress();
+        }
     }
 }

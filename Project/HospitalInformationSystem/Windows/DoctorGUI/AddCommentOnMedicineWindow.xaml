@@ -5,10 +5,16 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:HospitalInformationSystem.Windows.DoctorGUI"
         mc:Ignorable="d"
-        Title="Dodavanje komentara" Height="400" Width="400" Closing="Window_Closing">
+        Title="Dodavanje komentara" Height="400" Width="400" Closing="Window_Closing" ResizeMode="NoResize" KeyDown="Window_KeyDown">
     <Grid>
-        <TextBox x:Name="commentTextBox" HorizontalAlignment="Left" Height="300" Margin="10,10,0,0" TextWrapping="Wrap" Text="Komentar" VerticalAlignment="Top" Width="374" FontSize="16"/>
-        <Button x:Name="addCommentButton" Content="DODAJ" HorizontalAlignment="Left" Height="45" Margin="129,315,0,0" VerticalAlignment="Top" Width="131" FontSize="16" Click="addCommentButton_Click"/>
+        <Grid.Background>
+            <ImageBrush Stretch="UniformToFill" ImageSource="hospitalBackground2.jpg"/>
+        </Grid.Background>
+        <TextBox x:Name="commentTextBox" HorizontalAlignment="Left" Height="271" Margin="10,10,0,0" TextWrapping="Wrap" Text="Komentar" VerticalAlignment="Top" Width="374" FontSize="16" PreviewKeyDown="commentTextBox_PreviewKeyDown"/>
+        <Image HorizontalAlignment="Left" Height="40" Margin="10,286,0,0" VerticalAlignment="Top" Width="40" Source="addCommentImage.png"/>
+        <Label Content="CTRL+K" HorizontalAlignment="Left" Margin="10,326,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.503,0.486"/>
+        <Image HorizontalAlignment="Left" Height="40" Margin="344,286,0,0" VerticalAlignment="Top" Width="40" Source="exitIcon.png"/>
+        <Label Content="ESC" HorizontalAlignment="Left" Margin="348,326,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.503,0.486"/>
 
     </Grid>
 </Window>

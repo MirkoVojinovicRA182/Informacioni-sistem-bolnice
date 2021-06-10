@@ -118,5 +118,11 @@ namespace Model
         {
             get; set;
         }
+
+        public String NameAndSurname
+        {
+            get { return Name + " " + Surname; }
+            set { }
+        }
     }
 }

@@ -7,6 +7,9 @@
         mc:Ignorable="d"
         Title="CreateReportWindow" Height="350" Width="280" ResizeMode="NoResize" Closing="Window_Closing" KeyDown="Window_KeyDown">
     <Grid>
+        <Grid.Background>
+            <ImageBrush Stretch="UniformToFill" ImageSource="hospitalBackground2.jpg"/>
+        </Grid.Background>
         <Label Content="Unesite informacije o vremenskom&#xD;&#xA;razmaku u kome želite da kreirate&#xD;&#xA;izvještaj o potrošnji lekova." HorizontalAlignment="Left" Height="107" Margin="10,10,0,0" VerticalAlignment="Top" Width="274" FontSize="16"/>
         <Label Content="Od:" HorizontalAlignment="Left" Margin="10,122,0,0" VerticalAlignment="Top" Width="50" Height="35" FontSize="16"/>
         <Label Content="Do:" HorizontalAlignment="Left" Margin="10,180,0,0" VerticalAlignment="Top" Width="50" Height="35" FontSize="16"/>
@@ -14,7 +17,7 @@
         <TextBox x:Name="endDateTextBox" HorizontalAlignment="Left" Height="35" Margin="65,180,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="154" FontSize="16"/>
         <Image HorizontalAlignment="Left" Height="50" Margin="10,241,0,0" VerticalAlignment="Top" Width="50" Source="reportIcon.png"/>
         <Label Content="CTRL+I" HorizontalAlignment="Left" Margin="10,283,0,0" VerticalAlignment="Top" Width="50" Height="27"/>
-        <Image HorizontalAlignment="Right" Height="50" Margin="0,241,10,0" VerticalAlignment="Top" Width="50" Source="quitIcon.png"/>
+        <Image HorizontalAlignment="Right" Height="50" Margin="0,241,10,0" VerticalAlignment="Top" Width="50" Source="exitIcon.png"/>
         <Label Content="ESC" HorizontalAlignment="Right" Margin="0,283,20,0" VerticalAlignment="Top" Width="29" Height="27"/>
     </Grid>
 </Window>

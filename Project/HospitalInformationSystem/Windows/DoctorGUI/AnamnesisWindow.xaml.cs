@@ -23,6 +23,7 @@ namespace HospitalInformationSystem.Windows.DoctorGUI
         {
             InitializeComponent();
             this._patientsMedicalRecord = patientsMedicalRecord;
+            dateTextBox.Text = DateTime.Now.ToString("dd.MM.yyyy.");
         }
         private bool CheckDateInput()
         {
@@ -87,6 +88,11 @@ namespace HospitalInformationSystem.Windows.DoctorGUI
         }
 
         private void dateTextBox_PreviewKeyDown(object sender, KeyEventArgs e)
+        {
+            CheckKeyPress();
+        }
+
+        private void Window_KeyDown(object sender, KeyEventArgs e)
         {
             CheckKeyPress();
         }

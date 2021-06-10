@@ -5,10 +5,13 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:HospitalInformationSystem.Windows.DoctorGUI"
         mc:Ignorable="d"
-        Title="DoctorAllergensPreviewWindow" Height="306.452" Width="300" Closing="Window_Closing_1" KeyDown="Window_KeyDown">
+        Title="DoctorAllergensPreviewWindow" Height="306.452" Width="300" Closing="Window_Closing_1" KeyDown="Window_KeyDown" ResizeMode="NoResize">
     <Grid>
-        <ListBox x:Name="allergensListBox" HorizontalAlignment="Left" Height="195" Margin="10,10,0,0" VerticalAlignment="Top" Width="274" ItemsSource="{Binding}" DisplayMemberPath="Name" PreviewKeyDown="allergensListBox_PreviewKeyDown"/>
-        <Image HorizontalAlignment="Left" Height="40" Margin="244,210,0,0" VerticalAlignment="Top" Width="40" Source="quitIcon.png"/>
+        <Grid.Background>
+            <ImageBrush Stretch="UniformToFill" ImageSource="hospitalBackground2.jpg"/>
+        </Grid.Background>
+        <ListBox x:Name="allergensListBox" HorizontalAlignment="Left" Height="195" Margin="10,10,0,0" VerticalAlignment="Top" Width="270" ItemsSource="{Binding}" DisplayMemberPath="Name" PreviewKeyDown="allergensListBox_PreviewKeyDown"/>
+        <Image HorizontalAlignment="Left" Height="40" Margin="244,210,0,0" VerticalAlignment="Top" Width="40" Source="exitIcon.png"/>
         <Label Content="ESC" HorizontalAlignment="Left" Height="22" Margin="252,245,0,0" VerticalAlignment="Top" Width="28" FontSize="10"/>
 
     </Grid>

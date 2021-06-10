@@ -30,6 +30,7 @@ namespace HospitalInformationSystem.Windows.DoctorGUI
             InitPatientsListBox();
             InitRooms();
             InitTypeOfAppointment();
+            dateTextBox.Text = DateTime.Now.ToString("dd.MM.yyyy.");
         }
         private void InitDoctorsNameLabel()
         {

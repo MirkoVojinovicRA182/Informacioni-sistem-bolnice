@@ -1,5 +1,6 @@
 ﻿using HospitalInformationSystem.Model;
 using System.Windows;
+using System.Windows.Input;
 
 namespace HospitalInformationSystem.Windows.DoctorGUI
 {
@@ -60,10 +61,27 @@ namespace HospitalInformationSystem.Windows.DoctorGUI
         {
             return CheckIngredientNameInput() && CheckQuantityInput() && CheckRdiInput();
         }
+        private void CheckKeyPress()
+        {
+            if (Keyboard.IsKeyDown(Key.Enter))
+            {
+                if (CheckAllInputs())
+                    _medicineToAddNewIngredient.Ingredients.Add(
+                        new MedicineIngredient(nameTextBox.Text, double.Parse(quantityInHundredGramsTextBox.Text), int.Parse(dailyIntakeTextBox.Text)));
+                MedicineInformationPreview.GetInstance(_medicineToAddNewIngredient).RefreshTable();
+            }
+            else if (Keyboard.IsKeyDown(Key.Escape))
+                this.Close();
 
+        }
         private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
         {
             instance = null;
+        }
+
+        private void Window_KeyDown(object sender, KeyEventArgs e)
+        {
+            CheckKeyPress();
         }
     }
 }

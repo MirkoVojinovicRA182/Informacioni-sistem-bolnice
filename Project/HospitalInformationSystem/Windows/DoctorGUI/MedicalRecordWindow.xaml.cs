@@ -26,6 +26,8 @@ namespace HospitalInformationSystem.Windows.DoctorGUI
         }
         private void initPatientsInfo()
         {
+            if (_patientToShowMedicalRecord.MedicalRecord.getId() != null)
+                medicalRecordId.Content = _patientToShowMedicalRecord.GetMedicalRecordId;
             nameLabel.Content = _patientToShowMedicalRecord.Name + " " + _patientToShowMedicalRecord.Surname;
             bloodTypeLabel.Content = _patientToShowMedicalRecord.Blood.ToString();
             dateOfBirthLabel.Content = _patientToShowMedicalRecord.DateOfBirth.ToString(DATE_TEMPLATE);

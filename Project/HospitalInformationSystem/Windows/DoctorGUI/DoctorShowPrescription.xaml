@@ -5,26 +5,20 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:HospitalInformationSystem.Windows"
         mc:Ignorable="d"
-        Title="DoctorShowPrescription" Height="450" Width="350" Closing="Window_Closing" KeyDown="Window_KeyDown">
+        Title="DoctorShowPrescription" Height="450" Width="350" Closing="Window_Closing" KeyDown="Window_KeyDown" ResizeMode="NoResize">
     <Grid>
+        <Grid.Background>
+            <ImageBrush Stretch="UniformToFill" ImageSource="hospitalBackground2.jpg"/>
+        </Grid.Background>
         <Label Content="Lek:" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" FontSize="18"/>
-        <Label Content="Datum početka:" HorizontalAlignment="Left" Margin="10,49,0,0" VerticalAlignment="Top" FontSize="18"/>
-        <Label Content="Datum završetka:" HorizontalAlignment="Left" Margin="10,88,0,0" VerticalAlignment="Top" FontSize="18"/>
-        <Label Content="Doza i dodatne informacije:" HorizontalAlignment="Left" Margin="10,127,0,0" VerticalAlignment="Top" FontSize="18"/>
-        <TextBox x:Name="endDateTextBox" HorizontalAlignment="Left" Height="35" Margin="156,92,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="178" FontSize="18" IsEnabled="False"/>
-        <TextBox x:Name="startDateTextBox" HorizontalAlignment="Left" Height="35" Margin="156,48,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="178" FontSize="18" IsEnabled="False"/>
-        <TextBox x:Name="infoTextBox" HorizontalAlignment="Left" Height="161" Margin="10,166,0,0" TextWrapping="Wrap" Text="Informacije o dozi leka i sve ostale dodatne informacije o terapiji." VerticalAlignment="Top" Width="324" FontSize="18" IsEnabled="False"/>
-        <ComboBox x:Name="medicineComboBox" HorizontalAlignment="Left" Margin="156,10,0,0" VerticalAlignment="Top" Width="178" FontSize="16" SelectionChanged="medicineComboBox_SelectionChanged">
-            <ComboBox.ItemTemplate>
-                <DataTemplate>
-                    <TextBlock>
-                 <Run Text="{Binding medicine.Name}" />
-                    </TextBlock>
-                </DataTemplate>
-            </ComboBox.ItemTemplate>
-        </ComboBox>
-        <Image HorizontalAlignment="Left" Height="50" Margin="284,335,0,0" VerticalAlignment="Top" Width="50" Source="quitIcon.png"/>
-        <Label Content="ESC" HorizontalAlignment="Left" Margin="296,380,0,0" VerticalAlignment="Top" FontSize="10"/>
-
+        <ListBox x:Name="medicineListBox" HorizontalAlignment="Left" Height="59" Margin="10,49,0,0" VerticalAlignment="Top" Width="324" SelectionChanged="medicineListBox_SelectionChanged" ItemsSource="{Binding}" DisplayMemberPath="prescriptionInfo"/>
+        <Label Content="Datum početka:" HorizontalAlignment="Left" Margin="10,109,0,0" VerticalAlignment="Top" FontSize="18"/>
+        <Label Content="Datum završetka:" HorizontalAlignment="Left" Margin="10,153,0,0" VerticalAlignment="Top" FontSize="18"/>
+        <Label Content="Doza i dodatne informacije:" HorizontalAlignment="Left" Margin="10,192,0,0" VerticalAlignment="Top" FontSize="18"/>
+        <TextBox x:Name="endDateTextBox" HorizontalAlignment="Left" Height="35" Margin="156,153,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="178" FontSize="18" IsEnabled="False"/>
+        <TextBox x:Name="startDateTextBox" HorizontalAlignment="Left" Height="35" Margin="156,111,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="178" FontSize="18" IsEnabled="False" Background="White"/>
+        <TextBox x:Name="infoTextBox" HorizontalAlignment="Left" Height="114" Margin="10,226,0,0" TextWrapping="Wrap" Text="Informacije o dozi leka i sve ostale dodatne informacije o terapiji." VerticalAlignment="Top" Width="324" FontSize="18" IsEnabled="False"/>
+        <Image HorizontalAlignment="Left" Height="50" Margin="284,340,0,0" VerticalAlignment="Top" Width="50" Source="exitIcon.png"/>
+        <Label Content="ESC" HorizontalAlignment="Left" Margin="296,385,0,0" VerticalAlignment="Top" FontSize="10"/>
     </Grid>
 </Window>

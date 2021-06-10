@@ -5,7 +5,10 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:HospitalInformationSystem.Windows"
         mc:Ignorable="d"
-        Title="MedicalRecordWindow" Height="450" Width="800" Closing="Window_Closing" KeyDown="Window_KeyDown">
+        Title="MedicalRecordWindow" Height="450" Width="800" Closing="Window_Closing" KeyDown="Window_KeyDown" ResizeMode="NoResize">
+    <Window.Background>
+        <ImageBrush Stretch="UniformToFill" TileMode="FlipY" ImageSource="hospitalBackground2.jpg"/>
+    </Window.Background>
     <Grid>
         <Label Content="Broj kartona:" HorizontalAlignment="Left" Margin="264,10,0,0" VerticalAlignment="Top" FontSize="16"/>
         <Label x:Name="medicalRecordId" Content="Label" HorizontalAlignment="Left" Margin="368,10,0,0" VerticalAlignment="Top" FontSize="16"/>
@@ -42,7 +45,7 @@
         <Image HorizontalAlignment="Left" Height="50" Margin="448,337,0,0" VerticalAlignment="Top" Width="50" Source="referralLetterIcon.png"/>
         <Label Content="Izdavanje upute" HorizontalAlignment="Left" Margin="503,337,0,0" VerticalAlignment="Top" FontSize="20"/>
         <Label Content="CTRL+U" HorizontalAlignment="Left" Margin="505,367,0,0" VerticalAlignment="Top"/>
-        <Image HorizontalAlignment="Left" Height="50" Margin="734,10,0,0" VerticalAlignment="Top" Width="50" Source="quitIcon.png"/>
+        <Image HorizontalAlignment="Left" Height="50" Margin="734,10,0,0" VerticalAlignment="Top" Width="50" Source="exitIcon.png" Stretch="UniformToFill"/>
         <Label Content="CTRL+Q" HorizontalAlignment="Left" Margin="731,60,0,0" VerticalAlignment="Top"/>
 
     </Grid>

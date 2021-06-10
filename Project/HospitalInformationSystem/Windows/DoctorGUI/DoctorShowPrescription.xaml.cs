@@ -25,13 +25,13 @@ namespace HospitalInformationSystem.Windows.DoctorGUI
         }
         public void InitMedicineComboBox(MedicalRecord patientsMedicalRecord)
         {
-            medicineComboBox.ItemsSource = patientsMedicalRecord.getPrescriptions();
+            medicineListBox.ItemsSource = patientsMedicalRecord.getPrescriptions();
         }
         private void medicineComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            startDateTextBox.Text = ((Prescription)medicineComboBox.SelectedItem).startTime.ToString(DATE_TEMPLATE);
-            endDateTextBox.Text = ((Prescription)medicineComboBox.SelectedItem).endTime.ToString(DATE_TEMPLATE);
-            infoTextBox.Text = ((Prescription)medicineComboBox.SelectedItem).info;
+            startDateTextBox.Text = ((Prescription)medicineListBox.SelectedItem).startTime.ToString(DATE_TEMPLATE);
+            endDateTextBox.Text = ((Prescription)medicineListBox.SelectedItem).endTime.ToString(DATE_TEMPLATE);
+            infoTextBox.Text = ((Prescription)medicineListBox.SelectedItem).info;
         }
         private void CheckKeyPress()
         {
@@ -43,6 +43,13 @@ namespace HospitalInformationSystem.Windows.DoctorGUI
         private void Window_KeyDown(object sender, KeyEventArgs e)
         {
             CheckKeyPress();
+        }
+
+        private void medicineListBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            startDateTextBox.Text = ((Prescription)medicineListBox.SelectedItem).startTime.ToString(DATE_TEMPLATE);
+            endDateTextBox.Text = ((Prescription)medicineListBox.SelectedItem).endTime.ToString(DATE_TEMPLATE);
+            infoTextBox.Text = ((Prescription)medicineListBox.SelectedItem).info;
         }
     }
 }

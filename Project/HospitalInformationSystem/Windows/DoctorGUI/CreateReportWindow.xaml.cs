@@ -2,6 +2,7 @@
 using HospitalInformationSystem.Model;
 using Model;
 using Syncfusion.Pdf;
+using Syncfusion.Pdf.Graphics;
 using Syncfusion.Pdf.Tables;
 using System;
 using System.Data;
@@ -26,6 +27,8 @@ namespace HospitalInformationSystem.Windows.DoctorGUI
         public CreateReportWindow()
         {
             InitializeComponent();
+            startDateTextBox.Text = DateTime.Now.AddMonths(-1).ToString("dd.MM.yyyy.");
+            endDateTextBox.Text = DateTime.Now.ToString("dd.MM.yyyy.");
         }
         private void CreateReport()
         {
@@ -34,6 +37,17 @@ namespace HospitalInformationSystem.Windows.DoctorGUI
                 PdfPage page = doc.Pages.Add();
                 PdfLightTable pdfLightTable = new PdfLightTable();
                 DataTable table = new DataTable();
+
+                PdfGraphics graphics = page.Graphics;
+
+                //Set the standard font.
+
+                PdfFont font = new PdfStandardFont(PdfFontFamily.Helvetica, 15);
+
+                //Draw the text.
+
+                graphics.DrawString("Izveštaj o potrošnji lekova od " + startDateTextBox.Text + " do " + endDateTextBox.Text, font, PdfBrushes.Black, new PointF(0, 0));
+
                 table.Columns.Add("Lek");
                 table.Columns.Add("Utrošena količina");
                 table.Rows.Add(new string[] { "Lek", "Utrosena kolicina" });
@@ -55,7 +69,7 @@ namespace HospitalInformationSystem.Windows.DoctorGUI
                     table.Rows.Add(new string[] { medicine.Name, number.ToString() });
                 }
                 pdfLightTable.DataSource = table;
-                pdfLightTable.Draw(page, new PointF(0, 0));
+                pdfLightTable.Draw(page, new PointF(0, 20));
                 doc.Save("Lekovi.pdf");
                 doc.Close(true);
             }

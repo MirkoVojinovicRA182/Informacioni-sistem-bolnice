@@ -25,11 +25,13 @@ namespace HospitalInformationSystem.Windows.DoctorGUI
         {
             InitializeComponent();
             this._patientToAddPrescription = patientToAddPrescription;
-            medicineComboBox.ItemsSource = MedicineController.GetInstance().GetAllMedicines();
+            medicineListBox.ItemsSource = MedicineController.GetInstance().GetAllMedicines();
+            startDateTextBox.Text = DateTime.Now.ToString("dd.MM.yyyy.");
+            endDateTextBox.Text = DateTime.Now.AddDays(7).ToString("dd.MM.yyyy.");
         }
         public bool CheckInputOfMedicineTextBox()
         {
-            if (medicineComboBox.SelectedIndex < 0)
+            if (medicineListBox.SelectedIndex < 0)
             {
                 MessageBox.Show("Morate uneti lek!", "Medicine", MessageBoxButton.OK, MessageBoxImage.Error);
                 return false;
@@ -73,7 +75,7 @@ namespace HospitalInformationSystem.Windows.DoctorGUI
         }
         private bool CheckPatientsAllergens()
         {
-            foreach(MedicineIngredient medicineIngredients in ((Medicine)medicineComboBox.SelectedItem).Ingredients)
+            foreach(MedicineIngredient medicineIngredients in ((Medicine)medicineListBox.SelectedItem).Ingredients)
             {
                 if (!CheckPatientsIngredientsAllergens(medicineIngredients))
                 {
@@ -96,7 +98,7 @@ namespace HospitalInformationSystem.Windows.DoctorGUI
         {
             foreach (Allergen allergen in _patientToAddPrescription.MedicalRecord.AllergensList)
             {
-                if (allergen.Name.Equals(((Medicine)medicineComboBox.SelectedItem).Name) && allergen.isAllergic)
+                if (allergen.Name.Equals(((Medicine)medicineListBox.SelectedItem).Name) && allergen.isAllergic)
                     return false;
             }
             return true;
@@ -112,7 +114,7 @@ namespace HospitalInformationSystem.Windows.DoctorGUI
             {
                 if (AllInputsCheck())
                 {
-                    Prescription newPrescription = new Prescription((Medicine)medicineComboBox.SelectedItem, DateTime.ParseExact(startDateTextBox.Text, "dd.MM.yyyy.", System.Globalization.CultureInfo.InvariantCulture), DateTime.ParseExact(endDateTextBox.Text, "dd.MM.yyyy.", System.Globalization.CultureInfo.InvariantCulture), infoTextBox.Text);
+                    Prescription newPrescription = new Prescription((Medicine)medicineListBox.SelectedItem, DateTime.ParseExact(startDateTextBox.Text, "dd.MM.yyyy.", System.Globalization.CultureInfo.InvariantCulture), DateTime.ParseExact(endDateTextBox.Text, "dd.MM.yyyy.", System.Globalization.CultureInfo.InvariantCulture), infoTextBox.Text);
                     PatientController.getInstance().AddPrescription(_patientToAddPrescription, newPrescription);
                     MessageBox.Show("Recept je uspešno izdat.", "Prescription", MessageBoxButton.OK, MessageBoxImage.Information);
                 }

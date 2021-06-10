@@ -5,18 +5,21 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:HospitalInformationSystem.Windows.DoctorGUI"
         mc:Ignorable="d"
-        Title="EditHospitalTreatmentWindow" Height="450" Width="350" Closing="Window_Closing" KeyDown="Window_KeyDown">
+        Title="EditHospitalTreatmentWindow" Height="450" Width="350" Closing="Window_Closing" KeyDown="Window_KeyDown" ResizeMode="NoResize">
     <Grid>
+        <Grid.Background>
+            <ImageBrush Stretch="UniformToFill" ImageSource="hospitalBackground2.jpg"/>
+        </Grid.Background>
         <Label Content="Pacijent:" HorizontalAlignment="Left" Margin="25,25,0,0" VerticalAlignment="Top" FontSize="16"/>
         <Label x:Name="patientNameLabel" Content="Ime i prezime" HorizontalAlignment="Left" Margin="167,25,0,0" VerticalAlignment="Top" FontSize="16" Width="144"/>
         <Label Content="Datum pocetka:" HorizontalAlignment="Left" Margin="25,75,0,0" VerticalAlignment="Top" FontSize="16"/>
-        <TextBox x:Name="startDateTextBox" HorizontalAlignment="Left" Height="32" Margin="167,75,0,0" TextWrapping="Wrap" Text="12.12.2021." VerticalAlignment="Top" Width="144" FontSize="18"/>
+        <TextBox x:Name="startDateTextBox" HorizontalAlignment="Left" Height="32" Margin="167,75,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="144" FontSize="18"/>
         <Label Content="Datum kraja:" HorizontalAlignment="Left" Margin="25,125,0,0" VerticalAlignment="Top" FontSize="16"/>
-        <TextBox x:Name="endDateTextBox" HorizontalAlignment="Left" Height="32" Margin="167,125,0,0" TextWrapping="Wrap" Text="13.12.2021." VerticalAlignment="Top" Width="144" FontSize="18"/>
+        <TextBox x:Name="endDateTextBox" HorizontalAlignment="Left" Height="32" Margin="167,125,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="144" FontSize="18"/>
         <Label Content="Prostorija:" HorizontalAlignment="Left" Margin="25,175,0,0" VerticalAlignment="Top" FontSize="16"/>
         <ListBox x:Name="roomsListBox" HorizontalAlignment="Left" Height="125" Margin="25,212,0,0" VerticalAlignment="Top" Width="285" ItemsSource="{Binding}" DisplayMemberPath="Name" PreviewKeyDown="roomsListBox_PreviewKeyDown"/>
         <Image HorizontalAlignment="Left" Height="50" Margin="10,342,0,0" VerticalAlignment="Top" Width="50" Source="editIcon.png"/>
-        <Image HorizontalAlignment="Left" Height="50" Margin="284,342,0,0" VerticalAlignment="Top" Width="50" Source="quitIcon.png"/>
+        <Image HorizontalAlignment="Left" Height="50" Margin="284,342,0,0" VerticalAlignment="Top" Width="50" Source="exitIcon.png"/>
         <Label Content="CTRL+E" HorizontalAlignment="Left" Margin="10,384,0,0" VerticalAlignment="Top"/>
         <Label Content="ESC" HorizontalAlignment="Left" Margin="295,384,0,0" VerticalAlignment="Top"/>
         <Label x:Name="currentRoom" Content="prostorija" HorizontalAlignment="Left" Margin="167,175,0,0" VerticalAlignment="Top" FontSize="16"/>

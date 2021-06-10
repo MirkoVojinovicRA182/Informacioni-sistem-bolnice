@@ -5,8 +5,11 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:HospitalInformationSystem.Windows"
         mc:Ignorable="d"
-        Title="Izmena termina" Height="420" Width="300" KeyDown="Window_KeyDown" Closing="Window_Closing">
+        Title="Izmena termina" Height="420" Width="300" KeyDown="Window_KeyDown" Closing="Window_Closing" ResizeMode="NoResize">
     <Grid>
+        <Grid.Background>
+            <ImageBrush Stretch="UniformToFill" ImageSource="hospitalBackground2.jpg"/>
+        </Grid.Background>
         <Label Content="Datum:" HorizontalAlignment="Left" Height="37" Margin="28,40,0,0" VerticalAlignment="Top" Width="107" FontSize="14"/>
         <TextBox x:Name="dateTextBox" HorizontalAlignment="Left" Height="37" Margin="135,40,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="128" FontSize="14"/>
         <Label Content="Vreme:" HorizontalAlignment="Left" Height="32" Margin="28,90,0,0" VerticalAlignment="Top" Width="107" FontSize="14"/>
@@ -14,7 +17,7 @@
         <Label Content="Pacijent:" HorizontalAlignment="Left" Margin="28,140,0,0" VerticalAlignment="Top" FontSize="14" RenderTransformOrigin="0.527,-0.207"/>
         <ListBox x:Name="patientListBox" HorizontalAlignment="Left" Height="135" Margin="28,174,0,0" VerticalAlignment="Top" Width="235" PreviewKeyDown="patientListBox_PreviewKeyDown"/>
         <Image HorizontalAlignment="Left" Height="40" Margin="15,320,0,0" VerticalAlignment="Top" Width="40" Source="editIcon.png"/>
-        <Image HorizontalAlignment="Left" Height="40" Margin="240,320,0,0" VerticalAlignment="Top" Width="40" Source="quitIcon.png"/>
+        <Image HorizontalAlignment="Left" Height="40" Margin="240,320,0,0" VerticalAlignment="Top" Width="40" Source="exitIcon.png"/>
         <Label Content="CTRL+E" HorizontalAlignment="Left" Margin="5,360,0,0" VerticalAlignment="Top"/>
         <Label Content="ESC" HorizontalAlignment="Left" Margin="245,360,0,-0.6" VerticalAlignment="Top"/>
     </Grid>

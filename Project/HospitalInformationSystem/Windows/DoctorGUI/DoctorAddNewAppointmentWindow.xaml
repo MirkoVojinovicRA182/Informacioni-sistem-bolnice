@@ -8,6 +8,9 @@
         mc:Ignorable="d"
         Title="Dodavanje novog termina" Height="585.484" Width="350" ResizeMode="NoResize" KeyDown="Window_KeyDown" Closing="Window_Closing">
     <Grid>
+        <Grid.Background>
+            <ImageBrush Stretch="UniformToFill" ImageSource="hospitalBackground2.jpg"/>
+        </Grid.Background>
         <Label Content="Datum:" HorizontalAlignment="Left" Height="30" Margin="39,30,0,0" VerticalAlignment="Top" Width="99" FontSize="14"/>
         <TextBox x:Name="dateTextBox" HorizontalAlignment="Left" Height="30" Margin="176,30,0,0" TextWrapping="Wrap" Text="01.01.2021." VerticalAlignment="Top" Width="139" FontSize="14"/>
         <Label Content="Vreme:" HorizontalAlignment="Left" Height="35" Margin="39,70,0,0" VerticalAlignment="Top" Width="99" FontSize="14"/>
@@ -19,7 +22,7 @@
         <TextBox x:Name="doctorTextBox" HorizontalAlignment="Left" Height="28" Margin="176,110,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="139" FontSize="14" IsEnabled="False"/>
         <ListBox x:Name="patientListBox" HorizontalAlignment="Left" Height="114" Margin="39,218,0,0" VerticalAlignment="Top" Width="276" PreviewKeyDown="patientListBox_PreviewKeyDown"/>
         <Image HorizontalAlignment="Left" Height="40" Margin="15,489,0,0" VerticalAlignment="Top" Width="40" Source="addIcon.png"/>
-        <Image HorizontalAlignment="Left" Height="40" Margin="294,489,0,0" VerticalAlignment="Top" Width="40" Source="quitIcon.png"/>
+        <Image HorizontalAlignment="Left" Height="40" Margin="294,489,0,0" VerticalAlignment="Top" Width="40" Source="exitIcon.png"/>
         <Label Content="CTRL+A" HorizontalAlignment="Left" Margin="10,524,0,0" VerticalAlignment="Top"/>
         <Label Content="ESC" HorizontalAlignment="Left" Margin="300,524,0,0" VerticalAlignment="Top"/>
         <Label x:Name="roomLabel" Content="Prostorije:" HorizontalAlignment="Left" Height="28" Margin="39,345,0,0" VerticalAlignment="Top" Width="99" FontSize="14" Visibility="Hidden"/>

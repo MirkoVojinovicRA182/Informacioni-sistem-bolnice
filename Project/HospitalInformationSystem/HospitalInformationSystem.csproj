@@ -855,6 +855,21 @@
     <Resource Include="Images\Patient\quitIcon.png" />
     <Resource Include="Images\Patient\reportIcon.png" />
   </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Windows\DoctorGUI\bg2.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Windows\DoctorGUI\hospitalTretmentIcon.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Windows\DoctorGUI\exitIcon.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Windows\DoctorGUI\addCommentImage.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Windows\DoctorGUI\searchIcon.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
     <PropertyGroup>

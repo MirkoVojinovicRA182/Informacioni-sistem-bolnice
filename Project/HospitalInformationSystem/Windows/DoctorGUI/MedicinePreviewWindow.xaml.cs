@@ -2,6 +2,7 @@
 using HospitalInformationSystem.Model;
 using System.Collections.ObjectModel;
 using System.Windows;
+using System.Windows.Input;
 
 namespace HospitalInformationSystem.Windows.DoctorGUI
 {
@@ -28,14 +29,29 @@ namespace HospitalInformationSystem.Windows.DoctorGUI
             medicineTable.ItemsSource = null;
             medicineTable.ItemsSource = new ObservableCollection<Medicine>(MedicineController.GetInstance().GetAllMedicines());
         }
-        private void previewMedicineButton_Click(object sender, RoutedEventArgs e)
+        private void CheckKeyPress()
         {
-            if (medicineTable.SelectedIndex >= 0)
-                MedicineInformationPreview.GetInstance((Medicine)medicineTable.SelectedItem).ShowDialog();
+            if (Keyboard.IsKeyDown(Key.Enter))
+            {
+                if (medicineTable.SelectedIndex >= 0)
+                    MedicineInformationPreview.GetInstance((Medicine)medicineTable.SelectedItem).ShowDialog();
+            }
+            else if (Keyboard.IsKeyDown(Key.Escape))
+                this.Close();
         }
         private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
         {
             instance = null;
+        }
+
+        private void medicineTable_PreviewKeyDown(object sender, KeyEventArgs e)
+        {
+            CheckKeyPress();
+        }
+
+        private void Window_KeyDown(object sender, KeyEventArgs e)
+        {
+            CheckKeyPress();
         }
     }
 }

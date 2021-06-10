@@ -5,8 +5,11 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:HospitalInformationSystem.Windows"
         mc:Ignorable="d"
-        Title="DoctorShowAppointmentInformationWindow" Height="420" Width="300" KeyDown="Window_KeyDown" Closing="Window_Closing">
+        Title="DoctorShowAppointmentInformationWindow" Height="420" Width="300" KeyDown="Window_KeyDown" Closing="Window_Closing" ResizeMode="NoResize">
     <Grid>
+        <Grid.Background>
+            <ImageBrush Stretch="UniformToFill" ImageSource="hospitalBackground2.jpg"/>
+        </Grid.Background>
         <Label Content="Datum:" HorizontalAlignment="Left" Margin="32,35,0,0" VerticalAlignment="Top" FontSize="18"/>
         <Label Content="Vreme:" HorizontalAlignment="Left" Margin="32,91,0,0" VerticalAlignment="Top" FontSize="18"/>
         <Label Content="Vrsta termina:" HorizontalAlignment="Left" Margin="32,149,0,0" VerticalAlignment="Top" FontSize="18"/>
@@ -19,7 +22,7 @@
         <TextBox x:Name="roomTextBox" HorizontalAlignment="Left" Height="23" Margin="152,265,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" FontSize="18" IsEnabled="False" Visibility="Hidden"/>
         <Image HorizontalAlignment="Left" Height="70" Margin="32,260,0,0" VerticalAlignment="Top" Width="70" Source="patientIcon.png"/>
         <Label Content="Prikaz informacija&#xD;&#xA;o pacijentu" HorizontalAlignment="Left" Height="65" Margin="127,265,0,0" VerticalAlignment="Top" Width="157" FontSize="18"/>
-        <Image HorizontalAlignment="Left" Height="40" Margin="232,325,0,0" VerticalAlignment="Top" Width="40" Source="quitIcon.png"/>
+        <Image HorizontalAlignment="Left" Height="40" Margin="232,325,0,0" VerticalAlignment="Top" Width="40" Source="exitIcon.png"/>
         <Label Content="ESC" HorizontalAlignment="Left" Margin="237,360,0,0" VerticalAlignment="Top"/>
         <Label Content="ENTER" HorizontalAlignment="Left" Margin="39,330,0,0" VerticalAlignment="Top" FontSize="16"/>
 

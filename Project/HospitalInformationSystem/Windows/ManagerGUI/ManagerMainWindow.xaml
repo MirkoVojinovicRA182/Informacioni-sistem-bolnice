@@ -10,7 +10,7 @@
         xmlns:ucDynamicEquipment="clr-namespace:HospitalInformationSystem.Windows.ManagerGUI"
         xmlns:local="clr-namespace:HospitalInformationSystem.Windows.ManagerGUI"
         mc:Ignorable="d"
-        Title="{ns:Loc MainWindow}" Height="600" Width="1000" Closing="Window_Closing" PreviewKeyDown="mainFrame_PreviewKeyDown">
+        Title="{ns:Loc MainWindow}" Height="600" Width="1000" Closing="Window_Closing" PreviewKeyDown="mainFrame_PreviewKeyDown" ResizeMode="NoResize">
     <DockPanel>
         <Menu DockPanel.Dock="Top">
             <MenuItem Header="{ns:Loc File}">

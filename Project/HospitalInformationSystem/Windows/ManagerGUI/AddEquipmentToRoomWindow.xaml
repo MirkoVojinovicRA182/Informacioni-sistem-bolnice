@@ -7,7 +7,7 @@
         xmlns:local="clr-namespace:HospitalInformationSystem.Windows.ManagerGUI"
         xmlns:mah="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
         mc:Ignorable="d"
-        Title="{ns:Loc Equipment}" Height="270" Width="250" Closing="Window_Closing">
+        Title="{ns:Loc Equipment}" Height="270" Width="250" Closing="Window_Closing" ResizeMode="NoResize">
     <Grid>
         <ListBox x:Name="equipmentListBox" HorizontalAlignment="Left" BorderThickness="1" Height="80" VerticalAlignment="Top" Width="220" Margin="10,49,0,0">
             <ListBox.ItemTemplate>

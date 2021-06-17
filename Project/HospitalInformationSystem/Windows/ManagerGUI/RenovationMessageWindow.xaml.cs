@@ -14,6 +14,8 @@ namespace HospitalInformationSystem.Windows.ManagerGUI
         private RenovationMessageWindow()
         {
             InitializeComponent();
+            WindowStartupLocation = System.Windows.WindowStartupLocation.CenterScreen;
+            WindowStartupLocation = System.Windows.WindowStartupLocation.CenterScreen;
         }
         private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
         {

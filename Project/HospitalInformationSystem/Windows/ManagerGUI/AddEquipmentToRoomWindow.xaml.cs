@@ -21,6 +21,7 @@ namespace HospitalInformationSystem.Windows.ManagerGUI
         private AddEquipmentToRoomWindow(Hashtable currentRoomEquipment, string equipmentType, string window)
         {
             InitializeComponent();
+            WindowStartupLocation = System.Windows.WindowStartupLocation.CenterScreen;
             equipmentListBox.ItemsSource = null;
             equipmentListBox.ItemsSource = EquipmentController.getInstance().MakeEquipmentForRoom(equipmentType, currentRoomEquipment);
             this.window = window;

@@ -24,6 +24,7 @@ namespace HospitalInformationSystem.Windows.ManagerGUI
         private EditMedicineWindow(Medicine medicineForEdit)
         {
             InitializeComponent();
+            WindowStartupLocation = System.Windows.WindowStartupLocation.CenterScreen;
             this.medicineForEdit = medicineForEdit;
             LoadComboBoxes();
             LoadIngredientsListBox();

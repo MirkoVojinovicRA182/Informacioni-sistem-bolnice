@@ -349,6 +349,15 @@ namespace HospitalInformationSystem.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to pretraži po imenu:.
+        /// </summary>
+        internal static string FindByName {
+            get {
+                return ResourceManager.GetString("FindByName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Sprat:.
         /// </summary>
         internal static string Floor {

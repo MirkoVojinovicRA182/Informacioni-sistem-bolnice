@@ -14,6 +14,7 @@ namespace HospitalInformationSystem.Windows.ManagerGUI
         private MedicineCommentNotificationWindow()
         {
             InitializeComponent();
+            WindowStartupLocation = System.Windows.WindowStartupLocation.CenterScreen;
         }
         private void closeButton_Click(object sender, RoutedEventArgs e)
         {

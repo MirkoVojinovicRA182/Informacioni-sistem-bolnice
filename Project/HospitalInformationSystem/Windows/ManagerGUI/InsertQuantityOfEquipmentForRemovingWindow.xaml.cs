@@ -20,6 +20,7 @@ namespace HospitalInformationSystem.Windows.ManagerGUI
         private InsertQuantityOfEquipmentForRemovingWindow(int currentQuantity)
         {
             InitializeComponent();
+            WindowStartupLocation = System.Windows.WindowStartupLocation.CenterScreen;
             itSubmitted = false;
             this.currentQuantity = currentQuantity;
         }

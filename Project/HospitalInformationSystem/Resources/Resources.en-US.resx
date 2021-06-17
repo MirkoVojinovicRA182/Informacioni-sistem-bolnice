@@ -216,6 +216,9 @@
   <data name="Find" xml:space="preserve">
     <value>FIND</value>
   </data>
+  <data name="FindByName" xml:space="preserve">
+    <value>find by name:</value>
+  </data>
   <data name="Floor" xml:space="preserve">
     <value>Floor:</value>
   </data>

@@ -1,0 +1,13 @@
+﻿<Window x:Class="HospitalInformationSystem.Windows.ManagerGUI.TestView"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:HospitalInformationSystem.Windows.ManagerGUI"
+        mc:Ignorable="d"
+        Title="Test" Height="300" Width="300">
+    <Grid>
+        <Button Command="{Binding OpenMessageBoxCommand}" Content="TEST" FontSize="20" HorizontalAlignment="Left" Margin="91,108,0,0" VerticalAlignment="Top" Width="98" Height="46"/>
+
+    </Grid>
+</Window>

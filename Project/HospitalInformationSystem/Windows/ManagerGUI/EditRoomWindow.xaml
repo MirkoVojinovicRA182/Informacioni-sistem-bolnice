@@ -7,7 +7,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:HospitalInformationSystem.Windows"
         mc:Ignorable="d"
-        Title="{ns:Loc ChangeRoomTitle}" Height="400" Width="680" Closing="window_Closing_1">
+        Title="{ns:Loc ChangeRoomTitle}" Height="400" Width="680" Closing="window_Closing_1" ResizeMode="NoResize">
     <Grid Margin="0,0,3.6,0.8">
         <Grid.RowDefinitions>
             <RowDefinition Height="189.6"/>

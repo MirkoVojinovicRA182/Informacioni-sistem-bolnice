@@ -6,7 +6,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:HospitalInformationSystem.Windows.ManagerGUI"
         mc:Ignorable="d"
-        Title="Unos leka" Height="550" Width="380" Closing="Window_Closing">
+        Title="Unos leka" Height="550" Width="380" Closing="Window_Closing" ResizeMode="NoResize">
     <Grid>
         <Label Content="Šifra:" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="29,34,0,0" FontSize="15"/>
         <Label Content="Naziv:" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="29,82,0,0" FontSize="15"/>

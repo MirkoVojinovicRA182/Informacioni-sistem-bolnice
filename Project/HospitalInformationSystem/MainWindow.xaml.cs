@@ -12,6 +12,7 @@ using System;
 using System.Collections.Generic;
 using System.Collections;
 using System.Collections.ObjectModel;
+using HospitalInformationSystem.ViewModel;
 
 namespace HospitalInformationSystem.Windows
 {
@@ -32,6 +33,12 @@ namespace HospitalInformationSystem.Windows
         {
             InitializeComponent();
             Deserialize();
+            /*RoomController.GetInstance().AddRoomToRoomList(new Room(1, "Magacin", -1, TypeOfRoom.Magacine, new Hashtable()));
+            AccountController.GetInstance().AddNewAccount(new Account("upravnik", "pass", new Manager()));
+            AccountController.GetInstance().AddNewAccount(new Account("sekretar", "pass", new Secretary()));*/
+            TestView window = new TestView() { DataContext = new TestViewModel() };
+            window.Show();
+
         }
         private void Button_Click(object sender, RoutedEventArgs e)
         {

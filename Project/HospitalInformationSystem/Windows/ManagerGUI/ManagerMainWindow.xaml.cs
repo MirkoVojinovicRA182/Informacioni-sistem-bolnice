@@ -15,6 +15,7 @@ using MaterialDesignThemes.Wpf;
 using System.Windows.Controls.Primitives;
 using Syncfusion.Pdf.Grid;
 using System.Drawing.Drawing2D;
+using Syncfusion.Pdf.Graphics;
 
 namespace HospitalInformationSystem.Windows.ManagerGUI
 {
@@ -35,6 +36,7 @@ namespace HospitalInformationSystem.Windows.ManagerGUI
         private ManagerMainWindow()
         {
             InitializeComponent();
+            WindowStartupLocation = System.Windows.WindowStartupLocation.CenterScreen;
             lightTheme.IsChecked = true;
             english.IsChecked = true;
             RefreshTables();
@@ -105,8 +107,6 @@ namespace HospitalInformationSystem.Windows.ManagerGUI
             if (roomsUserControl.allRoomsTable.SelectedItem != null)
             {
                 room = (Room)this.roomsUserControl.allRoomsTable.SelectedItem;
-                if (string.Equals(room.Name, "Magacin"))
-                    return;
                 if (!room.RoomRenovationState.ActivityStatus)
                 {
                     RoomController.GetInstance().DeleteRoom((Room)this.roomsUserControl.allRoomsTable.SelectedItem);
@@ -198,26 +198,25 @@ namespace HospitalInformationSystem.Windows.ManagerGUI
             using (PdfDocument doc = new PdfDocument())
             {
                 PdfPage page = doc.Pages.Add();
-                PdfLightTable pdfLightTable = new PdfLightTable();
-                pdfLightTable.Style.BorderPen.DashStyle = (Syncfusion.Pdf.Graphics.PdfDashStyle)DashStyle.Solid;
-                
-                
+
+                PdfGrid pdfGrid = new PdfGrid();
 
                 DataTable table = new DataTable();
                 table.Columns.Add("Ime");
                 table.Columns.Add("Prezime");
-                table.Columns.Add("Datum rođenja");
-                table.Rows.Add(new string[] { "Ime", "Prezime", "Datum rođenja" });
-                foreach (Doctor doctor in DoctorController.getInstance().GetDoctors())
+                table.Columns.Add("Početak pregleda");
+                table.Columns.Add("Kraj pregleda");
+                foreach (Appointment app in AppointmentController.getInstance().GetAppointments())
                 {
-                    table.Rows.Add(new string[] { doctor.Name, doctor.Surname, doctor.DateOfBirth.ToLongDateString() });
+                    table.Rows.Add(new string[] { app.doctor.Name, app.doctor.Surname, app.StartTime.ToString(), app.StartTime.AddMinutes(30).ToString()});
                 }
-                pdfLightTable.DataSource = table;
-                pdfLightTable.Draw(page, new PointF(0, 0));
+                pdfGrid.DataSource = table;
+
+                pdfGrid.Draw(page, new PointF(0, 0));
                 doc.Save("C:\\Users\\Mirko\\Desktop\\Izvestaj.pdf");
                 doc.Close(true);
             }
-            this.ShowMessageAsync("", "Uspešno ste kreirali izveštaj o zauzetosti lekara");
+            this.ShowMessageAsync("", "Uspešno ste kreirali izveštaj o zauzetosti lekara.");
         }
         private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
         {

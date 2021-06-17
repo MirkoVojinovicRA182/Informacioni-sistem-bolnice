@@ -27,6 +27,7 @@ namespace HospitalInformationSystem.Windows.ManagerGUI
         private RoomRenovationWindow(Room roomForRenovation)
         {
             InitializeComponent();
+            WindowStartupLocation = System.Windows.WindowStartupLocation.CenterScreen;
             this.roomSelectedFromTable = roomForRenovation;
             roomForMergeComboBox.ItemsSource = RoomController.GetInstance().GetRooms();
             LoadTimeComboBoxes();

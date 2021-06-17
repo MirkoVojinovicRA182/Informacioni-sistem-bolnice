@@ -16,8 +16,8 @@
 				AutoGenerateColumns="False"
 				IsReadOnly="True"
 				SelectionMode="Single"
-				Height="500" 
-				Margin="10,10,0,0" 
+				Height="444" 
+				Margin="10,66,0,-60.4" 
 				VerticalAlignment="Top" 
 				Width="950"  SelectionChanged="medicineTable_SelectionChanged">
             <DataGrid.Columns>
@@ -27,5 +27,8 @@
                 <DataGridTextColumn Header="{ns:Loc NameOfReplacementInTable}" Width="*" Binding="{Binding NameOfReplacementMedicine}"></DataGridTextColumn>
             </DataGrid.Columns>
         </DataGrid>
+        <TextBox x:Name="findByNameTextBox" KeyUp="findByNameTextBox_KeyUp" HorizontalAlignment="Left" Height="30" Margin="783,10,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="167" FontStyle="Italic" FontSize="15"/>
+        <mah:FontIcon HorizontalAlignment="Left" Margin="405,-33,0,0" VerticalAlignment="Top" Width="100"/>
+        <Label Content="{ns:Loc FindByName}" HorizontalAlignment="Left" Margin="635,10,0,0" VerticalAlignment="Top" Width="143" FontSize="15" FontStyle="Italic" FontWeight="Bold"/>
     </Grid>
 </mah:MetroContentControl>

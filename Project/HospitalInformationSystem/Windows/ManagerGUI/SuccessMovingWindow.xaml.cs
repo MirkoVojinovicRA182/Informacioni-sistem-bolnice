@@ -14,6 +14,7 @@ namespace HospitalInformationSystem.Windows.ManagerGUI
         private SuccessMovingWindow(int currentQuantity, int finalQuantity)
         {
             InitializeComponent();
+            WindowStartupLocation = System.Windows.WindowStartupLocation.CenterScreen;
             currentStateTextBlock.Text = currentQuantity.ToString();
             finalStateTextBlock.Text = finalQuantity.ToString();
         }

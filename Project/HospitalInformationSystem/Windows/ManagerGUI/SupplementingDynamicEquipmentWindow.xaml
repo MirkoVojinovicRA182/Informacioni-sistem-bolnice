@@ -6,7 +6,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:HospitalInformationSystem.Windows.ManagerGUI"
         mc:Ignorable="d"
-        Title="Dopuna dinamičke opreme" Height="200" Width="320" Closing="Window_Closing">
+        Title="Dopuna dinamičke opreme" Height="200" Width="320" Closing="Window_Closing" ResizeMode="NoResize">
     <Grid>
         <TextBlock HorizontalAlignment="Left" Margin="78,21,0,0" TextWrapping="Wrap" Text="Unesite količinu:" VerticalAlignment="Top" FontSize="20"/>
         <Button x:Name="confirmButton" Content="POTVRDI" HorizontalAlignment="Left" VerticalAlignment="Top" Width="100" Height="30" Margin="92,130,0,0" Click="confirmButton_Click"/>

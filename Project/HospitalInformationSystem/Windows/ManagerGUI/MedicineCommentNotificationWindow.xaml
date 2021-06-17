@@ -6,7 +6,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:HospitalInformationSystem.Windows.ManagerGUI"
         mc:Ignorable="d"
-        Title="Obaveštenje" Height="200" Width="350" Closing="Window_Closing">
+        Title="Obaveštenje" Height="200" Width="350" Closing="Window_Closing" ResizeMode="NoResize">
     <Grid>
         <TextBox HorizontalAlignment="Left" Height="21" Margin="19,46,-38.4,0" TextWrapping="Wrap" Text="Niste revidirali sve komentare o lekovima!" VerticalAlignment="Top" Width="313" FontSize="15" FontWeight="Bold"/>
         <Button x:Name="lookCommentButton" Content="Pogledaj" HorizontalAlignment="Left" VerticalAlignment="Top" Width="100" Height="30" Margin="64,115,0,0" Click="lookCommentButton_Click"/>

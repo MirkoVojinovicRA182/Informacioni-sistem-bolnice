@@ -25,6 +25,7 @@ namespace HospitalInformationSystem.Windows.ManagerGUI
         private StaticEquipmentDeploymentWindow(Room currentRoom, string idOfSelectedEquipment)
         {
             InitializeComponent();
+            WindowStartupLocation = System.Windows.WindowStartupLocation.CenterScreen;
             this.currentRoom = currentRoom;
             this.quantityOfSelectedEquipment = (int)currentRoom.EquipmentInRoom.Equipment[idOfSelectedEquipment];
             this.idOfSelectedEquipment = idOfSelectedEquipment;

@@ -6,7 +6,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:HospitalInformationSystem.Windows.ManagerGUI"
         mc:Ignorable="d"
-        Title="Oprema" Height="200" Width="320" Closing="Window_Closing">
+        Title="Oprema" Height="200" Width="320" Closing="Window_Closing" ResizeMode="NoResize">
     <Grid>
         <TextBlock HorizontalAlignment="Left" Margin="26,10,0,0" TextWrapping="Wrap" Text="Unesite količinu koju želite da obrišete:" VerticalAlignment="Top" FontSize="15"/>
         <Button x:Name="submitButton" Content="POTVRDI" HorizontalAlignment="Left" VerticalAlignment="Top" Width="100" Height="30" Margin="92,130,0,0" Click="submitButton_Click"/>

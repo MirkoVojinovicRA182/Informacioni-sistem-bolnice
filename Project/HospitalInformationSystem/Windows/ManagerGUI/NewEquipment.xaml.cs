@@ -24,6 +24,7 @@ namespace HospitalInformationSystem.Windows.ManagerGUI
         private NewEquipment()
         {
             InitializeComponent();
+            WindowStartupLocation = System.Windows.WindowStartupLocation.CenterScreen;
             LoadTypeOfEquipmentComboBox();
         }
         private void LoadTypeOfEquipmentComboBox()

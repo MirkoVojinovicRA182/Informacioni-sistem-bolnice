@@ -20,6 +20,7 @@ namespace HospitalInformationSystem.Windows.ManagerGUI
         private NewMedicineWindow()
         {
             InitializeComponent();
+            WindowStartupLocation = System.Windows.WindowStartupLocation.CenterScreen;
             LoadComboBoxes();
         }
         private void LoadComboBoxes()

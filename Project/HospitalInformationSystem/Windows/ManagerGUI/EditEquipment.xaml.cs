@@ -30,6 +30,7 @@ namespace HospitalInformationSystem.Windows.ManagerGUI
         private EditEquipment(Equipment equipment)
         {
             InitializeComponent();
+            WindowStartupLocation = System.Windows.WindowStartupLocation.CenterScreen;
             this._selectedEquipment = equipment;
             fillControls();
         }

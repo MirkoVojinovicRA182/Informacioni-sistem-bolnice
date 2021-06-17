@@ -6,7 +6,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:HospitalInformationSystem.Windows.ManagerGUI"
         mc:Ignorable="d"
-        Title="" Height="300" Width="400" Closing="Window_Closing">
+        Title="" Height="300" Width="400" Closing="Window_Closing" ResizeMode="NoResize">
     <Grid>
         <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" Text="RENOVIRA SE" VerticalAlignment="Top" Margin="38,78,0,0" RenderTransformOrigin="0.5,0.5" FontSize="50" Width="327" FontWeight="Bold" FontStyle="Italic" Foreground="#FFF12222">
             <TextBlock.RenderTransform>

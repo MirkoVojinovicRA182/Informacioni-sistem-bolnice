@@ -21,6 +21,7 @@ namespace HospitalInformationSystem.Windows.ManagerGUI
         private NewRoomWindow()
         {
             InitializeComponent();
+            WindowStartupLocation = System.Windows.WindowStartupLocation.CenterScreen;
             loadComboBox();
             roomEquipment = new Hashtable();
         }

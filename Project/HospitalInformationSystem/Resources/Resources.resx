@@ -213,6 +213,9 @@
   <data name="Find" xml:space="preserve">
     <value>Pretraži</value>
   </data>
+  <data name="FindByName" xml:space="preserve">
+    <value>pretraži po imenu:</value>
+  </data>
   <data name="Floor" xml:space="preserve">
     <value>Sprat:</value>
   </data>

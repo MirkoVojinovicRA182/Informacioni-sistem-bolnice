@@ -19,6 +19,7 @@ namespace HospitalInformationSystem.Windows.ManagerGUI
         private SupplementingDynamicEquipmentWindow(Room selectedRoom, string idOfSelectedEquipment)
         {
             InitializeComponent();
+            WindowStartupLocation = System.Windows.WindowStartupLocation.CenterScreen;
             this.selectedRoom = selectedRoom;
             this.idOfSelectedEquipment = idOfSelectedEquipment;
         }

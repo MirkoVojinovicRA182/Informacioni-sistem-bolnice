@@ -19,6 +19,7 @@ namespace HospitalInformationSystem.Windows.ManagerGUI
         private MedicineWithCommentPreview()
         {
             InitializeComponent();
+            WindowStartupLocation = System.Windows.WindowStartupLocation.CenterScreen;
             LoadListBox();
         }
         public void LoadListBox()

@@ -6,7 +6,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:HospitalInformationSystem.Windows.ManagerGUI"
         mc:Ignorable="d"
-        Title="Premeštanje statičke opreme" Height="500" Width="500" Closing="Window_Closing">
+        Title="Premeštanje statičke opreme" Height="500" Width="500" Closing="Window_Closing" ResizeMode="NoResize">
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="49*"/>

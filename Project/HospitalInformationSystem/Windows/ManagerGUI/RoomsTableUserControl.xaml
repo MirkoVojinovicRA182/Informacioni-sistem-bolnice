@@ -16,8 +16,8 @@
 				  AutoGenerateColumns="False"
 				  IsReadOnly="True"
 				  SelectionMode="Single"
-				  Height="500" 
-				  Margin="10,10,4.9,0" 
+				  Height="453" 
+				  Margin="10,57,4.4,0" 
 				  VerticalAlignment="Top" 
                   SelectionUnit="FullRow" RenderTransformOrigin="0.5,0.5" SelectionChanged="allRoomsTable_SelectionChanged" SourceUpdated="allRoomsTable_SourceUpdated">
             <DataGrid.Columns>
@@ -28,5 +28,7 @@
 
             </DataGrid.Columns>
         </DataGrid>
+        <TextBox Name="findByNameTextBox" KeyUp="findByNameTextBox_KeyUp" HorizontalAlignment="Left" Height="23" Margin="820,10,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120"/>
+        <Label Content="{ns:Loc FindByName}" HorizontalAlignment="Left" Margin="648,10,0,0" VerticalAlignment="Top" Width="167" FontWeight="Bold" FontStyle="Italic"/>
     </Grid>
 </mah:MetroContentControl>

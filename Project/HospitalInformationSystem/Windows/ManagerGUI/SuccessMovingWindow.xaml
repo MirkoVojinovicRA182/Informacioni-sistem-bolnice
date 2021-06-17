@@ -6,7 +6,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:HospitalInformationSystem.Windows.ManagerGUI"
         mc:Ignorable="d"
-        Title="Premeštanje opreme" Height="200" Width="400" Closing="Window_Closing">
+        Title="Premeštanje opreme" Height="200" Width="400" Closing="Window_Closing" ResizeMode="NoResize">
     <Grid>
         <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" Text="Uspešno je zakazano premeštanje odabrane opreme." VerticalAlignment="Top" Margin="27,30,0,0" Width="357" FontSize="15"/>
         <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" Text="trenutno stanje:" VerticalAlignment="Top" Margin="27,67,0,0" Width="83" FontStyle="Italic"/>
